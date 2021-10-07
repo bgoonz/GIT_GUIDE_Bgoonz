@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="generator" content="pandoc" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
+    <title>install-git</title>
+    <style type="text/css">
+      code {
+        white-space: pre-wrap;
+      }
+      span.smallcaps {
+        font-variant: small-caps;
+      }
+      span.underline {
+        text-decoration: underline;
+      }
+      div.column {
+        display: inline-block;
+        vertical-align: top;
+        width: 50%;
+      }
+    </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/markdown-to-html-style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/mdn-article.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/medium-basic-export.css">
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/github.css">
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/git.js"></script>
+
+
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/highlight.pack.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/highlightJsWorker.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/highlightjs-badge.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/highlightjs-badge.min.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/jquery-1.10.1.min.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/jquery-3.3.1.min.js"></script>  <style>
+      p {
+        text-indent: 50px;
+        line-height: 1.8;
+        word-spacing: 4px;
+      }
+
+      * {
+        font-weight: bold;
+        font-family: "Times New Roman", Times, serif;
+        padding: 20px;
+      }
+      .container {
+        width: 80%;
+        margin: auto;
+        box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+          0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+          0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+          0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+      }
+      text-indent: 50px;
+    </style></head>
+  <body>
+    <h1 id="install-git">Install Git</h1>
+    <p>How to install Git on any OS</p>
+    <p>
+      Git can be installed on the most common operating systems like Windows,
+      Mac, and Linux. In fact, Git comes installed by default on most Mac and
+      Linux machines!
+    </p>
+    <h2 id="checking-for-git">Checking for Git</h2>
+    <p>
+      To see if you already have Git installed, open up your terminal
+      application.
+    </p>
+    <ul>
+      <li>
+        If you’re on a Mac, look for a command prompt application called
+        “Terminal”.
+      </li>
+      <li>
+        If you’re on a Windows machine, open the windows command prompt or “Git
+        Bash”.
+      </li>
+    </ul>
+    <p>
+      Once you’ve opened your terminal application, type
+      <code>git version</code>. The output will either tell you which version of
+      Git is installed, or it will alert you that <code>git</code> is an unknown
+      command. If it’s an unknown command, read further and find out how to
+      install Git.
+    </p>
+    <h2 id="install-git-using-github-desktop">
+      Install Git Using GitHub Desktop
+    </h2>
+    <p>
+      Installing GitHub Desktop will also install the latest version of Git if
+      you don’t already have it. With GitHub Desktop, you get a command-line
+      version of Git with a robust GUI. Regardless of if you have Git installed
+      or not, GitHub Desktop offers a simple collaboration tool for Git. You can
+      <a href="https://desktop.github.com/">learn more here</a>.
+    </p>
+    <h2 id="install-git-on-windows">Install Git on Windows</h2>
+    <ol type="1">
+      <li>
+        Navigate to the latest
+        <a href="https://gitforwindows.org/">Git for Windows installer</a> and
+        download the latest version.
+      </li>
+      <li>
+        Once the installer has started, follow the instructions as provided in
+        the <strong>Git Setup</strong> wizard screen until the installation is
+        complete.
+      </li>
+      <li>
+        Open the windows command prompt (or <strong>Git Bash</strong> if you
+        selected not to use the standard Git Windows Command Prompt during the
+        Git installation).
+      </li>
+      <li>Type <code>git version</code> to verify Git was installed.</li>
+    </ol>
+    <p>
+      Note:
+      <a href="https://git-scm.com/download/win"><code>git-scm</code></a> is a
+      popular and recommended resource for downloading Git for Windows. The
+      advantage of downloading Git from <code>git-scm</code> is that your
+      download automatically starts with the latest version of Git included with
+      the recommended command prompt, <code>Git Bash</code> . The download
+      source is the same
+      <a href="https://gitforwindows.org/">Git for Windows installer</a> as
+      referenced in the steps above.
+    </p>
+    <h2 id="install-git-on-windows-through-visual-studio-code">
+      Install Git on Windows through Visual Studio Code
+    </h2>
+    <p>
+      GitHub integration is provided through the
+      <a
+        href="https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github"
+        >GitHub Pull Requests and Issues extension</a
+      >. To get started with the GitHub in VS Code, you’ll need to create an
+      account and install the GitHub Pull Requests and Issues extension. Once
+      you’ve installed the
+      <a
+        href="https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github"
+        >GitHub Pull Requests and Issues extension</a
+      >, you’ll need to sign in. Follow the prompts to authenticate with GitHub
+      and return to VS Code.
+    </p>
+    <hr />
+    <p>
+      Note: You can perform actions like, you can search for and clone a
+      repository from GitHub using the Git: Clone command in the Command Palette
+      (Ctrl+Shift+P) or by using the Clone Repository button in the Source
+      Control view (available when you have no folder open).
+      <a href="https://code.visualstudio.com/docs/editor/github"
+        >Learn more here</a
+      >
+    </p>
+    <hr />
+    <h2 id="install-git-on-mac">Install Git on Mac</h2>
+    <p>
+      Most versions of MacOS will already have <code>Git</code> installed, and
+      you can activate it through the terminal with <code>git version</code>.
+      However, if you don’t have Git installed for whatever reason, you can
+      install the latest version of Git using one of several popular methods as
+      listed below:
+    </p>
+    <h4 id="install-git-from-an-installer">Install Git From an Installer</h4>
+    <ol type="1">
+      <li>
+        Navigate to the latest
+        <a
+          href="https://sourceforge.net/projects/git-osx-installer/files/git-2.23.0-intel-universal-mavericks.dmg/download?use_mirror=autoselect"
+          >macOS Git Installer</a
+        >
+        and download the latest version.
+      </li>
+      <li>
+        Once the installer has started, follow the instructions as provided
+        until the installation is complete.
+      </li>
+      <li>
+        Open the command prompt “terminal” and type <code>git version</code> to
+        verify Git was installed.
+      </li>
+    </ol>
+    <p>
+      Note:
+      <a href="https://git-scm.com/download/mac"><code>git-scm</code></a> is a
+      popular and recommended resource for downloading Git on a Mac. The
+      advantage of downloading Git from <code>git-scm</code> is that your
+      download automatically starts with the latest version of Git. The download
+      source is the same
+      <a
+        href="https://sourceforge.net/projects/git-osx-installer/files/git-2.23.0-intel-universal-mavericks.dmg/download?use_mirror=autoselect"
+        >macOS Git Installer</a
+      >
+      as referenced in the steps above.
+    </p>
+    <h4 id="install-git-from-homebrew">Install Git from Homebrew</h4>
+    <p>
+      <a href="https://brew.sh/">Homebrew</a> is a popular package manager for
+      macOS. If you already have Homebrew installed, you can follow the below
+      steps to install Git:
+    </p>
+    <ol type="1">
+      <li>
+        Open up a terminal window and install Git using the following command:
+        <code>brew install git</code>.
+      </li>
+      <li>
+        Once the command output has been completed, you can verify the
+        installation by typing: <code>git version</code>.
+      </li>
+    </ol>
+    <h2 id="install-git-on-linux">Install Git on Linux</h2>
+    <p>
+      Fun fact: Git was originally developed to version the Linux operating
+      system! So, it only makes sense that it is easy to configure to run on
+      Linux.
+    </p>
+    <p>
+      You can install <code>Git</code> on Linux through the package management
+      tool that comes with your distribution.
+    </p>
+    <h4 id="debianubuntu">Debian/Ubuntu</h4>
+    <ol type="1">
+      <li>Git packages are available using <code>apt</code>.</li>
+      <li>
+        It’s a good idea to make sure you’re running the latest version. To do
+        so, Navigate to your command prompt shell and run the following command
+        to make sure everything is up-to-date: <code>sudo apt-get update</code>.
+      </li>
+      <li>
+        To install Git, run the following command:
+        <code>sudo apt-get install git-all</code>.
+      </li>
+      <li>
+        Once the command output has been completed, you can verify the
+        installation by typing: <code>git version</code>.
+      </li>
+    </ol>
+    <h4 id="fedora">Fedora</h4>
+    <ol type="1">
+      <li>Git packages are available using <code>dnf</code>.</li>
+      <li>
+        To install Git, navigate to your command prompt shell and run the
+        following command: <code>sudo dnf install git-all</code>.
+      </li>
+      <li>
+        Once the command output has been completed, you can verify the
+        installation by typing: <code>git version</code>.
+      </li>
+    </ol>
+    <p>
+      Note: You can download the proper Git versions and read more about how to
+      install on specific Linux systems, like installing Git on Ubuntu or
+      Fedora,
+      <a href="https://git-scm.com/download/linux">in git-scm’s documentation</a
+      >.
+    </p>
+    <h2 id="other-methods-of-installing-git">
+      Other Methods of Installing Git
+    </h2>
+    <p>
+      Looking to install Git via the source code?
+      <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git"
+        >Learn more here</a
+      >.
+    </p>
+  </body>
+</html>

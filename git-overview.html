@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="generator" content="pandoc" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
+    <title>git-overview</title>
+    <style type="text/css">
+      code {
+        white-space: pre-wrap;
+      }
+      span.smallcaps {
+        font-variant: small-caps;
+      }
+      span.underline {
+        text-decoration: underline;
+      }
+      div.column {
+        display: inline-block;
+        vertical-align: top;
+        width: 50%;
+      }
+    </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/markdown-to-html-style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/mdn-article.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/medium-basic-export.css">
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/github.css">
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/git.js"></script>
+
+
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/highlight.pack.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/highlightJsWorker.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/highlightjs-badge.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/highlightjs-badge.min.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/jquery-1.10.1.min.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/jquery-3.3.1.min.js"></script>  <style>
+      p {
+        text-indent: 50px;
+        line-height: 1.8;
+        word-spacing: 4px;
+      }
+
+      * {
+        font-weight: bold;
+        font-family: "Times New Roman", Times, serif;
+        padding: 20px;
+      }
+      .container {
+        width: 80%;
+        margin: auto;
+        box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+          0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+          0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+          0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+      }
+      text-indent: 50px;
+    </style></head>
+  <body>
+    <h1 id="git-guide">Git Guide</h1>
+    <p>
+      Everything you need to know about Git, from getting started to advanced
+      commands and workflows.
+    </p>
+    <ul>
+      <li>
+        <a href="#git-guide">Git Guide</a>
+        <ul>
+          <li><a href="#what-is-git">What is Git?</a></li>
+          <li><a href="#what-is-git-written-in">What is Git Written in?</a></li>
+          <li>
+            <a href="#why-use-git">Why Use Git?</a>
+            <ul>
+              <li><a href="#speed">Speed</a></li>
+              <li><a href="#merge-conflicts">Merge conflicts</a></li>
+              <li><a href="#cheap-branches">Cheap branches</a></li>
+              <li><a href="#ease-of-roll-back">Ease of roll back</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#how-do-i-use-git">How Do I Use Git?</a>
+            <ul>
+              <li><a href="#learning-git-basics">Learning Git Basics</a></li>
+              <li>
+                <a href="#getting-started-with-the-git-workflow"
+                  >Getting Started With the Git Workflow</a
+                >
+                <ul>
+                  <li><a href="#create-a-branch">Create a branch</a></li>
+                  <li>
+                    <a href="#make-changes-and-make-a-commit"
+                      >Make changes (and make a commit)</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#push-your-changes-to-the-remote"
+                      >Push your changes to the remote</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#open-a-pull-request">Open a pull request</a>
+                  </li>
+                  <li><a href="#collaborate">Collaborate</a></li>
+                  <li>
+                    <a href="#merge-into-main">Merge into <code>main</code></a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="#getting-started-with-github"
+                  >Getting Started With GitHub</a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <h2 id="what-is-git">What is Git?</h2>
+    <p>
+      Git is a distributed version control software. Version control is a way to
+      save changes over time without overwriting previous versions. Being
+      distributed means that every developer working with a Git repository has a
+      copy of that entire repository - every commit, every branch, every file.
+      If you’re used to working with centralized version control systems, this
+      is a big difference!
+    </p>
+    <p>
+      Whether or not you’ve worked with version control before, there are a few
+      things you should know before getting started with Git:
+    </p>
+    <ul>
+      <li>
+        Branches are lightweight and cheap, so it’s OK to have many of them
+      </li>
+      <li>
+        Git stores changes in SHA hashes, which work by compressing text files.
+        That makes Git a very good version control system (VCS) for software
+        programming, but not so good for binary files like images or videos.
+      </li>
+      <li>
+        Git repositories can be connected, so you can work on one locally on
+        your own machine, and connect it to a shared repository. This way, you
+        can <a href="/git-guides/git-push">push</a> and
+        <a href="/git-guides/git-pull">pull</a> changes to a repository and
+        easily collaborate with others.
+      </li>
+    </ul>
+    <h2 id="what-is-git-written-in">What is Git Written in?</h2>
+    <p>
+      The tools that make up the core Git distribution are written in C, Shell,
+      Perl, and Tcl. You can find Git’s source code on GitHub under
+      <a href="https://github.com/git/git">git/git</a>.
+    </p>
+    <h2 id="why-use-git">Why Use Git?</h2>
+    <p>
+      Version control is very important - without it, you risk losing your work.
+      With Git, you can make a “commit”, or a save point, as often as you’d
+      like. You can also go back to previous commits. This takes the pressure
+      off of you while you’re working. Commit often and commit early, and you’ll
+      never have that gut-sinking feeling of overwriting or losing changes.
+    </p>
+    <p>
+      There are many version control systems out there - but Git has some major
+      advantages.
+    </p>
+    <h3 id="speed">Speed</h3>
+    <p>
+      Like we mentioned above, Git uses SHA compression, which makes it very
+      fast.
+    </p>
+    <h3 id="merge-conflicts">Merge conflicts</h3>
+    <p>
+      Git can handle merge conflicts, which means that
+      <strong
+        >it’s OK for multiple people to work on the same file at the same
+        time</strong
+      >. This opens up the world of development in a way that isn’t possible
+      with centralized version control. You have access to the entire project,
+      and if you’re working on a branch, you can do whatever you need to and
+      know that your changes are safe.
+    </p>
+    <h3 id="cheap-branches">Cheap branches</h3>
+    <p>
+      Speaking of branches, Git offers a lot of flexibility and opportunity for
+      collaboration with branches.
+      <strong
+        >By using branches, developers can make changes in a safe
+        sandbox.</strong
+      >
+    </p>
+    <p>
+      Instead of only committing code that is 100% sure to succeed, developers
+      can commit code that might still need help. Then, they can push that code
+      to the remote and get fast feedback from integrated tests or peer review.
+    </p>
+    <p>
+      Without sharing the code through branches, this would never be possible.
+    </p>
+    <h3 id="ease-of-roll-back">Ease of roll back</h3>
+    <p>
+      If you make a mistake, it’s OK! Commits are immutable, meaning they can’t
+      be changed. (<em
+        >Note: You <em>can</em> change history, but it will create new
+        replacement commits instead of editing the existing commits. More on
+        that later!</em
+      >) This means that if you do make a mistake, even on an important branch,
+      like <code>main</code>, it’s <em>OK</em>.
+      <strong
+        >You can easily revert that change, or roll back the branch pointer to
+        the commit where everything was fine.</strong
+      >
+    </p>
+    <p>
+      The benefits of this can’t be overstated. Not only does it create a safer
+      environment for the project and code, but it fosters a development
+      environment where developers can be braver, trusting that Git has their
+      back.
+    </p>
+    <h2 id="how-do-i-use-git">How Do I Use Git?</h2>
+    <h3 id="learning-git-basics">Learning Git Basics</h3>
+    <p>
+      If you’re getting started with Git, a great place to learn the basic
+      commands is the
+      <a href="https://github.github.io/training-kit/">Git Cheat sheet</a>. It’s
+      translated into many languages,
+      <a href="https://github.com/github/training-kit"
+        >open source as a part of the
+        <code>github/training-kit</code> repository</a
+      >, and a great starting place for the fundamentals on the command line.
+    </p>
+    <p>
+      Some of the most important and most used commands that you’ll find there
+      are:
+    </p>
+    <ul>
+      <li>
+        <code>git clone [url]</code>:
+        <a href="/git-guides/git-clone">Clone</a> (download) a repository that
+        already exists on GitHub, including all of the files, branches, and
+        commits.
+      </li>
+      <li>
+        <code>git status</code>: Always a good idea, this command shows you what
+        branch you’re on, what files are in the working or staging directory,
+        and any other important information.
+      </li>
+      <li>
+        <code>git branch</code>: This shows the existing branches in your local
+        repository. You can also use <code>git branch [branch-name]</code> to
+        create a branch from your current location, or
+        <code>git branch --all</code> to see all branches, both the local ones
+        on your machine, and the remote tracking branches stored from the last
+        <code>git pull</code> or <code>git fetch</code> from the remote.
+      </li>
+      <li>
+        <code>git checkout [branch-name]</code>: Switches to the specified
+        branch and updates the working directory.
+      </li>
+      <li>
+        <code>git add [file]</code>: Snapshots the file in preparation for
+        versioning, adding it to the staging area.
+      </li>
+      <li>
+        <code>git commit -m "descriptive message"</code>: Records file snapshots
+        permanently in the version history.
+      </li>
+      <li>
+        <code>git pull</code>: Updates your current local working branch with
+        all new commits from the corresponding remote branch on GitHub.
+        <code>git pull</code> is a combination of <code>git fetch</code> and
+        <code>git merge</code>.
+      </li>
+      <li>
+        <code>git push</code>: Uploads all local branch commits to the remote.
+      </li>
+      <li>
+        <code>git log</code>: Browse and inspect the evolution of project files.
+      </li>
+      <li>
+        <code>git remote -v</code>: Show the associated remote repositories and
+        their stored name, like <code>origin</code>.
+      </li>
+    </ul>
+    <p>
+      If you’re looking for more GitHub-specific technical guidance, check out
+      <a href="https://help.github.com/">GitHub’s help documentation</a> or our
+      <a
+        href="https://www.youtube.com/watch?v=H6wTAIlOUBQ&amp;list=PLg7s6cbtAD16Pgp6WIVfX4VsGI-xyWkMz"
+        >GitHub for Developers series</a
+      >
+      on YouTube.
+    </p>
+    <h3 id="getting-started-with-the-git-workflow">
+      Getting Started With the Git Workflow
+    </h3>
+    <p>
+      Depending on your operating system, you may already have
+      <a href="/git-guides/install-git">Git installed</a>. But, getting started
+      means more than having the software! To get started, it’s important to
+      know the basics of how Git works. You may choose to do the actual work
+      within a terminal, an app like GitHub Desktop, or through GitHub.com. (<em
+        >Note: while you can interact with Git through GitHub.com, your
+        experience may be limited. Many local tools can give you access to the
+        most widely used Git functionalities, though only the terminal will give
+        you access to them all.</em
+      >)
+    </p>
+    <p>
+      There are <em>many</em> ways to use Git, which doesn’t necessarily make it
+      easier! But, the fundamental Git workflow has a few main steps. You can
+      practice all of these in the
+      <a href="https://lab.github.com/githubtraining/introduction-to-github"
+        >Introduction to GitHub Learning Lab course</a
+      >.
+    </p>
+    <h4 id="create-a-branch">Create a branch</h4>
+    <p>
+      The main branch is usually called <code>main</code>. We want to work on
+      <em>another</em> branch, so we can make a pull request and make changes
+      safely. To get started, create a branch off of <code>main</code>. Name it
+      however you’d like - but we recommend naming branches based on the
+      function or feature that will be the focus of this branch. One person may
+      have several branches, and one branch may have several people collaborate
+      on it - branches are for a purpose, not a person. Wherever you currently
+      “are” (wherever HEAD is pointing, or whatever branch you’re currently
+      “checked out” to) will be the parent of the branch you create. That means
+      you can create branches from other branches, tags, or any commit! But, the
+      most typical workflow is to create a branch from <code>main</code> - which
+      represents the most current production code.
+    </p>
+    <h4 id="make-changes-and-make-a-commit">
+      Make changes (and make a commit)
+    </h4>
+    <p>
+      Once you’ve created a branch, and moved the HEAD pointer to it by
+      “checking out” to that branch, you’re ready to get to work. Make the
+      changes in your repository using your favorite text editor or IDE.
+    </p>
+    <p>Next, save your changes. You’re ready to start the commit!</p>
+    <p>
+      To start your <a href="/git-guides/git-commit">commit</a>, you need to let
+      Git know what changes you’d like to include with
+      <code>git add [file]</code>.
+    </p>
+    <p>
+      Once you’ve saved and staged the changes, you’re ready to
+      <a href="/git-guides/git-commit">make the commit</a> with
+      <code>git commit -m "descriptive commit message"</code>.
+    </p>
+    <h4 id="push-your-changes-to-the-remote">
+      Push your changes to the remote
+    </h4>
+    <p>
+      So far, if you’ve made a commit locally, you’re the only one that can see
+      it. To let others see your work and begin collaboration, you should “push”
+      your changes using <code>git push</code>. If you’re pushing from a branch
+      for the first time that you’ve created locally, you may need to give Git
+      some more information. <code>git push -u origin [branch-name]</code> tells
+      Git to push the current branch, and create a branch on the remote that
+      matches it with the same name - and also, create a relationship with that
+      branch so that <code>git push</code> will be enough information in the
+      future.
+    </p>
+    <p>
+      By default, <code>git push</code> only pushes the branch that you’ve
+      currently checked out to.
+    </p>
+    <p>
+      Sometimes, if there has been a new commit on the branch on the
+      <em>remote</em>, you may be blocked from pushing. Don’t worry! Start with
+      a simple <a href="/git-guides/git-pull"><code>git pull</code></a> to
+      incorporate the changes on the remote into your own local branch, resolve
+      any conflicts or finish the merge from the remote into the local branch,
+      and then try the push again.
+    </p>
+    <h4 id="open-a-pull-request">Open a pull request</h4>
+    <p>
+      Pushing a branch, or new commits, to a remote repository is enough if a
+      pull request already exists, but if it’s the first time you’re pushing
+      that branch, you should open a new pull request. A pull request is a
+      comparison of two branches - typically <code>main</code>, or the branch
+      that the feature branch was created from, and the feature branch. This
+      way, like branches, pull requests are scoped around a specific function or
+      addition of work, rather than the person making the changes or the amount
+      of time the changes will take.
+    </p>
+    <p>
+      Pull requests are the powerhouse of GitHub. Integrated tests can
+      automatically run on pull requests, giving you immediate feedback on your
+      code. Peers can give detailed code reviews, letting you know if there are
+      changes to make, or if it’s ready to go.
+    </p>
+    <p>
+      Make sure you start your pull requests off with the right information. Put
+      yourself in the shoes of your teammates, or even of your future self.
+      Include information about what this change relates to, what prompted it,
+      what is already done, what is left to do, and any specific asks for help
+      or reviews. Include links to relevant work or conversations. Pull request
+      templates can help make this process easy by automating the starting
+      content of the body of pull requests.
+    </p>
+    <h4 id="collaborate">Collaborate</h4>
+    <p>
+      Once the pull request is open, then the real fun starts. It’s important to
+      recognize that pull requests aren’t meant to be open when work is
+      <em>finished</em>. Pull requests should be open when work is
+      <em>beginning</em>! The earlier you open a pull request, the more
+      visibility the entire team has to the work that you’re doing. When you’re
+      ready for feedback, you can get it by integrating tests or requesting
+      reviews from teammates.
+    </p>
+    <p>
+      It’s very likely that you will want to make more changes to your work.
+      That’s great! To do that, make more commits on the same branch. Once the
+      new commits are present on the remote, the pull request will update and
+      show the most recent version of your work.
+    </p>
+    <h4 id="merge-into-main">Merge into <code>main</code></h4>
+    <p>
+      Once you and your team decide that the pull request looks good, you can
+      merge it. By merging, you integrate the feature branch into the other
+      branch (most typically the <code>main</code> branch). Then,
+      <code>main</code> will be updated with your changes, and your pull request
+      will be closed. Don’t forget to delete your branch! You won’t need it
+      anymore. Remember, branches are lightweight and cheap, and you should
+      create a new one when you need it based on the most recent commit on the
+      <code>main</code> branch.
+    </p>
+    <p>
+      If you choose not to merge the pull request, you can also close pull
+      requests with unmerged changes.
+    </p>
+    <h3 id="getting-started-with-github">Getting Started With GitHub</h3>
+    <p>
+      If you’re wondering where Git ends and GitHub begins, you’re not alone.
+      They are tied closely together to make working with them both a seamless
+      experience. While Git takes care of the underlying version control, GitHub
+      is the collaboration platform built on top of it. GitHub is the place for
+      pull requests, comments, reviews, integrated tests, and so much more. Most
+      developers work locally to develop and use GitHub for collaboration. That
+      ranges from using GitHub to host the shared remote repository to working
+      with colleagues and capitalizing on features like protected branches, code
+      review, GitHub Actions, and more.
+    </p>
+    <p>
+      The best place to practice using Git and GitHub is the
+      <a href="https://lab.github.com/githubtraining/introduction-to-github"
+        >Introduction to GitHub Learning Lab course</a
+      >.
+    </p>
+    <p>
+      If you already know Git and need to sign up for a GitHub account, head
+      over to <a href="https://github.com/">github.com</a>.
+    </p>
+  </body>
+</html>

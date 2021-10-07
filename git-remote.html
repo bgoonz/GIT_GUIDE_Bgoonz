@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="generator" content="pandoc" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
+    <title>git-remote</title>
+    <style type="text/css">
+      code {
+        white-space: pre-wrap;
+      }
+      span.smallcaps {
+        font-variant: small-caps;
+      }
+      span.underline {
+        text-decoration: underline;
+      }
+      div.column {
+        display: inline-block;
+        vertical-align: top;
+        width: 50%;
+      }
+    </style>
+    <style type="text/css">
+      a.sourceLine {
+        display: inline-block;
+        line-height: 1.25;
+      }
+      a.sourceLine {
+        pointer-events: none;
+        color: inherit;
+        text-decoration: inherit;
+      }
+      a.sourceLine:empty {
+        height: 1.2em;
+      }
+      .sourceCode {
+        overflow: visible;
+      }
+      code.sourceCode {
+        white-space: pre;
+        position: relative;
+      }
+      div.sourceCode {
+        margin: 1em 0;
+      }
+      pre.sourceCode {
+        margin: 0;
+      }
+      @media screen {
+        div.sourceCode {
+          overflow: auto;
+        }
+      }
+      @media print {
+        code.sourceCode {
+          white-space: pre-wrap;
+        }
+        a.sourceLine {
+          text-indent: -1em;
+          padding-left: 1em;
+        }
+      }
+      pre.numberSource a.sourceLine {
+        position: relative;
+        left: -4em;
+      }
+      pre.numberSource a.sourceLine::before {
+        content: attr(title);
+        position: relative;
+        left: -1em;
+        text-align: right;
+        vertical-align: baseline;
+        border: none;
+        pointer-events: all;
+        display: inline-block;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        padding: 0 4px;
+        width: 4em;
+        color: #aaaaaa;
+      }
+      pre.numberSource {
+        margin-left: 3em;
+        border-left: 1px solid #aaaaaa;
+        padding-left: 4px;
+      }
+      div.sourceCode {
+      }
+      @media screen {
+        a.sourceLine::before {
+          text-decoration: underline;
+        }
+      }
+      code span.al {
+        color: #ff0000;
+        font-weight: bold;
+      } /* Alert */
+      code span.an {
+        color: #60a0b0;
+        font-weight: bold;
+        font-style: italic;
+      } /* Annotation */
+      code span.at {
+        color: #7d9029;
+      } /* Attribute */
+      code span.bn {
+        color: #40a070;
+      } /* BaseN */
+      code span.bu {
+      } /* BuiltIn */
+      code span.cf {
+        color: #007020;
+        font-weight: bold;
+      } /* ControlFlow */
+      code span.ch {
+        color: #4070a0;
+      } /* Char */
+      code span.cn {
+        color: #880000;
+      } /* Constant */
+      code span.co {
+        color: #60a0b0;
+        font-style: italic;
+      } /* Comment */
+      code span.cv {
+        color: #60a0b0;
+        font-weight: bold;
+        font-style: italic;
+      } /* CommentVar */
+      code span.do {
+        color: #ba2121;
+        font-style: italic;
+      } /* Documentation */
+      code span.dt {
+        color: #902000;
+      } /* DataType */
+      code span.dv {
+        color: #40a070;
+      } /* DecVal */
+      code span.er {
+        color: #ff0000;
+        font-weight: bold;
+      } /* Error */
+      code span.ex {
+      } /* Extension */
+      code span.fl {
+        color: #40a070;
+      } /* Float */
+      code span.fu {
+        color: #06287e;
+      } /* Function */
+      code span.im {
+      } /* Import */
+      code span.in {
+        color: #60a0b0;
+        font-weight: bold;
+        font-style: italic;
+      } /* Information */
+      code span.kw {
+        color: #007020;
+        font-weight: bold;
+      } /* Keyword */
+      code span.op {
+        color: #666666;
+      } /* Operator */
+      code span.ot {
+        color: #007020;
+      } /* Other */
+      code span.pp {
+        color: #bc7a00;
+      } /* Preprocessor */
+      code span.sc {
+        color: #4070a0;
+      } /* SpecialChar */
+      code span.ss {
+        color: #bb6688;
+      } /* SpecialString */
+      code span.st {
+        color: #4070a0;
+      } /* String */
+      code span.va {
+        color: #19177c;
+      } /* Variable */
+      code span.vs {
+        color: #4070a0;
+      } /* VerbatimString */
+      code span.wa {
+        color: #60a0b0;
+        font-weight: bold;
+        font-style: italic;
+      } /* Warning */
+    </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/markdown-to-html-style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/mdn-article.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/medium-basic-export.css">
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/github.css">
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/git.js"></script>
+
+
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/highlight.pack.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/highlightJsWorker.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/highlightjs-badge.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/highlightjs-badge.min.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/jquery-1.10.1.min.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/jquery-3.3.1.min.js"></script>  <style>
+      p {
+        text-indent: 50px;
+        line-height: 1.8;
+        word-spacing: 4px;
+      }
+
+      * {
+        font-weight: bold;
+        font-family: "Times New Roman", Times, serif;
+        padding: 20px;
+      }
+      .container {
+        width: 80%;
+        margin: auto;
+        box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+          0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+          0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+          0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+      }
+      text-indent: 50px;
+    </style></head>
+  <body>
+    <h1 id="git-remote">Git Remote</h1>
+    <p>
+      There are some operations with <code>git remote</code>, like
+      <code>git remote -v</code>, that you may use occasionally.
+    </p>
+    <p>
+      But, the concept of a remote within Git is important and powers many of
+      the other operations.
+    </p>
+    <h2 id="what-does-git-remote-do">What does Git remote do?</h2>
+    <div class="sourceCode" id="cb1">
+      <pre
+        class="sourceCode sh"
+      ><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="fu">git</span> remote -v</a></code></pre>
+    </div>
+    <p>
+      <code>git remote</code> manages the set of remotes that you are tracking
+      with your local repository.
+    </p>
+    <h3 id="common-git-remote-commands">
+      Common <code>git remote</code> commands
+    </h3>
+    <ul>
+      <li>
+        <code>git remote -v</code>: List the current remotes associated with the
+        local repository
+      </li>
+      <li><code>git remote add [name] [URL]</code>: Add a remote</li>
+      <li><code>git remote remove [name]</code>: Remove a remote</li>
+    </ul>
+    <h3 id="what-is-origin">What is <code>origin</code>?</h3>
+    <p>
+      If you try running <code>git remote -v</code> in your repositories, you’ll
+      probably see something called <code>origin</code>. You may notice
+      <code>origin</code> in many messages from Git. <code>origin</code> is the
+      human-friendly name for the URL that the remote repository is stored at.
+      It’s like a key-value pair, and <code>origin</code> is the default.
+    </p>
+    <h3 id="what-is-upstream">What is <code>upstream</code>?</h3>
+    <p>
+      You may need or want to work with multiple remotes for one local
+      repository. This can be common in open source when a contributor needs to
+      create a fork of a repository to have permission to push changes to the
+      remote.
+    </p>
+    <p>
+      In this case, it’s common to create and clone a fork. Then, the default
+      remote would be <code>origin</code>, in reference to the fork. To make it
+      easier to pull any changes to update the local copy of the fork from the
+      original repository, many people add the original repository as a remote
+      also. It’s typical to name this remote <code>upstream</code>.
+    </p>
+    <p>
+      <img
+        src="https://user-images.githubusercontent.com/9906718/77051803-28625800-69cc-11ea-9533-b5387ed2d3b5.png"
+      />
+    </p>
+    <h2 id="communicating-with-the-remote">Communicating with the remote</h2>
+    <p>
+      There are four commands within Git that prompt communication with the
+      remote. Unless you are using one of these four commands, all of your work
+      is only happening locally.
+    </p>
+    <ul>
+      <li><code>git push</code></li>
+      <li><code>git clone</code></li>
+      <li><code>git pull</code></li>
+      <li><code>git fetch</code></li>
+    </ul>
+    <h2 id="branches-and-the-remote">Branches and the remote</h2>
+    <p>
+      The concept of branches can be confusing once it is combined with the
+      concept of remotes. Git keeps track of the branches that you work on
+      locally, as well as each of the branches in every remote associated with
+      your local repo.
+    </p>
+    <h3 id="remote-tracking-branches">Remote tracking branches</h3>
+    <p>
+      If you run <code>git branch --all</code> in your repository, you will
+      notice a long list of branches. The branches that (by default) appear in
+      red are the <em>remote tracking branches</em>. These branches are
+      read-only copies of the branches on the remote. These update every time
+      you run <code>git fetch</code> or <code>git pull</code>.
+    </p>
+    <p>
+      These don’t take up much room, so it’s okay that Git does this by default.
+      But, these will stack up over time - they are not deleted automatically.
+    </p>
+    <p>
+      To delete the remote tracking branches that are deleted on the remote, run
+      <code>git fetch --prune</code>. This is safe to do if you are using
+      GitHub, because branches merged via pull requests can be restored.
+    </p>
+    <h3 id="local-working-branches">Local working branches</h3>
+    <p>
+      When you run <code>git branch --all</code>, you will also see the local
+      working branches. These can be linked with branches on the remote, or they
+      could exist with no remote counterpart.
+    </p>
+    <ul>
+      <li>
+        <code>git clone [url]</code>: Clone (download) a repository that already
+        exists on GitHub, including all of the files, branches, and commits.
+      </li>
+      <li>
+        <code>git status</code>: Always a good idea, this command shows you what
+        branch you’re on, what files are in the working or staging directory,
+        and any other important information.
+      </li>
+      <li>
+        <code>git push</code>: Uploads all local branch commits to the remote.
+      </li>
+      <li>
+        <code>git pull</code>: Updates your current local working branch with
+        all new commits from the corresponding remote branch on GitHub.
+        <code>git pull</code> is a combination of <code>git fetch</code> and
+        <code>git merge</code>.
+      </li>
+    </ul>
+  </body>
+</html>

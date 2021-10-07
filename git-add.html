@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="generator" content="pandoc" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
+    <title>git-add</title>
+    <style type="text/css">
+      code {
+        white-space: pre-wrap;
+      }
+      span.smallcaps {
+        font-variant: small-caps;
+      }
+      span.underline {
+        text-decoration: underline;
+      }
+      div.column {
+        display: inline-block;
+        vertical-align: top;
+        width: 50%;
+      }
+    </style>
+    <style type="text/css">
+      a.sourceLine {
+        display: inline-block;
+        line-height: 1.25;
+      }
+      a.sourceLine {
+        pointer-events: none;
+        color: inherit;
+        text-decoration: inherit;
+      }
+      a.sourceLine:empty {
+        height: 1.2em;
+      }
+      .sourceCode {
+        overflow: visible;
+      }
+      code.sourceCode {
+        white-space: pre;
+        position: relative;
+      }
+      div.sourceCode {
+        margin: 1em 0;
+      }
+      pre.sourceCode {
+        margin: 0;
+      }
+      @media screen {
+        div.sourceCode {
+          overflow: auto;
+        }
+      }
+      @media print {
+        code.sourceCode {
+          white-space: pre-wrap;
+        }
+        a.sourceLine {
+          text-indent: -1em;
+          padding-left: 1em;
+        }
+      }
+      pre.numberSource a.sourceLine {
+        position: relative;
+        left: -4em;
+      }
+      pre.numberSource a.sourceLine::before {
+        content: attr(title);
+        position: relative;
+        left: -1em;
+        text-align: right;
+        vertical-align: baseline;
+        border: none;
+        pointer-events: all;
+        display: inline-block;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        padding: 0 4px;
+        width: 4em;
+        color: #aaaaaa;
+      }
+      pre.numberSource {
+        margin-left: 3em;
+        border-left: 1px solid #aaaaaa;
+        padding-left: 4px;
+      }
+      div.sourceCode {
+      }
+      @media screen {
+        a.sourceLine::before {
+          text-decoration: underline;
+        }
+      }
+      code span.al {
+        color: #ff0000;
+        font-weight: bold;
+      } /* Alert */
+      code span.an {
+        color: #60a0b0;
+        font-weight: bold;
+        font-style: italic;
+      } /* Annotation */
+      code span.at {
+        color: #7d9029;
+      } /* Attribute */
+      code span.bn {
+        color: #40a070;
+      } /* BaseN */
+      code span.bu {
+      } /* BuiltIn */
+      code span.cf {
+        color: #007020;
+        font-weight: bold;
+      } /* ControlFlow */
+      code span.ch {
+        color: #4070a0;
+      } /* Char */
+      code span.cn {
+        color: #880000;
+      } /* Constant */
+      code span.co {
+        color: #60a0b0;
+        font-style: italic;
+      } /* Comment */
+      code span.cv {
+        color: #60a0b0;
+        font-weight: bold;
+        font-style: italic;
+      } /* CommentVar */
+      code span.do {
+        color: #ba2121;
+        font-style: italic;
+      } /* Documentation */
+      code span.dt {
+        color: #902000;
+      } /* DataType */
+      code span.dv {
+        color: #40a070;
+      } /* DecVal */
+      code span.er {
+        color: #ff0000;
+        font-weight: bold;
+      } /* Error */
+      code span.ex {
+      } /* Extension */
+      code span.fl {
+        color: #40a070;
+      } /* Float */
+      code span.fu {
+        color: #06287e;
+      } /* Function */
+      code span.im {
+      } /* Import */
+      code span.in {
+        color: #60a0b0;
+        font-weight: bold;
+        font-style: italic;
+      } /* Information */
+      code span.kw {
+        color: #007020;
+        font-weight: bold;
+      } /* Keyword */
+      code span.op {
+        color: #666666;
+      } /* Operator */
+      code span.ot {
+        color: #007020;
+      } /* Other */
+      code span.pp {
+        color: #bc7a00;
+      } /* Preprocessor */
+      code span.sc {
+        color: #4070a0;
+      } /* SpecialChar */
+      code span.ss {
+        color: #bb6688;
+      } /* SpecialString */
+      code span.st {
+        color: #4070a0;
+      } /* String */
+      code span.va {
+        color: #19177c;
+      } /* Variable */
+      code span.vs {
+        color: #4070a0;
+      } /* VerbatimString */
+      code span.wa {
+        color: #60a0b0;
+        font-weight: bold;
+        font-style: italic;
+      } /* Warning */
+    </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/markdown-to-html-style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/mdn-article.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/medium-basic-export.css">
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/github.css">
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/git.js"></script>
+
+
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/highlight.pack.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/highlightJsWorker.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/highlightjs-badge.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/highlightjs-badge.min.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/jquery-1.10.1.min.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/jquery-3.3.1.min.js"></script>  <style>
+      p {
+        text-indent: 50px;
+        line-height: 1.8;
+        word-spacing: 4px;
+      }
+
+      * {
+        font-weight: bold;
+        font-family: "Times New Roman", Times, serif;
+        padding: 20px;
+      }
+      .container {
+        width: 80%;
+        margin: auto;
+        box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+          0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+          0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+          0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+      }
+      text-indent: 50px;
+    </style></head>
+  <body>
+    <h1 id="git-add">Git Add</h1>
+    <p>
+      The <code>git add</code> command adds new or changed files in your working
+      directory to the Git staging area.
+    </p>
+    <p>
+      <code>git add</code> is an important command - without it, no
+      <code>git commit</code> would ever do anything. Sometimes,
+      <code>git add</code> can have a reputation for being an unnecessary step
+      in development. But in reality, <code>git add</code> is an important and
+      powerful tool. <code>git add</code> allows you to shape history without
+      changing how you work.
+    </p>
+    <figure>
+      <img
+        src=""
+        alt="image of working directory, staging area, and committed history with commands shown and visualized"
+      />
+      <figcaption>
+        image of working directory, staging area, and committed history with
+        commands shown and visualized
+      </figcaption>
+    </figure>
+    <h2 id="when-do-you-use-git-add">When do you use <code>git add</code>?</h2>
+    <div class="sourceCode" id="cb1">
+      <pre
+        class="sourceCode sh"
+      ><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="fu">git</span> add README.md</a></code></pre>
+    </div>
+    <p>
+      As you’re working, you change and save a file, or multiple files. Then,
+      before you commit, you must <code>git add</code>. This step allows you to
+      choose what you are going to commit. Commits should be logical, atomic
+      units of change - but not everyone works that way. Maybe you are making
+      changes to files that <em>aren’t</em> logical or atomic units of change.
+      <code>git add</code> allows you to systematically shape your commits and
+      your history anyway.
+    </p>
+    <h3 id="what-does-git-add-do">What Does Git Add Do?</h3>
+    <p>
+      <code>git add [filename]</code> selects that file, and moves it to the
+      staging area, marking it for inclusion in the next commit. You can select
+      all files, a directory, specific files, or even specific parts of a file
+      for staging and commit.
+    </p>
+    <p>
+      This means if you <code>git add</code> a deleted file the
+      <em>deletion</em> is staged for commit. The language of “add” when you’re
+      actually “deleting” can be confusing. If you think or use
+      <code>git stage</code> in place of <code>git add</code>, the reality of
+      what is happening may be more clear.
+    </p>
+    <p>
+      <code>git add</code> and <code>git commit</code> go together hand in hand.
+      They don’t work when they aren’t used together. And, they both work best
+      when used thinking of their joint functionality.
+    </p>
+    <h2 id="how-to-use-git-add">How to Use <code>git add</code></h2>
+    <h3 id="common-usages-and-options-for-git-add">
+      Common usages and options for <code>git add</code>
+    </h3>
+    <ul>
+      <li>
+        <code>git add &lt;path&gt;</code>: Stage a specific directory or file
+      </li>
+      <li>
+        <code>git add .</code>: Stage all files (that are not listed in the
+        <code>.gitignore</code>) in the entire repository
+      </li>
+      <li><code>git add -p</code>: Interactively stage hunks of changes</li>
+    </ul>
+    <p>
+      You can see all of the many options with <code>git add</code> in
+      <a href="https://git-scm.com/docs/git-add">git-scm’s documentation</a>.
+    </p>
+    <h2 id="examples-of-git-add">Examples of <code>git add</code></h2>
+    <p>
+      <code>git add</code> usually fits into the workflow in the following
+      steps:
+    </p>
+    <ol type="1">
+      <li>Create a branch: <code>git branch update-readme</code></li>
+      <li>Checkout to that branch: <code>git checkout update-readme</code></li>
+      <li>Change a file or files</li>
+      <li>Save the file or files</li>
+      <li>
+        Add the files or segments of code that should be included in the next
+        commit: <code>git add README.md</code>
+      </li>
+      <li>
+        Commit the changes:
+        <code
+          >git commit -m "update the README to include links to contributing
+          guide"</code
+        >
+      </li>
+      <li>
+        Push the changes to the remote branch:
+        <code>git push -u origin update-readme</code>
+      </li>
+    </ol>
+    <p>But, <code>git add</code> could also be used like:</p>
+    <ol type="1">
+      <li>Create a branch: <code>git branch update-readme</code></li>
+      <li>Checkout to that branch: <code>git checkout update-readme</code></li>
+      <li>Change a file or files</li>
+      <li>Save the file or files</li>
+      <li>
+        Add only one file, or one part of the changed file:
+        <code>git add README.md</code>
+      </li>
+      <li>
+        Commit the first set of changes:
+        <code
+          >git commit -m "update the README to include links to contributing
+          guide"</code
+        >
+      </li>
+      <li>
+        Add another file, or another part of the changed file:
+        <code>git add CONTRIBUTING.md</code>
+      </li>
+      <li>
+        Commit the second set of changes:
+        <code>git commit -m "create the contributing guide"</code>
+      </li>
+      <li>(Repeat as necessary)</li>
+      <li>
+        Push the changes to the remote branch:
+        <code>git push -u origin update-readme</code>
+      </li>
+    </ol>
+    <h3 id="git-add-all-files"><code>git add</code> All Files</h3>
+    <p>
+      Staging all available files is a popular, though risky, operation. This
+      can save time, but the risks are two-fold:
+    </p>
+    <h4 id="poorly-thought-out-history">Poorly thought out history</h4>
+    <p>
+      By staging all available changes, the clarity of your history will likely
+      suffer. Being able to shape your history is one of the greatest advantages
+      of using Git. If your commits are too large, contain unrelated changes, or
+      are unclearly described in the commit message, you will lose the benefits
+      of viewing and changing history.
+    </p>
+    <h4 id="accidentally-staging-and-committing-files">
+      Accidentally staging and committing files
+    </h4>
+    <p>
+      By using an option to add all files at once, you may accidentally stage
+      and commit a file. Most common flags don’t add files tracked in the
+      <code>.gitignore</code> file. But, any file not listed in the
+      <code>.gitignore</code> file will be staged and committed. This applies to
+      large binary files, and files containing sensitive information like
+      passwords or authentication tokens.
+    </p>
+    <h4 id="deciding-to-stage-all-files">Deciding to stage all files</h4>
+    <p>
+      If the time is right to stage all files, there are several commands that
+      you can choose from. As always, it’s very important to know what you are
+      staging and committing.
+    </p>
+    <ul>
+      <li>
+        <code>git add -A</code>: stages all files, including new, modified, and
+        deleted files, including files in the current directory <em>and</em> in
+        higher directories that still belong to the same git repository
+      </li>
+      <li>
+        <code>git add .</code>: adds the entire directory recursively, including
+        files whose names begin with a dot
+      </li>
+      <li>
+        <code>git add -u</code>: stages modified and deleted files only, NOT new
+        files
+      </li>
+    </ul>
+    <table style="width: 100%">
+      <colgroup>
+        <col style="width: 26%" />
+        <col style="width: 26%" />
+        <col style="width: 8%" />
+        <col style="width: 8%" />
+        <col style="width: 12%" />
+        <col style="width: 10%" />
+        <col style="width: 10%" />
+      </colgroup>
+      <thead>
+        <tr class="header">
+          <th></th>
+          <th>New files</th>
+          <th>Modified files</th>
+          <th>Deleted files</th>
+          <th>Files with names beginning with a dot</th>
+          <th>Current directory</th>
+          <th>Higher directories</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="odd">
+          <td><code>git add -A</code></td>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td>Yes</td>
+        </tr>
+        <tr class="even">
+          <td><code>git add .</code></td>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td>No</td>
+        </tr>
+        <tr class="odd">
+          <td><code>git add -u</code></td>
+          <td>No</td>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td>Yes</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="git-add-a-folder-or-specific-file">
+      <code>git add</code> A Folder or Specific File
+    </h3>
+    <p>
+      The safest and clearest way to use <code>git add</code> is by designating
+      the specific file or directory to be staged. The syntax for this could
+      look like:
+    </p>
+    <p>
+      <code>git add directory/</code>: Stage all changes to all files within a
+      directory titled <code>directory</code> <code>git add README.md</code>:
+      Stage all changes within the <code>README.md</code> file
+    </p>
+    <h3 id="undo-added-files">Undo Added Files</h3>
+    <p>
+      Before undoing a <code>git add</code>, you should first be sure that you
+      won’t lose any work. There’s no way to “revert” an add in the same way you
+      can revert a commit, but you can move the files out of the staging area.
+    </p>
+    <p>
+      For example, if you have a staged file, and then you make more changes to
+      that file in your working directory. Now, the versions in your working
+      directory and your staging area are different. If you take action to
+      remove the changed version of the file from the staging area, the changes
+      that were in your working directory <em>but not</em> staged will be
+      overwritten.
+    </p>
+    <p>
+      To avoid this, first stage all changes, then unstage them together, or
+      commit the changes and reset back before the commit happened.
+    </p>
+    <h4 id="using-git-reset-to-undo-git-add">
+      Using <code>git reset</code> to undo <code>git add</code>
+    </h4>
+    <p>
+      <code>git reset</code> is a flexible and powerful command. One of its many
+      use cases is to move changes <em>out</em> of the staging area. To do this,
+      use the “mixed” level of reset, which is the default.
+    </p>
+    <p>
+      To move staged changes from the staging area to the working directory
+      without affecting committed history, first make sure that you don’t have
+      any additional changes to the files in question as mentioned above. Then,
+      type <code>git reset HEAD</code> (aka
+      <code>git reset --mixed HEAD</code>).
+    </p>
+    <h2 id="related-terms">Related Terms</h2>
+    <ul>
+      <li>
+        <code>git status</code>: Always a good idea, this command shows you what
+        branch you’re on, what files are in the working or staging directory,
+        and any other important information.
+      </li>
+      <li>
+        <code>git checkout [branch-name]</code>: Switches to the specified
+        branch and updates the working directory.
+      </li>
+      <li>
+        <code>git commit -m "descriptive message"</code>: Records file snapshots
+        permanently in version history.
+      </li>
+      <li>
+        <code>git push</code>: Uploads all local branch commits to the remote.
+      </li>
+    </ul>
+  </body>
+</html>

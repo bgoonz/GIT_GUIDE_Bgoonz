@@ -1,0 +1,2037 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html" />
+    <meta name="Author" content="Bryan Guner" />
+    <link rel="stylesheet" href="./assets/prism.css" />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <script async defer src="./assets/prism.js"></script>
+    <title>directory</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/markdown-to-html-style.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/mdn-article.css"
+    />
+    <style>
+      p {
+        text-indent: 50px;
+        line-height: 1.8;
+        word-spacing: 4px;
+      }
+
+      * {
+        font-weight: bold;
+        font-family: "Times New Roman", Times, serif;
+        padding: 20px;
+      }
+      .container {
+        width: 80%;
+        margin: auto;
+        box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+          0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+          0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+          0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+      }
+      text-indent: 50px;
+    </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/markdown-to-html-style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/mdn-article.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/medium-basic-export.css">
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/github.css">
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/git.js"></script>
+
+
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/highlight.pack.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/highlightJsWorker.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/highlightjs-badge.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/highlightjs-badge.min.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/jquery-1.10.1.min.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/jquery-3.3.1.min.js"></script></head>
+  <body>
+    <div class="container">
+      <br />
+      <br />
+            <h1 style="text-align:center;" id="full-git-guide">Full Git Guide:</h1>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <img src="https://i.imgur.com/BEo7aXq.png">
+      <br />
+      <br />
+      <br />
+
+      <br />
+      <hr />
+      <br />
+
+      <h1 id="install-git">Install Git</h1>
+      <p>How to install Git on any OS</p>
+      <p>
+        Git can be installed on the most common operating systems like Windows,
+        Mac, and Linux. In fact, Git comes installed by default on most Mac and
+        Linux machines!
+      </p>
+      <h2 id="checking-for-git">Checking for Git</h2>
+      <p>
+        To see if you already have Git installed, open up your terminal
+        application.
+      </p>
+      <ul>
+        <li>
+          If you’re on a Mac, look for a command prompt application called
+          “Terminal”.
+        </li>
+        <li>
+          If you’re on a Windows machine, open the windows command prompt or
+          “Git Bash”.
+        </li>
+      </ul>
+      <p>
+        Once you’ve opened your terminal application, type
+        <code>git version</code>. The output will either tell you which version
+        of Git is installed, or it will alert you that <code>git</code> is an
+        unknown command. If it’s an unknown command, read further and find out
+        how to install Git.
+      </p>
+      <h2 id="install-git-using-github-desktop">
+        Install Git Using GitHub Desktop
+      </h2>
+      <p>
+        Installing GitHub Desktop will also install the latest version of Git if
+        you don’t already have it. With GitHub Desktop, you get a command-line
+        version of Git with a robust GUI. Regardless of if you have Git
+        installed or not, GitHub Desktop offers a simple collaboration tool for
+        Git. You can
+        <a href="https://desktop.github.com/">learn more here</a>.
+      </p>
+      <h2 id="install-git-on-windows">Install Git on Windows</h2>
+      <ol type="1">
+        <li>
+          Navigate to the latest
+          <a href="https://gitforwindows.org/">Git for Windows installer</a> and
+          download the latest version.
+        </li>
+        <li>
+          Once the installer has started, follow the instructions as provided in
+          the <strong>Git Setup</strong> wizard screen until the installation is
+          complete.
+        </li>
+        <li>
+          Open the windows command prompt (or <strong>Git Bash</strong> if you
+          selected not to use the standard Git Windows Command Prompt during the
+          Git installation).
+        </li>
+        <li>Type <code>git version</code> to verify Git was installed.</li>
+      </ol>
+      <p>
+        Note:
+        <a href="https://git-scm.com/download/win"><code>git-scm</code></a> is a
+        popular and recommended resource for downloading Git for Windows. The
+        advantage of downloading Git from <code>git-scm</code> is that your
+        download automatically starts with the latest version of Git included
+        with the recommended command prompt, <code>Git Bash</code> . The
+        download source is the same
+        <a href="https://gitforwindows.org/">Git for Windows installer</a> as
+        referenced in the steps above.
+      </p>
+      <h2 id="install-git-on-windows-through-visual-studio-code">
+        Install Git on Windows through Visual Studio Code
+      </h2>
+      <p>
+        GitHub integration is provided through the
+        <a
+          href="https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github"
+          >GitHub Pull Requests and Issues extension</a
+        >. To get started with the GitHub in VS Code, you’ll need to create an
+        account and install the GitHub Pull Requests and Issues extension. Once
+        you’ve installed the
+        <a
+          href="https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github"
+          >GitHub Pull Requests and Issues extension</a
+        >, you’ll need to sign in. Follow the prompts to authenticate with
+        GitHub and return to VS Code.
+      </p>
+      <hr />
+      <p>
+        Note: You can perform actions like, you can search for and clone a
+        repository from GitHub using the Git: Clone command in the Command
+        Palette (Ctrl+Shift+P) or by using the Clone Repository button in the
+        Source Control view (available when you have no folder open).
+        <a href="https://code.visualstudio.com/docs/editor/github"
+          >Learn more here</a
+        >
+      </p>
+      <hr />
+      <h2 id="install-git-on-mac">Install Git on Mac</h2>
+      <p>
+        Most versions of MacOS will already have <code>Git</code> installed, and
+        you can activate it through the terminal with <code>git version</code>.
+        However, if you don’t have Git installed for whatever reason, you can
+        install the latest version of Git using one of several popular methods
+        as listed below:
+      </p>
+      <h4 id="install-git-from-an-installer">Install Git From an Installer</h4>
+      <ol type="1">
+        <li>
+          Navigate to the latest
+          <a
+            href="https://sourceforge.net/projects/git-osx-installer/files/git-2.23.0-intel-universal-mavericks.dmg/download?use_mirror=autoselect"
+            >macOS Git Installer</a
+          >
+          and download the latest version.
+        </li>
+        <li>
+          Once the installer has started, follow the instructions as provided
+          until the installation is complete.
+        </li>
+        <li>
+          Open the command prompt “terminal” and type
+          <code>git version</code> to verify Git was installed.
+        </li>
+      </ol>
+      <p>
+        Note:
+        <a href="https://git-scm.com/download/mac"><code>git-scm</code></a> is a
+        popular and recommended resource for downloading Git on a Mac. The
+        advantage of downloading Git from <code>git-scm</code> is that your
+        download automatically starts with the latest version of Git. The
+        download source is the same
+        <a
+          href="https://sourceforge.net/projects/git-osx-installer/files/git-2.23.0-intel-universal-mavericks.dmg/download?use_mirror=autoselect"
+          >macOS Git Installer</a
+        >
+        as referenced in the steps above.
+      </p>
+      <h4 id="install-git-from-homebrew">Install Git from Homebrew</h4>
+      <p>
+        <a href="https://brew.sh/">Homebrew</a> is a popular package manager for
+        macOS. If you already have Homebrew installed, you can follow the below
+        steps to install Git:
+      </p>
+      <ol type="1">
+        <li>
+          Open up a terminal window and install Git using the following command:
+          <code>brew install git</code>.
+        </li>
+        <li>
+          Once the command output has been completed, you can verify the
+          installation by typing: <code>git version</code>.
+        </li>
+      </ol>
+      <h2 id="install-git-on-linux">Install Git on Linux</h2>
+      <p>
+        Fun fact: Git was originally developed to version the Linux operating
+        system! So, it only makes sense that it is easy to configure to run on
+        Linux.
+      </p>
+      <p>
+        You can install <code>Git</code> on Linux through the package management
+        tool that comes with your distribution.
+      </p>
+      <h4 id="debianubuntu">Debian/Ubuntu</h4>
+      <ol type="1">
+        <li>Git packages are available using <code>apt</code>.</li>
+        <li>
+          It’s a good idea to make sure you’re running the latest version. To do
+          so, Navigate to your command prompt shell and run the following
+          command to make sure everything is up-to-date:
+          <code>sudo apt-get update</code>.
+        </li>
+        <li>
+          To install Git, run the following command:
+          <code>sudo apt-get install git-all</code>.
+        </li>
+        <li>
+          Once the command output has been completed, you can verify the
+          installation by typing: <code>git version</code>.
+        </li>
+      </ol>
+      <h4 id="fedora">Fedora</h4>
+      <ol type="1">
+        <li>Git packages are available using <code>dnf</code>.</li>
+        <li>
+          To install Git, navigate to your command prompt shell and run the
+          following command: <code>sudo dnf install git-all</code>.
+        </li>
+        <li>
+          Once the command output has been completed, you can verify the
+          installation by typing: <code>git version</code>.
+        </li>
+      </ol>
+      <p>
+        Note: You can download the proper Git versions and read more about how
+        to install on specific Linux systems, like installing Git on Ubuntu or
+        Fedora,
+        <a href="https://git-scm.com/download/linux"
+          >in git-scm’s documentation</a
+        >.
+      </p>
+      <h2 id="other-methods-of-installing-git">
+        Other Methods of Installing Git
+      </h2>
+      <p>
+        Looking to install Git via the source code?
+        <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git"
+          >Learn more here</a
+        >.
+      </p>
+      <hr />
+      <hr />
+      <h2 id="section">
+        &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
+        &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
+      </h2>
+      <hr />
+      <hr />
+      <h1 id="git-guide">Git Guide</h1>
+      <p>
+        Everything you need to know about Git, from getting started to advanced
+        commands and workflows.
+      </p>
+      <p><strong>Quick links:</strong></p>
+      <ul>
+        <li><a href="#what-is-git">What is Git?</a></li>
+        <li><a href="#what-is-git-written-in">What is Git Written in?</a></li>
+        <li>
+          <a href="#why-use-git">Why Use Git?</a>
+          <ul>
+            <li><a href="#speed">Speed</a></li>
+            <li><a href="#merge-conflicts">Merge conflicts</a></li>
+            <li><a href="#cheap-branches">Cheap branches</a></li>
+            <li><a href="#ease-of-roll-back">Ease of roll back</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#how-do-i-use-git">How Do I Use Git?</a>
+          <ul>
+            <li><a href="#learning-git-basics">Learning Git Basics</a></li>
+            <li>
+              <a href="#getting-started-with-the-git-workflow"
+                >Getting Started With the Git Workflow</a
+              >
+              <ul>
+                <li><a href="#create-a-branch">Create a branch</a></li>
+                <li>
+                  <a href="#make-changes-and-make-a-commit"
+                    >Make changes (and make a commit)</a
+                  >
+                </li>
+                <li>
+                  <a href="#push-your-changes-to-the-remote"
+                    >Push your changes to the remote</a
+                  >
+                </li>
+                <li><a href="#open-a-pull-request">Open a pull request</a></li>
+                <li><a href="#collaborate">Collaborate</a></li>
+                <li><a href="#merge-into-main">Merge into main</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#getting-started-with-github"
+                >Getting Started With GitHub</a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <h2 id="what-is-git">What is Git?</h2>
+      <p>
+        Git is a distributed version control software. Version control is a way
+        to save changes over time without overwriting previous versions. Being
+        distributed means that every developer working with a Git repository has
+        a copy of that entire repository - every commit, every branch, every
+        file. If you’re used to working with centralized version control
+        systems, this is a big difference!
+      </p>
+      <p>
+        Whether or not you’ve worked with version control before, there are a
+        few things you should know before getting started with Git:
+      </p>
+      <ul>
+        <li>
+          Branches are lightweight and cheap, so it’s OK to have many of them
+        </li>
+        <li>
+          Git stores changes in SHA hashes, which work by compressing text
+          files. That makes Git a very good version control system (VCS) for
+          software programming, but not so good for binary files like images or
+          videos.
+        </li>
+        <li>
+          Git repositories can be connected, so you can work on one locally on
+          your own machine, and connect it to a shared repository. This way, you
+          can <a href="/git-guides/git-push">push</a> and
+          <a href="/git-guides/git-pull">pull</a> changes to a repository and
+          easily collaborate with others.
+        </li>
+      </ul>
+      <h2 id="what-is-git-written-in">What is Git Written in?</h2>
+      <p>
+        The tools that make up the core Git distribution are written in C,
+        Shell, Perl, and Tcl. You can find Git’s source code on GitHub under
+        <a href="https://github.com/git/git">git/git</a>.
+      </p>
+      <h2 id="why-use-git">Why Use Git?</h2>
+      <p>
+        Version control is very important - without it, you risk losing your
+        work. With Git, you can make a “commit”, or a save point, as often as
+        you’d like. You can also go back to previous commits. This takes the
+        pressure off of you while you’re working. Commit often and commit early,
+        and you’ll never have that gut-sinking feeling of overwriting or losing
+        changes.
+      </p>
+      <p>
+        There are many version control systems out there - but Git has some
+        major advantages.
+      </p>
+      <h3 id="speed">Speed</h3>
+      <p>
+        Like we mentioned above, Git uses SHA compression, which makes it very
+        fast.
+      </p>
+      <h3 id="merge-conflicts">Merge conflicts</h3>
+      <p>
+        Git can handle merge conflicts, which means that
+        <strong
+          >it’s OK for multiple people to work on the same file at the same
+          time</strong
+        >. This opens up the world of development in a way that isn’t possible
+        with centralized version control. You have access to the entire project,
+        and if you’re working on a branch, you can do whatever you need to and
+        know that your changes are safe.
+      </p>
+      <h3 id="cheap-branches">Cheap branches</h3>
+      <p>
+        Speaking of branches, Git offers a lot of flexibility and opportunity
+        for collaboration with branches.
+        <strong
+          >By using branches, developers can make changes in a safe
+          sandbox.</strong
+        >
+      </p>
+      <p>
+        Instead of only committing code that is 100% sure to succeed, developers
+        can commit code that might still need help. Then, they can push that
+        code to the remote and get fast feedback from integrated tests or peer
+        review.
+      </p>
+      <p>
+        Without sharing the code through branches, this would never be possible.
+      </p>
+      <h3 id="ease-of-roll-back">Ease of roll back</h3>
+      <p>
+        If you make a mistake, it’s OK! Commits are immutable, meaning they
+        can’t be changed. (<em
+          >Note: You <em>can</em> change history, but it will create new
+          replacement commits instead of editing the existing commits. More on
+          that later!</em
+        >) This means that if you do make a mistake, even on an important
+        branch, like <code>main</code>, it’s <em>OK</em>.
+        <strong
+          >You can easily revert that change, or roll back the branch pointer to
+          the commit where everything was fine.</strong
+        >
+      </p>
+      <p>
+        The benefits of this can’t be overstated. Not only does it create a
+        safer environment for the project and code, but it fosters a development
+        environment where developers can be braver, trusting that Git has their
+        back.
+      </p>
+      <h2 id="how-do-i-use-git">How Do I Use Git?</h2>
+      <h3 id="learning-git-basics">Learning Git Basics</h3>
+      <p>
+        If you’re getting started with Git, a great place to learn the basic
+        commands is the
+        <a href="https://github.github.io/training-kit/">Git Cheat sheet</a>.
+        It’s translated into many languages,
+        <a href="https://github.com/github/training-kit"
+          >open source as a part of the
+          <code>github/training-kit</code> repository</a
+        >, and a great starting place for the fundamentals on the command line.
+      </p>
+      <p>
+        Some of the most important and most used commands that you’ll find there
+        are:
+      </p>
+      <ul>
+        <li>
+          <code>git clone [url]</code>:
+          <a href="/git-guides/git-clone">Clone</a> (download) a repository that
+          already exists on GitHub, including all of the files, branches, and
+          commits.
+        </li>
+        <li>
+          <code>git status</code>: Always a good idea, this command shows you
+          what branch you’re on, what files are in the working or staging
+          directory, and any other important information.
+        </li>
+        <li>
+          <code>git branch</code>: This shows the existing branches in your
+          local repository. You can also use
+          <code>git branch [branch-name]</code> to create a branch from your
+          current location, or <code>git branch --all</code> to see all
+          branches, both the local ones on your machine, and the remote tracking
+          branches stored from the last <code>git pull</code> or
+          <code>git fetch</code> from the remote.
+        </li>
+        <li>
+          <code>git checkout [branch-name]</code>: Switches to the specified
+          branch and updates the working directory.
+        </li>
+        <li>
+          <code>git add [file]</code>: Snapshots the file in preparation for
+          versioning, adding it to the staging area.
+        </li>
+        <li>
+          <code>git commit -m "descriptive message"</code>: Records file
+          snapshots permanently in the version history.
+        </li>
+        <li>
+          <code>git pull</code>: Updates your current local working branch with
+          all new commits from the corresponding remote branch on GitHub.
+          <code>git pull</code> is a combination of <code>git fetch</code> and
+          <code>git merge</code>.
+        </li>
+        <li>
+          <code>git push</code>: Uploads all local branch commits to the remote.
+        </li>
+        <li>
+          <code>git log</code>: Browse and inspect the evolution of project
+          files.
+        </li>
+        <li>
+          <code>git remote -v</code>: Show the associated remote repositories
+          and their stored name, like <code>origin</code>.
+        </li>
+      </ul>
+      <p>
+        If you’re looking for more GitHub-specific technical guidance, check out
+        <a href="https://help.github.com/">GitHub’s help documentation</a> or
+        our
+        <a
+          href="https://www.youtube.com/watch?v=H6wTAIlOUBQ&amp;list=PLg7s6cbtAD16Pgp6WIVfX4VsGI-xyWkMz"
+          >GitHub for Developers series</a
+        >
+        on YouTube.
+      </p>
+      <h3 id="getting-started-with-the-git-workflow">
+        Getting Started With the Git Workflow
+      </h3>
+      <p>
+        Depending on your operating system, you may already have
+        <a href="/git-guides/install-git">Git installed</a>. But, getting
+        started means more than having the software! To get started, it’s
+        important to know the basics of how Git works. You may choose to do the
+        actual work within a terminal, an app like GitHub Desktop, or through
+        GitHub.com. (<em
+          >Note: while you can interact with Git through GitHub.com, your
+          experience may be limited. Many local tools can give you access to the
+          most widely used Git functionalities, though only the terminal will
+          give you access to them all.</em
+        >)
+      </p>
+      <p>
+        There are <em>many</em> ways to use Git, which doesn’t necessarily make
+        it easier! But, the fundamental Git workflow has a few main steps. You
+        can practice all of these in the
+        <a href="https://lab.github.com/githubtraining/introduction-to-github"
+          >Introduction to GitHub Learning Lab course</a
+        >.
+      </p>
+      <h4 id="create-a-branch">Create a branch</h4>
+      <p>
+        The main branch is usually called <code>main</code>. We want to work on
+        <em>another</em> branch, so we can make a pull request and make changes
+        safely. To get started, create a branch off of <code>main</code>. Name
+        it however you’d like - but we recommend naming branches based on the
+        function or feature that will be the focus of this branch. One person
+        may have several branches, and one branch may have several people
+        collaborate on it - branches are for a purpose, not a person. Wherever
+        you currently “are” (wherever HEAD is pointing, or whatever branch
+        you’re currently “checked out” to) will be the parent of the branch you
+        create. That means you can create branches from other branches, tags, or
+        any commit! But, the most typical workflow is to create a branch from
+        <code>main</code> - which represents the most current production code.
+      </p>
+      <h4 id="make-changes-and-make-a-commit">
+        Make changes (and make a commit)
+      </h4>
+      <p>
+        Once you’ve created a branch, and moved the HEAD pointer to it by
+        “checking out” to that branch, you’re ready to get to work. Make the
+        changes in your repository using your favorite text editor or IDE.
+      </p>
+      <p>Next, save your changes. You’re ready to start the commit!</p>
+      <p>
+        To start your <a href="/git-guides/git-commit">commit</a>, you need to
+        let Git know what changes you’d like to include with
+        <code>git add [file]</code>.
+      </p>
+      <p>
+        Once you’ve saved and staged the changes, you’re ready to
+        <a href="/git-guides/git-commit">make the commit</a> with
+        <code>git commit -m "descriptive commit message"</code>.
+      </p>
+      <h4 id="push-your-changes-to-the-remote">
+        Push your changes to the remote
+      </h4>
+      <p>
+        So far, if you’ve made a commit locally, you’re the only one that can
+        see it. To let others see your work and begin collaboration, you should
+        “push” your changes using <code>git push</code>. If you’re pushing from
+        a branch for the first time that you’ve created locally, you may need to
+        give Git some more information.
+        <code>git push -u origin [branch-name]</code> tells Git to push the
+        current branch, and create a branch on the remote that matches it with
+        the same name - and also, create a relationship with that branch so that
+        <code>git push</code> will be enough information in the future.
+      </p>
+      <p>
+        By default, <code>git push</code> only pushes the branch that you’ve
+        currently checked out to.
+      </p>
+      <p>
+        Sometimes, if there has been a new commit on the branch on the
+        <em>remote</em>, you may be blocked from pushing. Don’t worry! Start
+        with a simple
+        <a href="/git-guides/git-pull"><code>git pull</code></a> to incorporate
+        the changes on the remote into your own local branch, resolve any
+        conflicts or finish the merge from the remote into the local branch, and
+        then try the push again.
+      </p>
+      <h4 id="open-a-pull-request">Open a pull request</h4>
+      <p>
+        Pushing a branch, or new commits, to a remote repository is enough if a
+        pull request already exists, but if it’s the first time you’re pushing
+        that branch, you should open a new pull request. A pull request is a
+        comparison of two branches - typically <code>main</code>, or the branch
+        that the feature branch was created from, and the feature branch. This
+        way, like branches, pull requests are scoped around a specific function
+        or addition of work, rather than the person making the changes or the
+        amount of time the changes will take.
+      </p>
+      <p>
+        Pull requests are the powerhouse of GitHub. Integrated tests can
+        automatically run on pull requests, giving you immediate feedback on
+        your code. Peers can give detailed code reviews, letting you know if
+        there are changes to make, or if it’s ready to go.
+      </p>
+      <p>
+        Make sure you start your pull requests off with the right information.
+        Put yourself in the shoes of your teammates, or even of your future
+        self. Include information about what this change relates to, what
+        prompted it, what is already done, what is left to do, and any specific
+        asks for help or reviews. Include links to relevant work or
+        conversations. Pull request templates can help make this process easy by
+        automating the starting content of the body of pull requests.
+      </p>
+      <h4 id="collaborate">Collaborate</h4>
+      <p>
+        Once the pull request is open, then the real fun starts. It’s important
+        to recognize that pull requests aren’t meant to be open when work is
+        <em>finished</em>. Pull requests should be open when work is
+        <em>beginning</em>! The earlier you open a pull request, the more
+        visibility the entire team has to the work that you’re doing. When
+        you’re ready for feedback, you can get it by integrating tests or
+        requesting reviews from teammates.
+      </p>
+      <p>
+        It’s very likely that you will want to make more changes to your work.
+        That’s great! To do that, make more commits on the same branch. Once the
+        new commits are present on the remote, the pull request will update and
+        show the most recent version of your work.
+      </p>
+      <h4 id="merge-into-main">Merge into <code>main</code></h4>
+      <p>
+        Once you and your team decide that the pull request looks good, you can
+        merge it. By merging, you integrate the feature branch into the other
+        branch (most typically the <code>main</code> branch). Then,
+        <code>main</code> will be updated with your changes, and your pull
+        request will be closed. Don’t forget to delete your branch! You won’t
+        need it anymore. Remember, branches are lightweight and cheap, and you
+        should create a new one when you need it based on the most recent commit
+        on the <code>main</code> branch.
+      </p>
+      <p>
+        If you choose not to merge the pull request, you can also close pull
+        requests with unmerged changes.
+      </p>
+      <h3 id="getting-started-with-github">Getting Started With GitHub</h3>
+      <p>
+        If you’re wondering where Git ends and GitHub begins, you’re not alone.
+        They are tied closely together to make working with them both a seamless
+        experience. While Git takes care of the underlying version control,
+        GitHub is the collaboration platform built on top of it. GitHub is the
+        place for pull requests, comments, reviews, integrated tests, and so
+        much more. Most developers work locally to develop and use GitHub for
+        collaboration. That ranges from using GitHub to host the shared remote
+        repository to working with colleagues and capitalizing on features like
+        protected branches, code review, GitHub Actions, and more.
+      </p>
+      <p>
+        The best place to practice using Git and GitHub is the
+        <a href="https://lab.github.com/githubtraining/introduction-to-github"
+          >Introduction to GitHub Learning Lab course</a
+        >.
+      </p>
+      <p>
+        If you already know Git and need to sign up for a GitHub account, head
+        over to <a href="https://github.com/">github.com</a>.
+      </p>
+      <hr />
+      <hr />
+      <h2 id="section-1">
+        &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
+        &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
+      </h2>
+      <hr />
+      <hr />
+      <h1 id="git-status">Git Status</h1>
+      <div class="sourceCode" id="cb1">
+        <pre
+          class="sourceCode sh"
+        ><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="fu">git</span> status</a></code></pre>
+      </div>
+      <p>
+        <code>git status</code> shows the current state of your Git working
+        directory and staging area.
+      </p>
+      <h2 id="what-does-git-status-do">
+        What Does <code>git status</code> Do?
+      </h2>
+      <p>
+        When in doubt, run <code>git status</code>. This is <em>always</em> a
+        good idea. The <code>git status</code> command only outputs information,
+        it won’t modify commits or changes in your local repository.
+      </p>
+      <p>
+        A useful feature of <code>git status</code> is that it will provide
+        helpful information depending on your current situation. In general, you
+        can count on it to tell you:
+      </p>
+      <ul>
+        <li>
+          Where <code>HEAD</code> is pointing, whether that is a branch or a
+          commit (this is where you are “checked out” to)
+        </li>
+        <li>
+          If you have any changed files in your current directory that have not
+          yet been committed
+        </li>
+        <li>If changed files are staged or not</li>
+        <li>
+          If your current local branch is linked to a remote branch, then
+          <code>git status</code> will tell you if your local branch is behind
+          or ahead by any commits
+        </li>
+      </ul>
+      <p>
+        During merge conflicts, <code>git status</code> will also tell you
+        exactly which files are the source of the conflict.
+      </p>
+      <h2 id="how-to-use-git-status">How to Use <code>git status</code></h2>
+      <h3 id="common-usages-and-options-for-git-status">
+        Common usages and options for <code>git status</code>
+      </h3>
+      <ul>
+        <li>
+          <code>git status</code>: Most often used in its default form, this
+          shows a good base of information
+        </li>
+        <li><code>git status -s</code>: Give output in short format</li>
+        <li>
+          <code>git status -v</code>: Shows more “verbose” detail including the
+          textual changes of any uncommitted files
+        </li>
+      </ul>
+      <p>
+        You can see all of the options with <code>git status</code> in
+        <a href="https://git-scm.com/docs/git-status">git-scm’s documentation</a
+        >.
+      </p>
+      <h2 id="related-terms">Related Terms</h2>
+      <ul>
+        <li>
+          <code>git clone [url]</code>: Clone (download) a repository that
+          already exists on GitHub, including all of the files, branches, and
+          commits.
+        </li>
+        <li>
+          <code>git remote -v</code>: Show the associated remote repositories
+          and their stored name, like <code>origin</code>.
+        </li>
+        <li>
+          <code>git remote add origin &lt;url&gt;</code>: Add a remote so you
+          can collaborate with others on a newly initialized repository.
+        </li>
+        <li>
+          <code>git push</code>: Uploads all local branch commits to the remote.
+        </li>
+        <li>
+          <code>git push -u origin main</code>: When pushing a branch for the
+          first time, this type of push will configure the relationship between
+          the remote and your local repository so that you can use
+          <code>git pull</code> and <code>git push</code> with no additional
+          options in the future.
+        </li>
+      </ul>
+      <hr />
+      <hr />
+      <h2 id="section-2">
+        &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
+        &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
+      </h2>
+      <hr />
+      <hr />
+      <h1 id="git-clone">Git Clone</h1>
+      <p>
+        The <code>git clone</code> command is used to create a copy of a
+        specific repository or branch within a repository.
+      </p>
+      <p>
+        Git is a distributed version control system. Maximize the advantages of
+        a full repository on your own machine by cloning.
+      </p>
+      <h3 id="what-does-git-clone-do">What Does <code>git clone</code> Do?</h3>
+      <div class="sourceCode" id="cb2">
+        <pre
+          class="sourceCode sh"
+        ><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1"><span class="fu">git</span> clone https://github.com/github/training-kit.git</a></code></pre>
+      </div>
+      <p>
+        When you clone a repository, you don’t get one file, as you may in other
+        centralized version control systems. By cloning with Git, you get the
+        entire repository - all files, all branches, and all commits.
+      </p>
+      <p>
+        Cloning a repository is typically only done once, at the beginning of
+        your interaction with a project. Once a repository already exists on a
+        remote, like on GitHub, then you would clone that repository so you
+        could interact with it locally. Once you have cloned a repository, you
+        won’t need to clone it again to do regular development.
+      </p>
+      <p>
+        The ability to work with the entire repository means that all developers
+        can work more freely. Without being limited by which files you can work
+        on, you can work on a feature branch to make changes safely. Then, you
+        can:
+      </p>
+      <ul>
+        <li>
+          later use <code>git push</code> to share your branch with the remote
+          repository
+        </li>
+        <li>
+          open a pull request to compare the changes with your collaborators
+        </li>
+        <li>test and deploy as needed from the branch</li>
+        <li>merge into the <code>main</code> branch.</li>
+      </ul>
+      <h2 id="how-to-use-git-clone">How to Use <code>git clone</code></h2>
+      <h3 id="common-usages-and-options-for-git-clone">
+        Common usages and options for <code>git clone</code>
+      </h3>
+      <ul>
+        <li>
+          <code>git clone [url]</code>: Clone (download) a repository that
+          already exists on GitHub, including all of the files, branches, and
+          commits.
+        </li>
+        <li>
+          <code>git clone --mirror</code>: Clone a repository but without the
+          ability to edit any of the files. This includes the refs or branches.
+          You may want to use this if you are trying to create a secondary copy
+          of a repository on a separate remote and you want to match all of the
+          branches. This may occur during configuration using a new remote for
+          your Git hosting, or when using Git during automated testing.
+        </li>
+        <li>
+          <code>git clone --single-branch</code>: Clone only a single branch
+        </li>
+        <li>
+          <code>git clone --sparse</code>: Instead of populating the working
+          directory with all of the files in the current commit recursively,
+          only populate the files present in the root directory. This could help
+          with performance when cloning large repositories with many directories
+          and sub-directories.
+        </li>
+        <li>
+          `git clone –recurse-submodules[=&lt;pathspec]: After the clone is
+          created, initialize and clone submodules within based on the provided
+          pathspec. This may be a good option if you are cloning a repository
+          that you know to have submodules, and you will be working with those
+          submodules as dependencies in your local development.
+        </li>
+      </ul>
+      <p>
+        You can see all of the many options with <code>git clone</code> in
+        <a href="https://git-scm.com/docs/git-clone">git-scm’s documentation</a
+        >.
+      </p>
+      <h2 id="examples-of-git-clone">Examples of <code>git clone</code></h2>
+      <h3 id="git-clone-url"><code>git clone [url]</code></h3>
+      <p>
+        The most common usage of cloning is to simply clone a repository. This
+        is only done once, when you begin working on a project, and would follow
+        the syntax of <code>git clone [url]</code>.
+      </p>
+      <h3 id="git-clone-a-branch"><code>git clone</code> A Branch</h3>
+      <p>
+        <code>git clone --single-branch</code>: By default,
+        <code>git clone</code> will create remote tracking branches for all of
+        the branches currently present in the remote which is being cloned. The
+        only local branch that is created is the default branch.
+      </p>
+      <p>
+        But, maybe for some reason, you would like to <em>only</em> get a remote
+        tracking branch for one specific branch, or clone one branch which
+        <em>isn’t</em> the default branch. Both of these things happen when you
+        use <code>--single-branch</code> with <code>git clone</code>.
+      </p>
+      <p>
+        This will create a clone that only has commits included in the current
+        line of history. This means no other branches will be cloned. You can
+        specify a certain branch to clone, but the default branch, usually
+        <code>main</code>, will be selected by default.
+      </p>
+      <p>To clone one specific branch, use:</p>
+      <p><code>git clone [url] --branch [branch] --single-branch</code></p>
+      <p>
+        <em
+          >Cloning only one branch does not add any benefits unless the
+          repository is very large and contains binary files that slow down the
+          performance of the repository. The recommended solution is to optimize
+          the performance of the repository before relying on single branch
+          cloning strategies.</em
+        >
+      </p>
+      <h3 id="git-clone-with-ssh"><code>git clone</code> With SSH</h3>
+      <p>
+        Depending on how you authenticate with the remote server, you may choose
+        to clone using SSH.
+      </p>
+      <p>
+        If you choose to clone with SSH, you would use a specific SSH path for
+        the repository instead of a URL. Typically, developers are authenticated
+        with SSH from the machine level. This means that you would probably
+        clone with HTTPS or with SSH - not a mix of both for your repositories.
+      </p>
+      <h2 id="related-terms-1">Related Terms</h2>
+      <ul>
+        <li>
+          <code>git branch</code>: This shows the existing branches in your
+          local repository. You can also use
+          <code>git branch [branch-name]</code> to create a branch from your
+          current location, or <code>git branch --all</code> to see all
+          branches, both the local ones on your machine and the remote tracking
+          branches stored from the last <code>git pull</code> or
+          <code>git fetch</code> from the remote.
+        </li>
+        <li>
+          <code>git pull</code>: Updates your current local working branch with
+          all new commits from the corresponding remote branch on GitHub.
+          <code>git pull</code> is a combination of <code>git fetch</code> and
+          <code>git merge</code>.
+        </li>
+        <li>
+          <code>git push</code>: Uploads all local branch commits to the remote.
+        </li>
+        <li>
+          <code>git remote -v</code>: Show the associated remote repositories
+          and their stored name, like <code>origin</code>.
+        </li>
+      </ul>
+      <hr />
+      <hr />
+      <h2 id="section-3">
+        &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
+        &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
+      </h2>
+      <hr />
+      <hr />
+      <h1 id="git-add">Git Add</h1>
+      <p>
+        The <code>git add</code> command adds new or changed files in your
+        working directory to the Git staging area.
+      </p>
+      <p>
+        <code>git add</code> is an important command - without it, no
+        <code>git commit</code> would ever do anything. Sometimes,
+        <code>git add</code> can have a reputation for being an unnecessary step
+        in development. But in reality, <code>git add</code> is an important and
+        powerful tool. <code>git add</code> allows you to shape history without
+        changing how you work.
+      </p>
+      <figure>
+        <img
+          src=""
+          alt="image of working directory, staging area, and committed history with commands shown and visualized"
+        />
+        <figcaption>
+          image of working directory, staging area, and committed history with
+          commands shown and visualized
+        </figcaption>
+      </figure>
+      <h2 id="when-do-you-use-git-add">
+        When do you use <code>git add</code>?
+      </h2>
+      <div class="sourceCode" id="cb3">
+        <pre
+          class="sourceCode sh"
+        ><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" title="1"><span class="fu">git</span> add README.md</a></code></pre>
+      </div>
+      <p>
+        As you’re working, you change and save a file, or multiple files. Then,
+        before you commit, you must <code>git add</code>. This step allows you
+        to choose what you are going to commit. Commits should be logical,
+        atomic units of change - but not everyone works that way. Maybe you are
+        making changes to files that <em>aren’t</em> logical or atomic units of
+        change. <code>git add</code> allows you to systematically shape your
+        commits and your history anyway.
+      </p>
+      <h3 id="what-does-git-add-do">What Does Git Add Do?</h3>
+      <p>
+        <code>git add [filename]</code> selects that file, and moves it to the
+        staging area, marking it for inclusion in the next commit. You can
+        select all files, a directory, specific files, or even specific parts of
+        a file for staging and commit.
+      </p>
+      <p>
+        This means if you <code>git add</code> a deleted file the
+        <em>deletion</em> is staged for commit. The language of “add” when
+        you’re actually “deleting” can be confusing. If you think or use
+        <code>git stage</code> in place of <code>git add</code>, the reality of
+        what is happening may be more clear.
+      </p>
+      <p>
+        <code>git add</code> and <code>git commit</code> go together hand in
+        hand. They don’t work when they aren’t used together. And, they both
+        work best when used thinking of their joint functionality.
+      </p>
+      <h2 id="how-to-use-git-add">How to Use <code>git add</code></h2>
+      <h3 id="common-usages-and-options-for-git-add">
+        Common usages and options for <code>git add</code>
+      </h3>
+      <ul>
+        <li>
+          <code>git add &lt;path&gt;</code>: Stage a specific directory or file
+        </li>
+        <li>
+          <code>git add .</code>: Stage all files (that are not listed in the
+          <code>.gitignore</code>) in the entire repository
+        </li>
+        <li><code>git add -p</code>: Interactively stage hunks of changes</li>
+      </ul>
+      <p>
+        You can see all of the many options with <code>git add</code> in
+        <a href="https://git-scm.com/docs/git-add">git-scm’s documentation</a>.
+      </p>
+      <h2 id="examples-of-git-add">Examples of <code>git add</code></h2>
+      <p>
+        <code>git add</code> usually fits into the workflow in the following
+        steps:
+      </p>
+      <ol type="1">
+        <li>Create a branch: <code>git branch update-readme</code></li>
+        <li>
+          Checkout to that branch: <code>git checkout update-readme</code>
+        </li>
+        <li>Change a file or files</li>
+        <li>Save the file or files</li>
+        <li>
+          Add the files or segments of code that should be included in the next
+          commit: <code>git add README.md</code>
+        </li>
+        <li>
+          Commit the changes:
+          <code
+            >git commit -m "update the README to include links to contributing
+            guide"</code
+          >
+        </li>
+        <li>
+          Push the changes to the remote branch:
+          <code>git push -u origin update-readme</code>
+        </li>
+      </ol>
+      <p>But, <code>git add</code> could also be used like:</p>
+      <ol type="1">
+        <li>Create a branch: <code>git branch update-readme</code></li>
+        <li>
+          Checkout to that branch: <code>git checkout update-readme</code>
+        </li>
+        <li>Change a file or files</li>
+        <li>Save the file or files</li>
+        <li>
+          Add only one file, or one part of the changed file:
+          <code>git add README.md</code>
+        </li>
+        <li>
+          Commit the first set of changes:
+          <code
+            >git commit -m "update the README to include links to contributing
+            guide"</code
+          >
+        </li>
+        <li>
+          Add another file, or another part of the changed file:
+          <code>git add CONTRIBUTING.md</code>
+        </li>
+        <li>
+          Commit the second set of changes:
+          <code>git commit -m "create the contributing guide"</code>
+        </li>
+        <li>(Repeat as necessary)</li>
+        <li>
+          Push the changes to the remote branch:
+          <code>git push -u origin update-readme</code>
+        </li>
+      </ol>
+      <h3 id="git-add-all-files"><code>git add</code> All Files</h3>
+      <p>
+        Staging all available files is a popular, though risky, operation. This
+        can save time, but the risks are two-fold:
+      </p>
+      <h4 id="poorly-thought-out-history">Poorly thought out history</h4>
+      <p>
+        By staging all available changes, the clarity of your history will
+        likely suffer. Being able to shape your history is one of the greatest
+        advantages of using Git. If your commits are too large, contain
+        unrelated changes, or are unclearly described in the commit message, you
+        will lose the benefits of viewing and changing history.
+      </p>
+      <h4 id="accidentally-staging-and-committing-files">
+        Accidentally staging and committing files
+      </h4>
+      <p>
+        By using an option to add all files at once, you may accidentally stage
+        and commit a file. Most common flags don’t add files tracked in the
+        <code>.gitignore</code> file. But, any file not listed in the
+        <code>.gitignore</code> file will be staged and committed. This applies
+        to large binary files, and files containing sensitive information like
+        passwords or authentication tokens.
+      </p>
+      <h4 id="deciding-to-stage-all-files">Deciding to stage all files</h4>
+      <p>
+        If the time is right to stage all files, there are several commands that
+        you can choose from. As always, it’s very important to know what you are
+        staging and committing.
+      </p>
+      <ul>
+        <li>
+          <code>git add -A</code>: stages all files, including new, modified,
+          and deleted files, including files in the current directory
+          <em>and</em> in higher directories that still belong to the same git
+          repository
+        </li>
+        <li>
+          <code>git add .</code>: adds the entire directory recursively,
+          including files whose names begin with a dot
+        </li>
+        <li>
+          <code>git add -u</code>: stages modified and deleted files only, NOT
+          new files
+        </li>
+      </ul>
+      <table>
+        <colgroup>
+          <col style="width: 10%" />
+          <col style="width: 7%" />
+          <col style="width: 11%" />
+          <col style="width: 10%" />
+          <col style="width: 30%" />
+          <col style="width: 14%" />
+          <col style="width: 14%" />
+        </colgroup>
+        <thead>
+          <tr class="header">
+            <th></th>
+            <th>New files</th>
+            <th>Modified files</th>
+            <th>Deleted files</th>
+            <th>Files with names beginning with a dot</th>
+            <th>Current directory</th>
+            <th>Higher directories</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="odd">
+            <td><code>git add -A</code></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr class="even">
+            <td><code>git add .</code></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>No</td>
+          </tr>
+          <tr class="odd">
+            <td><code>git add -u</code></td>
+            <td>No</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3 id="git-add-a-folder-or-specific-file">
+        <code>git add</code> A Folder or Specific File
+      </h3>
+      <p>
+        The safest and clearest way to use <code>git add</code> is by
+        designating the specific file or directory to be staged. The syntax for
+        this could look like:
+      </p>
+      <p>
+        <code>git add directory/</code>: Stage all changes to all files within a
+        directory titled <code>directory</code> <code>git add README.md</code>:
+        Stage all changes within the <code>README.md</code> file
+      </p>
+      <h3 id="undo-added-files">Undo Added Files</h3>
+      <p>
+        Before undoing a <code>git add</code>, you should first be sure that you
+        won’t lose any work. There’s no way to “revert” an add in the same way
+        you can revert a commit, but you can move the files out of the staging
+        area.
+      </p>
+      <p>
+        For example, if you have a staged file, and then you make more changes
+        to that file in your working directory. Now, the versions in your
+        working directory and your staging area are different. If you take
+        action to remove the changed version of the file from the staging area,
+        the changes that were in your working directory <em>but not</em> staged
+        will be overwritten.
+      </p>
+      <p>
+        To avoid this, first stage all changes, then unstage them together, or
+        commit the changes and reset back before the commit happened.
+      </p>
+      <h4 id="using-git-reset-to-undo-git-add">
+        Using <code>git reset</code> to undo <code>git add</code>
+      </h4>
+      <p>
+        <code>git reset</code> is a flexible and powerful command. One of its
+        many use cases is to move changes <em>out</em> of the staging area. To
+        do this, use the “mixed” level of reset, which is the default.
+      </p>
+      <p>
+        To move staged changes from the staging area to the working directory
+        without affecting committed history, first make sure that you don’t have
+        any additional changes to the files in question as mentioned above.
+        Then, type <code>git reset HEAD</code> (aka
+        <code>git reset --mixed HEAD</code>).
+      </p>
+      <h2 id="related-terms-2">Related Terms</h2>
+      <ul>
+        <li>
+          <code>git status</code>: Always a good idea, this command shows you
+          what branch you’re on, what files are in the working or staging
+          directory, and any other important information.
+        </li>
+        <li>
+          <code>git checkout [branch-name]</code>: Switches to the specified
+          branch and updates the working directory.
+        </li>
+        <li>
+          <code>git commit -m "descriptive message"</code>: Records file
+          snapshots permanently in version history.
+        </li>
+        <li>
+          <code>git push</code>: Uploads all local branch commits to the remote.
+        </li>
+      </ul>
+      <hr />
+      <hr />
+      <h2 id="section-4">
+        &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
+        &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
+      </h2>
+      <hr />
+      <hr />
+      <h1 id="git-commit">Git Commit</h1>
+      <p>
+        <code>git commit</code> creates a commit, which is like a snapshot of
+        your repository. These commits are snapshots of your entire repository
+        at specific times. You should make new commits often, based around
+        logical units of change. Over time, commits should tell a story of the
+        history of your repository and how it came to be the way that it
+        currently is. Commits include lots of metadata in addition to the
+        contents and message, like the author, timestamp, and more.
+      </p>
+      <h2 id="how-git-commit-works">How Git Commit Works</h2>
+      <p>
+        Commits are the building blocks of “save points” within Git’s version
+        control.
+      </p>
+      <div class="sourceCode" id="cb4">
+        <pre
+          class="sourceCode sh"
+        ><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" title="1"><span class="fu">git</span> commit -m <span class="st">&quot;update the README.md with link to contributing guide&quot;</span></a></code></pre>
+      </div>
+      <h3 id="commits-shape-history">Commits shape history</h3>
+      <p>
+        By using commits, you’re able to craft history intentionally and safely.
+        You can make commits to different branches, and specify exactly what
+        changes you want to include. Commits are created on the branch that
+        you’ve currently checked out to (wherever HEAD is pointing) so it’s
+        always a good idea to run <code>git status</code> before making a
+        commit, to check that you’re checked out to the branch that you intend
+        to be. Before you commit, you will need to stage any new changes that
+        you’d like to include in the commit using <code>git add [file]</code>.
+      </p>
+      <p>
+        Commits are lightweight SHA hashes, objects within Git. As long as
+        you’re working with text files, you won’t need to worry about how many
+        files you have, how big they are, or how many commits you make. Git can
+        handle it!
+      </p>
+      <h3 id="committing-in-two-phases">Committing in two phases</h3>
+      <p>
+        Commits have two phases to help you craft commits properly. Commits
+        should be logical, atomic units of change that represent a specific
+        idea. But, not all humans work that way. You may get carried away and
+        end up solving two or three problems before you remember to commit!
+        That’s OK - Git can handle that. Once you’re ready to craft your
+        commits, you’ll use
+        <code>git add &lt;FILENAME&gt;</code> to specify the files that you’d
+        like to “stage” for commit. Without adding any files, the command
+        <code>git commit</code> won’t work. Git only looks to the staging area
+        to find out what to commit. Staging, or adding, files, is possible
+        through the command line, and also possible with most Git interfaces
+        like GitHub Desktop by selecting the lines or files that you’d like to
+        stage.
+      </p>
+      <p>
+        You can also use a handy command, <code>git add -p</code>, to walk
+        through the changes and separate them, even if they’re in the same file.
+      </p>
+      <h2 id="how-to-use-git-commit">How to Use Git Commit</h2>
+      <h3 id="common-usages-and-options-for-git-commit">
+        Common usages and options for Git Commit
+      </h3>
+      <ul>
+        <li>
+          <code>git commit</code>: This starts the commit process, but since it
+          doesn’t include a <code>-m</code> flag for the message, your default
+          text editor will be opened for you to create the commit message. If
+          you haven’t configured anything, there’s a good chance this will be VI
+          or Vim. (To get out, press Esc, then <code>:wq</code>, and then Enter.
+          :wink:)
+        </li>
+        <li>
+          <code>git commit -m "descriptive commit message"</code>: This starts
+          the commit process, and allows you to include the commit message at
+          the same time.
+        </li>
+        <li>
+          <code>git commit -am "descriptive commit message"</code>: In addition
+          to including the commit message, this option allows you to skip the
+          staging phase. The addition of <code>-a</code> will automatically
+          stage any files that are already being tracked by Git (changes to
+          files that you’ve committed before).
+        </li>
+        <li>
+          <code>git commit --amend</code>: Replaces the most recent commit with
+          a new commit. (More on this later!)
+        </li>
+      </ul>
+      <p>
+        To see all of the possible options you have with
+        <code>git commit</code>, check out
+        <a href="https://git-scm.com/docs/git-commit">Git’s documentation</a>.
+      </p>
+      <h3 id="how-to-undo-commits-in-git">How to Undo Commits in Git</h3>
+      <p>
+        Sometimes, you may need to change history. You may need to undo a
+        commit. If you find yourself in this situation, there are a few very
+        important things to remember:
+      </p>
+      <ul>
+        <li>
+          If you are “undoing” a commit that exists on the remote, you could
+          create big problems for your collaborators
+        </li>
+        <li>
+          Undoing a commit on work that you only have locally is much safer
+        </li>
+      </ul>
+      <h3 id="what-can-go-wrong-while-changing-history">
+        What can go wrong while changing history?
+      </h3>
+      <p>
+        Changing history for collaborators can be problematic in a few ways.
+        Imagine - You and another collaborator have the same repository, with
+        the same history. But, they make a change that <em>deletes</em> the most
+        recent commit. They continue new commits from the commit directly before
+        that. Meanwhile, you keep working <em>with</em> the commit that the
+        collaborator tried to delete. When they push, they’ll have to ‘force
+        push’, which should show to them that they’re changing history.
+        <strong>What do you think will happen when you try to push?</strong>
+      </p>
+      <p>
+        In dramatic cases, Git may decide that the histories are too different
+        and the projects are no longer related. This is uncommon, but a big
+        problem.
+      </p>
+      <p>
+        The most common result is that your <code>git push</code> would return
+        the “deleted” commit to a shared history. (First, you would
+        <code>git pull</code> if you were working on the same branch, and then
+        merge, but the results would be the same.) This means that whatever was
+        so important to delete is now back in the repository. A password, token,
+        or large binary file may return without ever alerting you.
+      </p>
+      <h4 id="git-revert"><code>git revert</code></h4>
+      <p>
+        <code>git revert</code> is the safest way to change history with Git.
+        Instead of deleting existing commits, <code>git revert</code> looks at
+        the changes introduced in a specific commit, then applies the inverse of
+        those changes in a new commit. It functions as an “undo commit” command,
+        without sacrificing the integrity of your repository’s history.
+        <strong
+          ><code>git revert</code> is always the recommended way to change
+          history when it’s possible</strong
+        >.
+      </p>
+      <h4 id="git-reset"><code>git reset</code></h4>
+      <p>
+        Sometimes, a commit includes sensitive information that actually needs
+        to be deleted. <code>git reset</code> is a very powerful command that
+        may cause you to lose work. By resetting, you move the
+        <code>HEAD</code> pointer and the branch pointer to another point in
+        time - maybe making it seem like the commits in between never happened!
+        Before using <code>git reset</code>:
+      </p>
+      <ul>
+        <li>Make sure to talk with your team about any shared commits</li>
+        <li>
+          Research the three types of reset to see which is right for you
+          (–soft, –mixed, –hard)
+        </li>
+        <li>
+          Commit any work that you don’t want to be lost intentionally - work
+          that is committed can be gotten back, but uncommitted work cannot
+        </li>
+      </ul>
+      <h4 id="git-reflog"><code>git reflog</code></h4>
+      <p>
+        If you’re changing history and undoing commits, you should know about
+        <code>git reflog</code>. If you get into trouble, the reflog could get
+        you out of trouble. The reflog is a log of every commit that
+        <code>HEAD</code> has pointed to. So, for example, if you use
+        <code>git reset</code> and unintentionally lose commits, you can find
+        and access them with <code>git reflog</code>.
+      </p>
+      <h3 id="updating-commits-with-git-commit-amend">
+        Updating Commits With Git Commit Amend
+      </h3>
+      <p>
+        While <code>git commit --amend</code> does change history, it only
+        changes the most recent commit on your current branch. This can be an
+        extremely useful command for commits that:
+      </p>
+      <ul>
+        <li>Haven’t been pushed to the remote yet</li>
+        <li>Have a spelling error in the commit message</li>
+        <li>Don’t contain the changes that you’d like to contain</li>
+      </ul>
+      <h2 id="examples-of-git-commit">Examples of Git Commit</h2>
+      <p>
+        Once you’ve staged the files that you want to include in your commit,
+        you’re ready. Whether you commit in a tool like GitHub Desktop, or
+        through your command line, the commit message is important. Commit
+        messages should be short and descriptive of your change. If you are
+        looking through your repository’s history, you’ll be guided by the
+        commit messages, so they should tell a story. Commits in the command
+        line can include the message with the following format:
+      </p>
+      <ul>
+        <li><code>git commit -m "git commit message example"</code></li>
+      </ul>
+      <p>
+        Commit messages should be present tense and directive, like the
+        following examples:
+      </p>
+      <ul>
+        <li>
+          <code>git commit -m "create file structure for Git guides"</code>
+        </li>
+        <li>
+          <code>git commit -m "translate Git cheat sheet into German"</code>
+        </li>
+        <li><code>git commit -m "update broken URL to Git resources"</code></li>
+      </ul>
+      <p>
+        If you’d like to include more context in your commit messages, you can
+        also include an extended commit message.
+      </p>
+      <h2 id="related-commands">Related commands</h2>
+      <ul>
+        <li>
+          <code>git add [file]</code>: Snapshots the file in preparation for
+          versioning, adding it to the staging area.
+        </li>
+        <li>
+          <code>git status</code>: Always a good idea, this command shows you
+          what branch you’re on, what files are in the working or staging
+          directory, and any other important information.
+        </li>
+        <li>
+          <code>git push</code>: Uploads all local branch commits to the remote.
+        </li>
+        <li>
+          <code>git log</code>: Browse and inspect the evolution of project
+          files.
+        </li>
+      </ul>
+      <hr />
+      <hr />
+      <h2 id="section-5">
+        &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
+        &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
+      </h2>
+      <hr />
+      <hr />
+      <h1 id="git-push">Git Push</h1>
+      <div class="sourceCode" id="cb5">
+        <pre
+          class="sourceCode sh"
+        ><code class="sourceCode bash"><a class="sourceLine" id="cb5-1" title="1"><span class="fu">git</span> push</a></code></pre>
+      </div>
+      <p>
+        <code>git push</code> uploads all local branch commits to the
+        corresponding remote branch.
+      </p>
+      <h2 id="what-does-git-push-do">What Does <code>git push</code> Do?</h2>
+      <p>
+        <code>git push</code> updates the remote branch with local commits. It
+        is one of the four commands in Git that prompts interaction with the
+        remote repository. You can also think of <code>git push</code> as
+        <em>update</em> or <em>publish</em>.
+      </p>
+      <p>
+        By default, <code>git push</code> only updates the corresponding branch
+        on the remote. So, if you are checked out to the
+        <code>main</code> branch when you execute <code>git push</code>, then
+        only the <code>main</code> branch will be updated. It’s always a good
+        idea to use <code>git status</code> to see what branch you are on before
+        pushing to the remote.
+      </p>
+      <h2 id="how-to-use-git-push">How to Use <code>git push</code></h2>
+      <p>
+        After you make and commit changes locally, you can share them with the
+        remote repository using <code>git push</code>. Pushing changes to the
+        remote makes your commits accessible to others who you may be
+        collaborating with. This will also update any open pull requests with
+        the branch that you’re working on.
+      </p>
+      <p>
+        As best practice, it’s important to run the
+        <code>git pull</code> command before you push any new changes to the
+        remote branch. This will update your local branch with any new changes
+        that may have been pushed to the remote from other contributors. Pulling
+        before you push can reduce the amount of merge conflicts you create on
+        GitHub - allowing you to resolve them locally before pushing your
+        changes to the remote branch.
+      </p>
+      <h3 id="common-usages-and-options-for-git-push">
+        Common usages and options for <code>git push</code>
+      </h3>
+      <ul>
+        <li>
+          <code>git push -f</code>: Force a push that would otherwise be
+          blocked, usually because it will delete or overwrite existing commits
+          <em>(Use with caution!)</em>
+        </li>
+        <li>
+          <code>git push -u origin [branch]</code>: Useful when pushing a new
+          branch, this creates an upstream tracking branch with a lasting
+          relationship to your local branch
+        </li>
+        <li><code>git push --all</code>: Push all branches</li>
+        <li>
+          <code>git push --tags</code>: Publish tags that aren’t yet in the
+          remote repository
+        </li>
+      </ul>
+      <p>
+        You can see all of the options with <code>git push</code> in
+        <a href="https://git-scm.com/docs/git-push">git-scm’s documentation</a>.
+      </p>
+      <h2 id="why-cant-i-push">Why can’t I push?</h2>
+      <p>
+        If you are trying to <code>git push</code> but are running into
+        problems, there are a few common solutions.
+      </p>
+      <h3 id="check-your-branch">Check your branch</h3>
+      <p>
+        Check what branch you are currently on with <code>git status</code>. If
+        you are working on a protected branch, like <code>main</code>, you may
+        be unable to push commits directly to the remote. If this happens to
+        you, it’s OK! You can fix this a few ways.
+      </p>
+      <h4 id="work-was-not-yet-on-any-branch">
+        Work was not yet on any branch
+      </h4>
+      <ol type="1">
+        <li>
+          Create and checkout to a new branch from your current commit:
+          <code>git checkout -b [branchname]</code>
+        </li>
+        <li>
+          Then, push the new branch up to the remote:
+          <code>git push -u origin [branchname]</code>
+        </li>
+      </ol>
+      <h4 id="accidentally-committed-to-the-wrong-branch">
+        Accidentally committed to the wrong branch
+      </h4>
+      <ol type="1">
+        <li>
+          Checkout to the branch that you intended to commit to:
+          <code>git checkout [branchname]</code>
+        </li>
+        <li>
+          Merge the commits from the branch that you <em>did</em> accidentally
+          commit to: <code>git merge [main]</code>
+        </li>
+        <li>Push your changes to the remote: <code>git push</code></li>
+        <li>
+          Fix the other branch by checking out to that branch, finding what
+          commit it <em>should</em> be pointed to, and using
+          <code>git reset --hard</code> to correct the branch pointer
+        </li>
+      </ol>
+      <h2 id="related-terms-3">Related Terms</h2>
+      <ul>
+        <li>
+          <code>git commit -m "descriptive message"</code>: Records file
+          snapshots permanently in version history.
+        </li>
+        <li>
+          <code>git clone [url]</code>: Clone (download) a repository that
+          already exists on GitHub, including all of the files, branches, and
+          commits.
+        </li>
+        <li>
+          <code>git status</code>: Always a good idea, this command shows you
+          what branch you’re on, what files are in the working or staging
+          directory, and any other important information.
+        </li>
+        <li>
+          <code>git pull</code>: Updates your current local working branch with
+          all new commits from the corresponding remote branch on GitHub.
+          <code>git pull</code> is a combination of <code>git fetch</code> and
+          <code>git merge</code>.
+        </li>
+      </ul>
+      <hr />
+      <hr />
+      <h2 id="section-6">
+        &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
+        &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
+      </h2>
+      <hr />
+      <hr />
+      <h1 id="git-pull">Git Pull</h1>
+      <p>
+        <code>git pull</code> updates your current local working branch and all
+        of the remote tracking branches. It’s a good idea to run
+        <code>git pull</code> regularly on the branches you are working on
+        locally.
+      </p>
+      <p>
+        Without <code>git pull</code>, (or the effect of it,) your local branch
+        wouldn’t have any of the updates that are present on the remote.
+      </p>
+      <h3 id="what-does-git-pull-do">What Does <code>git pull</code> Do?</h3>
+      <div class="sourceCode" id="cb6">
+        <pre
+          class="sourceCode sh"
+        ><code class="sourceCode bash"><a class="sourceLine" id="cb6-1" title="1"><span class="fu">git</span> pull</a></code></pre>
+      </div>
+      <p>
+        <code>git pull</code> is one of the 4 remote operations within Git.
+        Without running <code>git pull</code>, your local repository will never
+        be updated with changes from the remote. <code>git pull</code> should be
+        used every day you interact with a repository with a remote, at the
+        minimum. That’s why <code>git pull</code> is one of the most used Git
+        commands.
+      </p>
+      <h3 id="git-pull-and-git-fetch">
+        <code>git pull</code> and <code>git fetch</code>
+      </h3>
+      <p>
+        <code>git pull</code>, a combination of <code>git fetch</code> +
+        <code>git merge</code>, updates some parts of your local repository with
+        changes from the remote repository. To understand what is and isn’t
+        affected by <code>git pull</code>, you need to first understand the
+        concept of remote tracking branches. When you clone a repository, you
+        clone one working branch, <code>main</code>, and all of the remote
+        tracking branches. <code>git fetch</code> updates the remote tracking
+        branches. <code>git merge</code> will update your current branch with
+        any new commits on the remote tracking branch.
+      </p>
+      <p>
+        <code>git pull</code> is the most common way to update your repository.
+      </p>
+      <p>
+        However, you may want to use <code>git fetch</code> instead. One reason
+        to do this may be that you expect conflicts. Conflicts can occur in this
+        way if you have new local commits and new commits on the remote. Just
+        like a merge conflict that would happen between two different branches,
+        these two different lines of history could contain changes to the same
+        parts of the same file. If you first operate <code>git fetch</code>, the
+        merge won’t be initiated, and you won’t be prompted to solve the
+        conflict. This gives you the flexibility to resolve the conflict later
+        without the need for network connectivity.
+      </p>
+      <p>
+        Another reason you may want to run <code>git fetch</code> is to update
+        to all remote tracking branches before losing network connectivity. If
+        you run <code>git fetch</code>, and then later try to run
+        <code>git pull</code> without any network connectivity, the
+        <code>git fetch</code> portion of the <code>git pull</code> operation
+        will fail.
+      </p>
+      <p>
+        If you do use <code>git fetch</code> instead of <code>git pull</code>,
+        make sure you remember to <code>git merge</code>. Merging the remote
+        tracking branch into your own branch ensures you will be working with
+        any updates or changes.
+      </p>
+      <h2 id="how-to-use-git-pull">How to Use <code>git pull</code></h2>
+      <h3 id="common-usages-and-options-for-git-pull">
+        Common usages and options for <code>git pull</code>
+      </h3>
+      <ul>
+        <li>
+          <code>git pull</code>: Update your local working branch with commits
+          from the remote, <em>and</em> update all remote tracking branches.
+        </li>
+        <li>
+          <code>git pull --rebase</code>: Update your local working branch with
+          commits from the remote, but rewrite history so any local commits
+          occur after all new commits coming from the remote, avoiding a merge
+          commit.
+        </li>
+        <li>
+          <code>git pull --force</code>: This option allows you to force a fetch
+          of a specific remote tracking branch when using the
+          <code>&lt;refspec&gt;</code> option that would otherwise not be
+          fetched due to conflicts. To force Git to overwrite your current
+          branch to match the remote tracking branch, read below about using
+          <code>git reset</code>.
+        </li>
+        <li>
+          <code>git pull --all</code>: Fetch <em>all</em> remotes - this is
+          handy if you are working on a fork or in another use case with
+          multiple remotes.
+        </li>
+      </ul>
+      <p>
+        You can see all of the many options with <code>git pull</code> in
+        <a href="https://git-scm.com/docs/git-pull">git-scm’s documentation</a>.
+      </p>
+      <h2 id="examples-of-git-pull">Examples of <code>git pull</code></h2>
+      <h3 id="working-on-a-branch">Working on a Branch</h3>
+      <p>
+        If you’re already working on a branch, it is a good idea to run
+        <code>git pull</code> before starting work and introducing new commits.
+        Even if you take a small break from development, there’s a chance that
+        one of your collaborators has made changes to your branch. This change
+        could even come from updating your branch with new changes from
+        <code>main</code>.
+      </p>
+      <p>
+        It is always a good idea to run <code>git status</code> - especially
+        before <code>git pull</code>. Changes that are not committed can be
+        overwritten during a <code>git pull</code>. Or, they can block the
+        <code>git merge</code> portion of the <code>git pull</code> from
+        executing. If you have files that are changed, but not committed, and
+        the changes on the remote also change those same parts of the same file,
+        Git must make a choice. Since they are not committed changes, there is
+        no possibility for a merge conflict. Git will either overwrite the
+        changes in your working or staging directories, or the
+        <code>merge</code> will not complete, and you will not be able to
+        include any of the updates from the remote.
+      </p>
+      <p>
+        If this happens, use <code>git status</code> to identify what changes
+        are causing the problem. Either delete or commit those changes, then
+        <code>git pull</code> or <code>git merge</code> again.
+      </p>
+      <h3 id="keep-main-up-to-date">Keep <code>main</code> up to date</h3>
+      <p>
+        Keeping the <code>main</code> branch up to date is generally a good
+        idea.
+      </p>
+      <p>
+        For example, let’s say you have cloned a repository. After you clone,
+        someone merges a branch into main. Then, you’d like to create a new
+        branch to do some work. If you create your branch off of
+        <code>main</code> <em>before</em> operating <code>git pull</code>, your
+        branch will not have the most recent changes. You could accidentally
+        introduce a conflict or duplicate changes. By running
+        <code>git pull</code> before you create a branch, you can be sure that
+        you will be working with the most recent information.
+      </p>
+      <h3 id="undo-a-git-pull">Undo A <code>git pull</code></h3>
+      <p>
+        To effectively “undo” a <code>git pull</code>, you cannot undo the
+        <code>git fetch</code> - but you can undo the
+        <code>git merge</code> that changed your local working branch.
+      </p>
+      <p>
+        To do this, you will need to <code>git reset</code> to the commit you
+        made <em>before</em> you merged. You can find this commit by searching
+        the <code>git reflog</code>. The reflog is a log of every place that
+        HEAD has pointed - every place that you have ever been checked out to.
+        This reflog is only kept for 30 to 90 days, depending on the commit, and
+        is only stored locally.
+        <em
+          >(The reflog is a great reason not to delete a repository if you think
+          you’ve made a mistake!)</em
+        >
+      </p>
+      <p>
+        Run <code>git reflog</code> and search for the commit that you would
+        like to return to. Then, run
+        <code>git reset --hard &lt;SHA&gt;</code> to reset HEAD and your current
+        branch to the SHA of the commit from before the merge.
+      </p>
+      <h3 id="force-git-pull-to-overwrite-local-files">
+        Force <code>git pull</code> to Overwrite Local Files
+      </h3>
+      <p>
+        If you have made commits locally that you regret, you may want your
+        local branch to match the remote branch without saving any of your work.
+        This can be done using <code>git reset</code>. First, make sure you have
+        the most recent copy of that remote tracking branch by fetching.
+      </p>
+      <p>
+        <code>git fetch &lt;remote&gt; &lt;branch&gt;</code> ex:
+        <code>git fetch origin main</code>
+      </p>
+      <p>
+        Then, use <code>git reset --hard</code> to move the HEAD pointer and the
+        current branch pointer to the most recent commit as it exists on that
+        remote tracking branch.
+      </p>
+      <p>
+        <code>git reset --hard &lt;remote&gt;/&lt;branch&gt;</code> ex:
+        <code>git reset --hard origin/main</code>
+      </p>
+      <blockquote>
+        <p>
+          _Note: You can find the remotes with <code>git remote -v</code>, and
+          see all available remote tracking branches with
+          <code>git branch --all</code>.
+        </p>
+      </blockquote>
+      <h3 id="git-pull-with-rebase"><code>git pull</code> with Rebase</h3>
+      <p>
+        If there have been new commits on both your local branch and the remote
+        branch, a merge commit will be created when you <code>git pull</code>.
+        This recursive merge is the default merge style when there are two
+        splits in history being brought together. But, you may want history on a
+        branch to be only one line.
+      </p>
+      <p>
+        You can update your local working branch with commits from the remote,
+        but rewrite history so any local commits occur after all new commits
+        coming from the remote, avoiding a merge commit. This is done with
+        <code>git pull --rebase</code>.
+      </p>
+      <p>
+        Using <code>git pull --rebase</code> does not affect the integrity of
+        the changes or the commits, but it does affect how history looks in the
+        commit parent/child relationship.
+      </p>
+      <h2 id="related-terms-4">Related Terms</h2>
+      <ul>
+        <li>
+          <code>git clone [url]</code>: Clone (download) a repository that
+          already exists on GitHub, including all of the files, branches, and
+          commits.
+        </li>
+        <li>
+          <code>git status</code>: Always a good idea, this command shows you
+          what branch you’re on, what files are in the working or staging
+          directory, and any other important information.
+        </li>
+        <li>
+          <code>git branch</code>: This shows the existing branches in your
+          local repository. You can also use
+          <code>git branch [banch-name]</code> to create a branch from your
+          current location, or <code>git branch --all</code> to see all
+          branches, both the local ones on your machine, and the remote tracking
+          branches stored from the last <code>git pull</code> or
+          <code>git fetch</code> from the remote.
+        </li>
+        <li>
+          <code>git push</code>: Uploads all local branch commits to the remote.
+        </li>
+        <li>
+          <code>git log</code>: Browse and inspect the evolution of project
+          files.
+        </li>
+        <li>
+          <code>git remote -v</code>: Show the associated remote repositories
+          and their stored name, like <code>origin</code>.
+        </li>
+      </ul>
+      <hr />
+      <hr />
+      <h2 id="section-7">
+        &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
+        &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
+      </h2>
+      <hr />
+      <hr />
+      <h1 id="git-remote">Git Remote</h1>
+      <p>
+        There are some operations with <code>git remote</code>, like
+        <code>git remote -v</code>, that you may use occasionally.
+      </p>
+      <p>
+        But, the concept of a remote within Git is important and powers many of
+        the other operations.
+      </p>
+      <h2 id="what-does-git-remote-do">What does Git remote do?</h2>
+      <div class="sourceCode" id="cb7">
+        <pre
+          class="sourceCode sh"
+        ><code class="sourceCode bash"><a class="sourceLine" id="cb7-1" title="1"><span class="fu">git</span> remote -v</a></code></pre>
+      </div>
+      <p>
+        <code>git remote</code> manages the set of remotes that you are tracking
+        with your local repository.
+      </p>
+      <h3 id="common-git-remote-commands">
+        Common <code>git remote</code> commands
+      </h3>
+      <ul>
+        <li>
+          <code>git remote -v</code>: List the current remotes associated with
+          the local repository
+        </li>
+        <li><code>git remote add [name] [URL]</code>: Add a remote</li>
+        <li><code>git remote remove [name]</code>: Remove a remote</li>
+      </ul>
+      <h3 id="what-is-origin">What is <code>origin</code>?</h3>
+      <p>
+        If you try running <code>git remote -v</code> in your repositories,
+        you’ll probably see something called <code>origin</code>. You may notice
+        <code>origin</code> in many messages from Git. <code>origin</code> is
+        the human-friendly name for the URL that the remote repository is stored
+        at. It’s like a key-value pair, and <code>origin</code> is the default.
+      </p>
+      <h3 id="what-is-upstream">What is <code>upstream</code>?</h3>
+      <p>
+        You may need or want to work with multiple remotes for one local
+        repository. This can be common in open source when a contributor needs
+        to create a fork of a repository to have permission to push changes to
+        the remote.
+      </p>
+      <p>
+        In this case, it’s common to create and clone a fork. Then, the default
+        remote would be <code>origin</code>, in reference to the fork. To make
+        it easier to pull any changes to update the local copy of the fork from
+        the original repository, many people add the original repository as a
+        remote also. It’s typical to name this remote <code>upstream</code>.
+      </p>
+      <p>
+        <img
+          src="https://user-images.githubusercontent.com/9906718/77051803-28625800-69cc-11ea-9533-b5387ed2d3b5.png"
+        />
+      </p>
+      <h2 id="communicating-with-the-remote">Communicating with the remote</h2>
+      <p>
+        There are four commands within Git that prompt communication with the
+        remote. Unless you are using one of these four commands, all of your
+        work is only happening locally.
+      </p>
+      <ul>
+        <li><code>git push</code></li>
+        <li><code>git clone</code></li>
+        <li><code>git pull</code></li>
+        <li><code>git fetch</code></li>
+      </ul>
+      <h2 id="branches-and-the-remote">Branches and the remote</h2>
+      <p>
+        The concept of branches can be confusing once it is combined with the
+        concept of remotes. Git keeps track of the branches that you work on
+        locally, as well as each of the branches in every remote associated with
+        your local repo.
+      </p>
+      <h3 id="remote-tracking-branches">Remote tracking branches</h3>
+      <p>
+        If you run <code>git branch --all</code> in your repository, you will
+        notice a long list of branches. The branches that (by default) appear in
+        red are the <em>remote tracking branches</em>. These branches are
+        read-only copies of the branches on the remote. These update every time
+        you run <code>git fetch</code> or <code>git pull</code>.
+      </p>
+      <p>
+        These don’t take up much room, so it’s okay that Git does this by
+        default. But, these will stack up over time - they are not deleted
+        automatically.
+      </p>
+      <p>
+        To delete the remote tracking branches that are deleted on the remote,
+        run
+        <code>git fetch --prune</code>. This is safe to do if you are using
+        GitHub, because branches merged via pull requests can be restored.
+      </p>
+      <h3 id="local-working-branches">Local working branches</h3>
+      <p>
+        When you run <code>git branch --all</code>, you will also see the local
+        working branches. These can be linked with branches on the remote, or
+        they could exist with no remote counterpart.
+      </p>
+      <ul>
+        <li>
+          <code>git clone [url]</code>: Clone (download) a repository that
+          already exists on GitHub, including all of the files, branches, and
+          commits.
+        </li>
+        <li>
+          <code>git status</code>: Always a good idea, this command shows you
+          what branch you’re on, what files are in the working or staging
+          directory, and any other important information.
+        </li>
+        <li>
+          <code>git push</code>: Uploads all local branch commits to the remote.
+        </li>
+        <li>
+          <code>git pull</code>: Updates your current local working branch with
+          all new commits from the corresponding remote branch on GitHub.
+          <code>git pull</code> is a combination of <code>git fetch</code> and
+          <code>git merge</code>.
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
