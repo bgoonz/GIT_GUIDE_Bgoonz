@@ -12,8 +12,8 @@ The `git add` command adds new or changed files in your working directory to the
 git add README.md
 ```
 
-As you're working, you change and save a file, or multiple files. Then, before you commit, you must `git add`. This step allows you to choose what you are going to commit. Commits should be logical, atomic units of change - but not everyone works that way. Maybe you are making changes to files that _aren't_ logical or atomic units of change. `git add` allows you to systematically shape your commits and your history anyway.
-
+As you're working, you change and save a file, or multiple files. Then, before you commit, you must `git add`. This step allows you to choose what you are going to commit. Commits should be logical, atomic units of change - but not everyone works that way. Maybe you are making changes to files that _aren't_ logical or atomic units of change.  `git add` allows you to systematically shape your commits and your history anyway.
+ 
 ### What Does Git Add Do?
 
 `git add [filename]` selects that file, and moves it to the staging area, marking it for inclusion in the next commit. You can select all files, a directory, specific files, or even specific parts of a file for staging and commit.
@@ -26,9 +26,9 @@ This means if you `git add` a deleted file the _deletion_ is staged for commit. 
 
 ### Common usages and options for `git add`
 
-- `git add <path>`: Stage a specific directory or file
-- `git add .`: Stage all files (that are not listed in the `.gitignore`) in the entire repository
-- `git add -p`: Interactively stage hunks of changes
+* `git add <path>`: Stage a specific directory or file
+* `git add .`: Stage all files (that are not listed in the `.gitignore`) in the entire repository
+* `git add -p`: Interactively stage hunks of changes
 
 You can see all of the many options with `git add` in [git-scm's documentation](https://git-scm.com/docs/git-add).
 
@@ -73,9 +73,9 @@ By using an option to add all files at once, you may accidentally stage and comm
 
 If the time is right to stage all files, there are several commands that you can choose from. As always, it's very important to know what you are staging and committing.
 
-- `git add -A`: stages all files, including new, modified, and deleted files, including files in the current directory _and_ in higher directories that still belong to the same git repository
-- `git add .`: adds the entire directory recursively, including files whose names begin with a dot
-- `git add -u`: stages modified and deleted files only, NOT new files
+* `git add -A`: stages all files, including new, modified, and deleted files, including files in the current directory _and_ in higher directories that still belong to the same git repository
+* `git add .`: adds the entire directory recursively, including files whose names begin with a dot
+* `git add -u`: stages modified and deleted files only, NOT new files
 
 |               | New files | Modified files | Deleted files | Files with names beginning with a dot | Current directory | Higher directories |
 | ------------- | --------- | -------------- | ------------- | ------------------------------------- | ----------------- | ------------------ |
@@ -92,7 +92,7 @@ The safest and clearest way to use `git add` is by designating the specific file
 
 ### Undo Added Files
 
-Before undoing a `git add`, you should first be sure that you won't lose any work. There's no way to "revert" an add in the same way you can revert a commit, but you can move the files out of the staging area.
+Before undoing a `git add`, you should first be sure that you won't lose any work. There's no way to "revert" an add in the same way you can revert a commit, but you can move the files out of the staging area. 
 
 For example, if you have a staged file, and then you make more changes to that file in your working directory. Now, the versions in your working directory and your staging area are different. If you take action to remove the changed version of the file from the staging area, the changes that were in your working directory _but not_ staged will be overwritten.
 

@@ -50,7 +50,7 @@ The most common result is that your `git push` would return the "deleted" commit
 
 #### `git revert`
 
-`git revert` is the safest way to change history with Git. Instead of deleting existing commits, `git revert` looks at the changes introduced in a specific commit, then applies the inverse of those changes in a new commit. It functions as an "undo commit" command, without sacrificing the integrity of your repository's history. **`git revert` is always the recommended way to change history when it's possible**.
+`git revert` is the safest way to change history with Git. Instead of deleting existing commits, `git revert` looks at the changes introduced in a specific commit, then applies the inverse of those changes in a new commit. It functions as an "undo commit" command, without sacrificing the integrity of your repository's history. **`git revert` is always the recommended way to change history when it's possible**. 
 
 #### `git reset`
 

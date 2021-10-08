@@ -7,7 +7,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=yes"
     />
-    <title>git-push</title>
+    <title>git-status</title>
     <style type="text/css">
       code {
         white-space: pre-wrap;
@@ -214,135 +214,112 @@
 <script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/highlightjs-badge.js"></script>
 <script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/highlightjs-badge.min.js"></script>
 <script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/jquery-1.10.1.min.js"></script>
-<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/jquery-3.3.1.min.js"></script></head>
+<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/jquery-3.3.1.min.js"></script>  <style>
+      p {
+        text-indent: 50px;
+        line-height: 1.8;
+        word-spacing: 4px;
+      }
+
+      * {
+        font-weight: bold;
+        font-family: "Times New Roman", Times, serif;
+        padding: 20px;
+      }
+      .container {
+        width: 80%;
+        margin: auto;
+        box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+          0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+          0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+          0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+      }
+      text-indent: 50px;
+    </style></head>
   <body>
-    <h1 id="git-push">Git Push</h1>
+    <h1 id="git-status">Git Status</h1>
     <div class="sourceCode" id="cb1">
       <pre
         class="sourceCode sh"
-      ><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="fu">git</span> push</a></code></pre>
+      ><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="fu">git</span> status</a></code></pre>
     </div>
     <p>
-      <code>git push</code> uploads all local branch commits to the
-      corresponding remote branch.
+      <code>git status</code> shows the current state of your Git working
+      directory and staging area.
     </p>
-    <h2 id="what-does-git-push-do">What Does <code>git push</code> Do?</h2>
+    <h2 id="what-does-git-status-do">What Does <code>git status</code> Do?</h2>
     <p>
-      <code>git push</code> updates the remote branch with local commits. It is
-      one of the four commands in Git that prompts interaction with the remote
-      repository. You can also think of <code>git push</code> as
-      <em>update</em> or <em>publish</em>.
-    </p>
-    <p>
-      By default, <code>git push</code> only updates the corresponding branch on
-      the remote. So, if you are checked out to the <code>main</code> branch
-      when you execute <code>git push</code>, then only the
-      <code>main</code> branch will be updated. It’s always a good idea to use
-      <code>git status</code> to see what branch you are on before pushing to
-      the remote.
-    </p>
-    <h2 id="how-to-use-git-push">How to Use <code>git push</code></h2>
-    <p>
-      After you make and commit changes locally, you can share them with the
-      remote repository using <code>git push</code>. Pushing changes to the
-      remote makes your commits accessible to others who you may be
-      collaborating with. This will also update any open pull requests with the
-      branch that you’re working on.
+      When in doubt, run <code>git status</code>. This is <em>always</em> a good
+      idea. The <code>git status</code> command only outputs information, it
+      won’t modify commits or changes in your local repository.
     </p>
     <p>
-      As best practice, it’s important to run the <code>git pull</code> command
-      before you push any new changes to the remote branch. This will update
-      your local branch with any new changes that may have been pushed to the
-      remote from other contributors. Pulling before you push can reduce the
-      amount of merge conflicts you create on GitHub - allowing you to resolve
-      them locally before pushing your changes to the remote branch.
+      A useful feature of <code>git status</code> is that it will provide
+      helpful information depending on your current situation. In general, you
+      can count on it to tell you:
     </p>
-    <h3 id="common-usages-and-options-for-git-push">
-      Common usages and options for <code>git push</code>
-    </h3>
     <ul>
       <li>
-        <code>git push -f</code>: Force a push that would otherwise be blocked,
-        usually because it will delete or overwrite existing commits
-        <em>(Use with caution!)</em>
+        Where <code>HEAD</code> is pointing, whether that is a branch or a
+        commit (this is where you are “checked out” to)
       </li>
       <li>
-        <code>git push -u origin [branch]</code>: Useful when pushing a new
-        branch, this creates an upstream tracking branch with a lasting
-        relationship to your local branch
+        If you have any changed files in your current directory that have not
+        yet been committed
       </li>
-      <li><code>git push --all</code>: Push all branches</li>
+      <li>If changed files are staged or not</li>
       <li>
-        <code>git push --tags</code>: Publish tags that aren’t yet in the remote
-        repository
+        If your current local branch is linked to a remote branch, then
+        <code>git status</code> will tell you if your local branch is behind or
+        ahead by any commits
       </li>
     </ul>
     <p>
-      You can see all of the options with <code>git push</code> in
-      <a href="https://git-scm.com/docs/git-push">git-scm’s documentation</a>.
+      During merge conflicts, <code>git status</code> will also tell you exactly
+      which files are the source of the conflict.
     </p>
-    <h2 id="why-cant-i-push">Why can’t I push?</h2>
-    <p>
-      If you are trying to <code>git push</code> but are running into problems,
-      there are a few common solutions.
-    </p>
-    <h3 id="check-your-branch">Check your branch</h3>
-    <p>
-      Check what branch you are currently on with <code>git status</code>. If
-      you are working on a protected branch, like <code>main</code>, you may be
-      unable to push commits directly to the remote. If this happens to you,
-      it’s OK! You can fix this a few ways.
-    </p>
-    <h4 id="work-was-not-yet-on-any-branch">Work was not yet on any branch</h4>
-    <ol type="1">
-      <li>
-        Create and checkout to a new branch from your current commit:
-        <code>git checkout -b [branchname]</code>
-      </li>
-      <li>
-        Then, push the new branch up to the remote:
-        <code>git push -u origin [branchname]</code>
-      </li>
-    </ol>
-    <h4 id="accidentally-committed-to-the-wrong-branch">
-      Accidentally committed to the wrong branch
-    </h4>
-    <ol type="1">
-      <li>
-        Checkout to the branch that you intended to commit to:
-        <code>git checkout [branchname]</code>
-      </li>
-      <li>
-        Merge the commits from the branch that you <em>did</em> accidentally
-        commit to: <code>git merge [main]</code>
-      </li>
-      <li>Push your changes to the remote: <code>git push</code></li>
-      <li>
-        Fix the other branch by checking out to that branch, finding what commit
-        it <em>should</em> be pointed to, and using
-        <code>git reset --hard</code> to correct the branch pointer
-      </li>
-    </ol>
-    <h2 id="related-terms">Related Terms</h2>
+    <h2 id="how-to-use-git-status">How to Use <code>git status</code></h2>
+    <h3 id="common-usages-and-options-for-git-status">
+      Common usages and options for <code>git status</code>
+    </h3>
     <ul>
       <li>
-        <code>git commit -m "descriptive message"</code>: Records file snapshots
-        permanently in version history.
+        <code>git status</code>: Most often used in its default form, this shows
+        a good base of information
       </li>
+      <li><code>git status -s</code>: Give output in short format</li>
+      <li>
+        <code>git status -v</code>: Shows more “verbose” detail including the
+        textual changes of any uncommitted files
+      </li>
+    </ul>
+    <p>
+      You can see all of the options with <code>git status</code> in
+      <a href="https://git-scm.com/docs/git-status">git-scm’s documentation</a>.
+    </p>
+    <h2 id="related-terms">Related Terms</h2>
+    <ul>
       <li>
         <code>git clone [url]</code>: Clone (download) a repository that already
         exists on GitHub, including all of the files, branches, and commits.
       </li>
       <li>
-        <code>git status</code>: Always a good idea, this command shows you what
-        branch you’re on, what files are in the working or staging directory,
-        and any other important information.
+        <code>git remote -v</code>: Show the associated remote repositories and
+        their stored name, like <code>origin</code>.
       </li>
       <li>
-        <code>git pull</code>: Updates your current local working branch with
-        all new commits from the corresponding remote branch on GitHub.
-        <code>git pull</code> is a combination of <code>git fetch</code> and
-        <code>git merge</code>.
+        <code>git remote add origin &lt;url&gt;</code>: Add a remote so you can
+        collaborate with others on a newly initialized repository.
+      </li>
+      <li>
+        <code>git push</code>: Uploads all local branch commits to the remote.
+      </li>
+      <li>
+        <code>git push -u origin main</code>: When pushing a branch for the
+        first time, this type of push will configure the relationship between
+        the remote and your local repository so that you can use
+        <code>git pull</code> and <code>git push</code> with no additional
+        options in the future.
       </li>
     </ul>
   </body>
