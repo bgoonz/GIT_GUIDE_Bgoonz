@@ -1,16 +1,20 @@
-# git-describe(1) Manual Page
+git-describe(1) Manual Page
+===========================
 
-## NAME
+NAME
+----
 
 git-describe - Give an object a human readable name based on an available ref
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git describe [--all] [--tags] [--contains] [--abbrev=<n>] [<commit-ish>…​]
     git describe [--all] [--tags] [--contains] [--abbrev=<n>] --dirty[=<mark>]
     git describe <blob>
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 The command finds the most recent tag that is reachable from a commit. If the tag points to the commit, then only the tag is shown. Otherwise, it suffixes the tag name with the number of additional commits on top of the tagged object and the abbreviated object name of the most recent commit. The result is a "human-readable" object name which can also be used to identify the commit to other git commands.
 
@@ -18,7 +22,8 @@ By default (without --all or --tags) `git describe` only shows annotated tags. F
 
 If the given object refers to a blob, it will be described as `<commit-ish>:<path>`, such that the blob can be found at `<path>` in the `<commit-ish>`, which itself describes the first commit in which this blob occurs in a reverse revision walk from HEAD.
 
-## OPTIONS
+OPTIONS
+-------
 
 &lt;commit-ish&gt;…​  
 Commit-ish object names to describe. Defaults to HEAD if omitted.
@@ -63,7 +68,8 @@ Show uniquely abbreviated commit object as fallback.
 --first-parent  
 Follow only the first parent commit upon seeing a merge commit. This is useful when you wish to not match tags on branches merged in the history of the target commit.
 
-## EXAMPLES
+EXAMPLES
+--------
 
 With something like git.git current tree, I get:
 
@@ -74,7 +80,7 @@ i.e. the current head of my "parent" branch is based on v1.0.4, but since it has
 
 The number of additional commits is the number of commits which would be displayed by "git log v1.0.4..parent". The hash suffix is "-g" + unambiguous abbreviation for the tip commit of parent (which was `2414721b194453f058079d897d13c4e377f92dc6`). The "g" prefix stands for "git" and is used to allow describing the version of a software depending on the SCM the software is managed with. This is useful in an environment where people may use different SCMs.
 
-Doing a _git describe_ on a tag-name will just show the tag name:
+Doing a *git describe* on a tag-name will just show the tag name:
 
     [torvalds@g5 git]$ git describe v1.0.4
     v1.0.4
@@ -94,19 +100,22 @@ With --abbrev set to 0, the command can be used to find the closest tagname with
 
 Note that the suffix you get if you type these commands today may be longer than what Linus saw above when he ran these commands, as your Git repository may have new commits whose object names begin with 975b that did not exist back then, and "-g975b" suffix alone may not be sufficient to disambiguate these commits.
 
-## SEARCH STRATEGY
+SEARCH STRATEGY
+---------------
 
-For each commit-ish supplied, _git describe_ will first look for a tag which tags exactly that commit. Annotated tags will always be preferred over lightweight tags, and tags with newer dates will always be preferred over tags with older dates. If an exact match is found, its name will be output and searching will stop.
+For each commit-ish supplied, *git describe* will first look for a tag which tags exactly that commit. Annotated tags will always be preferred over lightweight tags, and tags with newer dates will always be preferred over tags with older dates. If an exact match is found, its name will be output and searching will stop.
 
-If an exact match was not found, _git describe_ will walk back through the commit history to locate an ancestor commit which has been tagged. The ancestor’s tag will be output along with an abbreviation of the input commit-ish’s SHA-1. If `--first-parent` was specified then the walk will only consider the first parent of each commit.
+If an exact match was not found, *git describe* will walk back through the commit history to locate an ancestor commit which has been tagged. The ancestor’s tag will be output along with an abbreviation of the input commit-ish’s SHA-1. If `--first-parent` was specified then the walk will only consider the first parent of each commit.
 
 If multiple tags were found during the walk then the tag which has the fewest commits different from the input commit-ish will be selected and output. Here fewest commits different is defined as the number of commits which would be shown by `git log tag..input` will be the smallest number of commits possible.
 
-## BUGS
+BUGS
+----
 
 Tree objects as well as tag objects not pointing at commits, cannot be described. When describing blobs, the lightweight tags pointing at blobs are ignored, but the blob is still described as &lt;committ-ish&gt;:&lt;path&gt; despite the lightweight tag being favorable.
 
-## GIT
+GIT
+---
 
 Part of the [git(1)](git.html) suite
 

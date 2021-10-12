@@ -1,19 +1,24 @@
-# git-commit-graph(1) Manual Page
+git-commit-graph(1) Manual Page
+===============================
 
-## NAME
+NAME
+----
 
 git-commit-graph - Write and verify Git commit-graph files
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git commit-graph verify [--object-dir <dir>] [--shallow] [--[no-]progress]
     git commit-graph write <options> [--object-dir <dir>] [--[no-]progress]
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 Manage the serialized commit-graph file.
 
-## OPTIONS
+OPTIONS
+-------
 
 --object-dir  
 Use given directory for the location of packfiles and commit-graph file. This parameter exists to specify the location of an alternate that only has the objects directory, not a full `.git` directory. The commit-graph file is expected to be in the `<dir>/info` directory and the packfiles are expected to be in `<dir>/pack`. If the directory could not be made into an absolute path, or does not match any known object directory, `git commit-graph ...` will exit with non-zero status.
@@ -21,9 +26,10 @@ Use given directory for the location of packfiles and commit-graph file. This pa
 --\[no-\]progress  
 Turn progress on/off explicitly. If neither is specified, progress is shown if standard error is connected to a terminal.
 
-## COMMANDS
+COMMANDS
+--------
 
-_write_  
+*write*  
 Write a commit-graph file based on the commits found in packfiles. If the config option `core.commitGraph` is disabled, then this command will output a warning, then return success without writing a commit-graph file.
 
 With the `--stdin-packs` option, generate the new commit graph by walking objects only in the specified pack-indexes. (Cannot be combined with `--stdin-commits` or `--reachable`.)
@@ -40,38 +46,40 @@ With the `--max-new-filters=<n>` option, generate at most `n` new Bloom filters 
 
 With the `--split[=<strategy>]` option, write the commit-graph as a chain of multiple commit-graph files stored in `<dir>/info/commit-graphs`. Commit-graph layers are merged based on the strategy and other splitting options. The new commits not already in the commit-graph are added in a new "tip" file. This file is merged with the existing file if the following merge conditions are met:
 
-- If `--split=no-merge` is specified, a merge is never performed, and the remaining options are ignored. `--split=replace` overwrites the existing chain with a new one. A bare `--split` defers to the remaining options. (Note that merging a chain of commit graphs replaces the existing chain with a length-1 chain where the first and only incremental holds the entire graph).
+-   If `--split=no-merge` is specified, a merge is never performed, and the remaining options are ignored. `--split=replace` overwrites the existing chain with a new one. A bare `--split` defers to the remaining options. (Note that merging a chain of commit graphs replaces the existing chain with a length-1 chain where the first and only incremental holds the entire graph).
 
-- If `--size-multiple=<X>` is not specified, let `X` equal 2. If the new tip file would have `N` commits and the previous tip has `M` commits and `X` times `N` is greater than `M`, instead merge the two files into a single file.
+-   If `--size-multiple=<X>` is not specified, let `X` equal 2. If the new tip file would have `N` commits and the previous tip has `M` commits and `X` times `N` is greater than `M`, instead merge the two files into a single file.
 
-- If `--max-commits=<M>` is specified with `M` a positive integer, and the new tip file would have more than `M` commits, then instead merge the new tip with the previous tip.
+-   If `--max-commits=<M>` is specified with `M` a positive integer, and the new tip file would have more than `M` commits, then instead merge the new tip with the previous tip.
 
-  Finally, if `--expire-time=<datetime>` is not specified, let `datetime` be the current time. After writing the split commit-graph, delete all unused commit-graph whose modified times are older than `datetime`.
+    Finally, if `--expire-time=<datetime>` is not specified, let `datetime` be the current time. After writing the split commit-graph, delete all unused commit-graph whose modified times are older than `datetime`.
 
-_verify_  
+*verify*  
 Read the commit-graph file and verify its contents against the object database. Used to check for corrupted data.
 
 With the `--shallow` option, only check the tip commit-graph file in a chain of split commit-graphs.
 
-## EXAMPLES
+EXAMPLES
+--------
 
-- Write a commit-graph file for the packed commits in your local `.git` directory.
+-   Write a commit-graph file for the packed commits in your local `.git` directory.
 
-      $ git commit-graph write
+        $ git commit-graph write
 
-- Write a commit-graph file, extending the current commit-graph file using commits in `<pack-index>`.
+-   Write a commit-graph file, extending the current commit-graph file using commits in `<pack-index>`.
 
-      $ echo <pack-index> | git commit-graph write --stdin-packs
+        $ echo <pack-index> | git commit-graph write --stdin-packs
 
-- Write a commit-graph file containing all reachable commits.
+-   Write a commit-graph file containing all reachable commits.
 
-      $ git show-ref -s | git commit-graph write --stdin-commits
+        $ git show-ref -s | git commit-graph write --stdin-commits
 
-- Write a commit-graph file containing all commits in the current commit-graph file along with those reachable from `HEAD`.
+-   Write a commit-graph file containing all commits in the current commit-graph file along with those reachable from `HEAD`.
 
-      $ git rev-parse HEAD | git commit-graph write --stdin-commits --append
+        $ git rev-parse HEAD | git commit-graph write --stdin-commits --append
 
-## GIT
+GIT
+---
 
 Part of the [git(1)](git.html) suite
 

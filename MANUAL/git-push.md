@@ -1,10 +1,13 @@
-# git-push(1) Manual Page
+git-push(1) Manual Page
+=======================
 
-## NAME
+NAME
+----
 
 git-push - Update remote refs along with associated objects
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git push [--all | --mirror | --tags] [--follow-tags] [--atomic] [-n | --dry-run] [--receive-pack=<git-receive-pack>]
                [--repo=<repository>] [-f | --force] [-d | --delete] [--prune] [-v | --verbose]
@@ -13,19 +16,21 @@ git-push - Update remote refs along with associated objects
                [--force-with-lease[=<refname>[:<expect>]] [--force-if-includes]]
                [--no-verify] [<repository> [<refspec>…​]]
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 Updates remote refs using local refs, while sending objects necessary to complete the given refs.
 
-You can make interesting things happen to a repository every time you push into it, by setting up _hooks_ there. See documentation for [git-receive-pack(1)](git-receive-pack.html).
+You can make interesting things happen to a repository every time you push into it, by setting up *hooks* there. See documentation for [git-receive-pack(1)](git-receive-pack.html).
 
-When the command line does not specify where to push with the `<repository>` argument, `branch.*.remote` configuration for the current branch is consulted to determine where to push. If the configuration is missing, it defaults to _origin_.
+When the command line does not specify where to push with the `<repository>` argument, `branch.*.remote` configuration for the current branch is consulted to determine where to push. If the configuration is missing, it defaults to *origin*.
 
 When the command line does not specify what to push with `<refspec>...` arguments or `--all`, `--mirror`, `--tags` options, the command finds the default `<refspec>` by consulting `remote.*.push` configuration, and if it is not found, honors `push.default` configuration to decide what to push (See [git-config(1)](git-config.html) for the meaning of `push.default`).
 
 When neither the command-line nor the configuration specify what to push, the default behavior is used, which corresponds to the `simple` value for `push.default`: the current branch is pushed to the corresponding upstream branch, but as a safety measure, the push is aborted if the upstream branch does not have the same name as the local one.
 
-## OPTIONS<span id="OPTIONS"></span>
+OPTIONS<span id="OPTIONS"></span>
+---------------------------------
 
 &lt;repository&gt;  
 The "remote" repository that is destination of a push operation. This parameter can be either a URL (see the section [GIT URLS](#URLS) below) or the name of a remote (see the section [REMOTES](#REMOTES) below).
@@ -39,11 +44,11 @@ The &lt;dst&gt; tells which ref on the remote side is updated with this push. Ar
 
 If &lt;dst&gt; doesn’t start with `refs/` (e.g. `refs/heads/master`) we will try to infer where in `refs/*` on the destination &lt;repository&gt; it belongs based on the type of &lt;src&gt; being pushed and whether &lt;dst&gt; is ambiguous.
 
-- If &lt;dst&gt; unambiguously refers to a ref on the &lt;repository&gt; remote, then push to that ref.
+-   If &lt;dst&gt; unambiguously refers to a ref on the &lt;repository&gt; remote, then push to that ref.
 
-- If &lt;src&gt; resolves to a ref starting with refs/heads/ or refs/tags/, then prepend that to &lt;dst&gt;.
+-   If &lt;src&gt; resolves to a ref starting with refs/heads/ or refs/tags/, then prepend that to &lt;dst&gt;.
 
-- Other ambiguity resolutions might be added in the future, but for now any other cases will error out with an error indicating what we tried, and depending on the `advice.pushUnqualifiedRefname` configuration (see [git-config(1)](git-config.html)) suggest what refs/ namespace you may have wanted to push to.
+-   Other ambiguity resolutions might be added in the future, but for now any other cases will error out with an error indicating what we tried, and depending on the `advice.pushUnqualifiedRefname` configuration (see [git-config(1)](git-config.html)) suggest what refs/ namespace you may have wanted to push to.
 
 The object referenced by &lt;src&gt; is used to update the &lt;dst&gt; reference on the remote side. Whether this is allowed depends on where in `refs/*` the &lt;dst&gt; reference lives as described in detail below, in those sections "update" means any modifications except deletes, which as noted after the next few sections are treated differently.
 
@@ -104,11 +109,11 @@ Transmit the given string to the server, which passes them to the pre-receive as
 
 --receive-pack=&lt;git-receive-pack&gt;  
 --exec=&lt;git-receive-pack&gt;  
-Path to the _git-receive-pack_ program on the remote end. Sometimes useful when pushing to a remote repository over ssh, and you do not have the program in a directory on the default $PATH.
+Path to the *git-receive-pack* program on the remote end. Sometimes useful when pushing to a remote repository over ssh, and you do not have the program in a directory on the default $PATH.
 
 --\[no-\]force-with-lease  
 --force-with-lease=&lt;refname&gt;  
---force-with-lease=&lt;refname&gt;:&lt;expect&gt;  
+--force-with-lease=&lt;refname&gt;:&lt;expect&gt;   
 Usually, "git push" refuses to update a remote ref that is not an ancestor of the local ref used to overwrite it.
 
 This option overrides this restriction if the current value of the remote ref is the expected value. "git push" fails otherwise.
@@ -190,8 +195,8 @@ Run verbosely.
 Progress status is reported on the standard error stream by default when it is attached to a terminal, unless -q is specified. This flag forces progress status even if the standard error stream is not directed to a terminal.
 
 --no-recurse-submodules  
---recurse-submodules=check|on-demand|only|no  
-May be used to make sure all submodule commits used by the revisions to be pushed are available on a remote-tracking branch. If _check_ is used Git will verify that all submodule commits that changed in the revisions to be pushed are available on at least one remote of the submodule. If any commits are missing the push will be aborted and exit with non-zero status. If _on-demand_ is used all submodules that changed in the revisions to be pushed will be pushed. If on-demand was not able to push all necessary revisions it will also be aborted and exit with non-zero status. If _only_ is used all submodules will be recursively pushed while the superproject is left unpushed. A value of _no_ or using `--no-recurse-submodules` can be used to override the push.recurseSubmodules configuration variable when no submodule recursion is required.
+--recurse-submodules=check|on-demand|only|no   
+May be used to make sure all submodule commits used by the revisions to be pushed are available on a remote-tracking branch. If *check* is used Git will verify that all submodule commits that changed in the revisions to be pushed are available on at least one remote of the submodule. If any commits are missing the push will be aborted and exit with non-zero status. If *on-demand* is used all submodules that changed in the revisions to be pushed will be pushed. If on-demand was not able to push all necessary revisions it will also be aborted and exit with non-zero status. If *only* is used all submodules will be recursively pushed while the superproject is left unpushed. A value of *no* or using `--no-recurse-submodules` can be used to override the push.recurseSubmodules configuration variable when no submodule recursion is required.
 
 --\[no-\]verify  
 Toggle the pre-push hook (see [githooks(5)](githooks.html)). The default is --verify, giving the hook a chance to prevent the push. With --no-verify, the hook is bypassed completely.
@@ -204,7 +209,8 @@ Use IPv4 addresses only, ignoring IPv6 addresses.
 --ipv6  
 Use IPv6 addresses only, ignoring IPv4 addresses.
 
-## GIT URLS<span id="URLS"></span>
+GIT URLS<span id="URLS"></span>
+-------------------------------
 
 In general, URLs contain information about the transport protocol, the address of the remote server, and the path to the repository. Depending on the transport protocol, some of this information may be absent.
 
@@ -214,41 +220,41 @@ The native transport (i.e. git:// URL) does no authentication and should be used
 
 The following syntaxes may be used with them:
 
-- ssh://\[user@\]host.xz\[:port\]/path/to/repo.git/
+-   ssh://\[user@\]host.xz\[:port\]/path/to/repo.git/
 
-- git://host.xz\[:port\]/path/to/repo.git/
+-   git://host.xz\[:port\]/path/to/repo.git/
 
-- http\[s\]://host.xz\[:port\]/path/to/repo.git/
+-   http\[s\]://host.xz\[:port\]/path/to/repo.git/
 
-- ftp\[s\]://host.xz\[:port\]/path/to/repo.git/
+-   ftp\[s\]://host.xz\[:port\]/path/to/repo.git/
 
 An alternative scp-like syntax may also be used with the ssh protocol:
 
-- \[user@\]host.xz:path/to/repo.git/
+-   \[user@\]host.xz:path/to/repo.git/
 
 This syntax is only recognized if there are no slashes before the first colon. This helps differentiate a local path that contains a colon. For example the local path `foo:bar` could be specified as an absolute path or `./foo:bar` to avoid being misinterpreted as an ssh url.
 
 The ssh and git protocols additionally support ~username expansion:
 
-- ssh://\[user@\]host.xz\[:port\]/~\[user\]/path/to/repo.git/
+-   ssh://\[user@\]host.xz\[:port\]/~\[user\]/path/to/repo.git/
 
-- git://host.xz\[:port\]/~\[user\]/path/to/repo.git/
+-   git://host.xz\[:port\]/~\[user\]/path/to/repo.git/
 
-- \[user@\]host.xz:/~\[user\]/path/to/repo.git/
+-   \[user@\]host.xz:/~\[user\]/path/to/repo.git/
 
 For local repositories, also supported by Git natively, the following syntaxes may be used:
 
-- /path/to/repo.git/
+-   /path/to/repo.git/
 
-- file:///path/to/repo.git/
+-   file:///path/to/repo.git/
 
 These two syntaxes are mostly equivalent, except when cloning, when the former implies --local option. See [git-clone(1)](git-clone.html) for details.
 
-_git clone_, _git fetch_ and _git pull_, but not _git push_, will also accept a suitable bundle file. See [git-bundle(1)](git-bundle.html).
+*git clone*, *git fetch* and *git pull*, but not *git push*, will also accept a suitable bundle file. See [git-bundle(1)](git-bundle.html).
 
-When Git doesn’t know how to handle a certain transport protocol, it attempts to use the _remote-&lt;transport&gt;_ remote helper, if one exists. To explicitly request a remote helper, the following syntax may be used:
+When Git doesn’t know how to handle a certain transport protocol, it attempts to use the *remote-&lt;transport&gt;* remote helper, if one exists. To explicitly request a remote helper, the following syntax may be used:
 
-- &lt;transport&gt;::&lt;address&gt;
+-   &lt;transport&gt;::&lt;address&gt;
 
 where &lt;address&gt; may be a path, a server and path, or an arbitrary URL-like string recognized by the specific remote helper being invoked. See [gitremote-helpers(7)](gitremote-helpers.html) for details.
 
@@ -277,15 +283,16 @@ For example, with this:
 
 a URL like "git://example.org/path/to/repo.git" will be rewritten to "ssh://example.org/path/to/repo.git" for pushes, but pulls will still use the original URL.
 
-## REMOTES<span id="REMOTES"></span>
+REMOTES<span id="REMOTES"></span>
+---------------------------------
 
 The name of one of the following can be used instead of a URL as `<repository>` argument:
 
-- a remote in the Git configuration file: `$GIT_DIR/config`,
+-   a remote in the Git configuration file: `$GIT_DIR/config`,
 
-- a file in the `$GIT_DIR/remotes` directory, or
+-   a file in the `$GIT_DIR/remotes` directory, or
 
-- a file in the `$GIT_DIR/branches` directory.
+-   a file in the `$GIT_DIR/branches` directory.
 
 All of these also allow you to omit the refspec from the command line because they each contain a refspec which git will use by default.
 
@@ -309,7 +316,7 @@ You can choose to provide the name of a file in `$GIT_DIR/remotes`. The URL in t
             Push: <refspec>
             Pull: <refspec>
 
-`Push:` lines are used by _git push_ and `Pull:` lines are used by _git pull_ and _git fetch_. Multiple `Push:` and `Pull:` lines may be specified for additional branch mappings.
+`Push:` lines are used by *git push* and `Pull:` lines are used by *git pull* and *git fetch*. Multiple `Push:` and `Pull:` lines may be specified for additional branch mappings.
 
 ### Named file in `$GIT_DIR/branches`
 
@@ -329,7 +336,8 @@ git push uses:
 
             HEAD:refs/heads/<head>
 
-## OUTPUT
+OUTPUT
+------
 
 The output of "git push" depends on the transport method used; this section describes the output when pushing over the Git protocol (either locally or via ssh).
 
@@ -387,7 +395,8 @@ The name of the remote ref being updated, minus its `refs/<type>/` prefix.
 reason  
 A human-readable explanation. In the case of successfully pushed refs, no explanation is needed. For a failed ref, the reason for failure is described.
 
-## NOTE ABOUT FAST-FORWARDS
+NOTE ABOUT FAST-FORWARDS
+------------------------
 
 When an update changes a branch (or more in general, a ref) that used to point at commit A to point at another commit B, it is called a fast-forward update if and only if B is a descendant of A.
 
@@ -403,7 +412,7 @@ Further suppose that the other person already pushed changes leading to A back t
 
 The push done by the other person updated the branch that used to point at commit X to point at commit A. It is a fast-forward.
 
-But if you try to push, you will attempt to update the branch (that now points at A) with commit B. This does _not_ fast-forward. If you did so, the changes introduced by commit A will be lost, because everybody will now start building on top of B.
+But if you try to push, you will attempt to update the branch (that now points at A) with commit B. This does *not* fast-forward. If you did so, the changes introduced by commit A will be lost, because everybody will now start building on top of B.
 
 The command by default does not allow an update that is not a fast-forward to prevent such loss of history.
 
@@ -427,7 +436,8 @@ Again, updating A with this commit will fast-forward and your push will be accep
 
 There is another common situation where you may encounter non-fast-forward rejection when you try to push, and it is possible even when you are pushing into a repository nobody else pushes into. After you push commit A yourself (in the first picture in this section), replace it with "git commit --amend" to produce commit B, and you try to push it out, because forgot that you have pushed A out already. In such a case, and only if you are certain that nobody in the meantime fetched your earlier commit A (and started building on top of it), you can run "git push --force" to overwrite it. In other words, "git push --force" is a method reserved for a case where you do mean to lose history.
 
-## EXAMPLES
+EXAMPLES
+--------
 
 `git push`  
 Works like `git push <remote>`, where &lt;remote&gt; is the current branch’s remote (or `origin`, if no remote is configured for the current branch).
@@ -448,7 +458,7 @@ Find a ref that matches `master` in the source repository (most likely, it would
 `git push origin HEAD`  
 A handy way to push the current branch to the same name on the remote.
 
-`git push mothership master:satellite/master dev:satellite/dev`  
+ `git push mothership master:satellite/master                   dev:satellite/dev`   
 Use the source ref that matches `master` (e.g. `refs/heads/master`) to update the ref that matches `satellite/master` (most probably `refs/remotes/satellite/master`) in the `mothership` repository; do the same for `dev` and `satellite/dev`.
 
 See the section describing `<refspec>...` above for a discussion of the matching semantics.
@@ -460,10 +470,10 @@ After running this `git push` on the `satellite` machine, you would ssh into the
 `git push origin HEAD:master`  
 Push the current branch to the remote ref matching `master` in the `origin` repository. This form is convenient to push the current branch without thinking about its local name.
 
-`git push origin master:refs/heads/experimental`  
+ `git push origin master:refs/heads/experimental`   
 Create the branch `experimental` in the `origin` repository by copying the current `master` branch. This form is only needed to create a new branch or tag in the remote repository when the local name and the remote name are different; otherwise, the ref name on its own will work.
 
-`git push origin :experimental`  
+ `git push origin :experimental`   
 Find a ref that matches `experimental` in the `origin` repository (e.g. `refs/heads/experimental`), and delete it.
 
 `git push origin +dev:master`  
@@ -481,7 +491,8 @@ The above command would change the origin repository to
 
 Commits A and B would no longer belong to a branch with a symbolic name, and so would be unreachable. As such, these commits would be removed by a `git gc` command on the origin repository.
 
-## SECURITY
+SECURITY
+--------
 
 The fetch and push protocols are not designed to prevent one side from stealing data from the other repository that was not intended to be shared. If you have private data that you need to protect from a malicious peer, your best option is to store it in another repository. This applies to both clients and servers. In particular, namespaces on a server are not effective for read access control; you should only grant read access to a namespace to clients that you would trust with read access to the entire repository.
 
@@ -491,8 +502,5 @@ The known attack vectors are as follows:
 
 2.  As in \#1, the attacker chooses an object ID X to steal. The victim sends an object Y that the attacker already has, and the attacker falsely claims to have X and not Y, so the victim sends Y as a delta against X. The delta reveals regions of X that are similar to Y to the attacker.
 
-## GIT
-
-Part of the [git(1)](git.html) suite
-
-Last updated 2021-03-27 09:47:30 UTC
+GIT
+---

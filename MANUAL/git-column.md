@@ -1,19 +1,24 @@
-# git-column(1) Manual Page
+git-column(1) Manual Page
+=========================
 
-## NAME
+NAME
+----
 
 git-column - Display data in columns
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git column [--command=<name>] [--[raw-]mode=<mode>] [--width=<width>]
                  [--indent=<string>] [--nl=<string>] [--padding=<n>]
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 This command formats the lines of its standard input into a table with multiple columns. Each input line occupies one cell of the table. It is used internally by other git commands to format output into columns.
 
-## OPTIONS
+OPTIONS
+-------
 
 --command=&lt;name&gt;  
 Look up layout mode using configuration variable column.&lt;name&gt; and column.ui.
@@ -25,7 +30,7 @@ Specify layout mode. See configuration variable column.ui for option syntax in [
 Same as --mode but take mode encoded as a number. This is mainly used by other commands that have already parsed layout mode.
 
 --width=&lt;width&gt;  
-Specify the terminal width. By default _git column_ will detect the terminal width, or fall back to 80 if it is unable to do so.
+Specify the terminal width. By default *git column* will detect the terminal width, or fall back to 80 if it is unable to do so.
 
 --indent=&lt;string&gt;  
 String to be printed at the beginning of each line.
@@ -36,7 +41,8 @@ String to be printed at the end of each line, including newline character.
 --padding=&lt;N&gt;  
 The number of spaces between columns. One space by default.
 
-## EXAMPLES
+EXAMPLES
+--------
 
 Format data by columns:
 
@@ -60,7 +66,8 @@ List some tags in a table with unequal column widths:
     v2.4.3  v2.4.4      v2.4.5      v2.4.6      v2.4.7
     v2.4.8  v2.4.9
 
-## GIT
+GIT
+---
 
 Part of the [git(1)](git.html) suite
 

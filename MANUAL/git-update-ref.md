@@ -1,18 +1,22 @@
-# git-update-ref(1) Manual Page
+git-update-ref(1) Manual Page
+=============================
 
-## NAME
+NAME
+----
 
 git-update-ref - Update the object name stored in a ref safely
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git update-ref [-m <reason>] [--no-deref] (-d <ref> [<oldvalue>] | [--create-reflog] <ref> <newvalue> [<oldvalue>] | --stdin [-z])
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 Given two arguments, stores the &lt;newvalue&gt; in the &lt;ref&gt;, possibly dereferencing the symbolic refs. E.g. `git update-ref HEAD <newvalue>` updates the current branch head to the new object.
 
-Given three arguments, stores the &lt;newvalue&gt; in the &lt;ref&gt;, possibly dereferencing the symbolic refs, after verifying that the current value of the &lt;ref&gt; matches &lt;oldvalue&gt;. E.g. `git update-ref refs/heads/master <newvalue> <oldvalue>` updates the master branch head to &lt;newvalue&gt; only if its current value is &lt;oldvalue&gt;. You can specify 40 "0" or an empty string as &lt;oldvalue&gt; to make sure that the ref you are creating does not exist.
+Given three arguments, stores the &lt;newvalue&gt; in the &lt;ref&gt;, possibly dereferencing the symbolic refs, after verifying that the current value of the &lt;ref&gt; matches &lt;oldvalue&gt;. E.g. `git update-ref refs/heads/master <newvalue>                 <oldvalue>` updates the master branch head to &lt;newvalue&gt; only if its current value is &lt;oldvalue&gt;. You can specify 40 "0" or an empty string as &lt;oldvalue&gt; to make sure that the ref you are creating does not exist.
 
 It also allows a "ref" file to be a symbolic pointer to another ref file by starting with the four-byte header sequence of "ref:".
 
@@ -24,7 +28,7 @@ In general, using
 
     git update-ref HEAD "$head"
 
-should be a _lot_ safer than doing
+should be a *lot* safer than doing
 
     echo "$head" > "$GIT_DIR/HEAD"
 
@@ -93,9 +97,10 @@ Abort the transaction, releasing all locks if the transaction is in prepared sta
 
 If all &lt;ref&gt;s can be locked with matching &lt;oldvalue&gt;s simultaneously, all modifications are performed. Otherwise, no modifications are performed. Note that while each individual &lt;ref&gt; is updated or deleted atomically, a concurrent reader may still see a subset of the modifications.
 
-## LOGGING UPDATES
+LOGGING UPDATES
+---------------
 
-If config parameter "core.logAllRefUpdates" is true and the ref is one under "refs/heads/", "refs/remotes/", "refs/notes/", or a pseudoref like HEAD or ORIG_HEAD; or the file "$GIT\_DIR/logs/&lt;ref&gt;" exists then `git update-ref` will append a line to the log file "$GIT_DIR/logs/&lt;ref&gt;" (dereferencing all symbolic refs before creating the log name) describing the change in ref value. Log lines are formatted as:
+If config parameter "core.logAllRefUpdates" is true and the ref is one under "refs/heads/", "refs/remotes/", "refs/notes/", or a pseudoref like HEAD or ORIG\_HEAD; or the file "$GIT\_DIR/logs/&lt;ref&gt;" exists then `git update-ref` will append a line to the log file "$GIT\_DIR/logs/&lt;ref&gt;" (dereferencing all symbolic refs before creating the log name) describing the change in ref value. Log lines are formatted as:
 
     oldsha1 SP newsha1 SP committer LF
 
@@ -109,8 +114,5 @@ Where all fields are as described above and "message" is the value supplied to t
 
 An update will fail (without changing &lt;ref&gt;) if the current user is unable to create a new log file, append to the existing log file or does not have committer information available.
 
-## GIT
-
-Part of the [git(1)](git.html) suite
-
-Last updated 2021-03-27 09:47:30 UTC
+GIT
+---

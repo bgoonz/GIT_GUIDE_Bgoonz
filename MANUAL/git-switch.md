@@ -1,17 +1,21 @@
-# git-switch(1) Manual Page
+git-switch(1) Manual Page
+=========================
 
-## NAME
+NAME
+----
 
 git-switch - Switch branches
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git switch [<options>] [--no-guess] <branch>
     git switch [<options>] --detach [<start-point>]
     git switch [<options>] (-c|-C) <new-branch> [<start-point>]
     git switch [<options>] --orphan <new-branch>
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 Switch to a specified branch. The working tree and the index are updated to match the branch. All new commits will be added to the tip of this branch.
 
@@ -21,7 +25,8 @@ Switching branches does not require a clean index and working tree (i.e. no diff
 
 THIS COMMAND IS EXPERIMENTAL. THE BEHAVIOR MAY CHANGE.
 
-## OPTIONS
+OPTIONS
+-------
 
 &lt;branch&gt;  
 Branch to switch to.
@@ -60,7 +65,7 @@ If `<branch>` is not found but there does exist a tracking branch in exactly one
 
     $ git switch -c <branch> --track <remote>/<branch>
 
-If the branch exists in multiple remotes and one of them is named by the `checkout.defaultRemote` configuration variable, we’ll use that one for the purposes of disambiguation, even if the `<branch>` isn’t unique across all remotes. Set it to e.g. `checkout.defaultRemote=origin` to always checkout remote branches from there if `<branch>` is ambiguous but exists on the _origin_ remote. See also `checkout.defaultRemote` in [git-config(1)](git-config.html).
+If the branch exists in multiple remotes and one of them is named by the `checkout.defaultRemote` configuration variable, we’ll use that one for the purposes of disambiguation, even if the `<branch>` isn’t unique across all remotes. Set it to e.g. `checkout.defaultRemote=origin` to always checkout remote branches from there if `<branch>` is ambiguous but exists on the *origin* remote. See also `checkout.defaultRemote` in [git-config(1)](git-config.html).
 
 `--guess` is the default behavior. Use `--no-guess` to disable it.
 
@@ -100,7 +105,7 @@ If no `-c` option is given, the name of the new branch will be derived from the 
 Do not set up "upstream" configuration, even if the `branch.autoSetupMerge` configuration variable is true.
 
 --orphan &lt;new-branch&gt;  
-Create a new _orphan_ branch, named `<new-branch>`. All tracked files are removed.
+Create a new *orphan* branch, named `<new-branch>`. All tracked files are removed.
 
 --ignore-other-worktrees  
 `git switch` refuses when the wanted ref is already checked out by another worktree. This option makes it check the ref out anyway. In other words, the ref can be held by more than one worktree.
@@ -109,7 +114,8 @@ Create a new _orphan_ branch, named `<new-branch>`. All tracked files are remove
 --no-recurse-submodules  
 Using `--recurse-submodules` will update the content of all active submodules according to the commit recorded in the superproject. If nothing (or `--no-recurse-submodules`) is used, submodules working trees will not be updated. Just like [git-submodule(1)](git-submodule.html), this will detach `HEAD` of the submodules.
 
-## EXAMPLES
+EXAMPLES
+--------
 
 The following command switches to the "master" branch:
 
@@ -129,7 +135,7 @@ You can give the `-m` flag to the command, which would try a three-way merge:
     $ git switch -m mytopic
     Auto-merging frotz
 
-After this three-way merge, the local modifications are _not_ registered in your index file, so `git diff` would show you what changes you made since the tip of the new branch.
+After this three-way merge, the local modifications are *not* registered in your index file, so `git diff` would show you what changes you made since the tip of the new branch.
 
 To switch back to the previous branch before we switched to mytopic (i.e. "master" branch):
 
@@ -155,12 +161,10 @@ If it turns out whatever you have done is worth keeping, you can always create a
 
     $ git switch -c good-surprises
 
-## SEE ALSO
+SEE ALSO
+--------
 
 [git-checkout(1)](git-checkout.html), [git-branch(1)](git-branch.html)
 
-## GIT
-
-Part of the [git(1)](git.html) suite
-
-Last updated 2021-03-27 09:47:30 UTC
+GIT
+---

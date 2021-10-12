@@ -1,23 +1,28 @@
-# git-shortlog(1) Manual Page
+git-shortlog(1) Manual Page
+===========================
 
-## NAME
+NAME
+----
 
 git-shortlog - Summarize 'git log' output
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git shortlog [<options>] [<revision range>] [[--] <path>…​]
     git log --pretty=short | git shortlog [<options>]
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
-Summarizes _git log_ output in a format suitable for inclusion in release announcements. Each commit will be grouped by author and title.
+Summarizes *git log* output in a format suitable for inclusion in release announcements. Each commit will be grouped by author and title.
 
 Additionally, "\[PATCH\]" will be stripped from the commit description.
 
-If no revisions are passed on the command line and either standard input is not a terminal or there is no current branch, _git shortlog_ will output a summary of the log read from standard input, without reference to the current repository.
+If no revisions are passed on the command line and either standard input is not a terminal or there is no current branch, *git shortlog* will output a summary of the log read from standard input, without reference to the current repository.
 
-## OPTIONS
+OPTIONS
+-------
 
 -n  
 --numbered  
@@ -32,30 +37,30 @@ Suppress commit description and provide a commit count summary only.
 Show the email address of each author.
 
 --format\[=&lt;format&gt;\]  
-Instead of the commit subject, use some other information to describe each commit. _&lt;format&gt;_ can be any string accepted by the `--format` option of _git log_, such as _\* \[%h\] %s_. (See the "PRETTY FORMATS" section of [git-log(1)](git-log.html).)
+Instead of the commit subject, use some other information to describe each commit. *&lt;format&gt;* can be any string accepted by the `--format` option of *git log*, such as *\* \[%h\] %s*. (See the "PRETTY FORMATS" section of [git-log(1)](git-log.html).)
 
     Each pretty-printed commit will be rewrapped before it is shown.
 
 --group=&lt;type&gt;  
 Group commits based on `<type>`. If no `--group` option is specified, the default is `author`. `<type>` is one of:
 
-- `author`, commits are grouped by author
+-   `author`, commits are grouped by author
 
-- `committer`, commits are grouped by committer (the same as `-c`)
+-   `committer`, commits are grouped by committer (the same as `-c`)
 
-- `trailer:<field>`, the `<field>` is interpreted as a case-insensitive commit message trailer (see [git-interpret-trailers(1)](git-interpret-trailers.html)). For example, if your project uses `Reviewed-by` trailers, you might want to see who has been reviewing with `git shortlog -ns --group=trailer:reviewed-by`.
+-   `trailer:<field>`, the `<field>` is interpreted as a case-insensitive commit message trailer (see [git-interpret-trailers(1)](git-interpret-trailers.html)). For example, if your project uses `Reviewed-by` trailers, you might want to see who has been reviewing with `git shortlog -ns                               --group=trailer:reviewed-by`.
 
-  Note that commits that do not include the trailer will not be counted. Likewise, commits with multiple trailers (e.g., multiple signoffs) may be counted more than once (but only once per unique trailer value in that commit).
+    Note that commits that do not include the trailer will not be counted. Likewise, commits with multiple trailers (e.g., multiple signoffs) may be counted more than once (but only once per unique trailer value in that commit).
 
-  Shortlog will attempt to parse each trailer value as a `name <email>` identity. If successful, the mailmap is applied and the email is omitted unless the `--email` option is specified. If the value cannot be parsed as an identity, it will be taken literally and completely.
+    Shortlog will attempt to parse each trailer value as a `name <email>` identity. If successful, the mailmap is applied and the email is omitted unless the `--email` option is specified. If the value cannot be parsed as an identity, it will be taken literally and completely.
 
-If `--group` is specified multiple times, commits are counted under each value (but again, only once per unique value in that commit). For example, `git shortlog --group=author --group=trailer:co-authored-by` counts both authors and co-authors.
+If `--group` is specified multiple times, commits are counted under each value (but again, only once per unique value in that commit). For example, `git shortlog --group=author                       --group=trailer:co-authored-by` counts both authors and co-authors.
 
 -c  
 --committer  
 This is an alias for `--group=committer`.
 
--w\[&lt;width&gt;\[,&lt;indent1&gt;\[,&lt;indent2&gt;\]\]\]  
+ -w\[&lt;width&gt;\[,&lt;indent1&gt;\[,&lt;indent2&gt;\]\]\]   
 Linewrap the output by wrapping each line at `width`. The first line of each entry is indented by `indent1` spaces, and the second and subsequent lines are indented by `indent2` spaces. `width`, `indent1`, and `indent2` default to 76, 6 and 9 respectively.
 
 If width is `0` (zero) then indent the lines of the output without wrapping them.
@@ -82,7 +87,7 @@ Note that these are applied before commit ordering and formatting options, such 
 Limit the number of commits to output.
 
 --skip=&lt;number&gt;  
-Skip _number_ commits before starting to show the commit output.
+Skip *number* commits before starting to show the commit output.
 
 --since=&lt;date&gt;  
 --after=&lt;date&gt;  
@@ -152,27 +157,27 @@ Show only commits which have at least (or at most) that many parent commits. In 
 Follow only the first parent commit upon seeing a merge commit. This option can give a better overview when viewing the evolution of a particular topic branch, because merges into a topic branch tend to be only about adjusting to updated upstream from time to time, and this option allows you to ignore the individual commits brought in to your history by such a merge.
 
 --not  
-Reverses the meaning of the _^_ prefix (or lack thereof) for all following revision specifiers, up to the next `--not`.
+Reverses the meaning of the *^* prefix (or lack thereof) for all following revision specifiers, up to the next `--not`.
 
 --all  
-Pretend as if all the refs in `refs/`, along with `HEAD`, are listed on the command line as _&lt;commit&gt;_.
+Pretend as if all the refs in `refs/`, along with `HEAD`, are listed on the command line as *&lt;commit&gt;*.
 
 --branches\[=&lt;pattern&gt;\]  
-Pretend as if all the refs in `refs/heads` are listed on the command line as _&lt;commit&gt;_. If _&lt;pattern&gt;_ is given, limit branches to ones matching given shell glob. If pattern lacks _?_, \*\*_, or _\[_, _/\*\* at the end is implied.
+Pretend as if all the refs in `refs/heads` are listed on the command line as *&lt;commit&gt;*. If *&lt;pattern&gt;* is given, limit branches to ones matching given shell glob. If pattern lacks *?*, *\**, or *\[*, */\** at the end is implied.
 
 --tags\[=&lt;pattern&gt;\]  
-Pretend as if all the refs in `refs/tags` are listed on the command line as _&lt;commit&gt;_. If _&lt;pattern&gt;_ is given, limit tags to ones matching given shell glob. If pattern lacks _?_, \*\*_, or _\[_, _/\*\* at the end is implied.
+Pretend as if all the refs in `refs/tags` are listed on the command line as *&lt;commit&gt;*. If *&lt;pattern&gt;* is given, limit tags to ones matching given shell glob. If pattern lacks *?*, *\**, or *\[*, */\** at the end is implied.
 
 --remotes\[=&lt;pattern&gt;\]  
-Pretend as if all the refs in `refs/remotes` are listed on the command line as _&lt;commit&gt;_. If _&lt;pattern&gt;_ is given, limit remote-tracking branches to ones matching given shell glob. If pattern lacks _?_, \*\*_, or _\[_, _/\*\* at the end is implied.
+Pretend as if all the refs in `refs/remotes` are listed on the command line as *&lt;commit&gt;*. If *&lt;pattern&gt;* is given, limit remote-tracking branches to ones matching given shell glob. If pattern lacks *?*, *\**, or *\[*, */\** at the end is implied.
 
 --glob=&lt;glob-pattern&gt;  
-Pretend as if all the refs matching shell glob _&lt;glob-pattern&gt;_ are listed on the command line as _&lt;commit&gt;_. Leading _refs/_, is automatically prepended if missing. If pattern lacks _?_, \*\*_, or _\[_, _/\*\* at the end is implied.
+Pretend as if all the refs matching shell glob *&lt;glob-pattern&gt;* are listed on the command line as *&lt;commit&gt;*. Leading *refs/*, is automatically prepended if missing. If pattern lacks *?*, *\**, or *\[*, */\** at the end is implied.
 
 --exclude=&lt;glob-pattern&gt;  
-Do not include refs matching _&lt;glob-pattern&gt;_ that the next `--all`, `--branches`, `--tags`, `--remotes`, or `--glob` would otherwise consider. Repetitions of this option accumulate exclusion patterns up to the next `--all`, `--branches`, `--tags`, `--remotes`, or `--glob` option (other options or arguments do not clear accumulated patterns).
+Do not include refs matching *&lt;glob-pattern&gt;* that the next `--all`, `--branches`, `--tags`, `--remotes`, or `--glob` would otherwise consider. Repetitions of this option accumulate exclusion patterns up to the next `--all`, `--branches`, `--tags`, `--remotes`, or `--glob` option (other options or arguments do not clear accumulated patterns).
 
-The patterns given should not begin with `refs/heads`, `refs/tags`, or `refs/remotes` when applied to `--branches`, `--tags`, or `--remotes`, respectively, and they must begin with `refs/` when applied to `--glob` or `--all`. If a trailing \*/\*\* is intended, it must be given explicitly.
+The patterns given should not begin with `refs/heads`, `refs/tags`, or `refs/remotes` when applied to `--branches`, `--tags`, or `--remotes`, respectively, and they must begin with `refs/` when applied to `--glob` or `--all`. If a trailing */\** is intended, it must be given explicitly.
 
 --reflog  
 Pretend as if all objects mentioned by reflogs are listed on the command line as `<commit>`.
@@ -190,7 +195,7 @@ Upon seeing an invalid object name in the input, pretend as if the bad input was
 Pretend as if the bad bisection ref `refs/bisect/bad` was listed and as if it was followed by `--not` and the good bisection refs `refs/bisect/good-*` on the command line.
 
 --stdin  
-In addition to the _&lt;commit&gt;_ listed on the command line, read them from the standard input. If a `--` separator is seen, stop reading commits and start reading paths to limit the result.
+In addition to the *&lt;commit&gt;* listed on the command line, read them from the standard input. If a `--` separator is seen, stop reading commits and start reading paths to limit the result.
 
 --cherry-mark  
 Like `--cherry-pick` (see below) but mark equivalent commits with `=` rather than omitting them, and inequivalent ones with `+`.
@@ -211,7 +216,7 @@ A synonym for `--right-only --cherry-mark --no-merges`; useful to limit the outp
 
 -g  
 --walk-reflogs  
-Instead of walking the commit ancestry chain, walk reflog entries from the most recent one to older ones. When this option is used you cannot specify commits to exclude (that is, _^commit_, _commit1..commit2_, and _commit1...commit2_ notations cannot be used).
+Instead of walking the commit ancestry chain, walk reflog entries from the most recent one to older ones. When this option is used you cannot specify commits to exclude (that is, *^commit*, *commit1..commit2*, and *commit1...commit2* notations cannot be used).
 
 With `--pretty` format other than `oneline` and `reference` (for obvious reasons), this causes the output to have two extra lines of information taken from the reflog. The reflog designator in the output may be shown as `ref@{Nth}` (where `Nth` is the reverse-chronological index in the reflog) or as `ref@{timestamp}` (with the timestamp for that entry), depending on a few rules:
 
@@ -235,7 +240,7 @@ Output excluded boundary commits. Boundary commits are prefixed with `-`.
 
 ### History Simplification
 
-Sometimes you are only interested in parts of the history, for example the commits modifying a particular &lt;path&gt;. But there are two parts of _History Simplification_, one part is selecting the commits and the other is how to do it, as there are various strategies to simplify the history.
+Sometimes you are only interested in parts of the history, for example the commits modifying a particular &lt;path&gt;. But there are two parts of *History Simplification*, one part is selecting the commits and the other is how to do it, as there are various strategies to simplify the history.
 
 The following options select the commits to be shown:
 
@@ -268,7 +273,7 @@ All commits in the simplified history are shown.
 Additional option to `--full-history` to remove some needless merges from the resulting history, as there are no selected commits contributing to this merge.
 
 --ancestry-path  
-When given a range of commits to display (e.g. _commit1..commit2_ or _commit2 ^commit1_), only display commits that exist directly on the ancestry chain between the _commit1_ and _commit2_, i.e. commits that are both descendants of _commit1_, and ancestors of _commit2_.
+When given a range of commits to display (e.g. *commit1..commit2* or *commit2 ^commit1*), only display commits that exist directly on the ancestry chain between the *commit1* and *commit2*, i.e. commits that are both descendants of *commit1*, and ancestors of *commit2*.
 
 A more detailed explanation follows.
 
@@ -284,19 +289,19 @@ In the following, we will always refer to the same example history to illustrate
 
 The horizontal line of history A---Q is taken to be the first parent of each merge. The commits are:
 
-- `I` is the initial commit, in which `foo` exists with contents “asdf”, and a file `quux` exists with contents “quux”. Initial commits are compared to an empty tree, so `I` is !TREESAME.
+-   `I` is the initial commit, in which `foo` exists with contents “asdf”, and a file `quux` exists with contents “quux”. Initial commits are compared to an empty tree, so `I` is !TREESAME.
 
-- In `A`, `foo` contains just “foo”.
+-   In `A`, `foo` contains just “foo”.
 
-- `B` contains the same change as `A`. Its merge `M` is trivial and hence TREESAME to all parents.
+-   `B` contains the same change as `A`. Its merge `M` is trivial and hence TREESAME to all parents.
 
-- `C` does not change `foo`, but its merge `N` changes it to “foobar”, so it is not TREESAME to any parent.
+-   `C` does not change `foo`, but its merge `N` changes it to “foobar”, so it is not TREESAME to any parent.
 
-- `D` sets `foo` to “baz”. Its merge `O` combines the strings from `N` and `D` to “foobarbaz”; i.e., it is not TREESAME to any parent.
+-   `D` sets `foo` to “baz”. Its merge `O` combines the strings from `N` and `D` to “foobarbaz”; i.e., it is not TREESAME to any parent.
 
-- `E` changes `quux` to “xyzzy”, and its merge `P` combines the strings to “quux xyzzy”. `P` is TREESAME to `O`, but not to `E`.
+-   `E` changes `quux` to “xyzzy”, and its merge `P` combines the strings to “quux xyzzy”. `P` is TREESAME to `O`, but not to `E`.
 
-- `X` is an independent root commit that added a new file `side`, and `Y` modified it. `Y` is TREESAME to `X`. Its merge `Q` added `side` to `P`, and `Q` is TREESAME to `P`, but not to `Y`.
+-   `X` is an independent root commit that added a new file `side`, and `Y` modified it. `Y` is TREESAME to `X`. Its merge `Q` added `side` to `P`, and `Q` is TREESAME to `P`, but not to `Y`.
 
 `rev-list` walks backwards through history, including or excluding commits based on whether `--full-history` and/or parent rewriting (via `--parents` or `--children`) are used. The following settings are available.
 
@@ -350,11 +355,11 @@ First, build a history graph in the same way that `--full-history` with parent r
 
 Then simplify each commit `C` to its replacement `C'` in the final history according to the following rules:
 
-- Set `C'` to `C`.
+-   Set `C'` to `C`.
 
-- Replace each parent `P` of `C'` with its simplification `P'`. In the process, drop parents that are ancestors of other parents or that are root commits TREESAME to an empty tree, and remove duplicates, but take care to never drop all parents that we are TREESAME to.
+-   Replace each parent `P` of `C'` with its simplification `P'`. In the process, drop parents that are ancestors of other parents or that are root commits TREESAME to an empty tree, and remove duplicates, but take care to never drop all parents that we are TREESAME to.
 
-- If after this parent rewriting, `C'` is a root or merge commit (has zero or &gt;1 parents), a boundary commit, or !TREESAME, it remains. Otherwise, it is replaced with its only parent.
+-   If after this parent rewriting, `C'` is a root or merge commit (has zero or &gt;1 parents), a boundary commit, or !TREESAME, it remains. Otherwise, it is replaced with its only parent.
 
 The effect of this is best shown by way of comparing to `--full-history` with parent rewriting. The example turns into:
 
@@ -366,11 +371,11 @@ The effect of this is best shown by way of comparing to `--full-history` with pa
 
 Note the major differences in `N`, `P`, and `Q` over `--full-history`:
 
-- `N`'s parent list had `I` removed, because it is an ancestor of the other parent `M`. Still, `N` remained because it is !TREESAME.
+-   `N`'s parent list had `I` removed, because it is an ancestor of the other parent `M`. Still, `N` remained because it is !TREESAME.
 
-- `P`'s parent list similarly had `I` removed. `P` was then removed completely, because it had one parent and is TREESAME.
+-   `P`'s parent list similarly had `I` removed. `P` was then removed completely, because it had one parent and is TREESAME.
 
-- `Q`'s parent list had `Y` simplified to `X`. `X` was then removed, because it was a TREESAME root. `Q` was then removed completely, because it had one parent and is TREESAME.
+-   `Q`'s parent list had `Y` simplified to `X`. `X` was then removed, because it was a TREESAME root. `Q` was then removed completely, because it had one parent and is TREESAME.
 
 There is another simplification mode available:
 
@@ -385,9 +390,9 @@ As an example use case, consider the following commit history:
              /                     \
             A-------K---------------L--M
 
-A regular _D..M_ computes the set of commits that are ancestors of `M`, but excludes the ones that are ancestors of `D`. This is useful to see what happened to the history leading to `M` since `D`, in the sense that “what does `M` have that did not exist in `D`”. The result in this example would be all the commits, except `A` and `B` (and `D` itself, of course).
+A regular *D..M* computes the set of commits that are ancestors of `M`, but excludes the ones that are ancestors of `D`. This is useful to see what happened to the history leading to `M` since `D`, in the sense that “what does `M` have that did not exist in `D`”. The result in this example would be all the commits, except `A` and `B` (and `D` itself, of course).
 
-When we want to find out what commits in `M` are contaminated with the bug introduced by `D` and need fixing, however, we might want to view only the subset of _D..M_ that are actually descendants of `D`, i.e. excluding `C` and `K`. This is exactly what the `--ancestry-path` option does. Applied to the _D..M_ range, it results in:
+When we want to find out what commits in `M` are contaminated with the bug introduced by `D` and need fixing, however, we might want to view only the subset of *D..M* that are actually descendants of `D`, i.e. excluding `C` and `K`. This is exactly what the `--ancestry-path` option does. Applied to the *D..M* range, it results in:
 
                     E-------F
                      \       \
@@ -460,14 +465,12 @@ Notice that since `M` is reachable from `R`, the edge from `N` to `M` was simpli
 
 The `--simplify-by-decoration` option allows you to view only the big picture of the topology of the history, by omitting commits that are not referenced by tags. Commits are marked as !TREESAME (in other words, kept after history simplification rules described above) if (1) they are referenced by tags, or (2) they change the contents of the paths given on the command line. All other commits are marked as TREESAME (subject to be simplified away).
 
-## MAPPING AUTHORS
+MAPPING AUTHORS
+---------------
 
 See [gitmailmap(5)](gitmailmap.html).
 
 Note that if `git shortlog` is run outside of a repository (to process log contents on standard input), it will look for a `.mailmap` file in the current directory.
 
-## GIT
-
-Part of the [git(1)](git.html) suite
-
-Last updated 2021-03-27 09:47:30 UTC
+GIT
+---

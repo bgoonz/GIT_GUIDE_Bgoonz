@@ -1,20 +1,25 @@
-# gittutorial-2(7) Manual Page
+gittutorial-2(7) Manual Page
+============================
 
-## NAME
+NAME
+----
 
 gittutorial-2 - A tutorial introduction to Git: part two
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git *
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 You should work through [gittutorial(7)](gittutorial.html) before reading this tutorial.
 
 The goal of this tutorial is to introduce two fundamental pieces of Git’s architecture—​the object database and the index file—​and to provide the reader with everything necessary to understand the rest of the Git documentation.
 
-## The Git object database
+The Git object database
+-----------------------
 
 Let’s start a new project and create a small amount of history:
 
@@ -131,21 +136,22 @@ Besides blobs, trees, and commits, the only remaining type of object is a "tag",
 
 So now we know how Git uses the object database to represent a project’s history:
 
-- "commit" objects refer to "tree" objects representing the snapshot of a directory tree at a particular point in the history, and refer to "parent" commits to show how they’re connected into the project history.
+-   "commit" objects refer to "tree" objects representing the snapshot of a directory tree at a particular point in the history, and refer to "parent" commits to show how they’re connected into the project history.
 
-- "tree" objects represent the state of a single directory, associating directory names to "blob" objects containing file data and "tree" objects containing subdirectory information.
+-   "tree" objects represent the state of a single directory, associating directory names to "blob" objects containing file data and "tree" objects containing subdirectory information.
 
-- "blob" objects contain file data without any other structure.
+-   "blob" objects contain file data without any other structure.
 
-- References to commit objects at the head of each branch are stored in files under .git/refs/heads/.
+-   References to commit objects at the head of each branch are stored in files under .git/refs/heads/.
 
-- The name of the current branch is stored in .git/HEAD.
+-   The name of the current branch is stored in .git/HEAD.
 
 Note, by the way, that lots of commands take a tree as an argument. But as we can see above, a tree can be referred to in many different ways—​by the SHA-1 name for that tree, by the name of a commit that refers to the tree, by the name of a branch whose head refers to that tree, etc.--and most such commands can accept any of these names.
 
 In command synopses, the word "tree-ish" is sometimes used to designate such an argument.
 
-## The index file
+The index file
+--------------
 
 The primary tool we’ve been using to create commits is `git-commit -a`, which creates a commit including every change you’ve made to your working tree. But what if you want to commit changes only to certain files? Or only certain changes to certain files?
 
@@ -177,7 +183,7 @@ The last diff is empty, but no new commits have been made, and the head still do
      hello world!
     +hello world, again
 
-So _git diff_ is comparing against something other than the head. The thing that it’s comparing against is actually the index file, which is stored in .git/index in a binary format, but whose contents we can examine with ls-files:
+So *git diff* is comparing against something other than the head. The thing that it’s comparing against is actually the index file, which is stored in .git/index in a binary format, but whose contents we can examine with ls-files:
 
     $ git ls-files --stage
     100644 513feba2e53ebbd2532419ded848ba19de88ba00 0       file.txt
@@ -187,7 +193,7 @@ So _git diff_ is comparing against something other than the head. The thing that
     hello world!
     hello world, again
 
-So what our _git add_ did was store a new blob and then put a reference to it in the index file. If we modify the file again, we’ll see that the new modifications are reflected in the _git diff_ output:
+So what our *git add* did was store a new blob and then put a reference to it in the index file. If we modify the file again, we’ll see that the new modifications are reflected in the *git diff* output:
 
     $ echo 'again?' >>file.txt
     $ git diff
@@ -199,7 +205,7 @@ So what our _git add_ did was store a new blob and then put a reference to it in
      hello world, again
     +again?
 
-With the right arguments, _git diff_ can also show us the difference between the working directory and the last commit, or between the index and the last commit:
+With the right arguments, *git diff* can also show us the difference between the working directory and the last commit, or between the index and the last commit:
 
     $ git diff HEAD
     diff --git a/file.txt b/file.txt
@@ -219,7 +225,7 @@ With the right arguments, _git diff_ can also show us the difference between the
      hello world!
     +hello world, again
 
-At any time, we can create a new commit using _git commit_ (without the "-a" option), and verify that the state committed only includes the changes stored in the index file, not the additional change that is still only in our working tree:
+At any time, we can create a new commit using *git commit* (without the "-a" option), and verify that the state committed only includes the changes stored in the index file, not the additional change that is still only in our working tree:
 
     $ git commit -m "repeat"
     $ git diff HEAD
@@ -232,14 +238,14 @@ At any time, we can create a new commit using _git commit_ (without the "-a" opt
      hello world, again
     +again?
 
-So by default _git commit_ uses the index to create the commit, not the working tree; the "-a" option to commit tells it to first update the index with all changes in the working tree.
+So by default *git commit* uses the index to create the commit, not the working tree; the "-a" option to commit tells it to first update the index with all changes in the working tree.
 
-Finally, it’s worth looking at the effect of _git add_ on the index file:
+Finally, it’s worth looking at the effect of *git add* on the index file:
 
     $ echo "goodbye, world" >closing.txt
     $ git add closing.txt
 
-The effect of the _git add_ was to add one entry to the index file:
+The effect of the *git add* was to add one entry to the index file:
 
     $ git ls-files --stage
     100644 8b9743b20d4b15be3955fc8d5cd2b09cd2336138 0       closing.txt
@@ -271,7 +277,8 @@ Also, note that a bare `git diff` shows the changes to file.txt, but not the add
 
 In addition to being the staging area for new commits, the index file is also populated from the object database when checking out a branch, and is used to hold the trees involved in a merge operation. See [gitcore-tutorial(7)](gitcore-tutorial.html) and the relevant man pages for details.
 
-## What next?
+What next?
+----------
 
 At this point you should know everything necessary to read the man pages for any of the git commands; one good place to start would be with the commands mentioned in [giteveryday(7)](giteveryday.html). You should be able to find any unknown jargon in [gitglossary(7)](gitglossary.html).
 
@@ -283,12 +290,10 @@ For some interesting examples of Git use, see the [howtos](howto-index.html).
 
 For Git developers, [gitcore-tutorial(7)](gitcore-tutorial.html) goes into detail on the lower-level Git mechanisms involved in, for example, creating a new commit.
 
-## SEE ALSO
+SEE ALSO
+--------
 
 [gittutorial(7)](gittutorial.html), [gitcvs-migration(7)](gitcvs-migration.html), [gitcore-tutorial(7)](gitcore-tutorial.html), [gitglossary(7)](gitglossary.html), [git-help(1)](git-help.html), [giteveryday(7)](giteveryday.html), [The Git User’s Manual](user-manual.html)
 
-## GIT
-
-Part of the [git(1)](git.html) suite
-
-Last updated 2021-03-27 09:47:30 UTC
+GIT
+---

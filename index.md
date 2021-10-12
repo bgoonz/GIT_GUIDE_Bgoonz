@@ -1,5 +1,22 @@
+  
+  
+
 Full Git Guide:
 ===============
+
+[](./site)  
+  
+  
+  
+![](https://i.imgur.com/BEo7aXq.png) ![](https://i.imgur.com/01ltHvO.png)  
+  
+  
+
+  
+
+------------------------------------------------------------------------
+
+  
 
 Install Git
 ===========
@@ -439,7 +456,7 @@ Examples of `git add`
 3.  Change a file or files
 4.  Save the file or files
 5.  Add the files or segments of code that should be included in the next commit: `git add README.md`
-6.  Commit the changes: `git commit -m "update the README to include links to contributing           guide"`
+6.  Commit the changes: `git commit -m "update the README to include links to contributing             guide"`
 7.  Push the changes to the remote branch: `git push -u origin update-readme`
 
 But, `git add` could also be used like:
@@ -449,7 +466,7 @@ But, `git add` could also be used like:
 3.  Change a file or files
 4.  Save the file or files
 5.  Add only one file, or one part of the changed file: `git add README.md`
-6.  Commit the first set of changes: `git commit -m "update the README to include links to contributing           guide"`
+6.  Commit the first set of changes: `git commit -m "update the README to include links to contributing             guide"`
 7.  Add another file, or another part of the changed file: `git add CONTRIBUTING.md`
 8.  Commit the second set of changes: `git commit -m "create the contributing guide"`
 9.  (Repeat as necessary)

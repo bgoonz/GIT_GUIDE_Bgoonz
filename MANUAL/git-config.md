@@ -1,10 +1,13 @@
-# git-config(1) Manual Page
+git-config(1) Manual Page
+=========================
 
-## NAME
+NAME
+----
 
 git-config - Get and set repository or global options
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git config [<file-option>] [--type=<type>] [--fixed-value] [--show-origin] [--show-scope] [-z|--null] name [value [value-pattern]]
     git config [<file-option>] [--type=<type>] --add name value
@@ -22,13 +25,14 @@ git-config - Get and set repository or global options
     git config [<file-option>] --get-colorbool name [stdout-is-tty]
     git config [<file-option>] -e | --edit
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 You can query/set/replace/unset options with this command. The name is actually the section and the key separated by a dot, and the value will be escaped.
 
 Multiple lines can be added to an option by using the `--add` option. If you want to update or unset an option which can occur on multiple lines, a `value-pattern` (which is an extended regular expression, unless the `--fixed-value` option is given) needs to be given. Only the existing values that match the pattern are updated or unset. If you want to handle the lines that do **not** match the pattern, just prepend a single exclamation mark in front (see also [EXAMPLES](#EXAMPLES)), but note that this only works when the `--fixed-value` option is not in use.
 
-The `--type=<type>` option instructs _git config_ to ensure that incoming and outgoing values are canonicalize-able under the given &lt;type&gt;. If no `--type=<type>` is given, no canonicalization will be performed. Callers may unset an existing `--type` specifier with `--no-type`.
+The `--type=<type>` option instructs *git config* to ensure that incoming and outgoing values are canonicalize-able under the given &lt;type&gt;. If no `--type=<type>` is given, no canonicalization will be performed. Callers may unset an existing `--type` specifier with `--no-type`.
 
 When reading, the values are read from the system, global and repository local configuration files by default, and options `--system`, `--global`, `--local`, `--worktree` and `--file <filename>` can be used to tell the command to read from only that location (see [FILES](#FILES)).
 
@@ -36,29 +40,30 @@ When writing, the new value is written to the repository local configuration fil
 
 This command will fail with non-zero status upon error. Some exit codes are:
 
-- The section or key is invalid (ret=1),
+-   The section or key is invalid (ret=1),
 
-- no section or name was provided (ret=2),
+-   no section or name was provided (ret=2),
 
-- the config file is invalid (ret=3),
+-   the config file is invalid (ret=3),
 
-- the config file cannot be written (ret=4),
+-   the config file cannot be written (ret=4),
 
-- you try to unset an option which does not exist (ret=5),
+-   you try to unset an option which does not exist (ret=5),
 
-- you try to unset/set an option for which multiple lines match (ret=5), or
+-   you try to unset/set an option for which multiple lines match (ret=5), or
 
-- you try to use an invalid regexp (ret=6).
+-   you try to use an invalid regexp (ret=6).
 
 On success, the command returns the exit code 0.
 
-## OPTIONS
+OPTIONS
+-------
 
 --replace-all  
 Default behavior is to replace at most one line. This replaces all lines matching the key (and optionally the `value-pattern`).
 
 --add  
-Adds a new line to the option without altering any existing values. This is the same as providing _^$_ as the `value-pattern` in `--replace-all`.
+Adds a new line to the option without altering any existing values. This is the same as providing *^$* as the `value-pattern` in `--replace-all`.
 
 --get  
 Get the value for a given key (optionally filtered by a regex matching the value). Returns error code 1 if the key was not found and the last value if multiple key values were found.
@@ -98,10 +103,10 @@ Similar to `--local` except that `.git/config.worktree` is read from or written 
 
 -f config-file  
 --file config-file  
-Use the given config file instead of the one specified by GIT_CONFIG.
+Use the given config file instead of the one specified by GIT\_CONFIG.
 
 --blob blob  
-Similar to `--file` but use the given blob instead of a file. E.g. you can use _master:.gitmodules_ to read values from the file _.gitmodules_ in the master branch. See "SPECIFYING REVISIONS" section in [gitrevisions(7)](gitrevisions.html) for a more complete list of ways to spell blob names.
+Similar to `--file` but use the given blob instead of a file. E.g. you can use *master:.gitmodules* to read values from the file *.gitmodules* in the master branch. See "SPECIFYING REVISIONS" section in [gitrevisions(7)](gitrevisions.html) for a more complete list of ways to spell blob names.
 
 --remove-section  
 Remove the given section from the configuration file.
@@ -123,21 +128,21 @@ List all variables set in config file, along with their values.
 When used with the `value-pattern` argument, treat `value-pattern` as an exact string instead of a regular expression. This will restrict the name/value pairs that are matched to only those where the value is exactly equal to the `value-pattern`.
 
 --type &lt;type&gt;  
-_git config_ will ensure that any input or output is valid under the given type constraint(s), and will canonicalize outgoing values in `<type>`'s canonical form.
+*git config* will ensure that any input or output is valid under the given type constraint(s), and will canonicalize outgoing values in `<type>`'s canonical form.
 
 Valid `<type>`'s include:
 
-- _bool_: canonicalize values as either "true" or "false".
+-   *bool*: canonicalize values as either "true" or "false".
 
-- _int_: canonicalize values as simple decimal numbers. An optional suffix of _k_, _m_, or _g_ will cause the value to be multiplied by 1024, 1048576, or 1073741824 upon input.
+-   *int*: canonicalize values as simple decimal numbers. An optional suffix of *k*, *m*, or *g* will cause the value to be multiplied by 1024, 1048576, or 1073741824 upon input.
 
-- _bool-or-int_: canonicalize according to either _bool_ or _int_, as described above.
+-   *bool-or-int*: canonicalize according to either *bool* or *int*, as described above.
 
-- _path_: canonicalize by adding a leading `~` to the value of `$HOME` and `~user` to the home directory for the specified user. This specifier has no effect when setting the value (but you can use `git config section.variable ~/` from the command line to let your shell do the expansion.)
+-   *path*: canonicalize by adding a leading `~` to the value of `$HOME` and `~user` to the home directory for the specified user. This specifier has no effect when setting the value (but you can use `git config section.variable ~/` from the command line to let your shell do the expansion.)
 
-- _expiry-date_: canonicalize by converting from a fixed or relative date-string to a timestamp. This specifier has no effect when setting the value.
+-   *expiry-date*: canonicalize by converting from a fixed or relative date-string to a timestamp. This specifier has no effect when setting the value.
 
-- _color_: When getting a value, canonicalize by converting to an ANSI color escape sequence. When setting a value, a sanity-check is performed to ensure that the given value is canonicalize-able as an ANSI color, but it is written as-is.
+-   *color*: When getting a value, canonicalize by converting to an ANSI color escape sequence. When setting a value, a sanity-check is performed to ensure that the given value is canonicalize-able as an ANSI color, but it is written as-is.
 
 --bool  
 --int  
@@ -147,7 +152,7 @@ Valid `<type>`'s include:
 Historical options for selecting a type specifier. Prefer instead `--type` (see above).
 
 --no-type  
-Un-sets the previously set type specifier (if one was previously set). This option requests that _git config_ not canonicalize the retrieved variable. `--no-type` has no effect without `--type=<type>` or `--<type>`.
+Un-sets the previously set type specifier (if one was previously set). This option requests that *git config* not canonicalize the retrieved variable. `--no-type` has no effect without `--type=<type>` or `--<type>`.
 
 -z  
 --null  
@@ -180,57 +185,61 @@ Respect `include.*` directives in config files when looking up values. Defaults 
 --default &lt;value&gt;  
 When using `--get`, and the requested variable is not found, behave as if &lt;value&gt; were the value assigned to the that variable.
 
-## CONFIGURATION
+CONFIGURATION
+-------------
 
 `pager.config` is only respected when listing configuration, i.e., when using `--list` or any of the `--get-*` which may return multiple results. The default is to use a pager.
 
-## FILES
+FILES
+-----
 
-If not set explicitly with `--file`, there are four files where _git config_ will search for configuration options:
+If not set explicitly with `--file`, there are four files where *git config* will search for configuration options:
 
 $(prefix)/etc/gitconfig  
 System-wide configuration file.
 
 $XDG\_CONFIG\_HOME/git/config  
-Second user-specific configuration file. If $XDG\_CONFIG\_HOME is not set or empty, `$HOME/.config/git/config`will be used. Any single-valued variable set in this file will be overwritten by whatever is in`~/.gitconfig`. It is a good idea not to create this file if you sometimes use older versions of Git, as support for this file was added fairly recently.
+Second user-specific configuration file. If $XDG\_CONFIG\_HOME is not set or empty, `$HOME/.config/git/config` will be used. Any single-valued variable set in this file will be overwritten by whatever is in `~/.gitconfig`. It is a good idea not to create this file if you sometimes use older versions of Git, as support for this file was added fairly recently.
 
 ~/.gitconfig  
 User-specific configuration file. Also called "global" configuration file.
 
-$GIT_DIR/config  
+$GIT\_DIR/config  
 Repository specific configuration file.
 
-$GIT_DIR/config.worktree  
-This is optional and is only searched when `extensions.worktreeConfig` is present in $GIT_DIR/config.
+$GIT\_DIR/config.worktree  
+This is optional and is only searched when `extensions.worktreeConfig` is present in $GIT\_DIR/config.
 
-If no further options are given, all reading options will read all of these files that are available. If the global or the system-wide configuration file are not available they will be ignored. If the repository configuration file is not available or readable, _git config_ will exit with a non-zero error code. However, in neither case will an error message be issued.
+If no further options are given, all reading options will read all of these files that are available. If the global or the system-wide configuration file are not available they will be ignored. If the repository configuration file is not available or readable, *git config* will exit with a non-zero error code. However, in neither case will an error message be issued.
 
 The files are read in the order given above, with last value found taking precedence over values read earlier. When multiple values are taken then all values of a key from all files will be used.
 
 You may override individual configuration parameters when running any git command by using the `-c` option. See [git(1)](git.html) for details.
 
-All writing options will per default write to the repository specific configuration file. Note that this also affects options like `--replace-all` and `--unset`. **_git config_ will only ever change one file at a time**.
+All writing options will per default write to the repository specific configuration file. Note that this also affects options like `--replace-all` and `--unset`. ***git config* will only ever change one file at a time**.
 
 You can override these rules either by command-line options or by environment variables. The `--global`, `--system` and `--worktree` options will limit the file used to the global, system-wide or per-worktree file respectively. The `GIT_CONFIG` environment variable has a similar effect, but you can specify any filename you want.
 
-## ENVIRONMENT
+ENVIRONMENT
+-----------
 
-GIT_CONFIG  
+GIT\_CONFIG  
 Take the configuration from the given file instead of .git/config. Using the "--global" option forces this to ~/.gitconfig. Using the "--system" option forces this to $(prefix)/etc/gitconfig.
 
-GIT_CONFIG_NOSYSTEM  
+GIT\_CONFIG\_NOSYSTEM  
 Whether to skip reading settings from the system-wide $(prefix)/etc/gitconfig file. See [git(1)](git.html) for details.
 
 See also [FILES](#FILES).
 
-GIT_CONFIG_COUNT  
-GIT_CONFIG_KEY\_&lt;n&gt;  
-GIT_CONFIG_VALUE\_&lt;n&gt;  
-If GIT_CONFIG_COUNT is set to a positive number, all environment pairs GIT_CONFIG_KEY\_&lt;n&gt; and GIT_CONFIG_VALUE\_&lt;n&gt; up to that number will be added to the process’s runtime configuration. The config pairs are zero-indexed. Any missing key or value is treated as an error. An empty GIT_CONFIG_COUNT is treated the same as GIT_CONFIG_COUNT=0, namely no pairs are processed. These environment variables will override values in configuration files, but will be overridden by any explicit options passed via `git -c`.
+GIT\_CONFIG\_COUNT  
+GIT\_CONFIG\_KEY\_&lt;n&gt;  
+GIT\_CONFIG\_VALUE\_&lt;n&gt;  
+If GIT\_CONFIG\_COUNT is set to a positive number, all environment pairs GIT\_CONFIG\_KEY\_&lt;n&gt; and GIT\_CONFIG\_VALUE\_&lt;n&gt; up to that number will be added to the process’s runtime configuration. The config pairs are zero-indexed. Any missing key or value is treated as an error. An empty GIT\_CONFIG\_COUNT is treated the same as GIT\_CONFIG\_COUNT=0, namely no pairs are processed. These environment variables will override values in configuration files, but will be overridden by any explicit options passed via `git -c`.
 
 This is useful for cases where you want to spawn multiple git commands with a common configuration but cannot depend on a configuration file, for example when writing scripts.
 
-## EXAMPLES
+EXAMPLES
+--------
 
 Given a .git/config like this:
 
@@ -327,7 +336,8 @@ For URLs in `https://weak.example.com`, `http.sslVerify` is set to false, while 
     http.cookieFile /tmp/cookie.txt
     http.sslverify false
 
-## CONFIGURATION FILE
+CONFIGURATION FILE
+------------------
 
 The Git configuration file contains a number of variables that affect the Git commands' behavior. The files `.git/config` and optionally `config.worktree` (see the "CONFIGURATION FILE" section of [git-worktree(1)](git-worktree.html)) in each repository are used to store the configuration for that repository, and `$HOME/.gitconfig` is used to store a per-user configuration as fallback values for the `.git/config` file. The file `/etc/gitconfig` can be used to store a system-wide default configuration.
 
@@ -335,7 +345,7 @@ The configuration variables are used by both the Git plumbing and the porcelains
 
 ### Syntax
 
-The syntax is fairly flexible and permissive; whitespaces are mostly ignored. The _\#_ and _;_ characters begin comments to the end of line, blank lines are ignored.
+The syntax is fairly flexible and permissive; whitespaces are mostly ignored. The *\#* and *;* characters begin comments to the end of line, blank lines are ignored.
 
 The file consists of sections and variables. A section begins with the name of the section in square brackets and continues until the next section begins. Section names are case-insensitive. Only alphanumeric characters, `-` and `.` are allowed in section names. Each variable must belong to some section, which means that there must be a section header before the first setting of a variable.
 
@@ -347,9 +357,9 @@ Subsection names are case sensitive and can contain any characters except newlin
 
 There is also a deprecated `[section.subsection]` syntax. With this syntax, the subsection name is converted to lower-case and is also compared case sensitively. These subsection names follow the same restrictions as section names.
 
-All the other lines (and the remainder of the line after the section header) are recognized as setting variables, in the form _name = value_ (or just _name_, which is a short-hand to say that the variable is the boolean "true"). The variable names are case-insensitive, allow only alphanumeric characters and `-`, and must start with an alphabetic character.
+All the other lines (and the remainder of the line after the section header) are recognized as setting variables, in the form *name = value* (or just *name*, which is a short-hand to say that the variable is the boolean "true"). The variable names are case-insensitive, allow only alphanumeric characters and `-`, and must start with an alphabetic character.
 
-A line that defines a value can be continued to the next line by ending it with a `\`; the backslash and the end-of-line are stripped. Leading whitespaces after _name =_, the remainder of the line after the first comment character _\#_ or _;_, and trailing whitespaces of the line are discarded unless they are enclosed in double quotes. Internal whitespaces within the value are retained verbatim.
+A line that defines a value can be continued to the next line by ending it with a `\`; the backslash and the end-of-line are stripped. Leading whitespaces after *name =*, the remainder of the line after the first comment character *\#* or *;*, and trailing whitespaces of the line are discarded unless they are enclosed in double quotes. Internal whitespaces within the value are retained verbatim.
 
 Inside double quotes, double quote `"` and backslash `\` characters must be escaped: use `\"` for `"` and `\\` for `\`.
 
@@ -376,13 +386,13 @@ The .git location may be auto-discovered, or come from `$GIT_DIR` environment va
 
 The pattern can contain standard globbing wildcards and two additional ones, `**/` and `/**`, that can match multiple path components. Please refer to [gitignore(5)](gitignore.html) for details. For convenience:
 
-- If the pattern starts with `~/`, `~` will be substituted with the content of the environment variable `HOME`.
+-   If the pattern starts with `~/`, `~` will be substituted with the content of the environment variable `HOME`.
 
-- If the pattern starts with `./`, it is replaced with the directory containing the current config file.
+-   If the pattern starts with `./`, it is replaced with the directory containing the current config file.
 
-- If the pattern does not start with either `~/`, `./` or `/`, `**/` will be automatically prepended. For example, the pattern `foo/bar` becomes `**/foo/bar` and would match `/any/path/to/foo/bar`.
+-   If the pattern does not start with either `~/`, `./` or `/`, `**/` will be automatically prepended. For example, the pattern `foo/bar` becomes `**/foo/bar` and would match `/any/path/to/foo/bar`.
 
-- If the pattern ends with `/`, `**` will be automatically added. For example, the pattern `foo/` becomes `foo/**`. In other words, it matches "foo" and everything inside, recursively.
+-   If the pattern ends with `/`, `**` will be automatically added. For example, the pattern `foo/` becomes `foo/**`. In other words, it matches "foo" and everything inside, recursively.
 
 `gitdir/i`  
 This is the same as `gitdir` except that matching is done case-insensitively (e.g. on case-insensitive file systems)
@@ -394,13 +404,13 @@ If the pattern ends with `/`, `**` will be automatically added. For example, the
 
 A few more notes on matching via `gitdir` and `gitdir/i`:
 
-- Symlinks in `$GIT_DIR` are not resolved before matching.
+-   Symlinks in `$GIT_DIR` are not resolved before matching.
 
-- Both the symlink & realpath versions of paths will be matched outside of `$GIT_DIR`. E.g. if ~/git is a symlink to /mnt/storage/git, both `gitdir:~/git` and `gitdir:/mnt/storage/git` will match.
+-   Both the symlink & realpath versions of paths will be matched outside of `$GIT_DIR`. E.g. if ~/git is a symlink to /mnt/storage/git, both `gitdir:~/git` and `gitdir:/mnt/storage/git` will match.
 
-  This was not the case in the initial release of this feature in v2.13.0, which only matched the realpath version. Configuration that wants to be compatible with the initial release of this feature needs to either specify only the realpath version, or both versions.
+    This was not the case in the initial release of this feature in v2.13.0, which only matched the realpath version. Configuration that wants to be compatible with the initial release of this feature needs to either specify only the realpath version, or both versions.
 
-- Note that "../" is not special and will match literally, which is unlikely what you want.
+-   Note that "../" is not special and will match literally, which is unlikely what you want.
 
 ### Example
 
@@ -456,7 +466,7 @@ A few more notes on matching via `gitdir` and `gitdir/i`:
 Values of many variables are treated as a simple string, but there are variables that take values of specific types and there are rules as to how to spell them.
 
 boolean  
-When a variable is said to take a boolean value, many synonyms are accepted for _true_ and _false_; these are all case-insensitive.
+When a variable is said to take a boolean value, many synonyms are accepted for *true* and *false*; these are all case-insensitive.
 
 true  
 Boolean true literals are `yes`, `on`, `true`, and `1`. Also, a variable defined without `= <value>` is taken as true.
@@ -464,7 +474,7 @@ Boolean true literals are `yes`, `on`, `true`, and `1`. Also, a variable defined
 false  
 Boolean false literals are `no`, `off`, `false`, `0` and the empty string.
 
-When converting a value to its canonical form using the `--type=bool` type specifier, _git config_ will ensure that the output is "true" or "false" (spelled in lowercase).
+When converting a value to its canonical form using the `--type=bool` type specifier, *git config* will ensure that the output is "true" or "false" (spelled in lowercase).
 
 integer  
 The value for many variables that specify various sizes can be suffixed with `k`, `M`,…​ to mean "scale the number by 1024", "by 1024x1024", etc.
@@ -492,19 +502,19 @@ Note that this list is non-comprehensive and not necessarily complete. For comma
 Other git-related tools may and do use their own variables. When inventing new variables for use in your own tool, make sure their names do not conflict with those that are used by Git itself and other popular tools, and describe them in your documentation.
 
 advice.\*  
-These variables control various optional help messages designed to aid new users. All \*advice.\** variables default to *true*, and you can tell Git that you do not need help by setting these to *false\*:
+These variables control various optional help messages designed to aid new users. All *advice.\** variables default to *true*, and you can tell Git that you do not need help by setting these to *false*:
 
 fetchShowForcedUpdates  
 Advice shown when [git-fetch(1)](git-fetch.html) takes a long time to calculate forced updates after ref updates, or to warn that the check is disabled.
 
 pushUpdateRejected  
-Set this variable to _false_ if you want to disable _pushNonFFCurrent_, _pushNonFFMatching_, _pushAlreadyExists_, _pushFetchFirst_, _pushNeedsForce_, and _pushRefNeedsUpdate_ simultaneously.
+Set this variable to *false* if you want to disable *pushNonFFCurrent*, *pushNonFFMatching*, *pushAlreadyExists*, *pushFetchFirst*, *pushNeedsForce*, and *pushRefNeedsUpdate* simultaneously.
 
 pushNonFFCurrent  
 Advice shown when [git-push(1)](git-push.html) fails due to a non-fast-forward update to the current branch.
 
 pushNonFFMatching  
-Advice shown when you ran [git-push(1)](git-push.html) and pushed _matching refs_ explicitly (i.e. you used _:_, or specified a refspec that isn’t your current branch) and it resulted in a non-fast-forward error.
+Advice shown when you ran [git-push(1)](git-push.html) and pushed *matching refs* explicitly (i.e. you used *:*, or specified a refspec that isn’t your current branch) and it resulted in a non-fast-forward error.
 
 pushAlreadyExists  
 Shown when [git-push(1)](git-push.html) rejects an update that does not qualify for fast-forwarding (e.g., a tag.)
@@ -548,7 +558,7 @@ Advice on how to set your identity configuration when your information is guesse
 detachedHead  
 Advice shown when you used [git-switch(1)](git-switch.html) or [git-checkout(1)](git-checkout.html) to move to the detach HEAD state, to instruct how to create a local branch after the fact.
 
-checkoutAmbiguousRemoteBranchName  
+ checkoutAmbiguousRemoteBranchName   
 Advice shown when the argument to [git-checkout(1)](git-checkout.html) and [git-switch(1)](git-switch.html) ambiguously resolves to a remote tracking branch on more than one remote in situations where an unambiguous argument would have otherwise caused a remote-tracking branch to be checked out. See the `checkout.defaultRemote` configuration variable for how to set a given remote to used by default in some situations where this advice would be printed.
 
 amWorkDir  
@@ -569,7 +579,7 @@ Print a message to the terminal whenever Git is waiting for editor input from th
 nestedTag  
 Advice shown if a user attempts to recursively tag a tag object.
 
-submoduleAlternateErrorStrategyDie  
+ submoduleAlternateErrorStrategyDie   
 Advice shown when a submodule.alternateErrorStrategy option configured to "die" causes a fatal error.
 
 addIgnoredFile  
@@ -583,12 +593,12 @@ Tells Git if the executable bit of files in the working tree is to be honored.
 
 Some filesystems lose the executable bit when a file that is marked as executable is checked out, or checks out a non-executable file with executable bit on. [git-clone(1)](git-clone.html) or [git-init(1)](git-init.html) probe the filesystem to see if it handles the executable bit correctly and this variable is automatically set as necessary.
 
-A repository, however, may be on a filesystem that handles the filemode correctly, and this variable is set to _true_ when created, but later may be made accessible from another environment that loses the filemode (e.g. exporting ext4 via CIFS mount, visiting a Cygwin created repository with Git for Windows or Eclipse). In such a case it may be necessary to set this variable to _false_. See [git-update-index(1)](git-update-index.html).
+A repository, however, may be on a filesystem that handles the filemode correctly, and this variable is set to *true* when created, but later may be made accessible from another environment that loses the filemode (e.g. exporting ext4 via CIFS mount, visiting a Cygwin created repository with Git for Windows or Eclipse). In such a case it may be necessary to set this variable to *false*. See [git-update-index(1)](git-update-index.html).
 
 The default is true (when core.filemode is not specified in the config file).
 
 core.hideDotFiles  
-(Windows-only) If true, mark newly-created directories and files whose name starts with a dot as hidden. If _dotGitOnly_, only the `.git/` directory is hidden, but no other files starting with a dot. The default mode is _dotGitOnly_.
+(Windows-only) If true, mark newly-created directories and files whose name starts with a dot as hidden. If *dotGitOnly*, only the `.git/` directory is hidden, but no other files starting with a dot. The default mode is *dotGitOnly*.
 
 core.ignoreCase  
 Internal variable which enables various workarounds to enable Git to work better on filesystems that are not case sensitive, like APFS, HFS+, FAT, NTFS, etc. For example, if a directory listing finds "makefile" when Git expects "Makefile", Git will assume it is really the same file, and continue to remember it as "Makefile".
@@ -644,10 +654,10 @@ When missing or is set to `default`, many fields in the stat structure are check
 There are implementations of Git that do not leave usable values in some fields (e.g. JGit); by excluding these fields from the comparison, the `minimal` mode may help interoperability when the same repository is used by these other systems at the same time.
 
 core.quotePath  
-Commands that output paths (e.g. _ls-files_, _diff_), will quote "unusual" characters in the pathname by enclosing the pathname in double-quotes and escaping those characters with backslashes in the same way C escapes control characters (e.g. `\t` for TAB, `\n` for LF, `\\` for backslash) or bytes with values larger than 0x80 (e.g. octal `\302\265` for "micro" in UTF-8). If this variable is set to false, bytes higher than 0x80 are not considered "unusual" any more. Double-quotes, backslash and control characters are always escaped regardless of the setting of this variable. A simple space character is not considered "unusual". Many commands can output pathnames completely verbatim using the `-z` option. The default value is true.
+Commands that output paths (e.g. *ls-files*, *diff*), will quote "unusual" characters in the pathname by enclosing the pathname in double-quotes and escaping those characters with backslashes in the same way C escapes control characters (e.g. `\t` for TAB, `\n` for LF, `\\` for backslash) or bytes with values larger than 0x80 (e.g. octal `\302\265` for "micro" in UTF-8). If this variable is set to false, bytes higher than 0x80 are not considered "unusual" any more. Double-quotes, backslash and control characters are always escaped regardless of the setting of this variable. A simple space character is not considered "unusual". Many commands can output pathnames completely verbatim using the `-z` option. The default value is true.
 
 core.eol  
-Sets the line ending type to use in the working directory for files that are marked as text (either by having the `text` attribute set, or by having `text=auto` and Git auto-detecting the contents as text). Alternatives are _lf_, _crlf_ and _native_, which uses the platform’s native line ending. The default value is `native`. See [gitattributes(5)](gitattributes.html) for more information on end-of-line conversion. Note that this value is ignored if `core.autocrlf` is set to `true` or `input`.
+Sets the line ending type to use in the working directory for files that are marked as text (either by having the `text` attribute set, or by having `text=auto` and Git auto-detecting the contents as text). Alternatives are *lf*, *crlf* and *native*, which uses the platform’s native line ending. The default value is `native`. See [gitattributes(5)](gitattributes.html) for more information on end-of-line conversion. Note that this value is ignored if `core.autocrlf` is set to `true` or `input`.
 
 core.safecrlf  
 If true, makes Git check if converting `CRLF` is reversible when end-of-line conversion is active. Git will verify if a command modifies a file in the work tree either directly or indirectly. For example, committing a file followed by checking out the same file should yield the original file in the work tree. If this is not the case for the current setting of `core.autocrlf`, Git will reject the file. The variable can be set to "warn", in which case Git will only warn about an irreversible conversion but continue the operation.
@@ -661,7 +671,7 @@ Unfortunately, the desired effect of cleaning up text files with mixed line endi
 Note, this safety check does not mean that a checkout will generate a file identical to the original file for a different setting of `core.eol` and `core.autocrlf`, but only for the current one. For example, a text file with `LF` would be accepted with `core.eol=lf` and could later be checked out with `core.eol=crlf`, in which case the resulting file would contain `CRLF`, although the original file contained `LF`. However, in both work trees the line endings would be consistent, that is either all `LF` or all `CRLF`, but never mixed. A file with mixed line endings would be reported by the `core.safecrlf` mechanism.
 
 core.autocrlf  
-Setting this variable to "true" is the same as setting the `text` attribute to "auto" on all files and core.eol to "crlf". Set to true if you want to have `CRLF` line endings in your working directory and the repository has LF line endings. This variable can be set to _input_, in which case no output conversion is performed.
+Setting this variable to "true" is the same as setting the `text` attribute to "auto" on all files and core.eol to "crlf". Set to true if you want to have `CRLF` line endings in your working directory and the repository has LF line endings. This variable can be set to *input*, in which case no output conversion is performed.
 
 core.checkRoundtripEncoding  
 A comma and/or whitespace separated list of encodings that Git performs UTF-8 round trip checks on if they are used in an `working-tree-encoding` attribute (see [gitattributes(5)](gitattributes.html)). The default value is `SHIFT-JIS`.
@@ -672,7 +682,7 @@ If false, symbolic links are checked out as small plain files that contain the l
 The default is true, except [git-clone(1)](git-clone.html) or [git-init(1)](git-init.html) will probe and set core.symlinks false if appropriate when the repository is created.
 
 core.gitProxy  
-A "proxy command" to execute (as _command host port_) instead of establishing direct connection to the remote server when using the Git protocol for fetching. If the variable value is in the "COMMAND for DOMAIN" format, the command is applied only on hostnames ending with the specified domain string. This variable may be set multiple times and is matched in the given order; the first match wins.
+A "proxy command" to execute (as *command host port*) instead of establishing direct connection to the remote server when using the Git protocol for fetching. If the variable value is in the "COMMAND for DOMAIN" format, the command is applied only on hostnames ending with the specified domain string. This variable may be set multiple times and is matched in the given order; the first match wins.
 
 Can be overridden by the `GIT_PROXY_COMMAND` environment variable (which always applies universally, without the special "for" handling).
 
@@ -684,7 +694,7 @@ If this variable is set, `git fetch` and `git push` will use the specified comma
 core.ignoreStat  
 If true, Git will avoid using lstat() calls to detect if files have changed by setting the "assume-unchanged" bit for those tracked files which it has updated identically in both the index and working tree.
 
-When files are modified outside of Git, the user will need to stage the modified files explicitly (e.g. see _Examples_ section in [git-update-index(1)](git-update-index.html)). Git will not normally detect changes to those files.
+When files are modified outside of Git, the user will need to stage the modified files explicitly (e.g. see *Examples* section in [git-update-index(1)](git-update-index.html)). Git will not normally detect changes to those files.
 
 This is useful on systems where lstat() calls are very slow, such as CIFS/Microsoft Windows.
 
@@ -702,12 +712,12 @@ core.alternateRefsPrefixes
 When listing references from an alternate, list only references that begin with the given prefix. Prefixes match as if they were given as arguments to [git-for-each-ref(1)](git-for-each-ref.html). To list multiple prefixes, separate them with whitespace. If `core.alternateRefsCommand` is set, setting `core.alternateRefsPrefixes` has no effect.
 
 core.bare  
-If true this repository is assumed to be _bare_ and has no working directory associated with it. If this is the case a number of commands that require a working directory will be disabled, such as [git-add(1)](git-add.html) or [git-merge(1)](git-merge.html).
+If true this repository is assumed to be *bare* and has no working directory associated with it. If this is the case a number of commands that require a working directory will be disabled, such as [git-add(1)](git-add.html) or [git-merge(1)](git-merge.html).
 
 This setting is automatically guessed by [git-clone(1)](git-clone.html) or [git-init(1)](git-init.html) when the repository was created. By default a repository that ends in "/.git" is assumed to be not bare (bare = false), while all other repositories are assumed to be bare (bare = true).
 
 core.worktree  
-Set the path to the root of the working tree. If `GIT_COMMON_DIR` environment variable is set, core.worktree is ignored and not used for determining the root of working tree. This can be overridden by the `GIT_WORK_TREE` environment variable and the `--work-tree` command-line option. The value can be an absolute path or relative to the path to the .git directory, which is either specified by --git-dir or GIT_DIR, or automatically discovered. If --git-dir or GIT_DIR is specified but none of --work-tree, GIT_WORK_TREE and core.worktree is specified, the current working directory is regarded as the top level of your working tree.
+Set the path to the root of the working tree. If `GIT_COMMON_DIR` environment variable is set, core.worktree is ignored and not used for determining the root of working tree. This can be overridden by the `GIT_WORK_TREE` environment variable and the `--work-tree` command-line option. The value can be an absolute path or relative to the path to the .git directory, which is either specified by --git-dir or GIT\_DIR, or automatically discovered. If --git-dir or GIT\_DIR is specified but none of --work-tree, GIT\_WORK\_TREE and core.worktree is specified, the current working directory is regarded as the top level of your working tree.
 
 Note that this variable is honored even when set in a configuration file in a ".git" subdirectory of a directory and its value differs from the latter directory (e.g. "/path/to/.git/config" has core.worktree set to "/different/path"), which is most likely a misconfiguration. Running Git commands in the "/path/to" directory will still use "/different/path" as the root of the work tree and can cause confusion unless you know what you are doing (e.g. you are creating a read-only snapshot of the same index to a location different from the repository’s usual working tree).
 
@@ -722,7 +732,7 @@ core.repositoryFormatVersion
 Internal variable identifying the repository format and layout version.
 
 core.sharedRepository  
-When _group_ (or _true_), the repository is made shareable between several users in a group (making sure all the files and objects are group-writable). When _all_ (or _world_ or _everybody_), the repository will be readable by all users, additionally to being group-shareable. When _umask_ (or _false_), Git will use permissions reported by umask(2). When _0xxx_, where _0xxx_ is an octal number, files in the repository will have this mode value. _0xxx_ will override user’s umask value (whereas the other options will only override requested parts of the user’s umask value). Examples: _0660_ will make the repo read/write-able for the owner and group, but inaccessible to others (equivalent to _group_ unless umask is e.g. _0022_). _0640_ is a repository that is group-readable but not group-writable. See [git-init(1)](git-init.html). False by default.
+When *group* (or *true*), the repository is made shareable between several users in a group (making sure all the files and objects are group-writable). When *all* (or *world* or *everybody*), the repository will be readable by all users, additionally to being group-shareable. When *umask* (or *false*), Git will use permissions reported by umask(2). When *0xxx*, where *0xxx* is an octal number, files in the repository will have this mode value. *0xxx* will override user’s umask value (whereas the other options will only override requested parts of the user’s umask value). Examples: *0660* will make the repo read/write-able for the owner and group, but inaccessible to others (equivalent to *group* unless umask is e.g. *0022*). *0640* is a repository that is group-readable but not group-writable. See [git-init(1)](git-init.html). False by default.
 
 core.warnAmbiguousRefs  
 If true, Git will warn you if the ref name you passed it is ambiguous and might match multiple refs in the repository. True by default.
@@ -736,30 +746,30 @@ An integer -1..9, indicating the compression level for objects that are not in a
 core.packedGitWindowSize  
 Number of bytes of a pack file to map into memory in a single mapping operation. Larger window sizes may allow your system to process a smaller number of large pack files more quickly. Smaller window sizes will negatively affect performance due to increased calls to the operating system’s memory manager, but may improve performance when accessing a large number of large pack files.
 
-Default is 1 MiB if NO_MMAP was set at compile time, otherwise 32 MiB on 32 bit platforms and 1 GiB on 64 bit platforms. This should be reasonable for all users/operating systems. You probably do not need to adjust this value.
+Default is 1 MiB if NO\_MMAP was set at compile time, otherwise 32 MiB on 32 bit platforms and 1 GiB on 64 bit platforms. This should be reasonable for all users/operating systems. You probably do not need to adjust this value.
 
-Common unit suffixes of _k_, _m_, or _g_ are supported.
+Common unit suffixes of *k*, *m*, or *g* are supported.
 
 core.packedGitLimit  
 Maximum number of bytes to map simultaneously into memory from pack files. If Git needs to access more than this many bytes at once to complete an operation it will unmap existing regions to reclaim virtual address space within the process.
 
 Default is 256 MiB on 32 bit platforms and 32 TiB (effectively unlimited) on 64 bit platforms. This should be reasonable for all users/operating systems, except on the largest projects. You probably do not need to adjust this value.
 
-Common unit suffixes of _k_, _m_, or _g_ are supported.
+Common unit suffixes of *k*, *m*, or *g* are supported.
 
 core.deltaBaseCacheLimit  
 Maximum number of bytes per thread to reserve for caching base objects that may be referenced by multiple deltified objects. By storing the entire decompressed base objects in a cache Git is able to avoid unpacking and decompressing frequently used base objects multiple times.
 
 Default is 96 MiB on all platforms. This should be reasonable for all users/operating systems, except on the largest projects. You probably do not need to adjust this value.
 
-Common unit suffixes of _k_, _m_, or _g_ are supported.
+Common unit suffixes of *k*, *m*, or *g* are supported.
 
 core.bigFileThreshold  
 Files larger than this size are stored deflated, without attempting delta compression. Storing large files without delta compression avoids excessive memory usage, at the slight expense of increased disk usage. Additionally files larger than this size are always treated as binary.
 
 Default is 512 MiB on all platforms. This should be reasonable for most projects as source code and other text files can still be delta compressed, but larger binary media files won’t be.
 
-Common unit suffixes of _k_, _m_, or _g_ are supported.
+Common unit suffixes of *k*, *m*, or *g* are supported.
 
 core.excludesFile  
 Specifies the pathname to the file that contains patterns to describe paths that are not meant to be tracked, in addition to `.gitignore` (per-directory) and `.git/info/exclude`. Defaults to `$XDG_CONFIG_HOME/git/ignore`. If `$XDG_CONFIG_HOME` is either not set or empty, `$HOME/.config/git/ignore` is used instead. See [gitignore(5)](gitignore.html).
@@ -781,7 +791,7 @@ core.editor
 Commands such as `commit` and `tag` that let you edit messages by launching an editor use the value of this variable when it is set, and the environment variable `GIT_EDITOR` is not set. See [git-var(1)](git-var.html).
 
 core.commentChar  
-Commands such as `commit` and `tag` that let you edit messages consider a line that begins with this character commented, and removes them after the editor returns (default _\#_).
+Commands such as `commit` and `tag` that let you edit messages consider a line that begins with this character commented, and removes them after the editor returns (default *\#*).
 
 If set to "auto", `git-commit` would select a character that is not the beginning character of any line in existing commit messages.
 
@@ -792,40 +802,40 @@ core.packedRefsTimeout
 The length of time, in milliseconds, to retry when trying to lock the `packed-refs` file. Value 0 means not to retry at all; -1 means to try indefinitely. Default is 1000 (i.e., retry for 1 second).
 
 core.pager  
-Text viewer for use by Git commands (e.g., _less_). The value is meant to be interpreted by the shell. The order of preference is the `$GIT_PAGER` environment variable, then `core.pager` configuration, then `$PAGER`, and then the default chosen at compile time (usually _less_).
+Text viewer for use by Git commands (e.g., *less*). The value is meant to be interpreted by the shell. The order of preference is the `$GIT_PAGER` environment variable, then `core.pager` configuration, then `$PAGER`, and then the default chosen at compile time (usually *less*).
 
 When the `LESS` environment variable is unset, Git sets it to `FRX` (if `LESS` environment variable is set, Git does not change it at all). If you want to selectively override Git’s default setting for `LESS`, you can set `core.pager` to e.g. `less -S`. This will be passed to the shell by Git, which will translate the final command to `LESS=FRX less -S`. The environment does not set the `S` option but the command line does, instructing less to truncate long lines. Similarly, setting `core.pager` to `less -+F` will deactivate the `F` option specified by the environment from the command-line, deactivating the "quit if one screen" behavior of `less`. One can specifically activate some flags for particular commands: for example, setting `pager.blame` to `less -S` enables line truncation only for `git blame`.
 
 Likewise, when the `LV` environment variable is unset, Git sets it to `-c`. You can override this setting by exporting `LV` with another value or setting `core.pager` to `lv +c`.
 
 core.whitespace  
-A comma separated list of common whitespace problems to notice. _git diff_ will use `color.diff.whitespace` to highlight them, and _git apply --whitespace=error_ will consider them as errors. You can prefix `-` to disable any of them (e.g. `-trailing-space`):
+A comma separated list of common whitespace problems to notice. *git diff* will use `color.diff.whitespace` to highlight them, and *git apply --whitespace=error* will consider them as errors. You can prefix `-` to disable any of them (e.g. `-trailing-space`):
 
-- `blank-at-eol` treats trailing whitespaces at the end of the line as an error (enabled by default).
+-   `blank-at-eol` treats trailing whitespaces at the end of the line as an error (enabled by default).
 
-- `space-before-tab` treats a space character that appears immediately before a tab character in the initial indent part of the line as an error (enabled by default).
+-   `space-before-tab` treats a space character that appears immediately before a tab character in the initial indent part of the line as an error (enabled by default).
 
-- `indent-with-non-tab` treats a line that is indented with space characters instead of the equivalent tabs as an error (not enabled by default).
+-   `indent-with-non-tab` treats a line that is indented with space characters instead of the equivalent tabs as an error (not enabled by default).
 
-- `tab-in-indent` treats a tab character in the initial indent part of the line as an error (not enabled by default).
+-   `tab-in-indent` treats a tab character in the initial indent part of the line as an error (not enabled by default).
 
-- `blank-at-eof` treats blank lines added at the end of file as an error (enabled by default).
+-   `blank-at-eof` treats blank lines added at the end of file as an error (enabled by default).
 
-- `trailing-space` is a short-hand to cover both `blank-at-eol` and `blank-at-eof`.
+-   `trailing-space` is a short-hand to cover both `blank-at-eol` and `blank-at-eof`.
 
-- `cr-at-eol` treats a carriage-return at the end of line as part of the line terminator, i.e. with it, `trailing-space` does not trigger if the character before such a carriage-return is not a whitespace (not enabled by default).
+-   `cr-at-eol` treats a carriage-return at the end of line as part of the line terminator, i.e. with it, `trailing-space` does not trigger if the character before such a carriage-return is not a whitespace (not enabled by default).
 
-- `tabwidth=<n>` tells how many character positions a tab occupies; this is relevant for `indent-with-non-tab` and when Git fixes `tab-in-indent` errors. The default tab width is 8. Allowed values are 1 to 63.
+-   `tabwidth=<n>` tells how many character positions a tab occupies; this is relevant for `indent-with-non-tab` and when Git fixes `tab-in-indent` errors. The default tab width is 8. Allowed values are 1 to 63.
 
 core.fsyncObjectFiles  
-This boolean will enable _fsync()_ when writing object files.
+This boolean will enable *fsync()* when writing object files.
 
 This is a total waste of time and effort on a filesystem that orders data writes properly, but can be useful for filesystems that do not use journalling (traditional UNIX filesystems) or that only journal metadata and not file contents (OS X’s HFS+, or Linux ext3 with "data=writeback").
 
 core.preloadIndex  
-Enable parallel index preload for operations like _git diff_
+Enable parallel index preload for operations like *git diff*
 
-This can speed up operations like _git diff_ and _git status_ especially on filesystems like NFS that have weak caching semantics and thus relatively high IO latencies. When enabled, Git will do the index comparison to the filesystem data in parallel, allowing overlapping IO’s. Defaults to true.
+This can speed up operations like *git diff* and *git status* especially on filesystems like NFS that have weak caching semantics and thus relatively high IO latencies. When enabled, Git will do the index comparison to the filesystem data in parallel, allowing overlapping IO’s. Defaults to true.
 
 core.fscache  
 Enable additional caching of file system data for some operations.
@@ -842,9 +852,9 @@ core.restrictinheritedhandles
 Windows-only: override whether spawned processes inherit only standard file handles (`stdin`, `stdout` and `stderr`) or all handles. Can be `auto`, `true` or `false`. Defaults to `auto`, which means `true` on Windows 7 and later, and `false` on older Windows versions.
 
 core.createObject  
-You can set this to _link_, in which case a hardlink followed by a delete of the source are used to make sure that object creation will not overwrite existing objects.
+You can set this to *link*, in which case a hardlink followed by a delete of the source are used to make sure that object creation will not overwrite existing objects.
 
-On some file system/operating system combinations, this is unreliable. Set this config setting to _rename_ there; However, This will remove the check that makes sure that existing object files will not get overwritten.
+On some file system/operating system combinations, this is unreliable. Set this config setting to *rename* there; However, This will remove the check that makes sure that existing object files will not get overwritten.
 
 core.notesRef  
 When showing commit messages, also show notes which are stored in the given ref. The ref must be fully qualified. If the given ref does not exist, it is not an error but means that no notes should be printed.
@@ -871,7 +881,7 @@ Set the length object names are abbreviated to. If unspecified or set to "auto",
 
 add.ignoreErrors  
 add.ignore-errors (deprecated)  
-Tells _git add_ to continue adding files when some files cannot be added due to indexing errors. Equivalent to the `--ignore-errors` option of [git-add(1)](git-add.html). `add.ignore-errors` is deprecated, as it does not follow the usual naming convention for configuration variables.
+Tells *git add* to continue adding files when some files cannot be added due to indexing errors. Equivalent to the `--ignore-errors` option of [git-add(1)](git-add.html). `add.ignore-errors` is deprecated, as it does not follow the usual naming convention for configuration variables.
 
 add.interactive.useBuiltin  
 \[EXPERIMENTAL\] Set to `true` to use the experimental built-in implementation of the interactive version of [git-add(1)](git-add.html) instead of the Perl script version. Is `false` by default.
@@ -890,16 +900,16 @@ am.threeWay
 By default, `git am` will fail if the patch does not apply cleanly. When set to true, this setting tells `git am` to fall back on 3-way merge if the patch records the identity of blobs it is supposed to apply to and we have those blobs available locally (equivalent to giving the `--3way` option from the command line). Defaults to `false`. See [git-am(1)](git-am.html).
 
 apply.ignoreWhitespace  
-When set to _change_, tells _git apply_ to ignore changes in whitespace, in the same way as the `--ignore-space-change` option. When set to one of: no, none, never, false tells _git apply_ to respect all whitespace differences. See [git-apply(1)](git-apply.html).
+When set to *change*, tells *git apply* to ignore changes in whitespace, in the same way as the `--ignore-space-change` option. When set to one of: no, none, never, false tells *git apply* to respect all whitespace differences. See [git-apply(1)](git-apply.html).
 
 apply.whitespace  
-Tells _git apply_ how to handle whitespaces, in the same way as the `--whitespace` option. See [git-apply(1)](git-apply.html).
+Tells *git apply* how to handle whitespaces, in the same way as the `--whitespace` option. See [git-apply(1)](git-apply.html).
 
 blame.blankBoundary  
 Show blank commit object name for boundary commits in [git-blame(1)](git-blame.html). This option defaults to false.
 
 blame.coloring  
-This determines the coloring scheme to be applied to blame output. It can be _repeatedLines_, _highlightRecent_, or _none_ which is the default.
+This determines the coloring scheme to be applied to blame output. It can be *repeatedLines*, *highlightRecent*, or *none* which is the default.
 
 blame.date  
 Specifies the format used to output dates in [git-blame(1)](git-blame.html). If unset the iso format is used. For supported values, see the discussion of the `--date` option at [git-log(1)](git-log.html).
@@ -914,28 +924,28 @@ blame.ignoreRevsFile
 Ignore revisions listed in the file, one unabbreviated object name per line, in [git-blame(1)](git-blame.html). Whitespace and comments beginning with `#` are ignored. This option may be repeated multiple times. Empty file names will reset the list of ignored revisions. This option will be handled before the command line option `--ignore-revs-file`.
 
 blame.markUnblamables  
-Mark lines that were changed by an ignored revision that we could not attribute to another commit with a \*\*\* in the output of [git-blame(1)](git-blame.html).
+Mark lines that were changed by an ignored revision that we could not attribute to another commit with a *\** in the output of [git-blame(1)](git-blame.html).
 
 blame.markIgnoredLines  
-Mark lines that were changed by an ignored revision that we attributed to another commit with a _?_ in the output of [git-blame(1)](git-blame.html).
+Mark lines that were changed by an ignored revision that we attributed to another commit with a *?* in the output of [git-blame(1)](git-blame.html).
 
 branch.autoSetupMerge  
-Tells _git branch_, _git switch_ and _git checkout_ to set up new branches so that [git-pull(1)](git-pull.html) will appropriately merge from the starting point branch. Note that even if this option is not set, this behavior can be chosen per-branch using the `--track` and `--no-track` options. The valid settings are: `false` — no automatic setup is done; `true` — automatic setup is done when the starting point is a remote-tracking branch; `always` — automatic setup is done when the starting point is either a local branch or remote-tracking branch. This option defaults to true.
+Tells *git branch*, *git switch* and *git checkout* to set up new branches so that [git-pull(1)](git-pull.html) will appropriately merge from the starting point branch. Note that even if this option is not set, this behavior can be chosen per-branch using the `--track` and `--no-track` options. The valid settings are: `false` — no automatic setup is done; `true` — automatic setup is done when the starting point is a remote-tracking branch; `always` — automatic setup is done when the starting point is either a local branch or remote-tracking branch. This option defaults to true.
 
 branch.autoSetupRebase  
-When a new branch is created with _git branch_, _git switch_ or _git checkout_ that tracks another branch, this variable tells Git to set up pull to rebase instead of merge (see "branch.&lt;name&gt;.rebase"). When `never`, rebase is never automatically set to true. When `local`, rebase is set to true for tracked branches of other local branches. When `remote`, rebase is set to true for tracked branches of remote-tracking branches. When `always`, rebase will be set to true for all tracking branches. See "branch.autoSetupMerge" for details on how to set up a branch to track another branch. This option defaults to never.
+When a new branch is created with *git branch*, *git switch* or *git checkout* that tracks another branch, this variable tells Git to set up pull to rebase instead of merge (see "branch.&lt;name&gt;.rebase"). When `never`, rebase is never automatically set to true. When `local`, rebase is set to true for tracked branches of other local branches. When `remote`, rebase is set to true for tracked branches of remote-tracking branches. When `always`, rebase will be set to true for all tracking branches. See "branch.autoSetupMerge" for details on how to set up a branch to track another branch. This option defaults to never.
 
 branch.sort  
 This variable controls the sort ordering of branches when displayed by [git-branch(1)](git-branch.html). Without the "--sort=&lt;value&gt;" option provided, the value of this variable will be used as the default. See [git-for-each-ref(1)](git-for-each-ref.html) field names for valid values.
 
 branch.&lt;name&gt;.remote  
-When on branch &lt;name&gt;, it tells _git fetch_ and _git push_ which remote to fetch from/push to. The remote to push to may be overridden with `remote.pushDefault` (for all branches). The remote to push to, for the current branch, may be further overridden by `branch.<name>.pushRemote`. If no remote is configured, or if you are not on any branch, it defaults to `origin` for fetching and `remote.pushDefault` for pushing. Additionally, `.` (a period) is the current local repository (a dot-repository), see `branch.<name>.merge`'s final note below.
+When on branch &lt;name&gt;, it tells *git fetch* and *git push* which remote to fetch from/push to. The remote to push to may be overridden with `remote.pushDefault` (for all branches). The remote to push to, for the current branch, may be further overridden by `branch.<name>.pushRemote`. If no remote is configured, or if you are not on any branch, it defaults to `origin` for fetching and `remote.pushDefault` for pushing. Additionally, `.` (a period) is the current local repository (a dot-repository), see `branch.<name>.merge`'s final note below.
 
 branch.&lt;name&gt;.pushRemote  
 When on branch &lt;name&gt;, it overrides `branch.<name>.remote` for pushing. It also overrides `remote.pushDefault` for pushing from branch &lt;name&gt;. When you pull from one place (e.g. your upstream) and push to another place (e.g. your own publishing repository), you would want to set `remote.pushDefault` to specify the remote to push to for all branches, and use this option to override it for a specific branch.
 
 branch.&lt;name&gt;.merge  
-Defines, together with branch.&lt;name&gt;.remote, the upstream branch for the given branch. It tells _git fetch_/_git pull_/_git rebase_ which branch to merge and can also affect _git push_ (see push.default). When in branch &lt;name&gt;, it tells _git fetch_ the default refspec to be marked for merging in FETCH*HEAD. The value is handled like the remote part of a refspec, and must match a ref which is fetched from the remote given by "branch.&lt;name&gt;.remote". The merge information is used by \_git pull* (which at first calls _git fetch_) to lookup the default branch for merging. Without this option, _git pull_ defaults to merge the first refspec fetched. Specify multiple values to get an octopus merge. If you wish to setup _git pull_ so that it merges into &lt;name&gt; from another branch in the local repository, you can point branch.&lt;name&gt;.merge to the desired branch, and use the relative path setting `.` (a period) for branch.&lt;name&gt;.remote.
+Defines, together with branch.&lt;name&gt;.remote, the upstream branch for the given branch. It tells *git fetch*/*git pull*/*git rebase* which branch to merge and can also affect *git push* (see push.default). When in branch &lt;name&gt;, it tells *git fetch* the default refspec to be marked for merging in FETCH\_HEAD. The value is handled like the remote part of a refspec, and must match a ref which is fetched from the remote given by "branch.&lt;name&gt;.remote". The merge information is used by *git pull* (which at first calls *git fetch*) to lookup the default branch for merging. Without this option, *git pull* defaults to merge the first refspec fetched. Specify multiple values to get an octopus merge. If you wish to setup *git pull* so that it merges into &lt;name&gt; from another branch in the local repository, you can point branch.&lt;name&gt;.merge to the desired branch, and use the relative path setting `.` (a period) for branch.&lt;name&gt;.remote.
 
 branch.&lt;name&gt;.mergeOptions  
 Sets default options for merging into branch &lt;name&gt;. The syntax and supported options are the same as those of [git-merge(1)](git-merge.html), but option values containing whitespace characters are currently not supported.
@@ -943,11 +953,11 @@ Sets default options for merging into branch &lt;name&gt;. The syntax and suppor
 branch.&lt;name&gt;.rebase  
 When true, rebase the branch &lt;name&gt; on top of the fetched branch, instead of merging the default branch from the default remote when "git pull" is run. See "pull.rebase" for doing this in a non branch-specific manner.
 
-When `merges` (or just _m_), pass the `--rebase-merges` option to _git rebase_ so that the local merge commits are included in the rebase (see [git-rebase(1)](git-rebase.html) for details).
+When `merges` (or just *m*), pass the `--rebase-merges` option to *git rebase* so that the local merge commits are included in the rebase (see [git-rebase(1)](git-rebase.html) for details).
 
-When `preserve` (or just _p_, deprecated in favor of `merges`), also pass `--preserve-merges` along to _git rebase_ so that locally committed merge commits will not be flattened by running _git pull_.
+When `preserve` (or just *p*, deprecated in favor of `merges`), also pass `--preserve-merges` along to *git rebase* so that locally committed merge commits will not be flattened by running *git pull*.
 
-When the value is `interactive` (or just _i_), the rebase is run in interactive mode.
+When the value is `interactive` (or just *i*), the rebase is run in interactive mode.
 
 **NOTE**: this is a possibly dangerous operation; do **not** use it unless you understand the implications (see [git-rebase(1)](git-rebase.html) for details).
 
@@ -987,7 +997,7 @@ This setting should be set to a comma-separated list of color and date settings,
 
 Instead of an absolute timestamp relative timestamps work as well, e.g. 2.weeks.ago is valid to address anything older than 2 weeks.
 
-It defaults to _blue,12 month ago,white,1 month ago,red_, which colors everything older than one year blue, recent changes between one month and one year old are kept white, and lines introduced within the last month are colored red.
+It defaults to *blue,12 month ago,white,1 month ago,red*, which colors everything older than one year blue, recent changes between one month and one year old are kept white, and lines introduced within the last month are colored red.
 
 color.blame.repeatedLines  
 Use the customized color for the part of git-blame output that is repeated meta information per line (such as commit id, author name, date and timezone). Defaults to cyan.
@@ -1001,13 +1011,13 @@ Use customized color for branch coloration. `<slot>` is one of `current` (the cu
 color.diff  
 Whether to use ANSI escape sequences to add color to patches. If this is set to `always`, [git-diff(1)](git-diff.html), [git-log(1)](git-log.html), and [git-show(1)](git-show.html) will use color for all patches. If it is set to `true` or `auto`, those commands will only use color when output is to the terminal. If unset, then the value of `color.ui` is used (`auto` by default).
 
-This does not affect [git-format-patch(1)](git-format-patch.html) or the \*git-diff-\*\* plumbing commands. Can be overridden on the command line with the `--color[=<when>]` option.
+This does not affect [git-format-patch(1)](git-format-patch.html) or the *git-diff-\** plumbing commands. Can be overridden on the command line with the `--color[=<when>]` option.
 
 color.diff.&lt;slot&gt;  
-Use customized color for diff colorization. `<slot>` specifies which part of the patch to use the specified color, and is one of `context` (context text - `plain` is a historical synonym), `meta` (metainformation), `frag` (hunk header), _func_ (function in hunk header), `old` (removed lines), `new` (added lines), `commit` (commit headers), `whitespace` (highlighting whitespace errors), `oldMoved` (deleted lines), `newMoved` (added lines), `oldMovedDimmed`, `oldMovedAlternative`, `oldMovedAlternativeDimmed`, `newMovedDimmed`, `newMovedAlternative` `newMovedAlternativeDimmed` (See the _&lt;mode&gt;_ setting of _--color-moved_ in [git-diff(1)](git-diff.html) for details), `contextDimmed`, `oldDimmed`, `newDimmed`, `contextBold`, `oldBold`, and `newBold` (see [git-range-diff(1)](git-range-diff.html) for details).
+Use customized color for diff colorization. `<slot>` specifies which part of the patch to use the specified color, and is one of `context` (context text - `plain` is a historical synonym), `meta` (metainformation), `frag` (hunk header), *func* (function in hunk header), `old` (removed lines), `new` (added lines), `commit` (commit headers), `whitespace` (highlighting whitespace errors), `oldMoved` (deleted lines), `newMoved` (added lines), `oldMovedDimmed`, `oldMovedAlternative`, `oldMovedAlternativeDimmed`, `newMovedDimmed`, `newMovedAlternative` `newMovedAlternativeDimmed` (See the *&lt;mode&gt;* setting of *--color-moved* in [git-diff(1)](git-diff.html) for details), `contextDimmed`, `oldDimmed`, `newDimmed`, `contextBold`, `oldBold`, and `newBold` (see [git-range-diff(1)](git-range-diff.html) for details).
 
 color.decorate.&lt;slot&gt;  
-Use customized color for _git log --decorate_ output. `<slot>` is one of `branch`, `remoteBranch`, `tag`, `stash` or `HEAD` for local branches, remote-tracking branches, tags, stash and HEAD, respectively and `grafted` for grafted commits.
+Use customized color for *git log --decorate* output. `<slot>` is one of `branch`, `remoteBranch`, `tag`, `stash` or `HEAD` for local branches, remote-tracking branches, tags, stash and HEAD, respectively and `grafted` for grafted commits.
 
 color.grep  
 When set to `always`, always highlight matches. When `false` (or `never`), never. When set to `true` or `auto`, use color only when the output is written to the terminal. If unset, then the value of `color.ui` is used (`auto` by default).
@@ -1049,7 +1059,7 @@ color.interactive
 When set to `always`, always use colors for interactive prompts and displays (such as those used by "git-add --interactive" and "git-clean --interactive"). When false (or `never`), never. When set to `true` or `auto`, use colors only when the output is to the terminal. If unset, then the value of `color.ui` is used (`auto` by default).
 
 color.interactive.&lt;slot&gt;  
-Use customized color for _git add --interactive_ and _git clean --interactive_ output. `<slot>` may be `prompt`, `header`, `help` or `error`, for four distinct types of normal output from interactive commands.
+Use customized color for *git add --interactive* and *git clean --interactive* output. `<slot>` may be `prompt`, `header`, `help` or `error`, for four distinct types of normal output from interactive commands.
 
 color.pager  
 A boolean to enable/disable colored output when the pager is in use (default is true).
@@ -1073,7 +1083,7 @@ color.status
 A boolean to enable/disable color in the output of [git-status(1)](git-status.html). May be set to `always`, `false` (or `never`) or `auto` (or `true`), in which case colors are used only when the output is to a terminal. If unset, then the value of `color.ui` is used (`auto` by default).
 
 color.status.&lt;slot&gt;  
-Use customized color for status colorization. `<slot>` is one of `header` (the header text of the status message), `added` or `updated` (files which are added but not committed), `changed` (files which are changed but not added in the index), `untracked` (files which are not tracked by Git), `branch` (the current branch), `nobranch` (the color the _no branch_ warning is shown in, defaulting to red), `localBranch` or `remoteBranch` (the local and remote branch names, respectively, when branch and tracking information is displayed in the status short-format), or `unmerged` (files which have unmerged changes).
+Use customized color for status colorization. `<slot>` is one of `header` (the header text of the status message), `added` or `updated` (files which are added but not committed), `changed` (files which are changed but not added in the index), `untracked` (files which are not tracked by Git), `branch` (the current branch), `nobranch` (the color the *no branch* warning is shown in, defaulting to red), `localBranch` or `remoteBranch` (the local and remote branch names, respectively, when branch and tracking information is displayed in the status short-format), or `unmerged` (files which have unmerged changes).
 
 color.transport  
 A boolean to enable/disable color when pushes are rejected. May be set to `always`, `false` (or `never`) or `auto` (or `true`), in which case colors are used only when the error output goes to a terminal. If unset, then the value of `color.ui` is used (`auto` by default).
@@ -1087,7 +1097,7 @@ This variable determines the default value for variables such as `color.diff` an
 column.ui  
 Specify whether supported commands should output in columns. This variable consists of a list of tokens separated by spaces or commas:
 
-These options control when the feature should be enabled (defaults to _never_):
+These options control when the feature should be enabled (defaults to *never*):
 
 `always`  
 always show in columns
@@ -1098,7 +1108,7 @@ never show in columns
 `auto`  
 show in columns if the output is to the terminal
 
-These options control layout (defaults to _column_). Setting any of these implies _always_ if none of _always_, _never_, or _auto_ are specified.
+These options control layout (defaults to *column*). Setting any of these implies *always* if none of *always*, *never*, or *auto* are specified.
 
 `column`  
 fill columns before rows
@@ -1109,7 +1119,7 @@ fill rows before columns
 `plain`  
 show in one column
 
-Finally, these options can be combined with a layout option (defaults to _nodense_):
+Finally, these options can be combined with a layout option (defaults to *nodense*):
 
 `dense`  
 make unequal size columns to utilize more space
@@ -1171,10 +1181,10 @@ credentialStore.lockTimeoutMS
 The length of time, in milliseconds, for git-credential-store to retry when trying to lock the credentials file. Value 0 means not to retry at all; -1 means to try indefinitely. Default is 1000 (i.e., retry for 1s).
 
 completion.commands  
-This is only used by git-completion.bash to add or remove commands from the list of completed commands. Normally only porcelain commands and a few select others are completed. You can add more commands, separated by space, in this variable. Prefixing the command with _-_ will remove it from the existing list.
+This is only used by git-completion.bash to add or remove commands from the list of completed commands. Normally only porcelain commands and a few select others are completed. You can add more commands, separated by space, in this variable. Prefixing the command with *-* will remove it from the existing list.
 
 diff.autoRefreshIndex  
-When using _git diff_ to compare with work tree files, do not consider stat-only change as changed. Instead, silently run `git update-index --refresh` to update the cached stat information for paths whose contents in the work tree match the contents in the index. This option defaults to true. Note that this affects only _git diff_ Porcelain, and not lower level _diff_ commands such as _git diff-files_.
+When using *git diff* to compare with work tree files, do not consider stat-only change as changed. Instead, silently run `git update-index --refresh` to update the cached stat information for paths whose contents in the work tree match the contents in the index. This option defaults to true. Note that this affects only *git diff* Porcelain, and not lower level *diff* commands such as *git diff-files*.
 
 diff.dirstat  
 A comma separated list of `--dirstat` parameters specifying the default behavior of the `--dirstat` option to [git-diff(1)](git-diff.html) and friends. The defaults can be overridden on the command line (using `--dirstat=<param1,param2,...>`). The fallback defaults (when not changed by `diff.dirstat`) are `changes,noncumulative,3`. The following parameters are available:
@@ -1206,13 +1216,13 @@ diff.interHunkContext
 Show the context between diff hunks, up to the specified number of lines, thereby fusing the hunks that are close to each other. This value serves as the default for the `--inter-hunk-context` command line option.
 
 diff.external  
-If this config variable is set, diff generation is not performed using the internal diff machinery, but using the given command. Can be overridden with the ‘GIT_EXTERNAL_DIFF’ environment variable. The command is called with parameters as described under "git Diffs" in [git(1)](git.html). Note: if you want to use an external diff program only on a subset of your files, you might want to use [gitattributes(5)](gitattributes.html) instead.
+If this config variable is set, diff generation is not performed using the internal diff machinery, but using the given command. Can be overridden with the ‘GIT\_EXTERNAL\_DIFF’ environment variable. The command is called with parameters as described under "git Diffs" in [git(1)](git.html). Note: if you want to use an external diff program only on a subset of your files, you might want to use [gitattributes(5)](gitattributes.html) instead.
 
 diff.ignoreSubmodules  
-Sets the default value of --ignore-submodules. Note that this affects only _git diff_ Porcelain, and not lower level _diff_ commands such as _git diff-files_. _git checkout_ and _git switch_ also honor this setting when reporting uncommitted changes. Setting it to _all_ disables the submodule summary normally shown by _git commit_ and _git status_ when `status.submoduleSummary` is set unless it is overridden by using the --ignore-submodules command-line option. The _git submodule_ commands are not affected by this setting. By default this is set to untracked so that any untracked submodules are ignored.
+Sets the default value of --ignore-submodules. Note that this affects only *git diff* Porcelain, and not lower level *diff* commands such as *git diff-files*. *git checkout* and *git switch* also honor this setting when reporting uncommitted changes. Setting it to *all* disables the submodule summary normally shown by *git commit* and *git status* when `status.submoduleSummary` is set unless it is overridden by using the --ignore-submodules command-line option. The *git submodule* commands are not affected by this setting. By default this is set to untracked so that any untracked submodules are ignored.
 
 diff.mnemonicPrefix  
-If set, _git diff_ uses a prefix pair that is different from the standard "a/" and "b/" depending on what is being compared. When this configuration is in effect, reverse diff output also swaps the order of the prefixes:
+If set, *git diff* uses a prefix pair that is different from the standard "a/" and "b/" depending on what is being compared. When this configuration is in effect, reverse diff output also swaps the order of the prefixes:
 
 `git diff`  
 compares the (i)ndex and the (w)ork tree;
@@ -1223,26 +1233,26 @@ compares a (c)ommit and the (w)ork tree;
 `git diff --cached`  
 compares a (c)ommit and the (i)ndex;
 
-`git diff HEAD:file1 file2`  
+ `git diff HEAD:file1 file2`   
 compares an (o)bject and a (w)ork tree entity;
 
-`git diff --no-index a b`  
+ `git diff --no-index a b`   
 compares two non-git things (1) and (2).
 
 diff.noprefix  
-If set, _git diff_ does not show any source or destination prefix.
+If set, *git diff* does not show any source or destination prefix.
 
 diff.relative  
-If set to _true_, _git diff_ does not show changes outside of the directory and show pathnames relative to the current directory.
+If set to *true*, *git diff* does not show changes outside of the directory and show pathnames relative to the current directory.
 
 diff.orderFile  
-File indicating how to order files within a diff. See the _-O_ option to [git-diff(1)](git-diff.html) for details. If `diff.orderFile` is a relative pathname, it is treated as relative to the top of the working tree.
+File indicating how to order files within a diff. See the *-O* option to [git-diff(1)](git-diff.html) for details. If `diff.orderFile` is a relative pathname, it is treated as relative to the top of the working tree.
 
 diff.renameLimit  
-The number of files to consider when performing the copy/rename detection; equivalent to the _git diff_ option `-l`. This setting has no effect if rename detection is turned off.
+The number of files to consider when performing the copy/rename detection; equivalent to the *git diff* option `-l`. This setting has no effect if rename detection is turned off.
 
 diff.renames  
-Whether and how Git detects renames. If set to "false", rename detection is disabled. If set to "true", basic rename detection is enabled. If set to "copies" or "copy", Git will detect copies, as well. Defaults to true. Note that this affects only _git diff_ Porcelain like [git-diff(1)](git-diff.html) and [git-log(1)](git-log.html), and not lower level commands such as [git-diff-files(1)](git-diff-files.html).
+Whether and how Git detects renames. If set to "false", rename detection is disabled. If set to "true", basic rename detection is enabled. If set to "copies" or "copy", Git will detect copies, as well. Defaults to true. Note that this affects only *git diff* Porcelain like [git-diff(1)](git-diff.html) and [git-log(1)](git-log.html), and not lower level commands such as [git-diff-files(1)](git-diff-files.html).
 
 diff.suppressBlankEmpty  
 A boolean to inhibit the standard behavior of printing a space before each empty output line. Defaults to false.
@@ -1277,71 +1287,71 @@ Controls which diff tool is used by [git-difftool(1)](git-difftool.html). This v
 diff.guitool  
 Controls which diff tool is used by [git-difftool(1)](git-difftool.html) when the -g/--gui flag is specified. This variable overrides the value configured in `merge.guitool`. The list below shows the valid built-in values. Any other value is treated as a custom diff tool and requires that a corresponding difftool.&lt;guitool&gt;.cmd variable is defined.
 
-- araxis
+-   araxis
 
-- bc
+-   bc
 
-- bc3
+-   bc3
 
-- bc4
+-   bc4
 
-- codecompare
+-   codecompare
 
-- deltawalker
+-   deltawalker
 
-- diffmerge
+-   diffmerge
 
-- diffuse
+-   diffuse
 
-- ecmerge
+-   ecmerge
 
-- emerge
+-   emerge
 
-- examdiff
+-   examdiff
 
-- guiffy
+-   guiffy
 
-- gvimdiff
+-   gvimdiff
 
-- gvimdiff1
+-   gvimdiff1
 
-- gvimdiff2
+-   gvimdiff2
 
-- gvimdiff3
+-   gvimdiff3
 
-- kdiff3
+-   kdiff3
 
-- kompare
+-   kompare
 
-- meld
+-   meld
 
-- nvimdiff
+-   nvimdiff
 
-- nvimdiff1
+-   nvimdiff1
 
-- nvimdiff2
+-   nvimdiff2
 
-- nvimdiff3
+-   nvimdiff3
 
-- opendiff
+-   opendiff
 
-- p4merge
+-   p4merge
 
-- smerge
+-   smerge
 
-- tkdiff
+-   tkdiff
 
-- vimdiff
+-   vimdiff
 
-- vimdiff1
+-   vimdiff1
 
-- vimdiff2
+-   vimdiff2
 
-- vimdiff3
+-   vimdiff3
 
-- winmerge
+-   winmerge
 
-- xxdiff
+-   xxdiff
 
 diff.indentHeuristic  
 Set this option to `false` to disable the default heuristics that shift diff hunk boundaries to make patches easier to read.
@@ -1349,7 +1359,7 @@ Set this option to `false` to disable the default heuristics that shift diff hun
 diff.algorithm  
 Choose a diff algorithm. The variants are as follows:
 
-`default`, `myers`  
+ `default`, `myers`   
 The basic greedy diff algorithm. Currently, this is the default.
 
 `minimal`  
@@ -1365,16 +1375,16 @@ diff.wsErrorHighlight
 Highlight whitespace errors in the `context`, `old` or `new` lines of the diff. Multiple values are separated by comma, `none` resets previous values, `default` reset the list to `new` and `all` is a shorthand for `old,new,context`. The whitespace errors are colored with `color.diff.whitespace`. The command line option `--ws-error-highlight=<kind>` overrides this setting.
 
 diff.colorMoved  
-If set to either a valid `<mode>` or a true value, moved lines in a diff are colored differently, for details of valid modes see _--color-moved_ in [git-diff(1)](git-diff.html). If simply set to true the default color mode will be used. When set to false, moved lines are not colored.
+If set to either a valid `<mode>` or a true value, moved lines in a diff are colored differently, for details of valid modes see *--color-moved* in [git-diff(1)](git-diff.html). If simply set to true the default color mode will be used. When set to false, moved lines are not colored.
 
 diff.colorMovedWS  
-When moved lines are colored using e.g. the `diff.colorMoved` setting, this option controls the `<mode>` how spaces are treated for details of valid modes see _--color-moved-ws_ in [git-diff(1)](git-diff.html).
+When moved lines are colored using e.g. the `diff.colorMoved` setting, this option controls the `<mode>` how spaces are treated for details of valid modes see *--color-moved-ws* in [git-diff(1)](git-diff.html).
 
 difftool.&lt;tool&gt;.path  
 Override the path for the given tool. This is useful in case your tool is not in the PATH.
 
 difftool.&lt;tool&gt;.cmd  
-Specify the command to invoke the specified diff tool. The specified command is evaluated in shell with the following variables available: _LOCAL_ is set to the name of the temporary file containing the contents of the diff pre-image and _REMOTE_ is set to the name of the temporary file containing the contents of the diff post-image.
+Specify the command to invoke the specified diff tool. The specified command is evaluated in shell with the following variables available: *LOCAL* is set to the name of the temporary file containing the contents of the diff pre-image and *REMOTE* is set to the name of the temporary file containing the contents of the diff post-image.
 
 difftool.prompt  
 Prompt before each invocation of the diff tool.
@@ -1393,17 +1403,17 @@ The config settings that start with `feature.` modify the defaults of a group of
 feature.experimental  
 Enable config options that are new to Git, and are being considered for future defaults. Config settings included here may be added or removed with each release, including minor version updates. These settings may have unintended interactions since they are so new. Please enable this setting if you are interested in providing feedback on experimental features. The new default values are:
 
-- `fetch.negotiationAlgorithm=skipping` may improve fetch negotiation times by skipping more commits at a time, reducing the number of round trips.
+-   `fetch.negotiationAlgorithm=skipping` may improve fetch negotiation times by skipping more commits at a time, reducing the number of round trips.
 
 feature.manyFiles  
 Enable config options that optimize for repos with many files in the working directory. With many files, commands such as `git status` and `git checkout` may be slow and these new defaults improve performance:
 
-- `index.version=4` enables path-prefix compression in the index.
+-   `index.version=4` enables path-prefix compression in the index.
 
-- `core.untrackedCache=true` enables the untracked cache. This setting assumes that mtime is working on your machine.
+-   `core.untrackedCache=true` enables the untracked cache. This setting assumes that mtime is working on your machine.
 
 fetch.recurseSubmodules  
-This option controls whether `git fetch` (and the underlying fetch in `git pull`) will recursively fetch into populated submodules. This option can be set either to a boolean value or to _on-demand_. Setting it to a boolean changes the behavior of fetch and pull to recurse unconditionally into submodules when set to true or to not recurse at all when set to false. When set to _on-demand_, fetch and pull will only recurse into a populated submodule when its superproject retrieves a commit that updates the submodule’s reference. Defaults to _on-demand_, or to the value of _submodule.recurse_ if set.
+This option controls whether `git fetch` (and the underlying fetch in `git pull`) will recursively fetch into populated submodules. This option can be set either to a boolean value or to *on-demand*. Setting it to a boolean changes the behavior of fetch and pull to recurse unconditionally into submodules when set to true or to not recurse at all when set to false. When set to *on-demand*, fetch and pull will only recurse into a populated submodule when its superproject retrieves a commit that updates the submodule’s reference. Defaults to *on-demand*, or to the value of *submodule.recurse* if set.
 
 fetch.fsckObjects  
 If it is set to true, git-fetch-pack will check all fetched objects. See `transfer.fsckObjects` for what’s checked. Defaults to false. If not set, the value of `transfer.fsckObjects` is used instead.
@@ -1427,7 +1437,7 @@ fetch.output
 Control how ref update status is printed. Valid values are `full` and `compact`. Default value is `full`. See section OUTPUT in [git-fetch(1)](git-fetch.html) for detail.
 
 fetch.negotiationAlgorithm  
-Control how information about the commits in the local repository is sent when negotiating the contents of the packfile to be sent by the server. Set to "skipping" to use an algorithm that skips commits in an effort to converge faster, but may result in a larger-than-necessary packfile; or set to "noop" to not send any information at all, which will almost certainly result in a larger-than-necessary packfile, but will skip the negotiation step. The default is "default" which instructs Git to use the default algorithm that never skips commits (unless the server has acknowledged it or one of its descendants). If `feature.experimental` is enabled, then this setting defaults to "skipping". Unknown values will cause _git fetch_ to error out.
+Control how information about the commits in the local repository is sent when negotiating the contents of the packfile to be sent by the server. Set to "skipping" to use an algorithm that skips commits in an effort to converge faster, but may result in a larger-than-necessary packfile; or set to "noop" to not send any information at all, which will almost certainly result in a larger-than-necessary packfile, but will skip the negotiation step. The default is "default" which instructs Git to use the default algorithm that never skips commits (unless the server has acknowledged it or one of its descendants). If `feature.experimental` is enabled, then this setting defaults to "skipping". Unknown values will cause *git fetch* to error out.
 
 See also the `--negotiation-tip` option for [git-fetch(1)](git-fetch.html).
 
@@ -1445,7 +1455,7 @@ fetch.writeCommitGraph
 Set to true to write a commit-graph after every `git fetch` command that downloads a pack-file from a remote. Using the `--split` option, most executions will create a very small commit-graph file on top of the existing commit-graph file(s). Occasionally, these files will merge and the write may take longer. Having an updated commit-graph file helps performance of many Git commands, including `git merge-base`, `git push -f`, and `git log --graph`. Defaults to false.
 
 format.attach  
-Enable multipart/mixed attachments as the default for _format-patch_. The value can also be a double quoted string which will enable attachments as the default and set the value as the boundary. See the --attach option in [git-format-patch(1)](git-format-patch.html).
+Enable multipart/mixed attachments as the default for *format-patch*. The value can also be a double quoted string which will enable attachments as the default and set the value as the boundary. See the --attach option in [git-format-patch(1)](git-format-patch.html).
 
 format.from  
 Provides the default value for the `--from` option to format-patch. Accepts a boolean value, or a name and email address. If false, format-patch defaults to `--no-from`, using commit authors directly in the "From:" field of patch mails. If true, format-patch defaults to `--from`, using your committer identity in the "From:" field of patch mails and including a "From:" field in the body of the patch mail if different. If set to a non-boolean value, format-patch uses that value instead of your committer identity. Defaults to false.
@@ -1461,7 +1471,7 @@ format.cc
 Additional recipients to include in a patch to be submitted by mail. See the --to and --cc options in [git-format-patch(1)](git-format-patch.html).
 
 format.subjectPrefix  
-The default for format-patch is to output files with the _\[PATCH\]_ subject prefix. Use this variable to change that prefix.
+The default for format-patch is to output files with the *\[PATCH\]* subject prefix. Use this variable to change that prefix.
 
 format.coverFromDescription  
 The default mode for format-patch to determine which parts of the cover letter will be populated using the branch’s description. See the `--cover-from-description` option in [git-format-patch(1)](git-format-patch.html).
@@ -1482,10 +1492,10 @@ format.pretty
 The default pretty format for log/show/whatchanged command, See [git-log(1)](git-log.html), [git-show(1)](git-show.html), [git-whatchanged(1)](git-whatchanged.html).
 
 format.thread  
-The default threading style for _git format-patch_. Can be a boolean value, or `shallow` or `deep`. `shallow` threading makes every mail a reply to the head of the series, where the head is chosen from the cover letter, the `--in-reply-to`, and the first patch mail, in this order. `deep` threading makes every mail a reply to the previous one. A true boolean value is the same as `shallow`, and a false value disables threading.
+The default threading style for *git format-patch*. Can be a boolean value, or `shallow` or `deep`. `shallow` threading makes every mail a reply to the head of the series, where the head is chosen from the cover letter, the `--in-reply-to`, and the first patch mail, in this order. `deep` threading makes every mail a reply to the previous one. A true boolean value is the same as `shallow`, and a false value disables threading.
 
 format.signOff  
-A boolean value which lets you enable the `-s/--signoff` option of format-patch by default. **Note:** Adding the `Signed-off-by` trailer to a patch should be a conscious act and means that you certify you have the rights to submit this work under the same open source license. Please see the _SubmittingPatches_ document for further discussion.
+A boolean value which lets you enable the `-s/--signoff` option of format-patch by default. **Note:** Adding the `Signed-off-by` trailer to a patch should be a conscious act and means that you certify you have the rights to submit this work under the same open source license. Please see the *SubmittingPatches* document for further discussion.
 
 format.coverLetter  
 A boolean that controls whether to generate a cover-letter when format-patch is invoked, but in addition can be set to "auto", to generate a cover-letter only when there’s more than one patch. Default is false.
@@ -1538,7 +1548,7 @@ In general, it is better to enumerate existing objects with problems with `fsck.
 Setting an unknown `fsck.<msg-id>` value will cause fsck to die, but doing the same for `receive.fsck.<msg-id>` and `fetch.fsck.<msg-id>` will only cause git to warn.
 
 fsck.skipList  
-The path to a list of object names (i.e. one unabbreviated SHA-1 per line) that are known to be broken in a non-fatal way and should be ignored. On versions of Git 2.20 and later comments (_\#_), empty lines, and any leading and trailing whitespace is ignored. Everything but a SHA-1 per line will error out on older versions.
+The path to a list of object names (i.e. one unabbreviated SHA-1 per line) that are known to be broken in a non-fatal way and should be ignored. On versions of Git 2.20 and later comments (*\#*), empty lines, and any leading and trailing whitespace is ignored. Everything but a SHA-1 per line will error out on older versions.
 
 This feature is useful when an established project should be accepted despite early commits containing errors that can be safely ignored such as invalid committer email addresses. Note: corrupt objects cannot be skipped with this setting.
 
@@ -1549,12 +1559,12 @@ Unlike variables like `color.ui` and `core.editor` the `receive.fsck.skipList` a
 Older versions of Git (before 2.20) documented that the object names list should be sorted. This was never a requirement, the object names could appear in any order, but when reading the list we tracked whether the list was sorted for the purposes of an internal binary search implementation, which could save itself some work with an already sorted list. Unless you had a humongous list there was no reason to go out of your way to pre-sort the list. After Git version 2.20 a hash implementation is used instead, so there’s now no reason to pre-sort the list.
 
 gc.aggressiveDepth  
-The depth parameter used in the delta compression algorithm used by _git gc --aggressive_. This defaults to 50, which is the default for the `--depth` option when `--aggressive` isn’t in use.
+The depth parameter used in the delta compression algorithm used by *git gc --aggressive*. This defaults to 50, which is the default for the `--depth` option when `--aggressive` isn’t in use.
 
 See the documentation for the `--depth` option in [git-repack(1)](git-repack.html) for more details.
 
 gc.aggressiveWindow  
-The window size parameter used in the delta compression algorithm used by _git gc --aggressive_. This defaults to 250, which is a much more aggressive window size than the default `--window` of 10.
+The window size parameter used in the delta compression algorithm used by *git gc --aggressive*. This defaults to 250, which is a much more aggressive window size than the default `--window` of 10.
 
 See the documentation for the `--window` option in [git-repack(1)](git-repack.html) for more details.
 
@@ -1572,7 +1582,7 @@ gc.autoDetach
 Make `git gc --auto` return immediately and run in background if the system supports it. Default is true.
 
 gc.bigPackThreshold  
-If non-zero, all packs larger than this limit are kept when `git gc` is run. This is very similar to `--keep-largest-pack` except that all packs that meet the threshold are kept, not just the largest pack. Defaults to zero. Common unit suffixes of _k_, _m_, or _g_ are supported.
+If non-zero, all packs larger than this limit are kept when `git gc` is run. This is very similar to `--keep-largest-pack` except that all packs that meet the threshold are kept, not just the largest pack. Defaults to zero. Common unit suffixes of *k*, *m*, or *g* are supported.
 
 Note that if the number of kept packs is more than gc.autoPackLimit, this configuration variable is ignored, all packs except the base pack will be repacked. After this the number of packs should go below gc.autoPackLimit and gc.bigPackThreshold should be respected again.
 
@@ -1582,32 +1592,32 @@ gc.writeCommitGraph
 If true, then gc will rewrite the commit-graph file when [git-gc(1)](git-gc.html) is run. When using `git gc --auto` the commit-graph will be updated if housekeeping is required. Default is true. See [git-commit-graph(1)](git-commit-graph.html) for details.
 
 gc.logExpiry  
-If the file gc.log exists, then `git gc --auto` will print its content and exit with status zero instead of running unless that file is more than _gc.logExpiry_ old. Default is "1.day". See `gc.pruneExpire` for more ways to specify its value.
+If the file gc.log exists, then `git gc --auto` will print its content and exit with status zero instead of running unless that file is more than *gc.logExpiry* old. Default is "1.day". See `gc.pruneExpire` for more ways to specify its value.
 
 gc.packRefs  
-Running `git pack-refs` in a repository renders it unclonable by Git versions prior to 1.5.1.2 over dumb transports such as HTTP. This variable determines whether _git gc_ runs `git pack-refs`. This can be set to `notbare` to enable it within all non-bare repos or it can be set to a boolean value. The default is `true`.
+Running `git pack-refs` in a repository renders it unclonable by Git versions prior to 1.5.1.2 over dumb transports such as HTTP. This variable determines whether *git gc* runs `git pack-refs`. This can be set to `notbare` to enable it within all non-bare repos or it can be set to a boolean value. The default is `true`.
 
 gc.pruneExpire  
-When _git gc_ is run, it will call _prune --expire 2.weeks.ago_. Override the grace period with this config variable. The value "now" may be used to disable this grace period and always prune unreachable objects immediately, or "never" may be used to suppress pruning. This feature helps prevent corruption when _git gc_ runs concurrently with another process writing to the repository; see the "NOTES" section of [git-gc(1)](git-gc.html).
+When *git gc* is run, it will call *prune --expire 2.weeks.ago*. Override the grace period with this config variable. The value "now" may be used to disable this grace period and always prune unreachable objects immediately, or "never" may be used to suppress pruning. This feature helps prevent corruption when *git gc* runs concurrently with another process writing to the repository; see the "NOTES" section of [git-gc(1)](git-gc.html).
 
 gc.worktreePruneExpire  
-When _git gc_ is run, it calls _git worktree prune --expire 3.months.ago_. This config variable can be used to set a different grace period. The value "now" may be used to disable the grace period and prune `$GIT_DIR/worktrees` immediately, or "never" may be used to suppress pruning.
+When *git gc* is run, it calls *git worktree prune --expire 3.months.ago*. This config variable can be used to set a different grace period. The value "now" may be used to disable the grace period and prune `$GIT_DIR/worktrees` immediately, or "never" may be used to suppress pruning.
 
 gc.reflogExpire  
 gc.&lt;pattern&gt;.reflogExpire  
-_git reflog expire_ removes reflog entries older than this time; defaults to 90 days. The value "now" expires all entries immediately, and "never" suppresses expiration altogether. With "&lt;pattern&gt;" (e.g. "refs/stash") in the middle the setting applies only to the refs that match the &lt;pattern&gt;.
+*git reflog expire* removes reflog entries older than this time; defaults to 90 days. The value "now" expires all entries immediately, and "never" suppresses expiration altogether. With "&lt;pattern&gt;" (e.g. "refs/stash") in the middle the setting applies only to the refs that match the &lt;pattern&gt;.
 
 gc.reflogExpireUnreachable  
-gc.&lt;pattern&gt;.reflogExpireUnreachable  
-_git reflog expire_ removes reflog entries older than this time and are not reachable from the current tip; defaults to 30 days. The value "now" expires all entries immediately, and "never" suppresses expiration altogether. With "&lt;pattern&gt;" (e.g. "refs/stash") in the middle, the setting applies only to the refs that match the &lt;pattern&gt;.
+gc.&lt;pattern&gt;.reflogExpireUnreachable   
+*git reflog expire* removes reflog entries older than this time and are not reachable from the current tip; defaults to 30 days. The value "now" expires all entries immediately, and "never" suppresses expiration altogether. With "&lt;pattern&gt;" (e.g. "refs/stash") in the middle, the setting applies only to the refs that match the &lt;pattern&gt;.
 
 These types of entries are generally created as a result of using `git commit --amend` or `git rebase` and are the commits prior to the amend or rebase occurring. Since these changes are not part of the current project most users will want to expire them sooner, which is why the default is more aggressive than `gc.reflogExpire`.
 
 gc.rerereResolved  
-Records of conflicted merge you resolved earlier are kept for this many days when _git rerere gc_ is run. You can also use more human-readable "1.month.ago", etc. The default is 60 days. See [git-rerere(1)](git-rerere.html).
+Records of conflicted merge you resolved earlier are kept for this many days when *git rerere gc* is run. You can also use more human-readable "1.month.ago", etc. The default is 60 days. See [git-rerere(1)](git-rerere.html).
 
 gc.rerereUnresolved  
-Records of conflicted merge you have not resolved are kept for this many days when _git rerere gc_ is run. You can also use more human-readable "1.month.ago", etc. The default is 15 days. See [git-rerere(1)](git-rerere.html).
+Records of conflicted merge you have not resolved are kept for this many days when *git rerere gc* is run. You can also use more human-readable "1.month.ago", etc. The default is 15 days. See [git-rerere(1)](git-rerere.html).
 
 gitcvs.commitMsgAnnotation  
 Append this string to each commit message. Set to empty string to disable this feature. Defaults to "via git-CVS emulator".
@@ -1619,24 +1629,24 @@ gitcvs.logFile
 Path to a log file where the CVS server interface well…​ logs various stuff. See [git-cvsserver(1)](git-cvsserver.html).
 
 gitcvs.usecrlfattr  
-If true, the server will look up the end-of-line conversion attributes for files to determine the `-k` modes to use. If the attributes force Git to treat a file as text, the `-k` mode will be left blank so CVS clients will treat it as text. If they suppress text conversion, the file will be set with _-kb_ mode, which suppresses any newline munging the client might otherwise do. If the attributes do not allow the file type to be determined, then `gitcvs.allBinary` is used. See [gitattributes(5)](gitattributes.html).
+If true, the server will look up the end-of-line conversion attributes for files to determine the `-k` modes to use. If the attributes force Git to treat a file as text, the `-k` mode will be left blank so CVS clients will treat it as text. If they suppress text conversion, the file will be set with *-kb* mode, which suppresses any newline munging the client might otherwise do. If the attributes do not allow the file type to be determined, then `gitcvs.allBinary` is used. See [gitattributes(5)](gitattributes.html).
 
 gitcvs.allBinary  
-This is used if `gitcvs.usecrlfattr` does not resolve the correct _-kb_ mode to use. If true, all unresolved files are sent to the client in mode _-kb_. This causes the client to treat them as binary files, which suppresses any newline munging it otherwise might do. Alternatively, if it is set to "guess", then the contents of the file are examined to decide if it is binary, similar to `core.autocrlf`.
+This is used if `gitcvs.usecrlfattr` does not resolve the correct *-kb* mode to use. If true, all unresolved files are sent to the client in mode *-kb*. This causes the client to treat them as binary files, which suppresses any newline munging it otherwise might do. Alternatively, if it is set to "guess", then the contents of the file are examined to decide if it is binary, similar to `core.autocrlf`.
 
 gitcvs.dbName  
-Database used by git-cvsserver to cache revision information derived from the Git repository. The exact meaning depends on the used database driver, for SQLite (which is the default driver) this is a filename. Supports variable substitution (see [git-cvsserver(1)](git-cvsserver.html) for details). May not contain semicolons (`;`). Default: _%Ggitcvs.%m.sqlite_
+Database used by git-cvsserver to cache revision information derived from the Git repository. The exact meaning depends on the used database driver, for SQLite (which is the default driver) this is a filename. Supports variable substitution (see [git-cvsserver(1)](git-cvsserver.html) for details). May not contain semicolons (`;`). Default: *%Ggitcvs.%m.sqlite*
 
 gitcvs.dbDriver  
-Used Perl DBI driver. You can specify any available driver for this here, but it might not work. git-cvsserver is tested with _DBD::SQLite_, reported to work with _DBD::Pg_, and reported **not** to work with _DBD::mysql_. Experimental feature. May not contain double colons (`:`). Default: _SQLite_. See [git-cvsserver(1)](git-cvsserver.html).
+Used Perl DBI driver. You can specify any available driver for this here, but it might not work. git-cvsserver is tested with *DBD::SQLite*, reported to work with *DBD::Pg*, and reported **not** to work with *DBD::mysql*. Experimental feature. May not contain double colons (`:`). Default: *SQLite*. See [git-cvsserver(1)](git-cvsserver.html).
 
 gitcvs.dbUser, gitcvs.dbPass  
-Database user and password. Only useful if setting `gitcvs.dbDriver`, since SQLite has no concept of database users and/or passwords. _gitcvs.dbUser_ supports variable substitution (see [git-cvsserver(1)](git-cvsserver.html) for details).
+Database user and password. Only useful if setting `gitcvs.dbDriver`, since SQLite has no concept of database users and/or passwords. *gitcvs.dbUser* supports variable substitution (see [git-cvsserver(1)](git-cvsserver.html) for details).
 
 gitcvs.dbTableNamePrefix  
 Database table name prefix. Prepended to the names of any database tables used, allowing a single database to be used for several repositories. Supports variable substitution (see [git-cvsserver(1)](git-cvsserver.html) for details). Any non-alphabetic characters will be replaced with underscores.
 
-All gitcvs variables except for `gitcvs.usecrlfattr` and `gitcvs.allBinary` can also be specified as _gitcvs.&lt;access_method&gt;.&lt;varname&gt;_ (where _access_method_ is one of "ext" and "pserver") to make them apply only for the given access method.
+All gitcvs variables except for `gitcvs.usecrlfattr` and `gitcvs.allBinary` can also be specified as *gitcvs.&lt;access\_method&gt;.&lt;varname&gt;* (where *access\_method* is one of "ext" and "pserver") to make them apply only for the given access method.
 
 gitweb.category  
 gitweb.description  
@@ -1650,7 +1660,7 @@ gitweb.grep
 gitweb.highlight  
 gitweb.patches  
 gitweb.pickaxe  
-gitweb.remote_heads  
+gitweb.remote\_heads  
 gitweb.showSizes  
 gitweb.snapshot  
 See [gitweb.conf(5)](gitweb.conf.html) for description.
@@ -1662,10 +1672,10 @@ grep.column
 If set to true, enable the `--column` option by default.
 
 grep.patternType  
-Set the default matching behavior. Using a value of _basic_, _extended_, _fixed_, or _perl_ will enable the `--basic-regexp`, `--extended-regexp`, `--fixed-strings`, or `--perl-regexp` option accordingly, while the value _default_ will return to the default matching behavior.
+Set the default matching behavior. Using a value of *basic*, *extended*, *fixed*, or *perl* will enable the `--basic-regexp`, `--extended-regexp`, `--fixed-strings`, or `--perl-regexp` option accordingly, while the value *default* will return to the default matching behavior.
 
 grep.extendedRegexp  
-If set to true, enable `--extended-regexp` option by default. This option is ignored when the `grep.patternType` option is set to a value other than _default_.
+If set to true, enable `--extended-regexp` option by default. This option is ignored when the `grep.patternType` option is set to a value other than *default*.
 
 grep.threads  
 Number of grep worker threads to use. See `grep.threads` in [git-grep(1)](git-grep.html) for more information.
@@ -1685,15 +1695,15 @@ Use this to customize the program used for the signing format you chose. (see `g
 gpg.minTrustLevel  
 Specifies a minimum trust level for signature verification. If this option is unset, then signature verification for merge operations require a key with at least `marginal` trust. Other operations that perform signature verification require a key with at least `undefined` trust. Setting this option overrides the required trust-level for all operations. Supported values, in increasing order of significance:
 
-- `undefined`
+-   `undefined`
 
-- `never`
+-   `never`
 
-- `marginal`
+-   `marginal`
 
-- `fully`
+-   `fully`
 
-- `ultimate`
+-   `ultimate`
 
 gui.commitMsgWidth  
 Defines how wide the commit message window is in the [git-gui(1)](git-gui.html). "75" is the default.
@@ -1705,7 +1715,7 @@ gui.displayUntracked
 Determines if [git-gui(1)](git-gui.html) shows untracked files in the file list. The default is "true".
 
 gui.encoding  
-Specifies the default encoding to use for displaying of file contents in [git-gui(1)](git-gui.html) and [gitk(1)](gitk.html). It can be overridden by setting the _encoding_ attribute for relevant files (see [gitattributes(5)](gitattributes.html)). If this option is not set, the tools default to the locale encoding.
+Specifies the default encoding to use for displaying of file contents in [git-gui(1)](git-gui.html) and [gitk(1)](gitk.html). It can be overridden by setting the *encoding* attribute for relevant files (see [gitattributes(5)](gitattributes.html)). If this option is not set, the tools default to the locale encoding.
 
 gui.matchTrackingBranch  
 Determines if new branches created with [git-gui(1)](git-gui.html) should default to tracking remote branches with matching names or not. Default: "false".
@@ -1723,19 +1733,19 @@ gui.spellingDictionary
 Specifies the dictionary used for spell checking commit messages in the [git-gui(1)](git-gui.html). When set to "none" spell checking is turned off.
 
 gui.fastCopyBlame  
-If true, _git gui blame_ uses `-C` instead of `-C -C` for original location detection. It makes blame significantly faster on huge repositories at the expense of less thorough copy detection.
+If true, *git gui blame* uses `-C` instead of `-C -C` for original location detection. It makes blame significantly faster on huge repositories at the expense of less thorough copy detection.
 
 gui.copyBlameThreshold  
-Specifies the threshold to use in _git gui blame_ original location detection, measured in alphanumeric characters. See the [git-blame(1)](git-blame.html) manual for more information on copy detection.
+Specifies the threshold to use in *git gui blame* original location detection, measured in alphanumeric characters. See the [git-blame(1)](git-blame.html) manual for more information on copy detection.
 
 gui.blamehistoryctx  
-Specifies the radius of history context in days to show in [gitk(1)](gitk.html) for the selected commit, when the `Show History Context` menu item is invoked from _git gui blame_. If this variable is set to zero, the whole history is shown.
+Specifies the radius of history context in days to show in [gitk(1)](gitk.html) for the selected commit, when the `Show History Context` menu item is invoked from *git gui blame*. If this variable is set to zero, the whole history is shown.
 
 guitool.&lt;name&gt;.cmd  
-Specifies the shell command line to execute when the corresponding item of the [git-gui(1)](git-gui.html) `Tools` menu is invoked. This option is mandatory for every tool. The command is executed from the root of the working directory, and in the environment it receives the name of the tool as `GIT_GUITOOL`, the name of the currently selected file as _FILENAME_, and the name of the current branch as _CUR_BRANCH_ (if the head is detached, _CUR_BRANCH_ is empty).
+Specifies the shell command line to execute when the corresponding item of the [git-gui(1)](git-gui.html) `Tools` menu is invoked. This option is mandatory for every tool. The command is executed from the root of the working directory, and in the environment it receives the name of the tool as `GIT_GUITOOL`, the name of the currently selected file as *FILENAME*, and the name of the current branch as *CUR\_BRANCH* (if the head is detached, *CUR\_BRANCH* is empty).
 
 guitool.&lt;name&gt;.needsFile  
-Run the tool only if a diff is selected in the GUI. It guarantees that _FILENAME_ is not empty.
+Run the tool only if a diff is selected in the GUI. It guarantees that *FILENAME* is not empty.
 
 guitool.&lt;name&gt;.noConsole  
 Run the command silently, without creating a window to display its output.
@@ -1747,47 +1757,47 @@ guitool.&lt;name&gt;.confirm
 Show a confirmation dialog before actually running the tool.
 
 guitool.&lt;name&gt;.argPrompt  
-Request a string argument from the user, and pass it to the tool through the `ARGS` environment variable. Since requesting an argument implies confirmation, the _confirm_ option has no effect if this is enabled. If the option is set to _true_, _yes_, or _1_, the dialog uses a built-in generic prompt; otherwise the exact value of the variable is used.
+Request a string argument from the user, and pass it to the tool through the `ARGS` environment variable. Since requesting an argument implies confirmation, the *confirm* option has no effect if this is enabled. If the option is set to *true*, *yes*, or *1*, the dialog uses a built-in generic prompt; otherwise the exact value of the variable is used.
 
 guitool.&lt;name&gt;.revPrompt  
-Request a single valid revision from the user, and set the `REVISION` environment variable. In other aspects this option is similar to _argPrompt_, and can be used together with it.
+Request a single valid revision from the user, and set the `REVISION` environment variable. In other aspects this option is similar to *argPrompt*, and can be used together with it.
 
 guitool.&lt;name&gt;.revUnmerged  
-Show only unmerged branches in the _revPrompt_ subdialog. This is useful for tools similar to merge or rebase, but not for things like checkout or reset.
+Show only unmerged branches in the *revPrompt* subdialog. This is useful for tools similar to merge or rebase, but not for things like checkout or reset.
 
 guitool.&lt;name&gt;.title  
 Specifies the title to use for the prompt dialog. The default is the tool name.
 
 guitool.&lt;name&gt;.prompt  
-Specifies the general prompt string to display at the top of the dialog, before subsections for _argPrompt_ and _revPrompt_. The default value includes the actual command.
+Specifies the general prompt string to display at the top of the dialog, before subsections for *argPrompt* and *revPrompt*. The default value includes the actual command.
 
 help.browser  
-Specify the browser that will be used to display help in the _web_ format. See [git-help(1)](git-help.html).
+Specify the browser that will be used to display help in the *web* format. See [git-help(1)](git-help.html).
 
 help.format  
-Override the default help format used by [git-help(1)](git-help.html). Values _man_, _info_, _web_ and _html_ are supported. _man_ is the default. _web_ and _html_ are the same.
+Override the default help format used by [git-help(1)](git-help.html). Values *man*, *info*, *web* and *html* are supported. *man* is the default. *web* and *html* are the same.
 
 help.autoCorrect  
 If git detects typos and can identify exactly one valid command similar to the error, git will automatically run the intended command after waiting a duration of time defined by this configuration value in deciseconds (0.1 sec). If this value is 0, the suggested corrections will be shown, but not executed. If it is a negative integer, or "immediate", the suggested command is run immediately. If "never", suggestions are not shown at all. The default value is zero.
 
 help.htmlPath  
-Specify the path where the HTML documentation resides. File system paths and URLs are supported. HTML pages will be prefixed with this path when help is displayed in the _web_ format. This defaults to the documentation path of your Git installation.
+Specify the path where the HTML documentation resides. File system paths and URLs are supported. HTML pages will be prefixed with this path when help is displayed in the *web* format. This defaults to the documentation path of your Git installation.
 
 http.proxy  
-Override the HTTP proxy, normally configured using the _http_proxy_, _https_proxy_, and _all_proxy_ environment variables (see `curl(1)`). In addition to the syntax understood by curl, it is possible to specify a proxy string with a user name but no password, in which case git will attempt to acquire one in the same way it does for other credentials. See [gitcredentials(7)](gitcredentials.html) for more information. The syntax thus is _\[protocol://\]\[user\[:password\]@\]proxyhost\[:port\]_. This can be overridden on a per-remote basis; see remote.&lt;name&gt;.proxy
+Override the HTTP proxy, normally configured using the *http\_proxy*, *https\_proxy*, and *all\_proxy* environment variables (see `curl(1)`). In addition to the syntax understood by curl, it is possible to specify a proxy string with a user name but no password, in which case git will attempt to acquire one in the same way it does for other credentials. See [gitcredentials(7)](gitcredentials.html) for more information. The syntax thus is *\[protocol://\]\[user\[:password\]@\]proxyhost\[:port\]*. This can be overridden on a per-remote basis; see remote.&lt;name&gt;.proxy
 
 http.proxyAuthMethod  
-Set the method with which to authenticate against the HTTP proxy. This only takes effect if the configured proxy string contains a user name part (i.e. is of the form _user@host_ or _user@host:port_). This can be overridden on a per-remote basis; see `remote.<name>.proxyAuthMethod`. Both can be overridden by the `GIT_HTTP_PROXY_AUTHMETHOD` environment variable. Possible values are:
+Set the method with which to authenticate against the HTTP proxy. This only takes effect if the configured proxy string contains a user name part (i.e. is of the form *user@host* or *user@host:port*). This can be overridden on a per-remote basis; see `remote.<name>.proxyAuthMethod`. Both can be overridden by the `GIT_HTTP_PROXY_AUTHMETHOD` environment variable. Possible values are:
 
-- `anyauth` - Automatically pick a suitable authentication method. It is assumed that the proxy answers an unauthenticated request with a 407 status code and one or more Proxy-authenticate headers with supported authentication methods. This is the default.
+-   `anyauth` - Automatically pick a suitable authentication method. It is assumed that the proxy answers an unauthenticated request with a 407 status code and one or more Proxy-authenticate headers with supported authentication methods. This is the default.
 
-- `basic` - HTTP Basic authentication
+-   `basic` - HTTP Basic authentication
 
-- `digest` - HTTP Digest authentication; this prevents the password from being transmitted to the proxy in clear text
+-   `digest` - HTTP Digest authentication; this prevents the password from being transmitted to the proxy in clear text
 
-- `negotiate` - GSS-Negotiate authentication (compare the --negotiate option of `curl(1)`)
+-   `negotiate` - GSS-Negotiate authentication (compare the --negotiate option of `curl(1)`)
 
-- `ntlm` - NTLM authentication (compare the --ntlm option of `curl(1)`)
+-   `ntlm` - NTLM authentication (compare the --ntlm option of `curl(1)`)
 
 http.proxySSLCert  
 The pathname of a file that stores a client certificate to use to authenticate with an HTTPS proxy. Can be overridden by the `GIT_PROXY_SSL_CERT` environment variable.
@@ -1807,11 +1817,11 @@ Attempt authentication without seeking a username or password. This can be used 
 http.delegation  
 Control GSSAPI credential delegation. The delegation is disabled by default in libcurl since version 7.21.7. Set parameter to tell the server what it is allowed to delegate when it comes to user credentials. Used with GSS/kerberos. Possible values are:
 
-- `none` - Don’t allow any delegation.
+-   `none` - Don’t allow any delegation.
 
-- `policy` - Delegates if and only if the OK-AS-DELEGATE flag is set in the Kerberos service ticket, which is a matter of realm policy.
+-   `policy` - Delegates if and only if the OK-AS-DELEGATE flag is set in the Kerberos service ticket, which is a matter of realm policy.
 
-- `always` - Unconditionally allow the server to delegate.
+-   `always` - Unconditionally allow the server to delegate.
 
 http.extraHeader  
 Pass an additional HTTP header when communicating with a server. If more than one such entry exists, all of them are added as extra headers. To allow overriding the settings inherited from the system config, an empty value will reset the extra headers to the empty list.
@@ -1825,31 +1835,31 @@ If set, store cookies received during requests to the file specified by http.coo
 http.version  
 Use the specified HTTP protocol version when communicating with a server. If you want to force the default. The available and default version depend on libcurl. Currently the possible values of this option are:
 
-- HTTP/2
+-   HTTP/2
 
-- HTTP/1.1
+-   HTTP/1.1
 
 http.sslVersion  
-The SSL version to use when negotiating an SSL connection, if you want to force the default. The available and default version depend on whether libcurl was built against NSS or OpenSSL and the particular configuration of the crypto library in use. Internally this sets the _CURLOPT_SSL_VERSION_ option; see the libcurl documentation for more details on the format of this option and for the ssl version supported. Currently the possible values of this option are:
+The SSL version to use when negotiating an SSL connection, if you want to force the default. The available and default version depend on whether libcurl was built against NSS or OpenSSL and the particular configuration of the crypto library in use. Internally this sets the *CURLOPT\_SSL\_VERSION* option; see the libcurl documentation for more details on the format of this option and for the ssl version supported. Currently the possible values of this option are:
 
-- sslv2
+-   sslv2
 
-- sslv3
+-   sslv3
 
-- tlsv1
+-   tlsv1
 
-- tlsv1.0
+-   tlsv1.0
 
-- tlsv1.1
+-   tlsv1.1
 
-- tlsv1.2
+-   tlsv1.2
 
-- tlsv1.3
+-   tlsv1.3
 
 Can be overridden by the `GIT_SSL_VERSION` environment variable. To force git to use libcurl’s default ssl version and ignore any explicit http.sslversion option, set `GIT_SSL_VERSION` to the empty string.
 
 http.sslCipherList  
-A list of SSL ciphers to use when negotiating an SSL connection. The available ciphers depend on whether libcurl was built against NSS or OpenSSL and the particular configuration of the crypto library in use. Internally this sets the _CURLOPT_SSL_CIPHER_LIST_ option; see the libcurl documentation for more details on the format of this list.
+A list of SSL ciphers to use when negotiating an SSL connection. The available ciphers depend on whether libcurl was built against NSS or OpenSSL and the particular configuration of the crypto library in use. Internally this sets the *CURLOPT\_SSL\_CIPHER\_LIST* option; see the libcurl documentation for more details on the format of this list.
 
 Can be overridden by the `GIT_SSL_CIPHER_LIST` environment variable. To force git to use libcurl’s default cipher list and ignore any explicit http.sslCipherList option, set `GIT_SSL_CIPHER_LIST` to the empty string.
 
@@ -1881,7 +1891,7 @@ http.schannelUseSSLCAInfo
 As of cURL v7.60.0, the Secure Channel backend can use the certificate bundle provided via `http.sslCAInfo`, but that would override the Windows Certificate Store. Since this is not desirable by default, Git will tell cURL not to use that bundle by default when the `schannel` backend was configured via `http.sslBackend`, unless `http.schannelUseSSLCAInfo` overrides this behavior.
 
 http.pinnedpubkey  
-Public key of the https service. It may either be the filename of a PEM or DER encoded public key file or a string starting with _sha256//_ followed by the base64 encoded sha256 hash of the public key. See also libcurl _CURLOPT_PINNEDPUBLICKEY_. git will exit with an error if this option is set but not supported by cURL.
+Public key of the https service. It may either be the filename of a PEM or DER encoded public key file or a string starting with *sha256//* followed by the base64 encoded sha256 hash of the public key. See also libcurl *CURLOPT\_PINNEDPUBLICKEY*. git will exit with an error if this option is set but not supported by cURL.
 
 http.sslTry  
 Attempt to use AUTH SSL/TLS and encrypted data transfers when connecting via regular FTP protocol. This might be needed if the FTP server requires it for security reasons or you wish to connect securely whenever remote FTP server supports it. Default is false since it might trigger certificate verification errors on misconfigured servers.
@@ -1890,7 +1900,7 @@ http.maxRequests
 How many HTTP requests to launch in parallel. Can be overridden by the `GIT_HTTP_MAX_REQUESTS` environment variable. Default is 5.
 
 http.minSessions  
-The number of curl sessions (counted across slots) to be kept across requests. They will not be ended with curl_easy_cleanup() until http_cleanup() is invoked. If USE_CURL_MULTI is not defined, this value will be capped at 1. Defaults to 1.
+The number of curl sessions (counted across slots) to be kept across requests. They will not be ended with curl\_easy\_cleanup() until http\_cleanup() is invoked. If USE\_CURL\_MULTI is not defined, this value will be capped at 1. Defaults to 1.
 
 http.postBuffer  
 Maximum size in bytes of the buffer used by smart HTTP transports when POSTing data to the remote system. For requests larger than this buffer size, HTTP/1.1 and Transfer-Encoding: chunked is used to avoid creating a massive pack file locally. Default is 1 MiB, which is sufficient for most requests.
@@ -1898,13 +1908,13 @@ Maximum size in bytes of the buffer used by smart HTTP transports when POSTing d
 Note that raising this limit is only effective for disabling chunked transfer encoding and therefore should be used only where the remote server or a proxy only supports HTTP/1.0 or is noncompliant with the HTTP standard. Raising this is not, in general, an effective solution for most push problems, but can increase memory consumption significantly since the entire buffer is allocated even for small pushes.
 
 http.lowSpeedLimit, http.lowSpeedTime  
-If the HTTP transfer speed is less than _http.lowSpeedLimit_ for longer than _http.lowSpeedTime_ seconds, the transfer is aborted. Can be overridden by the `GIT_HTTP_LOW_SPEED_LIMIT` and `GIT_HTTP_LOW_SPEED_TIME` environment variables.
+If the HTTP transfer speed is less than *http.lowSpeedLimit* for longer than *http.lowSpeedTime* seconds, the transfer is aborted. Can be overridden by the `GIT_HTTP_LOW_SPEED_LIMIT` and `GIT_HTTP_LOW_SPEED_TIME` environment variables.
 
 http.noEPSV  
 A boolean which disables using of EPSV ftp command by curl. This can helpful with some "poor" ftp servers which don’t support EPSV mode. Can be overridden by the `GIT_CURL_FTP_NO_EPSV` environment variable. Default is false (curl will use EPSV).
 
 http.userAgent  
-The HTTP USER_AGENT string presented to an HTTP server. The default value represents the version of the client Git such as git/1.7.1. This option allows you to override this value to a more common value such as Mozilla/4.0. This may be necessary, for instance, if connecting through a firewall that restricts HTTP connections to a set of common USER_AGENT strings (but not including those like git/1.7.1). Can be overridden by the `GIT_HTTP_USER_AGENT` environment variable.
+The HTTP USER\_AGENT string presented to an HTTP server. The default value represents the version of the client Git such as git/1.7.1. This option allows you to override this value to a more common value such as Mozilla/4.0. This may be necessary, for instance, if connecting through a firewall that restricts HTTP connections to a set of common USER\_AGENT strings (but not including those like git/1.7.1). Can be overridden by the `GIT_HTTP_USER_AGENT` environment variable.
 
 http.followRedirects  
 Whether git should follow HTTP redirects. If set to `true`, git will transparently follow any redirect issued by a server it encounters. If set to `false`, git will treat all redirects as errors. If set to `initial`, git will follow redirects only for the initial request to a remote, but not for subsequent follow-up HTTP requests. Since git uses the redirected URL as the base for the follow-up requests, this is generally sufficient. The default is `initial`.
@@ -1927,10 +1937,10 @@ The list above is ordered by decreasing precedence; a URL that matches a config 
 All URLs are normalized before attempting any matching (the password part, if embedded in the URL, is always ignored for matching purposes) so that equivalent URLs that are simply spelled differently will match properly. Environment variable settings always override any matches. The URLs that are matched against are those given directly to Git commands. This means any URLs visited as a result of a redirection do not participate in matching.
 
 i18n.commitEncoding  
-Character encoding the commit messages are stored in; Git itself does not care per se, but this information is necessary e.g. when importing commits from emails or in the gitk graphical history browser (and possibly at other places in the future or in other porcelains). See e.g. [git-mailinfo(1)](git-mailinfo.html). Defaults to _utf-8_.
+Character encoding the commit messages are stored in; Git itself does not care per se, but this information is necessary e.g. when importing commits from emails or in the gitk graphical history browser (and possibly at other places in the future or in other porcelains). See e.g. [git-mailinfo(1)](git-mailinfo.html). Defaults to *utf-8*.
 
 i18n.logOutputEncoding  
-Character encoding the commit messages are converted to when running _git log_ and friends.
+Character encoding the commit messages are converted to when running *git log* and friends.
 
 imap.folder  
 The folder to drop the mails into, which is typically the Drafts folder. For example: "INBOX.Drafts", "INBOX/Drafts" or "\[Gmail\]/Drafts". Required.
@@ -1957,16 +1967,16 @@ imap.preformattedHTML
 A boolean to enable/disable the use of html encoding when sending a patch. An html encoded patch will be bracketed with &lt;pre&gt; and have a content type of text/html. Ironically, enabling this option causes Thunderbird to send the patch as a plain/text, format=fixed email. Default is `false`.
 
 imap.authMethod  
-Specify authenticate method for authentication with IMAP server. If Git was built with the NO*CURL option, or if your curl version is older than 7.34.0, or if you’re running git-imap-send with the `--no-curl` option, the only supported method is \_CRAM-MD5*. If this is not set then _git imap-send_ uses the basic IMAP plaintext LOGIN command.
+Specify authenticate method for authentication with IMAP server. If Git was built with the NO\_CURL option, or if your curl version is older than 7.34.0, or if you’re running git-imap-send with the `--no-curl` option, the only supported method is *CRAM-MD5*. If this is not set then *git imap-send* uses the basic IMAP plaintext LOGIN command.
 
 index.recordEndOfIndexEntries  
-Specifies whether the index file should include an "End Of Index Entry" section. This reduces index load time on multiprocessor machines but produces a message "ignoring EOIE extension" when reading the index using Git versions before 2.20. Defaults to _true_ if index.threads has been explicitly enabled, _false_ otherwise.
+Specifies whether the index file should include an "End Of Index Entry" section. This reduces index load time on multiprocessor machines but produces a message "ignoring EOIE extension" when reading the index using Git versions before 2.20. Defaults to *true* if index.threads has been explicitly enabled, *false* otherwise.
 
 index.recordOffsetTable  
-Specifies whether the index file should include an "Index Entry Offset Table" section. This reduces index load time on multiprocessor machines but produces a message "ignoring IEOT extension" when reading the index using Git versions before 2.20. Defaults to _true_ if index.threads has been explicitly enabled, _false_ otherwise.
+Specifies whether the index file should include an "Index Entry Offset Table" section. This reduces index load time on multiprocessor machines but produces a message "ignoring IEOT extension" when reading the index using Git versions before 2.20. Defaults to *true* if index.threads has been explicitly enabled, *false* otherwise.
 
 index.threads  
-Specifies the number of threads to spawn when loading the index. This is meant to reduce index load time on multiprocessor machines. Specifying 0 or _true_ will cause Git to auto-detect the number of CPU’s and set the number of threads accordingly. Specifying 1 or _false_ will disable multithreading. Defaults to _true_.
+Specifies the number of threads to spawn when loading the index. This is meant to reduce index load time on multiprocessor machines. Specifying 0 or *true* will cause Git to auto-detect the number of CPU’s and set the number of threads accordingly. Specifying 1 or *false* will disable multithreading. Defaults to *true*.
 
 index.version  
 Specify the version with which new index files should be initialized. This does not affect existing repositories. If `feature.manyFiles` is enabled, then the default is 4.
@@ -2002,10 +2012,10 @@ log.abbrevCommit
 If true, makes [git-log(1)](git-log.html), [git-show(1)](git-show.html), and [git-whatchanged(1)](git-whatchanged.html) assume `--abbrev-commit`. You may override this option with `--no-abbrev-commit`.
 
 log.date  
-Set the default date-time mode for the _log_ command. Setting a value for log.date is similar to using _git log_'s `--date` option. See [git-log(1)](git-log.html) for details.
+Set the default date-time mode for the *log* command. Setting a value for log.date is similar to using *git log*'s `--date` option. See [git-log(1)](git-log.html) for details.
 
 log.decorate  
-Print out the ref names of any commits that are shown by the log command. If _short_ is specified, the ref name prefixes _refs/heads/_, _refs/tags/_ and _refs/remotes/_ will not be printed. If _full_ is specified, the full ref name (including prefix) will be printed. If _auto_ is specified, then if the output is going to a terminal, the ref names are shown as if _short_ were given, otherwise no ref names are shown. This is the same as the `--decorate` option of the `git log`.
+Print out the ref names of any commits that are shown by the log command. If *short* is specified, the ref name prefixes *refs/heads/*, *refs/tags/* and *refs/remotes/* will not be printed. If *full* is specified, the full ref name (including prefix) will be printed. If *auto* is specified, then if the output is going to a terminal, the ref names are shown as if *short* were given, otherwise no ref names are shown. This is the same as the `--decorate` option of the `git log`.
 
 log.excludeDecoration  
 Exclude the specified patterns from the log decorations. This is similar to the `--decorate-refs-exclude` command-line option, but the config option can be overridden by the `--decorate-refs` option.
@@ -2043,9 +2053,9 @@ This boolean config option controls whether some commands run `git maintenance r
 maintenance.strategy  
 This string config option provides a way to specify one of a few recommended schedules for background maintenance. This only affects which tasks are run during `git maintenance run --schedule=X` commands, provided no `--task=<task>` arguments are provided. Further, if a `maintenance.<task>.schedule` config value is set, then that value is used instead of the one provided by `maintenance.strategy`. The possible strategy strings are:
 
-- `none`: This default setting implies no task are run at any schedule.
+-   `none`: This default setting implies no task are run at any schedule.
 
-- `incremental`: This setting optimizes for performing small maintenance activities that do not delete any data. This does not schedule the `gc` task, but runs the `prefetch` and `commit-graph` tasks hourly, the `loose-objects` and `incremental-repack` tasks daily, and the `pack-refs` task weekly.
+-   `incremental`: This setting optimizes for performing small maintenance activities that do not delete any data. This does not schedule the `gc` task, but runs the `prefetch` and `commit-graph` tasks hourly, the `loose-objects` and `incremental-repack` tasks daily, and the `pack-refs` task weekly.
 
 maintenance.&lt;task&gt;.enabled  
 This boolean config option controls whether the maintenance task with name `<task>` is run when no `--task` option is specified to `git maintenance run`. These config values are ignored if a `--task` option exists. By default, only `maintenance.gc.enabled` is true.
@@ -2063,13 +2073,13 @@ maintenance.incremental-repack.auto
 This integer config option controls how often the `incremental-repack` task should be run as part of `git maintenance run --auto`. If zero, then the `incremental-repack` task will not run with the `--auto` option. A negative value will force the task to run every time. Otherwise, a positive value implies the command should run when the number of pack-files not in the multi-pack-index is at least the value of `maintenance.incremental-repack.auto`. The default value is 10.
 
 man.viewer  
-Specify the programs that may be used to display help in the _man_ format. See [git-help(1)](git-help.html).
+Specify the programs that may be used to display help in the *man* format. See [git-help(1)](git-help.html).
 
 man.&lt;tool&gt;.cmd  
 Specify the command to invoke the specified man viewer. The specified command is evaluated in shell with the man page passed as argument. (See [git-help(1)](git-help.html).)
 
 man.&lt;tool&gt;.path  
-Override the path for the given tool that may be used to display help in the _man_ format. See [git-help(1)](git-help.html).
+Override the path for the given tool that may be used to display help in the *man* format. See [git-help(1)](git-help.html).
 
 merge.conflictStyle  
 Specify the style in which conflicted hunks are written out to working tree files upon merge. The default is "merge", which shows a `<<<<<<<` conflict marker, changes made by one side, a `=======` marker, changes made by the other side, and then a `>>>>>>>` marker. An alternate style, "diff3", adds a `|||||||` marker and the original text before the `=======` marker.
@@ -2107,7 +2117,7 @@ merge.renormalize
 Tell Git that canonical representation of files in the repository has changed over time (e.g. earlier commits record text files with CRLF line endings, but recent ones use LF line endings). In such a repository, Git can convert the data recorded in commits to a canonical form before performing a merge to reduce unnecessary conflicts. For more information, see section "Merging branches with differing checkin/checkout attributes" in [gitattributes(5)](gitattributes.html).
 
 merge.stat  
-Whether to print the diffstat between ORIG_HEAD and the merge result at the end of the merge. True by default.
+Whether to print the diffstat between ORIG\_HEAD and the merge result at the end of the merge. True by default.
 
 merge.autoStash  
 When set to true, automatically create a temporary stash entry before the operation begins, and apply it after the operation ends. This means that you can run merge on a dirty worktree. However, use with care: the final stash application after a successful merge might result in non-trivial conflicts. This option can be overridden by the `--no-autostash` and `--autostash` options of [git-merge(1)](git-merge.html). Defaults to false.
@@ -2118,71 +2128,71 @@ Controls which merge tool is used by [git-mergetool(1)](git-mergetool.html). The
 merge.guitool  
 Controls which merge tool is used by [git-mergetool(1)](git-mergetool.html) when the -g/--gui flag is specified. The list below shows the valid built-in values. Any other value is treated as a custom merge tool and requires that a corresponding mergetool.&lt;guitool&gt;.cmd variable is defined.
 
-- araxis
+-   araxis
 
-- bc
+-   bc
 
-- bc3
+-   bc3
 
-- bc4
+-   bc4
 
-- codecompare
+-   codecompare
 
-- deltawalker
+-   deltawalker
 
-- diffmerge
+-   diffmerge
 
-- diffuse
+-   diffuse
 
-- ecmerge
+-   ecmerge
 
-- emerge
+-   emerge
 
-- examdiff
+-   examdiff
 
-- guiffy
+-   guiffy
 
-- gvimdiff
+-   gvimdiff
 
-- gvimdiff1
+-   gvimdiff1
 
-- gvimdiff2
+-   gvimdiff2
 
-- gvimdiff3
+-   gvimdiff3
 
-- kdiff3
+-   kdiff3
 
-- meld
+-   meld
 
-- nvimdiff
+-   nvimdiff
 
-- nvimdiff1
+-   nvimdiff1
 
-- nvimdiff2
+-   nvimdiff2
 
-- nvimdiff3
+-   nvimdiff3
 
-- opendiff
+-   opendiff
 
-- p4merge
+-   p4merge
 
-- smerge
+-   smerge
 
-- tkdiff
+-   tkdiff
 
-- tortoisemerge
+-   tortoisemerge
 
-- vimdiff
+-   vimdiff
 
-- vimdiff1
+-   vimdiff1
 
-- vimdiff2
+-   vimdiff2
 
-- vimdiff3
+-   vimdiff3
 
-- winmerge
+-   winmerge
 
-- xxdiff
+-   xxdiff
 
 merge.verbosity  
 Controls the amount of output shown by the recursive merge strategy. Level 0 outputs nothing except a final error message if conflicts were detected. Level 1 outputs only conflicts, 2 outputs conflicts and file changes. Level 5 and above outputs debugging information. The default is level 2. Can be overridden by the `GIT_MERGE_VERBOSITY` environment variable.
@@ -2200,7 +2210,7 @@ mergetool.&lt;tool&gt;.path
 Override the path for the given tool. This is useful in case your tool is not in the PATH.
 
 mergetool.&lt;tool&gt;.cmd  
-Specify the command to invoke the specified merge tool. The specified command is evaluated in shell with the following variables available: _BASE_ is the name of a temporary file containing the common base of the files to be merged, if available; _LOCAL_ is the name of a temporary file containing the contents of the file on the current branch; _REMOTE_ is the name of a temporary file containing the contents of the file from the branch being merged; _MERGED_ contains the name of the file to which the merge tool should write the results of a successful merge.
+Specify the command to invoke the specified merge tool. The specified command is evaluated in shell with the following variables available: *BASE* is the name of a temporary file containing the common base of the files to be merged, if available; *LOCAL* is the name of a temporary file containing the contents of the file on the current branch; *REMOTE* is the name of a temporary file containing the contents of the file from the branch being merged; *MERGED* contains the name of the file to which the merge tool should write the results of a successful merge.
 
 mergetool.&lt;tool&gt;.hideResolved  
 Allows the user to override the global `mergetool.hideResolved` value for a specific tool. See `mergetool.hideResolved` for the full description.
@@ -2215,7 +2225,7 @@ mergetool.meld.useAutoMerge
 When the `--auto-merge` is given, meld will merge all non-conflicting parts automatically, highlight the conflicting parts and wait for user decision. Setting `mergetool.meld.useAutoMerge` to `true` tells Git to unconditionally use the `--auto-merge` option with `meld`. Setting this value to `auto` makes git detect whether `--auto-merge` is supported and will only use `--auto-merge` when available. A value of `false` avoids using `--auto-merge` altogether, and is the default value.
 
 mergetool.hideResolved  
-During a merge Git will automatically resolve as many conflicts as possible and write the _MERGED_ file containing conflict markers around any conflicts that it cannot resolve; _LOCAL_ and _REMOTE_ normally represent the versions of the file from before Git’s conflict resolution. This flag causes _LOCAL_ and _REMOTE_ to be overwriten so that only the unresolved conflicts are presented to the merge tool. Can be configured per-tool via the `mergetool.<tool>.hideResolved` configuration variable. Defaults to `false`.
+During a merge Git will automatically resolve as many conflicts as possible and write the *MERGED* file containing conflict markers around any conflicts that it cannot resolve; *LOCAL* and *REMOTE* normally represent the versions of the file from before Git’s conflict resolution. This flag causes *LOCAL* and *REMOTE* to be overwriten so that only the unresolved conflicts are presented to the merge tool. Can be configured per-tool via the `mergetool.<tool>.hideResolved` configuration variable. Defaults to `false`.
 
 mergetool.keepBackup  
 After performing a merge, the original file with conflict markers can be saved as a file with a `.orig` extension. If this variable is set to `false` then this file is not preserved. Defaults to `true` (i.e. keep the backup files).
@@ -2224,7 +2234,7 @@ mergetool.keepTemporaries
 When invoking a custom merge tool, Git uses a set of temporary files to pass to the tool. If the tool returns an error and this variable is set to `true`, then these temporary files will be preserved, otherwise they will be removed after the tool has exited. Defaults to `false`.
 
 mergetool.writeToTemp  
-Git writes temporary _BASE_, _LOCAL_, and _REMOTE_ versions of conflicting files in the worktree by default. Git will attempt to use a temporary directory for these files when set `true`. Defaults to `false`.
+Git writes temporary *BASE*, *LOCAL*, and *REMOTE* versions of conflicting files in the worktree by default. Git will attempt to use a temporary directory for these files when set `true`. Defaults to `false`.
 
 mergetool.prompt  
 Prompt before each invocation of the merge resolution program.
@@ -2240,7 +2250,7 @@ The (fully qualified) refname from which to show notes when showing commit messa
 
 This setting can be overridden with the `GIT_NOTES_DISPLAY_REF` environment variable, which must be a colon separated list of refs or globs.
 
-The effective value of "core.notesRef" (possibly overridden by GIT_NOTES_REF) is also implicitly added to the list of refs to be displayed.
+The effective value of "core.notesRef" (possibly overridden by GIT\_NOTES\_REF) is also implicitly added to the list of refs to be displayed.
 
 notes.rewrite.&lt;command&gt;  
 When rewriting commits with &lt;command&gt; (currently `amend` or `rebase`) and this variable is set to `true`, Git automatically copies your notes from the original to the rewritten commit. Defaults to `true`, but see "notes.rewriteRef" below.
@@ -2295,13 +2305,13 @@ Specify the default pack index version. Valid values are 1 for legacy pack index
 If you have an old Git that does not understand the version 2 `*.idx` file, cloning or fetching over a non native protocol (e.g. "http") that will copy both `*.pack` file and corresponding `*.idx` file from the other side may give you a repository that cannot be accessed with your older version of Git. If the `*.pack` file is smaller than 2 GB, however, you can use [git-index-pack(1)](git-index-pack.html) on the \*.pack file to regenerate the `*.idx` file.
 
 pack.packSizeLimit  
-The maximum size of a pack. This setting only affects packing to a file when repacking, i.e. the git:// protocol is unaffected. It can be overridden by the `--max-pack-size` option of [git-repack(1)](git-repack.html). Reaching this limit results in the creation of multiple packfiles; which in turn prevents bitmaps from being created. The minimum size allowed is limited to 1 MiB. The default is unlimited. Common unit suffixes of _k_, _m_, or _g_ are supported.
+The maximum size of a pack. This setting only affects packing to a file when repacking, i.e. the git:// protocol is unaffected. It can be overridden by the `--max-pack-size` option of [git-repack(1)](git-repack.html). Reaching this limit results in the creation of multiple packfiles; which in turn prevents bitmaps from being created. The minimum size allowed is limited to 1 MiB. The default is unlimited. Common unit suffixes of *k*, *m*, or *g* are supported.
 
 pack.useBitmaps  
 When true, git will use pack bitmaps (if available) when packing to stdout (e.g., during the server side of a fetch). Defaults to true. You should not generally need to turn this off unless you are debugging pack bitmaps.
 
 pack.useSparse  
-When true, git will default to using the _--sparse_ option in _git pack-objects_ when the _--revs_ option is present. This algorithm only walks trees that appear in paths that introduce new objects. This can have significant performance benefits when computing a pack to send a small change. However, it is possible that extra objects are added to the pack-file if the included commits contain certain types of direct renames. Default is `true`.
+When true, git will default to using the *--sparse* option in *git pack-objects* when the *--revs* option is present. This algorithm only walks trees that appear in paths that introduce new objects. This can have significant performance benefits when computing a pack to send a small change. However, it is possible that extra objects are added to the pack-file if the included commits contain certain types of direct renames. Default is `true`.
 
 pack.writeBitmaps (deprecated)  
 This is a deprecated synonym for `repack.writeBitmaps`.
@@ -2321,35 +2331,35 @@ Alias for a --pretty= format string, as specified in [git-log(1)](git-log.html).
 protocol.allow  
 If set, provide a user defined default policy for all protocols which don’t explicitly have a policy (`protocol.<name>.allow`). By default, if unset, known-safe protocols (http, https, git, ssh, file) have a default policy of `always`, known-dangerous protocols (ext) have a default policy of `never`, and all other protocols have a default policy of `user`. Supported policies:
 
-- `always` - protocol is always able to be used.
+-   `always` - protocol is always able to be used.
 
-- `never` - protocol is never able to be used.
+-   `never` - protocol is never able to be used.
 
-- `user` - protocol is only able to be used when `GIT_PROTOCOL_FROM_USER` is either unset or has a value of 1. This policy should be used when you want a protocol to be directly usable by the user but don’t want it used by commands which execute clone/fetch/push commands without user input, e.g. recursive submodule initialization.
+-   `user` - protocol is only able to be used when `GIT_PROTOCOL_FROM_USER` is either unset or has a value of 1. This policy should be used when you want a protocol to be directly usable by the user but don’t want it used by commands which execute clone/fetch/push commands without user input, e.g. recursive submodule initialization.
 
 protocol.&lt;name&gt;.allow  
 Set a policy to be used by protocol `<name>` with clone/fetch/push commands. See `protocol.allow` above for the available policies.
 
 The protocol names currently used by git are:
 
-- `file`: any local file-based path (including `file://` URLs, or local paths)
+-   `file`: any local file-based path (including `file://` URLs, or local paths)
 
-- `git`: the anonymous git protocol over a direct TCP connection (or proxy, if configured)
+-   `git`: the anonymous git protocol over a direct TCP connection (or proxy, if configured)
 
-- `ssh`: git over ssh (including `host:path` syntax, `ssh://`, etc).
+-   `ssh`: git over ssh (including `host:path` syntax, `ssh://`, etc).
 
-- `http`: git over http, both "smart http" and "dumb http". Note that this does _not_ include `https`; if you want to configure both, you must do so individually.
+-   `http`: git over http, both "smart http" and "dumb http". Note that this does *not* include `https`; if you want to configure both, you must do so individually.
 
-- any external helpers are named by their protocol (e.g., use `hg` to allow the `git-remote-hg` helper)
+-   any external helpers are named by their protocol (e.g., use `hg` to allow the `git-remote-hg` helper)
 
 protocol.version  
 If set, clients will attempt to communicate with a server using the specified protocol version. If the server does not support it, communication falls back to version 0. If unset, the default is `2`. Supported versions:
 
-- `0` - the original wire protocol.
+-   `0` - the original wire protocol.
 
-- `1` - the original wire protocol with the addition of a version string in the initial response from the server.
+-   `1` - the original wire protocol with the addition of a version string in the initial response from the server.
 
-- `2` - [wire protocol version 2](technical/protocol-v2.html).
+-   `2` - [wire protocol version 2](technical/protocol-v2.html).
 
 pull.ff  
 By default, Git does not create an extra merge commit when merging a commit that is a descendant of the current commit. Instead, the tip of the current branch is fast-forwarded. When set to `false`, this variable tells Git to create an extra merge commit in such a case (equivalent to giving the `--no-ff` option from the command line). When set to `only`, only such fast-forward merges are allowed (equivalent to giving the `--ff-only` option from the command line). This setting overrides `merge.ff` when pulling.
@@ -2357,11 +2367,11 @@ By default, Git does not create an extra merge commit when merging a commit that
 pull.rebase  
 When true, rebase branches on top of the fetched branch, instead of merging the default branch from the default remote when "git pull" is run. See "branch.&lt;name&gt;.rebase" for setting this on a per-branch basis.
 
-When `merges` (or just _m_), pass the `--rebase-merges` option to _git rebase_ so that the local merge commits are included in the rebase (see [git-rebase(1)](git-rebase.html) for details).
+When `merges` (or just *m*), pass the `--rebase-merges` option to *git rebase* so that the local merge commits are included in the rebase (see [git-rebase(1)](git-rebase.html) for details).
 
-When `preserve` (or just _p_, deprecated in favor of `merges`), also pass `--preserve-merges` along to _git rebase_ so that locally committed merge commits will not be flattened by running _git pull_.
+When `preserve` (or just *p*, deprecated in favor of `merges`), also pass `--preserve-merges` along to *git rebase* so that locally committed merge commits will not be flattened by running *git pull*.
 
-When the value is `interactive` (or just _i_), the rebase is run in interactive mode.
+When the value is `interactive` (or just *i*), the rebase is run in interactive mode.
 
 **NOTE**: this is a possibly dangerous operation; do **not** use it unless you understand the implications (see [git-rebase(1)](git-rebase.html) for details).
 
@@ -2374,31 +2384,31 @@ The default merge strategy to use when pulling a single branch.
 push.default  
 Defines the action `git push` should take if no refspec is given (whether from the command-line, config, or elsewhere). Different values are well-suited for specific workflows; for instance, in a purely central workflow (i.e. the fetch source is equal to the push destination), `upstream` is probably what you want. Possible values are:
 
-- `nothing` - do not push anything (error out) unless a refspec is given. This is primarily meant for people who want to avoid mistakes by always being explicit.
+-   `nothing` - do not push anything (error out) unless a refspec is given. This is primarily meant for people who want to avoid mistakes by always being explicit.
 
-- `current` - push the current branch to update a branch with the same name on the receiving end. Works in both central and non-central workflows.
+-   `current` - push the current branch to update a branch with the same name on the receiving end. Works in both central and non-central workflows.
 
-- `upstream` - push the current branch back to the branch whose changes are usually integrated into the current branch (which is called `@{upstream}`). This mode only makes sense if you are pushing to the same repository you would normally pull from (i.e. central workflow).
+-   `upstream` - push the current branch back to the branch whose changes are usually integrated into the current branch (which is called `@{upstream}`). This mode only makes sense if you are pushing to the same repository you would normally pull from (i.e. central workflow).
 
-- `tracking` - This is a deprecated synonym for `upstream`.
+-   `tracking` - This is a deprecated synonym for `upstream`.
 
-- `simple` - in centralized workflow, work like `upstream` with an added safety to refuse to push if the upstream branch’s name is different from the local one.
+-   `simple` - in centralized workflow, work like `upstream` with an added safety to refuse to push if the upstream branch’s name is different from the local one.
 
-  When pushing to a remote that is different from the remote you normally pull from, work as `current`. This is the safest option and is suited for beginners.
+    When pushing to a remote that is different from the remote you normally pull from, work as `current`. This is the safest option and is suited for beginners.
 
-  This mode has become the default in Git 2.0.
+    This mode has become the default in Git 2.0.
 
-- `matching` - push all branches having the same name on both ends. This makes the repository you are pushing to remember the set of branches that will be pushed out (e.g. if you always push _maint_ and _master_ there and no other branches, the repository you push to will have these two branches, and your local _maint_ and _master_ will be pushed there).
+-   `matching` - push all branches having the same name on both ends. This makes the repository you are pushing to remember the set of branches that will be pushed out (e.g. if you always push *maint* and *master* there and no other branches, the repository you push to will have these two branches, and your local *maint* and *master* will be pushed there).
 
-  To use this mode effectively, you have to make sure _all_ the branches you would push out are ready to be pushed out before running _git push_, as the whole point of this mode is to allow you to push all of the branches in one go. If you usually finish work on only one branch and push out the result, while other branches are unfinished, this mode is not for you. Also this mode is not suitable for pushing into a shared central repository, as other people may add new branches there, or update the tip of existing branches outside your control.
+    To use this mode effectively, you have to make sure *all* the branches you would push out are ready to be pushed out before running *git push*, as the whole point of this mode is to allow you to push all of the branches in one go. If you usually finish work on only one branch and push out the result, while other branches are unfinished, this mode is not for you. Also this mode is not suitable for pushing into a shared central repository, as other people may add new branches there, or update the tip of existing branches outside your control.
 
-  This used to be the default, but not since Git 2.0 (`simple` is the new default).
+    This used to be the default, but not since Git 2.0 (`simple` is the new default).
 
 push.followTags  
 If set to true enable `--follow-tags` option by default. You may override this configuration at time of push by specifying `--no-follow-tags`.
 
 push.gpgSign  
-May be set to a boolean value, or the string _if-asked_. A true value causes all pushes to be GPG signed, as if `--signed` is passed to [git-push(1)](git-push.html). The string _if-asked_ causes pushes to be signed if the server supports it, as if `--signed=if-asked` is passed to _git push_. A false value may override a value from a lower-priority config file. An explicit command-line flag always overrides this config option.
+May be set to a boolean value, or the string *if-asked*. A true value causes all pushes to be GPG signed, as if `--signed` is passed to [git-push(1)](git-push.html). The string *if-asked* causes pushes to be signed if the server supports it, as if `--signed=if-asked` is passed to *git push*. A false value may override a value from a lower-priority config file. An explicit command-line flag always overrides this config option.
 
 push.pushOption  
 When no `--push-option=<option>` argument is given from the command line, `git push` behaves as if each &lt;value&gt; of this variable is given as `--push-option=<value>`.
@@ -2421,7 +2431,7 @@ This is a multi-valued variable, and an empty value can be used in a higher prio
     This will result in only b (a and c are cleared).
 
 push.recurseSubmodules  
-Make sure all submodule commits used by the revisions to be pushed are available on a remote-tracking branch. If the value is _check_ then Git will verify that all submodule commits that changed in the revisions to be pushed are available on at least one remote of the submodule. If any commits are missing, the push will be aborted and exit with non-zero status. If the value is _on-demand_ then all submodules that changed in the revisions to be pushed will be pushed. If on-demand was not able to push all necessary revisions it will also be aborted and exit with non-zero status. If the value is _no_ then default behavior of ignoring submodules when pushing is retained. You may override this configuration at time of push by specifying _--recurse-submodules=check|on-demand|no_. If not set, _no_ is used by default, unless _submodule.recurse_ is set (in which case a _true_ value means _on-demand_).
+Make sure all submodule commits used by the revisions to be pushed are available on a remote-tracking branch. If the value is *check* then Git will verify that all submodule commits that changed in the revisions to be pushed are available on at least one remote of the submodule. If any commits are missing, the push will be aborted and exit with non-zero status. If the value is *on-demand* then all submodules that changed in the revisions to be pushed will be pushed. If on-demand was not able to push all necessary revisions it will also be aborted and exit with non-zero status. If the value is *no* then default behavior of ignoring submodules when pushing is retained. You may override this configuration at time of push by specifying *--recurse-submodules=check|on-demand|no*. If not set, *no* is used by default, unless *submodule.recurse* is set (in which case a *true* value means *on-demand*).
 
 push.useForceIfIncludes  
 If set to "true", it is equivalent to specifying `--force-if-includes` as an option to [git-push(1)](git-push.html) in the command line. Adding `--no-force-if-includes` at the time of push overrides this configuration setting.
@@ -2430,7 +2440,7 @@ rebase.useBuiltin
 Unused configuration variable. Used in Git versions 2.20 and 2.21 as an escape hatch to enable the legacy shellscript implementation of rebase. Now the built-in rewrite of it in C is always used. Setting this will emit a warning, to alert any remaining users that setting this now does nothing.
 
 rebase.backend  
-Default backend to use for rebasing. Possible choices are _apply_ or _merge_. In the future, if the merge backend gains all remaining capabilities of the apply backend, this setting may become unused.
+Default backend to use for rebasing. Possible choices are *apply* or *merge*. In the future, if the merge backend gains all remaining capabilities of the apply backend, this setting may become unused.
 
 rebase.stat  
 Whether to show a diffstat of what changed upstream since the last rebase. False by default.
@@ -2442,7 +2452,7 @@ rebase.autoStash
 When set to true, automatically create a temporary stash entry before the operation begins, and apply it after the operation ends. This means that you can run rebase on a dirty worktree. However, use with care: the final stash application after a successful rebase might result in non-trivial conflicts. This option can be overridden by the `--no-autostash` and `--autostash` options of [git-rebase(1)](git-rebase.html). Defaults to false.
 
 rebase.missingCommitsCheck  
-If set to "warn", git rebase -i will print a warning if some commits are removed (e.g. a line was deleted), however the rebase will still proceed. If set to "error", it will print the previous warning and stop the rebase, _git rebase --edit-todo_ can then be used to correct the error. If set to "ignore", no checking is done. To drop a commit without warning or error, use the `drop` command in the todo list. Defaults to "ignore".
+If set to "warn", git rebase -i will print a warning if some commits are removed (e.g. a line was deleted), however the rebase will still proceed. If set to "error", it will print the previous warning and stop the rebase, *git rebase --edit-todo* can then be used to correct the error. If set to "ignore", no checking is done. To drop a commit without warning or error, use the `drop` command in the todo list. Defaults to "ignore".
 
 rebase.instructionFormat  
 A format string, as specified in [git-log(1)](git-log.html), to be used for the todo list during an interactive rebase. The format will automatically have the long commit hash prepended to the format.
@@ -2614,22 +2624,22 @@ rerere.enabled
 Activate recording of resolved conflicts, so that identical conflict hunks can be resolved automatically, should they be encountered again. By default, [git-rerere(1)](git-rerere.html) is enabled if there is an `rr-cache` directory under the `$GIT_DIR`, e.g. if "rerere" was previously used in the repository.
 
 reset.quiet  
-When set to true, _git reset_ will default to the _--quiet_ option.
+When set to true, *git reset* will default to the *--quiet* option.
 
 sendemail.identity  
-A configuration identity. When given, causes values in the _sendemail.&lt;identity&gt;_ subsection to take precedence over values in the _sendemail_ section. The default identity is the value of `sendemail.identity`.
+A configuration identity. When given, causes values in the *sendemail.&lt;identity&gt;* subsection to take precedence over values in the *sendemail* section. The default identity is the value of `sendemail.identity`.
 
 sendemail.smtpEncryption  
-See [git-send-email(1)](git-send-email.html) for description. Note that this setting is not subject to the _identity_ mechanism.
+See [git-send-email(1)](git-send-email.html) for description. Note that this setting is not subject to the *identity* mechanism.
 
 sendemail.smtpssl (deprecated)  
-Deprecated alias for _sendemail.smtpEncryption = ssl_.
+Deprecated alias for *sendemail.smtpEncryption = ssl*.
 
 sendemail.smtpsslcertpath  
 Path to ca-certificates (either a directory or a single file). Set it to an empty string to disable certificate verification.
 
 sendemail.&lt;identity&gt;.\*  
-Identity-specific versions of the \*sendemail.\*\* parameters found below, taking precedence over those when this identity is selected, through either the command-line or `sendemail.identity`.
+Identity-specific versions of the *sendemail.\** parameters found below, taking precedence over those when this identity is selected, through either the command-line or `sendemail.identity`.
 
 sendemail.aliasesFile  
 sendemail.aliasFileType  
@@ -2693,13 +2703,13 @@ The config variable `ssh.variant` can be set to override this detection. Valid v
 
 The current command-line parameters used for each variant are as follows:
 
-- `ssh` - \[-p port\] \[-4\] \[-6\] \[-o option\] \[username@\]host command
+-   `ssh` - \[-p port\] \[-4\] \[-6\] \[-o option\] \[username@\]host command
 
-- `simple` - \[username@\]host command
+-   `simple` - \[username@\]host command
 
-- `plink` or `putty` - \[-P port\] \[-4\] \[-6\] \[username@\]host command
+-   `plink` or `putty` - \[-P port\] \[-4\] \[-6\] \[username@\]host command
 
-- `tortoiseplink` - \[-P port\] \[-4\] \[-6\] -batch \[username@\]host command
+-   `tortoiseplink` - \[-P port\] \[-4\] \[-6\] -batch \[username@\]host command
 
 Except for the `simple` variant, command-line parameters are likely to change as git gains new features.
 
@@ -2730,40 +2740,40 @@ If set to true, [git-status(1)](git-status.html) will display the number of entr
 status.showUntrackedFiles  
 By default, [git-status(1)](git-status.html) and [git-commit(1)](git-commit.html) show files which are not currently tracked by Git. Directories which contain only untracked files, are shown with the directory name only. Showing untracked files means that Git needs to lstat() all the files in the whole repository, which might be slow on some systems. So, this variable controls how the commands displays the untracked files. Possible values are:
 
-- `no` - Show no untracked files.
+-   `no` - Show no untracked files.
 
-- `normal` - Show untracked files and directories.
+-   `normal` - Show untracked files and directories.
 
-- `all` - Show also individual files in untracked directories.
+-   `all` - Show also individual files in untracked directories.
 
-If this variable is not specified, it defaults to _normal_. This variable can be overridden with the -u|--untracked-files option of [git-status(1)](git-status.html) and [git-commit(1)](git-commit.html).
+If this variable is not specified, it defaults to *normal*. This variable can be overridden with the -u|--untracked-files option of [git-status(1)](git-status.html) and [git-commit(1)](git-commit.html).
 
 status.submoduleSummary  
-Defaults to false. If this is set to a non zero number or true (identical to -1 or an unlimited number), the submodule summary will be enabled and a summary of commits for modified submodules will be shown (see --summary-limit option of [git-submodule(1)](git-submodule.html)). Please note that the summary output command will be suppressed for all submodules when `diff.ignoreSubmodules` is set to _all_ or only for those submodules where `submodule.<name>.ignore=all`. The only exception to that rule is that status and commit will show staged submodule changes. To also view the summary for ignored submodules you can either use the --ignore-submodules=dirty command-line option or the _git submodule summary_ command, which shows a similar output but does not honor these settings.
+Defaults to false. If this is set to a non zero number or true (identical to -1 or an unlimited number), the submodule summary will be enabled and a summary of commits for modified submodules will be shown (see --summary-limit option of [git-submodule(1)](git-submodule.html)). Please note that the summary output command will be suppressed for all submodules when `diff.ignoreSubmodules` is set to *all* or only for those submodules where `submodule.<name>.ignore=all`. The only exception to that rule is that status and commit will show staged submodule changes. To also view the summary for ignored submodules you can either use the --ignore-submodules=dirty command-line option or the *git submodule summary* command, which shows a similar output but does not honor these settings.
 
 stash.useBuiltin  
 Unused configuration variable. Used in Git versions 2.22 to 2.26 as an escape hatch to enable the legacy shellscript implementation of stash. Now the built-in rewrite of it in C is always used. Setting this will emit a warning, to alert any remaining users that setting this now does nothing.
 
 stash.showPatch  
-If this is set to true, the `git stash show` command without an option will show the stash entry in patch form. Defaults to false. See description of _show_ command in [git-stash(1)](git-stash.html).
+If this is set to true, the `git stash show` command without an option will show the stash entry in patch form. Defaults to false. See description of *show* command in [git-stash(1)](git-stash.html).
 
 stash.showStat  
-If this is set to true, the `git stash show` command without an option will show diffstat of the stash entry. Defaults to true. See description of _show_ command in [git-stash(1)](git-stash.html).
+If this is set to true, the `git stash show` command without an option will show diffstat of the stash entry. Defaults to true. See description of *show* command in [git-stash(1)](git-stash.html).
 
 submodule.&lt;name&gt;.url  
-The URL for a submodule. This variable is copied from the .gitmodules file to the git config via _git submodule init_. The user can change the configured URL before obtaining the submodule via _git submodule update_. If neither submodule.&lt;name&gt;.active or submodule.active are set, the presence of this variable is used as a fallback to indicate whether the submodule is of interest to git commands. See [git-submodule(1)](git-submodule.html) and [gitmodules(5)](gitmodules.html) for details.
+The URL for a submodule. This variable is copied from the .gitmodules file to the git config via *git submodule init*. The user can change the configured URL before obtaining the submodule via *git submodule update*. If neither submodule.&lt;name&gt;.active or submodule.active are set, the presence of this variable is used as a fallback to indicate whether the submodule is of interest to git commands. See [git-submodule(1)](git-submodule.html) and [gitmodules(5)](gitmodules.html) for details.
 
 submodule.&lt;name&gt;.update  
-The method by which a submodule is updated by _git submodule update_, which is the only affected command, others such as _git checkout --recurse-submodules_ are unaffected. It exists for historical reasons, when _git submodule_ was the only command to interact with submodules; settings like `submodule.active` and `pull.rebase` are more specific. It is populated by `git submodule init` from the [gitmodules(5)](gitmodules.html) file. See description of _update_ command in [git-submodule(1)](git-submodule.html).
+The method by which a submodule is updated by *git submodule update*, which is the only affected command, others such as *git checkout --recurse-submodules* are unaffected. It exists for historical reasons, when *git submodule* was the only command to interact with submodules; settings like `submodule.active` and `pull.rebase` are more specific. It is populated by `git submodule init` from the [gitmodules(5)](gitmodules.html) file. See description of *update* command in [git-submodule(1)](git-submodule.html).
 
 submodule.&lt;name&gt;.branch  
 The remote branch name for a submodule, used by `git submodule update --remote`. Set this option to override the value found in the `.gitmodules` file. See [git-submodule(1)](git-submodule.html) and [gitmodules(5)](gitmodules.html) for details.
 
-submodule.&lt;name&gt;.fetchRecurseSubmodules  
+ submodule.&lt;name&gt;.fetchRecurseSubmodules   
 This option can be used to control recursive fetching of this submodule. It can be overridden by using the --\[no-\]recurse-submodules command-line option to "git fetch" and "git pull". This setting will override that from in the [gitmodules(5)](gitmodules.html) file.
 
 submodule.&lt;name&gt;.ignore  
-Defines under what circumstances "git status" and the diff family show a submodule as modified. When set to "all", it will never be considered modified (but it will nonetheless show up in the output of status and commit when it has been staged), "dirty" will ignore all changes to the submodules work tree and takes only differences between the HEAD of the submodule and the commit recorded in the superproject into account. "untracked" will additionally let submodules with modified tracked files in their work tree show up. Using "none" (the default when this option is not set) also shows submodules that have untracked files in their work tree as changed. This setting overrides any setting made in .gitmodules for this submodule, both settings can be overridden on the command line by using the "--ignore-submodules" option. The _git submodule_ commands are not affected by this setting.
+Defines under what circumstances "git status" and the diff family show a submodule as modified. When set to "all", it will never be considered modified (but it will nonetheless show up in the output of status and commit when it has been staged), "dirty" will ignore all changes to the submodules work tree and takes only differences between the HEAD of the submodule and the commit recorded in the superproject into account. "untracked" will additionally let submodules with modified tracked files in their work tree show up. Using "none" (the default when this option is not set) also shows submodules that have untracked files in their work tree as changed. This setting overrides any setting made in .gitmodules for this submodule, both settings can be overridden on the command line by using the "--ignore-submodules" option. The *git submodule* commands are not affected by this setting.
 
 submodule.&lt;name&gt;.active  
 Boolean value indicating if the submodule is of interest to git commands. This config option takes precedence over the submodule.active config option. See [gitsubmodules(7)](gitsubmodules.html) for details.
@@ -2806,15 +2816,15 @@ This variable controls the performance target destination. It may be overridden 
 trace2.eventTarget  
 This variable controls the event target destination. It may be overridden by the `GIT_TRACE2_EVENT` environment variable. The following table shows possible values.
 
-- `0` or `false` - Disables the target.
+-   `0` or `false` - Disables the target.
 
-- `1` or `true` - Writes to `STDERR`.
+-   `1` or `true` - Writes to `STDERR`.
 
-- `[2-9]` - Writes to the already opened file descriptor.
+-   `[2-9]` - Writes to the already opened file descriptor.
 
-- `<absolute-pathname>` - Writes to the file in append mode. If the target already exists and is a directory, the traces will be written to files (one per process) underneath the given directory.
+-   `<absolute-pathname>` - Writes to the file in append mode. If the target already exists and is a directory, the traces will be written to files (one per process) underneath the given directory.
 
-- `af_unix:[<socket_type>:]<absolute-pathname>` - Write to a Unix DomainSocket (on platforms that support them). Socket type can be either `stream` or `dgram`; if omitted Git will try both.
+-   `af_unix:[<socket_type>:]<absolute-pathname>` - Write to a Unix DomainSocket (on platforms that support them). Socket type can be either `stream` or `dgram`; if omitted Git will try both.
 
 trace2.normalBrief  
 Boolean. When true `time`, `filename`, and `line` fields are omitted from normal output. May be overridden by the `GIT_TRACE2_BRIEF` environment variable. Defaults to false.
@@ -2887,7 +2897,7 @@ uploadpack.keepAlive
 When `upload-pack` has started `pack-objects`, there may be a quiet period while `pack-objects` prepares the pack. Normally it would output progress information, but if `--quiet` was used for the fetch, `pack-objects` will output nothing at all until the pack data begins. Some clients and networks may consider the server to be hung and give up. Setting this option instructs `upload-pack` to send an empty keepalive packet every `uploadpack.keepAlive` seconds. Setting this option to 0 disables keepalive packets entirely. The default is 5 seconds.
 
 uploadpack.packObjectsHook  
-If this option is set, when `upload-pack` would run `git pack-objects` to create a packfile for a client, it will run this shell command instead. The `pack-objects` command and arguments it _would_ have run (including the `git pack-objects` at the beginning) are appended to the shell command. The stdin and stdout of the hook are treated as if `pack-objects` itself was run. I.e., `upload-pack` will feed input intended for `pack-objects` to the hook, and expects a completed packfile on stdout.
+If this option is set, when `upload-pack` would run `git pack-objects` to create a packfile for a client, it will run this shell command instead. The `pack-objects` command and arguments it *would* have run (including the `git pack-objects` at the beginning) are appended to the shell command. The stdin and stdout of the hook are treated as if `pack-objects` itself was run. I.e., `upload-pack` will feed input intended for `pack-objects` to the hook, and expects a completed packfile on stdout.
 
 Note that this configuration variable is ignored if it is seen in the repository-level config (this is a safety measure against fetching from untrusted repositories).
 
@@ -2930,7 +2940,7 @@ Instruct Git to avoid trying to guess defaults for `user.email` and `user.name`,
 user.signingKey  
 If [git-tag(1)](git-tag.html) or [git-commit(1)](git-commit.html) is not selecting the key you want it to automatically when creating a signed tag or commit, you can override the default selection with this variable. This option is passed unchanged to gpg’s --local-user parameter, so you may specify a key using any method that gpg supports.
 
-versionsort.prereleaseSuffix (deprecated)  
+ versionsort.prereleaseSuffix (deprecated)   
 Deprecated alias for `versionsort.suffix`. Ignored if `versionsort.suffix` is set.
 
 versionsort.suffix  
@@ -2946,7 +2956,8 @@ Specify a web browser that may be used by some commands. Currently only [git-ins
 worktree.guessRemote  
 If no branch is specified and neither `-b` nor `-B` nor `--detach` is used, then `git worktree add` defaults to creating a new branch from HEAD. If `worktree.guessRemote` is set to true, `worktree add` tries to find a remote-tracking branch whose name uniquely matches the new branch name. If such a branch exists, it is checked out and set as "upstream" for the new branch. If no such match can be found, it falls back to creating a new branch from the current HEAD.
 
-## BUGS
+BUGS
+----
 
 When using the deprecated `[section.subsection]` syntax, changing a value will result in adding a multi-line key instead of a change, if the subsection is given with at least one uppercase character. For example when the config looks like
 
@@ -2959,7 +2970,8 @@ and running `git config section.Subsection.key value2` will result in
         key = value1
         key = value2
 
-## GIT
+GIT
+---
 
 Part of the [git(1)](git.html) suite
 

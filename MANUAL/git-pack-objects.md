@@ -1,10 +1,13 @@
-# git-pack-objects(1) Manual Page
+git-pack-objects(1) Manual Page
+===============================
 
-## NAME
+NAME
+----
 
 git-pack-objects - Create a packed archive of objects
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git pack-objects [-q | --progress | --all-progress] [--all-progress-implied]
             [--no-reuse-delta] [--delta-base-offset] [--non-empty]
@@ -13,7 +16,8 @@ git-pack-objects - Create a packed archive of objects
             [--stdout [--filter=<filter-spec>] | base-name]
             [--shallow] [--keep-true-parents] [--[no-]sparse] < object-list
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 Reads list of objects from the standard input, and writes either one or more packed archives with the specified base-name to disk, or a packed archive to the standard output.
 
@@ -21,11 +25,12 @@ A packed archive is an efficient way to transfer a set of objects between two re
 
 The packed archive format (.pack) is designed to be self-contained so that it can be unpacked without any further information. Therefore, each object that a delta depends upon must be present within the pack.
 
-A pack index file (.idx) is generated for fast, random access to the objects in the pack. Placing both the index file (.idx) and the packed archive (.pack) in the pack/ subdirectory of $GIT_OBJECT_DIRECTORY (or any of the directories on $GIT_ALTERNATE_OBJECT_DIRECTORIES) enables Git to read from the pack archive.
+A pack index file (.idx) is generated for fast, random access to the objects in the pack. Placing both the index file (.idx) and the packed archive (.pack) in the pack/ subdirectory of $GIT\_OBJECT\_DIRECTORY (or any of the directories on $GIT\_ALTERNATE\_OBJECT\_DIRECTORIES) enables Git to read from the pack archive.
 
-The _git unpack-objects_ command can read the packed archive and expand the objects contained in the pack into "one-file one-object" format; this is typically done by the smart-pull commands when a pack is created on-the-fly for efficient network transport by their peers.
+The *git unpack-objects* command can read the packed archive and expand the objects contained in the pack into "one-file one-object" format; this is typically done by the smart-pull commands when a pack is created on-the-fly for efficient network transport by their peers.
 
-## OPTIONS
+OPTIONS
+-------
 
 base-name  
 Write into pairs of files (.pack and .idx), using &lt;base-name&gt; to determine the name of the created file. When this option is used, the two files in a pair are written in &lt;base-name&gt;-&lt;SHA-1&gt;.{pack,idx} files. &lt;SHA-1&gt; is a hash based on the pack content and is written to the standard output of the command.
@@ -34,7 +39,7 @@ Write into pairs of files (.pack and .idx), using &lt;base-name&gt; to determine
 Write the pack contents (what would have been written to .pack file) out to the standard output.
 
 --revs  
-Read the revision arguments from the standard input, instead of individual object names. The revision arguments are processed the same way as _git rev-list_ with the `--objects` flag uses its `commit` arguments to build the list of objects it outputs. The objects on the resulting list are packed. Besides revisions, `--not` or `--shallow <SHA-1>` lines are also accepted.
+Read the revision arguments from the standard input, instead of individual object names. The revision arguments are processed the same way as *git rev-list* with the `--objects` flag uses its `commit` arguments to build the list of objects it outputs. The objects on the resulting list are packed. Besides revisions, `--not` or `--shallow <SHA-1>` lines are also accepted.
 
 --unpacked  
 This implies `--revs`. When processing the list of revision arguments read from the standard input, limit the objects packed to those that are not already packed.
@@ -52,7 +57,7 @@ These two options affect how the objects contained in the pack are stored using 
 The default value for --window is 10 and --depth is 50. The maximum depth is 4095.
 
 --window-memory=&lt;n&gt;  
-This option provides an additional limit on top of `--window`; the window size will dynamically scale down so as to not take up more than _&lt;n&gt;_ bytes in memory. This is useful in repositories with a mix of large and small objects to not run out of memory with a large window, but still be able to take advantage of the large window for the smaller objects. The size can be suffixed with "k", "m", or "g". `--window-memory=0` makes memory usage unlimited. The default is taken from the `pack.windowMemory` configuration variable.
+This option provides an additional limit on top of `--window`; the window size will dynamically scale down so as to not take up more than *&lt;n&gt;* bytes in memory. This is useful in repositories with a mix of large and small objects to not run out of memory with a large window, but still be able to take advantage of the large window for the smaller objects. The size can be suffixed with "k", "m", or "g". `--window-memory=0` makes memory usage unlimited. The default is taken from the `pack.windowMemory` configuration variable.
 
 --max-pack-size=&lt;n&gt;  
 In unusual scenarios, you may not be able to create files larger than a certain size on your filesystem, and this option can be used to tell the command to split the output packfile into multiple independent packfiles, each not larger than the given size. The size can be suffixed with "k", "m", or "g". The minimum size allowed is limited to 1 MiB. This option prevents the creation of a bitmap index. The default is unlimited, unless the config variable `pack.packSizeLimit` is set.
@@ -105,14 +110,14 @@ Note: A thin pack violates the packed archive format by omitting required object
 Optimize a pack that will be provided to a client with a shallow repository. This option, combined with --thin, can result in a smaller pack at the cost of speed.
 
 --delta-base-offset  
-A packed archive can express the base object of a delta as either a 20-byte object name or as an offset in the stream, but ancient versions of Git don’t understand the latter. By default, _git pack-objects_ only uses the former format for better compatibility. This option allows the command to use the latter format for compactness. Depending on the average delta chain length, this option typically shrinks the resulting packfile by 3-5 per-cent.
+A packed archive can express the base object of a delta as either a 20-byte object name or as an offset in the stream, but ancient versions of Git don’t understand the latter. By default, *git pack-objects* only uses the former format for better compatibility. This option allows the command to use the latter format for compactness. Depending on the average delta chain length, this option typically shrinks the resulting packfile by 3-5 per-cent.
 
 Note: Porcelain commands such as `git gc` (see [git-gc(1)](git-gc.html)), `git repack` (see [git-repack(1)](git-repack.html)) pass this option by default in modern Git when they put objects in your repository into pack files. So does `git bundle` (see [git-bundle(1)](git-bundle.html)) when it creates a bundle.
 
 --threads=&lt;n&gt;  
 Specifies the number of threads to spawn when searching for best delta matches. This requires that pack-objects be compiled with pthreads otherwise this option is ignored with a warning. This is meant to reduce packing time on multiprocessor machines. The required amount of memory for the delta search window is however multiplied by the number of threads. Specifying 0 will cause Git to auto-detect the number of CPU’s and set the number of threads accordingly.
 
---index-version=&lt;version&gt;\[,&lt;offset&gt;\]  
+ --index-version=&lt;version&gt;\[,&lt;offset&gt;\]   
 This is intended to be used by the test suite only. It allows to force the version for the generated pack index, and to force 64-bit index entries on objects located above the given offset.
 
 --keep-true-parents  
@@ -127,11 +132,11 @@ Turns off any previous `--filter=` argument.
 --missing=&lt;missing-action&gt;  
 A debug option to help with future "partial clone" development. This option specifies how missing objects are handled.
 
-The form _--missing=error_ requests that pack-objects stop with an error if a missing object is encountered. If the repository is a partial clone, an attempt to fetch missing objects will be made before declaring them missing. This is the default action.
+The form *--missing=error* requests that pack-objects stop with an error if a missing object is encountered. If the repository is a partial clone, an attempt to fetch missing objects will be made before declaring them missing. This is the default action.
 
-The form _--missing=allow-any_ will allow object traversal to continue if a missing object is encountered. No fetch of a missing object will occur. Missing objects will silently be omitted from the results.
+The form *--missing=allow-any* will allow object traversal to continue if a missing object is encountered. No fetch of a missing object will occur. Missing objects will silently be omitted from the results.
 
-The form _--missing=allow-promisor_ is like _allow-any_, but will only allow object traversal to continue for EXPECTED promisor missing objects. No fetch of a missing object will occur. An unexpected missing object will raise an error.
+The form *--missing=allow-promisor* is like *allow-any*, but will only allow object traversal to continue for EXPECTED promisor missing objects. No fetch of a missing object will occur. An unexpected missing object will raise an error.
 
 --exclude-promisor-objects  
 Omit objects that are known to be in the promisor remote. (This option has the purpose of operating only on locally created objects, so that when we repack, we still maintain a distinction between locally created objects \[without .promisor\] and objects from the promisor remote \[with .promisor\].) This is used with partial clone.
@@ -148,7 +153,8 @@ Keep unreachable objects in loose form. This implies `--revs`.
 --delta-islands  
 Restrict delta matches based on "islands". See DELTA ISLANDS below.
 
-## DELTA ISLANDS
+DELTA ISLANDS
+-------------
 
 When possible, `pack-objects` tries to reuse existing on-disk deltas to avoid having to search for new ones on the fly. This is an important optimization for serving fetches, because it means the server can avoid inflating most objects at all and just send the bytes directly from disk. This optimization can’t work when an object is stored as a delta against a base which the receiver does not have (and which we are not already sending). In that case the server "breaks" the delta and has to find a new one, which has a high CPU cost. Therefore it’s important for performance that the set of objects in on-disk delta relationships match what a client would fetch.
 
@@ -170,7 +176,7 @@ Islands are configured via the `pack.island` option, which can be specified mult
 
 puts heads and tags into an island (whose name is the empty string; see below for more on naming). Any refs which do not match those regular expressions (e.g., `refs/pull/123`) is not in any island. Any object which is reachable only from `refs/pull/` (but not heads or tags) is therefore not a candidate to be used as a base for `refs/heads/`.
 
-Refs are grouped into islands based on their "names", and two regexes that produce the same name are considered to be in the same island. The names are computed from the regexes by concatenating any capture groups from the regex, with a _-_ dash in between. (And if there are no capture groups, then the name is the empty string, as in the above example.) This allows you to create arbitrary numbers of islands. Only up to 14 such capture groups are supported though.
+Refs are grouped into islands based on their "names", and two regexes that produce the same name are considered to be in the same island. The names are computed from the regexes by concatenating any capture groups from the regex, with a *-* dash in between. (And if there are no capture groups, then the name is the empty string, as in the above example.) This allows you to create arbitrary numbers of islands. Only up to 14 such capture groups are supported though.
 
 For example, imagine you store the refs for each fork in `refs/virtual/ID`, where `ID` is a numeric identifier. You might then configure:
 
@@ -183,18 +189,17 @@ That puts the heads and tags for each fork in their own island (named "1234" or 
 
 Note that we pick a single island for each regex to go into, using "last one wins" ordering (which allows repo-specific config to take precedence over user-wide config, and so forth).
 
-## CONFIGURATION
+CONFIGURATION
+-------------
 
 Various configuration variables affect packing, see [git-config(1)](git-config.html) (search for "pack" and "delta").
 
 Notably, delta compression is not used on objects larger than the `core.bigFileThreshold` configuration variable and on files with the attribute `delta` set to false.
 
-## SEE ALSO
+SEE ALSO
+--------
 
 [git-rev-list(1)](git-rev-list.html) [git-repack(1)](git-repack.html) [git-prune-packed(1)](git-prune-packed.html)
 
-## GIT
-
-Part of the [git(1)](git.html) suite
-
-Last updated 2021-03-27 09:47:30 UTC
+GIT
+---

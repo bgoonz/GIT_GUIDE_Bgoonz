@@ -1,20 +1,24 @@
-# githooks(5) Manual Page
+githooks(5) Manual Page
+=======================
 
-## NAME
+NAME
+----
 
 githooks - Hooks used by Git
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
-$GIT_DIR/hooks/\* (or \`git config core.hooksPath\`/\*)
+$GIT\_DIR/hooks/\* (or \`git config core.hooksPath\`/\*)
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 Hooks are programs you can place in a hooks directory to trigger actions at certain points in git’s execution. Hooks that don’t have the executable bit set are ignored.
 
 By default the hooks directory is `$GIT_DIR/hooks`, but that can be changed via the `core.hooksPath` configuration variable (see [git-config(1)](git-config.html)).
 
-Before Git invokes a hook, it changes its working directory to either $GIT*DIR in a bare repository or the root of the working tree in a non-bare repository. An exception are hooks triggered during a push (\_pre-receive*, _update_, _post-receive_, _post-update_, _push-to-checkout_) which are always executed in $GIT_DIR.
+Before Git invokes a hook, it changes its working directory to either $GIT\_DIR in a bare repository or the root of the working tree in a non-bare repository. An exception are hooks triggered during a push (*pre-receive*, *update*, *post-receive*, *post-update*, *push-to-checkout*) which are always executed in $GIT\_DIR.
 
 Hooks can get their arguments via the environment, command-line arguments, and stdin. See the documentation for each hook below for details.
 
@@ -22,7 +26,8 @@ Hooks can get their arguments via the environment, command-line arguments, and s
 
 The currently supported hooks are described below.
 
-## HOOKS
+HOOKS
+-----
 
 ### applypatch-msg
 
@@ -30,7 +35,7 @@ This hook is invoked by [git-am(1)](git-am.html). It takes a single parameter, t
 
 The hook is allowed to edit the message file in place, and can be used to normalize the message into some project standard format. It can also be used to refuse the commit after inspecting the message file.
 
-The default _applypatch-msg_ hook, when enabled, runs the _commit-msg_ hook, if the latter is enabled.
+The default *applypatch-msg* hook, when enabled, runs the *commit-msg* hook, if the latter is enabled.
 
 ### pre-applypatch
 
@@ -40,7 +45,7 @@ If it exits with non-zero status, then the working tree will not be committed af
 
 It can be used to inspect the current working tree and refuse to make a commit if it does not pass certain test.
 
-The default _pre-applypatch_ hook, when enabled, runs the _pre-commit_ hook, if the latter is enabled.
+The default *pre-applypatch* hook, when enabled, runs the *pre-commit* hook, if the latter is enabled.
 
 ### post-applypatch
 
@@ -52,21 +57,21 @@ This hook is meant primarily for notification, and cannot affect the outcome of 
 
 This hook is invoked by [git-commit(1)](git-commit.html), and can be bypassed with the `--no-verify` option. It takes no parameters, and is invoked before obtaining the proposed commit log message and making a commit. Exiting with a non-zero status from this script causes the `git commit` command to abort before creating a commit.
 
-The default _pre-commit_ hook, when enabled, catches introduction of lines with trailing whitespaces and aborts the commit when such a line is found.
+The default *pre-commit* hook, when enabled, catches introduction of lines with trailing whitespaces and aborts the commit when such a line is found.
 
 All the `git commit` hooks are invoked with the environment variable `GIT_EDITOR=:` if the command will not bring up an editor to modify the commit message.
 
-The default _pre-commit_ hook, when enabled—​and with the `hooks.allownonascii` config option unset or set to false—​prevents the use of non-ASCII filenames.
+The default *pre-commit* hook, when enabled—​and with the `hooks.allownonascii` config option unset or set to false—​prevents the use of non-ASCII filenames.
 
 ### pre-merge-commit
 
 This hook is invoked by [git-merge(1)](git-merge.html), and can be bypassed with the `--no-verify` option. It takes no parameters, and is invoked after the merge has been carried out successfully and before obtaining the proposed commit log message to make a commit. Exiting with a non-zero status from this script causes the `git merge` command to abort before creating a commit.
 
-The default _pre-merge-commit_ hook, when enabled, runs the _pre-commit_ hook, if the latter is enabled.
+The default *pre-merge-commit* hook, when enabled, runs the *pre-commit* hook, if the latter is enabled.
 
 This hook is invoked with the environment variable `GIT_EDITOR=:` if the command will not bring up an editor to modify the commit message.
 
-If the merge cannot be carried out automatically, the conflicts need to be resolved and the result committed separately (see [git-merge(1)](git-merge.html)). At that point, this hook will not be executed, but the _pre-commit_ hook will, if it is enabled.
+If the merge cannot be carried out automatically, the conflicts need to be resolved and the result committed separately (see [git-merge(1)](git-merge.html)). At that point, this hook will not be executed, but the *pre-commit* hook will, if it is enabled.
 
 ### prepare-commit-msg
 
@@ -86,7 +91,7 @@ This hook is invoked by [git-commit(1)](git-commit.html) and [git-merge(1)](git-
 
 The hook is allowed to edit the message file in place, and can be used to normalize the message into some project standard format. It can also be used to refuse the commit after inspecting the message file.
 
-The default _commit-msg_ hook, when enabled, detects duplicate `Signed-off-by` trailers, and aborts the commit if one is found.
+The default *commit-msg* hook, when enabled, detects duplicate `Signed-off-by` trailers, and aborts the commit if one is found.
 
 ### post-commit
 
@@ -138,7 +143,7 @@ This hook executes once for the receive operation. It takes no arguments, but fo
 
 where `<old-value>` is the old object name stored in the ref, `<new-value>` is the new object name to be stored in the ref and `<ref-name>` is the full name of the ref. When creating a new ref, `<old-value>` is 40 `0`.
 
-If the hook exits with non-zero status, none of the refs will be updated. If the hook exits with zero, updating of individual refs can still be prevented by the [_update_](#update) hook.
+If the hook exits with non-zero status, none of the refs will be updated. If the hook exits with zero, updating of individual refs can still be prevented by the [*update*](#update) hook.
 
 Both standard output and standard error output are forwarded to `git send-pack` on the other end, so you can simply `echo` messages for the user.
 
@@ -152,29 +157,29 @@ This hook is invoked by [git-receive-pack(1)](git-receive-pack.html) when it rea
 
 The hook executes once for each ref to be updated, and takes three parameters:
 
-- the name of the ref being updated,
+-   the name of the ref being updated,
 
-- the old object name stored in the ref,
+-   the old object name stored in the ref,
 
-- and the new object name to be stored in the ref.
+-   and the new object name to be stored in the ref.
 
 A zero exit from the update hook allows the ref to be updated. Exiting with a non-zero status prevents `git receive-pack` from updating that ref.
 
-This hook can be used to prevent _forced_ update on certain refs by making sure that the object name is a commit object that is a descendant of the commit object named by the old object name. That is, to enforce a "fast-forward only" policy.
+This hook can be used to prevent *forced* update on certain refs by making sure that the object name is a commit object that is a descendant of the commit object named by the old object name. That is, to enforce a "fast-forward only" policy.
 
-It could also be used to log the old..new status. However, it does not know the entire set of branches, so it would end up firing one e-mail per ref when used naively, though. The [_post-receive_](#post-receive) hook is more suited to that.
+It could also be used to log the old..new status. However, it does not know the entire set of branches, so it would end up firing one e-mail per ref when used naively, though. The [*post-receive*](#post-receive) hook is more suited to that.
 
 In an environment that restricts the users' access only to git commands over the wire, this hook can be used to implement access control without relying on filesystem ownership and group membership. See [git-shell(1)](git-shell.html) for how you might use the login shell to restrict the user’s access to only git commands.
 
 Both standard output and standard error output are forwarded to `git send-pack` on the other end, so you can simply `echo` messages for the user.
 
-The default _update_ hook, when enabled—​and with `hooks.allowunannotated` config option unset or set to false—​prevents unannotated tags to be pushed.
+The default *update* hook, when enabled—​and with `hooks.allowunannotated` config option unset or set to false—​prevents unannotated tags to be pushed.
 
 ### proc-receive
 
-This hook is invoked by [git-receive-pack(1)](git-receive-pack.html). If the server has set the multi-valued config variable `receive.procReceiveRefs`, and the commands sent to _receive-pack_ have matching reference names, these commands will be executed by this hook, instead of by the internal `execute_commands()` function. This hook is responsible for updating the relevant references and reporting the results back to _receive-pack_.
+This hook is invoked by [git-receive-pack(1)](git-receive-pack.html). If the server has set the multi-valued config variable `receive.procReceiveRefs`, and the commands sent to *receive-pack* have matching reference names, these commands will be executed by this hook, instead of by the internal `execute_commands()` function. This hook is responsible for updating the relevant references and reporting the results back to *receive-pack*.
 
-This hook executes once for the receive operation. It takes no arguments, but uses a pkt-line format protocol to communicate with _receive-pack_ to read commands, push-options and send results. In the following example for the protocol, the letter _S_ stands for _receive-pack_ and the letter _H_ stands for this hook.
+This hook executes once for the receive operation. It takes no arguments, but uses a pkt-line format protocol to communicate with *receive-pack* to read commands, push-options and send results. In the following example for the protocol, the letter *S* stands for *receive-pack* and the letter *H* stands for this hook.
 
     # Version and features negotiation.
     S: PKT-LINE(version=1\0push-options atomic...)
@@ -209,23 +214,23 @@ This hook executes once for the receive operation. It takes no arguments, but us
     H: ... ...
     H: flush-pkt
 
-Each command for the _proc-receive_ hook may point to a pseudo-reference and always has a zero-old as its old-oid, while the _proc-receive_ hook may update an alternate reference and the alternate reference may exist already with a non-zero old-oid. For this case, this hook will use "option" directives to report extended attributes for the reference given by the leading "ok" directive.
+Each command for the *proc-receive* hook may point to a pseudo-reference and always has a zero-old as its old-oid, while the *proc-receive* hook may update an alternate reference and the alternate reference may exist already with a non-zero old-oid. For this case, this hook will use "option" directives to report extended attributes for the reference given by the leading "ok" directive.
 
-The report of the commands of this hook should have the same order as the input. The exit status of the _proc-receive_ hook only determines the success or failure of the group of commands sent to it, unless atomic push is in use.
+The report of the commands of this hook should have the same order as the input. The exit status of the *proc-receive* hook only determines the success or failure of the group of commands sent to it, unless atomic push is in use.
 
 ### post-receive
 
 This hook is invoked by [git-receive-pack(1)](git-receive-pack.html) when it reacts to `git push` and updates reference(s) in its repository. It executes on the remote repository once after all the refs have been updated.
 
-This hook executes once for the receive operation. It takes no arguments, but gets the same information as the [_pre-receive_](#pre-receive) hook does on its standard input.
+This hook executes once for the receive operation. It takes no arguments, but gets the same information as the [*pre-receive*](#pre-receive) hook does on its standard input.
 
 This hook does not affect the outcome of `git receive-pack`, as it is called after the real work is done.
 
-This supersedes the [_post-update_](#post-update) hook in that it gets both old and new values of all the refs in addition to their names.
+This supersedes the [*post-update*](#post-update) hook in that it gets both old and new values of all the refs in addition to their names.
 
 Both standard output and standard error output are forwarded to `git send-pack` on the other end, so you can simply `echo` messages for the user.
 
-The default _post-receive_ hook is empty, but there is a sample script `post-receive-email` provided in the `contrib/hooks` directory in Git distribution, which implements sending commit emails.
+The default *post-receive* hook is empty, but there is a sample script `post-receive-email` provided in the `contrib/hooks` directory in Git distribution, which implements sending commit emails.
 
 The number of push options given on the command line of `git push --push-option=...` can be read from the environment variable `GIT_PUSH_OPTION_COUNT`, and the options themselves are found in `GIT_PUSH_OPTION_0`, `GIT_PUSH_OPTION_1`,…​ If it is negotiated to not use the push options phase, the environment variables will not be set. If the client selects to use push options, but doesn’t transmit any, the count variable will be set to zero, `GIT_PUSH_OPTION_COUNT=0`.
 
@@ -237,9 +242,9 @@ It takes a variable number of parameters, each of which is the name of ref that 
 
 This hook is meant primarily for notification, and cannot affect the outcome of `git receive-pack`.
 
-The _post-update_ hook can tell what are the heads that were pushed, but it does not know what their original and updated values are, so it is a poor place to do log old..new. The [_post-receive_](#post-receive) hook does get both original and updated values of the refs. You might consider it instead if you need them.
+The *post-update* hook can tell what are the heads that were pushed, but it does not know what their original and updated values are, so it is a poor place to do log old..new. The [*post-receive*](#post-receive) hook does get both original and updated values of the refs. You might consider it instead if you need them.
 
-When enabled, the default _post-update_ hook runs `git update-server-info` to keep the information used by dumb transports (e.g., HTTP) up to date. If you are publishing a Git repository that is accessible via HTTP, you should probably enable this hook.
+When enabled, the default *post-update* hook runs `git update-server-info` to keep the information used by dumb transports (e.g., HTTP) up to date. If you are publishing a Git repository that is accessible via HTTP, you should probably enable this hook.
 
 Both standard output and standard error output are forwarded to `git send-pack` on the other end, so you can simply `echo` messages for the user.
 
@@ -249,11 +254,11 @@ This hook is invoked by any Git command that performs reference updates. It exec
 
 The hook takes exactly one argument, which is the current state the given reference transaction is in:
 
-- "prepared": All reference updates have been queued to the transaction and references were locked on disk.
+-   "prepared": All reference updates have been queued to the transaction and references were locked on disk.
 
-- "committed": The reference transaction was committed and all references now have their respective new value.
+-   "committed": The reference transaction was committed and all references now have their respective new value.
 
-- "aborted": The reference transaction was aborted, no changes were performed and the locks have been released.
+-   "aborted": The reference transaction was aborted, no changes were performed and the locks have been released.
 
 For each reference update that was added to the transaction, the hook receives on standard input a line of the format:
 
@@ -281,14 +286,14 @@ The hook receives a list of the rewritten commits on stdin, in the format
 
     <old-sha1> SP <new-sha1> [ SP <extra-info> ] LF
 
-The _extra-info_ is again command-dependent. If it is empty, the preceding SP is also omitted. Currently, no commands pass any _extra-info_.
+The *extra-info* is again command-dependent. If it is empty, the preceding SP is also omitted. Currently, no commands pass any *extra-info*.
 
 The hook always runs after the automatic note copying (see "notes.rewrite.&lt;command&gt;" in [git-config(1)](git-config.html)) has happened, and thus has access to these notes.
 
 The following command-specific comments apply:
 
 rebase  
-For the _squash_ and _fixup_ operation, all commits that were squashed are listed as being rewritten to the squashed commit. This means that there will be several lines sharing the same _new-sha1_.
+For the *squash* and *fixup* operation, all commits that were squashed are listed as being rewritten to the squashed commit. This means that there will be several lines sharing the same *new-sha1*.
 
 The commits are guaranteed to be listed in the order that they were processed by rebase.
 
@@ -348,7 +353,7 @@ This hook is invoked by `git-p4 submit`. It takes no parameters and nothing from
 
 ### post-index-change
 
-This hook is invoked when the index is written in read-cache.c do_write_locked_index.
+This hook is invoked when the index is written in read-cache.c do\_write\_locked\_index.
 
 The first parameter passed to the hook is the indicator for the working directory being updated. "1" meaning working directory was updated or "0" when the working directory was not updated.
 
@@ -356,7 +361,8 @@ The second parameter passed to the hook is the indicator for whether or not the 
 
 Only one parameter should be set to "1" when the hook runs. The hook running passing "1", "1" should not be possible.
 
-## GIT
+GIT
+---
 
 Part of the [git(1)](git.html) suite
 

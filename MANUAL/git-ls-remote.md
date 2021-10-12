@@ -1,26 +1,31 @@
-# git-ls-remote(1) Manual Page
+git-ls-remote(1) Manual Page
+============================
 
-## NAME
+NAME
+----
 
 git-ls-remote - List references in a remote repository
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git ls-remote [--heads] [--tags] [--refs] [--upload-pack=<exec>]
                   [-q | --quiet] [--exit-code] [--get-url] [--sort=<key>]
                   [--symref] [<repository> [<refs>…​]]
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 Displays references available in a remote repository along with the associated commit IDs.
 
-## OPTIONS
+OPTIONS
+-------
 
 -h  
 --heads  
 -t  
 --tags  
-Limit to only refs/heads and refs/tags, respectively. These options are _not_ mutually exclusive; when given both, references stored in refs/heads and refs/tags are displayed. Note that `git ls-remote -h` used without anything else on the command line gives help, consistent with other git subcommands.
+Limit to only refs/heads and refs/tags, respectively. These options are *not* mutually exclusive; when given both, references stored in refs/heads and refs/tags are displayed. Note that `git ls-remote -h` used without anything else on the command line gives help, consistent with other git subcommands.
 
 --refs  
 Do not show peeled tags or pseudorefs like `HEAD` in the output.
@@ -30,7 +35,7 @@ Do not show peeled tags or pseudorefs like `HEAD` in the output.
 Do not print remote URL to stderr.
 
 --upload-pack=&lt;exec&gt;  
-Specify the full path of _git-upload-pack_ on the remote host. This allows listing references from repositories accessed via SSH and where the SSH daemon does not use the PATH configured by the user.
+Specify the full path of *git-upload-pack* on the remote host. This allows listing references from repositories accessed via SSH and where the SSH daemon does not use the PATH configured by the user.
 
 --exit-code  
 Exit with status "2" when no matching refs are found in the remote repository. Usually the command exits with status "0" to indicate it successfully talked with the remote repository, whether it found any matching refs.
@@ -54,7 +59,8 @@ The "remote" repository to query. This parameter can be either a URL or the name
 &lt;refs&gt;…​  
 When unspecified, all references, after filtering done with --heads and --tags, are shown. When &lt;refs&gt;…​ are specified, only references matching the given patterns are displayed.
 
-## EXAMPLES
+EXAMPLES
+--------
 
     $ git ls-remote --tags ./.
     d6602ec5194c87b0fc87103ca4d67251c76f233a        refs/tags/v0.99
@@ -72,11 +78,13 @@ When unspecified, all references, after filtering done with --heads and --tags, 
     c5db5456ae3b0873fc659c19fafdde22313cc441        refs/tags/v0.99.2
     7ceca275d047c90c0c7d5afb13ab97efdf51bd6e        refs/tags/v0.99.3
 
-## SEE ALSO
+SEE ALSO
+--------
 
 [git-check-ref-format(1)](git-check-ref-format.html).
 
-## GIT
+GIT
+---
 
 Part of the [git(1)](git.html) suite
 

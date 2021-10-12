@@ -1,10 +1,13 @@
-# git-fsmonitor—​daemon(1) Manual Page
+git-fsmonitor—​daemon(1) Manual Page
+====================================
 
-## NAME
+NAME
+----
 
 git-fsmonitor--daemon - (EXPERIMENTAL) Builtin file system monitor daemon
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git fsmonitor—​daemon --start
     git fsmonitor—​daemon --run
@@ -15,7 +18,8 @@ git-fsmonitor--daemon - (EXPERIMENTAL) Builtin file system monitor daemon
     git fsmonitor—​daemon --query-index
     git fsmonitor—​daemon --flush
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 NOTE! This command is still only an experiment, subject to change dramatically (or even to be abandoned).
 
@@ -23,7 +27,8 @@ Monitors files and directories in the working directory for changes using platfo
 
 It communicates directly with commands like `git status` using the [simple IPC](technical/api-simple-ipc.html) interface instead of the slower [githooks(5)](githooks.html) interface.
 
-## OPTIONS
+OPTIONS
+-------
 
 --start  
 Starts the fsmonitor daemon in the background.
@@ -49,7 +54,8 @@ Read the current `<token>` from the File System Monitor index extension (if pres
 --flush  
 Force the fsmonitor daemon to flush its in-memory cache and re-sync with the file system. This is intended for testing purposes.
 
-## REMARKS
+REMARKS
+-------
 
 The fsmonitor daemon is a long running process that will watch a single working directory. Commands, such as `git status`, should automatically start it (if necessary) when `core.useBuiltinFSMonitor` is set to `true` (see [git-config(1)](git-config.html)).
 
@@ -61,11 +67,13 @@ Query commands send a request-token to the daemon and it responds with a summary
 
 For more information see the "File System Monitor" section in [git-update-index(1)](git-update-index.html).
 
-## CAVEATS
+CAVEATS
+-------
 
 The fsmonitor daemon does not currently know about submodules and does not know to filter out file system events that happen within a submodule. If fsmonitor daemon is watching a super repo and a file is modified within the working directory of a submodule, it will report the change (as happening against the super repo). However, the client should properly ignore these extra events, so performance may be affected but it should not cause an incorrect result.
 
-## GIT
+GIT
+---
 
 Part of the [git(1)](git.html) suite
 

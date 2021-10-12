@@ -1,29 +1,34 @@
-# git-fetch(1) Manual Page
+git-fetch(1) Manual Page
+========================
 
-## NAME
+NAME
+----
 
 git-fetch - Download objects and refs from another repository
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git fetch [<options>] [<repository> [<refspec>…​]]
     git fetch [<options>] <group>
     git fetch --multiple [<options>] [(<repository> | <group>)…​]
     git fetch --all [<options>]
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 Fetch branches and/or tags (collectively, "refs") from one or more other repositories, along with the objects necessary to complete their histories. Remote-tracking branches are updated (see the description of &lt;refspec&gt; below for ways to control this behavior).
 
 By default, any tag that points into the histories being fetched is also fetched; the effect is to fetch tags that point at branches that you are interested in. This default behavior can be changed by using the --tags or --no-tags options or by configuring remote.&lt;name&gt;.tagOpt. By using a refspec that fetches tags explicitly, you can fetch tags that do not point into branches you are interested in as well.
 
-_git fetch_ can fetch from either a single named repository or URL, or from several repositories at once if &lt;group&gt; is given and there is a remotes.&lt;group&gt; entry in the configuration file. (See [git-config(1)](git-config.html)).
+*git fetch* can fetch from either a single named repository or URL, or from several repositories at once if &lt;group&gt; is given and there is a remotes.&lt;group&gt; entry in the configuration file. (See [git-config(1)](git-config.html)).
 
 When no remote is specified, by default the `origin` remote will be used, unless there’s an upstream branch configured for the current branch.
 
 The names of refs that are fetched, together with the object names they point at, are written to `.git/FETCH_HEAD`. This information may be used by scripts or other git commands, such as [git-pull(1)](git-pull.html).
 
-## OPTIONS
+OPTIONS
+-------
 
 --all  
 Fetch all remotes.
@@ -36,7 +41,7 @@ Append ref names and object names of fetched refs to the existing contents of `.
 Use an atomic transaction to update local refs. Either all refs are updated, or on error, no refs are updated.
 
 --depth=&lt;depth&gt;  
-Limit fetching to the specified number of commits from the tip of each remote branch history. If fetching to a _shallow_ repository created by `git clone` with `--depth=<depth>` option (see [git-clone(1)](git-clone.html)), deepen or shorten the history to the specified number of commits. Tags for the deepened commits are not fetched.
+Limit fetching to the specified number of commits from the tip of each remote branch history. If fetching to a *shallow* repository created by `git clone` with `--depth=<depth>` option (see [git-clone(1)](git-clone.html)), deepen or shorten the history to the specified number of commits. Tags for the deepened commits are not fetched.
 
 --deepen=&lt;depth&gt;  
 Similar to --depth, except it specifies the number of commits from the current shallow boundary instead of from the tip of each remote branch history.
@@ -72,7 +77,7 @@ Write the list of remote refs fetched in the `FETCH_HEAD` file directly under `$
 
 -f  
 --force  
-When _git fetch_ is used with `<src>:<dst>` refspec it may refuse to update the local branch as discussed in the `<refspec>` part below. This option overrides that check.
+When *git fetch* is used with `<src>:<dst>` refspec it may refuse to update the local branch as discussed in the `<refspec>` part below. This option overrides that check.
 
 -k  
 --keep  
@@ -112,7 +117,7 @@ When fetching refs listed on the command line, use the specified refspec (can be
 Fetch all tags from the remote (i.e., fetch remote tags `refs/tags/*` into local tags with the same name), in addition to whatever else would otherwise be fetched. Using this option alone does not subject tags to pruning, even if --prune is used (though tags may be pruned anyway if they are also the destination of an explicit refspec; see `--prune`).
 
 --recurse-submodules\[=yes|on-demand|no\]  
-This option controls if and under what conditions new commits of populated submodules should be fetched too. It can be used as a boolean option to completely disable recursion when set to _no_ or to unconditionally recurse into all populated submodules when set to _yes_, which is the default when this option is used without any value. Use _on-demand_ to only recurse into a populated submodule when the superproject retrieves a commit that updates the submodule’s reference to a commit that isn’t already in the local submodule clone. By default, _on-demand_ is used, unless `fetch.recurseSubmodules` is set (see [git-config(1)](git-config.html)).
+This option controls if and under what conditions new commits of populated submodules should be fetched too. It can be used as a boolean option to completely disable recursion when set to *no* or to unconditionally recurse into all populated submodules when set to *yes*, which is the default when this option is used without any value. Use *on-demand* to only recurse into a populated submodule when the superproject retrieves a commit that updates the submodule’s reference to a commit that isn’t already in the local submodule clone. By default, *on-demand* is used, unless `fetch.recurseSubmodules` is set (see [git-config(1)](git-config.html)).
 
 -j  
 --jobs=&lt;n&gt;  
@@ -131,15 +136,15 @@ If the remote is fetched successfully, add upstream (tracking) reference, used b
 --submodule-prefix=&lt;path&gt;  
 Prepend &lt;path&gt; to paths printed in informative messages such as "Fetching submodule foo". This option is used internally when recursing over submodules.
 
---recurse-submodules-default=\[yes|on-demand\]  
+ --recurse-submodules-default=\[yes|on-demand\]   
 This option is used internally to temporarily provide a non-negative default value for the --recurse-submodules option. All other methods of configuring fetch’s submodule recursion (such as settings in [gitmodules(5)](gitmodules.html) and [git-config(1)](git-config.html)) override this option, as does specifying --\[no-\]recurse-submodules directly.
 
 -u  
 --update-head-ok  
-By default _git fetch_ refuses to update the head which corresponds to the current branch. This flag disables the check. This is purely for the internal use for _git pull_ to communicate with _git fetch_, and unless you are implementing your own Porcelain you are not supposed to use it.
+By default *git fetch* refuses to update the head which corresponds to the current branch. This flag disables the check. This is purely for the internal use for *git pull* to communicate with *git fetch*, and unless you are implementing your own Porcelain you are not supposed to use it.
 
 --upload-pack &lt;upload-pack&gt;  
-When given, and the repository to fetch from is handled by _git fetch-pack_, `--exec=<upload-pack>` is passed to the command to specify non-default path for the command run on the other end.
+When given, and the repository to fetch from is handled by *git fetch-pack*, `--exec=<upload-pack>` is passed to the command to specify non-default path for the command run on the other end.
 
 -q  
 --quiet  
@@ -160,7 +165,7 @@ Transmit the given string to the server when communicating using protocol versio
 By default, git checks if a branch is force-updated during fetch. This can be disabled through fetch.showForcedUpdates, but the --show-forced-updates option guarantees this check occurs. See [git-config(1)](git-config.html).
 
 --no-show-forced-updates  
-By default, git checks if a branch is force-updated during fetch. Pass --no-show-forced-updates or set fetch.showForcedUpdates to false to skip this check for performance reasons. If used during _git-pull_ the --ff-only option will still check for forced updates before attempting a fast-forward update. See [git-config(1)](git-config.html).
+By default, git checks if a branch is force-updated during fetch. Pass --no-show-forced-updates or set fetch.showForcedUpdates to false to skip this check for performance reasons. If used during *git-pull* the --ff-only option will still check for forced updates before attempting a fast-forward update. See [git-config(1)](git-config.html).
 
 -4  
 --ipv4  
@@ -189,7 +194,7 @@ If a refspec is prefixed by `^`, it will be interpreted as a negative refspec. R
 
 The remote ref that matches &lt;src&gt; is fetched, and if &lt;dst&gt; is not an empty string, an attempt is made to update the local ref that matches it.
 
-Whether that update is allowed without `--force` depends on the ref namespace it’s being fetched to, the type of object being fetched, and whether the update is considered to be a fast-forward. Generally, the same rules apply for fetching as when pushing, see the `<refspec>...` section of [git-push(1)](git-push.html) for what those are. Exceptions to those rules particular to _git fetch_ are noted below.
+Whether that update is allowed without `--force` depends on the ref namespace it’s being fetched to, the type of object being fetched, and whether the update is considered to be a fast-forward. Generally, the same rules apply for fetching as when pushing, see the `<refspec>...` section of [git-push(1)](git-push.html) for what those are. Exceptions to those rules particular to *git fetch* are noted below.
 
 Until Git version 2.20, and unlike when pushing with [git-push(1)](git-push.html), any updates to `refs/tags/*` would be accepted without `+` in the refspec (or `--force`). When fetching, we promiscuously considered all tag updates from a remote to be forced fetches. Since Git version 2.20, fetching to update `refs/tags/*` works the same way as when pushing. I.e. any updates will be rejected without `+` in the refspec (or `--force`).
 
@@ -204,7 +209,8 @@ As with pushing with [git-push(1)](git-push.html), all of the rules described ab
 --stdin  
 Read refspecs, one per line, from stdin in addition to those provided as arguments. The "tag &lt;name&gt;" format is not supported.
 
-## GIT URLS<span id="URLS"></span>
+GIT URLS<span id="URLS"></span>
+-------------------------------
 
 In general, URLs contain information about the transport protocol, the address of the remote server, and the path to the repository. Depending on the transport protocol, some of this information may be absent.
 
@@ -214,41 +220,41 @@ The native transport (i.e. git:// URL) does no authentication and should be used
 
 The following syntaxes may be used with them:
 
-- ssh://\[user@\]host.xz\[:port\]/path/to/repo.git/
+-   ssh://\[user@\]host.xz\[:port\]/path/to/repo.git/
 
-- git://host.xz\[:port\]/path/to/repo.git/
+-   git://host.xz\[:port\]/path/to/repo.git/
 
-- http\[s\]://host.xz\[:port\]/path/to/repo.git/
+-   http\[s\]://host.xz\[:port\]/path/to/repo.git/
 
-- ftp\[s\]://host.xz\[:port\]/path/to/repo.git/
+-   ftp\[s\]://host.xz\[:port\]/path/to/repo.git/
 
 An alternative scp-like syntax may also be used with the ssh protocol:
 
-- \[user@\]host.xz:path/to/repo.git/
+-   \[user@\]host.xz:path/to/repo.git/
 
 This syntax is only recognized if there are no slashes before the first colon. This helps differentiate a local path that contains a colon. For example the local path `foo:bar` could be specified as an absolute path or `./foo:bar` to avoid being misinterpreted as an ssh url.
 
 The ssh and git protocols additionally support ~username expansion:
 
-- ssh://\[user@\]host.xz\[:port\]/~\[user\]/path/to/repo.git/
+-   ssh://\[user@\]host.xz\[:port\]/~\[user\]/path/to/repo.git/
 
-- git://host.xz\[:port\]/~\[user\]/path/to/repo.git/
+-   git://host.xz\[:port\]/~\[user\]/path/to/repo.git/
 
-- \[user@\]host.xz:/~\[user\]/path/to/repo.git/
+-   \[user@\]host.xz:/~\[user\]/path/to/repo.git/
 
 For local repositories, also supported by Git natively, the following syntaxes may be used:
 
-- /path/to/repo.git/
+-   /path/to/repo.git/
 
-- file:///path/to/repo.git/
+-   file:///path/to/repo.git/
 
 These two syntaxes are mostly equivalent, except when cloning, when the former implies --local option. See [git-clone(1)](git-clone.html) for details.
 
-_git clone_, _git fetch_ and _git pull_, but not _git push_, will also accept a suitable bundle file. See [git-bundle(1)](git-bundle.html).
+*git clone*, *git fetch* and *git pull*, but not *git push*, will also accept a suitable bundle file. See [git-bundle(1)](git-bundle.html).
 
-When Git doesn’t know how to handle a certain transport protocol, it attempts to use the _remote-&lt;transport&gt;_ remote helper, if one exists. To explicitly request a remote helper, the following syntax may be used:
+When Git doesn’t know how to handle a certain transport protocol, it attempts to use the *remote-&lt;transport&gt;* remote helper, if one exists. To explicitly request a remote helper, the following syntax may be used:
 
-- &lt;transport&gt;::&lt;address&gt;
+-   &lt;transport&gt;::&lt;address&gt;
 
 where &lt;address&gt; may be a path, a server and path, or an arbitrary URL-like string recognized by the specific remote helper being invoked. See [gitremote-helpers(7)](gitremote-helpers.html) for details.
 
@@ -277,15 +283,16 @@ For example, with this:
 
 a URL like "git://example.org/path/to/repo.git" will be rewritten to "ssh://example.org/path/to/repo.git" for pushes, but pulls will still use the original URL.
 
-## REMOTES<span id="REMOTES"></span>
+REMOTES<span id="REMOTES"></span>
+---------------------------------
 
 The name of one of the following can be used instead of a URL as `<repository>` argument:
 
-- a remote in the Git configuration file: `$GIT_DIR/config`,
+-   a remote in the Git configuration file: `$GIT_DIR/config`,
 
-- a file in the `$GIT_DIR/remotes` directory, or
+-   a file in the `$GIT_DIR/remotes` directory, or
 
-- a file in the `$GIT_DIR/branches` directory.
+-   a file in the `$GIT_DIR/branches` directory.
 
 All of these also allow you to omit the refspec from the command line because they each contain a refspec which git will use by default.
 
@@ -309,7 +316,7 @@ You can choose to provide the name of a file in `$GIT_DIR/remotes`. The URL in t
             Push: <refspec>
             Pull: <refspec>
 
-`Push:` lines are used by _git push_ and `Pull:` lines are used by _git pull_ and _git fetch_. Multiple `Push:` and `Pull:` lines may be specified for additional branch mappings.
+`Push:` lines are used by *git push* and `Pull:` lines are used by *git pull* and *git fetch*. Multiple `Push:` and `Pull:` lines may be specified for additional branch mappings.
 
 ### Named file in `$GIT_DIR/branches`
 
@@ -329,7 +336,8 @@ git push uses:
 
             HEAD:refs/heads/<head>
 
-## CONFIGURED REMOTE-TRACKING BRANCHES<span id="CRTB"></span>
+CONFIGURED REMOTE-TRACKING BRANCHES<span id="CRTB"></span>
+----------------------------------------------------------
 
 You often interact with the same remote repository by regularly and repeatedly fetching from it. In order to keep track of the progress of such a remote repository, `git fetch` allows you to configure `remote.<repository>.fetch` configuration variables.
 
@@ -340,13 +348,14 @@ Typically such a variable may look like this:
 
 This configuration is used in two ways:
 
-- When `git fetch` is run without specifying what branches and/or tags to fetch on the command line, e.g. `git fetch origin` or `git fetch`, `remote.<repository>.fetch` values are used as the refspecs—​they specify which refs to fetch and which local refs to update. The example above will fetch all branches that exist in the `origin` (i.e. any ref that matches the left-hand side of the value, `refs/heads/*`) and update the corresponding remote-tracking branches in the `refs/remotes/origin/*` hierarchy.
+-   When `git fetch` is run without specifying what branches and/or tags to fetch on the command line, e.g. `git fetch origin` or `git fetch`, `remote.<repository>.fetch` values are used as the refspecs—​they specify which refs to fetch and which local refs to update. The example above will fetch all branches that exist in the `origin` (i.e. any ref that matches the left-hand side of the value, `refs/heads/*`) and update the corresponding remote-tracking branches in the `refs/remotes/origin/*` hierarchy.
 
-- When `git fetch` is run with explicit branches and/or tags to fetch on the command line, e.g. `git fetch origin master`, the &lt;refspec&gt;s given on the command line determine what are to be fetched (e.g. `master` in the example, which is a short-hand for `master:`, which in turn means "fetch the _master_ branch but I do not explicitly say what remote-tracking branch to update with it from the command line"), and the example command will fetch _only_ the _master_ branch. The `remote.<repository>.fetch` values determine which remote-tracking branch, if any, is updated. When used in this way, the `remote.<repository>.fetch` values do not have any effect in deciding _what_ gets fetched (i.e. the values are not used as refspecs when the command-line lists refspecs); they are only used to decide _where_ the refs that are fetched are stored by acting as a mapping.
+-   When `git fetch` is run with explicit branches and/or tags to fetch on the command line, e.g. `git fetch origin master`, the &lt;refspec&gt;s given on the command line determine what are to be fetched (e.g. `master` in the example, which is a short-hand for `master:`, which in turn means "fetch the *master* branch but I do not explicitly say what remote-tracking branch to update with it from the command line"), and the example command will fetch *only* the *master* branch. The `remote.<repository>.fetch` values determine which remote-tracking branch, if any, is updated. When used in this way, the `remote.<repository>.fetch` values do not have any effect in deciding *what* gets fetched (i.e. the values are not used as refspecs when the command-line lists refspecs); they are only used to decide *where* the refs that are fetched are stored by acting as a mapping.
 
 The latter use of the `remote.<repository>.fetch` values can be overridden by giving the `--refmap=<refspec>` parameter(s) on the command line.
 
-## PRUNING
+PRUNING
+-------
 
 Git has a default disposition of keeping data unless it’s explicitly thrown away; this extends to holding onto local references to branches on remotes that have themselves deleted those branches.
 
@@ -389,7 +398,8 @@ Pruning tags with `--prune-tags` also works when fetching a URL instead of a nam
     $ git fetch <url of origin> --prune --prune-tags
     $ git fetch <url of origin> --prune 'refs/tags/*:refs/tags/*'
 
-## OUTPUT
+OUTPUT
+------
 
 The output of "git fetch" depends on the transport method used; this section describes the output when fetching over the Git protocol (either locally or via ssh) and Smart HTTP protocol.
 
@@ -437,30 +447,32 @@ The name of the local ref being updated, minus its `refs/<type>/` prefix.
 reason  
 A human-readable explanation. In the case of successfully fetched refs, no explanation is needed. For a failed ref, the reason for failure is described.
 
-## EXAMPLES
+EXAMPLES
+--------
 
-- Update the remote-tracking branches:
+-   Update the remote-tracking branches:
 
-      $ git fetch origin
+        $ git fetch origin
 
-  The above command copies all branches from the remote refs/heads/ namespace and stores them to the local refs/remotes/origin/ namespace, unless the branch.&lt;name&gt;.fetch option is used to specify a non-default refspec.
+    The above command copies all branches from the remote refs/heads/ namespace and stores them to the local refs/remotes/origin/ namespace, unless the branch.&lt;name&gt;.fetch option is used to specify a non-default refspec.
 
-- Using refspecs explicitly:
+-   Using refspecs explicitly:
 
-      $ git fetch origin +seen:seen maint:tmp
+        $ git fetch origin +seen:seen maint:tmp
 
-  This updates (or creates, as necessary) branches `seen` and `tmp` in the local repository by fetching from the branches (respectively) `seen` and `maint` from the remote repository.
+    This updates (or creates, as necessary) branches `seen` and `tmp` in the local repository by fetching from the branches (respectively) `seen` and `maint` from the remote repository.
 
-  The `seen` branch will be updated even if it does not fast-forward, because it is prefixed with a plus sign; `tmp` will not be.
+    The `seen` branch will be updated even if it does not fast-forward, because it is prefixed with a plus sign; `tmp` will not be.
 
-- Peek at a remote’s branch, without configuring the remote in your local repository:
+-   Peek at a remote’s branch, without configuring the remote in your local repository:
 
-      $ git fetch git://git.kernel.org/pub/scm/git/git.git maint
-      $ git log FETCH_HEAD
+        $ git fetch git://git.kernel.org/pub/scm/git/git.git maint
+        $ git log FETCH_HEAD
 
-  The first command fetches the `maint` branch from the repository at `git://git.kernel.org/pub/scm/git/git.git` and the second command uses `FETCH_HEAD` to examine the branch with [git-log(1)](git-log.html). The fetched objects will eventually be removed by git’s built-in housekeeping (see [git-gc(1)](git-gc.html)).
+    The first command fetches the `maint` branch from the repository at `git://git.kernel.org/pub/scm/git/git.git` and the second command uses `FETCH_HEAD` to examine the branch with [git-log(1)](git-log.html). The fetched objects will eventually be removed by git’s built-in housekeeping (see [git-gc(1)](git-gc.html)).
 
-## SECURITY
+SECURITY
+--------
 
 The fetch and push protocols are not designed to prevent one side from stealing data from the other repository that was not intended to be shared. If you have private data that you need to protect from a malicious peer, your best option is to store it in another repository. This applies to both clients and servers. In particular, namespaces on a server are not effective for read access control; you should only grant read access to a namespace to clients that you would trust with read access to the entire repository.
 
@@ -470,15 +482,18 @@ The known attack vectors are as follows:
 
 2.  As in \#1, the attacker chooses an object ID X to steal. The victim sends an object Y that the attacker already has, and the attacker falsely claims to have X and not Y, so the victim sends Y as a delta against X. The delta reveals regions of X that are similar to Y to the attacker.
 
-## BUGS
+BUGS
+----
 
 Using --recurse-submodules can only fetch new commits in already checked out submodules right now. When e.g. upstream added a new submodule in the just fetched commits of the superproject the submodule itself cannot be fetched, making it impossible to check out that submodule later without having to do a fetch again. This is expected to be fixed in a future Git version.
 
-## SEE ALSO
+SEE ALSO
+--------
 
 [git-pull(1)](git-pull.html)
 
-## GIT
+GIT
+---
 
 Part of the [git(1)](git.html) suite
 

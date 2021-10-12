@@ -1,14 +1,18 @@
-# git-prune-packed(1) Manual Page
+git-prune-packed(1) Manual Page
+===============================
 
-## NAME
+NAME
+----
 
 git-prune-packed - Remove extra objects that are already in pack files
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git prune-packed [-n|--dry-run] [-q|--quiet]
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 This program searches the `$GIT_OBJECT_DIRECTORY` for all objects that currently exist in a pack file as well as the independent object directories.
 
@@ -18,7 +22,8 @@ A pack is a collection of objects, individually compressed, with delta compressi
 
 Packs are used to reduce the load on mirror systems, backup engines, disk storage, etc.
 
-## OPTIONS
+OPTIONS
+-------
 
 -n  
 --dry-run  
@@ -28,12 +33,10 @@ Don’t actually remove any objects, only show those that would have been remove
 --quiet  
 Squelch the progress indicator.
 
-## SEE ALSO
+SEE ALSO
+--------
 
 [git-pack-objects(1)](git-pack-objects.html) [git-repack(1)](git-repack.html)
 
-## GIT
-
-Part of the [git(1)](git.html) suite
-
-Last updated 2021-03-27 09:47:30 UTC
+GIT
+---

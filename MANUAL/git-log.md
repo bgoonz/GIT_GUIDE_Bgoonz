@@ -1,47 +1,52 @@
-# git-log(1) Manual Page
+git-log(1) Manual Page
+======================
 
-## NAME
+NAME
+----
 
 git-log - Show commit logs
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git log [<options>] [<revision range>] [[--] <path>…​]
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 Shows the commit logs.
 
-List commits that are reachable by following the `parent` links from the given commit(s), but exclude commits that are reachable from the one(s) given with a _^_ in front of them. The output is given in reverse chronological order by default.
+List commits that are reachable by following the `parent` links from the given commit(s), but exclude commits that are reachable from the one(s) given with a *^* in front of them. The output is given in reverse chronological order by default.
 
-You can think of this as a set operation. Commits reachable from any of the commits given on the command line form a set, and then commits reachable from any of the ones given with _^_ in front are subtracted from that set. The remaining commits are what comes out in the command’s output. Various other options and paths parameters can be used to further limit the result.
+You can think of this as a set operation. Commits reachable from any of the commits given on the command line form a set, and then commits reachable from any of the ones given with *^* in front are subtracted from that set. The remaining commits are what comes out in the command’s output. Various other options and paths parameters can be used to further limit the result.
 
 Thus, the following command:
 
     $ git log foo bar ^baz
 
-means "list all the commits which are reachable from _foo_ or _bar_, but not from _baz_".
+means "list all the commits which are reachable from *foo* or *bar*, but not from *baz*".
 
-A special notation "_&lt;commit1&gt;_.._&lt;commit2&gt;_" can be used as a short-hand for "^_&lt;commit1&gt;_ _&lt;commit2&gt;_". For example, either of the following may be used interchangeably:
+A special notation "*&lt;commit1&gt;*..*&lt;commit2&gt;*" can be used as a short-hand for "^*&lt;commit1&gt;* *&lt;commit2&gt;*". For example, either of the following may be used interchangeably:
 
     $ git log origin..HEAD
     $ git log HEAD ^origin
 
-Another special notation is "_&lt;commit1&gt;_…​*&lt;commit2&gt;*" which is useful for merges. The resulting set of commits is the symmetric difference between the two operands. The following two commands are equivalent:
+Another special notation is "*&lt;commit1&gt;*…​*&lt;commit2&gt;*" which is useful for merges. The resulting set of commits is the symmetric difference between the two operands. The following two commands are equivalent:
 
     $ git log A B --not $(git merge-base --all A B)
     $ git log A...B
 
 The command takes options applicable to the [git-rev-list(1)](git-rev-list.html) command to control what is shown and how, and options applicable to the [git-diff(1)](git-diff.html) command to control how the changes each commit introduces are shown.
 
-## OPTIONS
+OPTIONS
+-------
 
 --follow  
 Continue listing the history of a file beyond renames (works only for a single file).
 
 --no-decorate  
 --decorate\[=short|full|auto|no\]  
-Print out the ref names of any commits that are shown. If _short_ is specified, the ref name prefixes _refs/heads/_, _refs/tags/_ and _refs/remotes/_ will not be printed. If _full_ is specified, the full ref name (including prefix) will be printed. If _auto_ is specified, then if the output is going to a terminal, the ref names are shown as if _short_ were given, otherwise no ref names are shown. The default option is _short_.
+Print out the ref names of any commits that are shown. If *short* is specified, the ref name prefixes *refs/heads/*, *refs/tags/* and *refs/remotes/* will not be printed. If *full* is specified, the full ref name (including prefix) will be printed. If *auto* is specified, then if the output is going to a terminal, the ref names are shown as if *short* were given, otherwise no ref names are shown. The default option is *short*.
 
 --decorate-refs=&lt;pattern&gt;  
 --decorate-refs-exclude=&lt;pattern&gt;  
@@ -64,29 +69,29 @@ Include a line “log size &lt;number&gt;” in the output for each commit, wher
 
 -L&lt;start&gt;,&lt;end&gt;:&lt;file&gt;  
 -L:&lt;funcname&gt;:&lt;file&gt;  
-Trace the evolution of the line range given by _&lt;start&gt;,&lt;end&gt;_, or by the function name regex _&lt;funcname&gt;_, within the _&lt;file&gt;_. You may not give any pathspec limiters. This is currently limited to a walk starting from a single revision, i.e., you may only give zero or one positive revision arguments, and _&lt;start&gt;_ and _&lt;end&gt;_ (or _&lt;funcname&gt;_) must exist in the starting revision. You can specify this option more than once. Implies `--patch`. Patch output can be suppressed using `--no-patch`, but other diff formats (namely `--raw`, `--numstat`, `--shortstat`, `--dirstat`, `--summary`, `--name-only`, `--name-status`, `--check`) are not currently implemented.
+Trace the evolution of the line range given by *&lt;start&gt;,&lt;end&gt;*, or by the function name regex *&lt;funcname&gt;*, within the *&lt;file&gt;*. You may not give any pathspec limiters. This is currently limited to a walk starting from a single revision, i.e., you may only give zero or one positive revision arguments, and *&lt;start&gt;* and *&lt;end&gt;* (or *&lt;funcname&gt;*) must exist in the starting revision. You can specify this option more than once. Implies `--patch`. Patch output can be suppressed using `--no-patch`, but other diff formats (namely `--raw`, `--numstat`, `--shortstat`, `--dirstat`, `--summary`, `--name-only`, `--name-status`, `--check`) are not currently implemented.
 
-_&lt;start&gt;_ and _&lt;end&gt;_ can take one of these forms:
+*&lt;start&gt;* and *&lt;end&gt;* can take one of these forms:
 
-- number
+-   number
 
-  If _&lt;start&gt;_ or _&lt;end&gt;_ is a number, it specifies an absolute line number (lines count from 1).
+    If *&lt;start&gt;* or *&lt;end&gt;* is a number, it specifies an absolute line number (lines count from 1).
 
-- `/regex/`
+-   `/regex/`
 
-  This form will use the first line matching the given POSIX regex. If _&lt;start&gt;_ is a regex, it will search from the end of the previous `-L` range, if any, otherwise from the start of file. If _&lt;start&gt;_ is `^/regex/`, it will search from the start of file. If _&lt;end&gt;_ is a regex, it will search starting at the line given by _&lt;start&gt;_.
+    This form will use the first line matching the given POSIX regex. If *&lt;start&gt;* is a regex, it will search from the end of the previous `-L` range, if any, otherwise from the start of file. If *&lt;start&gt;* is `^/regex/`, it will search from the start of file. If *&lt;end&gt;* is a regex, it will search starting at the line given by *&lt;start&gt;*.
 
-- +offset or -offset
+-   +offset or -offset
 
-  This is only valid for _&lt;end&gt;_ and will specify a number of lines before or after the line given by _&lt;start&gt;_.
+    This is only valid for *&lt;end&gt;* and will specify a number of lines before or after the line given by *&lt;start&gt;*.
 
-If `:<funcname>` is given in place of _&lt;start&gt;_ and _&lt;end&gt;_, it is a regular expression that denotes the range from the first funcname line that matches _&lt;funcname&gt;_, up to the next funcname line. `:<funcname>` searches from the end of the previous `-L` range, if any, otherwise from the start of file. `^:<funcname>` searches from the start of file. The function names are determined in the same way as `git diff` works out patch hunk headers (see _Defining a custom hunk-header_ in [gitattributes(5)](gitattributes.html)).
+If `:<funcname>` is given in place of *&lt;start&gt;* and *&lt;end&gt;*, it is a regular expression that denotes the range from the first funcname line that matches *&lt;funcname&gt;*, up to the next funcname line. `:<funcname>` searches from the end of the previous `-L` range, if any, otherwise from the start of file. `^:<funcname>` searches from the start of file. The function names are determined in the same way as `git diff` works out patch hunk headers (see *Defining a custom hunk-header* in [gitattributes(5)](gitattributes.html)).
 
 &lt;revision range&gt;  
-Show only commits in the specified revision range. When no &lt;revision range&gt; is specified, it defaults to `HEAD` (i.e. the whole history leading to the current commit). `origin..HEAD` specifies all the commits reachable from the current commit (i.e. `HEAD`), but not from `origin`. For a complete list of ways to spell &lt;revision range&gt;, see the _Specifying Ranges_ section of [gitrevisions(7)](gitrevisions.html).
+Show only commits in the specified revision range. When no &lt;revision range&gt; is specified, it defaults to `HEAD` (i.e. the whole history leading to the current commit). `origin..HEAD` specifies all the commits reachable from the current commit (i.e. `HEAD`), but not from `origin`. For a complete list of ways to spell &lt;revision range&gt;, see the *Specifying Ranges* section of [gitrevisions(7)](gitrevisions.html).
 
 \[--\] &lt;path&gt;…​  
-Show only commits that are enough to explain how the files that match the specified paths came to be. See _History Simplification_ below for details and other simplification modes.
+Show only commits that are enough to explain how the files that match the specified paths came to be. See *History Simplification* below for details and other simplification modes.
 
 Paths may need to be prefixed with `--` to separate them from options or the revision range, when confusion arises.
 
@@ -104,7 +109,7 @@ Note that these are applied before commit ordering and formatting options, such 
 Limit the number of commits to output.
 
 --skip=&lt;number&gt;  
-Skip _number_ commits before starting to show the commit output.
+Skip *number* commits before starting to show the commit output.
 
 --since=&lt;date&gt;  
 --after=&lt;date&gt;  
@@ -176,27 +181,27 @@ Follow only the first parent commit upon seeing a merge commit. This option can 
 This option also changes default diff format for merge commits to `first-parent`, see `--diff-merges=first-parent` for details.
 
 --not  
-Reverses the meaning of the _^_ prefix (or lack thereof) for all following revision specifiers, up to the next `--not`.
+Reverses the meaning of the *^* prefix (or lack thereof) for all following revision specifiers, up to the next `--not`.
 
 --all  
-Pretend as if all the refs in `refs/`, along with `HEAD`, are listed on the command line as _&lt;commit&gt;_.
+Pretend as if all the refs in `refs/`, along with `HEAD`, are listed on the command line as *&lt;commit&gt;*.
 
 --branches\[=&lt;pattern&gt;\]  
-Pretend as if all the refs in `refs/heads` are listed on the command line as _&lt;commit&gt;_. If _&lt;pattern&gt;_ is given, limit branches to ones matching given shell glob. If pattern lacks _?_, \*\*_, or _\[_, _/\*\* at the end is implied.
+Pretend as if all the refs in `refs/heads` are listed on the command line as *&lt;commit&gt;*. If *&lt;pattern&gt;* is given, limit branches to ones matching given shell glob. If pattern lacks *?*, *\**, or *\[*, */\** at the end is implied.
 
 --tags\[=&lt;pattern&gt;\]  
-Pretend as if all the refs in `refs/tags` are listed on the command line as _&lt;commit&gt;_. If _&lt;pattern&gt;_ is given, limit tags to ones matching given shell glob. If pattern lacks _?_, \*\*_, or _\[_, _/\*\* at the end is implied.
+Pretend as if all the refs in `refs/tags` are listed on the command line as *&lt;commit&gt;*. If *&lt;pattern&gt;* is given, limit tags to ones matching given shell glob. If pattern lacks *?*, *\**, or *\[*, */\** at the end is implied.
 
 --remotes\[=&lt;pattern&gt;\]  
-Pretend as if all the refs in `refs/remotes` are listed on the command line as _&lt;commit&gt;_. If _&lt;pattern&gt;_ is given, limit remote-tracking branches to ones matching given shell glob. If pattern lacks _?_, \*\*_, or _\[_, _/\*\* at the end is implied.
+Pretend as if all the refs in `refs/remotes` are listed on the command line as *&lt;commit&gt;*. If *&lt;pattern&gt;* is given, limit remote-tracking branches to ones matching given shell glob. If pattern lacks *?*, *\**, or *\[*, */\** at the end is implied.
 
 --glob=&lt;glob-pattern&gt;  
-Pretend as if all the refs matching shell glob _&lt;glob-pattern&gt;_ are listed on the command line as _&lt;commit&gt;_. Leading _refs/_, is automatically prepended if missing. If pattern lacks _?_, \*\*_, or _\[_, _/\*\* at the end is implied.
+Pretend as if all the refs matching shell glob *&lt;glob-pattern&gt;* are listed on the command line as *&lt;commit&gt;*. Leading *refs/*, is automatically prepended if missing. If pattern lacks *?*, *\**, or *\[*, */\** at the end is implied.
 
 --exclude=&lt;glob-pattern&gt;  
-Do not include refs matching _&lt;glob-pattern&gt;_ that the next `--all`, `--branches`, `--tags`, `--remotes`, or `--glob` would otherwise consider. Repetitions of this option accumulate exclusion patterns up to the next `--all`, `--branches`, `--tags`, `--remotes`, or `--glob` option (other options or arguments do not clear accumulated patterns).
+Do not include refs matching *&lt;glob-pattern&gt;* that the next `--all`, `--branches`, `--tags`, `--remotes`, or `--glob` would otherwise consider. Repetitions of this option accumulate exclusion patterns up to the next `--all`, `--branches`, `--tags`, `--remotes`, or `--glob` option (other options or arguments do not clear accumulated patterns).
 
-The patterns given should not begin with `refs/heads`, `refs/tags`, or `refs/remotes` when applied to `--branches`, `--tags`, or `--remotes`, respectively, and they must begin with `refs/` when applied to `--glob` or `--all`. If a trailing \*/\*\* is intended, it must be given explicitly.
+The patterns given should not begin with `refs/heads`, `refs/tags`, or `refs/remotes` when applied to `--branches`, `--tags`, or `--remotes`, respectively, and they must begin with `refs/` when applied to `--glob` or `--all`. If a trailing */\** is intended, it must be given explicitly.
 
 --reflog  
 Pretend as if all objects mentioned by reflogs are listed on the command line as `<commit>`.
@@ -214,7 +219,7 @@ Upon seeing an invalid object name in the input, pretend as if the bad input was
 Pretend as if the bad bisection ref `refs/bisect/bad` was listed and as if it was followed by `--not` and the good bisection refs `refs/bisect/good-*` on the command line.
 
 --stdin  
-In addition to the _&lt;commit&gt;_ listed on the command line, read them from the standard input. If a `--` separator is seen, stop reading commits and start reading paths to limit the result.
+In addition to the *&lt;commit&gt;* listed on the command line, read them from the standard input. If a `--` separator is seen, stop reading commits and start reading paths to limit the result.
 
 --cherry-mark  
 Like `--cherry-pick` (see below) but mark equivalent commits with `=` rather than omitting them, and inequivalent ones with `+`.
@@ -235,7 +240,7 @@ A synonym for `--right-only --cherry-mark --no-merges`; useful to limit the outp
 
 -g  
 --walk-reflogs  
-Instead of walking the commit ancestry chain, walk reflog entries from the most recent one to older ones. When this option is used you cannot specify commits to exclude (that is, _^commit_, _commit1..commit2_, and _commit1...commit2_ notations cannot be used).
+Instead of walking the commit ancestry chain, walk reflog entries from the most recent one to older ones. When this option is used you cannot specify commits to exclude (that is, *^commit*, *commit1..commit2*, and *commit1...commit2* notations cannot be used).
 
 With `--pretty` format other than `oneline` and `reference` (for obvious reasons), this causes the output to have two extra lines of information taken from the reflog. The reflog designator in the output may be shown as `ref@{Nth}` (where `Nth` is the reverse-chronological index in the reflog) or as `ref@{timestamp}` (with the timestamp for that entry), depending on a few rules:
 
@@ -259,7 +264,7 @@ Output excluded boundary commits. Boundary commits are prefixed with `-`.
 
 ### History Simplification
 
-Sometimes you are only interested in parts of the history, for example the commits modifying a particular &lt;path&gt;. But there are two parts of _History Simplification_, one part is selecting the commits and the other is how to do it, as there are various strategies to simplify the history.
+Sometimes you are only interested in parts of the history, for example the commits modifying a particular &lt;path&gt;. But there are two parts of *History Simplification*, one part is selecting the commits and the other is how to do it, as there are various strategies to simplify the history.
 
 The following options select the commits to be shown:
 
@@ -292,7 +297,7 @@ All commits in the simplified history are shown.
 Additional option to `--full-history` to remove some needless merges from the resulting history, as there are no selected commits contributing to this merge.
 
 --ancestry-path  
-When given a range of commits to display (e.g. _commit1..commit2_ or _commit2 ^commit1_), only display commits that exist directly on the ancestry chain between the _commit1_ and _commit2_, i.e. commits that are both descendants of _commit1_, and ancestors of _commit2_.
+When given a range of commits to display (e.g. *commit1..commit2* or *commit2 ^commit1*), only display commits that exist directly on the ancestry chain between the *commit1* and *commit2*, i.e. commits that are both descendants of *commit1*, and ancestors of *commit2*.
 
 A more detailed explanation follows.
 
@@ -308,19 +313,19 @@ In the following, we will always refer to the same example history to illustrate
 
 The horizontal line of history A---Q is taken to be the first parent of each merge. The commits are:
 
-- `I` is the initial commit, in which `foo` exists with contents “asdf”, and a file `quux` exists with contents “quux”. Initial commits are compared to an empty tree, so `I` is !TREESAME.
+-   `I` is the initial commit, in which `foo` exists with contents “asdf”, and a file `quux` exists with contents “quux”. Initial commits are compared to an empty tree, so `I` is !TREESAME.
 
-- In `A`, `foo` contains just “foo”.
+-   In `A`, `foo` contains just “foo”.
 
-- `B` contains the same change as `A`. Its merge `M` is trivial and hence TREESAME to all parents.
+-   `B` contains the same change as `A`. Its merge `M` is trivial and hence TREESAME to all parents.
 
-- `C` does not change `foo`, but its merge `N` changes it to “foobar”, so it is not TREESAME to any parent.
+-   `C` does not change `foo`, but its merge `N` changes it to “foobar”, so it is not TREESAME to any parent.
 
-- `D` sets `foo` to “baz”. Its merge `O` combines the strings from `N` and `D` to “foobarbaz”; i.e., it is not TREESAME to any parent.
+-   `D` sets `foo` to “baz”. Its merge `O` combines the strings from `N` and `D` to “foobarbaz”; i.e., it is not TREESAME to any parent.
 
-- `E` changes `quux` to “xyzzy”, and its merge `P` combines the strings to “quux xyzzy”. `P` is TREESAME to `O`, but not to `E`.
+-   `E` changes `quux` to “xyzzy”, and its merge `P` combines the strings to “quux xyzzy”. `P` is TREESAME to `O`, but not to `E`.
 
-- `X` is an independent root commit that added a new file `side`, and `Y` modified it. `Y` is TREESAME to `X`. Its merge `Q` added `side` to `P`, and `Q` is TREESAME to `P`, but not to `Y`.
+-   `X` is an independent root commit that added a new file `side`, and `Y` modified it. `Y` is TREESAME to `X`. Its merge `Q` added `side` to `P`, and `Q` is TREESAME to `P`, but not to `Y`.
 
 `rev-list` walks backwards through history, including or excluding commits based on whether `--full-history` and/or parent rewriting (via `--parents` or `--children`) are used. The following settings are available.
 
@@ -374,11 +379,11 @@ First, build a history graph in the same way that `--full-history` with parent r
 
 Then simplify each commit `C` to its replacement `C'` in the final history according to the following rules:
 
-- Set `C'` to `C`.
+-   Set `C'` to `C`.
 
-- Replace each parent `P` of `C'` with its simplification `P'`. In the process, drop parents that are ancestors of other parents or that are root commits TREESAME to an empty tree, and remove duplicates, but take care to never drop all parents that we are TREESAME to.
+-   Replace each parent `P` of `C'` with its simplification `P'`. In the process, drop parents that are ancestors of other parents or that are root commits TREESAME to an empty tree, and remove duplicates, but take care to never drop all parents that we are TREESAME to.
 
-- If after this parent rewriting, `C'` is a root or merge commit (has zero or &gt;1 parents), a boundary commit, or !TREESAME, it remains. Otherwise, it is replaced with its only parent.
+-   If after this parent rewriting, `C'` is a root or merge commit (has zero or &gt;1 parents), a boundary commit, or !TREESAME, it remains. Otherwise, it is replaced with its only parent.
 
 The effect of this is best shown by way of comparing to `--full-history` with parent rewriting. The example turns into:
 
@@ -390,11 +395,11 @@ The effect of this is best shown by way of comparing to `--full-history` with pa
 
 Note the major differences in `N`, `P`, and `Q` over `--full-history`:
 
-- `N`'s parent list had `I` removed, because it is an ancestor of the other parent `M`. Still, `N` remained because it is !TREESAME.
+-   `N`'s parent list had `I` removed, because it is an ancestor of the other parent `M`. Still, `N` remained because it is !TREESAME.
 
-- `P`'s parent list similarly had `I` removed. `P` was then removed completely, because it had one parent and is TREESAME.
+-   `P`'s parent list similarly had `I` removed. `P` was then removed completely, because it had one parent and is TREESAME.
 
-- `Q`'s parent list had `Y` simplified to `X`. `X` was then removed, because it was a TREESAME root. `Q` was then removed completely, because it had one parent and is TREESAME.
+-   `Q`'s parent list had `Y` simplified to `X`. `X` was then removed, because it was a TREESAME root. `Q` was then removed completely, because it had one parent and is TREESAME.
 
 There is another simplification mode available:
 
@@ -409,9 +414,9 @@ As an example use case, consider the following commit history:
              /                     \
             A-------K---------------L--M
 
-A regular _D..M_ computes the set of commits that are ancestors of `M`, but excludes the ones that are ancestors of `D`. This is useful to see what happened to the history leading to `M` since `D`, in the sense that “what does `M` have that did not exist in `D`”. The result in this example would be all the commits, except `A` and `B` (and `D` itself, of course).
+A regular *D..M* computes the set of commits that are ancestors of `M`, but excludes the ones that are ancestors of `D`. This is useful to see what happened to the history leading to `M` since `D`, in the sense that “what does `M` have that did not exist in `D`”. The result in this example would be all the commits, except `A` and `B` (and `D` itself, of course).
 
-When we want to find out what commits in `M` are contaminated with the bug introduced by `D` and need fixing, however, we might want to view only the subset of _D..M_ that are actually descendants of `D`, i.e. excluding `C` and `K`. This is exactly what the `--ancestry-path` option does. Applied to the _D..M_ range, it results in:
+When we want to find out what commits in `M` are contaminated with the bug introduced by `D` and need fixing, however, we might want to view only the subset of *D..M* that are actually descendants of `D`, i.e. excluding `C` and `K`. This is exactly what the `--ancestry-path` option does. Applied to the *D..M* range, it results in:
 
                     E-------F
                      \       \
@@ -524,9 +529,9 @@ Overrides a previous `--no-walk`.
 
 --pretty\[=&lt;format&gt;\]  
 --format=&lt;format&gt;  
-Pretty-print the contents of the commit logs in a given format, where _&lt;format&gt;_ can be one of _oneline_, _short_, _medium_, _full_, _fuller_, _reference_, _email_, _raw_, _format:&lt;string&gt;_ and _tformat:&lt;string&gt;_. When _&lt;format&gt;_ is none of the above, and has _%placeholder_ in it, it acts as if _--pretty=tformat:&lt;format&gt;_ were given.
+Pretty-print the contents of the commit logs in a given format, where *&lt;format&gt;* can be one of *oneline*, *short*, *medium*, *full*, *fuller*, *reference*, *email*, *raw*, *format:&lt;string&gt;* and *tformat:&lt;string&gt;*. When *&lt;format&gt;* is none of the above, and has *%placeholder* in it, it acts as if *--pretty=tformat:&lt;format&gt;* were given.
 
-See the "PRETTY FORMATS" section for some additional details for each format. When _=&lt;format&gt;_ part is omitted, it defaults to _medium_.
+See the "PRETTY FORMATS" section for some additional details for each format. When *=&lt;format&gt;* part is omitted, it defaults to *medium*.
 
 Note: you can specify the default pretty format in the repository configuration (see [git-config(1)](git-config.html)).
 
@@ -547,16 +552,16 @@ The commit objects record the encoding used for the log message in their encodin
 --expand-tabs=&lt;n&gt;  
 --expand-tabs  
 --no-expand-tabs  
-Perform a tab expansion (replace each tab with enough spaces to fill to the next display column that is multiple of _&lt;n&gt;_) in the log message before showing it in the output. `--expand-tabs` is a short-hand for `--expand-tabs=8`, and `--no-expand-tabs` is a short-hand for `--expand-tabs=0`, which disables tab expansion.
+Perform a tab expansion (replace each tab with enough spaces to fill to the next display column that is multiple of *&lt;n&gt;*) in the log message before showing it in the output. `--expand-tabs` is a short-hand for `--expand-tabs=8`, and `--no-expand-tabs` is a short-hand for `--expand-tabs=0`, which disables tab expansion.
 
-By default, tabs are expanded in pretty formats that indent the log message by 4 spaces (i.e. _medium_, which is the default, _full_, and _fuller_).
+By default, tabs are expanded in pretty formats that indent the log message by 4 spaces (i.e. *medium*, which is the default, *full*, and *fuller*).
 
 --notes\[=&lt;ref&gt;\]  
 Show the notes (see [git-notes(1)](git-notes.html)) that annotate the commit, when showing the commit log message. This is the default for `git log`, `git show` and `git whatchanged` commands when there is no `--pretty`, `--format`, or `--oneline` option given on the command line.
 
 By default, the notes shown are from the notes refs listed in the `core.notesRef` and `notes.displayRef` variables (or corresponding environment overrides). See [git-config(1)](git-config.html) for more details.
 
-With an optional _&lt;ref&gt;_ argument, use the ref to find the notes to display. The ref can specify the full refname when it begins with `refs/notes/`; when it begins with `notes/`, `refs/` and otherwise `refs/notes/` is prefixed to form a full name of the ref.
+With an optional *&lt;ref&gt;* argument, use the ref to find the notes to display. The ref can specify the full refname when it begins with `refs/notes/`; when it begins with `notes/`, `refs/` and otherwise `refs/notes/` is prefixed to form a full name of the ref.
 
 Multiple --notes options can be combined to control which notes are being displayed. Examples: "--notes=foo" will show only notes from "refs/notes/foo"; "--notes=foo --notes" will show both notes from "refs/notes/foo" and from the default notes ref(s).
 
@@ -582,11 +587,11 @@ Only takes effect for dates shown in human-readable format, such as when using `
 
 `--date=iso` (or `--date=iso8601`) shows timestamps in a ISO 8601-like format. The differences to the strict ISO 8601 format are:
 
-- a space instead of the `T` date/time delimiter
+-   a space instead of the `T` date/time delimiter
 
-- a space between time and time zone
+-   a space between time and time zone
 
-- no colon between hours and minutes of the time zone
+-   no colon between hours and minutes of the time zone
 
 `--date=iso-strict` (or `--date=iso8601-strict`) shows timestamps in strict ISO 8601 format.
 
@@ -604,15 +609,15 @@ Only takes effect for dates shown in human-readable format, such as when using `
 
 `--date=default` is the default format, and is similar to `--date=rfc2822`, with a few exceptions:
 
-- there is no comma after the day-of-week
+-   there is no comma after the day-of-week
 
-- the time zone is omitted when the local time zone is used
+-   the time zone is omitted when the local time zone is used
 
 --parents  
-Print also the parents of the commit (in the form "commit parent…​"). Also enables parent rewriting, see _History Simplification_ above.
+Print also the parents of the commit (in the form "commit parent…​"). Also enables parent rewriting, see *History Simplification* above.
 
 --children  
-Print also the children of the commit (in the form "commit child…​"). Also enables parent rewriting, see _History Simplification_ above.
+Print also the children of the commit (in the form "commit child…​"). Also enables parent rewriting, see *History Simplification* above.
 
 --left-right  
 Mark which side of a symmetric difference a commit is reachable from. Commits from the left side are prefixed with `<` and those from the right with `>`. If combined with `--boundary`, those commits are prefixed with `-`.
@@ -639,361 +644,363 @@ you would get an output like this:
 --graph  
 Draw a text-based graphical representation of the commit history on the left hand side of the output. This may cause extra lines to be printed in between commits, in order for the graph history to be drawn properly. Cannot be combined with `--no-walk`.
 
-This enables parent rewriting, see _History Simplification_ above.
+This enables parent rewriting, see *History Simplification* above.
 
 This implies the `--topo-order` option by default, but the `--date-order` option may also be specified.
 
 --show-linear-break\[=&lt;barrier&gt;\]  
 When --graph is not used, all history branches are flattened which can make it hard to see that the two consecutive commits do not belong to a linear branch. This option puts a barrier in between them in that case. If `<barrier>` is specified, it is the string that will be shown instead of the default one.
 
-## PRETTY FORMATS
+PRETTY FORMATS
+--------------
 
-If the commit is a merge, and if the pretty-format is not _oneline_, _email_ or _raw_, an additional line is inserted before the _Author:_ line. This line begins with "Merge: " and the hashes of ancestral commits are printed, separated by spaces. Note that the listed commits may not necessarily be the list of the **direct** parent commits if you have limited your view of history: for example, if you are only interested in changes related to a certain directory or file.
+If the commit is a merge, and if the pretty-format is not *oneline*, *email* or *raw*, an additional line is inserted before the *Author:* line. This line begins with "Merge: " and the hashes of ancestral commits are printed, separated by spaces. Note that the listed commits may not necessarily be the list of the **direct** parent commits if you have limited your view of history: for example, if you are only interested in changes related to a certain directory or file.
 
-There are several built-in formats, and you can define additional formats by setting a pretty.&lt;name&gt; config option to either another format name, or a _format:_ string, as described below (see [git-config(1)](git-config.html)). Here are the details of the built-in formats:
+There are several built-in formats, and you can define additional formats by setting a pretty.&lt;name&gt; config option to either another format name, or a *format:* string, as described below (see [git-config(1)](git-config.html)). Here are the details of the built-in formats:
 
-- _oneline_
+-   *oneline*
 
-      <hash> <title line>
+        <hash> <title line>
 
-  This is designed to be as compact as possible.
+    This is designed to be as compact as possible.
 
-- _short_
+-   *short*
 
-      commit <hash>
-      Author: <author>
+        commit <hash>
+        Author: <author>
 
-      <title line>
+        <title line>
 
-- _medium_
+-   *medium*
 
-      commit <hash>
-      Author: <author>
-      Date:   <author date>
+        commit <hash>
+        Author: <author>
+        Date:   <author date>
 
-      <title line>
+        <title line>
 
-      <full commit message>
+        <full commit message>
 
-- _full_
+-   *full*
 
-      commit <hash>
-      Author: <author>
-      Commit: <committer>
+        commit <hash>
+        Author: <author>
+        Commit: <committer>
 
-      <title line>
+        <title line>
 
-      <full commit message>
+        <full commit message>
 
-- _fuller_
+-   *fuller*
 
-      commit <hash>
-      Author:     <author>
-      AuthorDate: <author date>
-      Commit:     <committer>
-      CommitDate: <committer date>
+        commit <hash>
+        Author:     <author>
+        AuthorDate: <author date>
+        Commit:     <committer>
+        CommitDate: <committer date>
 
-      <title line>
+        <title line>
 
-      <full commit message>
+        <full commit message>
 
-- _reference_
+-   *reference*
 
-      <abbrev hash> (<title line>, <short author date>)
+        <abbrev hash> (<title line>, <short author date>)
 
-  This format is used to refer to another commit in a commit message and is the same as `--pretty='format:%C(auto)%h (%s, %ad)'`. By default, the date is formatted with `--date=short` unless another `--date` option is explicitly specified. As with any `format:` with format placeholders, its output is not affected by other options like `--decorate` and `--walk-reflogs`.
+    This format is used to refer to another commit in a commit message and is the same as `--pretty='format:%C(auto)%h (%s, %ad)'`. By default, the date is formatted with `--date=short` unless another `--date` option is explicitly specified. As with any `format:` with format placeholders, its output is not affected by other options like `--decorate` and `--walk-reflogs`.
 
-- _email_
+-   *email*
 
-      From <hash> <date>
-      From: <author>
-      Date: <author date>
-      Subject: [PATCH] <title line>
+        From <hash> <date>
+        From: <author>
+        Date: <author date>
+        Subject: [PATCH] <title line>
 
-      <full commit message>
+        <full commit message>
 
-- _mboxrd_
+-   *mboxrd*
 
-  Like _email_, but lines in the commit message starting with "From " (preceded by zero or more "&gt;") are quoted with "&gt;" so they aren’t confused as starting a new commit.
+    Like *email*, but lines in the commit message starting with "From " (preceded by zero or more "&gt;") are quoted with "&gt;" so they aren’t confused as starting a new commit.
 
-- _raw_
+-   *raw*
 
-  The _raw_ format shows the entire commit exactly as stored in the commit object. Notably, the hashes are displayed in full, regardless of whether --abbrev or --no-abbrev are used, and _parents_ information show the true parent commits, without taking grafts or history simplification into account. Note that this format affects the way commits are displayed, but not the way the diff is shown e.g. with `git log --raw`. To get full object names in a raw diff format, use `--no-abbrev`.
+    The *raw* format shows the entire commit exactly as stored in the commit object. Notably, the hashes are displayed in full, regardless of whether --abbrev or --no-abbrev are used, and *parents* information show the true parent commits, without taking grafts or history simplification into account. Note that this format affects the way commits are displayed, but not the way the diff is shown e.g. with `git log --raw`. To get full object names in a raw diff format, use `--no-abbrev`.
 
-- _format:&lt;string&gt;_
+-   *format:&lt;string&gt;*
 
-  The _format:&lt;string&gt;_ format allows you to specify which information you want to show. It works a little bit like printf format, with the notable exception that you get a newline with _%n_ instead of _\\n_.
+    The *format:&lt;string&gt;* format allows you to specify which information you want to show. It works a little bit like printf format, with the notable exception that you get a newline with *%n* instead of *\\n*.
 
-  E.g, _format:"The author of %h was %an, %ar%nThe title was &gt;&gt;%s&lt;&lt;%n"_ would show something like this:
+    E.g, *format:"The author of %h was %an, %ar%nThe title was &gt;&gt;%s&lt;&lt;%n"* would show something like this:
 
-      The author of fe6e0ee was Junio C Hamano, 23 hours ago
-      The title was >>t4119: test autocomputing -p<n> for traditional diff input.<<
+        The author of fe6e0ee was Junio C Hamano, 23 hours ago
+        The title was >>t4119: test autocomputing -p<n> for traditional diff input.<<
 
-  The placeholders are:
+    The placeholders are:
 
-  - Placeholders that expand to a single literal character:
+    -   Placeholders that expand to a single literal character:
 
-    _%n_  
-    newline
+        *%n*  
+        newline
 
-    _%%_  
-    a raw _%_
+        *%%*  
+        a raw *%*
 
-    _%x00_  
-    print a byte from a hex code
+        *%x00*  
+        print a byte from a hex code
 
-  - Placeholders that affect formatting of later placeholders:
+    -   Placeholders that affect formatting of later placeholders:
 
-    _%Cred_  
-    switch color to red
+        *%Cred*  
+        switch color to red
 
-    _%Cgreen_  
-    switch color to green
+        *%Cgreen*  
+        switch color to green
 
-    _%Cblue_  
-    switch color to blue
+        *%Cblue*  
+        switch color to blue
 
-    _%Creset_  
-    reset color
+        *%Creset*  
+        reset color
 
-    _%C(…​)_  
-    color specification, as described under Values in the "CONFIGURATION FILE" section of [git-config(1)](git-config.html). By default, colors are shown only when enabled for log output (by `color.diff`, `color.ui`, or `--color`, and respecting the `auto` settings of the former if we are going to a terminal). `%C(auto,...)` is accepted as a historical synonym for the default (e.g., `%C(auto,red)`). Specifying `%C(always,...)` will show the colors even when color is not otherwise enabled (though consider just using `--color=always` to enable color for the whole output, including this format and anything else git might color). `auto` alone (i.e. `%C(auto)`) will turn on auto coloring on the next placeholders until the color is switched again.
+        *%C(…​)*  
+        color specification, as described under Values in the "CONFIGURATION FILE" section of [git-config(1)](git-config.html). By default, colors are shown only when enabled for log output (by `color.diff`, `color.ui`, or `--color`, and respecting the `auto` settings of the former if we are going to a terminal). `%C(auto,...)` is accepted as a historical synonym for the default (e.g., `%C(auto,red)`). Specifying `%C(always,...)` will show the colors even when color is not otherwise enabled (though consider just using `--color=always` to enable color for the whole output, including this format and anything else git might color). `auto` alone (i.e. `%C(auto)`) will turn on auto coloring on the next placeholders until the color is switched again.
 
-    _%m_  
-    left (`<`), right (`>`) or boundary (`-`) mark
+        *%m*  
+        left (`<`), right (`>`) or boundary (`-`) mark
 
-    _%w(\[&lt;w&gt;\[,&lt;i1&gt;\[,&lt;i2&gt;\]\]\])_  
-    switch line wrapping, like the -w option of [git-shortlog(1)](git-shortlog.html).
+         *%w(\[&lt;w&gt;\[,&lt;i1&gt;\[,&lt;i2&gt;\]\]\])*   
+        switch line wrapping, like the -w option of [git-shortlog(1)](git-shortlog.html).
 
-    _%&lt;(&lt;N&gt;\[,trunc|ltrunc|mtrunc\])_  
-    make the next placeholder take at least N columns, padding spaces on the right if necessary. Optionally truncate at the beginning (ltrunc), the middle (mtrunc) or the end (trunc) if the output is longer than N columns. Note that truncating only works correctly with N &gt;= 2.
+         *%&lt;(&lt;N&gt;\[,trunc|ltrunc|mtrunc\])*   
+        make the next placeholder take at least N columns, padding spaces on the right if necessary. Optionally truncate at the beginning (ltrunc), the middle (mtrunc) or the end (trunc) if the output is longer than N columns. Note that truncating only works correctly with N &gt;= 2.
 
-    _%&lt;|(&lt;N&gt;)_  
-    make the next placeholder take at least until Nth columns, padding spaces on the right if necessary
+        *%&lt;|(&lt;N&gt;)*  
+        make the next placeholder take at least until Nth columns, padding spaces on the right if necessary
 
-    _%&gt;(&lt;N&gt;)_, _%&gt;|(&lt;N&gt;)_  
-    similar to _%&lt;(&lt;N&gt;)_, _%&lt;|(&lt;N&gt;)_ respectively, but padding spaces on the left
+         *%&gt;(&lt;N&gt;)*, *%&gt;|(&lt;N&gt;)*   
+        similar to *%&lt;(&lt;N&gt;)*, *%&lt;|(&lt;N&gt;)* respectively, but padding spaces on the left
 
-    _%&gt;&gt;(&lt;N&gt;)_, _%&gt;&gt;|(&lt;N&gt;)_  
-    similar to _%&gt;(&lt;N&gt;)_, _%&gt;|(&lt;N&gt;)_ respectively, except that if the next placeholder takes more spaces than given and there are spaces on its left, use those spaces
+         *%&gt;&gt;(&lt;N&gt;)*, *%&gt;&gt;|(&lt;N&gt;)*   
+        similar to *%&gt;(&lt;N&gt;)*, *%&gt;|(&lt;N&gt;)* respectively, except that if the next placeholder takes more spaces than given and there are spaces on its left, use those spaces
 
-    _%&gt;&lt;(&lt;N&gt;)_, _%&gt;&lt;|(&lt;N&gt;)_  
-    similar to _%&lt;(&lt;N&gt;)_, _%&lt;|(&lt;N&gt;)_ respectively, but padding both sides (i.e. the text is centered)
+         *%&gt;&lt;(&lt;N&gt;)*, *%&gt;&lt;|(&lt;N&gt;)*   
+        similar to *%&lt;(&lt;N&gt;)*, *%&lt;|(&lt;N&gt;)* respectively, but padding both sides (i.e. the text is centered)
 
-  - Placeholders that expand to information extracted from the commit:
+    -   Placeholders that expand to information extracted from the commit:
 
-    _%H_  
-    commit hash
+        *%H*  
+        commit hash
 
-    _%h_  
-    abbreviated commit hash
+        *%h*  
+        abbreviated commit hash
 
-    _%T_  
-    tree hash
+        *%T*  
+        tree hash
 
-    _%t_  
-    abbreviated tree hash
+        *%t*  
+        abbreviated tree hash
 
-    _%P_  
-    parent hashes
+        *%P*  
+        parent hashes
 
-    _%p_  
-    abbreviated parent hashes
+        *%p*  
+        abbreviated parent hashes
 
-    _%an_  
-    author name
+        *%an*  
+        author name
 
-    _%aN_  
-    author name (respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
+        *%aN*  
+        author name (respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
 
-    _%ae_  
-    author email
+        *%ae*  
+        author email
 
-    _%aE_  
-    author email (respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
+        *%aE*  
+        author email (respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
 
-    _%al_  
-    author email local-part (the part before the _@_ sign)
+        *%al*  
+        author email local-part (the part before the *@* sign)
 
-    _%aL_  
-    author local-part (see _%al_) respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
+        *%aL*  
+        author local-part (see *%al*) respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
 
-    _%ad_  
-    author date (format respects --date= option)
+        *%ad*  
+        author date (format respects --date= option)
 
-    _%aD_  
-    author date, RFC2822 style
+        *%aD*  
+        author date, RFC2822 style
 
-    _%ar_  
-    author date, relative
+        *%ar*  
+        author date, relative
 
-    _%at_  
-    author date, UNIX timestamp
+        *%at*  
+        author date, UNIX timestamp
 
-    _%ai_  
-    author date, ISO 8601-like format
+        *%ai*  
+        author date, ISO 8601-like format
 
-    _%aI_  
-    author date, strict ISO 8601 format
+        *%aI*  
+        author date, strict ISO 8601 format
 
-    _%as_  
-    author date, short format (`YYYY-MM-DD`)
+        *%as*  
+        author date, short format (`YYYY-MM-DD`)
 
-    _%cn_  
-    committer name
+        *%cn*  
+        committer name
 
-    _%cN_  
-    committer name (respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
+        *%cN*  
+        committer name (respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
 
-    _%ce_  
-    committer email
+        *%ce*  
+        committer email
 
-    _%cE_  
-    committer email (respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
+        *%cE*  
+        committer email (respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
 
-    _%cl_  
-    committer email local-part (the part before the _@_ sign)
+        *%cl*  
+        committer email local-part (the part before the *@* sign)
 
-    _%cL_  
-    committer local-part (see _%cl_) respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
+        *%cL*  
+        committer local-part (see *%cl*) respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
 
-    _%cd_  
-    committer date (format respects --date= option)
+        *%cd*  
+        committer date (format respects --date= option)
 
-    _%cD_  
-    committer date, RFC2822 style
+        *%cD*  
+        committer date, RFC2822 style
 
-    _%cr_  
-    committer date, relative
+        *%cr*  
+        committer date, relative
 
-    _%ct_  
-    committer date, UNIX timestamp
+        *%ct*  
+        committer date, UNIX timestamp
 
-    _%ci_  
-    committer date, ISO 8601-like format
+        *%ci*  
+        committer date, ISO 8601-like format
 
-    _%cI_  
-    committer date, strict ISO 8601 format
+        *%cI*  
+        committer date, strict ISO 8601 format
 
-    _%cs_  
-    committer date, short format (`YYYY-MM-DD`)
+        *%cs*  
+        committer date, short format (`YYYY-MM-DD`)
 
-    _%d_  
-    ref names, like the --decorate option of [git-log(1)](git-log.html)
+        *%d*  
+        ref names, like the --decorate option of [git-log(1)](git-log.html)
 
-    _%D_  
-    ref names without the " (", ")" wrapping.
+        *%D*  
+        ref names without the " (", ")" wrapping.
 
-    _%S_  
-    ref name given on the command line by which the commit was reached (like `git log --source`), only works with `git log`
+        *%S*  
+        ref name given on the command line by which the commit was reached (like `git log --source`), only works with `git log`
 
-    _%e_  
-    encoding
+        *%e*  
+        encoding
 
-    _%s_  
-    subject
+        *%s*  
+        subject
 
-    _%f_  
-    sanitized subject line, suitable for a filename
+        *%f*  
+        sanitized subject line, suitable for a filename
 
-    _%b_  
-    body
+        *%b*  
+        body
 
-    _%B_  
-    raw body (unwrapped subject and body)
+        *%B*  
+        raw body (unwrapped subject and body)
 
-    _%N_  
-    commit notes
+        *%N*  
+        commit notes
 
-    _%GG_  
-    raw verification message from GPG for a signed commit
+        *%GG*  
+        raw verification message from GPG for a signed commit
 
-    _%G?_  
-    show "G" for a good (valid) signature, "B" for a bad signature, "U" for a good signature with unknown validity, "X" for a good signature that has expired, "Y" for a good signature made by an expired key, "R" for a good signature made by a revoked key, "E" if the signature cannot be checked (e.g. missing key) and "N" for no signature
+        *%G?*  
+        show "G" for a good (valid) signature, "B" for a bad signature, "U" for a good signature with unknown validity, "X" for a good signature that has expired, "Y" for a good signature made by an expired key, "R" for a good signature made by a revoked key, "E" if the signature cannot be checked (e.g. missing key) and "N" for no signature
 
-    _%GS_  
-    show the name of the signer for a signed commit
+        *%GS*  
+        show the name of the signer for a signed commit
 
-    _%GK_  
-    show the key used to sign a signed commit
+        *%GK*  
+        show the key used to sign a signed commit
 
-    _%GF_  
-    show the fingerprint of the key used to sign a signed commit
+        *%GF*  
+        show the fingerprint of the key used to sign a signed commit
 
-    _%GP_  
-    show the fingerprint of the primary key whose subkey was used to sign a signed commit
+        *%GP*  
+        show the fingerprint of the primary key whose subkey was used to sign a signed commit
 
-    _%GT_  
-    show the trust level for the key used to sign a signed commit
+        *%GT*  
+        show the trust level for the key used to sign a signed commit
 
-    _%gD_  
-    reflog selector, e.g., `refs/stash@{1}` or `refs/stash@{2 minutes ago}`; the format follows the rules described for the `-g` option. The portion before the `@` is the refname as given on the command line (so `git log -g refs/heads/master` would yield `refs/heads/master@{0}`).
+        *%gD*  
+        reflog selector, e.g., `refs/stash@{1}` or `refs/stash@{2 minutes ago}`; the format follows the rules described for the `-g` option. The portion before the `@` is the refname as given on the command line (so `git log -g refs/heads/master` would yield `refs/heads/master@{0}`).
 
-    _%gd_  
-    shortened reflog selector; same as `%gD`, but the refname portion is shortened for human readability (so `refs/heads/master` becomes just `master`).
+        *%gd*  
+        shortened reflog selector; same as `%gD`, but the refname portion is shortened for human readability (so `refs/heads/master` becomes just `master`).
 
-    _%gn_  
-    reflog identity name
+        *%gn*  
+        reflog identity name
 
-    _%gN_  
-    reflog identity name (respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
+        *%gN*  
+        reflog identity name (respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
 
-    _%ge_  
-    reflog identity email
+        *%ge*  
+        reflog identity email
 
-    _%gE_  
-    reflog identity email (respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
+        *%gE*  
+        reflog identity email (respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
 
-    _%gs_  
-    reflog subject
+        *%gs*  
+        reflog subject
 
-    _%(trailers\[:options\])_  
-    display the trailers of the body as interpreted by [git-interpret-trailers(1)](git-interpret-trailers.html). The `trailers` string may be followed by a colon and zero or more comma-separated options. If any option is provided multiple times the last occurance wins.
+         *%(trailers\[:options\])*   
+        display the trailers of the body as interpreted by [git-interpret-trailers(1)](git-interpret-trailers.html). The `trailers` string may be followed by a colon and zero or more comma-separated options. If any option is provided multiple times the last occurance wins.
 
-    The boolean options accept an optional value `[=<BOOL>]`. The values `true`, `false`, `on`, `off` etc. are all accepted. See the "boolean" sub-section in "EXAMPLES" in [git-config(1)](git-config.html). If a boolean option is given with no value, it’s enabled.
+        The boolean options accept an optional value `[=<BOOL>]`. The values `true`, `false`, `on`, `off` etc. are all accepted. See the "boolean" sub-section in "EXAMPLES" in [git-config(1)](git-config.html). If a boolean option is given with no value, it’s enabled.
 
-    - _key=&lt;K&gt;_: only show trailers with specified key. Matching is done case-insensitively and trailing colon is optional. If option is given multiple times trailer lines matching any of the keys are shown. This option automatically enables the `only` option so that non-trailer lines in the trailer block are hidden. If that is not desired it can be disabled with `only=false`. E.g., `%(trailers:key=Reviewed-by)` shows trailer lines with key `Reviewed-by`.
+        -   *key=&lt;K&gt;*: only show trailers with specified key. Matching is done case-insensitively and trailing colon is optional. If option is given multiple times trailer lines matching any of the keys are shown. This option automatically enables the `only` option so that non-trailer lines in the trailer block are hidden. If that is not desired it can be disabled with `only=false`. E.g., `%(trailers:key=Reviewed-by)` shows trailer lines with key `Reviewed-by`.
 
-    - _only\[=&lt;BOOL&gt;\]_: select whether non-trailer lines from the trailer block should be included.
+        -   *only\[=&lt;BOOL&gt;\]*: select whether non-trailer lines from the trailer block should be included.
 
-    - _separator=&lt;SEP&gt;_: specify a separator inserted between trailer lines. When this option is not given each trailer line is terminated with a line feed character. The string SEP may contain the literal formatting codes described above. To use comma as separator one must use `%x2C` as it would otherwise be parsed as next option. E.g., `%(trailers:key=Ticket,separator=%x2C )` shows all trailer lines whose key is "Ticket" separated by a comma and a space.
+        -   *separator=&lt;SEP&gt;*: specify a separator inserted between trailer lines. When this option is not given each trailer line is terminated with a line feed character. The string SEP may contain the literal formatting codes described above. To use comma as separator one must use `%x2C` as it would otherwise be parsed as next option. E.g., `%(trailers:key=Ticket,separator=%x2C                                       )` shows all trailer lines whose key is "Ticket" separated by a comma and a space.
 
-    - _unfold\[=&lt;BOOL&gt;\]_: make it behave as if interpret-trailer’s `--unfold` option was given. E.g., `%(trailers:only,unfold=true)` unfolds and shows all trailer lines.
+        -   *unfold\[=&lt;BOOL&gt;\]*: make it behave as if interpret-trailer’s `--unfold` option was given. E.g., `%(trailers:only,unfold=true)` unfolds and shows all trailer lines.
 
-    - _keyonly\[=&lt;BOOL&gt;\]_: only show the key part of the trailer.
+        -   *keyonly\[=&lt;BOOL&gt;\]*: only show the key part of the trailer.
 
-    - _valueonly\[=&lt;BOOL&gt;\]_: only show the value part of the trailer.
+        -   *valueonly\[=&lt;BOOL&gt;\]*: only show the value part of the trailer.
 
-    - _key_value_separator=&lt;SEP&gt;_: specify a separator inserted between trailer lines. When this option is not given each trailer key-value pair is separated by ": ". Otherwise it shares the same semantics as _separator=&lt;SEP&gt;_ above.
+        -   *key\_value\_separator=&lt;SEP&gt;*: specify a separator inserted between trailer lines. When this option is not given each trailer key-value pair is separated by ": ". Otherwise it shares the same semantics as *separator=&lt;SEP&gt;* above.
 
 <table><colgroup><col style="width: 50%" /><col style="width: 50%" /></colgroup><tbody><tr class="odd"><td><div class="title">Note</div></td><td>Some placeholders may depend on other options given to the revision traversal engine. For example, the <code>%g*</code> reflog options will insert an empty string unless we are traversing reflog entries (e.g., by <code>git log -g</code>). The <code>%d</code> and <code>%D</code> placeholders will use the "short" decoration format if <code>--decorate</code> was not already provided on the command line.</td></tr></tbody></table>
 
-If you add a `+` (plus sign) after _%_ of a placeholder, a line-feed is inserted immediately before the expansion if and only if the placeholder expands to a non-empty string.
+If you add a `+` (plus sign) after *%* of a placeholder, a line-feed is inserted immediately before the expansion if and only if the placeholder expands to a non-empty string.
 
-If you add a `-` (minus sign) after _%_ of a placeholder, all consecutive line-feeds immediately preceding the expansion are deleted if and only if the placeholder expands to an empty string.
+If you add a `-` (minus sign) after *%* of a placeholder, all consecutive line-feeds immediately preceding the expansion are deleted if and only if the placeholder expands to an empty string.
 
-If you add a \` \` (space) after _%_ of a placeholder, a space is inserted immediately before the expansion if and only if the placeholder expands to a non-empty string.
+If you add a \` \` (space) after *%* of a placeholder, a space is inserted immediately before the expansion if and only if the placeholder expands to a non-empty string.
 
-- _tformat:_
+-   *tformat:*
 
-  The _tformat:_ format works exactly like _format:_, except that it provides "terminator" semantics instead of "separator" semantics. In other words, each commit has the message terminator character (usually a newline) appended, rather than a separator placed between entries. This means that the final entry of a single-line format will be properly terminated with a new line, just as the "oneline" format does. For example:
+    The *tformat:* format works exactly like *format:*, except that it provides "terminator" semantics instead of "separator" semantics. In other words, each commit has the message terminator character (usually a newline) appended, rather than a separator placed between entries. This means that the final entry of a single-line format will be properly terminated with a new line, just as the "oneline" format does. For example:
 
-      $ git log -2 --pretty=format:%h 4da45bef \
-        | perl -pe '$_ .= " -- NO NEWLINE\n" unless /\n/'
-      4da45be
-      7134973 -- NO NEWLINE
+        $ git log -2 --pretty=format:%h 4da45bef \
+          | perl -pe '$_ .= " -- NO NEWLINE\n" unless /\n/'
+        4da45be
+        7134973 -- NO NEWLINE
 
-      $ git log -2 --pretty=tformat:%h 4da45bef \
-        | perl -pe '$_ .= " -- NO NEWLINE\n" unless /\n/'
-      4da45be
-      7134973
+        $ git log -2 --pretty=tformat:%h 4da45bef \
+          | perl -pe '$_ .= " -- NO NEWLINE\n" unless /\n/'
+        4da45be
+        7134973
 
-  In addition, any unrecognized string that has a `%` in it is interpreted as if it has `tformat:` in front of it. For example, these two are equivalent:
+    In addition, any unrecognized string that has a `%` in it is interpreted as if it has `tformat:` in front of it. For example, these two are equivalent:
 
-      $ git log -2 --pretty=tformat:%h 4da45bef
-      $ git log -2 --pretty=%h 4da45bef
+        $ git log -2 --pretty=tformat:%h 4da45bef
+        $ git log -2 --pretty=%h 4da45bef
 
-## DIFF FORMATTING
+DIFF FORMATTING
+---------------
 
 By default, `git log` does not generate any diff output. The options below can be used to show the changes made by each commit.
 
@@ -1008,7 +1015,7 @@ Generate patch (see section on generating patches).
 --no-patch  
 Suppress diff output. Useful for commands like `git show` that show the patch by default, or to cancel the effect of `--patch`.
 
---diff-merges=(off|none|first-parent|1|separate|m|combined|c|dense-combined|cc)  
+ --diff-merges=(off|none|first-parent|1|separate|m|combined|c|dense-combined|cc)  
 --no-diff-merges  
 Specify diff format to be used for merge commits. Default is \`off\` unless `--first-parent` is in use, in which case `first-parent` is the default.
 
@@ -1048,7 +1055,7 @@ Output to a specific file instead of stdout.
 --output-indicator-new=&lt;char&gt;  
 --output-indicator-old=&lt;char&gt;  
 --output-indicator-context=&lt;char&gt;  
-Specify the character used to indicate new, old or context lines in the generated patch. Normally they are _+_, _-_ and ' ' respectively.
+Specify the character used to indicate new, old or context lines in the generated patch. Normally they are *+*, *-* and ' ' respectively.
 
 --raw  
 For each commit, show a summary of changes using the raw diff format. See the "RAW OUTPUT FORMAT" section of [git-diff(1)](git-diff.html). This is different from showing the log itself in raw format, which you can achieve with `--format=raw`.
@@ -1081,10 +1088,10 @@ This option may be specified more than once.
 
 If a line exists in both the source and destination, exists only once, and starts with this text, this algorithm attempts to prevent it from appearing as a deletion or addition in the output. It uses the "patience diff" algorithm internally.
 
---diff-algorithm={patience|minimal|histogram|myers}  
+ --diff-algorithm={patience|minimal|histogram|myers}   
 Choose a diff algorithm. The variants are as follows:
 
-`default`, `myers`  
+ `default`, `myers`   
 The basic greedy diff algorithm. Currently, this is the default.
 
 `minimal`  
@@ -1098,7 +1105,7 @@ This algorithm extends the patience algorithm to "support low-occurrence common 
 
 For instance, if you configured the `diff.algorithm` variable to a non-default value and want to use the default one, then you have to use `--diff-algorithm=default` option.
 
---stat\[=&lt;width&gt;\[,&lt;name-width&gt;\[,&lt;count&gt;\]\]\]  
+ --stat\[=&lt;width&gt;\[,&lt;name-width&gt;\[,&lt;count&gt;\]\]\]   
 Generate a diffstat. By default, as much space as necessary will be used for the filename part, and the rest for the graph part. Maximum width defaults to terminal width, or 80 columns if not connected to a terminal, and can be overridden by `<width>`. The width of the filename part can be limited by giving another width `<name-width>` after a comma. The width of the graph part can be limited by using `--stat-graph-width=<width>` (affects all commands generating a stat graph) or by setting `diff.statGraphWidth=<width>` (does not affect `git format-patch`). By giving a third parameter `<count>`, you can limit the output to the first `<count>` lines, followed by `...` if there are more.
 
 These parameters can also be set individually with `--stat-width=<width>`, `--stat-name-width=<name-width>` and `--stat-count=<count>`.
@@ -1113,7 +1120,7 @@ Similar to `--stat`, but shows number of added and deleted lines in decimal nota
 Output only the last line of the `--stat` format containing total number of modified files, as well as number of added and deleted lines.
 
 -X\[&lt;param1,param2,…​&gt;\]  
---dirstat\[=&lt;param1,param2,…​&gt;\]  
+--dirstat\[=&lt;param1,param2,…​&gt;\]   
 Output the distribution of relative amount of changes for each sub-directory. The behavior of `--dirstat` can be customized by passing it a comma separated list of parameters. The defaults are controlled by the `diff.dirstat` configuration variable (see [git-config(1)](git-config.html)). The following parameters are available:
 
 `changes`  
@@ -1136,7 +1143,7 @@ Example: The following will count changed files, while ignoring directories with
 --cumulative  
 Synonym for --dirstat=cumulative
 
---dirstat-by-file\[=&lt;param1,param2&gt;…​\]  
+ --dirstat-by-file\[=&lt;param1,param2&gt;…​\]   
 Synonym for --dirstat=files,param1,param2…​
 
 --summary  
@@ -1159,16 +1166,16 @@ Show only names of changed files.
 Show only names and status of changed files. See the description of the `--diff-filter` option on what the status letters mean.
 
 --submodule\[=&lt;format&gt;\]  
-Specify how differences in submodules are shown. When specifying `--submodule=short` the _short_ format is used. This format just shows the names of the commits at the beginning and end of the range. When `--submodule` or `--submodule=log` is specified, the _log_ format is used. This format lists the commits in the range like [git-submodule(1)](git-submodule.html) `summary` does. When `--submodule=diff` is specified, the _diff_ format is used. This format shows an inline diff of the changes in the submodule contents between the commit range. Defaults to `diff.submodule` or the _short_ format if the config option is unset.
+Specify how differences in submodules are shown. When specifying `--submodule=short` the *short* format is used. This format just shows the names of the commits at the beginning and end of the range. When `--submodule` or `--submodule=log` is specified, the *log* format is used. This format lists the commits in the range like [git-submodule(1)](git-submodule.html) `summary` does. When `--submodule=diff` is specified, the *diff* format is used. This format shows an inline diff of the changes in the submodule contents between the commit range. Defaults to `diff.submodule` or the *short* format if the config option is unset.
 
 --color\[=&lt;when&gt;\]  
-Show colored diff. `--color` (i.e. without _=&lt;when&gt;_) is the same as `--color=always`. _&lt;when&gt;_ can be one of `always`, `never`, or `auto`.
+Show colored diff. `--color` (i.e. without *=&lt;when&gt;*) is the same as `--color=always`. *&lt;when&gt;* can be one of `always`, `never`, or `auto`.
 
 --no-color  
 Turn off colored diff. It is the same as `--color=never`.
 
 --color-moved\[=&lt;mode&gt;\]  
-Moved lines of code are colored differently. The &lt;mode&gt; defaults to _no_ if the option is not given and to _zebra_ if the option with no mode is given. The mode must be one of:
+Moved lines of code are colored differently. The &lt;mode&gt; defaults to *no* if the option is not given and to *zebra* if the option with no mode is given. The mode must be one of:
 
 no  
 Moved lines are not highlighted.
@@ -1177,16 +1184,16 @@ default
 Is a synonym for `zebra`. This may change to a more sensible mode in the future.
 
 plain  
-Any line that is added in one location and was removed in another location will be colored with _color.diff.newMoved_. Similarly _color.diff.oldMoved_ will be used for removed lines that are added somewhere else in the diff. This mode picks up any moved line, but it is not very useful in a review to determine if a block of code was moved without permutation.
+Any line that is added in one location and was removed in another location will be colored with *color.diff.newMoved*. Similarly *color.diff.oldMoved* will be used for removed lines that are added somewhere else in the diff. This mode picks up any moved line, but it is not very useful in a review to determine if a block of code was moved without permutation.
 
 blocks  
-Blocks of moved text of at least 20 alphanumeric characters are detected greedily. The detected blocks are painted using either the _color.diff.{old,new}Moved_ color. Adjacent blocks cannot be told apart.
+Blocks of moved text of at least 20 alphanumeric characters are detected greedily. The detected blocks are painted using either the *color.diff.{old,new}Moved* color. Adjacent blocks cannot be told apart.
 
 zebra  
-Blocks of moved text are detected as in _blocks_ mode. The blocks are painted using either the _color.diff.{old,new}Moved_ color or _color.diff.{old,new}MovedAlternative_. The change between the two colors indicates that a new block was detected.
+Blocks of moved text are detected as in *blocks* mode. The blocks are painted using either the *color.diff.{old,new}Moved* color or *color.diff.{old,new}MovedAlternative*. The change between the two colors indicates that a new block was detected.
 
 dimmed-zebra  
-Similar to _zebra_, but additional dimming of uninteresting parts of moved code is performed. The bordering lines of two adjacent blocks are considered interesting, the rest is uninteresting. `dimmed_zebra` is a deprecated synonym.
+Similar to *zebra*, but additional dimming of uninteresting parts of moved code is performed. The bordering lines of two adjacent blocks are considered interesting, the rest is uninteresting. `dimmed_zebra` is a deprecated synonym.
 
 --no-color-moved  
 Turn off move detection. This can be used to override configuration settings. It is the same as `--color-moved=no`.
@@ -1213,7 +1220,7 @@ Initially ignore any whitespace in the move detection, then group the moved code
 Do not ignore whitespace when performing move detection. This can be used to override configuration settings. It is the same as `--color-moved-ws=no`.
 
 --word-diff\[=&lt;mode&gt;\]  
-Show a word diff, using the &lt;mode&gt; to delimit changed words. By default, words are delimited by whitespace; see `--word-diff-regex` below. The &lt;mode&gt; defaults to _plain_, and must be one of:
+Show a word diff, using the &lt;mode&gt; to delimit changed words. By default, words are delimited by whitespace; see `--word-diff-regex` below. The &lt;mode&gt; defaults to *plain*, and must be one of:
 
 color  
 Highlight changed words using only colors. Implies `--color`.
@@ -1260,10 +1267,10 @@ Instead of the first handful of characters, show the full pre- and post-image bl
 In addition to `--full-index`, output a binary diff that can be applied with `git-apply`. Implies `--patch`.
 
 --abbrev\[=&lt;n&gt;\]  
-Instead of showing the full 40-byte hexadecimal object name in diff-raw format output and diff-tree header lines, show the shortest prefix that is at least _&lt;n&gt;_ hexdigits long that uniquely refers the object. In diff-patch output format, `--full-index` takes higher precedence, i.e. if `--full-index` is specified, full blob names will be shown regardless of `--abbrev`. Non default number of digits can be specified with `--abbrev=<n>`.
+Instead of showing the full 40-byte hexadecimal object name in diff-raw format output and diff-tree header lines, show the shortest prefix that is at least *&lt;n&gt;* hexdigits long that uniquely refers the object. In diff-patch output format, `--full-index` takes higher precedence, i.e. if `--full-index` is specified, full blob names will be shown regardless of `--abbrev`. Non default number of digits can be specified with `--abbrev=<n>`.
 
 -B\[&lt;n&gt;\]\[/&lt;m&gt;\]  
---break-rewrites\[=\[&lt;n&gt;\]\[/&lt;m&gt;\]\]  
+--break-rewrites\[=\[&lt;n&gt;\]\[/&lt;m&gt;\]\]   
 Break complete rewrite changes into pairs of delete and create. This serves two purposes:
 
 It affects the way a change that amounts to a total rewrite of a file not as a series of deletion and insertion mixed together with a very few lines that happen to match textually as the context, but as a single deletion of everything old followed by a single insertion of everything new, and the number `m` controls this aspect of the -B option (defaults to 60%). `-B/70%` specifies that less than 30% of the original should remain in the result for Git to consider it a total rewrite (i.e. otherwise the resulting patch will be a series of deletion and insertion mixed together with context lines).
@@ -1290,7 +1297,7 @@ When used together with `-B`, omit also the preimage in the deletion part of a d
 -l&lt;num&gt;  
 The `-M` and `-C` options require O(n^2) processing time where n is the number of potential rename/copy targets. This option prevents rename/copy detection from running if the number of rename/copy targets exceeds the specified number.
 
---diff-filter=\[(A|C|D|M|R|T|U|X|B)…​\[\*\]\]  
+ --diff-filter=\[(A|C|D|M|R|T|U|X|B)…​\[\*\]\]   
 Select only files that are Added (`A`), Copied (`C`), Deleted (`D`), Modified (`M`), Renamed (`R`), have their type (i.e. regular file, symlink, submodule, …​) changed (`T`), are Unmerged (`U`), are Unknown (`X`), or have had their pairing Broken (`B`). Any combination of the filter characters (including none) can be used. When `*` (All-or-none) is added to the combination, all paths are selected if there is any file that matches other criteria in the comparison; if there is no file that matches other criteria, nothing is selected.
 
 Also, these upper-case letters can be downcased to exclude. E.g. `--diff-filter=ad` excludes added and deleted paths.
@@ -1317,7 +1324,7 @@ While `git log -G"frotz\(nitfol"` will show this commit, `git log -S"frotz\(nitf
 
 Unless `--text` is supplied patches of binary files without a textconv filter will be ignored.
 
-See the _pickaxe_ entry in [gitdiffcore(7)](gitdiffcore.html) for more information.
+See the *pickaxe* entry in [gitdiffcore(7)](gitdiffcore.html) for more information.
 
 --find-object=&lt;object-id&gt;  
 Look for differences that change the number of occurrences of the specified object. Similar to `-S`, just the argument is different in that it doesn’t search for a specific string but for a specific object id.
@@ -1337,17 +1344,17 @@ The output order is determined by the order of glob patterns in &lt;orderfile&gt
 
 &lt;orderfile&gt; is parsed as follows:
 
-- Blank lines are ignored, so they can be used as separators for readability.
+-   Blank lines are ignored, so they can be used as separators for readability.
 
-- Lines starting with a hash ("`#`") are ignored, so they can be used for comments. Add a backslash ("`\`") to the beginning of the pattern if it starts with a hash.
+-   Lines starting with a hash ("`#`") are ignored, so they can be used for comments. Add a backslash ("`\`") to the beginning of the pattern if it starts with a hash.
 
-- Each other line contains a single pattern.
+-   Each other line contains a single pattern.
 
-Patterns have the same syntax and semantics as patterns used for fnmatch(3) without the FNM_PATHNAME flag, except a pathname also matches a pattern if removing any number of the final pathname components matches the pattern. For example, the pattern "`foo*bar`" matches "`fooasdfbar`" and "`foo/bar/baz/asdf`" but not "`foobarx`".
+Patterns have the same syntax and semantics as patterns used for fnmatch(3) without the FNM\_PATHNAME flag, except a pathname also matches a pattern if removing any number of the final pathname components matches the pattern. For example, the pattern "`foo*bar`" matches "`fooasdfbar`" and "`foo/bar/baz/asdf`" but not "`foobarx`".
 
 --skip-to=&lt;file&gt;  
 --rotate-to=&lt;file&gt;  
-Discard the files before the named &lt;file&gt; from the output (i.e. _skip to_), or move them to the end of the output (i.e. _rotate to_). These were invented primarily for use of the `git difftool` command, and may not be very useful otherwise.
+Discard the files before the named &lt;file&gt; from the output (i.e. *skip to*), or move them to the end of the output (i.e. *rotate to*). These were invented primarily for use of the `git difftool` command, and may not be very useful otherwise.
 
 -R  
 Swap two inputs; that is, show differences from index or on-disk file to tree contents.
@@ -1386,7 +1393,7 @@ Show the context between diff hunks, up to the specified number of lines, thereb
 
 -W  
 --function-context  
-Show whole function as context lines for each change. The function names are determined in the same way as `git diff` works out patch hunk headers (see _Defining a custom hunk-header_ in [gitattributes(5)](gitattributes.html)).
+Show whole function as context lines for each change. The function names are determined in the same way as `git diff` works out patch hunk headers (see *Defining a custom hunk-header* in [gitattributes(5)](gitattributes.html)).
 
 --ext-diff  
 Allow an external diff helper to be executed. If you set an external diff driver with [gitattributes(5)](gitattributes.html), you need to use this option with [git-log(1)](git-log.html) and friends.
@@ -1399,7 +1406,7 @@ Disallow external diff drivers.
 Allow (or disallow) external text conversion filters to be run when comparing binary files. See [gitattributes(5)](gitattributes.html) for details. Because textconv filters are typically a one-way conversion, the resulting diff is suitable for human consumption, but cannot be applied. For this reason, textconv filters are enabled by default only for [git-diff(1)](git-diff.html) and [git-log(1)](git-log.html), but not for [git-format-patch(1)](git-format-patch.html) or diff plumbing commands.
 
 --ignore-submodules\[=&lt;when&gt;\]  
-Ignore changes to submodules in the diff generation. &lt;when&gt; can be either "none", "untracked", "dirty" or "all", which is the default. Using "none" will consider the submodule modified when it either contains untracked or modified files or its HEAD differs from the commit recorded in the superproject and can be used to override any settings of the _ignore_ option in [git-config(1)](git-config.html) or [gitmodules(5)](gitmodules.html). When "untracked" is used submodules are not considered dirty when they only contain untracked content (but they are still scanned for modified content). Using "dirty" ignores all changes to the work tree of submodules, only changes to the commits stored in the superproject are shown (this was the behavior until 1.7.0). Using "all" hides all changes to submodules.
+Ignore changes to submodules in the diff generation. &lt;when&gt; can be either "none", "untracked", "dirty" or "all", which is the default. Using "none" will consider the submodule modified when it either contains untracked or modified files or its HEAD differs from the commit recorded in the superproject and can be used to override any settings of the *ignore* option in [git-config(1)](git-config.html) or [gitmodules(5)](gitmodules.html). When "untracked" is used submodules are not considered dirty when they only contain untracked content (but they are still scanned for modified content). Using "dirty" ignores all changes to the work tree of submodules, only changes to the commits stored in the superproject are shown (this was the behavior until 1.7.0). Using "all" hides all changes to submodules.
 
 --src-prefix=&lt;prefix&gt;  
 Show the given source prefix instead of "a/".
@@ -1418,7 +1425,8 @@ By default entries added by "git add -N" appear as an existing empty file in "gi
 
 For more detailed explanation on these common options, see also [gitdiffcore(7)](gitdiffcore.html).
 
-## Generating patch text with -p
+Generating patch text with -p
+-----------------------------
 
 Running [git-diff(1)](git-diff.html), [git-log(1)](git-log.html), [git-show(1)](git-show.html), [git-diff-index(1)](git-diff-index.html), [git-diff-tree(1)](git-diff-tree.html), or [git-diff-files(1)](git-diff-files.html) with the `-p` option produces patch text. You can customize the creation of patch text via the `GIT_EXTERNAL_DIFF` and the `GIT_DIFF_OPTS` environment variables (see [git(1)](git.html)).
 
@@ -1428,7 +1436,7 @@ What the -p option produces is slightly different from the traditional diff form
 
         diff --git a/file1 b/file2
 
-    The `a/` and `b/` filenames are the same unless rename/copy is involved. Especially, even for a creation or a deletion, `/dev/null` is _not_ used in place of the `a/` or `b/` filenames.
+    The `a/` and `b/` filenames are the same unless rename/copy is involved. Especially, even for a creation or a deletion, `/dev/null` is *not* used in place of the `a/` or `b/` filenames.
 
     When rename/copy is involved, `file1` and `file2` show the name of the source file of the rename/copy and the name of the file that rename/copy produces, respectively.
 
@@ -1465,9 +1473,10 @@ What the -p option produces is slightly different from the traditional diff form
         rename from b
         rename to a
 
-## Combined diff format
+Combined diff format
+--------------------
 
-Any diff-generating command can take the `-c` or `--cc` option to produce a _combined diff_ when showing a merge. This is the default format when showing merges with [git-diff(1)](git-diff.html) or [git-show(1)](git-show.html). Note also that you can give suitable `--diff-merges` option to any of these commands to force generation of diffs in specific format.
+Any diff-generating command can take the `-c` or `--cc` option to produce a *combined diff* when showing a merge. This is the default format when showing merges with [git-diff(1)](git-diff.html) or [git-show(1)](git-show.html). Note also that you can give suitable `--diff-merges` option to any of these commands to force generation of diffs in specific format.
 
 A "combined diff" format looks like this:
 
@@ -1521,7 +1530,7 @@ A "combined diff" format looks like this:
         --- a/file
         +++ b/file
 
-    Similar to two-line header for traditional _unified_ diff format, `/dev/null` is used to signal created or deleted files.
+    Similar to two-line header for traditional *unified* diff format, `/dev/null` is used to signal created or deleted files.
 
     However, if the --combined-all-paths option is provided, instead of a two-line from-file/to-file you get a N+1 line from-file/to-file header, where N is the number of parents in the merge commit
 
@@ -1532,13 +1541,13 @@ A "combined diff" format looks like this:
 
     This extended format can be useful if rename or copy detection is active, to allow you to see the original name of the file in different parents.
 
-4.  Chunk header format is modified to prevent people from accidentally feeding it to `patch -p1`. Combined diff format was created for review of merge commit changes, and was not meant to be applied. The change is similar to the change in the extended _index_ header:
+4.  Chunk header format is modified to prevent people from accidentally feeding it to `patch -p1`. Combined diff format was created for review of merge commit changes, and was not meant to be applied. The change is similar to the change in the extended *index* header:
 
         @@@ <from-file-range> <from-file-range> <to-file-range> @@@
 
     There are (number of parents + 1) `@` characters in the chunk header for combined diff format.
 
-Unlike the traditional _unified_ diff format, which shows two files A and B with a single column that has `-` (minus — appears in A but removed in B), `+` (plus — missing in A but added to B), or `" "` (space — unchanged) prefix, this format compares two or more files file1, file2,…​ with one file X, and shows how X differs from each of fileN. One column for each of fileN is prepended to the output line to note how X’s line is different from it.
+Unlike the traditional *unified* diff format, which shows two files A and B with a single column that has `-` (minus — appears in A but removed in B), `+` (plus — missing in A but added to B), or `" "` (space — unchanged) prefix, this format compares two or more files file1, file2,…​ with one file X, and shows how X differs from each of fileN. One column for each of fileN is prepended to the output line to note how X’s line is different from it.
 
 A `-` character in the column N means that the line appears in fileN but it does not appear in the result. A `+` character in the column N means that the line appears in the result, and fileN does not have that line (in other words, the line was added, from the point of view of that parent).
 
@@ -1546,60 +1555,62 @@ In the above example output, the function signature was changed from both files 
 
 When shown by `git diff-tree -c`, it compares the parents of a merge commit with the merge result (i.e. file1..fileN are the parents). When shown by `git diff-files -c`, it compares the two unresolved merge parents with the working tree file (i.e. file1 is stage 2 aka "our version", file2 is stage 3 aka "their version").
 
-## EXAMPLES
+EXAMPLES
+--------
 
 `git log --no-merges`  
 Show the whole commit history, but skip any merges
 
-`git log v2.6.12.. include/scsi drivers/scsi`  
-Show all commits since version _v2.6.12_ that changed any file in the `include/scsi` or `drivers/scsi` subdirectories
+ `git log v2.6.12.. include/scsi drivers/scsi`   
+Show all commits since version *v2.6.12* that changed any file in the `include/scsi` or `drivers/scsi` subdirectories
 
-`git log --since="2 weeks ago" -- gitk`  
-Show the changes during the last two weeks to the file _gitk_. The `--` is necessary to avoid confusion with the **branch** named _gitk_
+ `git log --since="2 weeks ago" -- gitk`   
+Show the changes during the last two weeks to the file *gitk*. The `--` is necessary to avoid confusion with the **branch** named *gitk*
 
-`git log --name-status release..test`  
+ `git log --name-status release..test`   
 Show the commits that are in the "test" branch but not yet in the "release" branch, along with the list of paths each commit modifies.
 
-`git log --follow builtin/rev-list.c`  
+ `git log --follow builtin/rev-list.c`   
 Shows the commits that changed `builtin/rev-list.c`, including those commits that occurred before the file was given its present name.
 
-`git log --branches --not --remotes=origin`  
-Shows all commits that are in any of local branches but not in any of remote-tracking branches for _origin_ (what you have that origin doesn’t).
+ `git log --branches --not --remotes=origin`   
+Shows all commits that are in any of local branches but not in any of remote-tracking branches for *origin* (what you have that origin doesn’t).
 
-`git log master --not --remotes=*/master`  
+ `git log master --not --remotes=*/master`   
 Shows all commits that are in local master but not in any remote repository master branches.
 
 `git log -p -m --first-parent`  
 Shows the history including change diffs, but only from the “main branch” perspective, skipping commits that come from merged branches, and showing full diffs of changes introduced by the merges. This makes sense only when following a strict policy of merging all topic branches when staying on a single integration branch.
 
-`git log -L '/int main/',/^}/:main.c`  
+ `git log -L '/int main/',/^}/:main.c`   
 Shows how the function `main()` in the file `main.c` evolved over time.
 
 `git log -3`  
 Limits the number of commits to show to 3.
 
-## DISCUSSION
+DISCUSSION
+----------
 
 Git is to some extent character encoding agnostic.
 
-- The contents of the blob objects are uninterpreted sequences of bytes. There is no encoding translation at the core level.
+-   The contents of the blob objects are uninterpreted sequences of bytes. There is no encoding translation at the core level.
 
-- Path names are encoded in UTF-8 normalization form C. This applies to tree objects, the index file, ref names, as well as path names in command line arguments, environment variables and config files (`.git/config` (see [git-config(1)](git-config.html)), [gitignore(5)](gitignore.html), [gitattributes(5)](gitattributes.html) and [gitmodules(5)](gitmodules.html)).
+-   Path names are encoded in UTF-8 normalization form C. This applies to tree objects, the index file, ref names, as well as path names in command line arguments, environment variables and config files (`.git/config` (see [git-config(1)](git-config.html)), [gitignore(5)](gitignore.html), [gitattributes(5)](gitattributes.html) and [gitmodules(5)](gitmodules.html)).
 
-  Note that Git at the core level treats path names simply as sequences of non-NUL bytes, there are no path name encoding conversions (except on Mac and Windows). Therefore, using non-ASCII path names will mostly work even on platforms and file systems that use legacy extended ASCII encodings. However, repositories created on such systems will not work properly on UTF-8-based systems (e.g. Linux, Mac, Windows) and vice versa. Additionally, many Git-based tools simply assume path names to be UTF-8 and will fail to display other encodings correctly.
+    Note that Git at the core level treats path names simply as sequences of non-NUL bytes, there are no path name encoding conversions (except on Mac and Windows). Therefore, using non-ASCII path names will mostly work even on platforms and file systems that use legacy extended ASCII encodings. However, repositories created on such systems will not work properly on UTF-8-based systems (e.g. Linux, Mac, Windows) and vice versa. Additionally, many Git-based tools simply assume path names to be UTF-8 and will fail to display other encodings correctly.
 
-- Commit log messages are typically encoded in UTF-8, but other extended ASCII encodings are also supported. This includes ISO-8859-x, CP125x and many others, but _not_ UTF-16/32, EBCDIC and CJK multi-byte encodings (GBK, Shift-JIS, Big5, EUC-x, CP9xx etc.).
+-   Commit log messages are typically encoded in UTF-8, but other extended ASCII encodings are also supported. This includes ISO-8859-x, CP125x and many others, but *not* UTF-16/32, EBCDIC and CJK multi-byte encodings (GBK, Shift-JIS, Big5, EUC-x, CP9xx etc.).
 
 Although we encourage that the commit log messages are encoded in UTF-8, both the core and Git Porcelain are designed not to force UTF-8 on projects. If all participants of a particular project find it more convenient to use legacy encodings, Git does not forbid it. However, there are a few things to keep in mind.
 
-1.  _git commit_ and _git commit-tree_ issues a warning if the commit log message given to it does not look like a valid UTF-8 string, unless you explicitly say your project uses a legacy encoding. The way to say this is to have `i18n.commitEncoding` in `.git/config` file, like this:
+1.  *git commit* and *git commit-tree* issues a warning if the commit log message given to it does not look like a valid UTF-8 string, unless you explicitly say your project uses a legacy encoding. The way to say this is to have `i18n.commitEncoding` in `.git/config` file, like this:
 
         [i18n]
                 commitEncoding = ISO-8859-1
 
     Commit objects created with the above setting record the value of `i18n.commitEncoding` in its `encoding` header. This is to help other people who look at them later. Lack of this header implies that the commit log message is encoded in UTF-8.
 
-2.  _git log_, _git show_, _git blame_ and friends look at the `encoding` header of a commit object, and try to re-code the log message into UTF-8 unless otherwise specified. You can specify the desired output encoding with `i18n.logOutputEncoding` in `.git/config` file, like this:
+2.  *git log*, *git show*, *git blame* and friends look at the `encoding` header of a commit object, and try to re-code the log message into UTF-8 unless otherwise specified. You can specify the desired output encoding with `i18n.logOutputEncoding` in `.git/config` file, like this:
 
         [i18n]
                 logOutputEncoding = ISO-8859-1
@@ -1608,15 +1619,16 @@ Although we encourage that the commit log messages are encoded in UTF-8, both th
 
 Note that we deliberately chose not to re-code the commit log message when a commit is made to force UTF-8 at the commit object level, because re-coding to UTF-8 is not necessarily a reversible operation.
 
-## CONFIGURATION
+CONFIGURATION
+-------------
 
 See [git-config(1)](git-config.html) for core variables and [git-diff(1)](git-diff.html) for settings related to diff generation.
 
 format.pretty  
-Default for the `--format` option. (See _Pretty Formats_ above.) Defaults to `medium`.
+Default for the `--format` option. (See *Pretty Formats* above.) Defaults to `medium`.
 
 i18n.logOutputEncoding  
-Encoding to use when displaying logs. (See _Discussion_ above.) Defaults to the value of `i18n.commitEncoding` if set, and UTF-8 otherwise.
+Encoding to use when displaying logs. (See *Discussion* above.) Defaults to the value of `i18n.commitEncoding` if set, and UTF-8 otherwise.
 
 log.date  
 Default format for human-readable dates. (Compare the `--date` option.) Defaults to "default", which means to write dates like `Sat May 8 19:35:34 2010 -0500`.
@@ -1642,7 +1654,8 @@ May be an unabbreviated ref name or a glob and may be specified multiple times. 
 
 This setting can be disabled by the `--no-notes` option, overridden by the `GIT_NOTES_DISPLAY_REF` environment variable, and overridden by the `--notes=<ref>` option.
 
-## GIT
+GIT
+---
 
 Part of the [git(1)](git.html) suite
 

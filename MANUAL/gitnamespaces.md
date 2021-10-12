@@ -1,15 +1,19 @@
-# gitnamespaces(7) Manual Page
+gitnamespaces(7) Manual Page
+============================
 
-## NAME
+NAME
+----
 
 gitnamespaces - Git namespaces
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     GIT_NAMESPACE=<namespace> git upload-pack
     GIT_NAMESPACE=<namespace> git receive-pack
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 Git supports dividing the refs of a single repository into multiple namespaces, each of which has its own branches, tags, and HEAD. Git can expose each namespace as an independent repository to pull from and push to, while sharing the object store, and exposing all the refs to operations such as [git-gc(1)](git-gc.html).
 
@@ -21,13 +25,14 @@ Note that namespaces which include a `/` will expand to a hierarchy of namespace
 
 [git-upload-pack(1)](git-upload-pack.html) and [git-receive-pack(1)](git-receive-pack.html) rewrite the names of refs as specified by `GIT_NAMESPACE`. git-upload-pack and git-receive-pack will ignore all references outside the specified namespace.
 
-The smart HTTP server, [git-http-backend(1)](git-http-backend.html), will pass GIT_NAMESPACE through to the backend programs; see [git-http-backend(1)](git-http-backend.html) for sample configuration to expose repository namespaces as repositories.
+The smart HTTP server, [git-http-backend(1)](git-http-backend.html), will pass GIT\_NAMESPACE through to the backend programs; see [git-http-backend(1)](git-http-backend.html) for sample configuration to expose repository namespaces as repositories.
 
 For a simple local test, you can use [git-remote-ext(1)](git-remote-ext.html):
 
     git clone ext::'git --namespace=foo %s /tmp/prefixed.git'
 
-## SECURITY
+SECURITY
+--------
 
 The fetch and push protocols are not designed to prevent one side from stealing data from the other repository that was not intended to be shared. If you have private data that you need to protect from a malicious peer, your best option is to store it in another repository. This applies to both clients and servers. In particular, namespaces on a server are not effective for read access control; you should only grant read access to a namespace to clients that you would trust with read access to the entire repository.
 

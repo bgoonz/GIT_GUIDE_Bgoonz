@@ -1,14 +1,18 @@
-# git-credential-store(1) Manual Page
+git-credential-store(1) Manual Page
+===================================
 
-## NAME
+NAME
+----
 
 git-credential-store - Helper to store credentials on disk
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git config credential.helper 'store [<options>]'
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 <table><colgroup><col style="width: 50%" /><col style="width: 50%" /></colgroup><tbody><tr class="odd"><td><div class="title">Note</div></td><td>Using this helper will store your passwords unencrypted on disk, protected only by filesystem permissions. If this is not an acceptable security tradeoff, try <a href="git-credential-cache.html">git-credential-cache(1)</a>, or find a helper that integrates with secure storage provided by your operating system.</td></tr></tbody></table>
 
@@ -16,12 +20,14 @@ This command stores credentials indefinitely on disk for use by future Git progr
 
 You probably don’t want to invoke this command directly; it is meant to be used as a credential helper by other parts of git. See [gitcredentials(7)](gitcredentials.html) or `EXAMPLES` below.
 
-## OPTIONS
+OPTIONS
+-------
 
 --file=&lt;path&gt;  
 Use `<path>` to lookup and store credentials. The file will have its filesystem permissions set to prevent other users on the system from reading it, but will not be encrypted or otherwise protected. If not specified, credentials will be searched for from `~/.git-credentials` and `$XDG_CONFIG_HOME/git/credentials`, and credentials will be written to `~/.git-credentials` if it exists, or `$XDG_CONFIG_HOME/git/credentials` if it exists and the former does not. See also [FILES](#FILES).
 
-## FILES
+FILES
+-----
 
 If not set explicitly with `--file`, there are two files where git-credential-store will search for credentials in order of precedence:
 
@@ -29,7 +35,7 @@ If not set explicitly with `--file`, there are two files where git-credential-st
 User-specific credentials file.
 
 $XDG\_CONFIG\_HOME/git/credentials  
-Second user-specific credentials file. If *$XDG_CONFIG_HOME\* is not set or empty, `$HOME/.config/git/credentials` will be used. Any credentials stored in this file will not be used if `~/.git-credentials` has a matching credential as well. It is a good idea not to create this file if you sometimes use older versions of Git that do not support it.
+Second user-specific credentials file. If *$XDG\_CONFIG\_HOME* is not set or empty, `$HOME/.config/git/credentials` will be used. Any credentials stored in this file will not be used if `~/.git-credentials` has a matching credential as well. It is a good idea not to create this file if you sometimes use older versions of Git that do not support it.
 
 For credential lookups, the files are read in the order given above, with the first matching credential found taking precedence over credentials found in files further down the list.
 
@@ -37,7 +43,8 @@ Credential storage will by default write to the first existing file in the list.
 
 When erasing credentials, matching credentials will be erased from all files.
 
-## EXAMPLES
+EXAMPLES
+--------
 
 The point of this helper is to reduce the number of times you must type your username or password. For example:
 
@@ -50,7 +57,8 @@ The point of this helper is to reduce the number of times you must type your use
     $ git push http://example.com/repo.git
     [your credentials are used automatically]
 
-## STORAGE FORMAT
+STORAGE FORMAT
+--------------
 
 The `.git-credentials` file is stored in plaintext. Each credential is stored on its own line as a URL like:
 
@@ -60,7 +68,8 @@ No other kinds of lines (e.g. empty lines or comment lines) are allowed in the f
 
 When Git needs authentication for a particular URL context, credential-store will consider that context a pattern to match against each entry in the credentials file. If the protocol, hostname, and username (if we already have one) match, then the password is returned to Git. See the discussion of configuration in [gitcredentials(7)](gitcredentials.html) for more information.
 
-## GIT
+GIT
+---
 
 Part of the [git(1)](git.html) suite
 

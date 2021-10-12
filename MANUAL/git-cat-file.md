@@ -1,21 +1,26 @@
-# git-cat-file(1) Manual Page
+git-cat-file(1) Manual Page
+===========================
 
-## NAME
+NAME
+----
 
 git-cat-file - Provide content or type and size information for repository objects
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git cat-file (-t [--allow-unknown-type]| -s [--allow-unknown-type]| -e | -p | <type> | --textconv | --filters ) [--path=<path>] <object>
     git cat-file (--batch[=<format>] | --batch-check[=<format>]) [ --textconv | --filters ] [--follow-symlinks]
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 In its first form, the command provides the content or the type of an object in the repository. The type is required unless `-t` or `-p` is used to find the object type, or `-s` is used to find the object size, or `--textconv` or `--filters` is used (which imply type "blob").
 
 In the second form, a list of objects (separated by linefeeds) is provided on stdin, and the SHA-1, type, and size of each object is printed on stdout. The output format can be overridden using the optional `<format>` argument. If either `--textconv` or `--filters` was specified, the input is expected to list the object names followed by the path name, separated by a single whitespace, so that the appropriate drivers can be determined.
 
-## OPTIONS
+OPTIONS
+-------
 
 &lt;object&gt;  
 The name of the object to show. For a more complete list of ways to spell object names, see the "SPECIFYING REVISIONS" section in [gitrevisions(7)](gitrevisions.html).
@@ -83,7 +88,7 @@ For a regular file `f`, `echo HEAD:f | git cat-file --batch` would print
 
     ce013625030ba8dba906f756967f9e9ca394464a blob 6
 
-And `echo HEAD:link | git cat-file --batch --follow-symlinks` would print the same thing, as would `HEAD:dir/link`, as they both point at `HEAD:f`.
+And `echo HEAD:link | git cat-file --batch                       --follow-symlinks` would print the same thing, as would `HEAD:dir/link`, as they both point at `HEAD:f`.
 
 Without `--follow-symlinks`, these would print data about the symlink itself. In the case of `HEAD:link`, you would see
 
@@ -97,7 +102,8 @@ Both `plink` and `alink` point outside the tree, so they would respectively prin
     symlink 11
     /etc/passwd
 
-## OUTPUT
+OUTPUT
+------
 
 If `-t` is specified, one of the &lt;type&gt;.
 
@@ -109,7 +115,8 @@ If `-p` is specified, the contents of &lt;object&gt; are pretty-printed.
 
 If &lt;type&gt; is specified, the raw (though uncompressed) contents of the &lt;object&gt; will be returned.
 
-## BATCH OUTPUT
+BATCH OUTPUT
+------------
 
 If `--batch` or `--batch-check` is given, `cat-file` will read objects from stdin, one per line, and print information about them. By default, the whole line is considered as an object, as if it were fed to [git-rev-parse(1)](git-rev-parse.html).
 
@@ -182,13 +189,15 @@ is printed for symlink loops (or any symlinks that require more than 40 link res
 
 is printed when, during symlink resolution, a file is used as a directory name.
 
-## CAVEATS
+CAVEATS
+-------
 
 Note that the sizes of objects on disk are reported accurately, but care should be taken in drawing conclusions about which refs or objects are responsible for disk usage. The size of a packed non-delta object may be much larger than the size of objects which delta against it, but the choice of which object is the base and which is the delta is arbitrary and is subject to change during a repack.
 
 Note also that multiple copies of an object may be present in the object database; in this case, it is undefined which copy’s size or delta base will be reported.
 
-## GIT
+GIT
+---
 
 Part of the [git(1)](git.html) suite
 

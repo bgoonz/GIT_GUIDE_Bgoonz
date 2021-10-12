@@ -1,19 +1,24 @@
-# gitcredentials(7) Manual Page
+gitcredentials(7) Manual Page
+=============================
 
-## NAME
+NAME
+----
 
 gitcredentials - Providing usernames and passwords to Git
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git config credential.https://example.com.username myusername
     git config credential.helper "$helper $options"
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 Git will sometimes need credentials from the user in order to perform operations; for example, it may need to ask for a username and password in order to access a remote repository over HTTP. This manual describes the mechanisms Git uses to request these credentials, as well as some features to avoid inputting these credentials repeatedly.
 
-## REQUESTING CREDENTIALS
+REQUESTING CREDENTIALS
+----------------------
 
 Without any credential helpers defined, Git will try the following strategies to ask the user for usernames and passwords:
 
@@ -25,7 +30,8 @@ Without any credential helpers defined, Git will try the following strategies to
 
 4.  Otherwise, the user is prompted on the terminal.
 
-## AVOIDING REPETITION
+AVOIDING REPETITION
+-------------------
 
 It can be cumbersome to input the same credentials over and over. Git provides two methods to reduce this annoyance:
 
@@ -63,7 +69,8 @@ You may also have third-party helpers installed; search for `credential-*` in th
 
         $ git config --global credential.helper foo
 
-## CREDENTIAL CONTEXTS
+CREDENTIAL CONTEXTS
+-------------------
 
 Git considers each credential to have a context defined by a URL. This context is used to look up context-specific configuration, and is passed to any helpers, which may use it as an index into secure storage.
 
@@ -81,7 +88,8 @@ because the hostnames differ. Nor would it match `foo.example.com`; Git compares
 
 If the "pattern" URL does include a path component, then this too must match exactly: the context `https://example.com/bar/baz.git` will match a config entry for `https://example.com/bar/baz.git` (in addition to matching the config entry for `https://example.com`) but will not match a config entry for `https://example.com/bar`.
 
-## CONFIGURATION OPTIONS
+CONFIGURATION OPTIONS
+---------------------
 
 Options for a credential context can be configured either in `credential.*` (which applies to all credentials), or `credential.<url>.*`, where &lt;url&gt; matches the context as described above.
 
@@ -100,7 +108,8 @@ A default username, if one is not provided in the URL.
 useHttpPath  
 By default, Git does not consider the "path" component of an http URL to be worth matching via external helpers. This means that a credential stored for `https://example.com/foo.git` will also be used for `https://example.com/bar.git`. If you do want to distinguish these cases, set this option to `true`.
 
-## CUSTOM HELPERS
+CUSTOM HELPERS
+--------------
 
 You can write your own custom helpers to interface with any system in which you keep credentials.
 
@@ -140,7 +149,7 @@ Here are some example specifications:
             username = your_user
             helper = "!f() { test \"$1\" = get && echo \"password=$(cat $HOME/.secret)\"; }; f"
 
-Generally speaking, rule (3) above is the simplest for users to specify. Authors of credential helpers should make an effort to assist their users by naming their program "git-credential-$NAME", and putting it in the `$PATH`or`$GIT_EXEC_PATH`during installation, which will allow a user to enable it with`git config credential.helper $NAME`.
+Generally speaking, rule (3) above is the simplest for users to specify. Authors of credential helpers should make an effort to assist their users by naming their program "git-credential-$NAME", and putting it in the `$PATH` or `$GIT_EXEC_PATH` during installation, which will allow a user to enable it with `git config credential.helper $NAME`.
 
 When a helper is executed, it will have one "operation" argument appended to its command line, which is one of:
 
@@ -171,7 +180,8 @@ If it does not support the requested operation (e.g., a read-only store), it sho
 
 If a helper receives any other operation, it should silently ignore the request. This leaves room for future operations to be added (older helpers will just ignore the new requests).
 
-## GIT
+GIT
+---
 
 Part of the [git(1)](git.html) suite
 

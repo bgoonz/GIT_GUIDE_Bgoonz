@@ -1,10 +1,13 @@
-# git-ls-files(1) Manual Page
+git-ls-files(1) Manual Page
+===========================
 
-## NAME
+NAME
+----
 
 git-ls-files - Show information about files in the index and the working tree
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git ls-files [-z] [-t] [-v] [-f]
                     (--[cached|deleted|others|ignored|stage|unmerged|killed|modified])*
@@ -19,13 +22,15 @@ git-ls-files - Show information about files in the index and the working tree
                     [--full-name] [--recurse-submodules]
                     [--abbrev[=<n>]] [--] [<file>…​]
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 This merges the file listing in the index with the actual working directory list, and shows different combinations of the two.
 
 One or more of the options below may be used to determine the files shown:
 
-## OPTIONS
+OPTIONS
+-------
 
 -c  
 --cached  
@@ -118,10 +123,10 @@ to be killed
 other
 
 -v  
-Similar to `-t`, but use lowercase letters for files that are marked as _assume unchanged_ (see [git-update-index(1)](git-update-index.html)).
+Similar to `-t`, but use lowercase letters for files that are marked as *assume unchanged* (see [git-update-index(1)](git-update-index.html)).
 
 -f  
-Similar to `-t`, but use lowercase letters for files that are marked as _fsmonitor valid_ (see [git-update-index(1)](git-update-index.html)).
+Similar to `-t`, but use lowercase letters for files that are marked as *fsmonitor valid* (see [git-update-index(1)](git-update-index.html)).
 
 --full-name  
 When run from a subdirectory, the command usually outputs paths relative to the current directory. This option forces paths to be output relative to the project top directory.
@@ -130,7 +135,7 @@ When run from a subdirectory, the command usually outputs paths relative to the 
 Recursively calls ls-files on each active submodule in the repository. Currently there is only support for the --cached mode.
 
 --abbrev\[=&lt;n&gt;\]  
-Instead of showing the full 40-byte hexadecimal object lines, show the shortest prefix that is at least _&lt;n&gt;_ hexdigits long that uniquely refers the object. Non default number of digits can be specified with --abbrev=&lt;n&gt;.
+Instead of showing the full 40-byte hexadecimal object lines, show the shortest prefix that is at least *&lt;n&gt;* hexdigits long that uniquely refers the object. Non default number of digits can be specified with --abbrev=&lt;n&gt;.
 
 --debug  
 After each line that describes a file, add more data about its cache entry. This is intended to show as much information as possible for manual inspection; the exact format may change at any time.
@@ -150,23 +155,25 @@ Do not interpret any more arguments as options.
 &lt;file&gt;  
 Files to show. If no files are given all files which match the other specified criteria are shown.
 
-## OUTPUT
+OUTPUT
+------
 
-_git ls-files_ just outputs the filenames unless `--stage` is specified in which case it outputs:
+*git ls-files* just outputs the filenames unless `--stage` is specified in which case it outputs:
 
     [<tag> ]<mode> <object> <stage> <file>
 
-_git ls-files --eol_ will show i/&lt;eolinfo&gt;&lt;SPACES&gt;w/&lt;eolinfo&gt;&lt;SPACES&gt;attr/&lt;eolattr&gt;&lt;SPACE\*&gt;&lt;TAB&gt;&lt;file&gt;
+*git ls-files --eol* will show i/&lt;eolinfo&gt;&lt;SPACES&gt;w/&lt;eolinfo&gt;&lt;SPACES&gt;attr/&lt;eolattr&gt;&lt;SPACE\*&gt;&lt;TAB&gt;&lt;file&gt;
 
-_git ls-files --unmerged_ and _git ls-files --stage_ can be used to examine detailed information on unmerged paths.
+*git ls-files --unmerged* and *git ls-files --stage* can be used to examine detailed information on unmerged paths.
 
 For an unmerged path, instead of recording a single mode/SHA-1 pair, the index records up to three such pairs; one from tree O in stage 1, A in stage 2, and B in stage 3. This information can be used by the user (or the porcelain) to see what should eventually be recorded at the path. (see [git-read-tree(1)](git-read-tree.html) for more information on state)
 
 Without the `-z` option, pathnames with "unusual" characters are quoted as explained for the configuration variable `core.quotePath` (see [git-config(1)](git-config.html)). Using `-z` the filename is output verbatim and the line is terminated by a NUL byte.
 
-## EXCLUDE PATTERNS
+EXCLUDE PATTERNS
+----------------
 
-_git ls-files_ can use a list of "exclude patterns" when traversing the directory tree and finding files to show when the flags --others or --ignored are specified. [gitignore(5)](gitignore.html) specifies the format of exclude patterns.
+*git ls-files* can use a list of "exclude patterns" when traversing the directory tree and finding files to show when the flags --others or --ignored are specified. [gitignore(5)](gitignore.html) specifies the format of exclude patterns.
 
 These exclude patterns come from these places, in order:
 
@@ -174,15 +181,17 @@ These exclude patterns come from these places, in order:
 
 2.  The command-line flag --exclude-from=&lt;file&gt; specifies a file containing a list of patterns. Patterns are ordered in the same order they appear in the file.
 
-3.  The command-line flag --exclude-per-directory=&lt;name&gt; specifies a name of the file in each directory _git ls-files_ examines, normally `.gitignore`. Files in deeper directories take precedence. Patterns are ordered in the same order they appear in the files.
+3.  The command-line flag --exclude-per-directory=&lt;name&gt; specifies a name of the file in each directory *git ls-files* examines, normally `.gitignore`. Files in deeper directories take precedence. Patterns are ordered in the same order they appear in the files.
 
 A pattern specified on the command line with --exclude or read from the file specified with --exclude-from is relative to the top of the directory tree. A pattern read from a file specified by --exclude-per-directory is relative to the directory that the pattern file appears in.
 
-## SEE ALSO
+SEE ALSO
+--------
 
 [git-read-tree(1)](git-read-tree.html), [gitignore(5)](gitignore.html)
 
-## GIT
+GIT
+---
 
 Part of the [git(1)](git.html) suite
 

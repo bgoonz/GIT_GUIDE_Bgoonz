@@ -1,15 +1,19 @@
-# git-quiltimport(1) Manual Page
+git-quiltimport(1) Manual Page
+==============================
 
-## NAME
+NAME
+----
 
 git-quiltimport - Applies a quilt patchset onto the current branch
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git quiltimport [--dry-run | -n] [--author <author>] [--patches <dir>]
                     [--series <file>] [--keep-non-patch]
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 Applies a quilt patchset onto the current Git branch, preserving the patch boundaries, patch order, and patch descriptions present in the quilt patchset.
 
@@ -17,7 +21,8 @@ For each patch the code attempts to extract the author from the patch descriptio
 
 If a subject is not found in the patch description the patch name is preserved as the 1 line subject in the Git description.
 
-## OPTIONS
+OPTIONS
+-------
 
 -n  
 --dry-run  
@@ -37,10 +42,7 @@ The quilt series file.
 The default for the series file is &lt;patches&gt;/series or the value of the `$QUILT_SERIES` environment variable.
 
 --keep-non-patch  
-Pass `-b` flag to _git mailinfo_ (see [git-mailinfo(1)](git-mailinfo.html)).
+Pass `-b` flag to *git mailinfo* (see [git-mailinfo(1)](git-mailinfo.html)).
 
-## GIT
-
-Part of the [git(1)](git.html) suite
-
-Last updated 2021-03-27 09:47:30 UTC
+GIT
+---

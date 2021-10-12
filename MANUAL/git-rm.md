@@ -1,20 +1,25 @@
-# git-rm(1) Manual Page
+git-rm(1) Manual Page
+=====================
 
-## NAME
+NAME
+----
 
 git-rm - Remove files from the working tree and from the index
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git rm [-f | --force] [-n] [-r] [--cached] [--ignore-unmatch]
               [--quiet] [--pathspec-from-file=<file> [--pathspec-file-nul]]
               [--] [<pathspec>…​]
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 Remove files matching pathspec from the index, or from the working tree and the index. `git rm` will not remove a file from just your working directory. (There is no option to remove a file only from the working tree and yet keep it in the index; use `/bin/rm` if you want to do that.) The files being removed have to be identical to the tip of the branch, and no updates to their contents can be staged in the index, though that default behavior can be overridden with the `-f` option. When `--cached` is given, the staged content has to match either the tip of the branch or the file on disk, allowing the file to be removed from just the index.
 
-## OPTIONS
+OPTIONS
+-------
 
 &lt;pathspec&gt;…​  
 Files to remove. A leading directory name (e.g. `dir` to remove `dir/file1` and `dir/file2`) can be given to remove all files in the directory, and recursively all sub-directories, but this requires the `-r` option to be explicitly given.
@@ -23,7 +28,7 @@ The command removes only the paths that are known to Git.
 
 File globbing matches across directory boundaries. Thus, given two directories `d` and `d2`, there is a difference between using `git rm 'd*'` and `git rm 'd/*'`, as the former will also remove all of directory `d2`.
 
-For more details, see the _pathspec_ entry in [gitglossary(7)](gitglossary.html).
+For more details, see the *pathspec* entry in [gitglossary(7)](gitglossary.html).
 
 -f  
 --force  
@@ -55,7 +60,8 @@ Pathspec is passed in `<file>` instead of commandline args. If `<file>` is exact
 --pathspec-file-nul  
 Only meaningful with `--pathspec-from-file`. Pathspec elements are separated with NUL character and all other characters are taken literally (including newlines and quotes).
 
-## REMOVING FILES THAT HAVE DISAPPEARED FROM THE FILESYSTEM
+REMOVING FILES THAT HAVE DISAPPEARED FROM THE FILESYSTEM
+--------------------------------------------------------
 
 There is no option for `git rm` to remove from the index only the paths that have disappeared from the filesystem. However, depending on the use case, there are several ways that can be done.
 
@@ -71,7 +77,7 @@ Typically you would first remove all tracked files from the working tree using t
 
     git ls-files -z | xargs -0 rm -f
 
-and then untar the new code in the working tree. Alternately you could _rsync_ the changes into the working tree.
+and then untar the new code in the working tree. Alternately you could *rsync* the changes into the working tree.
 
 After that, the easiest way to record all removals, additions, and modifications in the working tree is:
 
@@ -85,7 +91,8 @@ If all you really want to do is to remove from the index the files that are no l
 
     git diff --name-only --diff-filter=D -z | xargs -0 git rm --cached
 
-## SUBMODULES
+SUBMODULES
+----------
 
 Only submodules using a gitfile (which means they were cloned with a Git version 1.7.8 or newer) will be removed from the work tree, as their repository lives inside the .git directory of the superproject. If a submodule (or one of those nested inside it) still uses a .git directory, `git rm` will move the submodules git directory into the superprojects git directory to protect the submodule’s history. If it exists the submodule.&lt;name&gt; section in the [gitmodules(5)](gitmodules.html) file will also be removed and that file will be staged (unless --cached or -n are used).
 
@@ -93,7 +100,8 @@ A submodule is considered up to date when the HEAD is the same as recorded in th
 
 If you only want to remove the local checkout of a submodule from your work tree without committing the removal, use [git-submodule(1)](git-submodule.html) `deinit` instead. Also see [gitsubmodules(7)](gitsubmodules.html) for details on submodule removal.
 
-## EXAMPLES
+EXAMPLES
+--------
 
 `git rm Documentation/\*.txt`  
 Removes all `*.txt` files from the index that are under the `Documentation` directory and any of its subdirectories.
@@ -103,16 +111,15 @@ Note that the asterisk `*` is quoted from the shell in this example; this lets G
 `git rm -f git-*.sh`  
 Because this example lets the shell expand the asterisk (i.e. you are listing the files explicitly), it does not remove `subdir/git-foo.sh`.
 
-## BUGS
+BUGS
+----
 
 Each time a superproject update removes a populated submodule (e.g. when switching between commits before and after the removal) a stale submodule checkout will remain in the old location. Removing the old directory is only safe when it uses a gitfile, as otherwise the history of the submodule will be deleted too. This step will be obsolete when recursive submodule update has been implemented.
 
-## SEE ALSO
+SEE ALSO
+--------
 
 [git-add(1)](git-add.html)
 
-## GIT
-
-Part of the [git(1)](git.html) suite
-
-Last updated 2021-03-27 09:47:30 UTC
+GIT
+---

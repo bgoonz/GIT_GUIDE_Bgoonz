@@ -1,34 +1,39 @@
-# git-mailinfo(1) Manual Page
+git-mailinfo(1) Manual Page
+===========================
 
-## NAME
+NAME
+----
 
 git-mailinfo - Extracts patch and authorship from a single e-mail message
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git mailinfo [-k|-b] [-u | --encoding=<encoding> | -n] [--[no-]scissors] <msg> <patch>
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
-Reads a single e-mail message from the standard input, and writes the commit log message in &lt;msg&gt; file, and the patches in &lt;patch&gt; file. The author name, e-mail and e-mail subject are written out to the standard output to be used by _git am_ to create a commit. It is usually not necessary to use this command directly. See [git-am(1)](git-am.html) instead.
+Reads a single e-mail message from the standard input, and writes the commit log message in &lt;msg&gt; file, and the patches in &lt;patch&gt; file. The author name, e-mail and e-mail subject are written out to the standard output to be used by *git am* to create a commit. It is usually not necessary to use this command directly. See [git-am(1)](git-am.html) instead.
 
-## OPTIONS
+OPTIONS
+-------
 
 -k  
-Usually the program removes email cruft from the Subject: header line to extract the title line for the commit log message. This option prevents this munging, and is most useful when used to read back _git format-patch -k_ output.
+Usually the program removes email cruft from the Subject: header line to extract the title line for the commit log message. This option prevents this munging, and is most useful when used to read back *git format-patch -k* output.
 
 Specifically, the following are removed until none of them remain:
 
-- Leading and trailing whitespace.
+-   Leading and trailing whitespace.
 
-- Leading `Re:`, `re:`, and `:`.
+-   Leading `Re:`, `re:`, and `:`.
 
-- Leading bracketed strings (between `[` and `]`, usually `[PATCH]`).
+-   Leading bracketed strings (between `[` and `]`, usually `[PATCH]`).
 
 Finally, runs of whitespace are normalized to a single ASCII space character.
 
 -b  
-When -k is not in effect, all leading strings bracketed with _\[_ and _\]_ pairs are stripped. This option limits the stripping to only the pairs whose bracketed string contains the word "PATCH".
+When -k is not in effect, all leading strings bracketed with *\[* and *\]* pairs are stripped. This option limits the stripping to only the pairs whose bracketed string contains the word "PATCH".
 
 -u  
 The commit log message, author name and author email are taken from the e-mail, and after minimally decoding MIME transfer encoding, re-coded in the charset specified by `i18n.commitEncoding` (defaulting to UTF-8) by transliterating them. This used to be optional but now it is the default.
@@ -61,7 +66,8 @@ The commit log message extracted from e-mail, usually except the title line whic
 &lt;patch&gt;  
 The patch extracted from e-mail.
 
-## GIT
+GIT
+---
 
 Part of the [git(1)](git.html) suite
 

@@ -1,17 +1,21 @@
-# git-range-diff(1) Manual Page
+git-range-diff(1) Manual Page
+=============================
 
-## NAME
+NAME
+----
 
 git-range-diff - Compare two commit ranges (e.g. two versions of a branch)
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git range-diff [--color=[<when>]] [--no-color] [<diff-options>]
             [--no-dual-color] [--creation-factor=<factor>]
             [--left-only | --right-only]
             ( <range1> <range2> | <rev1>…​<rev2> | <base> <rev1> <rev2> )
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 This command shows the differences between two versions of a patch series, or more generally, two commit ranges (ignoring merge commits).
 
@@ -21,13 +25,14 @@ Finally, the list of matching commits is shown in the order of the second commit
 
 There are three ways to specify the commit ranges:
 
-- `<range1> <range2>`: Either commit range can be of the form `<base>..<rev>`, `<rev>^!` or `<rev>^-<n>`. See `SPECIFYING RANGES` in [gitrevisions(7)](gitrevisions.html) for more details.
+-   `<range1> <range2>`: Either commit range can be of the form `<base>..<rev>`, `<rev>^!` or `<rev>^-<n>`. See `SPECIFYING RANGES` in [gitrevisions(7)](gitrevisions.html) for more details.
 
-- `<rev1>...<rev2>`. This is equivalent to `<rev2>..<rev1> <rev1>..<rev2>`.
+-   `<rev1>...<rev2>`. This is equivalent to `<rev2>..<rev1> <rev1>..<rev2>`.
 
-- `<base> <rev1> <rev2>`: This is equivalent to `<base>..<rev1> <base>..<rev2>`.
+-   `<base> <rev1> <rev2>`: This is equivalent to `<base>..<rev1> <base>..<rev2>`.
 
-## OPTIONS
+OPTIONS
+-------
 
 --no-dual-color  
 When the commit diffs differ, `git range-diff` recreates the original diffs' coloring, and adds outer -/+ diff markers with the **background** being red/green to make it easier to see e.g. when there was a change in what exact lines were added.
@@ -59,17 +64,20 @@ Equivalent to passing `<base>..<rev1>` and `<base>..<rev2>`. Note that `<base>` 
 
 `git range-diff` also accepts the regular diff options (see [git-diff(1)](git-diff.html)), most notably the `--color=[<when>]` and `--no-color` options. These options are used when generating the "diff between patches", i.e. to compare the author, commit message and diff of corresponding old/new commits. There is currently no means to tweak most of the diff options passed to `git log` when generating those patches.
 
-## OUTPUT STABILITY
+OUTPUT STABILITY
+----------------
 
 The output of the `range-diff` command is subject to change. It is intended to be human-readable porcelain output, not something that can be used across versions of Git to get a textually stable `range-diff` (as opposed to something like the `--stable` option to [git-patch-id(1)](git-patch-id.html)). There’s also no equivalent of [git-apply(1)](git-apply.html) for `range-diff`, the output is not intended to be machine-readable.
 
 This is particularly true when passing in diff options. Currently some options like `--stat` can, as an emergent effect, produce output that’s quite useless in the context of `range-diff`. Future versions of `range-diff` may learn to interpret such options in a manner specific to `range-diff` (e.g. for `--stat` producing human-readable output which summarizes how the diffstat changed).
 
-## CONFIGURATION
+CONFIGURATION
+-------------
 
 This command uses the `diff.color.*` and `pager.range-diff` settings (the latter is on by default). See [git-config(1)](git-config.html).
 
-## EXAMPLES
+EXAMPLES
+--------
 
 When a rebase required merge conflicts to be resolved, compare the changes introduced by the rebase directly afterwards using:
 
@@ -103,7 +111,8 @@ A naive color-coded diff of diffs is actually a bit hard to read, though, as it 
 
 To help with that, `range` uses the `--dual-color` mode by default. In this mode, the diff of diffs will retain the original diff colors, and prefix the lines with -/+ markers that have their **background** red or green, to make it more obvious that they describe how the diff itself changed.
 
-## Algorithm
+Algorithm
+---------
 
 The general idea is this: we generate a cost matrix between the commits in both commit ranges, then solve the least-cost assignment.
 
@@ -162,12 +171,10 @@ The overall time needed to compute this algorithm is the time needed to compute 
 
         o ---------- o
 
-## SEE ALSO
+SEE ALSO
+--------
 
 [git-log(1)](git-log.html)
 
-## GIT
-
-Part of the [git(1)](git.html) suite
-
-Last updated 2021-03-27 09:47:30 UTC
+GIT
+---

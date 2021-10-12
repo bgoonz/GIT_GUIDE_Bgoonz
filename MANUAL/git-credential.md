@@ -1,14 +1,18 @@
-# git-credential(1) Manual Page
+git-credential(1) Manual Page
+=============================
 
-## NAME
+NAME
+----
 
 git-credential - Retrieve and store user credentials
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git credential <fill|approve|reject>
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 Git has an internal interface for storing and retrieving credentials from system-specific helpers, as well as prompting the user for usernames and passwords. The git-credential command exposes this interface to scripts which may want to retrieve, store, or prompt for credentials in the same manner as Git. The design of this scriptable interface models the internal C API; see credential.h for more background on the concepts.
 
@@ -22,7 +26,8 @@ If the action is `reject`, git-credential will send the description to any confi
 
 If the action is `approve` or `reject`, no output should be emitted.
 
-## TYPICAL USE OF GIT CREDENTIAL
+TYPICAL USE OF GIT CREDENTIAL
+-----------------------------
 
 An application using git-credential will typically use `git credential` following these steps:
 
@@ -49,7 +54,8 @@ An application using git-credential will typically use `git credential` followin
 
 4.  Report on the success or failure of the password. If the credential allowed the operation to complete successfully, then it can be marked with an "approve" action to tell `git credential` to reuse it in its next invocation. If the credential was rejected during the operation, use the "reject" action so that `git credential` will ask for a new password in its next invocation. In either case, `git credential` should be fed with the credential description obtained from step (2) (which also contain the ones provided in step (1)).
 
-## INPUT/OUTPUT FORMAT
+INPUT/OUTPUT FORMAT
+-------------------
 
 `git credential` reads and/or writes (depending on the action used) credential information in its standard input/output. This information can correspond either to keys for which `git credential` will obtain the login information (e.g. host, protocol, path), or to the actual credential data to be obtained (username/password).
 

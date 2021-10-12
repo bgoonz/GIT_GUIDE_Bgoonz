@@ -1,20 +1,25 @@
-# git-instaweb(1) Manual Page
+git-instaweb(1) Manual Page
+===========================
 
-## NAME
+NAME
+----
 
 git-instaweb - Instantly browse your working repository in gitweb
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git instaweb [--local] [--httpd=<httpd>] [--port=<port>]
                    [--browser=<browser>]
     git instaweb [--start] [--stop] [--restart]
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 A simple script to set up `gitweb` and a web server for browsing the local repository.
 
-## OPTIONS
+OPTIONS
+-------
 
 -l  
 --local  
@@ -34,7 +39,7 @@ The port number to bind the httpd to. (Default: 1234)
 
 -b  
 --browser  
-The web browser that should be used to view the gitweb page. This will be passed to the _git web--browse_ helper script along with the URL of the gitweb instance. See [git-web--browse(1)](git-web--browse.html) for more information about this. If the script fails, the URL will be printed to stdout.
+The web browser that should be used to view the gitweb page. This will be passed to the *git web--browse* helper script along with the URL of the gitweb instance. See [git-web--browse(1)](git-web--browse.html) for more information about this. If the script fails, the URL will be printed to stdout.
 
 start  
 --start  
@@ -48,7 +53,8 @@ restart
 --restart  
 Restart the httpd instance and exit. Regenerate configuration files as necessary for spawning a new instance.
 
-## CONFIGURATION
+CONFIGURATION
+-------------
 
 You may specify configuration in your .git/config
 
@@ -61,11 +67,13 @@ You may specify configuration in your .git/config
 
 If the configuration variable `instaweb.browser` is not set, `web.browser` will be used instead if it is defined. See [git-web--browse(1)](git-web--browse.html) for more information about this.
 
-## SEE ALSO
+SEE ALSO
+--------
 
 [gitweb(1)](gitweb.html)
 
-## GIT
+GIT
+---
 
 Part of the [git(1)](git.html) suite
 

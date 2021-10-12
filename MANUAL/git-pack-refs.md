@@ -1,16 +1,20 @@
-# git-pack-refs(1) Manual Page
+git-pack-refs(1) Manual Page
+============================
 
-## NAME
+NAME
+----
 
 git-pack-refs - Pack heads and tags for efficient repository access
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git pack-refs [--all] [--no-prune]
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
-Traditionally, tips of branches and tags (collectively known as _refs_) were stored one file per ref in a (sub)directory under `$GIT_DIR/refs` directory. While many branch tips tend to be updated often, most tags and some branch tips are never updated. When a repository has hundreds or thousands of tags, this one-file-per-ref format both wastes storage and hurts performance.
+Traditionally, tips of branches and tags (collectively known as *refs*) were stored one file per ref in a (sub)directory under `$GIT_DIR/refs` directory. While many branch tips tend to be updated often, most tags and some branch tips are never updated. When a repository has hundreds or thousands of tags, this one-file-per-ref format both wastes storage and hurts performance.
 
 This command is used to solve the storage and performance problem by storing the refs in a single file, `$GIT_DIR/packed-refs`. When a ref is missing from the traditional `$GIT_DIR/refs` directory hierarchy, it is looked up in this file and used if found.
 
@@ -18,7 +22,8 @@ Subsequent updates to branches always create new files under `$GIT_DIR/refs` dir
 
 A recommended practice to deal with a repository with too many refs is to pack its refs with `--all` once, and occasionally run `git pack-refs`. Tags are by definition stationary and are not expected to change. Branch heads will be packed with the initial `pack-refs --all`, but only the currently active branch heads will become unpacked, and the next `pack-refs` (without `--all`) will leave them unpacked.
 
-## OPTIONS
+OPTIONS
+-------
 
 --all  
 The command by default packs all tags and refs that are already packed, and leaves other refs alone. This is because branches are expected to be actively developed and packing their tips does not help performance. This option causes branch tips to be packed as well. Useful for a repository with many branches of historical interests.
@@ -26,12 +31,10 @@ The command by default packs all tags and refs that are already packed, and leav
 --no-prune  
 The command usually removes loose refs under `$GIT_DIR/refs` hierarchy after packing them. This option tells it not to.
 
-## BUGS
+BUGS
+----
 
 Older documentation written before the packed-refs mechanism was introduced may still say things like ".git/refs/heads/&lt;branch&gt; file exists" when it means "branch &lt;branch&gt; exists".
 
-## GIT
-
-Part of the [git(1)](git.html) suite
-
-Last updated 2021-03-27 09:47:30 UTC
+GIT
+---

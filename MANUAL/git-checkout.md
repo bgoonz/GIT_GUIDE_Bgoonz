@@ -1,10 +1,13 @@
-# git-checkout(1) Manual Page
+git-checkout(1) Manual Page
+===========================
 
-## NAME
+NAME
+----
 
 git-checkout - Switch branches or restore working tree files
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git checkout [-q] [-f] [-m] [<branch>]
     git checkout [-q] [-f] [-m] --detach [<branch>]
@@ -14,11 +17,12 @@ git-checkout - Switch branches or restore working tree files
     git checkout [-f|--ours|--theirs|-m|--conflict=<style>] [<tree-ish>] --pathspec-from-file=<file> [--pathspec-file-nul]
     git checkout (-p|--patch) [<tree-ish>] [--] [<pathspec>…​]
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
-Updates files in the working tree to match the version in the index or the specified tree. If no pathspec was given, _git checkout_ will also update `HEAD` to set the specified branch as the current branch.
+Updates files in the working tree to match the version in the index or the specified tree. If no pathspec was given, *git checkout* will also update `HEAD` to set the specified branch as the current branch.
 
-_git checkout_ \[&lt;branch&gt;\]  
+*git checkout* \[&lt;branch&gt;\]  
 To prepare for working on `<branch>`, switch to it by updating the index and the files in the working tree, and by pointing `HEAD` at the branch. Local modifications to the files in the working tree are kept, so that they can be committed to the `<branch>`.
 
 If `<branch>` is not found but there does exist a tracking branch in exactly one remote (call it `<remote>`) with a matching name and `--no-guess` is not specified, treat as equivalent to
@@ -27,8 +31,8 @@ If `<branch>` is not found but there does exist a tracking branch in exactly one
 
 You could omit `<branch>`, in which case the command degenerates to "check out the current branch", which is a glorified no-op with rather expensive side-effects to show only the tracking information, if exists, for the current branch.
 
-_git checkout_ -b|-B &lt;new*branch&gt; \[&lt;start point&gt;\]  
-Specifying `-b` causes a new branch to be created as if [git-branch(1)](git-branch.html) were called and then checked out. In this case you can use the `--track` or `--no-track` options, which will be passed to \_git branch*. As a convenience, `--track` without `-b` implies branch creation; see the description of `--track` below.
+ *git checkout* -b|-B &lt;new\_branch&gt; \[&lt;start point&gt;\]   
+Specifying `-b` causes a new branch to be created as if [git-branch(1)](git-branch.html) were called and then checked out. In this case you can use the `--track` or `--no-track` options, which will be passed to *git branch*. As a convenience, `--track` without `-b` implies branch creation; see the description of `--track` below.
 
 If `-B` is given, `<new_branch>` is created if it doesn’t exist; otherwise, it is reset. This is the transactional equivalent of
 
@@ -37,24 +41,25 @@ If `-B` is given, `<new_branch>` is created if it doesn’t exist; otherwise, it
 
 that is to say, the branch is not reset/created unless "git checkout" is successful.
 
-_git checkout_ --detach \[&lt;branch&gt;\]  
-_git checkout_ \[--detach\] &lt;commit&gt;  
+ *git checkout* --detach \[&lt;branch&gt;\]  
+*git checkout* \[--detach\] &lt;commit&gt;   
 Prepare to work on top of `<commit>`, by detaching `HEAD` at it (see "DETACHED HEAD" section), and updating the index and the files in the working tree. Local modifications to the files in the working tree are kept, so that the resulting working tree will be the state recorded in the commit plus the local modifications.
 
 When the `<commit>` argument is a branch name, the `--detach` option can be used to detach `HEAD` at the tip of the branch (`git checkout <branch>` would check out that branch without detaching `HEAD`).
 
 Omitting `<branch>` detaches `HEAD` at the tip of the current branch.
 
-_git checkout_ \[-f|--ours|--theirs|-m|--conflict=&lt;style&gt;\] \[&lt;tree-ish&gt;\] \[--\] &lt;pathspec&gt;…​  
-_git checkout_ \[-f|--ours|--theirs|-m|--conflict=&lt;style&gt;\] \[&lt;tree-ish&gt;\] --pathspec-from-file=&lt;file&gt; \[--pathspec-file-nul\]  
+ *git checkout* \[-f|--ours|--theirs|-m|--conflict=&lt;style&gt;\] \[&lt;tree-ish&gt;\] \[--\] &lt;pathspec&gt;…​  
+*git checkout* \[-f|--ours|--theirs|-m|--conflict=&lt;style&gt;\] \[&lt;tree-ish&gt;\] --pathspec-from-file=&lt;file&gt; \[--pathspec-file-nul\]   
 Overwrite the contents of the files that match the pathspec. When the `<tree-ish>` (most often a commit) is not given, overwrite working tree with the contents in the index. When the `<tree-ish>` is given, overwrite both the index and the working tree with the contents at the `<tree-ish>`.
 
 The index may contain unmerged entries because of a previous failed merge. By default, if you try to check out such an entry from the index, the checkout operation will fail and nothing will be checked out. Using `-f` will ignore these unmerged entries. The contents from a specific side of the merge can be checked out of the index by using `--ours` or `--theirs`. With `-m`, changes made to the working tree file can be discarded to re-create the original conflicted merge result.
 
-_git checkout_ (-p|--patch) \[&lt;tree-ish&gt;\] \[--\] \[&lt;pathspec&gt;…​\]  
+ *git checkout* (-p|--patch) \[&lt;tree-ish&gt;\] \[--\] \[&lt;pathspec&gt;…​\]   
 This is similar to the previous mode, but lets you use the interactive interface to show the "diff" output and choose which hunks to use in the result. See below for the description of `--patch` option.
 
-## OPTIONS
+OPTIONS
+-------
 
 -q  
 --quiet  
@@ -72,16 +77,16 @@ When checking out paths from the index, do not fail upon unmerged entries; inste
 
 --ours  
 --theirs  
-When checking out paths from the index, check out stage \#2 (_ours_) or \#3 (_theirs_) for unmerged paths.
+When checking out paths from the index, check out stage \#2 (*ours*) or \#3 (*theirs*) for unmerged paths.
 
-Note that during `git rebase` and `git pull --rebase`, _ours_ and _theirs_ may appear swapped; `--ours` gives the version from the branch the changes are rebased onto, while `--theirs` gives the version from the branch that holds your work that is being rebased.
+Note that during `git rebase` and `git pull --rebase`, *ours* and *theirs* may appear swapped; `--ours` gives the version from the branch the changes are rebased onto, while `--theirs` gives the version from the branch that holds your work that is being rebased.
 
 This is because `rebase` is used in a workflow that treats the history at the remote as the shared canonical one, and treats the work done on the branch you are rebasing as the third-party work to be integrated, and you are temporarily assuming the role of the keeper of the canonical history during the rebase. As the keeper of the canonical history, you need to view the history from the remote as `ours` (i.e. "our shared canonical history"), while what you did on your side branch as `theirs` (i.e. "one contributor’s work on top of it").
 
--b &lt;new_branch&gt;  
+-b &lt;new\_branch&gt;  
 Create a new branch named `<new_branch>` and start it at `<start_point>`; see [git-branch(1)](git-branch.html) for details.
 
--B &lt;new_branch&gt;  
+-B &lt;new\_branch&gt;  
 Creates the branch `<new_branch>` and start it at `<start_point>`; if it already exists, then reset it to `<start_point>`. This is equivalent to running "git branch" with "-f"; see [git-branch(1)](git-branch.html) for details.
 
 -t  
@@ -99,7 +104,7 @@ If `<branch>` is not found but there does exist a tracking branch in exactly one
 
     $ git checkout -b <branch> --track <remote>/<branch>
 
-If the branch exists in multiple remotes and one of them is named by the `checkout.defaultRemote` configuration variable, we’ll use that one for the purposes of disambiguation, even if the `<branch>` isn’t unique across all remotes. Set it to e.g. `checkout.defaultRemote=origin` to always checkout remote branches from there if `<branch>` is ambiguous but exists on the _origin_ remote. See also `checkout.defaultRemote` in [git-config(1)](git-config.html).
+If the branch exists in multiple remotes and one of them is named by the `checkout.defaultRemote` configuration variable, we’ll use that one for the purposes of disambiguation, even if the `<branch>` isn’t unique across all remotes. Set it to e.g. `checkout.defaultRemote=origin` to always checkout remote branches from there if `<branch>` is ambiguous but exists on the *origin* remote. See also `checkout.defaultRemote` in [git-config(1)](git-config.html).
 
 `--guess` is the default behavior. Use `--no-guess` to disable it.
 
@@ -112,8 +117,8 @@ Create the new branch’s reflog; see [git-branch(1)](git-branch.html) for detai
 --detach  
 Rather than checking out a branch to work on it, check out a commit for inspection and discardable experiments. This is the default behavior of `git checkout <commit>` when `<commit>` is not a branch name. See the "DETACHED HEAD" section below for details.
 
---orphan &lt;new*branch&gt;  
-Create a new \_orphan* branch, named `<new_branch>`, started from `<start_point>` and switch to it. The first commit made on this new branch will have no parents and it will be the root of a new history totally disconnected from all the other branches and commits.
+--orphan &lt;new\_branch&gt;  
+Create a new *orphan* branch, named `<new_branch>`, started from `<start_point>` and switch to it. The first commit made on this new branch will have no parents and it will be the root of a new history totally disconnected from all the other branches and commits.
 
 The index and the working tree are adjusted as if you had previously run `git checkout <start_point>`. This allows you to start a new history that records a set of paths similar to `<start_point>` by easily running `git commit -a` to make the root commit.
 
@@ -173,10 +178,10 @@ You can use the `@{-N}` syntax to refer to the N-th last branch/commit checked o
 
 As a special case, you may use `A...B` as a shortcut for the merge base of `A` and `B` if there is exactly one merge base. You can leave out at most one of `A` and `B`, in which case it defaults to `HEAD`.
 
-&lt;new_branch&gt;  
+&lt;new\_branch&gt;  
 Name for the new branch.
 
-&lt;start_point&gt;  
+&lt;start\_point&gt;  
 The name of a commit at which to start the new branch; see [git-branch(1)](git-branch.html) for details. Defaults to `HEAD`.
 
 As a special case, you may use `"A...B"` as a shortcut for the merge base of `A` and `B` if there is exactly one merge base. You can leave out at most one of `A` and `B`, in which case it defaults to `HEAD`.
@@ -192,9 +197,10 @@ Do not interpret any more arguments as options.
 &lt;pathspec&gt;…​  
 Limits the paths affected by the operation.
 
-For more details, see the _pathspec_ entry in [gitglossary(7)](gitglossary.html).
+For more details, see the *pathspec* entry in [gitglossary(7)](gitglossary.html).
 
-## DETACHED HEAD
+DETACHED HEAD
+-------------
 
 `HEAD` normally refers to a named branch (e.g. `master`). Meanwhile, each branch refers to a specific commit. Let’s look at a repo with three commits, one of them tagged, and with branch `master` checked out:
 
@@ -206,7 +212,7 @@ For more details, see the _pathspec_ entry in [gitglossary(7)](gitglossary.html)
         |
       tag 'v2.0' (refers to commit 'b')
 
-When a commit is created in this state, the branch is updated to refer to the new commit. Specifically, _git commit_ creates a new commit `d`, whose parent is commit `c`, and then updates branch `master` to refer to new commit `d`. `HEAD` still refers to branch `master` and so indirectly now refers to commit `d`:
+When a commit is created in this state, the branch is updated to refer to the new commit. Specifically, *git commit* creates a new commit `d`, whose parent is commit `c`, and then updates branch `master` to refer to new commit `d`. `HEAD` still refers to branch `master` and so indirectly now refers to commit `d`:
 
     $ edit; git add; git commit
 
@@ -288,11 +294,13 @@ If we have moved away from commit `f`, then we must first recover its object nam
     $ git reflog -2 HEAD # or
     $ git log -g -2 HEAD
 
-## ARGUMENT DISAMBIGUATION
+ARGUMENT DISAMBIGUATION
+-----------------------
 
 When there is only one argument given and it is not `--` (e.g. `git checkout abc`), and when the argument is both a valid `<tree-ish>` (e.g. a branch `abc` exists) and a valid `<pathspec>` (e.g. a file or a directory whose name is "abc" exists), Git would usually ask you to disambiguate. Because checking out a branch is so common an operation, however, `git checkout abc` takes "abc" as a `<tree-ish>` in such a situation. Use `git checkout -- <pathspec>` if you want to checkout these paths out of the index.
 
-## EXAMPLES
+EXAMPLES
+--------
 
 1.  The following sequence checks out the `master` branch, reverts the `Makefile` to two revisions back, deletes `hello.c` by mistake, and gets it back from the index.
 
@@ -307,7 +315,7 @@ When there is only one argument given and it is not `--` (e.g. `git checkout abc
 
     3.  restore `hello.c` from the index
 
-    If you want to check out _all_ C source files out of the index, you can say
+    If you want to check out *all* C source files out of the index, you can say
 
         $ git checkout -- '*.c'
 
@@ -331,7 +339,7 @@ When there is only one argument given and it is not `--` (e.g. `git checkout abc
         $ git checkout -m mytopic
         Auto-merging frotz
 
-    After this three-way merge, the local modifications are _not_ registered in your index file, so `git diff` would show you what changes you made since the tip of the new branch.
+    After this three-way merge, the local modifications are *not* registered in your index file, so `git diff` would show you what changes you made since the tip of the new branch.
 
 3.  When a merge conflict happens during switching branches with the `-m` option, you would see something like this:
 
@@ -345,11 +353,13 @@ When there is only one argument given and it is not `--` (e.g. `git checkout abc
         $ edit frotz
         $ git add frotz
 
-## SEE ALSO
+SEE ALSO
+--------
 
 [git-switch(1)](git-switch.html), [git-restore(1)](git-restore.html)
 
-## GIT
+GIT
+---
 
 Part of the [git(1)](git.html) suite
 

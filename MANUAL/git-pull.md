@@ -1,18 +1,22 @@
-# git-pull(1) Manual Page
+git-pull(1) Manual Page
+=======================
 
-## NAME
+NAME
+----
 
 git-pull - Fetch from and integrate with another repository or a local branch
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git pull [<options>] [<repository> [<refspec>…​]]
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 Incorporates changes from a remote repository into the current branch. In its default mode, `git pull` is shorthand for `git fetch` followed by `git merge FETCH_HEAD`.
 
-More precisely, _git pull_ runs _git fetch_ with the given parameters and calls _git merge_ to merge the retrieved branch heads into the current branch. With `--rebase`, it runs _git rebase_ instead of _git merge_.
+More precisely, *git pull* runs *git fetch* with the given parameters and calls *git merge* to merge the retrieved branch heads into the current branch. With `--rebase`, it runs *git rebase* instead of *git merge*.
 
 &lt;repository&gt; should be the name of a remote repository as passed to [git-fetch(1)](git-fetch.html). &lt;refspec&gt; can name an arbitrary remote ref (for example, the name of a tag) or even a collection of refs with corresponding remote-tracking branches (e.g., refs/heads/\*:refs/remotes/origin/\*), but usually it is the name of a branch in the remote repository.
 
@@ -34,11 +38,12 @@ Then "`git pull`" will fetch and replay the changes from the remote `master` bra
 
 See [git-merge(1)](git-merge.html) for details, including how conflicts are presented and handled.
 
-In Git 1.7.0 or later, to cancel a conflicting merge, use `git reset --merge`. **Warning**: In older versions of Git, running _git pull_ with uncommitted changes is discouraged: while possible, it leaves you in a state that may be hard to back out of in the case of a conflict.
+In Git 1.7.0 or later, to cancel a conflicting merge, use `git reset --merge`. **Warning**: In older versions of Git, running *git pull* with uncommitted changes is discouraged: while possible, it leaves you in a state that may be hard to back out of in the case of a conflict.
 
 If any of the remote changes overlap with local uncommitted changes, the merge will be automatically canceled and the work tree untouched. It is generally best to get any local changes in working order before pulling or stash them away with [git-stash(1)](git-stash.html).
 
-## OPTIONS
+OPTIONS
+-------
 
 -q  
 --quiet  
@@ -48,7 +53,7 @@ This is passed to both underlying git-fetch to squelch reporting of during trans
 --verbose  
 Pass --verbose to git-fetch and git-merge.
 
---\[no-\]recurse-submodules\[=yes|on-demand|no\]  
+ --\[no-\]recurse-submodules\[=yes|on-demand|no\]   
 This option controls if new commits of populated submodules should be fetched, and if the working trees of active submodules should be updated, too (see [git-fetch(1)](git-fetch.html), [git-config(1)](git-config.html) and [gitmodules(5)](gitmodules.html)).
 
 If the checkout is done via rebase, local submodule commits are rebased as well.
@@ -73,7 +78,7 @@ Invoke an editor before committing successful mechanical merge to further edit t
 Older scripts may depend on the historical behaviour of not allowing the user to edit the merge log message. They will see an editor opened when they run `git merge`. To make it easier to adjust such scripts to the updated behaviour, the environment variable `GIT_MERGE_AUTOEDIT` can be set to `no` at the beginning of them.
 
 --cleanup=&lt;mode&gt;  
-This option determines how the merge message will be cleaned up before committing. See [git-commit(1)](git-commit.html) for more details. In addition, if the _&lt;mode&gt;_ is given a value of `scissors`, scissors will be appended to `MERGE_MSG` before being passed on to the commit machinery in the case of a merge conflict.
+This option determines how the merge message will be cleaned up before committing. See [git-commit(1)](git-commit.html) for more details. In addition, if the *&lt;mode&gt;* is given a value of `scissors`, scissors will be appended to `MERGE_MSG` before being passed on to the commit machinery in the case of a merge conflict.
 
 --ff  
 --no-ff  
@@ -123,7 +128,7 @@ This option bypasses the pre-merge and commit-msg hooks. See also [githooks(5)](
 
 -s &lt;strategy&gt;  
 --strategy=&lt;strategy&gt;  
-Use the given merge strategy; can be supplied more than once to specify them in the order they should be tried. If there is no `-s` option, a built-in list of strategies is used instead (_git merge-recursive_ when merging a single head, _git merge-octopus_ otherwise).
+Use the given merge strategy; can be supplied more than once to specify them in the order they should be tried. If there is no `-s` option, a built-in list of strategies is used instead (*git merge-recursive* when merging a single head, *git merge-octopus* otherwise).
 
 -X &lt;option&gt;  
 --strategy-option=&lt;option&gt;  
@@ -145,7 +150,7 @@ Automatically create a temporary stash entry before the operation begins, and ap
 By default, `git merge` command refuses to merge histories that do not share a common ancestor. This option can be used to override this safety when merging histories of two projects that started their lives independently. As that is a very rare occasion, no configuration variable to enable this by default exists and will not be added.
 
 -r  
---rebase\[=false|true|merges|preserve|interactive\]  
+--rebase\[=false|true|merges|preserve|interactive\]   
 When true, rebase the current branch on top of the upstream branch after fetching. If there is a remote-tracking branch corresponding to the upstream branch and the upstream branch was rebased since last fetched, the rebase uses that information to avoid rebasing non-local changes.
 
 When set to `merges`, rebase using `git rebase --rebase-merges` so that the local merge commits are included in the rebase (see [git-rebase(1)](git-rebase.html) for details).
@@ -176,7 +181,7 @@ Append ref names and object names of fetched refs to the existing contents of `.
 Use an atomic transaction to update local refs. Either all refs are updated, or on error, no refs are updated.
 
 --depth=&lt;depth&gt;  
-Limit fetching to the specified number of commits from the tip of each remote branch history. If fetching to a _shallow_ repository created by `git clone` with `--depth=<depth>` option (see [git-clone(1)](git-clone.html)), deepen or shorten the history to the specified number of commits. Tags for the deepened commits are not fetched.
+Limit fetching to the specified number of commits from the tip of each remote branch history. If fetching to a *shallow* repository created by `git clone` with `--depth=<depth>` option (see [git-clone(1)](git-clone.html)), deepen or shorten the history to the specified number of commits. Tags for the deepened commits are not fetched.
 
 --deepen=&lt;depth&gt;  
 Similar to --depth, except it specifies the number of commits from the current shallow boundary instead of from the tip of each remote branch history.
@@ -209,7 +214,7 @@ Show what would be done, without making any changes.
 
 -f  
 --force  
-When _git fetch_ is used with `<src>:<dst>` refspec it may refuse to update the local branch as discussed in the `<refspec>` part of the [git-fetch(1)](git-fetch.html) documentation. This option overrides that check.
+When *git fetch* is used with `<src>:<dst>` refspec it may refuse to update the local branch as discussed in the `<refspec>` part of the [git-fetch(1)](git-fetch.html) documentation. This option overrides that check.
 
 -k  
 --keep  
@@ -241,7 +246,7 @@ Typically, parallel recursive and multi-remote fetches will be faster. By defaul
 If the remote is fetched successfully, add upstream (tracking) reference, used by argument-less [git-pull(1)](git-pull.html) and other commands. For more information, see `branch.<name>.merge` and `branch.<name>.remote` in [git-config(1)](git-config.html).
 
 --upload-pack &lt;upload-pack&gt;  
-When given, and the repository to fetch from is handled by _git fetch-pack_, `--exec=<upload-pack>` is passed to the command to specify non-default path for the command run on the other end.
+When given, and the repository to fetch from is handled by *git fetch-pack*, `--exec=<upload-pack>` is passed to the command to specify non-default path for the command run on the other end.
 
 --progress  
 Progress status is reported on the standard error stream by default when it is attached to a terminal, unless -q is specified. This flag forces progress status even if the standard error stream is not directed to a terminal.
@@ -254,7 +259,7 @@ Transmit the given string to the server when communicating using protocol versio
 By default, git checks if a branch is force-updated during fetch. This can be disabled through fetch.showForcedUpdates, but the --show-forced-updates option guarantees this check occurs. See [git-config(1)](git-config.html).
 
 --no-show-forced-updates  
-By default, git checks if a branch is force-updated during fetch. Pass --no-show-forced-updates or set fetch.showForcedUpdates to false to skip this check for performance reasons. If used during _git-pull_ the --ff-only option will still check for forced updates before attempting a fast-forward update. See [git-config(1)](git-config.html).
+By default, git checks if a branch is force-updated during fetch. Pass --no-show-forced-updates or set fetch.showForcedUpdates to false to skip this check for performance reasons. If used during *git-pull* the --ff-only option will still check for forced updates before attempting a fast-forward update. See [git-config(1)](git-config.html).
 
 -4  
 --ipv4  
@@ -280,7 +285,7 @@ If a refspec is prefixed by `^`, it will be interpreted as a negative refspec. R
 
 The remote ref that matches &lt;src&gt; is fetched, and if &lt;dst&gt; is not an empty string, an attempt is made to update the local ref that matches it.
 
-Whether that update is allowed without `--force` depends on the ref namespace it’s being fetched to, the type of object being fetched, and whether the update is considered to be a fast-forward. Generally, the same rules apply for fetching as when pushing, see the `<refspec>...` section of [git-push(1)](git-push.html) for what those are. Exceptions to those rules particular to _git fetch_ are noted below.
+Whether that update is allowed without `--force` depends on the ref namespace it’s being fetched to, the type of object being fetched, and whether the update is considered to be a fast-forward. Generally, the same rules apply for fetching as when pushing, see the `<refspec>...` section of [git-push(1)](git-push.html) for what those are. Exceptions to those rules particular to *git fetch* are noted below.
 
 Until Git version 2.20, and unlike when pushing with [git-push(1)](git-push.html), any updates to `refs/tags/*` would be accepted without `+` in the refspec (or `--force`). When fetching, we promiscuously considered all tag updates from a remote to be forced fetches. Since Git version 2.20, fetching to update `refs/tags/*` works the same way as when pushing. I.e. any updates will be rejected without `+` in the refspec (or `--force`).
 
@@ -294,7 +299,8 @@ As with pushing with [git-push(1)](git-push.html), all of the rules described ab
 
 <table><colgroup><col style="width: 50%" /><col style="width: 50%" /></colgroup><tbody><tr class="odd"><td><div class="title">Note</div></td><td>There is a difference between listing multiple &lt;refspec&gt; directly on <em>git pull</em> command line and having multiple <code>remote.&lt;repository&gt;.fetch</code> entries in your configuration for a &lt;repository&gt; and running a <em>git pull</em> command without any explicit &lt;refspec&gt; parameters. &lt;refspec&gt;s listed explicitly on the command line are always merged into the current branch after fetching. In other words, if you list more than one remote ref, <em>git pull</em> will create an Octopus merge. On the other hand, if you do not list any explicit &lt;refspec&gt; parameter on the command line, <em>git pull</em> will fetch all the &lt;refspec&gt;s it finds in the <code>remote.&lt;repository&gt;.fetch</code> configuration and merge only the first &lt;refspec&gt; found into the current branch. This is because making an Octopus from remote refs is rarely done, while keeping track of multiple remote heads in one-go by fetching more than one is often useful.</td></tr></tbody></table>
 
-## GIT URLS<span id="URLS"></span>
+GIT URLS<span id="URLS"></span>
+-------------------------------
 
 In general, URLs contain information about the transport protocol, the address of the remote server, and the path to the repository. Depending on the transport protocol, some of this information may be absent.
 
@@ -304,41 +310,41 @@ The native transport (i.e. git:// URL) does no authentication and should be used
 
 The following syntaxes may be used with them:
 
-- ssh://\[user@\]host.xz\[:port\]/path/to/repo.git/
+-   ssh://\[user@\]host.xz\[:port\]/path/to/repo.git/
 
-- git://host.xz\[:port\]/path/to/repo.git/
+-   git://host.xz\[:port\]/path/to/repo.git/
 
-- http\[s\]://host.xz\[:port\]/path/to/repo.git/
+-   http\[s\]://host.xz\[:port\]/path/to/repo.git/
 
-- ftp\[s\]://host.xz\[:port\]/path/to/repo.git/
+-   ftp\[s\]://host.xz\[:port\]/path/to/repo.git/
 
 An alternative scp-like syntax may also be used with the ssh protocol:
 
-- \[user@\]host.xz:path/to/repo.git/
+-   \[user@\]host.xz:path/to/repo.git/
 
 This syntax is only recognized if there are no slashes before the first colon. This helps differentiate a local path that contains a colon. For example the local path `foo:bar` could be specified as an absolute path or `./foo:bar` to avoid being misinterpreted as an ssh url.
 
 The ssh and git protocols additionally support ~username expansion:
 
-- ssh://\[user@\]host.xz\[:port\]/~\[user\]/path/to/repo.git/
+-   ssh://\[user@\]host.xz\[:port\]/~\[user\]/path/to/repo.git/
 
-- git://host.xz\[:port\]/~\[user\]/path/to/repo.git/
+-   git://host.xz\[:port\]/~\[user\]/path/to/repo.git/
 
-- \[user@\]host.xz:/~\[user\]/path/to/repo.git/
+-   \[user@\]host.xz:/~\[user\]/path/to/repo.git/
 
 For local repositories, also supported by Git natively, the following syntaxes may be used:
 
-- /path/to/repo.git/
+-   /path/to/repo.git/
 
-- file:///path/to/repo.git/
+-   file:///path/to/repo.git/
 
 These two syntaxes are mostly equivalent, except when cloning, when the former implies --local option. See [git-clone(1)](git-clone.html) for details.
 
-_git clone_, _git fetch_ and _git pull_, but not _git push_, will also accept a suitable bundle file. See [git-bundle(1)](git-bundle.html).
+*git clone*, *git fetch* and *git pull*, but not *git push*, will also accept a suitable bundle file. See [git-bundle(1)](git-bundle.html).
 
-When Git doesn’t know how to handle a certain transport protocol, it attempts to use the _remote-&lt;transport&gt;_ remote helper, if one exists. To explicitly request a remote helper, the following syntax may be used:
+When Git doesn’t know how to handle a certain transport protocol, it attempts to use the *remote-&lt;transport&gt;* remote helper, if one exists. To explicitly request a remote helper, the following syntax may be used:
 
-- &lt;transport&gt;::&lt;address&gt;
+-   &lt;transport&gt;::&lt;address&gt;
 
 where &lt;address&gt; may be a path, a server and path, or an arbitrary URL-like string recognized by the specific remote helper being invoked. See [gitremote-helpers(7)](gitremote-helpers.html) for details.
 
@@ -367,15 +373,16 @@ For example, with this:
 
 a URL like "git://example.org/path/to/repo.git" will be rewritten to "ssh://example.org/path/to/repo.git" for pushes, but pulls will still use the original URL.
 
-## REMOTES<span id="REMOTES"></span>
+REMOTES<span id="REMOTES"></span>
+---------------------------------
 
 The name of one of the following can be used instead of a URL as `<repository>` argument:
 
-- a remote in the Git configuration file: `$GIT_DIR/config`,
+-   a remote in the Git configuration file: `$GIT_DIR/config`,
 
-- a file in the `$GIT_DIR/remotes` directory, or
+-   a file in the `$GIT_DIR/remotes` directory, or
 
-- a file in the `$GIT_DIR/branches` directory.
+-   a file in the `$GIT_DIR/branches` directory.
 
 All of these also allow you to omit the refspec from the command line because they each contain a refspec which git will use by default.
 
@@ -399,7 +406,7 @@ You can choose to provide the name of a file in `$GIT_DIR/remotes`. The URL in t
             Push: <refspec>
             Pull: <refspec>
 
-`Push:` lines are used by _git push_ and `Pull:` lines are used by _git pull_ and _git fetch_. Multiple `Push:` and `Pull:` lines may be specified for additional branch mappings.
+`Push:` lines are used by *git push* and `Pull:` lines are used by *git pull* and *git fetch*. Multiple `Push:` and `Pull:` lines may be specified for additional branch mappings.
 
 ### Named file in `$GIT_DIR/branches`
 
@@ -419,9 +426,10 @@ git push uses:
 
             HEAD:refs/heads/<head>
 
-## MERGE STRATEGIES
+MERGE STRATEGIES
+----------------
 
-The merge mechanism (`git merge` and `git pull` commands) allows the backend _merge strategies_ to be chosen with `-s` option. Some strategies can also take their own options, which can be passed by giving `-X<option>` arguments to `git merge` and/or `git pull`.
+The merge mechanism (`git merge` and `git pull` commands) allows the backend *merge strategies* to be chosen with `-s` option. Some strategies can also take their own options, which can be passed by giving `-X<option>` arguments to `git merge` and/or `git pull`.
 
 resolve  
 This can only resolve two heads (i.e. the current branch and another branch you pulled from) using a 3-way merge algorithm. It tries to carefully detect criss-cross merge ambiguities and is considered generally safe and fast.
@@ -429,21 +437,21 @@ This can only resolve two heads (i.e. the current branch and another branch you 
 recursive  
 This can only resolve two heads using a 3-way merge algorithm. When there is more than one common ancestor that can be used for 3-way merge, it creates a merged tree of the common ancestors and uses that as the reference tree for the 3-way merge. This has been reported to result in fewer merge conflicts without causing mismerges by tests done on actual merge commits taken from Linux 2.6 kernel development history. Additionally this can detect and handle merges involving renames, but currently cannot make use of detected copies. This is the default merge strategy when pulling or merging one branch.
 
-The _recursive_ strategy can take the following options:
+The *recursive* strategy can take the following options:
 
 ours  
-This option forces conflicting hunks to be auto-resolved cleanly by favoring _our_ version. Changes from the other tree that do not conflict with our side are reflected in the merge result. For a binary file, the entire contents are taken from our side.
+This option forces conflicting hunks to be auto-resolved cleanly by favoring *our* version. Changes from the other tree that do not conflict with our side are reflected in the merge result. For a binary file, the entire contents are taken from our side.
 
-This should not be confused with the _ours_ merge strategy, which does not even look at what the other tree contains at all. It discards everything the other tree did, declaring _our_ history contains all that happened in it.
+This should not be confused with the *ours* merge strategy, which does not even look at what the other tree contains at all. It discards everything the other tree did, declaring *our* history contains all that happened in it.
 
 theirs  
-This is the opposite of _ours_; note that, unlike _ours_, there is no _theirs_ merge strategy to confuse this merge option with.
+This is the opposite of *ours*; note that, unlike *ours*, there is no *theirs* merge strategy to confuse this merge option with.
 
 patience  
-With this option, _merge-recursive_ spends a little extra time to avoid mismerges that sometimes occur due to unimportant matching lines (e.g., braces from distinct functions). Use this when the branches to be merged have diverged wildly. See also [git-diff(1)](git-diff.html) `--patience`.
+With this option, *merge-recursive* spends a little extra time to avoid mismerges that sometimes occur due to unimportant matching lines (e.g., braces from distinct functions). Use this when the branches to be merged have diverged wildly. See also [git-diff(1)](git-diff.html) `--patience`.
 
-diff-algorithm=\[patience|minimal|histogram|myers\]  
-Tells _merge-recursive_ to use a different diff algorithm, which can help avoid mismerges that occur due to unimportant matching lines (such as braces from distinct functions). See also [git-diff(1)](git-diff.html) `--diff-algorithm`.
+ diff-algorithm=\[patience|minimal|histogram|myers\]   
+Tells *merge-recursive* to use a different diff algorithm, which can help avoid mismerges that occur due to unimportant matching lines (such as braces from distinct functions). See also [git-diff(1)](git-diff.html) `--diff-algorithm`.
 
 ignore-space-change  
 ignore-all-space  
@@ -451,11 +459,11 @@ ignore-space-at-eol
 ignore-cr-at-eol  
 Treats lines with the indicated type of whitespace change as unchanged for the sake of a three-way merge. Whitespace changes mixed with other changes to a line are not ignored. See also [git-diff(1)](git-diff.html) `-b`, `-w`, `--ignore-space-at-eol`, and `--ignore-cr-at-eol`.
 
-- If _their_ version only introduces whitespace changes to a line, _our_ version is used;
+-   If *their* version only introduces whitespace changes to a line, *our* version is used;
 
-- If _our_ version introduces whitespace changes but _their_ version includes a substantial change, _their_ version is used;
+-   If *our* version introduces whitespace changes but *their* version includes a substantial change, *their* version is used;
 
-- Otherwise, the merge proceeds in the usual way.
+-   Otherwise, the merge proceeds in the usual way.
 
 renormalize  
 This runs a virtual check-out and check-in of all three stages of a file when resolving a three-way merge. This option is meant to be used when merging branches with different clean filters or end-of-line normalization rules. See "Merging branches with differing checkin/checkout attributes" in [gitattributes(5)](gitattributes.html) for details.
@@ -467,26 +475,27 @@ no-renames
 Turn off rename detection. This overrides the `merge.renames` configuration variable. See also [git-diff(1)](git-diff.html) `--no-renames`.
 
 find-renames\[=&lt;n&gt;\]  
-Turn on rename detection, optionally setting the similarity threshold. This is the default. This overrides the _merge.renames_ configuration variable. See also [git-diff(1)](git-diff.html) `--find-renames`.
+Turn on rename detection, optionally setting the similarity threshold. This is the default. This overrides the *merge.renames* configuration variable. See also [git-diff(1)](git-diff.html) `--find-renames`.
 
 rename-threshold=&lt;n&gt;  
 Deprecated synonym for `find-renames=<n>`.
 
 subtree\[=&lt;path&gt;\]  
-This option is a more advanced form of _subtree_ strategy, where the strategy makes a guess on how two trees must be shifted to match with each other when merging. Instead, the specified path is prefixed (or stripped from the beginning) to make the shape of two trees to match.
+This option is a more advanced form of *subtree* strategy, where the strategy makes a guess on how two trees must be shifted to match with each other when merging. Instead, the specified path is prefixed (or stripped from the beginning) to make the shape of two trees to match.
 
 octopus  
 This resolves cases with more than two heads, but refuses to do a complex merge that needs manual resolution. It is primarily meant to be used for bundling topic branch heads together. This is the default merge strategy when pulling or merging more than one branch.
 
 ours  
-This resolves any number of heads, but the resulting tree of the merge is always that of the current branch head, effectively ignoring all changes from all other branches. It is meant to be used to supersede old development history of side branches. Note that this is different from the -Xours option to the _recursive_ merge strategy.
+This resolves any number of heads, but the resulting tree of the merge is always that of the current branch head, effectively ignoring all changes from all other branches. It is meant to be used to supersede old development history of side branches. Note that this is different from the -Xours option to the *recursive* merge strategy.
 
 subtree  
 This is a modified recursive strategy. When merging trees A and B, if B corresponds to a subtree of A, B is first adjusted to match the tree structure of A, instead of reading the trees at the same level. This adjustment is also done to the common ancestor tree.
 
-With the strategies that use 3-way merge (including the default, _recursive_), if a change is made on both branches, but later reverted on one of the branches, that change will be present in the merged result; some people find this behavior confusing. It occurs because only the heads and the merge base are considered when performing a merge, not the individual commits. The merge algorithm therefore considers the reverted change as no change at all, and substitutes the changed version instead.
+With the strategies that use 3-way merge (including the default, *recursive*), if a change is made on both branches, but later reverted on one of the branches, that change will be present in the merged result; some people find this behavior confusing. It occurs because only the heads and the merge base are considered when performing a merge, not the individual commits. The merge algorithm therefore considers the reverted change as no change at all, and substitutes the changed version instead.
 
-## DEFAULT BEHAVIOUR
+DEFAULT BEHAVIOUR
+-----------------
 
 Often people use `git pull` without giving any parameter. Traditionally, this has been equivalent to saying `git pull origin`. However, when configuration `branch.<name>.remote` is present while on branch `<name>`, that value is used instead of `origin`.
 
@@ -510,27 +519,29 @@ When no refspec was given on the command line, then `git pull` uses the refspec 
 
 3.  Otherwise the remote branch of the first refspec is merged.
 
-## EXAMPLES
+EXAMPLES
+--------
 
-- Update the remote-tracking branches for the repository you cloned from, then merge one of them into your current branch:
+-   Update the remote-tracking branches for the repository you cloned from, then merge one of them into your current branch:
 
-      $ git pull
-      $ git pull origin
+        $ git pull
+        $ git pull origin
 
-  Normally the branch merged in is the HEAD of the remote repository, but the choice is determined by the branch.&lt;name&gt;.remote and branch.&lt;name&gt;.merge options; see [git-config(1)](git-config.html) for details.
+    Normally the branch merged in is the HEAD of the remote repository, but the choice is determined by the branch.&lt;name&gt;.remote and branch.&lt;name&gt;.merge options; see [git-config(1)](git-config.html) for details.
 
-- Merge into the current branch the remote branch `next`:
+-   Merge into the current branch the remote branch `next`:
 
-      $ git pull origin next
+        $ git pull origin next
 
-  This leaves a copy of `next` temporarily in FETCH_HEAD, and updates the remote-tracking branch `origin/next`. The same can be done by invoking fetch and merge:
+    This leaves a copy of `next` temporarily in FETCH\_HEAD, and updates the remote-tracking branch `origin/next`. The same can be done by invoking fetch and merge:
 
-      $ git fetch origin
-      $ git merge origin/next
+        $ git fetch origin
+        $ git merge origin/next
 
-If you tried a pull which resulted in complex conflicts and would want to start over, you can recover with _git reset_.
+If you tried a pull which resulted in complex conflicts and would want to start over, you can recover with *git reset*.
 
-## SECURITY
+SECURITY
+--------
 
 The fetch and push protocols are not designed to prevent one side from stealing data from the other repository that was not intended to be shared. If you have private data that you need to protect from a malicious peer, your best option is to store it in another repository. This applies to both clients and servers. In particular, namespaces on a server are not effective for read access control; you should only grant read access to a namespace to clients that you would trust with read access to the entire repository.
 
@@ -540,16 +551,15 @@ The known attack vectors are as follows:
 
 2.  As in \#1, the attacker chooses an object ID X to steal. The victim sends an object Y that the attacker already has, and the attacker falsely claims to have X and not Y, so the victim sends Y as a delta against X. The delta reveals regions of X that are similar to Y to the attacker.
 
-## BUGS
+BUGS
+----
 
 Using --recurse-submodules can only fetch new commits in already checked out submodules right now. When e.g. upstream added a new submodule in the just fetched commits of the superproject the submodule itself cannot be fetched, making it impossible to check out that submodule later without having to do a fetch again. This is expected to be fixed in a future Git version.
 
-## SEE ALSO
+SEE ALSO
+--------
 
 [git-fetch(1)](git-fetch.html), [git-merge(1)](git-merge.html), [git-config(1)](git-config.html)
 
-## GIT
-
-Part of the [git(1)](git.html) suite
-
-Last updated 2021-03-27 09:47:30 UTC
+GIT
+---

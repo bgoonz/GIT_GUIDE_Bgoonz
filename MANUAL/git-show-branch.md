@@ -1,10 +1,13 @@
-# git-show-branch(1) Manual Page
+git-show-branch(1) Manual Page
+==============================
 
-## NAME
+NAME
+----
 
 git-show-branch - Show branches and their commits
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git show-branch [-a|--all] [-r|--remotes] [--topo-order | --date-order]
                     [--current] [--color[=<when>] | --no-color] [--sparse]
@@ -13,7 +16,8 @@ git-show-branch - Show branches and their commits
                     [(<rev> | <glob>)…​]
     git show-branch (-g|--reflog)[=<n>[,<base>]] [--list] [<ref>]
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 Shows the commit ancestry graph starting from the commits named with &lt;rev&gt;s or &lt;glob&gt;s (or all refs under refs/heads and/or refs/tags) semi-visually.
 
@@ -21,7 +25,8 @@ It cannot show more than 29 branches and commits at a time.
 
 It uses `showbranch.default` multi-valued configuration items if no &lt;rev&gt; or &lt;glob&gt; is given on the command line.
 
-## OPTIONS
+OPTIONS
+-------
 
 &lt;rev&gt;  
 Arbitrary extended SHA-1 expression (see [gitrevisions(7)](gitrevisions.html)) that typically names a branch head or a tag.
@@ -71,7 +76,7 @@ Instead of naming the commits using the path to reach them from heads (e.g. "mas
 Shows only commits that are NOT on the first branch given. This helps track topic branches by hiding any commit that is already in the main line of development. When given "git show-branch --topics master topic1 topic2", this will show the revisions given by "git rev-list ^master topic1 topic2"
 
 -g  
---reflog\[=&lt;n&gt;\[,&lt;base&gt;\]\] \[&lt;ref&gt;\]  
+--reflog\[=&lt;n&gt;\[,&lt;base&gt;\]\] \[&lt;ref&gt;\]   
 Shows &lt;n&gt; most recent ref-log entries for the given ref. If &lt;base&gt; is given, &lt;n&gt; entries going back from that entry. &lt;base&gt; can be specified as count or date. When no explicit &lt;ref&gt; parameter is given, it defaults to the current branch (or `HEAD` if it is detached).
 
 --color\[=&lt;when&gt;\]  
@@ -82,9 +87,10 @@ Turn off colored output, even when the configuration file gives the default to c
 
 Note that --more, --list, --independent and --merge-base options are mutually exclusive.
 
-## OUTPUT
+OUTPUT
+------
 
-Given N &lt;references&gt;, the first N lines are the one-line description from their commit message. The branch head that is pointed at by $GIT_DIR/HEAD is prefixed with an asterisk `*` character while other heads are prefixed with a `!` character.
+Given N &lt;references&gt;, the first N lines are the one-line description from their commit message. The branch head that is pointed at by $GIT\_DIR/HEAD is prefixed with an asterisk `*` character while other heads are prefixed with a `!` character.
 
 Following these N lines, one-line log for each commit is displayed, indented N places. If a commit is on the I-th branch, the I-th indentation character shows a `+` sign; otherwise it shows a space. Merge commits are denoted by a `-` sign. Each commit shows a short name that can be used as an extended SHA-1 to name that commit.
 
@@ -109,7 +115,8 @@ The following example shows three branches, "master", "fixes" and "mhf":
 
 These three branches all forked from a common commit, \[master\], whose commit message is "Add 'git show-branch'". The "fixes" branch adds one commit "Introduce "reset type" flag to "git reset"". The "mhf" branch adds many other commits. The current branch is "master".
 
-## EXAMPLES
+EXAMPLES
+--------
 
 If you keep your primary branches immediately under `refs/heads`, and topic branches in subdirectories of it, having the following in the configuration file may help:
 
@@ -123,8 +130,5 @@ With this, `git show-branch` without extra parameters would show only the primar
 
 shows 10 reflog entries going back from the tip as of 1 hour ago. Without `--list`, the output also shows how these tips are topologically related with each other.
 
-## GIT
-
-Part of the [git(1)](git.html) suite
-
-Last updated 2021-03-27 09:47:30 UTC
+GIT
+---

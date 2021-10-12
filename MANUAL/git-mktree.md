@@ -1,18 +1,23 @@
-# git-mktree(1) Manual Page
+git-mktree(1) Manual Page
+=========================
 
-## NAME
+NAME
+----
 
 git-mktree - Build a tree-object from ls-tree formatted text
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git mktree [-z] [--missing] [--batch]
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 Reads standard input in non-recursive `ls-tree` output format, and creates a tree object. The order of the tree entries is normalized by mktree so pre-sorting the input is not required. The object name of the tree object built is written to the standard output.
 
-## OPTIONS
+OPTIONS
+-------
 
 -z  
 Read the NUL-terminated `ls-tree -z` output instead.
@@ -23,7 +28,8 @@ Allow missing objects. The default behaviour (without this option) is to verify 
 --batch  
 Allow building of more than one tree object before exiting. Each tree is separated by as single blank line. The final new-line is optional. Note - if the `-z` option is used, lines are terminated with NUL.
 
-## GIT
+GIT
+---
 
 Part of the [git(1)](git.html) suite
 

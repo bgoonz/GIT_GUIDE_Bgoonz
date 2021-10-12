@@ -1,18 +1,23 @@
-# git-status(1) Manual Page
+git-status(1) Manual Page
+=========================
 
-## NAME
+NAME
+----
 
 git-status - Show the working tree status
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git status [<options>…​] [--] [<pathspec>…​]
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
-Displays paths that have differences between the index file and the current HEAD commit, paths that have differences between the working tree and the index file, and paths in the working tree that are not tracked by Git (and are not ignored by [gitignore(5)](gitignore.html)). The first are what you _would_ commit by running `git commit`; the second and third are what you _could_ commit by running _git add_ before running `git commit`.
+Displays paths that have differences between the index file and the current HEAD commit, paths that have differences between the working tree and the index file, and paths in the working tree that are not tracked by Git (and are not ignored by [gitignore(5)](gitignore.html)). The first are what you *would* commit by running `git commit`; the second and third are what you *could* commit by running *git add* before running `git commit`.
 
-## OPTIONS
+OPTIONS
+-------
 
 -s  
 --short  
@@ -28,7 +33,7 @@ Show the number of entries currently stashed away.
 --porcelain\[=&lt;version&gt;\]  
 Give the output in an easy-to-parse format for scripts. This is similar to the short output, but will remain stable across Git versions and regardless of user configuration. See below for details.
 
-The version parameter is used to specify the format version. This is optional and defaults to the original version _v1_ format.
+The version parameter is used to specify the format version. This is optional and defaults to the original version *v1* format.
 
 --long  
 Give the output in the long-format. This is the default.
@@ -41,44 +46,44 @@ In addition to the names of files that have been changed, also show the textual 
 --untracked-files\[=&lt;mode&gt;\]  
 Show untracked files.
 
-The mode parameter is used to specify the handling of untracked files. It is optional: it defaults to _all_, and if specified, it must be stuck to the option (e.g. `-uno`, but not `-u no`).
+The mode parameter is used to specify the handling of untracked files. It is optional: it defaults to *all*, and if specified, it must be stuck to the option (e.g. `-uno`, but not `-u no`).
 
 The possible options are:
 
-- _no_ - Show no untracked files.
+-   *no* - Show no untracked files.
 
-- _normal_ - Shows untracked files and directories.
+-   *normal* - Shows untracked files and directories.
 
-- _all_ - Also shows individual files in untracked directories.
+-   *all* - Also shows individual files in untracked directories.
 
 When `-u` option is not used, untracked files and directories are shown (i.e. the same as specifying `normal`), to help you avoid forgetting to add newly created files. Because it takes extra work to find untracked files in the filesystem, this mode may take some time in a large working tree. Consider enabling untracked cache and split index if supported (see `git update-index --untracked-cache` and `git update-index --split-index`), Otherwise you can use `no` to have `git status` return more quickly without showing untracked files.
 
 The default can be changed using the status.showUntrackedFiles configuration variable documented in [git-config(1)](git-config.html).
 
 --ignore-submodules\[=&lt;when&gt;\]  
-Ignore changes to submodules when looking for changes. &lt;when&gt; can be either "none", "untracked", "dirty" or "all", which is the default. Using "none" will consider the submodule modified when it either contains untracked or modified files or its HEAD differs from the commit recorded in the superproject and can be used to override any settings of the _ignore_ option in [git-config(1)](git-config.html) or [gitmodules(5)](gitmodules.html). When "untracked" is used submodules are not considered dirty when they only contain untracked content (but they are still scanned for modified content). Using "dirty" ignores all changes to the work tree of submodules, only changes to the commits stored in the superproject are shown (this was the behavior before 1.7.0). Using "all" hides all changes to submodules (and suppresses the output of submodule summaries when the config option `status.submoduleSummary` is set).
+Ignore changes to submodules when looking for changes. &lt;when&gt; can be either "none", "untracked", "dirty" or "all", which is the default. Using "none" will consider the submodule modified when it either contains untracked or modified files or its HEAD differs from the commit recorded in the superproject and can be used to override any settings of the *ignore* option in [git-config(1)](git-config.html) or [gitmodules(5)](gitmodules.html). When "untracked" is used submodules are not considered dirty when they only contain untracked content (but they are still scanned for modified content). Using "dirty" ignores all changes to the work tree of submodules, only changes to the commits stored in the superproject are shown (this was the behavior before 1.7.0). Using "all" hides all changes to submodules (and suppresses the output of submodule summaries when the config option `status.submoduleSummary` is set).
 
 --ignored\[=&lt;mode&gt;\]  
 Show ignored files as well.
 
-The mode parameter is used to specify the handling of ignored files. It is optional: it defaults to _traditional_.
+The mode parameter is used to specify the handling of ignored files. It is optional: it defaults to *traditional*.
 
 The possible options are:
 
-- _traditional_ - Shows ignored files and directories, unless --untracked-files=all is specified, in which case individual files in ignored directories are displayed.
+-   *traditional* - Shows ignored files and directories, unless --untracked-files=all is specified, in which case individual files in ignored directories are displayed.
 
-- _no_ - Show no ignored files.
+-   *no* - Show no ignored files.
 
-- _matching_ - Shows ignored files and directories matching an ignore pattern.
+-   *matching* - Shows ignored files and directories matching an ignore pattern.
 
-When _matching_ mode is specified, paths that explicitly match an ignored pattern are shown. If a directory matches an ignore pattern, then it is shown, but not paths contained in the ignored directory. If a directory does not match an ignore pattern, but all contents are ignored, then the directory is not shown, but all contents are shown.
+When *matching* mode is specified, paths that explicitly match an ignored pattern are shown. If a directory matches an ignore pattern, then it is shown, but not paths contained in the ignored directory. If a directory does not match an ignore pattern, but all contents are ignored, then the directory is not shown, but all contents are shown.
 
 -z  
 Terminate entries with NUL, instead of LF. This implies the `--porcelain=v1` output format if no other format is given.
 
 --column\[=&lt;options&gt;\]  
 --no-column  
-Display untracked files in columns. See configuration variable `column.status` for option syntax. `--column` and `--no-column` without options are equivalent to _always_ and _never_ respectively.
+Display untracked files in columns. See configuration variable `column.status` for option syntax. `--column` and `--no-column` without options are equivalent to *always* and *never* respectively.
 
 --ahead-behind  
 --no-ahead-behind  
@@ -96,9 +101,10 @@ Turn on rename detection, optionally setting the similarity threshold. See also 
 (DEPRECATED: use --no-optional-locks instead) Specifies whether `git status` should try to lock the index and update it afterwards if any changes were detected. Defaults to `--lock-index`.
 
 &lt;pathspec&gt;…​  
-See the _pathspec_ entry in [gitglossary(7)](gitglossary.html).
+See the *pathspec* entry in [gitglossary(7)](gitglossary.html).
 
-## OUTPUT
+OUTPUT
+------
 
 The output from this command is designed to be used as a commit template comment. The default, long format, is designed to be human readable, verbose and descriptive. Its contents and format are subject to change at any time.
 
@@ -117,65 +123,59 @@ The fields (including the `->`) are separated from each other by a single space.
 
 There are three different types of states that are shown using this format, and each one uses the `XY` syntax differently:
 
-- When a merge is occurring and the merge was successful, or outside of a merge situation, `X` shows the status of the index and `Y` shows the status of the working tree.
+-   When a merge is occurring and the merge was successful, or outside of a merge situation, `X` shows the status of the index and `Y` shows the status of the working tree.
 
-- When a merge conflict has occurred and has not yet been resolved, `X` and `Y` show the state introduced by each head of the merge, relative to the common ancestor. These paths are said to be _unmerged_.
+-   When a merge conflict has occurred and has not yet been resolved, `X` and `Y` show the state introduced by each head of the merge, relative to the common ancestor. These paths are said to be *unmerged*.
 
-- When a path is untracked, `X` and `Y` are always the same, since they are unknown to the index. `??` is used for untracked paths. Ignored files are not listed unless `--ignored` is used; if it is, ignored files are indicated by `!!`.
+-   When a path is untracked, `X` and `Y` are always the same, since they are unknown to the index. `??` is used for untracked paths. Ignored files are not listed unless `--ignored` is used; if it is, ignored files are indicated by `!!`.
 
-Note that the term _merge_ here also includes rebases using the default `--merge` strategy, cherry-picks, and anything else using the merge machinery.
+Note that the term *merge* here also includes rebases using the default `--merge` strategy, cherry-picks, and anything else using the merge machinery.
 
 In the following table, these three classes are shown in separate sections, and these characters are used for `X` and `Y` fields for the first two sections that show tracked paths:
 
-- ' ' = unmodified
+-   ' ' = unmodified
 
-- _M_ = modified
+-   *M* = modified
 
-- _A_ = added
+-   *A* = added
 
-- _D_ = deleted
+-   *D* = deleted
 
-- _R_ = renamed
+-   *R* = renamed
 
-- _C_ = copied
+-   *C* = copied
 
-- _U_ = updated but unmerged
+-   *U* = updated but unmerged
 
-  ## X Y Meaning
-
-           [AMD]   not updated
-
-  M [ MD] updated in index
-  A [ MD] added to index
-  D deleted from index
-  R [ MD] renamed in index
-  C [ MD] copied in index
-  [MARC] index and work tree matches
-  [ MARC] M work tree changed since index
-  [ MARC] D deleted in work tree
-  [ D] R renamed in work tree
-  [ D] C copied in work tree
-
-  ***
-
-  D D unmerged, both deleted
-  A U unmerged, added by us
-  U D unmerged, deleted by them
-  U A unmerged, added by them
-  D U unmerged, deleted by us
-  A A unmerged, both added
-  U U unmerged, both modified
-
-  ***
-
-  ? ? untracked
-  ! ! ignored
-
-  ***
+    X          Y     Meaning
+    -------------------------------------------------
+             [AMD]   not updated
+    M        [ MD]   updated in index
+    A        [ MD]   added to index
+    D                deleted from index
+    R        [ MD]   renamed in index
+    C        [ MD]   copied in index
+    [MARC]           index and work tree matches
+    [ MARC]     M    work tree changed since index
+    [ MARC]     D    deleted in work tree
+    [ D]        R    renamed in work tree
+    [ D]        C    copied in work tree
+    -------------------------------------------------
+    D           D    unmerged, both deleted
+    A           U    unmerged, added by us
+    U           D    unmerged, deleted by them
+    U           A    unmerged, added by them
+    D           U    unmerged, deleted by us
+    A           A    unmerged, both added
+    U           U    unmerged, both modified
+    -------------------------------------------------
+    ?           ?    untracked
+    !           !    ignored
+    -------------------------------------------------
 
 Submodules have more state and instead report M the submodule has a different HEAD than recorded in the index m the submodule has modified content ? the submodule has untracked files since modified content or untracked files in a submodule cannot be added via `git add` in the superproject to prepare a commit.
 
-_m_ and _?_ are applied recursively. For example if a nested submodule in a submodule contains an untracked file, this is reported as _?_ as well.
+*m* and *?* are applied recursively. For example if a nested submodule in a submodule contains an untracked file, this is reported as *?* as well.
 
 If -b is used the short-format status is preceded by a line
 
@@ -189,7 +189,7 @@ Version 1 porcelain format is similar to the short format, but is guaranteed not
 
 2.  The user’s status.relativePaths configuration is not respected; paths shown will always be relative to the repository root.
 
-There is also an alternate -z format recommended for machine parsing. In that format, the status field is the same, but some other things change. First, the _-&gt;_ is omitted from rename entries and the field order is reversed (e.g _from -&gt; to_ becomes _to from_). Second, a NUL (ASCII 0) follows each filename, replacing space as a field separator and the terminating newline (but a space still separates the status field from the first filename). Third, filenames containing special characters are not specially formatted; no quoting or backslash-escaping is performed.
+There is also an alternate -z format recommended for machine parsing. In that format, the status field is the same, but some other things change. First, the *-&gt;* is omitted from rename entries and the field order is reversed (e.g *from -&gt; to* becomes *to from*). Second, a NUL (ASCII 0) follows each filename, replacing space as a field separator and the terminating newline (but a space still separates the status field from the first filename). Third, filenames containing special characters are not specially formatted; no quoting or backslash-escaping is performed.
 
 Any submodule changes are reported as modified `M` instead of `m` or single `?`.
 
@@ -292,24 +292,24 @@ When the `-z` option is given, pathnames are printed as is and without any quoti
 
 Without the `-z` option, pathnames with "unusual" characters are quoted as explained for the configuration variable `core.quotePath` (see [git-config(1)](git-config.html)).
 
-## CONFIGURATION
+CONFIGURATION
+-------------
 
 The command honors `color.status` (or `status.color` — they mean the same thing and the latter is kept for backward compatibility) and `color.status.<slot>` configuration variables to colorize its output.
 
 If the config variable `status.relativePaths` is set to false, then all paths shown are relative to the repository root, not to the current directory.
 
-If `status.submoduleSummary` is set to a non zero number or true (identical to -1 or an unlimited number), the submodule summary will be enabled for the long format and a summary of commits for modified submodules will be shown (see --summary-limit option of [git-submodule(1)](git-submodule.html)). Please note that the summary output from the status command will be suppressed for all submodules when `diff.ignoreSubmodules` is set to _all_ or only for those submodules where `submodule.<name>.ignore=all`. To also view the summary for ignored submodules you can either use the --ignore-submodules=dirty command line option or the _git submodule summary_ command, which shows a similar output but does not honor these settings.
+If `status.submoduleSummary` is set to a non zero number or true (identical to -1 or an unlimited number), the submodule summary will be enabled for the long format and a summary of commits for modified submodules will be shown (see --summary-limit option of [git-submodule(1)](git-submodule.html)). Please note that the summary output from the status command will be suppressed for all submodules when `diff.ignoreSubmodules` is set to *all* or only for those submodules where `submodule.<name>.ignore=all`. To also view the summary for ignored submodules you can either use the --ignore-submodules=dirty command line option or the *git submodule summary* command, which shows a similar output but does not honor these settings.
 
-## BACKGROUND REFRESH
+BACKGROUND REFRESH
+------------------
 
 By default, `git status` will automatically refresh the index, updating the cached stat information from the working tree and writing out the result. Writing out the updated index is an optimization that isn’t strictly necessary (`status` computes the values for itself, but writing them out is just to save subsequent programs from repeating our computation). When `status` is run in the background, the lock held during the write may conflict with other simultaneous processes, causing them to fail. Scripts running `status` in the background should consider using `git --no-optional-locks status` (see [git(1)](git.html) for details).
 
-## SEE ALSO
+SEE ALSO
+--------
 
 [gitignore(5)](gitignore.html)
 
-## GIT
-
-Part of the [git(1)](git.html) suite
-
-Last updated 2021-03-27 09:47:30 UTC
+GIT
+---

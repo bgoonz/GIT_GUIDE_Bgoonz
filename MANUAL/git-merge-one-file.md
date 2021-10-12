@@ -1,18 +1,23 @@
-# git-merge-one-file(1) Manual Page
+git-merge-one-file(1) Manual Page
+=================================
 
-## NAME
+NAME
+----
 
 git-merge-one-file - The standard helper program to use with git-merge-index
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git merge-one-file
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
-This is the standard helper program to use with _git merge-index_ to resolve a merge after the trivial merge done with _git read-tree -m_.
+This is the standard helper program to use with *git merge-index* to resolve a merge after the trivial merge done with *git read-tree -m*.
 
-## GIT
+GIT
+---
 
 Part of the [git(1)](git.html) suite
 

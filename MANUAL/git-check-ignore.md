@@ -1,27 +1,32 @@
-# git-check-ignore(1) Manual Page
+git-check-ignore(1) Manual Page
+===============================
 
-## NAME
+NAME
+----
 
 git-check-ignore - Debug gitignore / exclude files
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git check-ignore [<options>] <pathname>…​
     git check-ignore [<options>] --stdin
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 For each pathname given via the command-line or from a file via `--stdin`, check whether the file is excluded by .gitignore (or other input files to the exclude mechanism) and output the path if it is excluded.
 
 By default, tracked files are not shown at all since they are not subject to exclude rules; but see ‘--no-index’.
 
-## OPTIONS
+OPTIONS
+-------
 
 -q, --quiet  
 Don’t output anything, just set exit status. This is only valid with a single pathname.
 
 -v, --verbose  
-Instead of printing the paths that are excluded, for each path that matches an exclude pattern, print the exclude pattern together with the path. (Matching an exclude pattern usually means the path is excluded, but if the pattern begins with _!_ then it is a negated pattern and matching it means the path is NOT excluded.)
+Instead of printing the paths that are excluded, for each path that matches an exclude pattern, print the exclude pattern together with the path. (Matching an exclude pattern usually means the path is excluded, but if the pattern begins with *!* then it is a negated pattern and matching it means the path is NOT excluded.)
 
 For precedence rules within and between exclude sources, see [gitignore(5)](gitignore.html).
 
@@ -37,7 +42,8 @@ Show given paths which don’t match any pattern. This only makes sense when `--
 --no-index  
 Don’t look in the index when undertaking the checks. This can be used to debug why a path became tracked by e.g. `git add .` and was not ignored by the rules as expected by the user or when developing patterns including negation to match a path previously added with `git add -f`.
 
-## OUTPUT
+OUTPUT
+------
 
 By default, any of the given pathnames which match an ignore pattern will be output, one per line. If no pattern matches a given path, nothing will be output for that path; this means that path will not be ignored.
 
@@ -55,7 +61,8 @@ If `-n` or `--non-matching` are specified, non-matching pathnames will also be o
 
 Buffering happens as documented under the `GIT_FLUSH` option in [git(1)](git.html). The caller is responsible for avoiding deadlocks caused by overfilling an input buffer or reading from an empty output buffer.
 
-## EXIT STATUS
+EXIT STATUS
+-----------
 
 0  
 One or more of the provided paths is ignored.
@@ -66,11 +73,13 @@ None of the provided paths are ignored.
 128  
 A fatal error was encountered.
 
-## SEE ALSO
+SEE ALSO
+--------
 
 [gitignore(5)](gitignore.html) [git-config(1)](git-config.html) [git-ls-files(1)](git-ls-files.html)
 
-## GIT
+GIT
+---
 
 Part of the [git(1)](git.html) suite
 

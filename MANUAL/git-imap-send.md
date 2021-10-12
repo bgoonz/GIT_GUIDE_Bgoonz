@@ -1,22 +1,27 @@
-# git-imap-send(1) Manual Page
+git-imap-send(1) Manual Page
+============================
 
-## NAME
+NAME
+----
 
 git-imap-send - Send a collection of patches from stdin to an IMAP folder
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git imap-send [-v] [-q] [--[no-]curl]
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
-This command uploads a mailbox generated with _git format-patch_ into an IMAP drafts folder. This allows patches to be sent as other email is when using mail clients that cannot read mailbox files directly. The command also works with any general mailbox in which emails have the fields "From", "Date", and "Subject" in that order.
+This command uploads a mailbox generated with *git format-patch* into an IMAP drafts folder. This allows patches to be sent as other email is when using mail clients that cannot read mailbox files directly. The command also works with any general mailbox in which emails have the fields "From", "Date", and "Subject" in that order.
 
 Typical usage is something like:
 
 git format-patch --signoff --stdout --attach origin | git imap-send
 
-## OPTIONS
+OPTIONS
+-------
 
 -v  
 --verbose  
@@ -27,12 +32,13 @@ Be verbose.
 Be quiet.
 
 --curl  
-Use libcurl to communicate with the IMAP server, unless tunneling into it. Ignored if Git was built without the USE_CURL_FOR_IMAP_SEND option set.
+Use libcurl to communicate with the IMAP server, unless tunneling into it. Ignored if Git was built without the USE\_CURL\_FOR\_IMAP\_SEND option set.
 
 --no-curl  
-Talk to the IMAP server using git’s own IMAP routines instead of using libcurl. Ignored if Git was built with the NO_OPENSSL option set.
+Talk to the IMAP server using git’s own IMAP routines instead of using libcurl. Ignored if Git was built with the NO\_OPENSSL option set.
 
-## CONFIGURATION
+CONFIGURATION
+-------------
 
 To use the tool, `imap.folder` and either `imap.tunnel` or `imap.host` must be set to appropriate values.
 
@@ -61,9 +67,10 @@ imap.preformattedHTML
 A boolean to enable/disable the use of html encoding when sending a patch. An html encoded patch will be bracketed with &lt;pre&gt; and have a content type of text/html. Ironically, enabling this option causes Thunderbird to send the patch as a plain/text, format=fixed email. Default is `false`.
 
 imap.authMethod  
-Specify authenticate method for authentication with IMAP server. If Git was built with the NO*CURL option, or if your curl version is older than 7.34.0, or if you’re running git-imap-send with the `--no-curl` option, the only supported method is \_CRAM-MD5*. If this is not set then _git imap-send_ uses the basic IMAP plaintext LOGIN command.
+Specify authenticate method for authentication with IMAP server. If Git was built with the NO\_CURL option, or if your curl version is older than 7.34.0, or if you’re running git-imap-send with the `--no-curl` option, the only supported method is *CRAM-MD5*. If this is not set then *git imap-send* uses the basic IMAP plaintext LOGIN command.
 
-## EXAMPLES
+EXAMPLES
+--------
 
 Using tunnel mode:
 
@@ -109,17 +116,20 @@ Once the commits are ready to be sent, run the following command:
 
 Just make sure to disable line wrapping in the email client (Gmail’s web interface will wrap lines no matter what, so you need to use a real IMAP client).
 
-## CAUTION
+CAUTION
+-------
 
 It is still your responsibility to make sure that the email message sent by your email program meets the standards of your project. Many projects do not like patches to be attached. Some mail agents will transform patches (e.g. wrap lines, send them as format=flowed) in ways that make them fail. You will get angry flames ridiculing you if you don’t check this.
 
-Thunderbird in particular is known to be problematic. Thunderbird users may wish to visit this web page for more information: <a href="http://kb.mozillazine.org/Plain_text_e-mail_-_Thunderbird#Completely_plain_email" class="bare">http://kb.mozillazine.org/Plain*text_e-mail*-\_Thunderbird#Completely_plain_email</a>
+Thunderbird in particular is known to be problematic. Thunderbird users may wish to visit this web page for more information: <a href="http://kb.mozillazine.org/Plain_text_e-mail_-_Thunderbird#Completely_plain_email" class="bare">http://kb.mozillazine.org/Plain_text_e-mail_-_Thunderbird#Completely_plain_email</a>
 
-## SEE ALSO
+SEE ALSO
+--------
 
 [git-format-patch(1)](git-format-patch.html), [git-send-email(1)](git-send-email.html), mbox(5)
 
-## GIT
+GIT
+---
 
 Part of the [git(1)](git.html) suite
 

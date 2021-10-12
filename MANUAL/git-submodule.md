@@ -1,10 +1,13 @@
-# git-submodule(1) Manual Page
+git-submodule(1) Manual Page
+============================
 
-## NAME
+NAME
+----
 
 git-submodule - Initialize, update or inspect submodules
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git submodule [--quiet] [--cached]
     git submodule [--quiet] add [<options>] [--] <repository> [<path>]
@@ -19,20 +22,22 @@ git-submodule - Initialize, update or inspect submodules
     git submodule [--quiet] sync [--recursive] [--] [<path>…​]
     git submodule [--quiet] absorbgitdirs [--] [<path>…​]
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 Inspects, updates and manages submodules.
 
 For more information about submodules, see [gitsubmodules(7)](gitsubmodules.html).
 
-## COMMANDS
+COMMANDS
+--------
 
 With no arguments, shows the status of existing submodules. Several subcommands are available to perform operations on the submodules.
 
-add \[-b &lt;branch&gt;\] \[-f|--force\] \[--name &lt;name&gt;\] \[--reference &lt;repository&gt;\] \[--depth &lt;depth&gt;\] \[--\] &lt;repository&gt; \[&lt;path&gt;\]  
+ add \[-b &lt;branch&gt;\] \[-f|--force\] \[--name &lt;name&gt;\] \[--reference &lt;repository&gt;\] \[--depth &lt;depth&gt;\] \[--\] &lt;repository&gt; \[&lt;path&gt;\]   
 Add the given repository as a submodule at the given path to the changeset to be committed next to the current project: the current project is termed the "superproject".
 
-&lt;repository&gt; is the URL of the new submodule’s origin repository. This may be either an absolute URL, or (if it begins with ./ or ../), the location relative to the superproject’s default remote repository (Please note that to specify a repository _foo.git_ which is located right next to a superproject _bar.git_, you’ll have to use `../foo.git` instead of `./foo.git` - as one might expect when following the rules for relative URLs - because the evaluation of relative URLs in Git is identical to that of relative directories).
+&lt;repository&gt; is the URL of the new submodule’s origin repository. This may be either an absolute URL, or (if it begins with ./ or ../), the location relative to the superproject’s default remote repository (Please note that to specify a repository *foo.git* which is located right next to a superproject *bar.git*, you’ll have to use `../foo.git` instead of `./foo.git` - as one might expect when following the rules for relative URLs - because the evaluation of relative URLs in Git is identical to that of relative directories).
 
 The default remote is the remote of the remote-tracking branch of the current branch. If no such remote-tracking branch exists or the HEAD is detached, "origin" is assumed to be the default remote. If the superproject doesn’t have a default remote configured the superproject is its own authoritative upstream and the current working directory is used instead.
 
@@ -40,8 +45,8 @@ The optional argument &lt;path&gt; is the relative location for the cloned submo
 
 The given URL is recorded into `.gitmodules` for use by subsequent users cloning the superproject. If the URL is given relative to the superproject’s repository, the presumption is the superproject and submodule repositories will be kept together in the same relative location, and only the superproject’s URL needs to be provided. git-submodule will correctly locate the submodule using the relative URL in `.gitmodules`.
 
-status \[--cached\] \[--recursive\] \[--\] \[&lt;path&gt;…​\]  
-Show the status of the submodules. This will print the SHA-1 of the currently checked out commit for each submodule, along with the submodule path and the output of _git describe_ for the SHA-1. Each SHA-1 will possibly be prefixed with `-` if the submodule is not initialized, `+` if the currently checked out submodule commit does not match the SHA-1 found in the index of the containing repository and `U` if the submodule has merge conflicts.
+ status \[--cached\] \[--recursive\] \[--\] \[&lt;path&gt;…​\]   
+Show the status of the submodules. This will print the SHA-1 of the currently checked out commit for each submodule, along with the submodule path and the output of *git describe* for the SHA-1. Each SHA-1 will possibly be prefixed with `-` if the submodule is not initialized, `+` if the currently checked out submodule commit does not match the SHA-1 found in the index of the containing repository and `U` if the submodule has merge conflicts.
 
 If `--cached` is specified, this command will instead print the SHA-1 recorded in the superproject for each submodule.
 
@@ -54,11 +59,11 @@ Initialize the submodules recorded in the index (which were added and committed 
 
 Optional &lt;path&gt; arguments limit which submodules will be initialized. If no path is specified and submodule.active has been configured, submodules configured to be active will be initialized, otherwise all submodules are initialized.
 
-When present, it will also copy the value of `submodule.$name.update`. This command does not alter existing information in .git/config. You can then customize the submodule clone URLs in .git/config for your local setup and proceed to `git submodule update`; you can also just use `git submodule update --init` without the explicit _init_ step if you do not intend to customize any submodule locations.
+When present, it will also copy the value of `submodule.$name.update`. This command does not alter existing information in .git/config. You can then customize the submodule clone URLs in .git/config for your local setup and proceed to `git submodule update`; you can also just use `git submodule update --init` without the explicit *init* step if you do not intend to customize any submodule locations.
 
 See the add subcommand for the definition of default remote.
 
-deinit \[-f|--force\] (--all|\[--\] &lt;path&gt;…​)  
+ deinit \[-f|--force\] (--all|\[--\] &lt;path&gt;…​)   
 Unregister the given submodules, i.e. remove the whole `submodule.$name` section from .git/config together with their work tree. Further calls to `git submodule update`, `git submodule foreach` and `git submodule sync` will skip any unregistered submodules until they are initialized again, so use this command if you don’t want to have a local checkout of the submodule in your working tree anymore.
 
 When the command is run without pathspec, it errors out, instead of deinit-ing everything, to prevent mistakes.
@@ -67,8 +72,8 @@ If `--force` is specified, the submodule’s working tree will be removed even i
 
 If you really want to remove a submodule from the repository and commit that use [git-rm(1)](git-rm.html) instead. See [gitsubmodules(7)](gitsubmodules.html) for removal options.
 
-update \[--init\] \[--remote\] \[-N|--no-fetch\] \[--\[no-\]recommend-shallow\] \[-f|--force\] \[--checkout|--rebase|--merge\] \[--reference &lt;repository&gt;\] \[--depth &lt;depth&gt;\] \[--recursive\] \[--jobs &lt;n&gt;\] \[--\[no-\]single-branch\] \[--\] \[&lt;path&gt;…​\]  
-Update the registered submodules to match what the superproject expects by cloning missing submodules, fetching missing commits in submodules and updating the working tree of the submodules. The "updating" can be done in several ways depending on command line options and the value of `submodule.<name>.update` configuration variable. The command line option takes precedence over the configuration variable. If neither is given, a _checkout_ is performed. The _update_ procedures supported both from the command line as well as through the `submodule.<name>.update` configuration are:
+ update \[--init\] \[--remote\] \[-N|--no-fetch\] \[--\[no-\]recommend-shallow\] \[-f|--force\] \[--checkout|--rebase|--merge\] \[--reference &lt;repository&gt;\] \[--depth &lt;depth&gt;\] \[--recursive\] \[--jobs &lt;n&gt;\] \[--\[no-\]single-branch\] \[--\] \[&lt;path&gt;…​\]   
+Update the registered submodules to match what the superproject expects by cloning missing submodules, fetching missing commits in submodules and updating the working tree of the submodules. The "updating" can be done in several ways depending on command line options and the value of `submodule.<name>.update` configuration variable. The command line option takes precedence over the configuration variable. If neither is given, a *checkout* is performed. The *update* procedures supported both from the command line as well as through the `submodule.<name>.update` configuration are:
 
 checkout  
 the commit recorded in the superproject will be checked out in the submodule on a detached HEAD.
@@ -81,10 +86,10 @@ the current branch of the submodule will be rebased onto the commit recorded in 
 merge  
 the commit recorded in the superproject will be merged into the current branch in the submodule.
 
-The following _update_ procedures are only available via the `submodule.<name>.update` configuration variable:
+The following *update* procedures are only available via the `submodule.<name>.update` configuration variable:
 
 custom command  
-arbitrary shell command that takes a single argument (the sha1 of the commit recorded in the superproject) is executed. When `submodule.<name>.update` is set to _!command_, the remainder after the exclamation mark is the custom command.
+arbitrary shell command that takes a single argument (the sha1 of the commit recorded in the superproject) is executed. When `submodule.<name>.update` is set to *!command*, the remainder after the exclamation mark is the custom command.
 
 none  
 the submodule is not updated.
@@ -93,26 +98,26 @@ If the submodule is not yet initialized, and you just want to use the setting as
 
 If `--recursive` is specified, this command will recurse into the registered submodules, and update any nested submodules within.
 
-set-branch (-b|--branch) &lt;branch&gt; \[--\] &lt;path&gt;  
-set-branch (-d|--default) \[--\] &lt;path&gt;  
-Sets the default remote tracking branch for the submodule. The `--branch` option allows the remote branch to be specified. The `--default` option removes the submodule.&lt;name&gt;.branch configuration key, which causes the tracking branch to default to the remote _HEAD_.
+ set-branch (-b|--branch) &lt;branch&gt; \[--\] &lt;path&gt;  
+set-branch (-d|--default) \[--\] &lt;path&gt;   
+Sets the default remote tracking branch for the submodule. The `--branch` option allows the remote branch to be specified. The `--default` option removes the submodule.&lt;name&gt;.branch configuration key, which causes the tracking branch to default to the remote *HEAD*.
 
 set-url \[--\] &lt;path&gt; &lt;newurl&gt;  
 Sets the URL of the specified submodule to &lt;newurl&gt;. Then, it will automatically synchronize the submodule’s new remote URL configuration.
 
-summary \[--cached|--files\] \[(-n|--summary-limit) &lt;n&gt;\] \[commit\] \[--\] \[&lt;path&gt;…​\]  
+ summary \[--cached|--files\] \[(-n|--summary-limit) &lt;n&gt;\] \[commit\] \[--\] \[&lt;path&gt;…​\]   
 Show commit summary between the given commit (defaults to HEAD) and working tree/index. For a submodule in question, a series of commits in the submodule between the given super project commit and the index or working tree (switched by `--cached`) are shown. If the option `--files` is given, show the series of commits in the submodule between the index of the super project and the working tree of the submodule (this option doesn’t allow to use the `--cached` option or to provide an explicit commit).
 
 Using the `--submodule=log` option with [git-diff(1)](git-diff.html) will provide that information too.
 
 foreach \[--recursive\] &lt;command&gt;  
-Evaluates an arbitrary shell command in each checked out submodule. The command has access to the variables $name, $sm\_path, $displaypath, $sha1 and $toplevel: $name is the name of the relevant submodule section in `.gitmodules`, $sm\_path is the path of the submodule as recorded in the immediate superproject, $displaypath contains the relative path from the current working directory to the submodules root directory, $sha1 is the commit as recorded in the immediate superproject, and $toplevel is the absolute path to the top-level of the immediate superproject. Note that to avoid conflicts with *$PATH* on Windows, the *$path* variable is now a deprecated synonym of *$sm_path* variable. Any submodules defined in the superproject but not checked out are ignored by this command. Unless given `--quiet`, foreach prints the name of each submodule before evaluating the command. If `--recursive` is given, submodules are traversed recursively (i.e. the given shell command is evaluated in nested submodules as well). A non-zero return from the command in any submodule causes the processing to terminate. This can be overridden by adding *|| :\* to the end of the command.
+Evaluates an arbitrary shell command in each checked out submodule. The command has access to the variables $name, $sm\_path, $displaypath, $sha1 and $toplevel: $name is the name of the relevant submodule section in `.gitmodules`, $sm\_path is the path of the submodule as recorded in the immediate superproject, $displaypath contains the relative path from the current working directory to the submodules root directory, $sha1 is the commit as recorded in the immediate superproject, and $toplevel is the absolute path to the top-level of the immediate superproject. Note that to avoid conflicts with *$PATH* on Windows, the *$path* variable is now a deprecated synonym of *$sm\_path* variable. Any submodules defined in the superproject but not checked out are ignored by this command. Unless given `--quiet`, foreach prints the name of each submodule before evaluating the command. If `--recursive` is given, submodules are traversed recursively (i.e. the given shell command is evaluated in nested submodules as well). A non-zero return from the command in any submodule causes the processing to terminate. This can be overridden by adding *|| :* to the end of the command.
 
 As an example, the command below will show the path and currently checked out commit for each submodule:
 
     git submodule foreach 'echo $sm_path `git rev-parse HEAD`'
 
-sync \[--recursive\] \[--\] \[&lt;path&gt;…​\]  
+ sync \[--recursive\] \[--\] \[&lt;path&gt;…​\]   
 Synchronizes submodules' remote URL configuration setting to the value specified in `.gitmodules`. It will only affect those submodules which already have a URL entry in .git/config (that is the case when they are initialized or freshly added). This is useful when submodule URLs change upstream and you need to update your local repositories accordingly.
 
 `git submodule sync` synchronizes all submodules while `git submodule sync -- A` synchronizes submodule "A" only.
@@ -126,7 +131,8 @@ A repository that was cloned independently and later added as a submodule or old
 
 This command is recursive by default.
 
-## OPTIONS
+OPTIONS
+-------
 
 -q  
 --quiet  
@@ -140,7 +146,7 @@ This option is only valid for the deinit command. Unregister all submodules in t
 
 -b &lt;branch&gt;  
 --branch &lt;branch&gt;  
-Branch of repository to add as submodule. The name of the branch is recorded as `submodule.<name>.branch` in `.gitmodules` for `update --remote`. A special value of `.` is used to indicate that the name of the branch in the submodule should be the same name as the current branch in the current repository. If the option is not specified, it defaults to the remote _HEAD_.
+Branch of repository to add as submodule. The name of the branch is recorded as `submodule.<name>.branch` in `.gitmodules` for `update --remote`. A special value of `.` is used to indicate that the name of the branch in the submodule should be the same name as the current branch in the current repository. If the option is not specified, it defaults to the remote *HEAD*.
 
 -f  
 --force  
@@ -182,7 +188,7 @@ This option is only valid for the update command. Rebase the current branch onto
 This option is only valid for the update command. Initialize all submodules for which "git submodule init" has not been called so far before updating.
 
 --name  
-This option is only valid for the add command. It sets the submodule’s name to the given string instead of defaulting to its path. The name must be valid as a directory name and may not end with a _/_.
+This option is only valid for the add command. It sets the submodule’s name to the given string instead of defaulting to its path. The name must be valid as a directory name and may not end with a */*.
 
 --reference &lt;repository&gt;  
 This option is only valid for add and update commands. These commands sometimes need to clone a remote repository. In this case, this option will be passed to the [git-clone(1)](git-clone.html) command.
@@ -198,7 +204,7 @@ This option is only valid for add and update commands. These commands sometimes 
 This option is only valid for foreach, update, status and sync commands. Traverse submodules recursively. The operation is performed not only in the submodules of the current repo, but also in any nested submodules inside those submodules (and so on).
 
 --depth  
-This option is valid for add and update commands. Create a _shallow_ clone with a history truncated to the specified number of revisions. See [git-clone(1)](git-clone.html)
+This option is valid for add and update commands. Create a *shallow* clone with a history truncated to the specified number of revisions. See [git-clone(1)](git-clone.html)
 
 --\[no-\]recommend-shallow  
 This option is only valid for the update command. The initial clone of a submodule will use the recommended `submodule.<name>.shallow` as provided by the `.gitmodules` file by default. To ignore the suggestions use `--no-recommend-shallow`.
@@ -213,16 +219,15 @@ This option is only valid for the update command. Clone only one branch during u
 &lt;path&gt;…​  
 Paths to submodule(s). When specified this will restrict the command to only operate on the submodules found at the specified paths. (This argument is required with add).
 
-## FILES
+FILES
+-----
 
 When initializing submodules, a `.gitmodules` file in the top-level directory of the containing repository is used to find the url of each submodule. This file should be formatted in the same way as `$GIT_DIR/config`. The key to each submodule url is "submodule.$name.url". See [gitmodules(5)](gitmodules.html) for details.
 
-## SEE ALSO
+SEE ALSO
+--------
 
 [gitsubmodules(7)](gitsubmodules.html), [gitmodules(5)](gitmodules.html).
 
-## GIT
-
-Part of the [git(1)](git.html) suite
-
-Last updated 2021-03-27 09:47:30 UTC
+GIT
+---
