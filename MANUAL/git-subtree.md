@@ -1,13 +1,10 @@
-git-subtree(1) Manual Page
-==========================
+# git-subtree(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-subtree - Merge subtrees together and split repository into subtrees
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git subtree add   -P <prefix> <commit>
     git subtree add   -P <prefix> <repository> <ref>
@@ -16,8 +13,7 @@ SYNOPSIS
     git subtree merge -P <prefix> <commit>
     git subtree split -P <prefix> [OPTIONS] [<commit>]
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 Subtrees allow subprojects to be included within a subdirectory of the main project, optionally including the subproject’s entire history.
 
@@ -31,34 +27,32 @@ For example, if a library you made for one application ends up being useful else
 
 <table><colgroup><col style="width: 50%" /><col style="width: 50%" /></colgroup><tbody><tr class="odd"><td><div class="title">Tip</div></td><td>In order to keep your commit messages clean, we recommend that people split their commits between the subtrees and the main project as much as possible. That is, if you make a change that affects both the library and the main application, commit it in two pieces. That way, when you split the library commits out later, their descriptions will still make sense. But if this isn’t important to you, it’s not <strong>necessary</strong>. git subtree will simply leave out the non-library-related parts of the commit when it splits it out into the subproject later.</td></tr></tbody></table>
 
-COMMANDS
---------
+## COMMANDS
 
 add  
-Create the &lt;prefix&gt; subtree by importing its contents from the given &lt;commit&gt; or &lt;repository&gt; and remote &lt;ref&gt;. A new commit is created automatically, joining the imported project’s history with your own. With *--squash*, imports only a single commit from the subproject, rather than its entire history.
+Create the &lt;prefix&gt; subtree by importing its contents from the given &lt;commit&gt; or &lt;repository&gt; and remote &lt;ref&gt;. A new commit is created automatically, joining the imported project’s history with your own. With _--squash_, imports only a single commit from the subproject, rather than its entire history.
 
 merge  
-Merge recent changes up to &lt;commit&gt; into the &lt;prefix&gt; subtree. As with normal *git merge*, this doesn’t remove your own local changes; it just merges those changes into the latest &lt;commit&gt;. With *--squash*, creates only one commit that contains all the changes, rather than merging in the entire history.
+Merge recent changes up to &lt;commit&gt; into the &lt;prefix&gt; subtree. As with normal _git merge_, this doesn’t remove your own local changes; it just merges those changes into the latest &lt;commit&gt;. With _--squash_, creates only one commit that contains all the changes, rather than merging in the entire history.
 
-If you use *--squash*, the merge direction doesn’t always have to be forward; you can use this command to go back in time from v2.5 to v2.4, for example. If your merge introduces a conflict, you can resolve it in the usual ways.
+If you use _--squash_, the merge direction doesn’t always have to be forward; you can use this command to go back in time from v2.5 to v2.4, for example. If your merge introduces a conflict, you can resolve it in the usual ways.
 
 pull  
-Exactly like *merge*, but parallels *git pull* in that it fetches the given ref from the specified remote repository.
+Exactly like _merge_, but parallels _git pull_ in that it fetches the given ref from the specified remote repository.
 
 push  
-Does a *split* (see below) using the &lt;prefix&gt; supplied and then does a *git push* to push the result to the repository and ref. This can be used to push your subtree to different branches of the remote repository.
+Does a _split_ (see below) using the &lt;prefix&gt; supplied and then does a _git push_ to push the result to the repository and ref. This can be used to push your subtree to different branches of the remote repository.
 
 split  
 Extract a new, synthetic project history from the history of the &lt;prefix&gt; subtree. The new history includes only the commits (including merges) that affected &lt;prefix&gt;, and each of those commits now has the contents of &lt;prefix&gt; at the root of the project instead of in a subdirectory. Thus, the newly created history is suitable for export as a separate git repository.
 
 After splitting successfully, a single commit id is printed to stdout. This corresponds to the HEAD of the newly created tree, which you can manipulate however you want.
 
-Repeated splits of exactly the same history are guaranteed to be identical (i.e. to produce the same commit ids). Because of this, if you add new commits and then re-split, the new commits will be attached as commits on top of the history you generated last time, so *git merge* and friends will work as expected.
+Repeated splits of exactly the same history are guaranteed to be identical (i.e. to produce the same commit ids). Because of this, if you add new commits and then re-split, the new commits will be attached as commits on top of the history you generated last time, so _git merge_ and friends will work as expected.
 
-Note that if you use *--squash* when you merge, you should usually not just *--rejoin* when you split.
+Note that if you use _--squash_ when you merge, you should usually not just _--rejoin_ when you split.
 
-OPTIONS
--------
+## OPTIONS
 
 -q  
 --quiet  
@@ -76,8 +70,7 @@ Specify the path in the repository to the subtree you want to manipulate. This o
 --message=&lt;message&gt;  
 This option is only valid for add, merge, pull, and split --rejoin. Specify &lt;message&gt; as the commit message for the merge commit.
 
-OPTIONS FOR add, merge, and pull
---------------------------------
+## OPTIONS FOR add, merge, and pull
 
 --squash  
 This option is only valid for add, merge, and pull commands.
@@ -86,14 +79,13 @@ Instead of merging the entire history from the subtree project, produce only a s
 
 Using this option helps to reduce log clutter. People rarely want to see every change that happened between v1.0 and v1.1 of the library they’re using, since none of the interim versions were ever included in their application.
 
-Using *--squash* also helps avoid problems when the same subproject is included multiple times in the same project, or is removed and then re-added. In such a case, it doesn’t make sense to combine the histories anyway, since it’s unclear which part of the history belongs to which subtree.
+Using _--squash_ also helps avoid problems when the same subproject is included multiple times in the same project, or is removed and then re-added. In such a case, it doesn’t make sense to combine the histories anyway, since it’s unclear which part of the history belongs to which subtree.
 
-Furthermore, with *--squash*, you can switch back and forth between different versions of a subtree, rather than strictly forward. *git subtree merge --squash* always adjusts the subtree to match the exactly specified commit, even if getting to that commit would require undoing some changes that were added earlier.
+Furthermore, with _--squash_, you can switch back and forth between different versions of a subtree, rather than strictly forward. _git subtree merge --squash_ always adjusts the subtree to match the exactly specified commit, even if getting to that commit would require undoing some changes that were added earlier.
 
-Whether or not you use *--squash*, changes made in your local repository remain intact and can be later split and send upstream to the subproject.
+Whether or not you use _--squash_, changes made in your local repository remain intact and can be later split and send upstream to the subproject.
 
-OPTIONS FOR split
------------------
+## OPTIONS FOR split
 
 --annotate=&lt;annotation&gt;  
 This option is only valid for the split command.
@@ -111,14 +103,14 @@ After generating the synthetic history, create a new branch called &lt;branch&gt
 --ignore-joins  
 This option is only valid for the split command.
 
-If you use *--rejoin*, git subtree attempts to optimize its history reconstruction to generate only the new commits since the last *--rejoin*. *--ignore-join* disables this behaviour, forcing it to regenerate the entire history. In a large project, this can take a long time.
+If you use _--rejoin_, git subtree attempts to optimize its history reconstruction to generate only the new commits since the last _--rejoin_. _--ignore-join_ disables this behaviour, forcing it to regenerate the entire history. In a large project, this can take a long time.
 
 --onto=&lt;onto&gt;  
 This option is only valid for the split command.
 
 If your subtree was originally imported using something other than git subtree, its history may not match what git subtree is expecting. In that case, you can specify the commit id &lt;onto&gt; that corresponds to the first revision of the subproject’s history that was imported into your project, and git subtree will attempt to build its history from there.
 
-If you used *git subtree add*, you should never need this option.
+If you used _git subtree add_, you should never need this option.
 
 --rejoin  
 This option is only valid for the split command.
@@ -127,26 +119,24 @@ After splitting, merge the newly created synthetic history back into your main p
 
 If your split commits end up merged into the upstream subproject, and then you want to get the latest upstream version, this will allow git’s merge algorithm to more intelligently avoid conflicts (since it knows these synthetic commits are already part of the upstream repository).
 
-Unfortunately, using this option results in *git log* showing an extra copy of every new commit that was created (the original, and the synthetic one).
+Unfortunately, using this option results in _git log_ showing an extra copy of every new commit that was created (the original, and the synthetic one).
 
-If you do all your merges with *--squash*, don’t use *--rejoin* when you split, because you don’t want the subproject’s history to be part of your project anyway.
+If you do all your merges with _--squash_, don’t use _--rejoin_ when you split, because you don’t want the subproject’s history to be part of your project anyway.
 
-EXAMPLE 1. Add command
-----------------------
+## EXAMPLE 1. Add command
 
 Let’s assume that you have a local repository that you would like to add an external vendor library to. In this case we will add the git-subtree repository as a subdirectory of your already existing git-extensions repository in ~/git-extensions/:
 
     $ git subtree add --prefix=git-subtree --squash \
         git://github.com/apenwarr/git-subtree.git master
 
-*master* needs to be a valid remote ref and can be a different branch name
+_master_ needs to be a valid remote ref and can be a different branch name
 
 You can omit the --squash flag, but doing so will increase the number of commits that are included in your local repository.
 
 We now have a ~/git-extensions/git-subtree directory containing code from the master branch of git://github.com/apenwarr/git-subtree.git in our git-extensions repository.
 
-EXAMPLE 2. Extract a subtree using commit, merge and pull
----------------------------------------------------------
+## EXAMPLE 2. Extract a subtree using commit, merge and pull
 
 Let’s use the repository for the git source code as an example. First, get your own copy of the git.git repository:
 
@@ -161,9 +151,9 @@ gitweb (commit 1130ef3) was merged into git as of commit 0a8f4f0, after which it
            $ gitk gitweb-latest
            $ git push git@github.com:whatever/gitweb.git gitweb-latest:master
 
-(We use *0a8f4f0^..* because that means "all the changes from 0a8f4f0 to the current version, including 0a8f4f0 itself.")
+(We use _0a8f4f0^.._ because that means "all the changes from 0a8f4f0 to the current version, including 0a8f4f0 itself.")
 
-If gitweb had originally been merged using *git subtree add* (or a previous split had already been done with --rejoin specified) then you can do all your splits without having to remember any weird commit ids:
+If gitweb had originally been merged using _git subtree add_ (or a previous split had already been done with --rejoin specified) then you can do all your splits without having to remember any weird commit ids:
 
     $ git subtree split --prefix=gitweb --annotate='(split) ' --rejoin \
         --branch gitweb-latest2
@@ -173,7 +163,7 @@ And you can merge changes back in from the upstream project just as easily:
     $ git subtree pull --prefix=gitweb \
         git@github.com:whatever/gitweb.git master
 
-Or, using *--squash*, you can actually rewind to an earlier version of gitweb:
+Or, using _--squash_, you can actually rewind to an earlier version of gitweb:
 
     $ git subtree merge --prefix=gitweb --squash gitweb-latest~10
 
@@ -195,8 +185,7 @@ And you can split it out and look at your changes versus the standard gitweb:
 
     git log gitweb-latest..$(git subtree split --prefix=gitweb)
 
-EXAMPLE 3. Extract a subtree using branch
------------------------------------------
+## EXAMPLE 3. Extract a subtree using branch
 
 Suppose you have a source directory with many files and subdirectories, and you want to extract the lib directory to its own git project. Here’s a short way to do it:
 
@@ -213,10 +202,8 @@ Then push the new branch onto the new empty repository:
 
     $ git push <new-repo> split:master
 
-AUTHOR
-------
+## AUTHOR
 
 Written by Avery Pennarun &lt;<apenwarr@gmail.com>&gt;
 
-GIT
----
+## GIT

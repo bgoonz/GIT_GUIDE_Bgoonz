@@ -1,18 +1,14 @@
-git-unpack-objects(1) Manual Page
-=================================
+# git-unpack-objects(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-unpack-objects - Unpack objects from a packed archive
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git unpack-objects [-n] [-q] [-r] [--strict]
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 Read a packed archive (.pack) from the standard input, expanding the objects contained within and writing them into the repository in "loose" (one object per file) format.
 
@@ -20,8 +16,7 @@ Objects that already exist in the repository will **not** be unpacked from the p
 
 See [git-repack(1)](git-repack.html) for options to generate new packs and replace existing ones.
 
-OPTIONS
--------
+## OPTIONS
 
 -n  
 Dry run. Check the pack file without actually unpacking the objects.
@@ -38,5 +33,4 @@ Don’t write objects with broken content or links.
 --max-input-size=&lt;size&gt;  
 Die, if the pack is larger than &lt;size&gt;.
 
-GIT
----
+## GIT

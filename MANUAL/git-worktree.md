@@ -1,13 +1,10 @@
-git-worktree(1) Manual Page
-===========================
+# git-worktree(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-worktree - Manage multiple working trees
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git worktree add [-f] [--detach] [--checkout] [--lock] [-b <new-branch>] <path> [<commit-ish>]
     git worktree list [--porcelain]
@@ -18,21 +15,19 @@ SYNOPSIS
     git worktree repair [<path>…​]
     git worktree unlock <worktree>
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 Manage multiple working trees attached to the same repository.
 
 A git repository can support multiple working trees, allowing you to check out more than one branch at a time. With `git worktree add` a new working tree is associated with the repository. This new working tree is called a "linked working tree" as opposed to the "main working tree" prepared by [git-init(1)](git-init.html) or [git-clone(1)](git-clone.html). A repository has one main working tree (if it’s not a bare repository) and zero or more linked working trees. When you are done with a linked working tree, remove it with `git worktree remove`.
 
-In its simplest form, `git worktree add <path>` automatically creates a new branch whose name is the final component of `<path>`, which is convenient if you plan to work on a new topic. For instance, `git worktree add ../hotfix` creates new branch `hotfix` and checks it out at path `../hotfix`. To instead work on an existing branch in a new working tree, use `git worktree add <path> <branch>`. On the other hand, if you just plan to make some experimental changes or do testing without disturbing existing development, it is often convenient to create a *throwaway* working tree not associated with any branch. For instance, `git worktree add -d <path>` creates a new working tree with a detached `HEAD` at the same commit as the current branch.
+In its simplest form, `git worktree add <path>` automatically creates a new branch whose name is the final component of `<path>`, which is convenient if you plan to work on a new topic. For instance, `git worktree add ../hotfix` creates new branch `hotfix` and checks it out at path `../hotfix`. To instead work on an existing branch in a new working tree, use `git worktree add <path> <branch>`. On the other hand, if you just plan to make some experimental changes or do testing without disturbing existing development, it is often convenient to create a _throwaway_ working tree not associated with any branch. For instance, `git worktree add -d <path>` creates a new working tree with a detached `HEAD` at the same commit as the current branch.
 
 If a working tree is deleted without using `git worktree remove`, then its associated administrative files, which reside in the repository (see "DETAILS" below), will eventually be removed automatically (see `gc.worktreePruneExpire` in [git-config(1)](git-config.html)), or you can run `git worktree prune` in the main or any linked working tree to clean up any stale administrative files.
 
 If a linked working tree is stored on a portable device or network share which is not always mounted, you can prevent its administrative files from being pruned by issuing the `git worktree lock` command, optionally specifying `--reason` to explain why the working tree is locked.
 
-COMMANDS
---------
+## COMMANDS
 
 add &lt;path&gt; \[&lt;commit-ish&gt;\]  
 Create `<path>` and checkout `<commit-ish>` into it. The new working directory is linked to the current repository, sharing everything except working directory specific files such as `HEAD`, `index`, etc. As a convenience, `<commit-ish>` may be a bare "`-`", which is synonymous with `@{-1}`.
@@ -72,8 +67,7 @@ If both the main working tree and linked working trees have been moved manually,
 unlock  
 Unlock a working tree, allowing it to be pruned, moved or deleted.
 
-OPTIONS
--------
+## OPTIONS
 
 -f  
 --force  
@@ -135,8 +129,7 @@ Working trees can be identified by path, either relative or absolute.
 
 If the last path components in the working tree’s path is unique among working trees, it can be used to identify a working tree. For example if you only have two working trees, at `/abc/def/ghi` and `/abc/def/ggg`, then `ghi` or `def/ghi` is enough to point to the former working tree.
 
-REFS
-----
+## REFS
 
 In multiple working trees, some refs may be shared between all working trees and some refs are local. One example is `HEAD` which is different for each working tree. This section is about the sharing rules and how to access refs of one working tree from another.
 
@@ -148,8 +141,7 @@ For example, `main-worktree/HEAD` or `main-worktree/refs/bisect/good` resolve to
 
 To access refs, it’s best not to look inside `$GIT_DIR` directly. Instead use commands such as [git-rev-parse(1)](git-rev-parse.html) or [git-update-ref(1)](git-update-ref.html) which will handle refs correctly.
 
-CONFIGURATION FILE
-------------------
+## CONFIGURATION FILE
 
 By default, the repository `config` file is shared across all working trees. If the config variables `core.bare` or `core.worktree` are already present in the config file, they will be applied to the main working trees only.
 
@@ -161,12 +153,11 @@ In this mode, specific configuration stays in the path pointed by `git rev-parse
 
 Note that in this file, the exception for `core.bare` and `core.worktree` is gone. If they exist in `$GIT_DIR/config`, you must move them to the `config.worktree` of the main working tree. You may also take this opportunity to review and move other configuration that you do not want to share to all working trees:
 
--   `core.worktree` and `core.bare` should never be shared
+- `core.worktree` and `core.bare` should never be shared
 
--   `core.sparseCheckout` is recommended per working tree, unless you are sure you always use sparse checkout for all working trees.
+- `core.sparseCheckout` is recommended per working tree, unless you are sure you always use sparse checkout for all working trees.
 
-DETAILS
--------
+## DETAILS
 
 Each linked working tree has a private sub-directory in the repository’s `$GIT_DIR/worktrees` directory. The private sub-directory’s name is usually the base name of the linked working tree’s path, possibly appended with a number to make it unique. For example, when `$GIT_DIR=/path/main/.git` the command `git worktree add /path/other/test-next next` creates the linked working tree in `/path/other/test-next` and also creates a `$GIT_DIR/worktrees/test-next` directory (or `$GIT_DIR/worktrees/test-next1` if `test-next` is already taken).
 
@@ -182,8 +173,7 @@ To prevent a `$GIT_DIR/worktrees` entry from being pruned (which can be useful i
 
 When `extensions.worktreeConfig` is enabled, the config file `.git/worktrees/<id>/config.worktree` is read after `.git/config` is.
 
-LIST OUTPUT FORMAT
-------------------
+## LIST OUTPUT FORMAT
 
 The `worktree list` command has two output formats. The default format shows the details on a single line with columns. For example:
 
@@ -194,14 +184,14 @@ The `worktree list` command has two output formats. The default format shows the
 
 The command also shows annotations for each working tree, according to its state. These annotations are:
 
--   `locked`, if the working tree is locked.
+- `locked`, if the working tree is locked.
 
--   `prunable`, if the working tree can be pruned via `git worktree prune`.
+- `prunable`, if the working tree can be pruned via `git worktree prune`.
 
-    $ git worktree list
-    /path/to/linked-worktree    abcd1234 [master]
-    /path/to/locked-worktreee   acbd5678 (brancha) locked
-    /path/to/prunable-worktree  5678abc  (detached HEAD) prunable
+  $ git worktree list
+  /path/to/linked-worktree abcd1234 [master]
+  /path/to/locked-worktreee acbd5678 (brancha) locked
+  /path/to/prunable-worktree 5678abc (detached HEAD) prunable
 
 For these annotations, a reason might also be available and this can be seen using the verbose mode. The annotation is then moved to the next line indented followed by the additional information.
 
@@ -253,8 +243,7 @@ If the lock reason contains "unusual" characters such as newline, they are escap
     locked "reason\nwhy is locked"
     ...
 
-EXAMPLES
---------
+## EXAMPLES
 
 You are in the middle of a refactoring session and your boss comes in and demands that you fix something immediately. You might typically use [git-stash(1)](git-stash.html) to store your changes away temporarily, however, your working tree is in such a state of disarray (with new, moved, and removed files, and other bits and pieces strewn around) that you don’t want to risk disturbing any of it. Instead, you create a temporary linked working tree to make the emergency fix, remove it when done, and then resume your earlier refactoring session.
 
@@ -265,10 +254,8 @@ You are in the middle of a refactoring session and your boss comes in and demand
     $ popd
     $ git worktree remove ../temp
 
-BUGS
-----
+## BUGS
 
 Multiple checkout in general is still experimental, and the support for submodules is incomplete. It is NOT recommended to make multiple checkouts of a superproject.
 
-GIT
----
+## GIT

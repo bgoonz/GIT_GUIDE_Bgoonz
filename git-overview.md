@@ -1,45 +1,41 @@
-Git Guide
-=========
+# Git Guide
 
 Everything you need to know about Git, from getting started to advanced commands and workflows.
 
--   [Git Guide](#git-guide)
-    -   [What is Git?](#what-is-git)
-    -   [What is Git Written in?](#what-is-git-written-in)
-    -   [Why Use Git?](#why-use-git)
-        -   [Speed](#speed)
-        -   [Merge conflicts](#merge-conflicts)
-        -   [Cheap branches](#cheap-branches)
-        -   [Ease of roll back](#ease-of-roll-back)
-    -   [How Do I Use Git?](#how-do-i-use-git)
-        -   [Learning Git Basics](#learning-git-basics)
-        -   [Getting Started With the Git Workflow](#getting-started-with-the-git-workflow)
-            -   [Create a branch](#create-a-branch)
-            -   [Make changes (and make a commit)](#make-changes-and-make-a-commit)
-            -   [Push your changes to the remote](#push-your-changes-to-the-remote)
-            -   [Open a pull request](#open-a-pull-request)
-            -   [Collaborate](#collaborate)
-            -   [Merge into `main`](#merge-into-main)
-        -   [Getting Started With GitHub](#getting-started-with-github)
+- [Git Guide](#git-guide)
+  - [What is Git?](#what-is-git)
+  - [What is Git Written in?](#what-is-git-written-in)
+  - [Why Use Git?](#why-use-git)
+    - [Speed](#speed)
+    - [Merge conflicts](#merge-conflicts)
+    - [Cheap branches](#cheap-branches)
+    - [Ease of roll back](#ease-of-roll-back)
+  - [How Do I Use Git?](#how-do-i-use-git)
+    - [Learning Git Basics](#learning-git-basics)
+    - [Getting Started With the Git Workflow](#getting-started-with-the-git-workflow)
+      - [Create a branch](#create-a-branch)
+      - [Make changes (and make a commit)](#make-changes-and-make-a-commit)
+      - [Push your changes to the remote](#push-your-changes-to-the-remote)
+      - [Open a pull request](#open-a-pull-request)
+      - [Collaborate](#collaborate)
+      - [Merge into `main`](#merge-into-main)
+    - [Getting Started With GitHub](#getting-started-with-github)
 
-What is Git?
-------------
+## What is Git?
 
 Git is a distributed version control software. Version control is a way to save changes over time without overwriting previous versions. Being distributed means that every developer working with a Git repository has a copy of that entire repository - every commit, every branch, every file. If you’re used to working with centralized version control systems, this is a big difference!
 
 Whether or not you’ve worked with version control before, there are a few things you should know before getting started with Git:
 
--   Branches are lightweight and cheap, so it’s OK to have many of them
--   Git stores changes in SHA hashes, which work by compressing text files. That makes Git a very good version control system (VCS) for software programming, but not so good for binary files like images or videos.
--   Git repositories can be connected, so you can work on one locally on your own machine, and connect it to a shared repository. This way, you can [push](/git-guides/git-push) and [pull](/git-guides/git-pull) changes to a repository and easily collaborate with others.
+- Branches are lightweight and cheap, so it’s OK to have many of them
+- Git stores changes in SHA hashes, which work by compressing text files. That makes Git a very good version control system (VCS) for software programming, but not so good for binary files like images or videos.
+- Git repositories can be connected, so you can work on one locally on your own machine, and connect it to a shared repository. This way, you can [push](/git-guides/git-push) and [pull](/git-guides/git-pull) changes to a repository and easily collaborate with others.
 
-What is Git Written in?
------------------------
+## What is Git Written in?
 
 The tools that make up the core Git distribution are written in C, Shell, Perl, and Tcl. You can find Git’s source code on GitHub under [git/git](https://github.com/git/git).
 
-Why Use Git?
-------------
+## Why Use Git?
 
 Version control is very important - without it, you risk losing your work. With Git, you can make a “commit”, or a save point, as often as you’d like. You can also go back to previous commits. This takes the pressure off of you while you’re working. Commit often and commit early, and you’ll never have that gut-sinking feeling of overwriting or losing changes.
 
@@ -63,12 +59,11 @@ Without sharing the code through branches, this would never be possible.
 
 ### Ease of roll back
 
-If you make a mistake, it’s OK! Commits are immutable, meaning they can’t be changed. (*Note: You *can* change history, but it will create new replacement commits instead of editing the existing commits. More on that later!*) This means that if you do make a mistake, even on an important branch, like `main`, it’s *OK*. **You can easily revert that change, or roll back the branch pointer to the commit where everything was fine.**
+If you make a mistake, it’s OK! Commits are immutable, meaning they can’t be changed. (*Note: You *can* change history, but it will create new replacement commits instead of editing the existing commits. More on that later!*) This means that if you do make a mistake, even on an important branch, like `main`, it’s _OK_. **You can easily revert that change, or roll back the branch pointer to the commit where everything was fine.**
 
 The benefits of this can’t be overstated. Not only does it create a safer environment for the project and code, but it fosters a development environment where developers can be braver, trusting that Git has their back.
 
-How Do I Use Git?
------------------
+## How Do I Use Git?
 
 ### Learning Git Basics
 
@@ -76,28 +71,28 @@ If you’re getting started with Git, a great place to learn the basic commands 
 
 Some of the most important and most used commands that you’ll find there are:
 
--   `git clone [url]`: [Clone](/git-guides/git-clone) (download) a repository that already exists on GitHub, including all of the files, branches, and commits.
--   `git status`: Always a good idea, this command shows you what branch you’re on, what files are in the working or staging directory, and any other important information.
--   `git branch`: This shows the existing branches in your local repository. You can also use `git branch [branch-name]` to create a branch from your current location, or `git branch --all` to see all branches, both the local ones on your machine, and the remote tracking branches stored from the last `git pull` or `git fetch` from the remote.
--   `git checkout [branch-name]`: Switches to the specified branch and updates the working directory.
--   `git add [file]`: Snapshots the file in preparation for versioning, adding it to the staging area.
--   `git commit -m "descriptive message"`: Records file snapshots permanently in the version history.
--   `git pull`: Updates your current local working branch with all new commits from the corresponding remote branch on GitHub. `git pull` is a combination of `git fetch` and `git merge`.
--   `git push`: Uploads all local branch commits to the remote.
--   `git log`: Browse and inspect the evolution of project files.
--   `git remote -v`: Show the associated remote repositories and their stored name, like `origin`.
+- `git clone [url]`: [Clone](/git-guides/git-clone) (download) a repository that already exists on GitHub, including all of the files, branches, and commits.
+- `git status`: Always a good idea, this command shows you what branch you’re on, what files are in the working or staging directory, and any other important information.
+- `git branch`: This shows the existing branches in your local repository. You can also use `git branch [branch-name]` to create a branch from your current location, or `git branch --all` to see all branches, both the local ones on your machine, and the remote tracking branches stored from the last `git pull` or `git fetch` from the remote.
+- `git checkout [branch-name]`: Switches to the specified branch and updates the working directory.
+- `git add [file]`: Snapshots the file in preparation for versioning, adding it to the staging area.
+- `git commit -m "descriptive message"`: Records file snapshots permanently in the version history.
+- `git pull`: Updates your current local working branch with all new commits from the corresponding remote branch on GitHub. `git pull` is a combination of `git fetch` and `git merge`.
+- `git push`: Uploads all local branch commits to the remote.
+- `git log`: Browse and inspect the evolution of project files.
+- `git remote -v`: Show the associated remote repositories and their stored name, like `origin`.
 
 If you’re looking for more GitHub-specific technical guidance, check out [GitHub’s help documentation](https://help.github.com/) or our [GitHub for Developers series](https://www.youtube.com/watch?v=H6wTAIlOUBQ&list=PLg7s6cbtAD16Pgp6WIVfX4VsGI-xyWkMz) on YouTube.
 
 ### Getting Started With the Git Workflow
 
-Depending on your operating system, you may already have [Git installed](/git-guides/install-git). But, getting started means more than having the software! To get started, it’s important to know the basics of how Git works. You may choose to do the actual work within a terminal, an app like GitHub Desktop, or through GitHub.com. (*Note: while you can interact with Git through GitHub.com, your experience may be limited. Many local tools can give you access to the most widely used Git functionalities, though only the terminal will give you access to them all.*)
+Depending on your operating system, you may already have [Git installed](/git-guides/install-git). But, getting started means more than having the software! To get started, it’s important to know the basics of how Git works. You may choose to do the actual work within a terminal, an app like GitHub Desktop, or through GitHub.com. (_Note: while you can interact with Git through GitHub.com, your experience may be limited. Many local tools can give you access to the most widely used Git functionalities, though only the terminal will give you access to them all._)
 
-There are *many* ways to use Git, which doesn’t necessarily make it easier! But, the fundamental Git workflow has a few main steps. You can practice all of these in the [Introduction to GitHub Learning Lab course](https://lab.github.com/githubtraining/introduction-to-github).
+There are _many_ ways to use Git, which doesn’t necessarily make it easier! But, the fundamental Git workflow has a few main steps. You can practice all of these in the [Introduction to GitHub Learning Lab course](https://lab.github.com/githubtraining/introduction-to-github).
 
 #### Create a branch
 
-The main branch is usually called `main`. We want to work on *another* branch, so we can make a pull request and make changes safely. To get started, create a branch off of `main`. Name it however you’d like - but we recommend naming branches based on the function or feature that will be the focus of this branch. One person may have several branches, and one branch may have several people collaborate on it - branches are for a purpose, not a person. Wherever you currently “are” (wherever HEAD is pointing, or whatever branch you’re currently “checked out” to) will be the parent of the branch you create. That means you can create branches from other branches, tags, or any commit! But, the most typical workflow is to create a branch from `main` - which represents the most current production code.
+The main branch is usually called `main`. We want to work on _another_ branch, so we can make a pull request and make changes safely. To get started, create a branch off of `main`. Name it however you’d like - but we recommend naming branches based on the function or feature that will be the focus of this branch. One person may have several branches, and one branch may have several people collaborate on it - branches are for a purpose, not a person. Wherever you currently “are” (wherever HEAD is pointing, or whatever branch you’re currently “checked out” to) will be the parent of the branch you create. That means you can create branches from other branches, tags, or any commit! But, the most typical workflow is to create a branch from `main` - which represents the most current production code.
 
 #### Make changes (and make a commit)
 
@@ -115,7 +110,7 @@ So far, if you’ve made a commit locally, you’re the only one that can see it
 
 By default, `git push` only pushes the branch that you’ve currently checked out to.
 
-Sometimes, if there has been a new commit on the branch on the *remote*, you may be blocked from pushing. Don’t worry! Start with a simple [`git pull`](/git-guides/git-pull) to incorporate the changes on the remote into your own local branch, resolve any conflicts or finish the merge from the remote into the local branch, and then try the push again.
+Sometimes, if there has been a new commit on the branch on the _remote_, you may be blocked from pushing. Don’t worry! Start with a simple [`git pull`](/git-guides/git-pull) to incorporate the changes on the remote into your own local branch, resolve any conflicts or finish the merge from the remote into the local branch, and then try the push again.
 
 #### Open a pull request
 
@@ -127,7 +122,7 @@ Make sure you start your pull requests off with the right information. Put yours
 
 #### Collaborate
 
-Once the pull request is open, then the real fun starts. It’s important to recognize that pull requests aren’t meant to be open when work is *finished*. Pull requests should be open when work is *beginning*! The earlier you open a pull request, the more visibility the entire team has to the work that you’re doing. When you’re ready for feedback, you can get it by integrating tests or requesting reviews from teammates.
+Once the pull request is open, then the real fun starts. It’s important to recognize that pull requests aren’t meant to be open when work is _finished_. Pull requests should be open when work is _beginning_! The earlier you open a pull request, the more visibility the entire team has to the work that you’re doing. When you’re ready for feedback, you can get it by integrating tests or requesting reviews from teammates.
 
 It’s very likely that you will want to make more changes to your work. That’s great! To do that, make more commits on the same branch. Once the new commits are present on the remote, the pull request will update and show the most recent version of your work.
 

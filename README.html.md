@@ -1,30 +1,25 @@
-Full Git Guide:
-===============
+# Full Git Guide:
 
-Install Git
-===========
+# Install Git
 
 How to install Git on any OS
 
 Git can be installed on the most common operating systems like Windows, Mac, and Linux. In fact, Git comes installed by default on most Mac and Linux machines!
 
-Checking for Git
-----------------
+## Checking for Git
 
 To see if you already have Git installed, open up your terminal application.
 
--   If you’re on a Mac, look for a command prompt application called “Terminal”.
--   If you’re on a Windows machine, open the windows command prompt or “Git Bash”.
+- If you’re on a Mac, look for a command prompt application called “Terminal”.
+- If you’re on a Windows machine, open the windows command prompt or “Git Bash”.
 
 Once you’ve opened your terminal application, type `git version`. The output will either tell you which version of Git is installed, or it will alert you that `git` is an unknown command. If it’s an unknown command, read further and find out how to install Git.
 
-Install Git Using GitHub Desktop
---------------------------------
+## Install Git Using GitHub Desktop
 
 Installing GitHub Desktop will also install the latest version of Git if you don’t already have it. With GitHub Desktop, you get a command-line version of Git with a robust GUI. Regardless of if you have Git installed or not, GitHub Desktop offers a simple collaboration tool for Git. You can [learn more here](https://desktop.github.com/).
 
-Install Git on Windows
-----------------------
+## Install Git on Windows
 
 1.  Navigate to the latest [Git for Windows installer](https://gitforwindows.org/) and download the latest version.
 2.  Once the installer has started, follow the instructions as provided in the **Git Setup** wizard screen until the installation is complete.
@@ -33,19 +28,17 @@ Install Git on Windows
 
 Note: [`git-scm`](https://git-scm.com/download/win) is a popular and recommended resource for downloading Git for Windows. The advantage of downloading Git from `git-scm` is that your download automatically starts with the latest version of Git included with the recommended command prompt, `Git Bash` . The download source is the same [Git for Windows installer](https://gitforwindows.org/) as referenced in the steps above.
 
-Install Git on Windows through Visual Studio Code
--------------------------------------------------
+## Install Git on Windows through Visual Studio Code
 
 GitHub integration is provided through the [GitHub Pull Requests and Issues extension](https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github). To get started with the GitHub in VS Code, you’ll need to create an account and install the GitHub Pull Requests and Issues extension. Once you’ve installed the [GitHub Pull Requests and Issues extension](https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github), you’ll need to sign in. Follow the prompts to authenticate with GitHub and return to VS Code.
 
-------------------------------------------------------------------------
+---
 
 Note: You can perform actions like, you can search for and clone a repository from GitHub using the Git: Clone command in the Command Palette (Ctrl+Shift+P) or by using the Clone Repository button in the Source Control view (available when you have no folder open). [Learn more here](https://code.visualstudio.com/docs/editor/github)
 
-------------------------------------------------------------------------
+---
 
-Install Git on Mac
-------------------
+## Install Git on Mac
 
 Most versions of MacOS will already have `Git` installed, and you can activate it through the terminal with `git version`. However, if you don’t have Git installed for whatever reason, you can install the latest version of Git using one of several popular methods as listed below:
 
@@ -64,8 +57,7 @@ Note: [`git-scm`](https://git-scm.com/download/mac) is a popular and recommended
 1.  Open up a terminal window and install Git using the following command: `brew install git`.
 2.  Once the command output has been completed, you can verify the installation by typing: `git version`.
 
-Install Git on Linux
---------------------
+## Install Git on Linux
 
 Fun fact: Git was originally developed to version the Linux operating system! So, it only makes sense that it is easy to configure to run on Linux.
 
@@ -86,65 +78,59 @@ You can install `Git` on Linux through the package management tool that comes wi
 
 Note: You can download the proper Git versions and read more about how to install on specific Linux systems, like installing Git on Ubuntu or Fedora, [in git-scm’s documentation](https://git-scm.com/download/linux).
 
-Other Methods of Installing Git
--------------------------------
+## Other Methods of Installing Git
 
 Looking to install Git via the source code? [Learn more here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 
-------------------------------------------------------------------------
+---
 
-------------------------------------------------------------------------
+---
 
-&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt; &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt; &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
 
-------------------------------------------------------------------------
+---
 
-------------------------------------------------------------------------
+---
 
-Git Guide
-=========
+# Git Guide
 
 Everything you need to know about Git, from getting started to advanced commands and workflows.
 
 **Quick links:**
 
--   [What is Git?](#what-is-git)
--   [What is Git Written in?](#what-is-git-written-in)
--   [Why Use Git?](#why-use-git)
-    -   [Speed](#speed)
-    -   [Merge conflicts](#merge-conflicts)
-    -   [Cheap branches](#cheap-branches)
-    -   [Ease of roll back](#ease-of-roll-back)
--   [How Do I Use Git?](#how-do-i-use-git)
-    -   [Learning Git Basics](#learning-git-basics)
-    -   [Getting Started With the Git Workflow](#getting-started-with-the-git-workflow)
-        -   [Create a branch](#create-a-branch)
-        -   [Make changes (and make a commit)](#make-changes-and-make-a-commit)
-        -   [Push your changes to the remote](#push-your-changes-to-the-remote)
-        -   [Open a pull request](#open-a-pull-request)
-        -   [Collaborate](#collaborate)
-        -   [Merge into main](#merge-into-main)
-    -   [Getting Started With GitHub](#getting-started-with-github)
+- [What is Git?](#what-is-git)
+- [What is Git Written in?](#what-is-git-written-in)
+- [Why Use Git?](#why-use-git)
+  - [Speed](#speed)
+  - [Merge conflicts](#merge-conflicts)
+  - [Cheap branches](#cheap-branches)
+  - [Ease of roll back](#ease-of-roll-back)
+- [How Do I Use Git?](#how-do-i-use-git)
+  - [Learning Git Basics](#learning-git-basics)
+  - [Getting Started With the Git Workflow](#getting-started-with-the-git-workflow)
+    - [Create a branch](#create-a-branch)
+    - [Make changes (and make a commit)](#make-changes-and-make-a-commit)
+    - [Push your changes to the remote](#push-your-changes-to-the-remote)
+    - [Open a pull request](#open-a-pull-request)
+    - [Collaborate](#collaborate)
+    - [Merge into main](#merge-into-main)
+  - [Getting Started With GitHub](#getting-started-with-github)
 
-What is Git?
-------------
+## What is Git?
 
 Git is a distributed version control software. Version control is a way to save changes over time without overwriting previous versions. Being distributed means that every developer working with a Git repository has a copy of that entire repository - every commit, every branch, every file. If you’re used to working with centralized version control systems, this is a big difference!
 
 Whether or not you’ve worked with version control before, there are a few things you should know before getting started with Git:
 
--   Branches are lightweight and cheap, so it’s OK to have many of them
--   Git stores changes in SHA hashes, which work by compressing text files. That makes Git a very good version control system (VCS) for software programming, but not so good for binary files like images or videos.
--   Git repositories can be connected, so you can work on one locally on your own machine, and connect it to a shared repository. This way, you can [push](/git-guides/git-push) and [pull](/git-guides/git-pull) changes to a repository and easily collaborate with others.
+- Branches are lightweight and cheap, so it’s OK to have many of them
+- Git stores changes in SHA hashes, which work by compressing text files. That makes Git a very good version control system (VCS) for software programming, but not so good for binary files like images or videos.
+- Git repositories can be connected, so you can work on one locally on your own machine, and connect it to a shared repository. This way, you can [push](/git-guides/git-push) and [pull](/git-guides/git-pull) changes to a repository and easily collaborate with others.
 
-What is Git Written in?
------------------------
+## What is Git Written in?
 
 The tools that make up the core Git distribution are written in C, Shell, Perl, and Tcl. You can find Git’s source code on GitHub under [git/git](https://github.com/git/git).
 
-Why Use Git?
-------------
+## Why Use Git?
 
 Version control is very important - without it, you risk losing your work. With Git, you can make a “commit”, or a save point, as often as you’d like. You can also go back to previous commits. This takes the pressure off of you while you’re working. Commit often and commit early, and you’ll never have that gut-sinking feeling of overwriting or losing changes.
 
@@ -168,12 +154,11 @@ Without sharing the code through branches, this would never be possible.
 
 ### Ease of roll back
 
-If you make a mistake, it’s OK! Commits are immutable, meaning they can’t be changed. (*Note: You *can* change history, but it will create new replacement commits instead of editing the existing commits. More on that later!*) This means that if you do make a mistake, even on an important branch, like `main`, it’s *OK*. **You can easily revert that change, or roll back the branch pointer to the commit where everything was fine.**
+If you make a mistake, it’s OK! Commits are immutable, meaning they can’t be changed. (*Note: You *can* change history, but it will create new replacement commits instead of editing the existing commits. More on that later!*) This means that if you do make a mistake, even on an important branch, like `main`, it’s _OK_. **You can easily revert that change, or roll back the branch pointer to the commit where everything was fine.**
 
 The benefits of this can’t be overstated. Not only does it create a safer environment for the project and code, but it fosters a development environment where developers can be braver, trusting that Git has their back.
 
-How Do I Use Git?
------------------
+## How Do I Use Git?
 
 ### Learning Git Basics
 
@@ -181,28 +166,28 @@ If you’re getting started with Git, a great place to learn the basic commands 
 
 Some of the most important and most used commands that you’ll find there are:
 
--   `git clone [url]`: [Clone](/git-guides/git-clone) (download) a repository that already exists on GitHub, including all of the files, branches, and commits.
--   `git status`: Always a good idea, this command shows you what branch you’re on, what files are in the working or staging directory, and any other important information.
--   `git branch`: This shows the existing branches in your local repository. You can also use `git branch [branch-name]` to create a branch from your current location, or `git branch --all` to see all branches, both the local ones on your machine, and the remote tracking branches stored from the last `git pull` or `git fetch` from the remote.
--   `git checkout [branch-name]`: Switches to the specified branch and updates the working directory.
--   `git add [file]`: Snapshots the file in preparation for versioning, adding it to the staging area.
--   `git commit -m "descriptive message"`: Records file snapshots permanently in the version history.
--   `git pull`: Updates your current local working branch with all new commits from the corresponding remote branch on GitHub. `git pull` is a combination of `git fetch` and `git merge`.
--   `git push`: Uploads all local branch commits to the remote.
--   `git log`: Browse and inspect the evolution of project files.
--   `git remote -v`: Show the associated remote repositories and their stored name, like `origin`.
+- `git clone [url]`: [Clone](/git-guides/git-clone) (download) a repository that already exists on GitHub, including all of the files, branches, and commits.
+- `git status`: Always a good idea, this command shows you what branch you’re on, what files are in the working or staging directory, and any other important information.
+- `git branch`: This shows the existing branches in your local repository. You can also use `git branch [branch-name]` to create a branch from your current location, or `git branch --all` to see all branches, both the local ones on your machine, and the remote tracking branches stored from the last `git pull` or `git fetch` from the remote.
+- `git checkout [branch-name]`: Switches to the specified branch and updates the working directory.
+- `git add [file]`: Snapshots the file in preparation for versioning, adding it to the staging area.
+- `git commit -m "descriptive message"`: Records file snapshots permanently in the version history.
+- `git pull`: Updates your current local working branch with all new commits from the corresponding remote branch on GitHub. `git pull` is a combination of `git fetch` and `git merge`.
+- `git push`: Uploads all local branch commits to the remote.
+- `git log`: Browse and inspect the evolution of project files.
+- `git remote -v`: Show the associated remote repositories and their stored name, like `origin`.
 
 If you’re looking for more GitHub-specific technical guidance, check out [GitHub’s help documentation](https://help.github.com/) or our [GitHub for Developers series](https://www.youtube.com/watch?v=H6wTAIlOUBQ&list=PLg7s6cbtAD16Pgp6WIVfX4VsGI-xyWkMz) on YouTube.
 
 ### Getting Started With the Git Workflow
 
-Depending on your operating system, you may already have [Git installed](/git-guides/install-git). But, getting started means more than having the software! To get started, it’s important to know the basics of how Git works. You may choose to do the actual work within a terminal, an app like GitHub Desktop, or through GitHub.com. (*Note: while you can interact with Git through GitHub.com, your experience may be limited. Many local tools can give you access to the most widely used Git functionalities, though only the terminal will give you access to them all.*)
+Depending on your operating system, you may already have [Git installed](/git-guides/install-git). But, getting started means more than having the software! To get started, it’s important to know the basics of how Git works. You may choose to do the actual work within a terminal, an app like GitHub Desktop, or through GitHub.com. (_Note: while you can interact with Git through GitHub.com, your experience may be limited. Many local tools can give you access to the most widely used Git functionalities, though only the terminal will give you access to them all._)
 
-There are *many* ways to use Git, which doesn’t necessarily make it easier! But, the fundamental Git workflow has a few main steps. You can practice all of these in the [Introduction to GitHub Learning Lab course](https://lab.github.com/githubtraining/introduction-to-github).
+There are _many_ ways to use Git, which doesn’t necessarily make it easier! But, the fundamental Git workflow has a few main steps. You can practice all of these in the [Introduction to GitHub Learning Lab course](https://lab.github.com/githubtraining/introduction-to-github).
 
 #### Create a branch
 
-The main branch is usually called `main`. We want to work on *another* branch, so we can make a pull request and make changes safely. To get started, create a branch off of `main`. Name it however you’d like - but we recommend naming branches based on the function or feature that will be the focus of this branch. One person may have several branches, and one branch may have several people collaborate on it - branches are for a purpose, not a person. Wherever you currently “are” (wherever HEAD is pointing, or whatever branch you’re currently “checked out” to) will be the parent of the branch you create. That means you can create branches from other branches, tags, or any commit! But, the most typical workflow is to create a branch from `main` - which represents the most current production code.
+The main branch is usually called `main`. We want to work on _another_ branch, so we can make a pull request and make changes safely. To get started, create a branch off of `main`. Name it however you’d like - but we recommend naming branches based on the function or feature that will be the focus of this branch. One person may have several branches, and one branch may have several people collaborate on it - branches are for a purpose, not a person. Wherever you currently “are” (wherever HEAD is pointing, or whatever branch you’re currently “checked out” to) will be the parent of the branch you create. That means you can create branches from other branches, tags, or any commit! But, the most typical workflow is to create a branch from `main` - which represents the most current production code.
 
 #### Make changes (and make a commit)
 
@@ -220,7 +205,7 @@ So far, if you’ve made a commit locally, you’re the only one that can see it
 
 By default, `git push` only pushes the branch that you’ve currently checked out to.
 
-Sometimes, if there has been a new commit on the branch on the *remote*, you may be blocked from pushing. Don’t worry! Start with a simple [`git pull`](/git-guides/git-pull) to incorporate the changes on the remote into your own local branch, resolve any conflicts or finish the merge from the remote into the local branch, and then try the push again.
+Sometimes, if there has been a new commit on the branch on the _remote_, you may be blocked from pushing. Don’t worry! Start with a simple [`git pull`](/git-guides/git-pull) to incorporate the changes on the remote into your own local branch, resolve any conflicts or finish the merge from the remote into the local branch, and then try the push again.
 
 #### Open a pull request
 
@@ -232,7 +217,7 @@ Make sure you start your pull requests off with the right information. Put yours
 
 #### Collaborate
 
-Once the pull request is open, then the real fun starts. It’s important to recognize that pull requests aren’t meant to be open when work is *finished*. Pull requests should be open when work is *beginning*! The earlier you open a pull request, the more visibility the entire team has to the work that you’re doing. When you’re ready for feedback, you can get it by integrating tests or requesting reviews from teammates.
+Once the pull request is open, then the real fun starts. It’s important to recognize that pull requests aren’t meant to be open when work is _finished_. Pull requests should be open when work is _beginning_! The earlier you open a pull request, the more visibility the entire team has to the work that you’re doing. When you’re ready for feedback, you can get it by integrating tests or requesting reviews from teammates.
 
 It’s very likely that you will want to make more changes to your work. That’s great! To do that, make more commits on the same branch. Once the new commits are present on the remote, the pull request will update and show the most recent version of your work.
 
@@ -250,71 +235,64 @@ The best place to practice using Git and GitHub is the [Introduction to GitHub L
 
 If you already know Git and need to sign up for a GitHub account, head over to [github.com](https://github.com/).
 
-------------------------------------------------------------------------
+---
 
-------------------------------------------------------------------------
+---
 
-&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt; &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt; &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
 
-------------------------------------------------------------------------
+---
 
-------------------------------------------------------------------------
+---
 
-Git Status
-==========
+# Git Status
 
     git status
 
 `git status` shows the current state of your Git working directory and staging area.
 
-What Does `git status` Do?
---------------------------
+## What Does `git status` Do?
 
-When in doubt, run `git status`. This is *always* a good idea. The `git status` command only outputs information, it won’t modify commits or changes in your local repository.
+When in doubt, run `git status`. This is _always_ a good idea. The `git status` command only outputs information, it won’t modify commits or changes in your local repository.
 
 A useful feature of `git status` is that it will provide helpful information depending on your current situation. In general, you can count on it to tell you:
 
--   Where `HEAD` is pointing, whether that is a branch or a commit (this is where you are “checked out” to)
--   If you have any changed files in your current directory that have not yet been committed
--   If changed files are staged or not
--   If your current local branch is linked to a remote branch, then `git status` will tell you if your local branch is behind or ahead by any commits
+- Where `HEAD` is pointing, whether that is a branch or a commit (this is where you are “checked out” to)
+- If you have any changed files in your current directory that have not yet been committed
+- If changed files are staged or not
+- If your current local branch is linked to a remote branch, then `git status` will tell you if your local branch is behind or ahead by any commits
 
 During merge conflicts, `git status` will also tell you exactly which files are the source of the conflict.
 
-How to Use `git status`
------------------------
+## How to Use `git status`
 
 ### Common usages and options for `git status`
 
--   `git status`: Most often used in its default form, this shows a good base of information
--   `git status -s`: Give output in short format
--   `git status -v`: Shows more “verbose” detail including the textual changes of any uncommitted files
+- `git status`: Most often used in its default form, this shows a good base of information
+- `git status -s`: Give output in short format
+- `git status -v`: Shows more “verbose” detail including the textual changes of any uncommitted files
 
 You can see all of the options with `git status` in [git-scm’s documentation](https://git-scm.com/docs/git-status).
 
-Related Terms
--------------
+## Related Terms
 
--   `git clone [url]`: Clone (download) a repository that already exists on GitHub, including all of the files, branches, and commits.
--   `git remote -v`: Show the associated remote repositories and their stored name, like `origin`.
--   `git remote add origin <url>`: Add a remote so you can collaborate with others on a newly initialized repository.
--   `git push`: Uploads all local branch commits to the remote.
--   `git push -u origin main`: When pushing a branch for the first time, this type of push will configure the relationship between the remote and your local repository so that you can use `git pull` and `git push` with no additional options in the future.
+- `git clone [url]`: Clone (download) a repository that already exists on GitHub, including all of the files, branches, and commits.
+- `git remote -v`: Show the associated remote repositories and their stored name, like `origin`.
+- `git remote add origin <url>`: Add a remote so you can collaborate with others on a newly initialized repository.
+- `git push`: Uploads all local branch commits to the remote.
+- `git push -u origin main`: When pushing a branch for the first time, this type of push will configure the relationship between the remote and your local repository so that you can use `git pull` and `git push` with no additional options in the future.
 
-------------------------------------------------------------------------
+---
 
-------------------------------------------------------------------------
+---
 
-&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt; &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt; &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
 
-------------------------------------------------------------------------
+---
 
-------------------------------------------------------------------------
+---
 
-Git Clone
-=========
+# Git Clone
 
 The `git clone` command is used to create a copy of a specific repository or branch within a repository.
 
@@ -330,26 +308,24 @@ Cloning a repository is typically only done once, at the beginning of your inter
 
 The ability to work with the entire repository means that all developers can work more freely. Without being limited by which files you can work on, you can work on a feature branch to make changes safely. Then, you can:
 
--   later use `git push` to share your branch with the remote repository
--   open a pull request to compare the changes with your collaborators
--   test and deploy as needed from the branch
--   merge into the `main` branch.
+- later use `git push` to share your branch with the remote repository
+- open a pull request to compare the changes with your collaborators
+- test and deploy as needed from the branch
+- merge into the `main` branch.
 
-How to Use `git clone`
-----------------------
+## How to Use `git clone`
 
 ### Common usages and options for `git clone`
 
--   `git clone [url]`: Clone (download) a repository that already exists on GitHub, including all of the files, branches, and commits.
--   `git clone --mirror`: Clone a repository but without the ability to edit any of the files. This includes the refs or branches. You may want to use this if you are trying to create a secondary copy of a repository on a separate remote and you want to match all of the branches. This may occur during configuration using a new remote for your Git hosting, or when using Git during automated testing.
--   `git clone --single-branch`: Clone only a single branch
--   `git clone --sparse`: Instead of populating the working directory with all of the files in the current commit recursively, only populate the files present in the root directory. This could help with performance when cloning large repositories with many directories and sub-directories.
--   \`git clone –recurse-submodules\[=&lt;pathspec\]: After the clone is created, initialize and clone submodules within based on the provided pathspec. This may be a good option if you are cloning a repository that you know to have submodules, and you will be working with those submodules as dependencies in your local development.
+- `git clone [url]`: Clone (download) a repository that already exists on GitHub, including all of the files, branches, and commits.
+- `git clone --mirror`: Clone a repository but without the ability to edit any of the files. This includes the refs or branches. You may want to use this if you are trying to create a secondary copy of a repository on a separate remote and you want to match all of the branches. This may occur during configuration using a new remote for your Git hosting, or when using Git during automated testing.
+- `git clone --single-branch`: Clone only a single branch
+- `git clone --sparse`: Instead of populating the working directory with all of the files in the current commit recursively, only populate the files present in the root directory. This could help with performance when cloning large repositories with many directories and sub-directories.
+- \`git clone –recurse-submodules\[=&lt;pathspec\]: After the clone is created, initialize and clone submodules within based on the provided pathspec. This may be a good option if you are cloning a repository that you know to have submodules, and you will be working with those submodules as dependencies in your local development.
 
 You can see all of the many options with `git clone` in [git-scm’s documentation](https://git-scm.com/docs/git-clone).
 
-Examples of `git clone`
------------------------
+## Examples of `git clone`
 
 ### `git clone [url]`
 
@@ -359,7 +335,7 @@ The most common usage of cloning is to simply clone a repository. This is only d
 
 `git clone --single-branch`: By default, `git clone` will create remote tracking branches for all of the branches currently present in the remote which is being cloned. The only local branch that is created is the default branch.
 
-But, maybe for some reason, you would like to *only* get a remote tracking branch for one specific branch, or clone one branch which *isn’t* the default branch. Both of these things happen when you use `--single-branch` with `git clone`.
+But, maybe for some reason, you would like to _only_ get a remote tracking branch for one specific branch, or clone one branch which _isn’t_ the default branch. Both of these things happen when you use `--single-branch` with `git clone`.
 
 This will create a clone that only has commits included in the current line of history. This means no other branches will be cloned. You can specify a certain branch to clone, but the default branch, usually `main`, will be selected by default.
 
@@ -367,7 +343,7 @@ To clone one specific branch, use:
 
 `git clone [url] --branch [branch] --single-branch`
 
-*Cloning only one branch does not add any benefits unless the repository is very large and contains binary files that slow down the performance of the repository. The recommended solution is to optimize the performance of the repository before relying on single branch cloning strategies.*
+_Cloning only one branch does not add any benefits unless the repository is very large and contains binary files that slow down the performance of the repository. The recommended solution is to optimize the performance of the repository before relying on single branch cloning strategies._
 
 ### `git clone` With SSH
 
@@ -375,27 +351,24 @@ Depending on how you authenticate with the remote server, you may choose to clon
 
 If you choose to clone with SSH, you would use a specific SSH path for the repository instead of a URL. Typically, developers are authenticated with SSH from the machine level. This means that you would probably clone with HTTPS or with SSH - not a mix of both for your repositories.
 
-Related Terms
--------------
+## Related Terms
 
--   `git branch`: This shows the existing branches in your local repository. You can also use `git branch [branch-name]` to create a branch from your current location, or `git branch --all` to see all branches, both the local ones on your machine and the remote tracking branches stored from the last `git pull` or `git fetch` from the remote.
--   `git pull`: Updates your current local working branch with all new commits from the corresponding remote branch on GitHub. `git pull` is a combination of `git fetch` and `git merge`.
--   `git push`: Uploads all local branch commits to the remote.
--   `git remote -v`: Show the associated remote repositories and their stored name, like `origin`.
+- `git branch`: This shows the existing branches in your local repository. You can also use `git branch [branch-name]` to create a branch from your current location, or `git branch --all` to see all branches, both the local ones on your machine and the remote tracking branches stored from the last `git pull` or `git fetch` from the remote.
+- `git pull`: Updates your current local working branch with all new commits from the corresponding remote branch on GitHub. `git pull` is a combination of `git fetch` and `git merge`.
+- `git push`: Uploads all local branch commits to the remote.
+- `git remote -v`: Show the associated remote repositories and their stored name, like `origin`.
 
-------------------------------------------------------------------------
+---
 
-------------------------------------------------------------------------
+---
 
-&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt; &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt; &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
 
-------------------------------------------------------------------------
+---
 
-------------------------------------------------------------------------
+---
 
-Git Add
-=======
+# Git Add
 
 The `git add` command adds new or changed files in your working directory to the Git staging area.
 
@@ -403,34 +376,31 @@ The `git add` command adds new or changed files in your working directory to the
 
 ![image of working directory, staging area, and committed history with commands shown and visualized]()
 
-When do you use `git add`?
---------------------------
+## When do you use `git add`?
 
     git add README.md
 
-As you’re working, you change and save a file, or multiple files. Then, before you commit, you must `git add`. This step allows you to choose what you are going to commit. Commits should be logical, atomic units of change - but not everyone works that way. Maybe you are making changes to files that *aren’t* logical or atomic units of change. `git add` allows you to systematically shape your commits and your history anyway.
+As you’re working, you change and save a file, or multiple files. Then, before you commit, you must `git add`. This step allows you to choose what you are going to commit. Commits should be logical, atomic units of change - but not everyone works that way. Maybe you are making changes to files that _aren’t_ logical or atomic units of change. `git add` allows you to systematically shape your commits and your history anyway.
 
 ### What Does Git Add Do?
 
 `git add [filename]` selects that file, and moves it to the staging area, marking it for inclusion in the next commit. You can select all files, a directory, specific files, or even specific parts of a file for staging and commit.
 
-This means if you `git add` a deleted file the *deletion* is staged for commit. The language of “add” when you’re actually “deleting” can be confusing. If you think or use `git stage` in place of `git add`, the reality of what is happening may be more clear.
+This means if you `git add` a deleted file the _deletion_ is staged for commit. The language of “add” when you’re actually “deleting” can be confusing. If you think or use `git stage` in place of `git add`, the reality of what is happening may be more clear.
 
 `git add` and `git commit` go together hand in hand. They don’t work when they aren’t used together. And, they both work best when used thinking of their joint functionality.
 
-How to Use `git add`
---------------------
+## How to Use `git add`
 
 ### Common usages and options for `git add`
 
--   `git add <path>`: Stage a specific directory or file
--   `git add .`: Stage all files (that are not listed in the `.gitignore`) in the entire repository
--   `git add -p`: Interactively stage hunks of changes
+- `git add <path>`: Stage a specific directory or file
+- `git add .`: Stage all files (that are not listed in the `.gitignore`) in the entire repository
+- `git add -p`: Interactively stage hunks of changes
 
 You can see all of the many options with `git add` in [git-scm’s documentation](https://git-scm.com/docs/git-add).
 
-Examples of `git add`
----------------------
+## Examples of `git add`
 
 `git add` usually fits into the workflow in the following steps:
 
@@ -439,7 +409,7 @@ Examples of `git add`
 3.  Change a file or files
 4.  Save the file or files
 5.  Add the files or segments of code that should be included in the next commit: `git add README.md`
-6.  Commit the changes: `git commit -m "update the README to include links to contributing           guide"`
+6.  Commit the changes: `git commit -m "update the README to include links to contributing guide"`
 7.  Push the changes to the remote branch: `git push -u origin update-readme`
 
 But, `git add` could also be used like:
@@ -449,7 +419,7 @@ But, `git add` could also be used like:
 3.  Change a file or files
 4.  Save the file or files
 5.  Add only one file, or one part of the changed file: `git add README.md`
-6.  Commit the first set of changes: `git commit -m "update the README to include links to contributing           guide"`
+6.  Commit the first set of changes: `git commit -m "update the README to include links to contributing guide"`
 7.  Add another file, or another part of the changed file: `git add CONTRIBUTING.md`
 8.  Commit the second set of changes: `git commit -m "create the contributing guide"`
 9.  (Repeat as necessary)
@@ -471,9 +441,9 @@ By using an option to add all files at once, you may accidentally stage and comm
 
 If the time is right to stage all files, there are several commands that you can choose from. As always, it’s very important to know what you are staging and committing.
 
--   `git add -A`: stages all files, including new, modified, and deleted files, including files in the current directory *and* in higher directories that still belong to the same git repository
--   `git add .`: adds the entire directory recursively, including files whose names begin with a dot
--   `git add -u`: stages modified and deleted files only, NOT new files
+- `git add -A`: stages all files, including new, modified, and deleted files, including files in the current directory _and_ in higher directories that still belong to the same git repository
+- `git add .`: adds the entire directory recursively, including files whose names begin with a dot
+- `git add -u`: stages modified and deleted files only, NOT new files
 
 <table style="width:96%;"><colgroup><col style="width: 10%" /><col style="width: 7%" /><col style="width: 11%" /><col style="width: 10%" /><col style="width: 30%" /><col style="width: 14%" /><col style="width: 14%" /></colgroup><thead><tr class="header"><th></th><th>New files</th><th>Modified files</th><th>Deleted files</th><th>Files with names beginning with a dot</th><th>Current directory</th><th>Higher directories</th></tr></thead><tbody><tr class="odd"><td><code>git add -A</code></td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr><tr class="even"><td><code>git add .</code></td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>No</td></tr><tr class="odd"><td><code>git add -u</code></td><td>No</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr></tbody></table>
 
@@ -487,42 +457,38 @@ The safest and clearest way to use `git add` is by designating the specific file
 
 Before undoing a `git add`, you should first be sure that you won’t lose any work. There’s no way to “revert” an add in the same way you can revert a commit, but you can move the files out of the staging area.
 
-For example, if you have a staged file, and then you make more changes to that file in your working directory. Now, the versions in your working directory and your staging area are different. If you take action to remove the changed version of the file from the staging area, the changes that were in your working directory *but not* staged will be overwritten.
+For example, if you have a staged file, and then you make more changes to that file in your working directory. Now, the versions in your working directory and your staging area are different. If you take action to remove the changed version of the file from the staging area, the changes that were in your working directory _but not_ staged will be overwritten.
 
 To avoid this, first stage all changes, then unstage them together, or commit the changes and reset back before the commit happened.
 
 #### Using `git reset` to undo `git add`
 
-`git reset` is a flexible and powerful command. One of its many use cases is to move changes *out* of the staging area. To do this, use the “mixed” level of reset, which is the default.
+`git reset` is a flexible and powerful command. One of its many use cases is to move changes _out_ of the staging area. To do this, use the “mixed” level of reset, which is the default.
 
 To move staged changes from the staging area to the working directory without affecting committed history, first make sure that you don’t have any additional changes to the files in question as mentioned above. Then, type `git reset HEAD` (aka `git reset --mixed HEAD`).
 
-Related Terms
--------------
+## Related Terms
 
--   `git status`: Always a good idea, this command shows you what branch you’re on, what files are in the working or staging directory, and any other important information.
--   `git checkout [branch-name]`: Switches to the specified branch and updates the working directory.
--   `git commit -m "descriptive message"`: Records file snapshots permanently in version history.
--   `git push`: Uploads all local branch commits to the remote.
+- `git status`: Always a good idea, this command shows you what branch you’re on, what files are in the working or staging directory, and any other important information.
+- `git checkout [branch-name]`: Switches to the specified branch and updates the working directory.
+- `git commit -m "descriptive message"`: Records file snapshots permanently in version history.
+- `git push`: Uploads all local branch commits to the remote.
 
-------------------------------------------------------------------------
+---
 
-------------------------------------------------------------------------
+---
 
-&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt; &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt; &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
 
-------------------------------------------------------------------------
+---
 
-------------------------------------------------------------------------
+---
 
-Git Commit
-==========
+# Git Commit
 
 `git commit` creates a commit, which is like a snapshot of your repository. These commits are snapshots of your entire repository at specific times. You should make new commits often, based around logical units of change. Over time, commits should tell a story of the history of your repository and how it came to be the way that it currently is. Commits include lots of metadata in addition to the contents and message, like the author, timestamp, and more.
 
-How Git Commit Works
---------------------
+## How Git Commit Works
 
 Commits are the building blocks of “save points” within Git’s version control.
 
@@ -540,15 +506,14 @@ Commits have two phases to help you craft commits properly. Commits should be lo
 
 You can also use a handy command, `git add -p`, to walk through the changes and separate them, even if they’re in the same file.
 
-How to Use Git Commit
----------------------
+## How to Use Git Commit
 
 ### Common usages and options for Git Commit
 
--   `git commit`: This starts the commit process, but since it doesn’t include a `-m` flag for the message, your default text editor will be opened for you to create the commit message. If you haven’t configured anything, there’s a good chance this will be VI or Vim. (To get out, press Esc, then `:wq`, and then Enter. :wink:)
--   `git commit -m "descriptive commit message"`: This starts the commit process, and allows you to include the commit message at the same time.
--   `git commit -am "descriptive commit message"`: In addition to including the commit message, this option allows you to skip the staging phase. The addition of `-a` will automatically stage any files that are already being tracked by Git (changes to files that you’ve committed before).
--   `git commit --amend`: Replaces the most recent commit with a new commit. (More on this later!)
+- `git commit`: This starts the commit process, but since it doesn’t include a `-m` flag for the message, your default text editor will be opened for you to create the commit message. If you haven’t configured anything, there’s a good chance this will be VI or Vim. (To get out, press Esc, then `:wq`, and then Enter. :wink:)
+- `git commit -m "descriptive commit message"`: This starts the commit process, and allows you to include the commit message at the same time.
+- `git commit -am "descriptive commit message"`: In addition to including the commit message, this option allows you to skip the staging phase. The addition of `-a` will automatically stage any files that are already being tracked by Git (changes to files that you’ve committed before).
+- `git commit --amend`: Replaces the most recent commit with a new commit. (More on this later!)
 
 To see all of the possible options you have with `git commit`, check out [Git’s documentation](https://git-scm.com/docs/git-commit).
 
@@ -556,12 +521,12 @@ To see all of the possible options you have with `git commit`, check out [Git’
 
 Sometimes, you may need to change history. You may need to undo a commit. If you find yourself in this situation, there are a few very important things to remember:
 
--   If you are “undoing” a commit that exists on the remote, you could create big problems for your collaborators
--   Undoing a commit on work that you only have locally is much safer
+- If you are “undoing” a commit that exists on the remote, you could create big problems for your collaborators
+- Undoing a commit on work that you only have locally is much safer
 
 ### What can go wrong while changing history?
 
-Changing history for collaborators can be problematic in a few ways. Imagine - You and another collaborator have the same repository, with the same history. But, they make a change that *deletes* the most recent commit. They continue new commits from the commit directly before that. Meanwhile, you keep working *with* the commit that the collaborator tried to delete. When they push, they’ll have to ‘force push’, which should show to them that they’re changing history. **What do you think will happen when you try to push?**
+Changing history for collaborators can be problematic in a few ways. Imagine - You and another collaborator have the same repository, with the same history. But, they make a change that _deletes_ the most recent commit. They continue new commits from the commit directly before that. Meanwhile, you keep working _with_ the commit that the collaborator tried to delete. When they push, they’ll have to ‘force push’, which should show to them that they’re changing history. **What do you think will happen when you try to push?**
 
 In dramatic cases, Git may decide that the histories are too different and the projects are no longer related. This is uncommon, but a big problem.
 
@@ -575,9 +540,9 @@ The most common result is that your `git push` would return the “deleted” co
 
 Sometimes, a commit includes sensitive information that actually needs to be deleted. `git reset` is a very powerful command that may cause you to lose work. By resetting, you move the `HEAD` pointer and the branch pointer to another point in time - maybe making it seem like the commits in between never happened! Before using `git reset`:
 
--   Make sure to talk with your team about any shared commits
--   Research the three types of reset to see which is right for you (–soft, –mixed, –hard)
--   Commit any work that you don’t want to be lost intentionally - work that is committed can be gotten back, but uncommitted work cannot
+- Make sure to talk with your team about any shared commits
+- Research the three types of reset to see which is right for you (–soft, –mixed, –hard)
+- Commit any work that you don’t want to be lost intentionally - work that is committed can be gotten back, but uncommitted work cannot
 
 #### `git reflog`
 
@@ -587,60 +552,54 @@ If you’re changing history and undoing commits, you should know about `git ref
 
 While `git commit --amend` does change history, it only changes the most recent commit on your current branch. This can be an extremely useful command for commits that:
 
--   Haven’t been pushed to the remote yet
--   Have a spelling error in the commit message
--   Don’t contain the changes that you’d like to contain
+- Haven’t been pushed to the remote yet
+- Have a spelling error in the commit message
+- Don’t contain the changes that you’d like to contain
 
-Examples of Git Commit
-----------------------
+## Examples of Git Commit
 
 Once you’ve staged the files that you want to include in your commit, you’re ready. Whether you commit in a tool like GitHub Desktop, or through your command line, the commit message is important. Commit messages should be short and descriptive of your change. If you are looking through your repository’s history, you’ll be guided by the commit messages, so they should tell a story. Commits in the command line can include the message with the following format:
 
--   `git commit -m "git commit message example"`
+- `git commit -m "git commit message example"`
 
 Commit messages should be present tense and directive, like the following examples:
 
--   `git commit -m "create file structure for Git guides"`
--   `git commit -m "translate Git cheat sheet into German"`
--   `git commit -m "update broken URL to Git resources"`
+- `git commit -m "create file structure for Git guides"`
+- `git commit -m "translate Git cheat sheet into German"`
+- `git commit -m "update broken URL to Git resources"`
 
 If you’d like to include more context in your commit messages, you can also include an extended commit message.
 
-Related commands
-----------------
+## Related commands
 
--   `git add [file]`: Snapshots the file in preparation for versioning, adding it to the staging area.
--   `git status`: Always a good idea, this command shows you what branch you’re on, what files are in the working or staging directory, and any other important information.
--   `git push`: Uploads all local branch commits to the remote.
--   `git log`: Browse and inspect the evolution of project files.
+- `git add [file]`: Snapshots the file in preparation for versioning, adding it to the staging area.
+- `git status`: Always a good idea, this command shows you what branch you’re on, what files are in the working or staging directory, and any other important information.
+- `git push`: Uploads all local branch commits to the remote.
+- `git log`: Browse and inspect the evolution of project files.
 
-------------------------------------------------------------------------
+---
 
-------------------------------------------------------------------------
+---
 
-&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt; &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt; &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
 
-------------------------------------------------------------------------
+---
 
-------------------------------------------------------------------------
+---
 
-Git Push
-========
+# Git Push
 
     git push
 
 `git push` uploads all local branch commits to the corresponding remote branch.
 
-What Does `git push` Do?
-------------------------
+## What Does `git push` Do?
 
-`git push` updates the remote branch with local commits. It is one of the four commands in Git that prompts interaction with the remote repository. You can also think of `git push` as *update* or *publish*.
+`git push` updates the remote branch with local commits. It is one of the four commands in Git that prompts interaction with the remote repository. You can also think of `git push` as _update_ or _publish_.
 
 By default, `git push` only updates the corresponding branch on the remote. So, if you are checked out to the `main` branch when you execute `git push`, then only the `main` branch will be updated. It’s always a good idea to use `git status` to see what branch you are on before pushing to the remote.
 
-How to Use `git push`
----------------------
+## How to Use `git push`
 
 After you make and commit changes locally, you can share them with the remote repository using `git push`. Pushing changes to the remote makes your commits accessible to others who you may be collaborating with. This will also update any open pull requests with the branch that you’re working on.
 
@@ -648,15 +607,14 @@ As best practice, it’s important to run the `git pull` command before you push
 
 ### Common usages and options for `git push`
 
--   `git push -f`: Force a push that would otherwise be blocked, usually because it will delete or overwrite existing commits *(Use with caution!)*
--   `git push -u origin [branch]`: Useful when pushing a new branch, this creates an upstream tracking branch with a lasting relationship to your local branch
--   `git push --all`: Push all branches
--   `git push --tags`: Publish tags that aren’t yet in the remote repository
+- `git push -f`: Force a push that would otherwise be blocked, usually because it will delete or overwrite existing commits _(Use with caution!)_
+- `git push -u origin [branch]`: Useful when pushing a new branch, this creates an upstream tracking branch with a lasting relationship to your local branch
+- `git push --all`: Push all branches
+- `git push --tags`: Publish tags that aren’t yet in the remote repository
 
 You can see all of the options with `git push` in [git-scm’s documentation](https://git-scm.com/docs/git-push).
 
-Why can’t I push?
------------------
+## Why can’t I push?
 
 If you are trying to `git push` but are running into problems, there are a few common solutions.
 
@@ -672,31 +630,28 @@ Check what branch you are currently on with `git status`. If you are working on 
 #### Accidentally committed to the wrong branch
 
 1.  Checkout to the branch that you intended to commit to: `git checkout [branchname]`
-2.  Merge the commits from the branch that you *did* accidentally commit to: `git merge [main]`
+2.  Merge the commits from the branch that you _did_ accidentally commit to: `git merge [main]`
 3.  Push your changes to the remote: `git push`
-4.  Fix the other branch by checking out to that branch, finding what commit it *should* be pointed to, and using `git reset --hard` to correct the branch pointer
+4.  Fix the other branch by checking out to that branch, finding what commit it _should_ be pointed to, and using `git reset --hard` to correct the branch pointer
 
-Related Terms
--------------
+## Related Terms
 
--   `git commit -m "descriptive message"`: Records file snapshots permanently in version history.
--   `git clone [url]`: Clone (download) a repository that already exists on GitHub, including all of the files, branches, and commits.
--   `git status`: Always a good idea, this command shows you what branch you’re on, what files are in the working or staging directory, and any other important information.
--   `git pull`: Updates your current local working branch with all new commits from the corresponding remote branch on GitHub. `git pull` is a combination of `git fetch` and `git merge`.
+- `git commit -m "descriptive message"`: Records file snapshots permanently in version history.
+- `git clone [url]`: Clone (download) a repository that already exists on GitHub, including all of the files, branches, and commits.
+- `git status`: Always a good idea, this command shows you what branch you’re on, what files are in the working or staging directory, and any other important information.
+- `git pull`: Updates your current local working branch with all new commits from the corresponding remote branch on GitHub. `git pull` is a combination of `git fetch` and `git merge`.
 
-------------------------------------------------------------------------
+---
 
-------------------------------------------------------------------------
+---
 
-&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt; &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt; &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
 
-------------------------------------------------------------------------
+---
 
-------------------------------------------------------------------------
+---
 
-Git Pull
-========
+# Git Pull
 
 `git pull` updates your current local working branch and all of the remote tracking branches. It’s a good idea to run `git pull` regularly on the branches you are working on locally.
 
@@ -720,20 +675,18 @@ Another reason you may want to run `git fetch` is to update to all remote tracki
 
 If you do use `git fetch` instead of `git pull`, make sure you remember to `git merge`. Merging the remote tracking branch into your own branch ensures you will be working with any updates or changes.
 
-How to Use `git pull`
----------------------
+## How to Use `git pull`
 
 ### Common usages and options for `git pull`
 
--   `git pull`: Update your local working branch with commits from the remote, *and* update all remote tracking branches.
--   `git pull --rebase`: Update your local working branch with commits from the remote, but rewrite history so any local commits occur after all new commits coming from the remote, avoiding a merge commit.
--   `git pull --force`: This option allows you to force a fetch of a specific remote tracking branch when using the `<refspec>` option that would otherwise not be fetched due to conflicts. To force Git to overwrite your current branch to match the remote tracking branch, read below about using `git reset`.
--   `git pull --all`: Fetch *all* remotes - this is handy if you are working on a fork or in another use case with multiple remotes.
+- `git pull`: Update your local working branch with commits from the remote, _and_ update all remote tracking branches.
+- `git pull --rebase`: Update your local working branch with commits from the remote, but rewrite history so any local commits occur after all new commits coming from the remote, avoiding a merge commit.
+- `git pull --force`: This option allows you to force a fetch of a specific remote tracking branch when using the `<refspec>` option that would otherwise not be fetched due to conflicts. To force Git to overwrite your current branch to match the remote tracking branch, read below about using `git reset`.
+- `git pull --all`: Fetch _all_ remotes - this is handy if you are working on a fork or in another use case with multiple remotes.
 
 You can see all of the many options with `git pull` in [git-scm’s documentation](https://git-scm.com/docs/git-pull).
 
-Examples of `git pull`
-----------------------
+## Examples of `git pull`
 
 ### Working on a Branch
 
@@ -747,13 +700,13 @@ If this happens, use `git status` to identify what changes are causing the probl
 
 Keeping the `main` branch up to date is generally a good idea.
 
-For example, let’s say you have cloned a repository. After you clone, someone merges a branch into main. Then, you’d like to create a new branch to do some work. If you create your branch off of `main` *before* operating `git pull`, your branch will not have the most recent changes. You could accidentally introduce a conflict or duplicate changes. By running `git pull` before you create a branch, you can be sure that you will be working with the most recent information.
+For example, let’s say you have cloned a repository. After you clone, someone merges a branch into main. Then, you’d like to create a new branch to do some work. If you create your branch off of `main` _before_ operating `git pull`, your branch will not have the most recent changes. You could accidentally introduce a conflict or duplicate changes. By running `git pull` before you create a branch, you can be sure that you will be working with the most recent information.
 
 ### Undo A `git pull`
 
 To effectively “undo” a `git pull`, you cannot undo the `git fetch` - but you can undo the `git merge` that changed your local working branch.
 
-To do this, you will need to `git reset` to the commit you made *before* you merged. You can find this commit by searching the `git reflog`. The reflog is a log of every place that HEAD has pointed - every place that you have ever been checked out to. This reflog is only kept for 30 to 90 days, depending on the commit, and is only stored locally. *(The reflog is a great reason not to delete a repository if you think you’ve made a mistake!)*
+To do this, you will need to `git reset` to the commit you made _before_ you merged. You can find this commit by searching the `git reflog`. The reflog is a log of every place that HEAD has pointed - every place that you have ever been checked out to. This reflog is only kept for 30 to 90 days, depending on the commit, and is only stored locally. _(The reflog is a great reason not to delete a repository if you think you’ve made a mistake!)_
 
 Run `git reflog` and search for the commit that you would like to return to. Then, run `git reset --hard <SHA>` to reset HEAD and your current branch to the SHA of the commit from before the merge.
 
@@ -777,36 +730,32 @@ You can update your local working branch with commits from the remote, but rewri
 
 Using `git pull --rebase` does not affect the integrity of the changes or the commits, but it does affect how history looks in the commit parent/child relationship.
 
-Related Terms
--------------
+## Related Terms
 
--   `git clone [url]`: Clone (download) a repository that already exists on GitHub, including all of the files, branches, and commits.
--   `git status`: Always a good idea, this command shows you what branch you’re on, what files are in the working or staging directory, and any other important information.
--   `git branch`: This shows the existing branches in your local repository. You can also use `git branch [banch-name]` to create a branch from your current location, or `git branch --all` to see all branches, both the local ones on your machine, and the remote tracking branches stored from the last `git pull` or `git fetch` from the remote.
--   `git push`: Uploads all local branch commits to the remote.
--   `git log`: Browse and inspect the evolution of project files.
--   `git remote -v`: Show the associated remote repositories and their stored name, like `origin`.
+- `git clone [url]`: Clone (download) a repository that already exists on GitHub, including all of the files, branches, and commits.
+- `git status`: Always a good idea, this command shows you what branch you’re on, what files are in the working or staging directory, and any other important information.
+- `git branch`: This shows the existing branches in your local repository. You can also use `git branch [banch-name]` to create a branch from your current location, or `git branch --all` to see all branches, both the local ones on your machine, and the remote tracking branches stored from the last `git pull` or `git fetch` from the remote.
+- `git push`: Uploads all local branch commits to the remote.
+- `git log`: Browse and inspect the evolution of project files.
+- `git remote -v`: Show the associated remote repositories and their stored name, like `origin`.
 
-------------------------------------------------------------------------
+---
 
-------------------------------------------------------------------------
+---
 
-&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt; &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt; &lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;
 
-------------------------------------------------------------------------
+---
 
-------------------------------------------------------------------------
+---
 
-Git Remote
-==========
+# Git Remote
 
 There are some operations with `git remote`, like `git remote -v`, that you may use occasionally.
 
 But, the concept of a remote within Git is important and powers many of the other operations.
 
-What does Git remote do?
-------------------------
+## What does Git remote do?
 
     git remote -v
 
@@ -814,9 +763,9 @@ What does Git remote do?
 
 ### Common `git remote` commands
 
--   `git remote -v`: List the current remotes associated with the local repository
--   `git remote add [name] [URL]`: Add a remote
--   `git remote remove [name]`: Remove a remote
+- `git remote -v`: List the current remotes associated with the local repository
+- `git remote add [name] [URL]`: Add a remote
+- `git remote remove [name]`: Remove a remote
 
 ### What is `origin`?
 
@@ -830,24 +779,22 @@ In this case, it’s common to create and clone a fork. Then, the default remote
 
 ![](https://user-images.githubusercontent.com/9906718/77051803-28625800-69cc-11ea-9533-b5387ed2d3b5.png)
 
-Communicating with the remote
------------------------------
+## Communicating with the remote
 
 There are four commands within Git that prompt communication with the remote. Unless you are using one of these four commands, all of your work is only happening locally.
 
--   `git push`
--   `git clone`
--   `git pull`
--   `git fetch`
+- `git push`
+- `git clone`
+- `git pull`
+- `git fetch`
 
-Branches and the remote
------------------------
+## Branches and the remote
 
 The concept of branches can be confusing once it is combined with the concept of remotes. Git keeps track of the branches that you work on locally, as well as each of the branches in every remote associated with your local repo.
 
 ### Remote tracking branches
 
-If you run `git branch --all` in your repository, you will notice a long list of branches. The branches that (by default) appear in red are the *remote tracking branches*. These branches are read-only copies of the branches on the remote. These update every time you run `git fetch` or `git pull`.
+If you run `git branch --all` in your repository, you will notice a long list of branches. The branches that (by default) appear in red are the _remote tracking branches_. These branches are read-only copies of the branches on the remote. These update every time you run `git fetch` or `git pull`.
 
 These don’t take up much room, so it’s okay that Git does this by default. But, these will stack up over time - they are not deleted automatically.
 
@@ -857,7 +804,7 @@ To delete the remote tracking branches that are deleted on the remote, run `git 
 
 When you run `git branch --all`, you will also see the local working branches. These can be linked with branches on the remote, or they could exist with no remote counterpart.
 
--   `git clone [url]`: Clone (download) a repository that already exists on GitHub, including all of the files, branches, and commits.
--   `git status`: Always a good idea, this command shows you what branch you’re on, what files are in the working or staging directory, and any other important information.
--   `git push`: Uploads all local branch commits to the remote.
--   `git pull`: Updates your current local working branch with all new commits from the corresponding remote branch on GitHub. `git pull` is a combination of `git fetch` and `git merge`.
+- `git clone [url]`: Clone (download) a repository that already exists on GitHub, including all of the files, branches, and commits.
+- `git status`: Always a good idea, this command shows you what branch you’re on, what files are in the working or staging directory, and any other important information.
+- `git push`: Uploads all local branch commits to the remote.
+- `git pull`: Updates your current local working branch with all new commits from the corresponding remote branch on GitHub. `git pull` is a combination of `git fetch` and `git merge`.

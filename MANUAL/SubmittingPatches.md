@@ -1,8 +1,6 @@
-Submitting Patches
-==================
+# Submitting Patches
 
-Guidelines
-----------
+## Guidelines
 
 Here are some guidelines for people who want to contribute their code to this software. There is also a [step-by-step tutorial](MyFirstContribution.html) available which covers many of these same guidelines.
 
@@ -10,15 +8,15 @@ Here are some guidelines for people who want to contribute their code to this so
 
 In general, always base your work on the oldest branch that your change is relevant to.
 
--   A bugfix should be based on `maint` in general. If the bug is not present in `maint`, base it on `master`. For a bug that’s not yet in `master`, find the topic that introduces the regression, and base your work on the tip of the topic.
+- A bugfix should be based on `maint` in general. If the bug is not present in `maint`, base it on `master`. For a bug that’s not yet in `master`, find the topic that introduces the regression, and base your work on the tip of the topic.
 
--   A new feature should be based on `master` in general. If the new feature depends on a topic that is in `seen`, but not in `master`, base your work on the tip of that topic.
+- A new feature should be based on `master` in general. If the new feature depends on a topic that is in `seen`, but not in `master`, base your work on the tip of that topic.
 
--   Corrections and enhancements to a topic not yet in `master` should be based on the tip of that topic. If the topic has not been merged to `next`, it’s alright to add a note to squash minor corrections into the series.
+- Corrections and enhancements to a topic not yet in `master` should be based on the tip of that topic. If the topic has not been merged to `next`, it’s alright to add a note to squash minor corrections into the series.
 
--   In the exceptional case that a new feature depends on several topics not in `master`, start working on `next` or `seen` privately and send out patches for discussion. Before the final merge, you may have to wait until some of the dependent topics graduate to `master`, and rebase your work.
+- In the exceptional case that a new feature depends on several topics not in `master`, start working on `next` or `seen` privately and send out patches for discussion. Before the final merge, you may have to wait until some of the dependent topics graduate to `master`, and rebase your work.
 
--   Some parts of the system have dedicated maintainers with their own repositories (see the section "Subsystems" below). Changes to these parts should be based on their trees.
+- Some parts of the system have dedicated maintainers with their own repositories (see the section "Subsystems" below). Changes to these parts should be based on their trees.
 
 To find the tip of a topic branch, run `git log --first-parent master..seen` and look for the merge commit. The second parent of this commit is the tip of the topic branch.
 
@@ -38,7 +36,7 @@ If you have an account at GitHub (and you can get one for free to work on open s
 
 Do not forget to update the documentation to describe the updated behavior and make sure that the resulting documentation set formats well (try the Documentation/doc-diff script).
 
-We currently have a liberal mixture of US and UK English norms for spelling and grammar, which is somewhat unfortunate. A huge patch that touches the files all over the place only to correct the inconsistency is not welcome, though. Potential clashes with other changes that can result from such a patch are not worth it. We prefer to gradually reconcile the inconsistencies in favor of US English, with small and easily digestible patches, as a side effect of doing some other real work in the vicinity (e.g. rewriting a paragraph for clarity, while turning en\_UK spelling to en\_US). Obvious typographical fixes are much more welcomed ("teh → "the"), preferably submitted as independent patches separate from other documentation changes.
+We currently have a liberal mixture of US and UK English norms for spelling and grammar, which is somewhat unfortunate. A huge patch that touches the files all over the place only to correct the inconsistency is not welcome, though. Potential clashes with other changes that can result from such a patch are not worth it. We prefer to gradually reconcile the inconsistencies in favor of US English, with small and easily digestible patches, as a side effect of doing some other real work in the vicinity (e.g. rewriting a paragraph for clarity, while turning en_UK spelling to en_US). Obvious typographical fixes are much more welcomed ("teh → "the"), preferably submitted as independent patches separate from other documentation changes.
 
 Oh, another thing. We are picky about whitespaces. Make sure your changes do not trigger errors with the sample pre-commit hook shipped in `templates/hooks--pre-commit`. To help ensure this does not happen, run `git diff --check` on your changes before you commit.
 
@@ -46,9 +44,9 @@ Oh, another thing. We are picky about whitespaces. Make sure your changes do not
 
 The first line of the commit message should be a short description (50 characters is the soft limit, see DISCUSSION in [git-commit(1)](git-commit.html)), and should skip the full stop. It is also conventional in most cases to prefix the first line with "area: " where the area is a filename or identifier for the general area of the code being modified, e.g.
 
--   doc: clarify distinction between sign-off and pgp-signing
+- doc: clarify distinction between sign-off and pgp-signing
 
--   githooks.txt: improve the intro section
+- githooks.txt: improve the intro section
 
 If in doubt which identifier to use, run `git log --no-merges` on the files you are modifying to see the current conventions.
 
@@ -139,7 +137,7 @@ Developer’s Certificate of Origin 1.1
 >
 > 4.  I understand and agree that this project and the contribution are public and that a record of the contribution (including all personal information I submit with it, including my sign-off) is maintained indefinitely and may be redistributed consistent with this project or the open source license(s) involved.
 >
-you add a "Signed-off-by" trailer to your commit, that looks like this:
+> you add a "Signed-off-by" trailer to your commit, that looks like this:
 
             Signed-off-by: Random J Developer <random@developer.example.org>
 
@@ -163,27 +161,25 @@ If you like, you can put extra tags at the end:
 
 You can also create your own tag or use one that’s in common usage such as "Thanks-to:", "Based-on-patch-by:", or "Mentored-by:".
 
-Subsystems with dedicated maintainers
--------------------------------------
+## Subsystems with dedicated maintainers
 
 Some parts of the system have dedicated maintainers with their own repositories.
 
--   `git-gui/` comes from git-gui project, maintained by Pratyush Yadav:
+- `git-gui/` comes from git-gui project, maintained by Pratyush Yadav:
 
-        https://github.com/prati0100/git-gui.git
+      https://github.com/prati0100/git-gui.git
 
--   `gitk-git/` comes from Paul Mackerras’s gitk project:
+- `gitk-git/` comes from Paul Mackerras’s gitk project:
 
-        git://ozlabs.org/~paulus/gitk
+      git://ozlabs.org/~paulus/gitk
 
--   `po/` comes from the localization coordinator, Jiang Xin:
+- `po/` comes from the localization coordinator, Jiang Xin:
 
-        https://github.com/git-l10n/git-po/
+      https://github.com/git-l10n/git-po/
 
 Patches to these parts should be based on their trees.
 
-An ideal patch flow
--------------------
+## An ideal patch flow
 
 Here is an ideal patch flow for this project the current maintainer suggests to the contributors:
 
@@ -191,7 +187,7 @@ Here is an ideal patch flow for this project the current maintainer suggests to 
 
 2.  Send it to the list and cc people who may need to know about the change.
 
-    The people who may need to know are the ones whose code you are butchering. These people happen to be the ones who are most likely to be knowledgeable enough to help you, but they have no obligation to help you (i.e. you ask for help, don’t demand). `git log -p --                       $area_you_are_modifying` would help you find out who they are.
+    The people who may need to know are the ones whose code you are butchering. These people happen to be the ones who are most likely to be knowledgeable enough to help you, but they have no obligation to help you (i.e. you ask for help, don’t demand). `git log -p -- $area_you_are_modifying` would help you find out who they are.
 
 3.  You get comments and suggestions for improvements. You may even get them in an "on top of your change" patch form.
 
@@ -203,15 +199,13 @@ Here is an ideal patch flow for this project the current maintainer suggests to 
 
 In any time between the (2)-(3) cycle, the maintainer may pick it up from the list and queue it to `seen`, in order to make it easier for people play with it without having to pick up and apply the patch to their trees themselves.
 
-Know the status of your patch after submission
-----------------------------------------------
+## Know the status of your patch after submission
 
--   You can use Git itself to find out when your patch is merged in master. `git pull --rebase` will automatically skip already-applied patches, and will let you know. This works only if you rebase on top of the branch in which your patch has been merged (i.e. it will not tell you if your patch is merged in `seen` if you rebase on top of master).
+- You can use Git itself to find out when your patch is merged in master. `git pull --rebase` will automatically skip already-applied patches, and will let you know. This works only if you rebase on top of the branch in which your patch has been merged (i.e. it will not tell you if your patch is merged in `seen` if you rebase on top of master).
 
--   Read the Git mailing list, the maintainer regularly posts messages entitled "What’s cooking in git.git" and "What’s in git.git" giving the status of various proposed changes.
+- Read the Git mailing list, the maintainer regularly posts messages entitled "What’s cooking in git.git" and "What’s in git.git" giving the status of various proposed changes.
 
-GitHub-Travis CI hints
-----------------------
+## GitHub-Travis CI hints
 
 With an account at GitHub (you can get one for free to work on open source projects), you can use Travis CI to test your changes on Linux, Mac (and hopefully soon Windows). You can find a successful example test build here: <a href="https://travis-ci.org/git/git/builds/120473209" class="bare">https://travis-ci.org/git/git/builds/120473209</a>
 
@@ -229,14 +223,13 @@ Follow these steps for the initial setup:
 
 6.  Enable Travis CI builds for your Git fork.
 
-After the initial setup, Travis CI will run whenever you push new changes to your fork of Git on GitHub. You can monitor the test state of all your branches here: <a href="https://travis-ci.org/" class="bare">https://travis-ci.org/</a>*&lt;Your GitHub handle&gt;*/git/branches
+After the initial setup, Travis CI will run whenever you push new changes to your fork of Git on GitHub. You can monitor the test state of all your branches here: <a href="https://travis-ci.org/" class="bare">https://travis-ci.org/</a>_&lt;Your GitHub handle&gt;_/git/branches
 
 If a branch did not pass all test cases then it is marked with a red cross. In that case you can click on the failing Travis CI job and scroll all the way down in the log. Find the line "←- Click here to see detailed test output!" and click on the triangle next to the log line number to expand the detailed test output. Here is such a failing example: <a href="https://travis-ci.org/git/git/jobs/122676187" class="bare">https://travis-ci.org/git/git/jobs/122676187</a>
 
 Fix the problem and push your fix to your Git fork. This will trigger a new Travis CI build to ensure all tests pass.
 
-MUA specific hints
-------------------
+## MUA specific hints
 
 Some of patches I receive or pick up from the list share common patterns of breakage. Please make sure your MUA is set up properly not to corrupt whitespaces.
 
@@ -301,7 +294,7 @@ See the MUA-SPECIFIC HINTS section of [git-format-patch(1)](git-format-patch.htm
 
 "|" in the `*Summary*` buffer can be used to pipe the current message to an external program, and this is a handy way to drive `git am`. However, if the message is MIME encoded, what is piped into the program is the representation you see in your `*Article*` buffer after unwrapping MIME. This is often not what you would want for two reasons. It tends to screw up non ASCII characters (most notably in people’s names), and also whitespaces (fatal in patches). Running "C-u g" to display the message in raw form before using "|" to run the pipe can work this problem around.
 
-------------------------------------------------------------------------
+---
 
 [1](#_footnoteref_1). The Git Security mailing list: <git-security@googlegroups.com>
 

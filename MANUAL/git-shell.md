@@ -1,51 +1,44 @@
-git-shell(1) Manual Page
-========================
+# git-shell(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-shell - Restricted login shell for Git-only SSH access
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     chsh -s $(command -v git-shell) <user>
     git clone <user>@localhost:/path/to/repo.git
     ssh <user>@localhost
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 This is a login shell for SSH accounts to provide restricted Git access. It permits execution only of server-side Git commands implementing the pull/push functionality, plus custom commands present in a subdirectory named `git-shell-commands` in the user’s home directory.
 
-COMMANDS
---------
+## COMMANDS
 
-*git shell* accepts the following commands after the `-c` option:
+_git shell_ accepts the following commands after the `-c` option:
 
- *git receive-pack &lt;argument&gt;*  
-*git upload-pack &lt;argument&gt;*  
-*git upload-archive &lt;argument&gt;*   
-Call the corresponding server-side command to support the client’s *git push*, *git fetch*, or *git archive --remote* request.
+_git receive-pack &lt;argument&gt;_  
+_git upload-pack &lt;argument&gt;_  
+_git upload-archive &lt;argument&gt;_  
+Call the corresponding server-side command to support the client’s _git push_, _git fetch_, or _git archive --remote_ request.
 
-*cvs server*  
+_cvs server_  
 Imitate a CVS server. See [git-cvsserver(1)](git-cvsserver.html).
 
-If a `~/git-shell-commands` directory is present, *git shell* will also handle other, custom commands by running "`git-shell-commands/<command> <arguments>`" from the user’s home directory.
+If a `~/git-shell-commands` directory is present, _git shell_ will also handle other, custom commands by running "`git-shell-commands/<command> <arguments>`" from the user’s home directory.
 
-INTERACTIVE USE
----------------
+## INTERACTIVE USE
 
 By default, the commands above can be executed only with the `-c` option; the shell is not interactive.
 
-If a `~/git-shell-commands` directory is present, *git shell* can also be run interactively (with no arguments). If a `help` command is present in the `git-shell-commands` directory, it is run to provide the user with an overview of allowed actions. Then a "git&gt; " prompt is presented at which one can enter any of the commands from the `git-shell-commands` directory, or `exit` to close the connection.
+If a `~/git-shell-commands` directory is present, _git shell_ can also be run interactively (with no arguments). If a `help` command is present in the `git-shell-commands` directory, it is run to provide the user with an overview of allowed actions. Then a "git&gt; " prompt is presented at which one can enter any of the commands from the `git-shell-commands` directory, or `exit` to close the connection.
 
 Generally this mode is used as an administrative interface to allow users to list repositories they have access to, create, delete, or rename repositories, or change repository descriptions and permissions.
 
 If a `no-interactive-login` command exists, then it is run and the interactive shell is aborted.
 
-EXAMPLES
---------
+## EXAMPLES
 
 To disable interactive logins, displaying a greeting instead:
 
@@ -71,10 +64,8 @@ To enable git-cvsserver access (which should generally have the `no-interactive-
     EOF
     $ chmod +x $HOME/git-shell-commands/cvs
 
-SEE ALSO
---------
+## SEE ALSO
 
 ssh(1), [git-daemon(1)](git-daemon.html), contrib/git-shell-commands/README
 
-GIT
----
+## GIT

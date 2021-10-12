@@ -1,27 +1,22 @@
-gitmailmap(5) Manual Page
-=========================
+# gitmailmap(5) Manual Page
 
-NAME
-----
+## NAME
 
 gitmailmap - Map author/committer names and/or E-Mail addresses
 
-SYNOPSIS
---------
+## SYNOPSIS
 
-$GIT\_WORK\_TREE/.mailmap
+$GIT_WORK_TREE/.mailmap
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 If the file `.mailmap` exists at the toplevel of the repository, or at the location pointed to by the `mailmap.file` or `mailmap.blob` configuration options (see [git-config(1)](git-config.html)), it is used to map author and committer names and email addresses to canonical real names and email addresses.
 
-SYNTAX
-------
+## SYNTAX
 
-The *\#* character begins a comment to the end of line, blank lines are ignored.
+The _\#_ character begins a comment to the end of line, blank lines are ignored.
 
-In the simple form, each line in the file consists of the canonical real name of an author, whitespace, and an email address used in the commit (enclosed by *&lt;* and *&gt;*) to map to the name. For example:
+In the simple form, each line in the file consists of the canonical real name of an author, whitespace, and an email address used in the commit (enclosed by _&lt;_ and _&gt;_) to map to the name. For example:
 
     Proper Name <commit@email.xx>
 
@@ -39,12 +34,11 @@ which allows mailmap to replace both the name and the email of a commit matching
 
 which allows mailmap to replace both the name and the email of a commit matching both the specified commit name and email address.
 
-Both E-Mails and names are matched case-insensitively. For example this would also match the *Commit Name &lt;commit@email.xx&gt;* above:
+Both E-Mails and names are matched case-insensitively. For example this would also match the _Commit Name &lt;commit@email.xx&gt;_ above:
 
     Proper Name <proper@email.xx> CoMmIt NaMe <CoMmIt@EmAiL.xX>
 
-EXAMPLES
---------
+## EXAMPLES
 
 Your history contains commits by two authors, Jane and Joe, whose names appear in the repository under several forms:
 
@@ -60,7 +54,7 @@ Now suppose that Joe wants his middle name initial used, and Jane prefers her fa
     Jane Doe <jane@example.com>
     Jane Doe <jane@desktop.(none)>
 
-Note that there’s no need to map the name for *&lt;jane@laptop.(none)&gt;* to only correct the names. However, leaving the obviously broken *&lt;jane@laptop.(none)&gt;* and *&lt;jane@desktop.(none)&gt;* E-Mails as-is is usually not what you want. A `.mailmap` file which also corrects those is:
+Note that there’s no need to map the name for _&lt;jane@laptop.(none)&gt;_ to only correct the names. However, leaving the obviously broken _&lt;jane@laptop.(none)&gt;_ and _&lt;jane@desktop.(none)&gt;_ E-Mails as-is is usually not what you want. A `.mailmap` file which also corrects those is:
 
     Joe R. Developer <joe@example.com>
     Jane Doe <jane@example.com> <jane@laptop.(none)>
@@ -79,13 +73,11 @@ A full `.mailmap` file which also handles those cases (an addition of two lines 
     Joe R. Developer <joe@example.com> Joe <bugs@example.com>
     Jane Doe <jane@example.com> Jane <bugs@example.com>
 
-SEE ALSO
---------
+## SEE ALSO
 
 [git-check-mailmap(1)](git-check-mailmap.html)
 
-GIT
----
+## GIT
 
 Part of the [git(1)](git.html) suite
 

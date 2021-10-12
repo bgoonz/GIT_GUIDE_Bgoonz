@@ -1,16 +1,13 @@
-Fighting regressions with git bisect
-====================================
+# Fighting regressions with git bisect
 
 <span id="author" class="author">Christian Couder</span>  
-<span id="email" class="email"><chriscool@tuxfamily.org></span>  
+<span id="email" class="email"><chriscool@tuxfamily.org></span>
 
-Abstract
---------
+## Abstract
 
 "git bisect" enables software users and developers to easily find the commit that introduced a regression. We show why it is important to have good tools to fight regressions. We describe how "git bisect" works from the outside and the algorithms it uses inside. Then we explain how to take advantage of "git bisect" to improve current practices. And we discuss how "git bisect" could improve in the future.
 
-Introduction to "git bisect"
-----------------------------
+## Introduction to "git bisect"
 
 Git is a Distributed Version Control system (DVCS) created by Linus Torvalds and maintained by Junio Hamano.
 
@@ -22,8 +19,7 @@ So to help people find commits that introduce a "bad" behavior, the "git bisect"
 
 So "git bisect" is designed to help find a "first bad commit". And to be as efficient as possible, it tries to perform a binary search.
 
-Fighting regressions overview
------------------------------
+## Fighting regressions overview
 
 ### Regressions: a big problem
 
@@ -77,8 +73,7 @@ So very soon it will not be possible to completely test everything.
 
 And if some bugs slip through your test suite, then you can add a test to your test suite. But if you want to use your new improved test suite to find where the bug slipped in, then you will either have to emulate a bisection process or you will perhaps bluntly test each commit backward starting from the "bad" commit you have which may be very wasteful.
 
-"git bisect" overview
----------------------
+## "git bisect" overview
 
 ### Starting a bisection
 
@@ -189,7 +184,7 @@ The other way to drive the bisection process is to tell "git bisect" to launch a
     :100644 100644 5cf82581... 4492984e... M      Makefile
     bisect run success
 
-In this example, we passed "grep *^SUBLEVEL = 25* Makefile" as parameter to "git bisect run". This means that at each step, the grep command we passed will be launched. And if it exits with code 0 (that means success) then git bisect will mark the current state as "good". If it exits with code 1 (or any code between 1 and 127 included, except the special code 125), then the current state will be marked as "bad".
+In this example, we passed "grep _^SUBLEVEL = 25_ Makefile" as parameter to "git bisect run". This means that at each step, the grep command we passed will be launched. And if it exits with code 0 (that means success) then git bisect will mark the current state as "good". If it exits with code 1 (or any code between 1 and 127 included, except the special code 125), then the current state will be marked as "bad".
 
 Exit code between 128 and 255 are special to "git bisect run". They make it stop immediately the bisection process. This is useful for example if the command passed takes too long to complete, because you can kill it with a signal and it will stop the bisection process.
 
@@ -225,8 +220,7 @@ And it is possible to replay it using:
 
     $ git bisect replay bisect_log.txt
 
-"git bisect" details
---------------------
+## "git bisect" details
 
 ### Bisection algorithm
 
@@ -234,7 +228,7 @@ As the Git commits form a directed acyclic graph (DAG), finding the best bisecti
 
 So the algorithm used by "git bisect" to find the best bisection commit when there are no skipped commits is the following:
 
-1) keep only the commits that:
+1. keep only the commits that:
 
 a) are ancestor of the "bad" commit (including the "bad" commit itself), b) are not ancestor of a "good" commit (excluding the "good" commits).
 
@@ -272,7 +266,7 @@ Also note that we don’t require the commits that are kept to be descendants of
        /
     Z-Z
 
-2) starting from the "good" ends of the graph, associate to each commit the number of ancestors it has plus one
+2. starting from the "good" ends of the graph, associate to each commit the number of ancestors it has plus one
 
 For example with the following graph where H is the "bad" commit and A and D are some parents of some "good" commits:
 
@@ -291,7 +285,7 @@ this will give:
     1   2/
     D---E
 
-3) associate to each commit: min(X, N - X)
+3. associate to each commit: min(X, N - X)
 
 where X is the value associated to the commit in step 2) and N is the total number of commits in the graph.
 
@@ -304,11 +298,11 @@ In the above example we have N = 8, so this will give:
     1   2/
     D---E
 
-4) the best bisection point is the commit with the highest associated number
+4. the best bisection point is the commit with the highest associated number
 
 So in the above example the best bisection point is commit C.
 
-5) note that some shortcuts are implemented to speed up the algorithm
+5. note that some shortcuts are implemented to speed up the algorithm
 
 As we know N from the beginning, we know that min(X, N - X) can’t be greater than N/2. So during steps 2) and 3), if we would associate N/2 to a commit, then we know this is the best bisection point. So in this case we can just stop processing any other commit and return the current commit.
 
@@ -339,7 +333,7 @@ This means that the best bisection commits are the commits where the following f
 
     f(X) = min(information_if_good(X), information_if_bad(X))
 
-where information\_if\_good(X) is the information we get if X is good and information\_if\_bad(X) is the information we get if X is bad.
+where information_if_good(X) is the information we get if X is good and information_if_bad(X) is the information we get if X is bad.
 
 Now we will suppose that there is only one "first bad commit". This means that all its descendants are "bad" and all the other commits are "good". And we will suppose that all commits have an equal probability of being good or bad, or of being the first bad commit, so knowing the state of c commits gives always the same amount of information wherever these c commits are on the graph and whatever c is. (So we suppose that these commits being for example on a branch or near a good or a bad commit does not give more or less information).
 
@@ -369,7 +363,7 @@ So in the end this means that to find the best bisection commits we should maxim
 
     f(X) = min(number_of_ancestors(X), N - number_of_ancestors(X))
 
-And this is nice because at step 2) we compute number\_of\_ancestors(X) and so at step 3) we compute f(X).
+And this is nice because at step 2) we compute number_of_ancestors(X) and so at step 3) we compute f(X).
 
 Let’s take the following graph as an example:
 
@@ -411,19 +405,19 @@ So the current algorithm seems to be the best possible given what we initially s
 
 When some commits have been skipped (using "git bisect skip"), then the bisection algorithm is the same for step 1) to 3). But then we use roughly the following steps:
 
-6) sort the commit by decreasing associated value
+6. sort the commit by decreasing associated value
 
-7) if the first commit has not been skipped, we can return it and stop here
+7. if the first commit has not been skipped, we can return it and stop here
 
-8) otherwise filter out all the skipped commits in the sorted list
+8. otherwise filter out all the skipped commits in the sorted list
 
-9) use a pseudo random number generator (PRNG) to generate a random number between 0 and 1
+9. use a pseudo random number generator (PRNG) to generate a random number between 0 and 1
 
-10) multiply this random number with its square root to bias it toward 0
+10. multiply this random number with its square root to bias it toward 0
 
-11) multiply the result by the number of commits in the filtered list to get an index into this list
+11. multiply the result by the number of commits in the filtered list to get an index into this list
 
-12) return the commit at the computed index
+12. return the commit at the computed index
 
 ### Skip algorithm discussed
 
@@ -498,8 +492,7 @@ where BBBBBB is the sha1 hash of the bad commit, MMMMMM is the sha1 hash of the 
 
 So if there is no bad merge base, the bisection process continues as usual after this step.
 
-Best bisecting practices
-------------------------
+## Best bisecting practices
 
 ### Using test suites and git bisect together
 
@@ -604,13 +597,13 @@ A special work-flow to process regressions can give great results.
 
 Here is an example of a work-flow used by Andreas Ericsson:
 
--   write, in the test suite, a test script that exposes the regression
+- write, in the test suite, a test script that exposes the regression
 
--   use "git bisect run" to find the commit that introduced it
+- use "git bisect run" to find the commit that introduced it
 
--   fix the bug that is often made obvious by the previous step
+- fix the bug that is often made obvious by the previous step
 
--   commit both the fix and the test script (and if needed more tests)
+- commit both the fix and the test script (and if needed more tests)
 
 And here is what Andreas said about this work-flow [\[5\]](#5):
 
@@ -652,8 +645,7 @@ We have seen that test suites and git bisect are very powerful when used togethe
 
 For example some test suites could be run automatically at night with some unusual (or even random) configurations. And if a regression is found by a test suite, then "git bisect" can be automatically launched, and its result can be emailed to the author of the first bad commit found by "git bisect", and perhaps other people too. And a new entry in the bug tracking system could be automatically created too.
 
-The future of bisecting
------------------------
+## The future of bisecting
 
 ### "git replace"
 
@@ -725,33 +717,31 @@ The idea is that every 3 test for example, "git bisect" could ask the user to te
 
 There is already a project called BBChop created by Ealdwulf Wuffinga on Github that does something like that using Bayesian Search Theory [\[9\]](#9):
 
-> BBChop is like *git bisect* (or equivalent), but works when your bug is intermittent. That is, it works in the presence of false negatives (when a version happens to work this time even though it contains the bug). It assumes that there are no false positives (in principle, the same approach would work, but adding it may be non-trivial).
+> BBChop is like _git bisect_ (or equivalent), but works when your bug is intermittent. That is, it works in the presence of false negatives (when a version happens to work this time even though it contains the bug). It assumes that there are no false positives (in principle, the same approach would work, but adding it may be non-trivial).
 
 But BBChop is independent of any VCS and it would be easier for Git users to have something integrated in Git.
 
-Conclusion
-----------
+## Conclusion
 
 We have seen that regressions are an important problem, and that "git bisect" has nice features that complement very well practices and other tools, especially test suites, that are generally used to fight regressions. But it might be needed to change some work-flows and (bad) habits to get the most out of it.
 
 Some improvements to the algorithms inside "git bisect" are possible and some new features could help in some cases, but overall "git bisect" works already very well, is used a lot, and is already very useful. To back up that last claim, let’s give the final word to Ingo Molnar when he was asked by the author how much time does he think "git bisect" saves him when he uses it:
 
-> a *lot*.
+> a _lot_.
 >
-> About ten years ago did i do my first *bisection* of a Linux patch queue. That was prior the Git (and even prior the BitKeeper) days. I literally days spent sorting out patches, creating what in essence were standalone commits that i guessed to be related to that bug.
+> About ten years ago did i do my first _bisection_ of a Linux patch queue. That was prior the Git (and even prior the BitKeeper) days. I literally days spent sorting out patches, creating what in essence were standalone commits that i guessed to be related to that bug.
 >
-> It was a tool of absolute last resort. I’d rather spend days looking at printk output than do a manual *patch bisection*.
+> It was a tool of absolute last resort. I’d rather spend days looking at printk output than do a manual _patch bisection_.
 >
 > With Git bisect it’s a breeze: in the best case i can get a ~15 step kernel bisection done in 20-30 minutes, in an automated way. Even with manual help or when bisecting multiple, overlapping bugs, it’s rarely more than an hour.
 >
-> In fact it’s invaluable because there are bugs i would never even *try* to debug if it wasn’t for git bisect. In the past there were bug patterns that were immediately hopeless for me to debug - at best i could send the crash/bug signature to lkml and hope that someone else can think of something.
+> In fact it’s invaluable because there are bugs i would never even _try_ to debug if it wasn’t for git bisect. In the past there were bug patterns that were immediately hopeless for me to debug - at best i could send the crash/bug signature to lkml and hope that someone else can think of something.
 >
 > And even if a bisection fails today it tells us something valuable about the bug: that it’s non-deterministic - timing or kernel image layout dependent.
 >
 > So git bisect is unconditional goodness - and feel free to quote that ;-)
 
-Acknowledgments
----------------
+## Acknowledgments
 
 Many thanks to Junio Hamano for his help in reviewing this paper, for reviewing the patches I sent to the Git mailing list, for discussing some ideas and helping me improve them, for improving "git bisect" a lot and for his awesome work in maintaining and developing Git.
 
@@ -763,23 +753,22 @@ Many thanks to the many other great people who helped one way or another when I 
 
 Many thanks to the Linux-Kongress program committee for choosing the author to given a talk and for publishing this paper.
 
-References
-----------
+## References
 
--   \[\[\[1\]\]\] [*The Economic Impacts of Inadequate Infratructure for Software Testing*. Nist Planning Report 02-3](https://www.nist.gov/sites/default/files/documents/director/planning/report02-3.pdf), see Executive Summary and Chapter 8.
+- \[\[\[1\]\]\] [_The Economic Impacts of Inadequate Infratructure for Software Testing_. Nist Planning Report 02-3](https://www.nist.gov/sites/default/files/documents/director/planning/report02-3.pdf), see Executive Summary and Chapter 8.
 
--   \[\[\[2\]\]\] [*Code Conventions for the Java Programming Language*. Sun Microsystems.](http://www.oracle.com/technetwork/java/codeconvtoc-136057.html)
+- \[\[\[2\]\]\] [_Code Conventions for the Java Programming Language_. Sun Microsystems.](http://www.oracle.com/technetwork/java/codeconvtoc-136057.html)
 
--   \[\[\[3\]\]\] [*Software maintenance*. Wikipedia.](https://en.wikipedia.org/wiki/Software_maintenance)
+- \[\[\[3\]\]\] [_Software maintenance_. Wikipedia.](https://en.wikipedia.org/wiki/Software_maintenance)
 
--   \[\[\[4\]\]\] [Junio C Hamano. *Automated bisect success story*.](https://lore.kernel.org/git/7vps5xsbwp.fsf_-_@assigned-by-dhcp.cox.net/)
+- \[\[\[4\]\]\] [Junio C Hamano. _Automated bisect success story_.](https://lore.kernel.org/git/7vps5xsbwp.fsf_-_@assigned-by-dhcp.cox.net/)
 
--   \[\[\[5\]\]\] [Christian Couder. *Fully automated bisecting with "git bisect run"*. LWN.net.](https://lwn.net/Articles/317154/)
+- \[\[\[5\]\]\] [Christian Couder. _Fully automated bisecting with "git bisect run"_. LWN.net.](https://lwn.net/Articles/317154/)
 
--   \[\[\[6\]\]\] [Jonathan Corbet. *Bisection divides users and developers*. LWN.net.](https://lwn.net/Articles/277872/)
+- \[\[\[6\]\]\] [Jonathan Corbet. _Bisection divides users and developers_. LWN.net.](https://lwn.net/Articles/277872/)
 
--   \[\[\[7\]\]\] [Ingo Molnar. *Re: BUG 2.6.23-rc3 can’t see sd partitions on Alpha*. Linux-kernel mailing list.](https://lore.kernel.org/lkml/20071207113734.GA14598@elte.hu/)
+- \[\[\[7\]\]\] [Ingo Molnar. _Re: BUG 2.6.23-rc3 can’t see sd partitions on Alpha_. Linux-kernel mailing list.](https://lore.kernel.org/lkml/20071207113734.GA14598@elte.hu/)
 
--   \[\[\[8\]\]\] [Junio C Hamano and the git-list. *git-bisect(1) Manual Page*. Linux Kernel Archives.](https://www.kernel.org/pub/software/scm/git/docs/git-bisect.html)
+- \[\[\[8\]\]\] [Junio C Hamano and the git-list. _git-bisect(1) Manual Page_. Linux Kernel Archives.](https://www.kernel.org/pub/software/scm/git/docs/git-bisect.html)
 
--   \[\[\[9\]\]\] [Ealdwulf. *bbchop*. GitHub.](https://github.com/Ealdwulf/bbchop)
+- \[\[\[9\]\]\] [Ealdwulf. _bbchop_. GitHub.](https://github.com/Ealdwulf/bbchop)

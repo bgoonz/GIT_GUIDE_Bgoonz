@@ -1,8 +1,6 @@
-My First Object Walk
-====================
+# My First Object Walk
 
-What’s an Object Walk?
-----------------------
+## What’s an Object Walk?
 
 The object walk is a key concept in Git - this is the process that underpins operations like object transfer and fsck. Beginning from a given commit, the list of objects is found by walking parent relationships between commits (commit X based on commit W) and containment relationships between objects (tree Y is contained within commit X, and blob Z is located within tree Y, giving our working tree for commit X something like `y/z.txt`).
 
@@ -10,14 +8,13 @@ A related concept is the revision walk, which is focused on commit objects and t
 
 ### Related Reading
 
--   `Documentation/user-manual.txt` under "Hacking Git" contains some coverage of the revision walker in its various incarnations.
+- `Documentation/user-manual.txt` under "Hacking Git" contains some coverage of the revision walker in its various incarnations.
 
--   `revision.h`
+- `revision.h`
 
--   [Git for Computer Scientists](https://eagain.net/articles/git-for-computer-scientists/) gives a good overview of the types of objects in Git and what your object walk is really describing.
+- [Git for Computer Scientists](https://eagain.net/articles/git-for-computer-scientists/) gives a good overview of the types of objects in Git and what your object walk is really describing.
 
-Setting Up
-----------
+## Setting Up
 
 Create a new branch from `master`.
 
@@ -104,8 +101,7 @@ Per entry, we find:
 
 This one is quite a bit longer, and many fields are only used during the walk by `revision.c` - not configuration options. Most of the configurable flags in `struct rev_info` have a mirror in `Documentation/rev-list-options.txt`. It’s a good idea to take some time and read through that document.
 
-Basic Commit Walk
------------------
+## Basic Commit Walk
 
 First, let’s see if we can replicate the output of `git log --oneline`. We’ll refer back to the implementation frequently to discover norms when performing an object walk of our own.
 
@@ -349,24 +345,23 @@ Let’s try one more reordering of commits. `rev_info` exposes a `reverse` flag.
 
 Run your walk again and note the difference in order. (If you remove the grep pattern, you should see the last commit this call gives you as your current HEAD.)
 
-Basic Object Walk
------------------
+## Basic Object Walk
 
-So far we’ve been walking only commits. But Git has more types of objects than that! Let’s see if we can walk *all* objects, and find out some information about each one.
+So far we’ve been walking only commits. But Git has more types of objects than that! Let’s see if we can walk _all_ objects, and find out some information about each one.
 
 We can base our work on an example. `git pack-objects` prepares all kinds of objects for packing into a bitmap or packfile. The work we are interested in resides in `builtins/pack-objects.c:get_object_list()`; examination of that function shows that the all-object walk is being performed by `traverse_commit_list()` or `traverse_commit_list_filtered()`. Those two functions reside in `list-objects.c`; examining the source shows that, despite the name, these functions traverse all kinds of objects. Let’s have a look at the arguments to `traverse_commit_list_filtered()`, which are a superset of the arguments to the unfiltered version.
 
--   `struct list_objects_filter_options *filter_options`: This is a struct which stores a filter-spec as outlined in `Documentation/rev-list-options.txt`.
+- `struct list_objects_filter_options *filter_options`: This is a struct which stores a filter-spec as outlined in `Documentation/rev-list-options.txt`.
 
--   `struct rev_info *revs`: This is the `rev_info` used for the walk.
+- `struct rev_info *revs`: This is the `rev_info` used for the walk.
 
--   `show_commit_fn show_commit`: A callback which will be used to handle each individual commit object.
+- `show_commit_fn show_commit`: A callback which will be used to handle each individual commit object.
 
--   `show_object_fn show_object`: A callback which will be used to handle each non-commit object (so each blob, tree, or tag).
+- `show_object_fn show_object`: A callback which will be used to handle each non-commit object (so each blob, tree, or tag).
 
--   `void *show_data`: A context buffer which is passed in turn to `show_commit` and `show_object`.
+- `void *show_data`: A context buffer which is passed in turn to `show_commit` and `show_object`.
 
--   `struct oidset *omitted`: A linked-list of object IDs which the provided filter caused to be omitted.
+- `struct oidset *omitted`: A linked-list of object IDs which the provided filter caused to be omitted.
 
 It looks like this `traverse_commit_list_filtered()` uses callbacks we provide instead of needing us to call it repeatedly ourselves. Cool! Let’s add the callbacks first.
 
@@ -493,7 +488,7 @@ For now, we are not going to track the omitted objects, so we’ll replace those
 
 `struct list_objects_filter_options` is usually built directly from a command line argument, so the module provides an easy way to build one from a string. Even though we aren’t taking user input right now, we can still build one with a hardcoded string using `parse_list_objects_filter()`.
 
-With the filter spec "tree:1", we are expecting to see *only* the root tree for each commit; therefore, the tree object count should be less than or equal to the number of commits. (For an example of why that’s true: `git commit --revert` points to the same tree object as its grandparent.)
+With the filter spec "tree:1", we are expecting to see _only_ the root tree for each commit; therefore, the tree object count should be less than or equal to the number of commits. (For an example of why that’s true: `git commit --revert` points to the same tree object as its grandparent.)
 
 ### Counting Omitted Objects
 
@@ -580,19 +575,18 @@ Now, run again, but this time, let’s grab the last handful of objects instead 
 
 The last commit object given should have the same OID as the one we saw at the top before, and running `git show <oid>` with that OID should give you again the same results as `git show HEAD`. Furthermore, if you run and examine the first ten lines again (with `head` instead of `tail` like we did before applying the `reverse` setting), you should see that now the first commit printed is the initial commit, `e83c5163`.
 
-Wrapping Up
------------
+## Wrapping Up
 
 Let’s review. In this tutorial, we:
 
--   Built a commit walk from the ground up
+- Built a commit walk from the ground up
 
--   Enabled a grep filter for that commit walk
+- Enabled a grep filter for that commit walk
 
--   Changed the sort order of that filtered commit walk
+- Changed the sort order of that filtered commit walk
 
--   Built an object walk (tags, commits, trees, and blobs) from the ground up
+- Built an object walk (tags, commits, trees, and blobs) from the ground up
 
--   Learned how to add a filter-spec to an object walk
+- Learned how to add a filter-spec to an object walk
 
--   Changed the display order of the filtered object walk
+- Changed the display order of the filtered object walk

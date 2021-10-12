@@ -1,21 +1,17 @@
-git-show-ref(1) Manual Page
-===========================
+# git-show-ref(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-show-ref - List references in a local repository
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git show-ref [-q|--quiet] [--verify] [--head] [-d|--dereference]
                  [-s|--hash[=<n>]] [--abbrev[=<n>]] [--tags]
                  [--heads] [--] [<pattern>…​]
     git show-ref --exclude-existing[=<pattern>]
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 Displays references available in a local repository along with the associated commit IDs. Results can be filtered using a pattern and tags can be dereferenced into object IDs. Additionally, it can be used to test whether a particular ref exists.
 
@@ -25,8 +21,7 @@ The --exclude-existing form is a filter that does the inverse. It reads refs fro
 
 Use of this utility is encouraged in favor of directly accessing files under the `.git` directory.
 
-OPTIONS
--------
+## OPTIONS
 
 --head  
 Show the HEAD reference, even if it would normally be filtered out.
@@ -54,15 +49,14 @@ Abbreviate the object name. When using `--hash`, you do not have to say `--hash 
 Do not print any results to stdout. When combined with `--verify` this can be used to silently check if a reference exists.
 
 --exclude-existing\[=&lt;pattern&gt;\]  
-Make *git show-ref* act as a filter that reads refs from stdin of the form "`^(?:<anything>\s)?<refname>(?:\^{})?$`" and performs the following actions on each: (1) strip "^{}" at the end of line if any; (2) ignore if pattern is provided and does not head-match refname; (3) warn if refname is not a well-formed refname and skip; (4) ignore if refname is a ref that exists in the local repository; (5) otherwise output the line.
+Make _git show-ref_ act as a filter that reads refs from stdin of the form "`^(?:<anything>\s)?<refname>(?:\^{})?$`" and performs the following actions on each: (1) strip "^{}" at the end of line if any; (2) ignore if pattern is provided and does not head-match refname; (3) warn if refname is not a well-formed refname and skip; (4) ignore if refname is a ref that exists in the local repository; (5) otherwise output the line.
 
 &lt;pattern&gt;…​  
-Show references matching one or more patterns. Patterns are matched from the end of the full name, and only complete parts are matched, e.g. *master* matches *refs/heads/master*, *refs/remotes/origin/master*, *refs/tags/jedi/master* but not *refs/heads/mymaster* or *refs/remotes/master/jedi*.
+Show references matching one or more patterns. Patterns are matched from the end of the full name, and only complete parts are matched, e.g. _master_ matches _refs/heads/master_, _refs/remotes/origin/master_, _refs/tags/jedi/master_ but not _refs/heads/mymaster_ or _refs/remotes/master/jedi_.
 
-OUTPUT
-------
+## OUTPUT
 
-The output is in the format: *&lt;SHA-1 ID&gt;* *&lt;space&gt;* *&lt;reference name&gt;*.
+The output is in the format: _&lt;SHA-1 ID&gt;_ _&lt;space&gt;_ _&lt;reference name&gt;_.
 
     $ git show-ref --head --dereference
     832e76a9899f560a90ffd62ae2ce83bbeff58f54 HEAD
@@ -74,7 +68,7 @@ The output is in the format: *&lt;SHA-1 ID&gt;* *&lt;space&gt;* *&lt;reference n
     423325a2d24638ddcc82ce47be5e40be550f4507 refs/tags/v1.0rc4^{}
     ...
 
-When using --hash (and not --dereference) the output format is: *&lt;SHA-1 ID&gt;*
+When using --hash (and not --dereference) the output format is: _&lt;SHA-1 ID&gt;_
 
     $ git show-ref --heads --hash
     2e3ba0114a1f52b47df29743d6915d056be13278
@@ -82,8 +76,7 @@ When using --hash (and not --dereference) the output format is: *&lt;SHA-1 ID&gt
     03adf42c988195b50e1a1935ba5fcbc39b2b029b
     ...
 
-EXAMPLES
---------
+## EXAMPLES
 
 To show all references called "master", whether tags or heads or anything else, and regardless of how deep in the reference naming hierarchy they are, use:
 
@@ -97,7 +90,7 @@ When using the `--verify` flag, the command requires an exact path:
 
 will only match the exact branch called "master".
 
-If nothing matches, *git show-ref* will return an error code of 1, and in the case of verification, it will show an error message.
+If nothing matches, _git show-ref_ will return an error code of 1, and in the case of verification, it will show an error message.
 
 For scripting, you can ask it to be quiet with the "--quiet" flag, which allows you to do things like
 
@@ -114,15 +107,12 @@ To do automatic tag object dereferencing, use the "-d" or "--dereference" flag, 
 
 to get a listing of all tags together with what they dereference.
 
-FILES
------
+## FILES
 
 `.git/refs/*`, `.git/packed-refs`
 
-SEE ALSO
---------
+## SEE ALSO
 
 [git-for-each-ref(1)](git-for-each-ref.html), [git-ls-remote(1)](git-ls-remote.html), [git-update-ref(1)](git-update-ref.html), [gitrepository-layout(5)](gitrepository-layout.html)
 
-GIT
----
+## GIT

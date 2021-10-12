@@ -1,51 +1,45 @@
-git-stripspace(1) Manual Page
-=============================
+# git-stripspace(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-stripspace - Remove unnecessary whitespace
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git stripspace [-s | --strip-comments]
     git stripspace [-c | --comment-lines]
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 Read text, such as commit messages, notes, tags and branch descriptions, from the standard input and clean it in the manner used by Git.
 
 With no arguments, this will:
 
--   remove trailing whitespace from all lines
+- remove trailing whitespace from all lines
 
--   collapse multiple consecutive empty lines into one empty line
+- collapse multiple consecutive empty lines into one empty line
 
--   remove empty lines from the beginning and end of the input
+- remove empty lines from the beginning and end of the input
 
--   add a missing *\\n* to the last line if necessary.
+- add a missing _\\n_ to the last line if necessary.
 
 In the case where the input consists entirely of whitespace characters, no output will be produced.
 
 **NOTE**: This is intended for cleaning metadata, prefer the `--whitespace=fix` mode of [git-apply(1)](git-apply.html) for correcting whitespace of patches or files in the repository.
 
-OPTIONS
--------
+## OPTIONS
 
 -s  
 --strip-comments  
-Skip and remove all lines starting with comment character (default *\#*).
+Skip and remove all lines starting with comment character (default _\#_).
 
 -c  
 --comment-lines  
 Prepend comment character and blank to each line. Lines will automatically be terminated with a newline. On empty lines, only the comment character will be prepended.
 
-EXAMPLES
---------
+## EXAMPLES
 
-Given the following noisy input with *$* indicating the end of a line:
+Given the following noisy input with _$_ indicating the end of a line:
 
     |A brief introduction   $
     |   $
@@ -59,7 +53,7 @@ Given the following noisy input with *$* indicating the end of a line:
     |The end.$
     |  $
 
-Use *git stripspace* with no arguments to obtain:
+Use _git stripspace_ with no arguments to obtain:
 
     |A brief introduction$
     |$
@@ -71,7 +65,7 @@ Use *git stripspace* with no arguments to obtain:
     |$
     |The end.$
 
-Use *git stripspace --strip-comments* to obtain:
+Use _git stripspace --strip-comments_ to obtain:
 
     |A brief introduction$
     |$
@@ -80,5 +74,4 @@ Use *git stripspace --strip-comments* to obtain:
     |$
     |The end.$
 
-GIT
----
+## GIT

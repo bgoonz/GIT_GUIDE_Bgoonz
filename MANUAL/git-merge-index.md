@@ -1,23 +1,18 @@
-git-merge-index(1) Manual Page
-==============================
+# git-merge-index(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-merge-index - Run a merge for files needing merging
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git merge-index [-o] [-q] <merge-program> (-a | [--] <file>*)
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 This looks up the &lt;file&gt;(s) in the index and, if there are any merge entries, passes the SHA-1 hash for those files as arguments 1, 2, 3 (empty argument if no file), and &lt;file&gt; as argument 4. File modes for the three files are passed as arguments 5, 6 and 7.
 
-OPTIONS
--------
+## OPTIONS
 
 --  
 Do not interpret any more arguments as options.
@@ -31,13 +26,13 @@ Instead of stopping at the first failed merge, do all of them in one shot - cont
 -q  
 Do not complain about a failed merge program (a merge program failure usually indicates conflicts during the merge). This is for porcelains which might want to emit custom messages.
 
-If *git merge-index* is called with multiple &lt;file&gt;s (or -a) then it processes them in turn only stopping if merge returns a non-zero exit code.
+If _git merge-index_ is called with multiple &lt;file&gt;s (or -a) then it processes them in turn only stopping if merge returns a non-zero exit code.
 
-Typically this is run with a script calling Git’s imitation of the *merge* command from the RCS package.
+Typically this is run with a script calling Git’s imitation of the _merge_ command from the RCS package.
 
-A sample script called *git merge-one-file* is included in the distribution.
+A sample script called _git merge-one-file_ is included in the distribution.
 
-ALERT ALERT ALERT! The Git "merge object order" is different from the RCS *merge* program merge object order. In the above ordering, the original is first. But the argument order to the 3-way merge program *merge* is to have the original in the middle. Don’t ask me why.
+ALERT ALERT ALERT! The Git "merge object order" is different from the RCS _merge_ program merge object order. In the above ordering, the original is first. But the argument order to the 3-way merge program _merge_ is to have the original in the middle. Don’t ask me why.
 
 Examples:
 
@@ -56,10 +51,9 @@ or
     This is added AA in the branch B.
     fatal: merge program failed
 
-where the latter example shows how *git merge-index* will stop trying to merge once anything has returned an error (i.e., `cat` returned an error for the AA file, because it didn’t exist in the original, and thus *git merge-index* didn’t even try to merge the MM thing).
+where the latter example shows how _git merge-index_ will stop trying to merge once anything has returned an error (i.e., `cat` returned an error for the AA file, because it didn’t exist in the original, and thus _git merge-index_ didn’t even try to merge the MM thing).
 
-GIT
----
+## GIT
 
 Part of the [git(1)](git.html) suite
 

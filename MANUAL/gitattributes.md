@@ -1,18 +1,14 @@
-gitattributes(5) Manual Page
-============================
+# gitattributes(5) Manual Page
 
-NAME
-----
+## NAME
 
 gitattributes - Defining attributes per path
 
-SYNOPSIS
---------
+## SYNOPSIS
 
-$GIT\_DIR/info/attributes, .gitattributes
+$GIT_DIR/info/attributes, .gitattributes
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 A `gitattributes` file is a simple text file that gives `attributes` to pathnames.
 
@@ -20,7 +16,7 @@ Each line in `gitattributes` file is of form:
 
     pattern attr1 attr2 ...
 
-That is, a pattern followed by an attributes list, separated by whitespaces. Leading and trailing whitespaces are ignored. Lines that begin with *\#* are ignored. Patterns that begin with a double quote are quoted in C style. When the pattern matches the path in question, the attributes listed on the line are given to the path.
+That is, a pattern followed by an attributes list, separated by whitespaces. Leading and trailing whitespaces are ignored. Lines that begin with _\#_ are ignored. Patterns that begin with a double quote are quoted in C style. When the pattern matches the path in question, the attributes listed on the line are given to the path.
 
 Each attribute can be in one of these states for a given path:
 
@@ -40,9 +36,9 @@ When more than one pattern matches the path, a later line overrides an earlier l
 
 The rules by which the pattern matches paths are the same as in `.gitignore` files (see [gitignore(5)](gitignore.html)), with a few exceptions:
 
--   negative patterns are forbidden
+- negative patterns are forbidden
 
--   patterns that match a directory do not recursively match paths inside that directory (so using the trailing-slash `path/` syntax is pointless in an attributes file; use `path/**` instead)
+- patterns that match a directory do not recursively match paths inside that directory (so using the trailing-slash `path/` syntax is pointless in an attributes file; use `path/**` instead)
 
 When deciding what attributes are assigned to a path, Git consults `$GIT_DIR/info/attributes` file (which has the highest precedence), `.gitattributes` file in the same directory as the path in question, and its parent directories up to the toplevel of the work tree (the further the directory that contains `.gitattributes` is from the path in question, the lower its precedence). Finally global and system-wide files are considered (they have the lowest precedence).
 
@@ -52,14 +48,13 @@ If you wish to affect only a single repository (i.e., to assign attributes to fi
 
 Sometimes you would need to override a setting of an attribute for a path to `Unspecified` state. This can be done by listing the name of the attribute prefixed with an exclamation point `!`.
 
-EFFECTS
--------
+## EFFECTS
 
 Certain operations by Git can be influenced by assigning particular attributes to a path. Currently, the following operations are attributes-aware.
 
 ### Checking-out and checking-in
 
-These attributes affect how the contents stored in the repository are copied to the working tree files when commands such as *git switch*, *git checkout* and *git merge* run. They also affect how Git stores the contents you prepare in the working tree in the repository upon *git add* and *git commit*.
+These attributes affect how the contents stored in the repository are copied to the working tree files when commands such as _git switch_, _git checkout_ and _git merge_ run. They also affect how Git stores the contents you prepare in the working tree in the repository upon _git add_ and _git commit_.
 
 #### `text`
 
@@ -108,7 +103,7 @@ If you simply want to have CRLF line endings in your working directory regardles
 
 This does not force normalization of text files, but does ensure that text files that you introduce to the repository have their line endings normalized to LF when they are added, and that files that are already normalized in the repository stay normalized.
 
-If you want to ensure that text files that any contributor introduces to the repository have their line endings normalized, you can set the `text` attribute to "auto" for *all* files.
+If you want to ensure that text files that any contributor introduces to the repository have their line endings normalized, you can set the `text` attribute to "auto" for _all_ files.
 
     *       text=auto
 
@@ -129,7 +124,7 @@ From a clean working directory:
     $ git status        # Show files that will be normalized
     $ git commit -m "Introduce end-of-line normalization"
 
-If any files that should not be normalized show up in *git status*, unset their `text` attribute before running *git add -u*.
+If any files that should not be normalized show up in _git status_, unset their `text` attribute before running _git add -u_.
 
     manual.pdf      -text
 
@@ -139,37 +134,37 @@ Conversely, text files that Git does not detect can have normalization enabled m
 
 If `core.safecrlf` is set to "true" or "warn", Git verifies if the conversion is reversible for the current setting of `core.autocrlf`. For "true", Git rejects irreversible conversions; for "warn", Git only prints a warning but accepts an irreversible conversion. The safety triggers to prevent such a conversion done to the files in the work tree, but there are a few exceptions. Even though…​
 
--   *git add* itself does not touch the files in the work tree, the next checkout would, so the safety triggers;
+- _git add_ itself does not touch the files in the work tree, the next checkout would, so the safety triggers;
 
--   *git apply* to update a text file with a patch does touch the files in the work tree, but the operation is about text files and CRLF conversion is about fixing the line ending inconsistencies, so the safety does not trigger;
+- _git apply_ to update a text file with a patch does touch the files in the work tree, but the operation is about text files and CRLF conversion is about fixing the line ending inconsistencies, so the safety does not trigger;
 
--   *git diff* itself does not touch the files in the work tree, it is often run to inspect the changes you intend to next *git add*. To catch potential problems early, safety triggers.
+- _git diff_ itself does not touch the files in the work tree, it is often run to inspect the changes you intend to next _git add_. To catch potential problems early, safety triggers.
 
 #### `working-tree-encoding`
 
-Git recognizes files encoded in ASCII or one of its supersets (e.g. UTF-8, ISO-8859-1, …​) as text files. Files encoded in certain other encodings (e.g. UTF-16) are interpreted as binary and consequently built-in Git text processing tools (e.g. *git diff*) as well as most Git web front ends do not visualize the contents of these files by default.
+Git recognizes files encoded in ASCII or one of its supersets (e.g. UTF-8, ISO-8859-1, …​) as text files. Files encoded in certain other encodings (e.g. UTF-16) are interpreted as binary and consequently built-in Git text processing tools (e.g. _git diff_) as well as most Git web front ends do not visualize the contents of these files by default.
 
 In these cases you can tell Git the encoding of a file in the working directory with the `working-tree-encoding` attribute. If a file with this attribute is added to Git, then Git re-encodes the content from the specified encoding to UTF-8. Finally, Git stores the UTF-8 encoded content in its internal data structure (called "the index"). On checkout the content is re-encoded back to the specified encoding.
 
 Please note that using the `working-tree-encoding` attribute may have a number of pitfalls:
 
--   Alternative Git implementations (e.g. JGit or libgit2) and older Git versions (as of March 2018) do not support the `working-tree-encoding` attribute. If you decide to use the `working-tree-encoding` attribute in your repository, then it is strongly recommended to ensure that all clients working with the repository support it.
+- Alternative Git implementations (e.g. JGit or libgit2) and older Git versions (as of March 2018) do not support the `working-tree-encoding` attribute. If you decide to use the `working-tree-encoding` attribute in your repository, then it is strongly recommended to ensure that all clients working with the repository support it.
 
-    For example, Microsoft Visual Studio resources files (`*.rc`) or PowerShell script files (`*.ps1`) are sometimes encoded in UTF-16. If you declare `*.ps1` as files as UTF-16 and you add `foo.ps1` with a `working-tree-encoding` enabled Git client, then `foo.ps1` will be stored as UTF-8 internally. A client without `working-tree-encoding` support will checkout `foo.ps1` as UTF-8 encoded file. This will typically cause trouble for the users of this file.
+  For example, Microsoft Visual Studio resources files (`*.rc`) or PowerShell script files (`*.ps1`) are sometimes encoded in UTF-16. If you declare `*.ps1` as files as UTF-16 and you add `foo.ps1` with a `working-tree-encoding` enabled Git client, then `foo.ps1` will be stored as UTF-8 internally. A client without `working-tree-encoding` support will checkout `foo.ps1` as UTF-8 encoded file. This will typically cause trouble for the users of this file.
 
-    If a Git client that does not support the `working-tree-encoding` attribute adds a new file `bar.ps1`, then `bar.ps1` will be stored "as-is" internally (in this example probably as UTF-16). A client with `working-tree-encoding` support will interpret the internal contents as UTF-8 and try to convert it to UTF-16 on checkout. That operation will fail and cause an error.
+  If a Git client that does not support the `working-tree-encoding` attribute adds a new file `bar.ps1`, then `bar.ps1` will be stored "as-is" internally (in this example probably as UTF-16). A client with `working-tree-encoding` support will interpret the internal contents as UTF-8 and try to convert it to UTF-16 on checkout. That operation will fail and cause an error.
 
--   Reencoding content to non-UTF encodings can cause errors as the conversion might not be UTF-8 round trip safe. If you suspect your encoding to not be round trip safe, then add it to `core.checkRoundtripEncoding` to make Git check the round trip encoding (see [git-config(1)](git-config.html)). SHIFT-JIS (Japanese character set) is known to have round trip issues with UTF-8 and is checked by default.
+- Reencoding content to non-UTF encodings can cause errors as the conversion might not be UTF-8 round trip safe. If you suspect your encoding to not be round trip safe, then add it to `core.checkRoundtripEncoding` to make Git check the round trip encoding (see [git-config(1)](git-config.html)). SHIFT-JIS (Japanese character set) is known to have round trip issues with UTF-8 and is checked by default.
 
--   Reencoding content requires resources that might slow down certain Git operations (e.g *git checkout* or *git add*).
+- Reencoding content requires resources that might slow down certain Git operations (e.g _git checkout_ or _git add_).
 
 Use the `working-tree-encoding` attribute only if you cannot store a file in UTF-8 encoding and if you want Git to be able to process the content as text.
 
-As an example, use the following attributes if your *\*.ps1* files are UTF-16 encoded with byte order mark (BOM) and you want Git to perform automatic line ending conversion based on your platform.
+As an example, use the following attributes if your _\*.ps1_ files are UTF-16 encoded with byte order mark (BOM) and you want Git to perform automatic line ending conversion based on your platform.
 
     *.ps1           text working-tree-encoding=UTF-16
 
-Use the following attributes if your *\*.ps1* files are UTF-16 little endian encoded without BOM and you want Git to use Windows line endings in the working directory (use `UTF-16LE-BOM` instead of `UTF-16LE` if you want UTF-16 little endian with BOM). Please note, it is highly recommended to explicitly define the line endings with `eol` if the `working-tree-encoding` attribute is used to avoid ambiguity.
+Use the following attributes if your _\*.ps1_ files are UTF-16 little endian encoded without BOM and you want Git to use Windows line endings in the working directory (use `UTF-16LE-BOM` instead of `UTF-16LE` if you want UTF-16 little endian with BOM). Please note, it is highly recommended to explicitly define the line endings with `eol` if the `working-tree-encoding` attribute is used to avoid ambiguity.
 
     *.ps1           text working-tree-encoding=UTF-16LE eol=CRLF
 
@@ -229,9 +224,9 @@ Then you would define a "filter.indent.clean" and "filter.indent.smudge" configu
 
 For best results, `clean` should not alter its output further if it is run twice ("clean→clean" should be equivalent to "clean"), and multiple `smudge` commands should not alter `clean`'s output ("smudge→smudge→clean" should be equivalent to "clean"). See the section on merging below.
 
-The "indent" filter is well-behaved in this regard: it will not modify input that is already correctly indented. In this case, the lack of a smudge filter means that the clean filter *must* accept its own output without modifying it.
+The "indent" filter is well-behaved in this regard: it will not modify input that is already correctly indented. In this case, the lack of a smudge filter means that the clean filter _must_ accept its own output without modifying it.
 
-If a filter *must* succeed in order to make the stored contents usable, you can declare that the filter is `required`, in the configuration:
+If a filter _must_ succeed in order to make the stored contents usable, you can declare that the filter is `required`, in the configuration:
 
     [filter "crypt"]
             clean = openssl enc ...
@@ -311,7 +306,7 @@ If the filter supports the "delay" capability, then Git can send the flag "can-d
     packet:          git< status=delayed
     packet:          git< 0000
 
-If the filter supports the "delay" capability then it must support the "list\_available\_blobs" command. If Git sends this command, then the filter is expected to return a list of pathnames representing blobs that have been delayed earlier and are now available. The list must be terminated with a flush packet followed by a "success" status that is also terminated with a flush packet. If no blobs for the delayed paths are available, yet, then the filter is expected to block the response until at least one blob becomes available. The filter can tell Git that it has no more delayed blobs by sending an empty list. As soon as the filter responds with an empty list, Git stops asking. All blobs that Git has not received at this point are considered missing and will result in an error.
+If the filter supports the "delay" capability then it must support the "list_available_blobs" command. If Git sends this command, then the filter is expected to return a list of pathnames representing blobs that have been delayed earlier and are now available. The list must be terminated with a flush packet followed by a "success" status that is also terminated with a flush packet. If no blobs for the delayed paths are available, yet, then the filter is expected to block the response until at least one blob becomes available. The filter can tell Git that it has no more delayed blobs by sending an empty list. As soon as the filter responds with an empty list, Git stops asking. All blobs that Git has not received at this point are considered missing and will result in an error.
 
     packet:          git> command=list_available_blobs
     packet:          git> 0000
@@ -388,7 +383,7 @@ Each group of changes (called a "hunk") in the textual diff output is prefixed w
 
     @@ -k,l +n,m @@ TEXT
 
-This is called a *hunk header*. The "TEXT" portion is by default a line that begins with an alphabet, an underscore or a dollar sign; this matches what GNU *diff -p* output uses. This default selection however is not suited for some contents, and you can use a customized pattern to make a selection.
+This is called a _hunk header_. The "TEXT" portion is by default a line that begins with an alphabet, an underscore or a dollar sign; this matches what GNU _diff -p_ output uses. This default selection however is not suited for some contents, and you can use a customized pattern to make a selection.
 
 First, in .gitattributes, you would assign the `diff` attribute for paths.
 
@@ -403,51 +398,51 @@ Note. A single level of backslashes are eaten by the configuration file parser, 
 
 There are a few built-in patterns to make this easier, and `tex` is one of them, so you do not have to write the above in your configuration file (you still need to enable this with the attribute mechanism, via `.gitattributes`). The following built in patterns are available:
 
--   `ada` suitable for source code in the Ada language.
+- `ada` suitable for source code in the Ada language.
 
--   `bash` suitable for source code in the Bourne-Again SHell language. Covers a superset of POSIX shell function definitions.
+- `bash` suitable for source code in the Bourne-Again SHell language. Covers a superset of POSIX shell function definitions.
 
--   `bibtex` suitable for files with BibTeX coded references.
+- `bibtex` suitable for files with BibTeX coded references.
 
--   `cpp` suitable for source code in the C and C++ languages.
+- `cpp` suitable for source code in the C and C++ languages.
 
--   `csharp` suitable for source code in the C\# language.
+- `csharp` suitable for source code in the C\# language.
 
--   `css` suitable for cascading style sheets.
+- `css` suitable for cascading style sheets.
 
--   `dts` suitable for devicetree (DTS) files.
+- `dts` suitable for devicetree (DTS) files.
 
--   `elixir` suitable for source code in the Elixir language.
+- `elixir` suitable for source code in the Elixir language.
 
--   `fortran` suitable for source code in the Fortran language.
+- `fortran` suitable for source code in the Fortran language.
 
--   `fountain` suitable for Fountain documents.
+- `fountain` suitable for Fountain documents.
 
--   `golang` suitable for source code in the Go language.
+- `golang` suitable for source code in the Go language.
 
--   `html` suitable for HTML/XHTML documents.
+- `html` suitable for HTML/XHTML documents.
 
--   `java` suitable for source code in the Java language.
+- `java` suitable for source code in the Java language.
 
--   `markdown` suitable for Markdown documents.
+- `markdown` suitable for Markdown documents.
 
--   `matlab` suitable for source code in the MATLAB and Octave languages.
+- `matlab` suitable for source code in the MATLAB and Octave languages.
 
--   `objc` suitable for source code in the Objective-C language.
+- `objc` suitable for source code in the Objective-C language.
 
--   `pascal` suitable for source code in the Pascal/Delphi language.
+- `pascal` suitable for source code in the Pascal/Delphi language.
 
--   `perl` suitable for source code in the Perl language.
+- `perl` suitable for source code in the Perl language.
 
--   `php` suitable for source code in the PHP language.
+- `php` suitable for source code in the PHP language.
 
--   `python` suitable for source code in the Python language.
+- `python` suitable for source code in the Python language.
 
--   `ruby` suitable for source code in the Ruby language.
+- `ruby` suitable for source code in the Ruby language.
 
--   `rust` suitable for source code in the Rust language.
+- `rust` suitable for source code in the Rust language.
 
--   `tex` suitable for source code for LaTeX documents.
+- `tex` suitable for source code for LaTeX documents.
 
 #### Customizing word diff
 
@@ -516,7 +511,7 @@ However, one may also want to specify other diff driver attributes. For example,
 The attribute `merge` affects how three versions of a file are merged when a file-level merge is necessary during `git merge`, and other commands such as `git revert` and `git cherry-pick`.
 
 Set  
-Built-in 3-way merge driver is used to merge the contents in a way similar to *merge* command of `RCS` suite. This is suitable for ordinary text files.
+Built-in 3-way merge driver is used to merge the contents in a way similar to _merge_ command of `RCS` suite. This is suitable for ordinary text files.
 
 Unset  
 Take the version from the current branch as the tentative merge result, and declare that the merge has conflicts. This is suitable for binary files that do not have a well-defined merge semantics.
@@ -573,7 +568,7 @@ For example, this line in `.gitattributes` can be used to tell the merge machine
 
 #### `whitespace`
 
-The `core.whitespace` configuration variable allows you to define what *diff* and *apply* should consider whitespace errors for all paths in the project (See [git-config(1)](git-config.html)). This attribute gives you finer control per path.
+The `core.whitespace` configuration variable allows you to define what _diff_ and _apply_ should consider whitespace errors for all paths in the project (See [git-config(1)](git-config.html)). This attribute gives you finer control per path.
 
 Set  
 Notice all types of potential whitespace errors known to Git. The tab width is taken from the value of the `core.whitespace` configuration variable.
@@ -611,8 +606,7 @@ The value of this attribute specifies the character encoding that should be used
 
 If this attribute is not set or has an invalid value, the value of the `gui.encoding` configuration variable is used instead (See [git-config(1)](git-config.html)).
 
-USING MACRO ATTRIBUTES
-----------------------
+## USING MACRO ATTRIBUTES
 
 You do not want any end-of-line conversions applied to, nor textual diffs produced for, any binary file you track. You would need to specify e.g.
 
@@ -624,15 +618,13 @@ but that may become cumbersome, when you have many attributes. Using macro attri
 
 Setting the "binary" attribute also unsets the "text" and "diff" attributes as above. Note that macro attributes can only be "Set", though setting one might have the effect of setting or unsetting other attributes or even returning other attributes to the "Unspecified" state.
 
-DEFINING MACRO ATTRIBUTES
--------------------------
+## DEFINING MACRO ATTRIBUTES
 
 Custom macro attributes can be defined only in top-level gitattributes files (`$GIT_DIR/info/attributes`, the `.gitattributes` file at the top level of the working tree, or the global or system-wide gitattributes files), not in `.gitattributes` files in working tree subdirectories. The built-in macro attribute "binary" is equivalent to:
 
     [attr]binary -diff -merge -text
 
-EXAMPLES
---------
+## EXAMPLES
 
 If you have these three `gitattributes` file:
 
@@ -664,10 +656,8 @@ As the result, the attributes assignment to `t/abc` becomes:
     merge   set to string value "filfre"
     frotz   unspecified
 
-SEE ALSO
---------
+## SEE ALSO
 
 [git-check-attr(1)](git-check-attr.html).
 
-GIT
----
+## GIT

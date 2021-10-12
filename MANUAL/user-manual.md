@@ -1,4 +1,4 @@
-------------------------------------------------------------------------
+---
 
 **Table of Contents**
 
@@ -284,8 +284,7 @@ Finally, see <a href="#todo" class="xref" title="Appendix B. Notes and todo li
 
 <span class="section">[Fetching branches from other repositories](#fetching-branches)</span>
 
-<span id="how-to-get-a-git-repository"></span>How to get a Git repository
--------------------------------------------------------------------------
+## <span id="how-to-get-a-git-repository"></span>How to get a Git repository
 
 It will be useful to have a Git repository to experiment with as you read this manual.
 
@@ -300,8 +299,7 @@ The initial clone may be time-consuming for a large project, but you will only n
 
 The clone command creates a new directory named after the project (`git` or `linux` in the examples above). After you cd into this directory, you will see that it contains a copy of the project files, called the <a href="#def_working_tree" class="link">working tree</a>, together with a special top-level directory named `.git`, which contains all the information about the history of the project.
 
-<span id="how-to-check-out"></span>How to check out a different version of a project
-------------------------------------------------------------------------------------
+## <span id="how-to-check-out"></span>How to check out a different version of a project
 
 Git is best thought of as a tool for storing the history of a collection of files. It stores the history as a compressed collection of interrelated snapshots of the project’s contents. In Git each such version is called a <a href="#def_commit" class="link">commit</a>.
 
@@ -346,8 +344,7 @@ If you decide that you’d rather see version 2.6.17, you can modify the current
 
 Note that if the current branch head was your only reference to a particular point in history, then resetting that branch may leave you with no way to find the history it used to point to; so use this command carefully.
 
-<span id="understanding-commits"></span>Understanding History: Commits
-----------------------------------------------------------------------
+## <span id="understanding-commits"></span>Understanding History: Commits
 
 Every change in the history of a project is represented by a commit. The <a href="git-show.html" class="ulink">git-show(1)</a> command shows the most recent commit on the current branch:
 
@@ -408,30 +405,29 @@ When we need to be precise, we will use the word "branch" to mean a line of deve
 
 However, when no confusion will result, we often just use the term "branch" both for branches and for branch heads.
 
-<span id="manipulating-branches"></span>Manipulating branches
--------------------------------------------------------------
+## <span id="manipulating-branches"></span>Manipulating branches
 
 Creating, deleting, and modifying branches is quick and easy; here’s a summary of the commands:
 
- <span class="term">`git branch`</span>   
+<span class="term">`git branch`</span>  
 list all branches.
 
- <span class="term">`git branch <branch>`</span>   
+<span class="term">`git branch <branch>`</span>  
 create a new branch named `<branch>`, referencing the same point in history as the current branch.
 
- <span class="term">`git branch <branch> <start-point>`</span>   
+<span class="term">`git branch <branch> <start-point>`</span>  
 create a new branch named `<branch>`, referencing `<start-point>`, which may be specified any way you like, including using a branch name or a tag name.
 
- <span class="term">`git branch -d <branch>`</span>   
+<span class="term">`git branch -d <branch>`</span>  
 delete the branch `<branch>`; if the branch is not fully merged in its upstream branch or contained in the current branch, this command will fail with a warning.
 
- <span class="term">`git branch -D <branch>`</span>   
+<span class="term">`git branch -D <branch>`</span>  
 delete the branch `<branch>` irrespective of its merged status.
 
- <span class="term">`git switch <branch>`</span>   
+<span class="term">`git switch <branch>`</span>  
 make the current branch `<branch>`, updating the working directory to reflect the version referenced by `<branch>`.
 
- <span class="term">`git switch -c <new> <start-point>`</span>   
+<span class="term">`git switch -c <new> <start-point>`</span>  
 create a new branch `<new>` referencing `<start-point>`, and check it out.
 
 The special symbol "HEAD" can always be used to refer to the current branch. In fact, Git uses a file named `HEAD` in the `.git` directory to remember which branch is current:
@@ -439,8 +435,7 @@ The special symbol "HEAD" can always be used to refer to the current branch. In 
     $ cat .git/HEAD
     ref: refs/heads/master
 
-<span id="detached-head"></span>Examining an old version without creating a new branch
---------------------------------------------------------------------------------------
+## <span id="detached-head"></span>Examining an old version without creating a new branch
 
 The `git switch` command normally expects a branch head, but will also accept an arbitrary commit when invoked with --detach; for example, you can check out the commit referenced by a tag:
 
@@ -470,8 +465,7 @@ In this case we say that the HEAD is "detached".
 
 This is an easy way to check out a particular version without having to make up a name for the new branch. You can still create a new branch (or tag) for this version later if you decide to.
 
-<span id="examining-remote-branches"></span>Examining branches from a remote repository
----------------------------------------------------------------------------------------
+## <span id="examining-remote-branches"></span>Examining branches from a remote repository
 
 The "master" branch that was created at the time you cloned is a copy of the HEAD in the repository that you cloned from. That repository may also have had other branches, though, and your local repository keeps branches which track each of those remote branches, called remote-tracking branches, which you can view using the `-r` option to <a href="git-branch.html" class="ulink">git-branch(1)</a>:
 
@@ -495,14 +489,13 @@ You can also check out `origin/todo` directly to examine it or write a one-off p
 
 Note that the name "origin" is just the name that Git uses by default to refer to the repository that you cloned from.
 
-<span id="how-git-stores-references"></span>Naming branches, tags, and other references
----------------------------------------------------------------------------------------
+## <span id="how-git-stores-references"></span>Naming branches, tags, and other references
 
 Branches, remote-tracking branches, and tags are all references to commits. All references are named with a slash-separated path name starting with `refs`; the names we’ve been using so far are actually shorthand:
 
--   The branch `test` is short for `refs/heads/test`.
--   The tag `v2.6.18` is short for `refs/tags/v2.6.18`.
--   `origin/master` is short for `refs/remotes/origin/master`.
+- The branch `test` is short for `refs/heads/test`.
+- The tag `v2.6.18` is short for `refs/tags/v2.6.18`.
+- `origin/master` is short for `refs/remotes/origin/master`.
 
 The full name is occasionally useful if, for example, there ever exists a tag and a branch with the same name.
 
@@ -512,15 +505,13 @@ As another useful shortcut, the "HEAD" of a repository can be referred to just u
 
 For the complete list of paths which Git checks for references, and the order it uses to decide which to choose when there are multiple references with the same shorthand name, see the "SPECIFYING REVISIONS" section of <a href="gitrevisions.html" class="ulink">gitrevisions(7)</a>.
 
-<span id="Updating-a-repository-With-git-fetch"></span>Updating a repository with git fetch
--------------------------------------------------------------------------------------------
+## <span id="Updating-a-repository-With-git-fetch"></span>Updating a repository with git fetch
 
 After you clone a repository and commit a few changes of your own, you may wish to check the original repository for updates.
 
 The `git-fetch` command, with no arguments, will update all of the remote-tracking branches to the latest version found in the original repository. It will not touch any of your own branches—​not even the "master" branch that was created for you on clone.
 
-<span id="fetching-branches"></span>Fetching branches from other repositories
------------------------------------------------------------------------------
+## <span id="fetching-branches"></span>Fetching branches from other repositories
 
 You can also track branches from repositories other than the one you cloned from, using <a href="git-remote.html" class="ulink">git-remote(1)</a>:
 
@@ -588,8 +579,7 @@ Git provides extremely flexible and fast tools for exploring the history of a pr
 
 We start with one specialized tool that is useful for finding the commit that introduced a bug into a project.
 
-<span id="using-bisect"></span>How to use bisect to find a regression
----------------------------------------------------------------------
+## <span id="using-bisect"></span>How to use bisect to find a regression
 
 Suppose version 2.6.18 of your project worked, but the version at "master" crashes. Sometimes the best way to find the cause of such a regression is to perform a brute-force search through the project’s history to find the particular commit that caused the problem. The <a href="git-bisect.html" class="ulink">git-bisect(1)</a> command can help you do this:
 
@@ -631,15 +621,14 @@ In this case, though, Git may not eventually be able to tell the first bad one b
 
 There are also ways to automate the bisecting process if you have a test script that can tell a good from a bad commit. See <a href="git-bisect.html" class="ulink">git-bisect(1)</a> for more information about this and other `git bisect` features.
 
-<span id="naming-commits"></span>Naming commits
------------------------------------------------
+## <span id="naming-commits"></span>Naming commits
 
 We have seen several ways of naming commits already:
 
--   40-hexdigit object name
--   branch name: refers to the commit at the head of the given branch
--   tag name: refers to the commit pointed to by the given tag (we’ve seen branches and tags are special cases of <a href="#how-git-stores-references" class="link" title="Naming branches, tags, and other references">references</a>).
--   HEAD: refers to the head of the current branch
+- 40-hexdigit object name
+- branch name: refers to the commit at the head of the given branch
+- tag name: refers to the commit pointed to by the given tag (we’ve seen branches and tags are special cases of <a href="#how-git-stores-references" class="link" title="Naming branches, tags, and other references">references</a>).
+- HEAD: refers to the head of the current branch
 
 There are many more; see the "SPECIFYING REVISIONS" section of the <a href="gitrevisions.html" class="ulink">gitrevisions(7)</a> man page for the complete list of ways to name revisions. Some examples:
 
@@ -656,23 +645,22 @@ Recall that merge commits may have more than one parent; by default, `^` and `~`
 
 In addition to HEAD, there are several other special names for commits:
 
-Merges (to be discussed later), as well as operations such as `git reset`, which change the currently checked-out commit, generally set ORIG\_HEAD to the value HEAD had before the current operation.
+Merges (to be discussed later), as well as operations such as `git reset`, which change the currently checked-out commit, generally set ORIG_HEAD to the value HEAD had before the current operation.
 
-The `git fetch` operation always stores the head of the last fetched branch in FETCH\_HEAD. For example, if you run `git fetch` without specifying a local branch as the target of the operation
+The `git fetch` operation always stores the head of the last fetched branch in FETCH_HEAD. For example, if you run `git fetch` without specifying a local branch as the target of the operation
 
     $ git fetch git://example.com/proj.git theirbranch
 
-the fetched commits will still be available from FETCH\_HEAD.
+the fetched commits will still be available from FETCH_HEAD.
 
-When we discuss merges we’ll also see the special name MERGE\_HEAD, which refers to the other branch that we’re merging in to the current branch.
+When we discuss merges we’ll also see the special name MERGE_HEAD, which refers to the other branch that we’re merging in to the current branch.
 
 The <a href="git-rev-parse.html" class="ulink">git-rev-parse(1)</a> command is a low-level command that is occasionally useful for translating some name for a commit to the object name for that commit:
 
     $ git rev-parse origin
     e05db0fd4f31dde7005f075a84f96b360d05984b
 
-<span id="creating-tags"></span>Creating tags
----------------------------------------------
+## <span id="creating-tags"></span>Creating tags
 
 We can also create a tag to refer to a particular commit; after running
 
@@ -682,8 +670,7 @@ You can use `stable-1` to refer to the commit 1b2e1d63ff.
 
 This creates a "lightweight" tag. If you would also like to include a comment with the tag, and possibly sign it cryptographically, then you should create a tag object instead; see the <a href="git-tag.html" class="ulink">git-tag(1)</a> man page for details.
 
-<span id="browsing-revisions"></span>Browsing revisions
--------------------------------------------------------
+## <span id="browsing-revisions"></span>Browsing revisions
 
 The <a href="git-log.html" class="ulink">git-log(1)</a> command can show lists of commits. On its own, it shows all commits reachable from the parent commit; but you can also make more specific requests:
 
@@ -710,8 +697,7 @@ See the `--pretty` option in the <a href="git-log.html" class="ulink">git-log(1)
 
 Note that git log starts with the most recent commit and works backwards through the parents; however, since Git history can contain multiple independent lines of development, the particular order that commits are listed in may be somewhat arbitrary.
 
-<span id="generating-diffs"></span>Generating diffs
----------------------------------------------------
+## <span id="generating-diffs"></span>Generating diffs
 
 You can generate diffs between any two versions using <a href="git-diff.html" class="ulink">git-diff(1)</a>:
 
@@ -727,8 +713,7 @@ Sometimes what you want instead is a set of patches; for this you can use <a hre
 
 will generate a file with a patch for each commit reachable from test but not from master.
 
-<span id="viewing-old-file-versions"></span>Viewing old file versions
----------------------------------------------------------------------
+## <span id="viewing-old-file-versions"></span>Viewing old file versions
 
 You can always view an old version of a file by just checking out the correct revision first. But sometimes it is more convenient to be able to view an old version of a single file without checking anything out; this command does that:
 
@@ -736,8 +721,7 @@ You can always view an old version of a file by just checking out the correct re
 
 Before the colon may be anything that names a commit, and after it may be any path to a file tracked by Git.
 
-<span id="history-examples"></span>Examples
--------------------------------------------
+## <span id="history-examples"></span>Examples
 
 ### <span id="counting-commits-on-a-branch"></span>Counting the number of commits on a branch
 
@@ -934,8 +918,7 @@ Figuring out why this works is left as an exercise to the (advanced) student. Th
 
 <span class="section">[Recovering lost changes](#recovering-lost-changes)</span>
 
-<span id="telling-git-your-name"></span>Telling Git your name
--------------------------------------------------------------
+## <span id="telling-git-your-name"></span>Telling Git your name
 
 Before creating any commits, you should introduce yourself to Git. The easiest way to do so is to use <a href="git-config.html" class="ulink">git-config(1)</a>:
 
@@ -950,8 +933,7 @@ Which will add the following to a file named `.gitconfig` in your home directory
 
 See the "CONFIGURATION FILE" section of <a href="git-config.html" class="ulink">git-config(1)</a> for details on the configuration file. The file is plain text, so you can also edit it with your favorite editor.
 
-<span id="creating-a-new-repository"></span>Creating a new repository
----------------------------------------------------------------------
+## <span id="creating-a-new-repository"></span>Creating a new repository
 
 Creating a new repository from scratch is very easy:
 
@@ -967,8 +949,7 @@ If you have some initial content (say, a tarball):
     $ git add . # include everything below ./ in the first commit:
     $ git commit
 
-<span id="how-to-make-a-commit"></span>How to make a commit
------------------------------------------------------------
+## <span id="how-to-make-a-commit"></span>How to make a commit
 
 Creating a new commit takes three steps:
 
@@ -1029,15 +1010,13 @@ A number of commands are useful for keeping track of what you’re about to comm
 
 You can also use <a href="git-gui.html" class="ulink">git-gui(1)</a> to create commits, view changes in the index and the working tree files, and individually select diff hunks for inclusion in the index (by right-clicking on the diff hunk and choosing "Stage Hunk For Commit").
 
-<span id="creating-good-commit-messages"></span>Creating good commit messages
------------------------------------------------------------------------------
+## <span id="creating-good-commit-messages"></span>Creating good commit messages
 
 Though not required, it’s a good idea to begin the commit message with a single short (less than 50 character) line summarizing the change, followed by a blank line and then a more thorough description. The text up to the first blank line in a commit message is treated as the commit title, and that title is used throughout Git. For example, <a href="git-format-patch.html" class="ulink">git-format-patch(1)</a> turns a commit into email, and it uses the title on the Subject line and the rest of the commit in the body.
 
-<span id="ignoring-files"></span>Ignoring files
------------------------------------------------
+## <span id="ignoring-files"></span>Ignoring files
 
-A project will often generate files that you do <span class="emphasis">*not*</span> want to track with Git. This typically includes files generated by a build process or temporary backup files made by your editor. Of course, <span class="emphasis">*not*</span> tracking files with Git is just a matter of <span class="emphasis">*not*</span> calling `git add` on them. But it quickly becomes annoying to have these untracked files lying around; e.g. they make `git add .` practically useless, and they keep showing up in the output of `git status`.
+A project will often generate files that you do <span class="emphasis">_not_</span> want to track with Git. This typically includes files generated by a build process or temporary backup files made by your editor. Of course, <span class="emphasis">_not_</span> tracking files with Git is just a matter of <span class="emphasis">_not_</span> calling `git add` on them. But it quickly becomes annoying to have these untracked files lying around; e.g. they make `git add .` practically useless, and they keep showing up in the output of `git status`.
 
 You can tell Git to ignore certain files by creating a file called `.gitignore` in the top level of your working directory, with contents such as:
 
@@ -1055,8 +1034,7 @@ See <a href="gitignore.html" class="ulink">gitignore(5)</a> for a detailed expla
 
 If you wish the exclude patterns to affect only certain repositories (instead of every repository for a given project), you may instead put them in a file in your repository named `.git/info/exclude`, or in any file specified by the `core.excludesFile` configuration variable. Some Git commands can also take exclude patterns directly on the command line. See <a href="gitignore.html" class="ulink">gitignore(5)</a> for the details.
 
-<span id="how-to-merge"></span>How to merge
--------------------------------------------
+## <span id="how-to-merge"></span>How to merge
 
 You can rejoin two diverging branches of development using <a href="git-merge.html" class="ulink">git-merge(1)</a>:
 
@@ -1078,8 +1056,7 @@ Conflict markers are left in the problematic files, and after you resolve the co
 
 If you examine the resulting commit using gitk, you will see that it has two parents, one pointing to the top of the current branch, and one to the top of the other branch.
 
-<span id="resolving-a-merge"></span>Resolving a merge
------------------------------------------------------
+## <span id="resolving-a-merge"></span>Resolving a merge
 
 When a merge isn’t resolved automatically, Git leaves the index and the working tree in a special state that gives you all the information you need to help resolve the merge.
 
@@ -1121,7 +1098,7 @@ All of the changes that Git was able to merge automatically are already added to
     + Goodbye
     ++>>>>>>> 77976da35a11db4580b80ae27e8d65caf5208086:file.txt
 
-Recall that the commit which will be committed after we resolve this conflict will have two parents instead of the usual one: one parent will be HEAD, the tip of the current branch; the other will be the tip of the other branch, which is stored temporarily in MERGE\_HEAD.
+Recall that the commit which will be committed after we resolve this conflict will have two parents instead of the usual one: one parent will be HEAD, the tip of the current branch; the other will be the tip of the other branch, which is stored temporarily in MERGE_HEAD.
 
 During the merge, the index holds three versions of each file. Each of these three "file stages" represents a different version of the file:
 
@@ -1161,7 +1138,7 @@ The <a href="git-log.html" class="ulink">git-log(1)</a> and <a href="gitk.html" 
     $ git log --merge
     $ gitk --merge
 
-These will display all commits which exist only on HEAD or on MERGE\_HEAD, and which touch an unmerged file.
+These will display all commits which exist only on HEAD or on MERGE_HEAD, and which touch an unmerged file.
 
 You may also use <a href="git-mergetool.html" class="ulink">git-mergetool(1)</a>, which lets you merge the unmerged files using external tools such as Emacs or kdiff3.
 
@@ -1171,8 +1148,7 @@ Each time you resolve the conflicts in a file and update the index:
 
 the different stages of that file will be "collapsed", after which `git diff` will (by default) no longer show diffs for that file.
 
-<span id="undoing-a-merge"></span>Undoing a merge
--------------------------------------------------
+## <span id="undoing-a-merge"></span>Undoing a merge
 
 If you get stuck and decide to just give up and throw the whole mess away, you can always return to the pre-merge state with
 
@@ -1184,15 +1160,13 @@ Or, if you’ve already committed the merge that you want to throw away,
 
 However, this last command can be dangerous in some cases—​never throw away a commit you have already committed if that commit may itself have been merged into another branch, as doing so may confuse further merges.
 
-<span id="fast-forwards"></span>Fast-forward merges
----------------------------------------------------
+## <span id="fast-forwards"></span>Fast-forward merges
 
 There is one special case not mentioned above, which is treated differently. Normally, a merge results in a merge commit, with two parents, one pointing at each of the two lines of development that were merged.
 
 However, if the current branch is an ancestor of the other—​so every commit present in the current branch is already contained in the other branch—​then Git just performs a "fast-forward"; the head of the current branch is moved forward to point at the head of the merged-in branch, without any new commits being created.
 
-<span id="fixing-mistakes"></span>Fixing mistakes
--------------------------------------------------
+## <span id="fixing-mistakes"></span>Fixing mistakes
 
 If you’ve messed up the working tree, but haven’t yet committed your mistake, you can return the entire working tree to the last committed state with
 
@@ -1260,13 +1234,11 @@ After that, you can go back to what you were working on with `git stash pop`:
 
     $ git stash pop
 
-<span id="ensuring-good-performance"></span>Ensuring good performance
----------------------------------------------------------------------
+## <span id="ensuring-good-performance"></span>Ensuring good performance
 
 On large repositories, Git depends on compression to keep the history information from taking up too much space on disk or in memory. Some Git commands may automatically run <a href="git-gc.html" class="ulink">git-gc(1)</a>, so you don’t have to worry about running it manually. However, compressing a large repository may take a while, so you may want to call `gc` explicitly to avoid automatic compression kicking in when it is not convenient.
 
-<span id="ensuring-reliability"></span>Ensuring reliability
------------------------------------------------------------
+## <span id="ensuring-reliability"></span>Ensuring reliability
 
 ### <span id="checking-for-corruption"></span>Checking the repository for corruption
 
@@ -1365,8 +1337,7 @@ Other types of dangling objects (blobs and trees) are also possible, and danglin
 
 <span class="section">[Maintaining topic branches for a Linux subsystem maintainer](#maintaining-topic-branches)</span>
 
-<span id="getting-updates-With-git-pull"></span>Getting updates with git pull
------------------------------------------------------------------------------
+## <span id="getting-updates-With-git-pull"></span>Getting updates with git pull
 
 After you clone a repository and commit a few changes of your own, you may wish to check the original repository for updates and merge them into your own work.
 
@@ -1398,8 +1369,7 @@ The `git pull` command can also be given `.` as the "remote" repository, in whic
 
 are roughly equivalent.
 
-<span id="submitting-patches"></span>Submitting patches to a project
---------------------------------------------------------------------
+## <span id="submitting-patches"></span>Submitting patches to a project
 
 If you just have a few changes, the simplest way to submit them may just be to send them as patches in email:
 
@@ -1413,8 +1383,7 @@ will produce a numbered series of files in the current directory, one for each p
 
 You can then import these into your mail client and send them by hand. However, if you have a lot to send at once, you may prefer to use the <a href="git-send-email.html" class="ulink">git-send-email(1)</a> script to automate the process. Consult the mailing list for your project first to determine their requirements for submitting patches.
 
-<span id="importing-patches"></span>Importing patches to a project
-------------------------------------------------------------------
+## <span id="importing-patches"></span>Importing patches to a project
 
 Git also provides a tool called <a href="git-am.html" class="ulink">git-am(1)</a> (am stands for "apply mailbox"), for importing such an emailed series of patches. Just save all of the patch-containing messages, in order, into a single mailbox file, say `patches.mbox`, then run
 
@@ -1430,8 +1399,7 @@ and Git will create the commit for you and continue applying the remaining patch
 
 The final result will be a series of commits, one for each patch in the original mailbox, with authorship and commit log message each taken from the message containing each patch.
 
-<span id="public-repositories"></span>Public Git repositories
--------------------------------------------------------------
+## <span id="public-repositories"></span>Public Git repositories
 
 Another way to submit changes to a project is to tell the maintainer of that project to pull the changes from your repository using <a href="git-pull.html" class="ulink">git-pull(1)</a>. In the section "<a href="#getting-updates-With-git-pull" class="link" title="Getting updates with git pull">Getting updates with <code class="literal">git pull</code></a>" we described this as a way to get updates from the "main" repository, but it works just as well in the other direction.
 
@@ -1547,9 +1515,9 @@ If a push would not result in a <a href="#fast-forwards" class="link" title="Fas
 
 This can happen, for example, if you:
 
--   use `git reset --hard` to remove already-published commits, or
--   use `git commit --amend` to replace already-published commits (as in <a href="#fixing-a-mistake-by-rewriting-history" class="xref" title="Fixing a mistake by rewriting history">the section called “Fixing a mistake by rewriting history”</a>), or
--   use `git rebase` to rebase any already-published commits (as in <a href="#using-git-rebase" class="xref" title="Keeping a patch series up to date using git rebase">the section called “Keeping a patch series up to date using git rebase”</a>).
+- use `git reset --hard` to remove already-published commits, or
+- use `git commit --amend` to replace already-published commits (as in <a href="#fixing-a-mistake-by-rewriting-history" class="xref" title="Fixing a mistake by rewriting history">the section called “Fixing a mistake by rewriting history”</a>), or
+- use `git rebase` to rebase any already-published commits (as in <a href="#using-git-rebase" class="xref" title="Keeping a patch series up to date using git rebase">the section called “Keeping a patch series up to date using git rebase”</a>).
 
 You may force `git push` to perform the update anyway by preceding the branch name with a plus sign:
 
@@ -1571,9 +1539,9 @@ Another way to collaborate is by using a model similar to that commonly used in 
 
 However, while there is nothing wrong with Git’s support for shared repositories, this mode of operation is not generally recommended, simply because the mode of collaboration that Git supports—​by exchanging patches and pulling from public repositories—​has so many advantages over the central shared repository:
 
--   Git’s ability to quickly import and merge patches allows a single maintainer to process incoming changes even at very high rates. And when that becomes too much, `git pull` provides an easy way for that maintainer to delegate this job to other maintainers while still allowing optional review of incoming changes.
--   Since every developer’s repository has the same complete copy of the project history, no repository is special, and it is trivial for another developer to take over maintenance of a project, either by mutual agreement, or because a maintainer becomes unresponsive or difficult to work with.
--   The lack of a central group of "committers" means there is less need for formal decisions about who is "in" and who is "out".
+- Git’s ability to quickly import and merge patches allows a single maintainer to process incoming changes even at very high rates. And when that becomes too much, `git pull` provides an easy way for that maintainer to delegate this job to other maintainers while still allowing optional review of incoming changes.
+- Since every developer’s repository has the same complete copy of the project history, no repository is special, and it is trivial for another developer to take over maintenance of a project, either by mutual agreement, or because a maintainer becomes unresponsive or difficult to work with.
+- The lack of a central group of "committers" means there is less need for formal decisions about who is "in" and who is "out".
 
 ### <span id="setting-up-gitweb"></span>Allowing web browsing of a repository
 
@@ -1583,8 +1551,7 @@ The <a href="git-instaweb.html" class="ulink">git-instaweb(1)</a> command provid
 
 See the file gitweb/INSTALL in the Git source tree and <a href="gitweb.html" class="ulink">gitweb(1)</a> for instructions on details setting up a permanent installation with a CGI or Perl capable server.
 
-<span id="how-to-get-a-git-repository-with-minimal-history"></span>How to get a Git repository with minimal history
--------------------------------------------------------------------------------------------------------------------
+## <span id="how-to-get-a-git-repository-with-minimal-history"></span>How to get a Git repository with minimal history
 
 A <a href="#def_shallow_clone" class="link">shallow clone</a>, with its truncated history, is useful when one is interested only in recent history of a project and getting full history from the upstream is expensive.
 
@@ -1592,8 +1559,7 @@ A <a href="#def_shallow_clone" class="link">shallow clone</a> is created by spec
 
 Merging inside a <a href="#def_shallow_clone" class="link">shallow clone</a> will work as long as a merge base is in the recent history. Otherwise, it will be like merging unrelated histories and may have to result in huge conflicts. This limitation may make such a repository unsuitable to be used in merge based workflows.
 
-<span id="sharing-development-examples"></span>Examples
--------------------------------------------------------
+## <span id="sharing-development-examples"></span>Examples
 
 ### <span id="maintaining-topic-branches"></span>Maintaining topic branches for a Linux subsystem maintainer
 
@@ -1601,8 +1567,8 @@ This describes how Tony Luck uses Git in his role as maintainer of the IA64 arch
 
 He uses two public branches:
 
--   A "test" tree into which patches are initially placed so that they can get some exposure when integrated with other ongoing development. This tree is available to Andrew for pulling into -mm whenever he wants.
--   A "release" tree into which tested patches are moved for final sanity checking, and as a vehicle to send them upstream to Linus (by sending him a "please pull" request.)
+- A "test" tree into which patches are initially placed so that they can get some exposure when integrated with other ongoing development. This tree is available to Andrew for pulling into -mm whenever he wants.
+- A "release" tree into which tested patches are moved for final sanity checking, and as a vehicle to send them upstream to Linus (by sending him a "please pull" request.)
 
 He also uses a set of temporary branches ("topic branches"), each containing a logical grouping of patches.
 
@@ -1820,8 +1786,7 @@ Normally commits are only added to a project, never taken away or replaced. Git 
 
 However, there is a situation in which it can be useful to violate this assumption.
 
-<span id="patch-series"></span>Creating the perfect patch series
-----------------------------------------------------------------
+## <span id="patch-series"></span>Creating the perfect patch series
 
 Suppose you are a contributor to a large project, and you want to add a complicated feature, and to present it to the other developers in a way that makes it easy for them to read your changes, verify that they are correct, and understand why you made each change.
 
@@ -1838,8 +1803,7 @@ So the ideal is usually to produce a series of patches such that:
 
 We will introduce some tools that can help you do this, explain how to use them, and then explain some of the problems that can arise because you are rewriting history.
 
-<span id="using-git-rebase"></span>Keeping a patch series up to date using git rebase
--------------------------------------------------------------------------------------
+## <span id="using-git-rebase"></span>Keeping a patch series up to date using git rebase
 
 Suppose that you create a branch `mywork` on a remote-tracking branch `origin`, and create some commits on top of it:
 
@@ -1891,8 +1855,7 @@ At any point you may use the `--abort` option to abort this process and return m
 
 If you need to reorder or edit a number of commits in a branch, it may be easier to use `git rebase -i`, which allows you to reorder and squash commits, as well as marking them for individual editing during the rebase. See <a href="#interactive-rebase" class="xref" title="Using interactive rebases">the section called “Using interactive rebases”</a> for details, and <a href="#reordering-patch-series" class="xref" title="Reordering or selecting from a patch series">the section called “Reordering or selecting from a patch series”</a> for alternatives.
 
-<span id="rewriting-one-commit"></span>Rewriting a single commit
-----------------------------------------------------------------
+## <span id="rewriting-one-commit"></span>Rewriting a single commit
 
 We saw in <a href="#fixing-a-mistake-by-rewriting-history" class="xref" title="Fixing a mistake by rewriting history">the section called “Fixing a mistake by rewriting history”</a> that you can replace the most recent commit using
 
@@ -1902,8 +1865,7 @@ which will replace the old commit by a new commit incorporating your changes, gi
 
 If you need to amend commits from deeper in your history, you can use <a href="#interactive-rebase" class="link" title="Using interactive rebases">interactive rebase’s <code class="literal">edit</code> instruction</a>.
 
-<span id="reordering-patch-series"></span>Reordering or selecting from a patch series
--------------------------------------------------------------------------------------
+## <span id="reordering-patch-series"></span>Reordering or selecting from a patch series
 
 Sometimes you want to edit a commit deeper in your history. One approach is to use `git format-patch` to create a series of patches and then reset the state to before the patches:
 
@@ -1914,8 +1876,7 @@ Then modify, reorder, or eliminate patches as needed before applying them again 
 
     $ git am *.patch
 
-<span id="interactive-rebase"></span>Using interactive rebases
---------------------------------------------------------------
+## <span id="interactive-rebase"></span>Using interactive rebases
 
 You can also edit a patch series with an interactive rebase. This is the same as <a href="#reordering-patch-series" class="link" title="Reordering or selecting from a patch series">reordering a patch series using <code class="literal">format-patch</code></a>, so use whichever interface you like best.
 
@@ -1953,13 +1914,11 @@ The rebase will stop where `pick` has been replaced with `edit` or when a step i
 
 For a more detailed discussion of the procedure and additional tips, see the "INTERACTIVE MODE" section of <a href="git-rebase.html" class="ulink">git-rebase(1)</a>.
 
-<span id="patch-series-tools"></span>Other tools
-------------------------------------------------
+## <span id="patch-series-tools"></span>Other tools
 
 There are numerous other tools, such as StGit, which exist for the purpose of maintaining a patch series. These are outside of the scope of this manual.
 
-<span id="problems-With-rewriting-history"></span>Problems with rewriting history
----------------------------------------------------------------------------------
+## <span id="problems-With-rewriting-history"></span>Problems with rewriting history
 
 The primary problem with rewriting the history of a branch has to do with merging. Suppose somebody fetches your branch and merges it into their branch, with a result something like this:
 
@@ -1987,8 +1946,7 @@ You may still choose to publish branches whose history is rewritten, and it may 
 
 For true distributed development that supports proper merging, published branches should never be rewritten.
 
-<span id="bisect-merges"></span>Why bisecting merge commits can be harder than bisecting linear history
--------------------------------------------------------------------------------------------------------
+## <span id="bisect-merges"></span>Why bisecting merge commits can be harder than bisecting linear history
 
 The <a href="git-bisect.html" class="ulink">git-bisect(1)</a> command correctly handles history that includes merge commits. However, when the commit that it finds is a merge commit, the user may need to work harder than usual to figure out why that commit introduced a problem.
 
@@ -2026,8 +1984,7 @@ Partly for this reason, many experienced Git users, even when working on an othe
 
 <span class="section">[Configuring remote-tracking branches](#remote-branch-configuration)</span>
 
-<span id="fetching-individual-branches"></span>Fetching individual branches
----------------------------------------------------------------------------
+## <span id="fetching-individual-branches"></span>Fetching individual branches
 
 Instead of using <a href="git-remote.html" class="ulink">git-remote(1)</a>, you can also choose just to update one branch at a time, and to store it locally under an arbitrary name:
 
@@ -2041,8 +1998,7 @@ You can also fetch branches from other repositories; so
 
 will create a new branch named `example-master` and store in it the branch named `master` from the repository at the given URL. If you already have a branch named example-master, it will attempt to <a href="#fast-forwards" class="link" title="Fast-forward merges">fast-forward</a> to the commit given by example.com’s master branch. In more detail:
 
-<span id="fetch-fast-forwards"></span>git fetch and fast-forwards
------------------------------------------------------------------
+## <span id="fetch-fast-forwards"></span>git fetch and fast-forwards
 
 In the previous example, when updating an existing branch, `git fetch` checks to make sure that the most recent commit on the remote branch is a descendant of the most recent commit on your copy of the branch before updating your copy of the branch to point at the new commit. Git calls this process a <a href="#fast-forwards" class="link" title="Fast-forward merges">fast-forward</a>.
 
@@ -2062,8 +2018,7 @@ In this case, `git fetch` will fail, and print out a warning.
 
 In that case, you can still force Git to update to the new head, as described in the following section. However, note that in the situation above this may mean losing the commits labeled `a` and `b`, unless you’ve already created a reference of your own pointing to them.
 
-<span id="forcing-fetch"></span>Forcing git fetch to do non-fast-forward updates
---------------------------------------------------------------------------------
+## <span id="forcing-fetch"></span>Forcing git fetch to do non-fast-forward updates
 
 If git fetch fails because the new head of a branch is not a descendant of the old head, you may force the update with:
 
@@ -2075,8 +2030,7 @@ Note the addition of the `+` sign. Alternatively, you can use the `-f` flag to f
 
 Be aware that commits that the old version of example/master pointed at may be lost, as we saw in the previous section.
 
-<span id="remote-branch-configuration"></span>Configuring remote-tracking branches
-----------------------------------------------------------------------------------
+## <span id="remote-branch-configuration"></span>Configuring remote-tracking branches
 
 We saw above that `origin` is just a shortcut to refer to the repository that you originally cloned from. This information is stored in Git configuration variables, which you can see using <a href="git-config.html" class="ulink">git-config(1)</a>:
 
@@ -2135,23 +2089,22 @@ Git is built on a small number of simple but powerful ideas. While it is possibl
 
 We start with the most important, the <a href="#def_object_database" class="link">object database</a> and the <a href="#def_index" class="link">index</a>.
 
-<span id="the-object-database"></span>The Object Database
----------------------------------------------------------
+## <span id="the-object-database"></span>The Object Database
 
 We already saw in <a href="#understanding-commits" class="xref" title="Understanding History: Commits">the section called “Understanding History: Commits”</a> that all commits are stored under a 40-digit "object name". In fact, all the information needed to represent the history of a project is stored in objects with such names. In each case the name is calculated by taking the SHA-1 hash of the contents of the object. The SHA-1 hash is a cryptographic hash function. What that means to us is that it is impossible to find two different objects with the same name. This has a number of advantages; among others:
 
--   Git can quickly determine whether two objects are identical or not, just by comparing names.
--   Since object names are computed the same way in every repository, the same content stored in two repositories will always be stored under the same name.
--   Git can detect errors when it reads an object, by checking that the object’s name is still the SHA-1 hash of its contents.
+- Git can quickly determine whether two objects are identical or not, just by comparing names.
+- Since object names are computed the same way in every repository, the same content stored in two repositories will always be stored under the same name.
+- Git can detect errors when it reads an object, by checking that the object’s name is still the SHA-1 hash of its contents.
 
 (See <a href="#object-details" class="xref" title="Object storage format">the section called “Object storage format”</a> for the details of the object formatting and SHA-1 calculation.)
 
 There are four different types of objects: "blob", "tree", "commit", and "tag".
 
--   A <a href="#def_blob_object" class="link">"blob" object</a> is used to store file data.
--   A <a href="#def_tree_object" class="link">"tree" object</a> ties one or more "blob" objects into a directory structure. In addition, a tree object can refer to other tree objects, thus creating a directory hierarchy.
--   A <a href="#def_commit_object" class="link">"commit" object</a> ties such directory hierarchies together into a <a href="#def_DAG" class="link">directed acyclic graph</a> of revisions—​each commit contains the object name of exactly one tree designating the directory hierarchy at the time of the commit. In addition, a commit refers to "parent" commit objects that describe the history of how we arrived at that directory hierarchy.
--   A <a href="#def_tag_object" class="link">"tag" object</a> symbolically identifies and can be used to sign other objects. It contains the object name and type of another object, a symbolic name (of course!) and, optionally, a signature.
+- A <a href="#def_blob_object" class="link">"blob" object</a> is used to store file data.
+- A <a href="#def_tree_object" class="link">"tree" object</a> ties one or more "blob" objects into a directory structure. In addition, a tree object can refer to other tree objects, thus creating a directory hierarchy.
+- A <a href="#def_commit_object" class="link">"commit" object</a> ties such directory hierarchies together into a <a href="#def_DAG" class="link">directed acyclic graph</a> of revisions—​each commit contains the object name of exactly one tree designating the directory hierarchy at the time of the commit. In addition, a commit refers to "parent" commit objects that describe the history of how we arrived at that directory hierarchy.
+- A <a href="#def_tag_object" class="link">"tag" object</a> symbolically identifies and can be used to sign other objects. It contains the object name and type of another object, a symbolic name (of course!) and, optionally, a signature.
 
 The object types in some more detail:
 
@@ -2172,11 +2125,11 @@ The "commit" object links a physical state of a tree with a description of how w
 
 As you can see, a commit is defined by:
 
--   a tree: The SHA-1 name of a tree object (as defined below), representing the contents of a directory at a certain point in time.
--   parent(s): The SHA-1 name(s) of some number of commits which represent the immediately previous step(s) in the history of the project. The example above has one parent; merge commits may have more than one. A commit with no parents is called a "root" commit, and represents the initial revision of a project. Each project must have at least one root. A project can also have multiple roots, though that isn’t common (or necessarily a good idea).
--   an author: The name of the person responsible for this change, together with its date.
--   a committer: The name of the person who actually created the commit, with the date it was done. This may be different from the author, for example, if the author was someone who wrote a patch and emailed it to the person who used it to create the commit.
--   a comment describing this commit.
+- a tree: The SHA-1 name of a tree object (as defined below), representing the contents of a directory at a certain point in time.
+- parent(s): The SHA-1 name(s) of some number of commits which represent the immediately previous step(s) in the history of the project. The example above has one parent; merge commits may have more than one. A commit with no parents is called a "root" commit, and represents the initial revision of a project. Each project must have at least one root. A project can also have multiple roots, though that isn’t common (or necessarily a good idea).
+- an author: The name of the person responsible for this change, together with its date.
+- a committer: The name of the person who actually created the commit, with the date it was done. This may be different from the author, for example, if the author was someone who wrote a patch and emailed it to the person who used it to create the commit.
+- a comment describing this commit.
 
 Note that a commit does not itself contain any information about what actually changed; all changes are calculated by comparing the contents of the tree referred to by this commit with the trees associated with its parents. In particular, Git does not attempt to record file renames explicitly, though it can identify cases where the existence of the same file data at changing paths suggests a rename. (See, for example, the `-M` option to <a href="git-diff.html" class="ulink">git-diff(1)</a>).
 
@@ -2228,7 +2181,7 @@ If you receive the SHA-1 name of a blob from one source, and its contents from a
 
 Similarly, you need only trust the SHA-1 name of a top-level tree object to trust the contents of the entire directory that it refers to, and if you receive the SHA-1 name of a commit from a trusted source, then you can easily verify the entire history of commits reachable through parents of that commit, and all of those contents of the trees referred to by those commits.
 
-So to introduce some real trust in the system, the only thing you need to do is to digitally sign just <span class="emphasis">*one*</span> special note, which includes the name of a top-level commit. Your digital signature shows others that you trust that commit, and the immutability of the history of commits tells others that they can trust the whole history.
+So to introduce some real trust in the system, the only thing you need to do is to digitally sign just <span class="emphasis">_one_</span> special note, which includes the name of a top-level commit. Your digital signature shows others that you trust that commit, and the immutability of the history of commits tells others that they can trust the whole history.
 
 In other words, you can easily validate a whole archive by just sending out a single email that tells the people the name (SHA-1 hash) of the top commit, and digitally sign that email using something like GPG/PGP.
 
@@ -2316,7 +2269,7 @@ For blobs and trees, you can’t do the same, but you can still examine them. Yo
 
 to show what the contents of the blob were (or, for a tree, basically what the `ls` for that directory was), and that may give you some idea of what the operation was that left that dangling object.
 
-Usually, dangling blobs and trees aren’t very interesting. They’re almost always the result of either being a half-way mergebase (the blob will often even have the conflict markers from a merge in it, if you have had conflicting merges that you fixed up by hand), or simply because you interrupted a `git fetch` with ^C or something like that, leaving <span class="emphasis">*some*</span> of the new objects in the object database, but just dangling and useless.
+Usually, dangling blobs and trees aren’t very interesting. They’re almost always the result of either being a half-way mergebase (the blob will often even have the conflict markers from a merge in it, if you have had conflicting merges that you fixed up by hand), or simply because you interrupted a `git fetch` with ^C or something like that, leaving <span class="emphasis">_some_</span> of the new objects in the object database, but just dangling and useless.
 
 Anyway, once you are sure that you’re not interested in any dangling state, you can just prune all unreachable objects:
 
@@ -2397,8 +2350,7 @@ and your repository is good again!
 
 and just looked for the sha of the missing object (4b9458b) in that whole thing. It’s up to you—​Git does <span class="strong">**have**</span> a lot of information, it is just missing one particular blob version.
 
-<span id="the-index"></span>The index
--------------------------------------
+## <span id="the-index"></span>The index
 
 The index is a binary file (generally kept in `.git/index`) containing a sorted list of path names, each with permissions and the SHA-1 of a blob object; <a href="git-ls-files.html" class="ulink">git-ls-files(1)</a> can show you the contents of the index:
 
@@ -2483,9 +2435,9 @@ See what files `git submodule` created:
 
 The `git submodule add <repo> <path>` command does a couple of things:
 
--   It clones the submodule from `<repo>` to the given `<path>` under the current directory and by default checks out the master branch.
--   It adds the submodule’s clone path to the <a href="gitmodules.html" class="ulink">gitmodules(5)</a> file and adds this file to the index, ready to be committed.
--   It adds the submodule’s current commit ID to the index, ready to be committed.
+- It clones the submodule from `<repo>` to the given `<path>` under the current directory and by default checks out the master branch.
+- It adds the submodule’s clone path to the <a href="gitmodules.html" class="ulink">gitmodules(5)</a> file and adds this file to the index, ready to be committed.
+- It adds the submodule’s current commit ID to the index, ready to be committed.
 
 Commit the superproject:
 
@@ -2556,8 +2508,7 @@ then
 
 You have to run `git submodule update` after `git pull` if you want to update submodules, too.
 
-<span id="pitfalls-with-submodules"></span>Pitfalls with submodules
--------------------------------------------------------------------
+## <span id="pitfalls-with-submodules"></span>Pitfalls with submodules
 
 Always publish the submodule change before publishing the change to the superproject that references it. If you forget to publish the submodule change, others won’t be able to clone the repository:
 
@@ -2632,8 +2583,7 @@ If you have uncommitted changes in your submodule working tree, `git submodule u
 
 Many of the higher-level commands were originally implemented as shell scripts using a smaller core of low-level Git commands. These can still be useful when doing unusual things with Git, or just as a way to understand its inner workings.
 
-<span id="object-manipulation"></span>Object access and manipulation
---------------------------------------------------------------------
+## <span id="object-manipulation"></span>Object access and manipulation
 
 The <a href="git-cat-file.html" class="ulink">git-cat-file(1)</a> command can show the contents of any object, though the higher-level <a href="git-show.html" class="ulink">git-show(1)</a> is usually more useful.
 
@@ -2643,8 +2593,7 @@ A tree can be created with <a href="git-write-tree.html" class="ulink">git-write
 
 A tag is created with <a href="git-mktag.html" class="ulink">git-mktag(1)</a>, and the signature can be verified by <a href="git-verify-tag.html" class="ulink">git-verify-tag(1)</a>, though it is normally simpler to use <a href="git-tag.html" class="ulink">git-tag(1)</a> for both.
 
-<span id="the-workflow"></span>The Workflow
--------------------------------------------
+## <span id="the-workflow"></span>The Workflow
 
 High-level operations such as <a href="git-commit.html" class="ulink">git-commit(1)</a> and <a href="git-restore.html" class="ulink">git-restore(1)</a> work by moving data between the working tree, the index, and the object database. Git provides low-level operations which perform each of these steps individually.
 
@@ -2660,9 +2609,9 @@ but to avoid common mistakes with filename globbing etc., the command will not n
 
 To tell Git that yes, you really do realize that certain files no longer exist, or that new files should be added, you should use the `--remove` and `--add` flags respectively.
 
-NOTE! A `--remove` flag does <span class="emphasis">*not*</span> mean that subsequent filenames will necessarily be removed: if the files still exist in your directory structure, the index will be updated with their new status, not removed. The only thing `--remove` means is that update-index will be considering a removed file to be a valid thing, and if the file really does not exist any more, it will update the index accordingly.
+NOTE! A `--remove` flag does <span class="emphasis">_not_</span> mean that subsequent filenames will necessarily be removed: if the files still exist in your directory structure, the index will be updated with their new status, not removed. The only thing `--remove` means is that update-index will be considering a removed file to be a valid thing, and if the file really does not exist any more, it will update the index accordingly.
 
-As a special case, you can also do `git update-index --refresh`, which will refresh the "stat" information of each index to match the current stat information. It will <span class="emphasis">*not*</span> update the object status itself, and it will only update the fields that are used to quickly test whether an object still matches its old backing store object.
+As a special case, you can also do `git update-index --refresh`, which will refresh the "stat" information of each index to match the current stat information. It will <span class="emphasis">_not_</span> update the object status itself, and it will only update the fields that are used to quickly test whether an object still matches its old backing store object.
 
 The previously introduced <a href="git-add.html" class="ulink">git-add(1)</a> is just a wrapper for <a href="git-update-index.html" class="ulink">git-update-index(1)</a>.
 
@@ -2680,7 +2629,7 @@ You read a "tree" file from the object database, and use that to populate (and o
 
     $ git read-tree <SHA-1 of tree>
 
-and your index file will now be equivalent to the tree that you saved earlier. However, that is only your <span class="emphasis">*index*</span> file: your working directory contents have not been modified.
+and your index file will now be equivalent to the tree that you saved earlier. However, that is only your <span class="emphasis">_index_</span> file: your working directory contents have not been modified.
 
 ### <span id="index-to-working-directory"></span>index → working directory
 
@@ -2692,7 +2641,7 @@ However, if you decide to jump to a new version, or check out somebody else’s 
 
 or, if you want to check out all of the index, use `-a`.
 
-NOTE! `git checkout-index` normally refuses to overwrite old files, so if you have an old version of the tree already checked out, you will need to use the `-f` flag (<span class="emphasis">*before*</span> the `-a` flag or the filename) to <span class="emphasis">*force*</span> the checkout.
+NOTE! `git checkout-index` normally refuses to overwrite old files, so if you have an old version of the tree already checked out, you will need to use the `-f` flag (<span class="emphasis">_before_</span> the `-a` flag or the filename) to <span class="emphasis">_force_</span> the checkout.
 
 Finally, there are a few odds and ends which are not purely moving from one representation to the other:
 
@@ -2746,8 +2695,7 @@ Here is a picture that illustrates how various pieces fit together:
                         | Directory |
                         +-----------+
 
-<span id="examining-the-data"></span>Examining the data
--------------------------------------------------------
+## <span id="examining-the-data"></span>Examining the data
 
 You can examine the data represented in the object database and the index with various helper tools. For every object, you can use <a href="git-cat-file.html" class="ulink">git-cat-file(1)</a> to examine details about the object:
 
@@ -2765,8 +2713,7 @@ It’s especially instructive to look at "commit" objects, since those tend to b
 
 to see what the top commit was.
 
-<span id="merging-multiple-trees"></span>Merging multiple trees
----------------------------------------------------------------
+## <span id="merging-multiple-trees"></span>Merging multiple trees
 
 Git can help you perform a three-way merge, which can in turn be used for a many-way merge by repeating the merge procedure several times. The usual situation is that you only do one three-way merge (reconciling two lines of history) and commit the result, but if you like to, you can merge several branches in one go.
 
@@ -2790,10 +2737,9 @@ To do the merge, do
 
 which will do all trivial merge operations for you directly in the index file, and you can just write the result out with `git write-tree`.
 
-<span id="merging-multiple-trees-2"></span>Merging multiple trees, continued
-----------------------------------------------------------------------------
+## <span id="merging-multiple-trees-2"></span>Merging multiple trees, continued
 
-Sadly, many merges aren’t trivial. If there are files that have been added, moved or removed, or if both branches have modified the same file, you will be left with an index tree that contains "merge entries" in it. Such an index tree can <span class="emphasis">*NOT*</span> be written out to a tree object, and you will have to resolve any such merge clashes using other tools before you can write out the result.
+Sadly, many merges aren’t trivial. If there are files that have been added, moved or removed, or if both branches have modified the same file, you will be left with an index tree that contains "merge entries" in it. Such an index tree can <span class="emphasis">_NOT_</span> be written out to a tree object, and you will have to resolve any such merge clashes using other tools before you can write out the result.
 
 You can examine such index state with `git ls-files --unmerged` command. An example:
 
@@ -2803,7 +2749,7 @@ You can examine such index state with `git ls-files --unmerged` command. An exam
     100644 06fa6a24256dc7e560efa5687fa84b51f0263c3a 2       hello.c
     100644 cc44c73eb783565da5831b4d820c962954019b69 3       hello.c
 
-Each line of the `git ls-files --unmerged` output begins with the blob mode bits, blob SHA-1, <span class="emphasis">*stage number*</span>, and the filename. The <span class="emphasis">*stage number*</span> is Git’s way to say which tree it came from: stage 1 corresponds to the `$orig` tree, stage 2 to the `HEAD` tree, and stage 3 to the `$target` tree.
+Each line of the `git ls-files --unmerged` output begins with the blob mode bits, blob SHA-1, <span class="emphasis">_stage number_</span>, and the filename. The <span class="emphasis">_stage number_</span> is Git’s way to say which tree it came from: stage 1 corresponds to the `$orig` tree, stage 2 to the `HEAD` tree, and stage 3 to the `$target` tree.
 
 Earlier we said that trivial merges are done inside `git read-tree -m`. For example, if the file did not change from `$orig` to `HEAD` or `$target`, or if the file changed from `$orig` to `HEAD` and `$orig` to `$target` the same way, obviously the final outcome is what is in `HEAD`. What the above example shows is that file `hello.c` was changed from `$orig` to `HEAD` and `$orig` to `$target` in a different way. You could resolve this by running your favorite 3-way merge program, e.g. `diff3`, `merge`, or Git’s own merge-file, on the blob objects from these three stages yourself, like this:
 
@@ -2833,19 +2779,17 @@ and that is what higher level `git merge -s resolve` is implemented with.
 
 This chapter covers internal details of the Git implementation which probably only Git developers need to understand.
 
-<span id="object-details"></span>Object storage format
-------------------------------------------------------
+## <span id="object-details"></span>Object storage format
 
 All objects have a statically determined "type" which identifies the format of the object (i.e. how it is used, and how it can refer to other objects). There are currently four different object types: "blob", "tree", "commit", and "tag".
 
-Regardless of object type, all objects share the following characteristics: they are all deflated with zlib, and have a header that not only specifies their type, but also provides size information about the data in the object. It’s worth noting that the SHA-1 hash that is used to name the object is the hash of the original data plus this header, so `sha1sum` <span class="emphasis">*file*</span> does not match the object name for <span class="emphasis">*file*</span>.
+Regardless of object type, all objects share the following characteristics: they are all deflated with zlib, and have a header that not only specifies their type, but also provides size information about the data in the object. It’s worth noting that the SHA-1 hash that is used to name the object is the hash of the original data plus this header, so `sha1sum` <span class="emphasis">_file_</span> does not match the object name for <span class="emphasis">_file_</span>.
 
-As a result, the general consistency of an object can always be tested independently of the contents or the type of the object: all objects can be validated by verifying that (a) their hashes match the content of the file and (b) the object successfully inflates to a stream of bytes that forms a sequence of `<ascii type without space> + <space> + <ascii               decimal size> + <byte\0> + <binary object               data>`.
+As a result, the general consistency of an object can always be tested independently of the contents or the type of the object: all objects can be validated by verifying that (a) their hashes match the content of the file and (b) the object successfully inflates to a stream of bytes that forms a sequence of `<ascii type without space> + <space> + <ascii decimal size> + <byte\0> + <binary object data>`.
 
 The structured objects can further have their structure and connectivity to other objects verified. This is generally done with the `git fsck` program, which generates a full dependency graph of all objects, and verifies their internal consistency (in addition to just verifying their superficial consistency through the hash).
 
-<span id="birdview-on-the-source-code"></span>A birds-eye view of Git’s source code
------------------------------------------------------------------------------------
+## <span id="birdview-on-the-source-code"></span>A birds-eye view of Git’s source code
 
 It is not always easy for new developers to find their way through Git’s source code. This section gives you a little guidance to show where to start.
 
@@ -2857,13 +2801,13 @@ The initial revision lays the foundation for almost everything Git has today, bu
 
 Note that terminology has changed since that revision. For example, the README in that revision uses the word "changeset" to describe what we now call a <a href="#def_commit_object" class="link">commit</a>.
 
-Also, we do not call it "cache" any more, but rather "index"; however, the file is still called `cache.h`. Remark: Not much reason to change it now, especially since there is no good single name for it anyway, because it is basically <span class="emphasis">*the*</span> header file which is included by <span class="emphasis">*all*</span> of Git’s C sources.
+Also, we do not call it "cache" any more, but rather "index"; however, the file is still called `cache.h`. Remark: Not much reason to change it now, especially since there is no good single name for it anyway, because it is basically <span class="emphasis">_the_</span> header file which is included by <span class="emphasis">_all_</span> of Git’s C sources.
 
 If you grasp the ideas in that initial commit, you should check out a more recent version and skim `cache.h`, `object.h` and `commit.h`.
 
 In the early days, Git (in the tradition of UNIX) was a bunch of programs which were extremely simple, and which you used in scripts, piping the output of one into another. This turned out to be good for initial development, since it was easier to test new things. However, recently many of these parts have become builtins, and some of the core has been "libified", i.e. put into libgit.a for performance, portability reasons, and to avoid code duplication.
 
-By now, you know what the index is (and find the corresponding data structures in `cache.h`), and that there are just a couple of object types (blobs, trees, commits and tags) which inherit their common structure from `struct object`, which is their first member (and thus, you can cast e.g. `(struct object *)commit` to achieve the <span class="emphasis">*same*</span> as `&commit->object`, i.e. get at the object name and flags).
+By now, you know what the index is (and find the corresponding data structures in `cache.h`), and that there are just a couple of object types (blobs, trees, commits and tags) which inherit their common structure from `struct object`, which is their first member (and thus, you can cast e.g. `(struct object *)commit` to achieve the <span class="emphasis">_same_</span> as `&commit->object`, i.e. get at the object name and flags).
 
 Now is a good point to take a break to let this information sink in.
 
@@ -2878,7 +2822,7 @@ Basically, the initial version of `git log` was a shell script:
 
 What does this mean?
 
-`git rev-list` is the original version of the revision walker, which <span class="emphasis">*always*</span> printed a list of revisions to stdout. It is still functional, and needs to, since most new Git commands start out as scripts using `git rev-list`.
+`git rev-list` is the original version of the revision walker, which <span class="emphasis">_always_</span> printed a list of revisions to stdout. It is still functional, and needs to, since most new Git commands start out as scripts using `git rev-list`.
 
 `git rev-parse` is not as important any more; it was only used to filter out options that were relevant for the different plumbing commands that were called by the script.
 
@@ -2888,13 +2832,13 @@ The original job of `git rev-parse` is now taken by the function `setup_revision
 
 If you are interested in more details of the revision walking process, just have a look at the first implementation of `cmd_log()`; call `git show v1.3.0~155^2~4` and scroll down to that function (note that you no longer need to call `setup_pager()` directly).
 
-Nowadays, `git log` is a builtin, which means that it is <span class="emphasis">*contained*</span> in the command `git`. The source side of a builtin is
+Nowadays, `git log` is a builtin, which means that it is <span class="emphasis">_contained_</span> in the command `git`. The source side of a builtin is
 
--   a function called `cmd_<bla>`, typically defined in `builtin/<bla.c>` (note that older versions of Git used to have it in `builtin-<bla>.c` instead), and declared in `builtin.h`.
--   an entry in the `commands[]` array in `git.c`, and
--   an entry in `BUILTIN_OBJECTS` in the `Makefile`.
+- a function called `cmd_<bla>`, typically defined in `builtin/<bla.c>` (note that older versions of Git used to have it in `builtin-<bla>.c` instead), and declared in `builtin.h`.
+- an entry in the `commands[]` array in `git.c`, and
+- an entry in `BUILTIN_OBJECTS` in the `Makefile`.
 
-Sometimes, more than one builtin is contained in one source file. For example, `cmd_whatchanged()` and `cmd_log()` both reside in `builtin/log.c`, since they share quite a bit of code. In that case, the commands which are <span class="emphasis">*not*</span> named like the `.c` file in which they live have to be listed in `BUILT_INS` in the `Makefile`.
+Sometimes, more than one builtin is contained in one source file. For example, `cmd_whatchanged()` and `cmd_log()` both reside in `builtin/log.c`, since they share quite a bit of code. In that case, the commands which are <span class="emphasis">_not_</span> named like the `.c` file in which they live have to be listed in `BUILT_INS` in the `Makefile`.
 
 `git log` looks more complicated in C than it does in the original script, but that allows for a much greater flexibility and performance.
 
@@ -2906,8 +2850,8 @@ So, think about something which you are interested in, say, "how can I access a 
 
 For the sake of clarity, let’s stay with `git cat-file`, because it
 
--   is plumbing, and
--   was around even in the initial commit (it literally went only through some 20 revisions as `cat-file.c`, was renamed to `builtin/cat-file.c` when made a builtin, and then saw less than 10 versions).
+- is plumbing, and
+- was around even in the initial commit (it literally went only through some 20 revisions as `cat-file.c`, was renamed to `builtin/cat-file.c` when made a builtin, and then saw less than 10 versions).
 
 So, look into `builtin/cat-file.c`, search for `cmd_cat_file()` and look what it does.
 
@@ -2921,8 +2865,8 @@ Let’s skip over the obvious details; the only really interesting part here is 
 
 Two things are interesting here:
 
--   `get_sha1()` returns 0 on <span class="emphasis">*success*</span>. This might surprise some new Git hackers, but there is a long tradition in UNIX to return different negative numbers in case of different errors—​and 0 on success.
--   the variable `sha1` in the function signature of `get_sha1()` is `unsigned char *`, but is actually expected to be a pointer to `unsigned char[20]`. This variable will contain the 160-bit SHA-1 of the given commit. Note that whenever a SHA-1 is passed as `unsigned char *`, it is the binary representation, as opposed to the ASCII representation in hex characters, which is passed as `char *`.
+- `get_sha1()` returns 0 on <span class="emphasis">_success_</span>. This might surprise some new Git hackers, but there is a long tradition in UNIX to return different negative numbers in case of different errors—​and 0 on success.
+- the variable `sha1` in the function signature of `get_sha1()` is `unsigned char *`, but is actually expected to be a pointer to `unsigned char[20]`. This variable will contain the 160-bit SHA-1 of the given commit. Note that whenever a SHA-1 is passed as `unsigned char *`, it is the binary representation, as opposed to the ASCII representation in hex characters, which is passed as `char *`.
 
 You will see both of these things throughout the code.
 
@@ -2939,7 +2883,7 @@ To find out how the result can be used, just read on in `cmd_cat_file()`:
 
 Sometimes, you do not know where to look for a feature. In many such cases, it helps to search through the output of `git log`, and then `git show` the corresponding commit.
 
-Example: If you know that there was some test case for `git bundle`, but do not remember where it was (yes, you <span class="emphasis">*could*</span> `git grep bundle t/`, but that does not illustrate the point!):
+Example: If you know that there was some test case for `git bundle`, but do not remember where it was (yes, you <span class="emphasis">_could_</span> `git grep bundle t/`, but that does not illustrate the point!):
 
     $ git log --no-merges t/
 
@@ -2959,162 +2903,161 @@ You see, Git is actually the best tool to find out about the source of Git itsel
 
 <span class="section">[Git explained](#git-explained)</span>
 
-<span id="git-explained"></span>Git explained
----------------------------------------------
+## <span id="git-explained"></span>Git explained
 
- <span class="term"><span id="def_alternate_object_database"></span>alternate object database</span>   
+<span class="term"><span id="def_alternate_object_database"></span>alternate object database</span>  
 Via the alternates mechanism, a <a href="#def_repository" class="link">repository</a> can inherit part of its <a href="#def_object_database" class="link">object database</a> from another object database, which is called an "alternate".
 
- <span class="term"><span id="def_bare_repository"></span>bare repository</span>   
+<span class="term"><span id="def_bare_repository"></span>bare repository</span>  
 A bare repository is normally an appropriately named <a href="#def_directory" class="link">directory</a> with a `.git` suffix that does not have a locally checked-out copy of any of the files under revision control. That is, all of the Git administrative and control files that would normally be present in the hidden `.git` sub-directory are directly present in the `repository.git` directory instead, and no other files are present and checked out. Usually publishers of public repositories make bare repositories available.
 
- <span class="term"><span id="def_blob_object"></span>blob object</span>   
+<span class="term"><span id="def_blob_object"></span>blob object</span>  
 Untyped <a href="#def_object" class="link">object</a>, e.g. the contents of a file.
 
- <span class="term"><span id="def_branch"></span>branch</span>   
+<span class="term"><span id="def_branch"></span>branch</span>  
 A "branch" is a line of development. The most recent <a href="#def_commit" class="link">commit</a> on a branch is referred to as the tip of that branch. The tip of the branch is referenced by a branch <a href="#def_head" class="link">head</a>, which moves forward as additional development is done on the branch. A single Git <a href="#def_repository" class="link">repository</a> can track an arbitrary number of branches, but your <a href="#def_working_tree" class="link">working tree</a> is associated with just one of them (the "current" or "checked out" branch), and <a href="#def_HEAD" class="link">HEAD</a> points to that branch.
 
- <span class="term"><span id="def_cache"></span>cache</span>   
+<span class="term"><span id="def_cache"></span>cache</span>  
 Obsolete for: <a href="#def_index" class="link">index</a>.
 
- <span class="term"><span id="def_chain"></span>chain</span>   
+<span class="term"><span id="def_chain"></span>chain</span>  
 A list of objects, where each <a href="#def_object" class="link">object</a> in the list contains a reference to its successor (for example, the successor of a <a href="#def_commit" class="link">commit</a> could be one of its <a href="#def_parent" class="link">parents</a>).
 
- <span class="term"><span id="def_changeset"></span>changeset</span>   
+<span class="term"><span id="def_changeset"></span>changeset</span>  
 BitKeeper/cvsps speak for "<a href="#def_commit" class="link">commit</a>". Since Git does not store changes, but states, it really does not make sense to use the term "changesets" with Git.
 
- <span class="term"><span id="def_checkout"></span>checkout</span>   
+<span class="term"><span id="def_checkout"></span>checkout</span>  
 The action of updating all or part of the <a href="#def_working_tree" class="link">working tree</a> with a <a href="#def_tree_object" class="link">tree object</a> or <a href="#def_blob_object" class="link">blob</a> from the <a href="#def_object_database" class="link">object database</a>, and updating the <a href="#def_index" class="link">index</a> and <a href="#def_HEAD" class="link">HEAD</a> if the whole working tree has been pointed at a new <a href="#def_branch" class="link">branch</a>.
 
- <span class="term"><span id="def_cherry-picking"></span>cherry-picking</span>   
+<span class="term"><span id="def_cherry-picking"></span>cherry-picking</span>  
 In <a href="#def_SCM" class="link">SCM</a> jargon, "cherry pick" means to choose a subset of changes out of a series of changes (typically commits) and record them as a new series of changes on top of a different codebase. In Git, this is performed by the "git cherry-pick" command to extract the change introduced by an existing <a href="#def_commit" class="link">commit</a> and to record it based on the tip of the current <a href="#def_branch" class="link">branch</a> as a new commit.
 
- <span class="term"><span id="def_clean"></span>clean</span>   
+<span class="term"><span id="def_clean"></span>clean</span>  
 A <a href="#def_working_tree" class="link">working tree</a> is clean, if it corresponds to the <a href="#def_revision" class="link">revision</a> referenced by the current <a href="#def_head" class="link">head</a>. Also see "<a href="#def_dirty" class="link">dirty</a>".
 
- <span class="term"><span id="def_commit"></span>commit</span>   
+<span class="term"><span id="def_commit"></span>commit</span>  
 As a noun: A single point in the Git history; the entire history of a project is represented as a set of interrelated commits. The word "commit" is often used by Git in the same places other revision control systems use the words "revision" or "version". Also used as a short hand for <a href="#def_commit_object" class="link">commit object</a>.
 
 As a verb: The action of storing a new snapshot of the project’s state in the Git history, by creating a new commit representing the current state of the <a href="#def_index" class="link">index</a> and advancing <a href="#def_HEAD" class="link">HEAD</a> to point at the new commit.
 
- <span class="term"><span id="def_commit_object"></span>commit object</span>   
+<span class="term"><span id="def_commit_object"></span>commit object</span>  
 An <a href="#def_object" class="link">object</a> which contains the information about a particular <a href="#def_revision" class="link">revision</a>, such as <a href="#def_parent" class="link">parents</a>, committer, author, date and the <a href="#def_tree_object" class="link">tree object</a> which corresponds to the top <a href="#def_directory" class="link">directory</a> of the stored revision.
 
- <span class="term"><span id="def_commit-ish"></span>commit-ish (also committish)</span>   
+<span class="term"><span id="def_commit-ish"></span>commit-ish (also committish)</span>  
 A <a href="#def_commit_object" class="link">commit object</a> or an <a href="#def_object" class="link">object</a> that can be recursively dereferenced to a commit object. The following are all commit-ishes: a commit object, a <a href="#def_tag_object" class="link">tag object</a> that points to a commit object, a tag object that points to a tag object that points to a commit object, etc.
 
- <span class="term"><span id="def_core_git"></span>core Git</span>   
+<span class="term"><span id="def_core_git"></span>core Git</span>  
 Fundamental data structures and utilities of Git. Exposes only limited source code management tools.
 
- <span class="term"><span id="def_DAG"></span>DAG</span>   
+<span class="term"><span id="def_DAG"></span>DAG</span>  
 Directed acyclic graph. The <a href="#def_commit_object" class="link">commit objects</a> form a directed acyclic graph, because they have parents (directed), and the graph of commit objects is acyclic (there is no <a href="#def_chain" class="link">chain</a> which begins and ends with the same <a href="#def_object" class="link">object</a>).
 
- <span class="term"><span id="def_dangling_object"></span>dangling object</span>   
+<span class="term"><span id="def_dangling_object"></span>dangling object</span>  
 An <a href="#def_unreachable_object" class="link">unreachable object</a> which is not <a href="#def_reachable" class="link">reachable</a> even from other unreachable objects; a dangling object has no references to it from any reference or <a href="#def_object" class="link">object</a> in the <a href="#def_repository" class="link">repository</a>.
 
- <span class="term"><span id="def_detached_HEAD"></span>detached HEAD</span>   
+<span class="term"><span id="def_detached_HEAD"></span>detached HEAD</span>  
 Normally the <a href="#def_HEAD" class="link">HEAD</a> stores the name of a <a href="#def_branch" class="link">branch</a>, and commands that operate on the history HEAD represents operate on the history leading to the tip of the branch the HEAD points at. However, Git also allows you to <a href="#def_checkout" class="link">check out</a> an arbitrary <a href="#def_commit" class="link">commit</a> that isn’t necessarily the tip of any particular branch. The HEAD in such a state is called "detached".
 
-Note that commands that operate on the history of the current branch (e.g. `git commit` to build a new history on top of it) still work while the HEAD is detached. They update the HEAD to point at the tip of the updated history without affecting any branch. Commands that update or inquire information <span class="emphasis">*about*</span> the current branch (e.g. `git branch --set-upstream-to` that sets what remote-tracking branch the current branch integrates with) obviously do not work, as there is no (real) current branch to ask about in this state.
+Note that commands that operate on the history of the current branch (e.g. `git commit` to build a new history on top of it) still work while the HEAD is detached. They update the HEAD to point at the tip of the updated history without affecting any branch. Commands that update or inquire information <span class="emphasis">_about_</span> the current branch (e.g. `git branch --set-upstream-to` that sets what remote-tracking branch the current branch integrates with) obviously do not work, as there is no (real) current branch to ask about in this state.
 
- <span class="term"><span id="def_directory"></span>directory</span>   
+<span class="term"><span id="def_directory"></span>directory</span>  
 The list you get with "ls" :-)
 
- <span class="term"><span id="def_dirty"></span>dirty</span>   
+<span class="term"><span id="def_dirty"></span>dirty</span>  
 A <a href="#def_working_tree" class="link">working tree</a> is said to be "dirty" if it contains modifications which have not been <a href="#def_commit" class="link">committed</a> to the current <a href="#def_branch" class="link">branch</a>.
 
- <span class="term"><span id="def_evil_merge"></span>evil merge</span>   
+<span class="term"><span id="def_evil_merge"></span>evil merge</span>  
 An evil merge is a <a href="#def_merge" class="link">merge</a> that introduces changes that do not appear in any <a href="#def_parent" class="link">parent</a>.
 
- <span class="term"><span id="def_fast_forward"></span>fast-forward</span>   
+<span class="term"><span id="def_fast_forward"></span>fast-forward</span>  
 A fast-forward is a special type of <a href="#def_merge" class="link">merge</a> where you have a <a href="#def_revision" class="link">revision</a> and you are "merging" another <a href="#def_branch" class="link">branch</a>'s changes that happen to be a descendant of what you have. In such a case, you do not make a new <a href="#def_merge" class="link">merge</a> <a href="#def_commit" class="link">commit</a> but instead just update to his revision. This will happen frequently on a <a href="#def_remote_tracking_branch" class="link">remote-tracking branch</a> of a remote <a href="#def_repository" class="link">repository</a>.
 
- <span class="term"><span id="def_fetch"></span>fetch</span>   
+<span class="term"><span id="def_fetch"></span>fetch</span>  
 Fetching a <a href="#def_branch" class="link">branch</a> means to get the branch’s <a href="#def_head_ref" class="link">head ref</a> from a remote <a href="#def_repository" class="link">repository</a>, to find out which objects are missing from the local <a href="#def_object_database" class="link">object database</a>, and to get them, too. See also <a href="git-fetch.html" class="ulink">git-fetch(1)</a>.
 
- <span class="term"><span id="def_file_system"></span>file system</span>   
+<span class="term"><span id="def_file_system"></span>file system</span>  
 Linus Torvalds originally designed Git to be a user space file system, i.e. the infrastructure to hold files and directories. That ensured the efficiency and speed of Git.
 
- <span class="term"><span id="def_git_archive"></span>Git archive</span>   
+<span class="term"><span id="def_git_archive"></span>Git archive</span>  
 Synonym for <a href="#def_repository" class="link">repository</a> (for arch people).
 
- <span class="term"><span id="def_gitfile"></span>gitfile</span>   
+<span class="term"><span id="def_gitfile"></span>gitfile</span>  
 A plain file `.git` at the root of a working tree that points at the directory that is the real repository.
 
- <span class="term"><span id="def_grafts"></span>grafts</span>   
+<span class="term"><span id="def_grafts"></span>grafts</span>  
 Grafts enables two otherwise different lines of development to be joined together by recording fake ancestry information for commits. This way you can make Git pretend the set of <a href="#def_parent" class="link">parents</a> a <a href="#def_commit" class="link">commit</a> has is different from what was recorded when the commit was created. Configured via the `.git/info/grafts` file.
 
 Note that the grafts mechanism is outdated and can lead to problems transferring objects between repositories; see <a href="git-replace.html" class="ulink">git-replace(1)</a> for a more flexible and robust system to do the same thing.
 
- <span class="term"><span id="def_hash"></span>hash</span>   
+<span class="term"><span id="def_hash"></span>hash</span>  
 In Git’s context, synonym for <a href="#def_object_name" class="link">object name</a>.
 
- <span class="term"><span id="def_head"></span>head</span>   
+<span class="term"><span id="def_head"></span>head</span>  
 A <a href="#def_ref" class="link">named reference</a> to the <a href="#def_commit" class="link">commit</a> at the tip of a <a href="#def_branch" class="link">branch</a>. Heads are stored in a file in `$GIT_DIR/refs/heads/` directory, except when using packed refs. (See <a href="git-pack-refs.html" class="ulink">git-pack-refs(1)</a>.)
 
- <span class="term"><span id="def_HEAD"></span>HEAD</span>   
+<span class="term"><span id="def_HEAD"></span>HEAD</span>  
 The current <a href="#def_branch" class="link">branch</a>. In more detail: Your <a href="#def_working_tree" class="link">working tree</a> is normally derived from the state of the tree referred to by HEAD. HEAD is a reference to one of the <a href="#def_head" class="link">heads</a> in your repository, except when using a <a href="#def_detached_HEAD" class="link">detached HEAD</a>, in which case it directly references an arbitrary commit.
 
- <span class="term"><span id="def_head_ref"></span>head ref</span>   
+<span class="term"><span id="def_head_ref"></span>head ref</span>  
 A synonym for <a href="#def_head" class="link">head</a>.
 
- <span class="term"><span id="def_hook"></span>hook</span>   
+<span class="term"><span id="def_hook"></span>hook</span>  
 During the normal execution of several Git commands, call-outs are made to optional scripts that allow a developer to add functionality or checking. Typically, the hooks allow for a command to be pre-verified and potentially aborted, and allow for a post-notification after the operation is done. The hook scripts are found in the `$GIT_DIR/hooks/` directory, and are enabled by simply removing the `.sample` suffix from the filename. In earlier versions of Git you had to make them executable.
 
- <span class="term"><span id="def_index"></span>index</span>   
+<span class="term"><span id="def_index"></span>index</span>  
 A collection of files with stat information, whose contents are stored as objects. The index is a stored version of your <a href="#def_working_tree" class="link">working tree</a>. Truth be told, it can also contain a second, and even a third version of a working tree, which are used when <a href="#def_merge" class="link">merging</a>.
 
- <span class="term"><span id="def_index_entry"></span>index entry</span>   
+<span class="term"><span id="def_index_entry"></span>index entry</span>  
 The information regarding a particular file, stored in the <a href="#def_index" class="link">index</a>. An index entry can be unmerged, if a <a href="#def_merge" class="link">merge</a> was started, but not yet finished (i.e. if the index contains multiple versions of that file).
 
- <span class="term"><span id="def_master"></span>master</span>   
+<span class="term"><span id="def_master"></span>master</span>  
 The default development <a href="#def_branch" class="link">branch</a>. Whenever you create a Git <a href="#def_repository" class="link">repository</a>, a branch named "master" is created, and becomes the active branch. In most cases, this contains the local development, though that is purely by convention and is not required.
 
- <span class="term"><span id="def_merge"></span>merge</span>   
+<span class="term"><span id="def_merge"></span>merge</span>  
 As a verb: To bring the contents of another <a href="#def_branch" class="link">branch</a> (possibly from an external <a href="#def_repository" class="link">repository</a>) into the current branch. In the case where the merged-in branch is from a different repository, this is done by first <a href="#def_fetch" class="link">fetching</a> the remote branch and then merging the result into the current branch. This combination of fetch and merge operations is called a <a href="#def_pull" class="link">pull</a>. Merging is performed by an automatic process that identifies changes made since the branches diverged, and then applies all those changes together. In cases where changes conflict, manual intervention may be required to complete the merge.
 
 As a noun: unless it is a <a href="#def_fast_forward" class="link">fast-forward</a>, a successful merge results in the creation of a new <a href="#def_commit" class="link">commit</a> representing the result of the merge, and having as <a href="#def_parent" class="link">parents</a> the tips of the merged <a href="#def_branch" class="link">branches</a>. This commit is referred to as a "merge commit", or sometimes just a "merge".
 
- <span class="term"><span id="def_object"></span>object</span>   
+<span class="term"><span id="def_object"></span>object</span>  
 The unit of storage in Git. It is uniquely identified by the <a href="#def_SHA1" class="link">SHA-1</a> of its contents. Consequently, an object cannot be changed.
 
- <span class="term"><span id="def_object_database"></span>object database</span>   
+<span class="term"><span id="def_object_database"></span>object database</span>  
 Stores a set of "objects", and an individual <a href="#def_object" class="link">object</a> is identified by its <a href="#def_object_name" class="link">object name</a>. The objects usually live in `$GIT_DIR/objects/`.
 
- <span class="term"><span id="def_object_identifier"></span>object identifier</span>   
+<span class="term"><span id="def_object_identifier"></span>object identifier</span>  
 Synonym for <a href="#def_object_name" class="link">object name</a>.
 
- <span class="term"><span id="def_object_name"></span>object name</span>   
+<span class="term"><span id="def_object_name"></span>object name</span>  
 The unique identifier of an <a href="#def_object" class="link">object</a>. The object name is usually represented by a 40 character hexadecimal string. Also colloquially called <a href="#def_SHA1" class="link">SHA-1</a>.
 
- <span class="term"><span id="def_object_type"></span>object type</span>   
+<span class="term"><span id="def_object_type"></span>object type</span>  
 One of the identifiers "<a href="#def_commit_object" class="link">commit</a>", "<a href="#def_tree_object" class="link">tree</a>", "<a href="#def_tag_object" class="link">tag</a>" or "<a href="#def_blob_object" class="link">blob</a>" describing the type of an <a href="#def_object" class="link">object</a>.
 
- <span class="term"><span id="def_octopus"></span>octopus</span>   
+<span class="term"><span id="def_octopus"></span>octopus</span>  
 To <a href="#def_merge" class="link">merge</a> more than two <a href="#def_branch" class="link">branches</a>.
 
- <span class="term"><span id="def_origin"></span>origin</span>   
-The default upstream <a href="#def_repository" class="link">repository</a>. Most projects have at least one upstream project which they track. By default <span class="emphasis">*origin*</span> is used for that purpose. New upstream updates will be fetched into <a href="#def_remote_tracking_branch" class="link">remote-tracking branches</a> named origin/name-of-upstream-branch, which you can see using `git branch -r`.
+<span class="term"><span id="def_origin"></span>origin</span>  
+The default upstream <a href="#def_repository" class="link">repository</a>. Most projects have at least one upstream project which they track. By default <span class="emphasis">_origin_</span> is used for that purpose. New upstream updates will be fetched into <a href="#def_remote_tracking_branch" class="link">remote-tracking branches</a> named origin/name-of-upstream-branch, which you can see using `git branch -r`.
 
- <span class="term"><span id="def_overlay"></span>overlay</span>   
-Only update and add files to the working directory, but don’t delete them, similar to how <span class="emphasis">*cp -R*</span> would update the contents in the destination directory. This is the default mode in a <a href="#def_checkout" class="link">checkout</a> when checking out files from the <a href="#def_index" class="link">index</a> or a <a href="#def_tree-ish" class="link">tree-ish</a>. In contrast, no-overlay mode also deletes tracked files not present in the source, similar to <span class="emphasis">*rsync --delete*</span>.
+<span class="term"><span id="def_overlay"></span>overlay</span>  
+Only update and add files to the working directory, but don’t delete them, similar to how <span class="emphasis">_cp -R_</span> would update the contents in the destination directory. This is the default mode in a <a href="#def_checkout" class="link">checkout</a> when checking out files from the <a href="#def_index" class="link">index</a> or a <a href="#def_tree-ish" class="link">tree-ish</a>. In contrast, no-overlay mode also deletes tracked files not present in the source, similar to <span class="emphasis">_rsync --delete_</span>.
 
- <span class="term"><span id="def_pack"></span>pack</span>   
+<span class="term"><span id="def_pack"></span>pack</span>  
 A set of objects which have been compressed into one file (to save space or to transmit them efficiently).
 
- <span class="term"><span id="def_pack_index"></span>pack index</span>   
+<span class="term"><span id="def_pack_index"></span>pack index</span>  
 The list of identifiers, and other information, of the objects in a <a href="#def_pack" class="link">pack</a>, to assist in efficiently accessing the contents of a pack.
 
- <span class="term"><span id="def_pathspec"></span>pathspec</span>   
+<span class="term"><span id="def_pathspec"></span>pathspec</span>  
 Pattern used to limit paths in Git commands.
 
 Pathspecs are used on the command line of "git ls-files", "git ls-tree", "git add", "git grep", "git diff", "git checkout", and many other commands to limit the scope of operations to some subset of the tree or worktree. See the documentation of each command for whether paths are relative to the current directory or toplevel. The pathspec syntax is as follows:
 
--   any path matches itself
--   the pathspec up to the last slash represents a directory prefix. The scope of that pathspec is limited to that subtree.
--   the rest of the pathspec is a pattern for the remainder of the pathname. Paths relative to the directory prefix will be matched against that pattern using fnmatch(3); in particular, <span class="emphasis">*\**</span> and <span class="emphasis">*?*</span> <span class="emphasis">*can*</span> match directory separators.
+- any path matches itself
+- the pathspec up to the last slash represents a directory prefix. The scope of that pathspec is limited to that subtree.
+- the rest of the pathspec is a pattern for the remainder of the pathname. Paths relative to the directory prefix will be matched against that pattern using fnmatch(3); in particular, <span class="emphasis">\*\*_</span> and <span class="emphasis">_?*</span> <span class="emphasis">*can\*</span> match directory separators.
 
-For example, Documentation/\*.jpg will match all .jpg files in the Documentation subtree, including Documentation/chapter\_1/figure\_1.jpg.
+For example, Documentation/\*.jpg will match all .jpg files in the Documentation subtree, including Documentation/chapter_1/figure_1.jpg.
 
 A pathspec that begins with a colon `:` has special meaning. In the short form, the leading colon `:` is followed by zero or more "magic signature" letters (which optionally is terminated by another colon `:`), and the remainder is the pattern to match against the path. The "magic signature" consists of ASCII symbols that are neither alphanumeric, glob, regex special characters nor colon. The optional colon that terminates the "magic signature" can be omitted if the pattern begins with a character that does not belong to "magic signature" symbol set and is not a colon.
 
@@ -3132,145 +3075,145 @@ Wildcards in the pattern such as `*` or `?` are treated as literal characters.
 Case insensitive match.
 
 <span class="term">glob</span>  
-Git treats the pattern as a shell glob suitable for consumption by fnmatch(3) with the FNM\_PATHNAME flag: wildcards in the pattern will not match a / in the pathname. For example, "Documentation/\*.html" matches "Documentation/git.html" but not "Documentation/ppc/ppc.html" or "tools/perf/Documentation/perf.html".
+Git treats the pattern as a shell glob suitable for consumption by fnmatch(3) with the FNM_PATHNAME flag: wildcards in the pattern will not match a / in the pathname. For example, "Documentation/\*.html" matches "Documentation/git.html" but not "Documentation/ppc/ppc.html" or "tools/perf/Documentation/perf.html".
 
 Two consecutive asterisks ("`**`") in patterns matched against full pathname may have special meaning:
 
--   A leading "`**`" followed by a slash means match in all directories. For example, "`**/foo`" matches file or directory "`foo`" anywhere, the same as pattern "`foo`". "`**/foo/bar`" matches file or directory "`bar`" anywhere that is directly under directory "`foo`".
--   A trailing "`/**`" matches everything inside. For example, "`abc/**`" matches all files inside directory "abc", relative to the location of the `.gitignore` file, with infinite depth.
--   A slash followed by two consecutive asterisks then a slash matches zero or more directories. For example, "`a/**/b`" matches "`a/b`", "`a/x/b`", "`a/x/y/b`" and so on.
--   Other consecutive asterisks are considered invalid.
+- A leading "`**`" followed by a slash means match in all directories. For example, "`**/foo`" matches file or directory "`foo`" anywhere, the same as pattern "`foo`". "`**/foo/bar`" matches file or directory "`bar`" anywhere that is directly under directory "`foo`".
+- A trailing "`/**`" matches everything inside. For example, "`abc/**`" matches all files inside directory "abc", relative to the location of the `.gitignore` file, with infinite depth.
+- A slash followed by two consecutive asterisks then a slash matches zero or more directories. For example, "`a/**/b`" matches "`a/b`", "`a/x/b`", "`a/x/y/b`" and so on.
+- Other consecutive asterisks are considered invalid.
 
-    Glob magic is incompatible with literal magic.
+  Glob magic is incompatible with literal magic.
 
 <span class="term">attr</span>  
 After `attr:` comes a space separated list of "attribute requirements", all of which must be met in order for the path to be considered a match; this is in addition to the usual non-magic pathspec pattern matching. See <a href="gitattributes.html" class="ulink">gitattributes(5)</a>.
 
 Each of the attribute requirements for the path takes one of these forms:
 
--   "`ATTR`" requires that the attribute `ATTR` be set.
--   "`-ATTR`" requires that the attribute `ATTR` be unset.
--   "`ATTR=VALUE`" requires that the attribute `ATTR` be set to the string `VALUE`.
--   "`!ATTR`" requires that the attribute `ATTR` be unspecified.
+- "`ATTR`" requires that the attribute `ATTR` be set.
+- "`-ATTR`" requires that the attribute `ATTR` be unset.
+- "`ATTR=VALUE`" requires that the attribute `ATTR` be set to the string `VALUE`.
+- "`!ATTR`" requires that the attribute `ATTR` be unspecified.
 
-    Note that when matching against a tree object, attributes are still obtained from working tree, not from the given tree object.
+  Note that when matching against a tree object, attributes are still obtained from working tree, not from the given tree object.
 
 <span class="term">exclude</span>  
 After a path matches any non-exclude pathspec, it will be run through all exclude pathspecs (magic signature: `!` or its synonym `^`). If it matches, the path is ignored. When there is no non-exclude pathspec, the exclusion is applied to the result set as if invoked without any pathspec.
 
- <span class="term"><span id="def_parent"></span>parent</span>   
+<span class="term"><span id="def_parent"></span>parent</span>  
 A <a href="#def_commit_object" class="link">commit object</a> contains a (possibly empty) list of the logical predecessor(s) in the line of development, i.e. its parents.
 
- <span class="term"><span id="def_pickaxe"></span>pickaxe</span>   
+<span class="term"><span id="def_pickaxe"></span>pickaxe</span>  
 The term <a href="#def_pickaxe" class="link">pickaxe</a> refers to an option to the diffcore routines that help select changes that add or delete a given text string. With the `--pickaxe-all` option, it can be used to view the full <a href="#def_changeset" class="link">changeset</a> that introduced or removed, say, a particular line of text. See <a href="git-diff.html" class="ulink">git-diff(1)</a>.
 
- <span class="term"><span id="def_plumbing"></span>plumbing</span>   
+<span class="term"><span id="def_plumbing"></span>plumbing</span>  
 Cute name for <a href="#def_core_git" class="link">core Git</a>.
 
- <span class="term"><span id="def_porcelain"></span>porcelain</span>   
+<span class="term"><span id="def_porcelain"></span>porcelain</span>  
 Cute name for programs and program suites depending on <a href="#def_core_git" class="link">core Git</a>, presenting a high level access to core Git. Porcelains expose more of a <a href="#def_SCM" class="link">SCM</a> interface than the <a href="#def_plumbing" class="link">plumbing</a>.
 
- <span class="term"><span id="def_per_worktree_ref"></span>per-worktree ref</span>   
+<span class="term"><span id="def_per_worktree_ref"></span>per-worktree ref</span>  
 Refs that are per-<a href="#def_working_tree" class="link">worktree</a>, rather than global. This is presently only <a href="#def_HEAD" class="link">HEAD</a> and any refs that start with `refs/bisect/`, but might later include other unusual refs.
 
- <span class="term"><span id="def_pseudoref"></span>pseudoref</span>   
+<span class="term"><span id="def_pseudoref"></span>pseudoref</span>  
 Pseudorefs are a class of files under `$GIT_DIR` which behave like refs for the purposes of rev-parse, but which are treated specially by git. Pseudorefs both have names that are all-caps, and always start with a line consisting of a <a href="#def_SHA1" class="link">SHA-1</a> followed by whitespace. So, HEAD is not a pseudoref, because it is sometimes a symbolic ref. They might optionally contain some additional data. `MERGE_HEAD` and `CHERRY_PICK_HEAD` are examples. Unlike <a href="#def_per_worktree_ref" class="link">per-worktree refs</a>, these files cannot be symbolic refs, and never have reflogs. They also cannot be updated through the normal ref update machinery. Instead, they are updated by directly writing to the files. However, they can be read as if they were refs, so `git rev-parse MERGE_HEAD` will work.
 
- <span class="term"><span id="def_pull"></span>pull</span>   
+<span class="term"><span id="def_pull"></span>pull</span>  
 Pulling a <a href="#def_branch" class="link">branch</a> means to <a href="#def_fetch" class="link">fetch</a> it and <a href="#def_merge" class="link">merge</a> it. See also <a href="git-pull.html" class="ulink">git-pull(1)</a>.
 
- <span class="term"><span id="def_push"></span>push</span>   
+<span class="term"><span id="def_push"></span>push</span>  
 Pushing a <a href="#def_branch" class="link">branch</a> means to get the branch’s <a href="#def_head_ref" class="link">head ref</a> from a remote <a href="#def_repository" class="link">repository</a>, find out if it is an ancestor to the branch’s local head ref, and in that case, putting all objects, which are <a href="#def_reachable" class="link">reachable</a> from the local head ref, and which are missing from the remote repository, into the remote <a href="#def_object_database" class="link">object database</a>, and updating the remote head ref. If the remote <a href="#def_head" class="link">head</a> is not an ancestor to the local head, the push fails.
 
- <span class="term"><span id="def_reachable"></span>reachable</span>   
+<span class="term"><span id="def_reachable"></span>reachable</span>  
 All of the ancestors of a given <a href="#def_commit" class="link">commit</a> are said to be "reachable" from that commit. More generally, one <a href="#def_object" class="link">object</a> is reachable from another if we can reach the one from the other by a <a href="#def_chain" class="link">chain</a> that follows <a href="#def_tag" class="link">tags</a> to whatever they tag, <a href="#def_commit_object" class="link">commits</a> to their parents or trees, and <a href="#def_tree_object" class="link">trees</a> to the trees or <a href="#def_blob_object" class="link">blobs</a> that they contain.
 
- <span class="term"><span id="def_rebase"></span>rebase</span>   
+<span class="term"><span id="def_rebase"></span>rebase</span>  
 To reapply a series of changes from a <a href="#def_branch" class="link">branch</a> to a different base, and reset the <a href="#def_head" class="link">head</a> of that branch to the result.
 
- <span class="term"><span id="def_ref"></span>ref</span>   
+<span class="term"><span id="def_ref"></span>ref</span>  
 A name that begins with `refs/` (e.g. `refs/heads/master`) that points to an <a href="#def_object_name" class="link">object name</a> or another ref (the latter is called a <a href="#def_symref" class="link">symbolic ref</a>). For convenience, a ref can sometimes be abbreviated when used as an argument to a Git command; see <a href="gitrevisions.html" class="ulink">gitrevisions(7)</a> for details. Refs are stored in the <a href="#def_repository" class="link">repository</a>.
 
 The ref namespace is hierarchical. Different subhierarchies are used for different purposes (e.g. the `refs/heads/` hierarchy is used to represent local branches).
 
 There are a few special-purpose refs that do not begin with `refs/`. The most notable example is `HEAD`.
 
- <span class="term"><span id="def_reflog"></span>reflog</span>   
-A reflog shows the local "history" of a ref. In other words, it can tell you what the 3rd last revision in <span class="emphasis">*this*</span> repository was, and what was the current state in <span class="emphasis">*this*</span> repository, yesterday 9:14pm. See <a href="git-reflog.html" class="ulink">git-reflog(1)</a> for details.
+<span class="term"><span id="def_reflog"></span>reflog</span>  
+A reflog shows the local "history" of a ref. In other words, it can tell you what the 3rd last revision in <span class="emphasis">_this_</span> repository was, and what was the current state in <span class="emphasis">_this_</span> repository, yesterday 9:14pm. See <a href="git-reflog.html" class="ulink">git-reflog(1)</a> for details.
 
- <span class="term"><span id="def_refspec"></span>refspec</span>   
+<span class="term"><span id="def_refspec"></span>refspec</span>  
 A "refspec" is used by <a href="#def_fetch" class="link">fetch</a> and <a href="#def_push" class="link">push</a> to describe the mapping between remote <a href="#def_ref" class="link">ref</a> and local ref.
 
- <span class="term"><span id="def_remote"></span>remote repository</span>   
+<span class="term"><span id="def_remote"></span>remote repository</span>  
 A <a href="#def_repository" class="link">repository</a> which is used to track the same project but resides somewhere else. To communicate with remotes, see <a href="#def_fetch" class="link">fetch</a> or <a href="#def_push" class="link">push</a>.
 
- <span class="term"><span id="def_remote_tracking_branch"></span>remote-tracking branch</span>   
-A <a href="#def_ref" class="link">ref</a> that is used to follow changes from another <a href="#def_repository" class="link">repository</a>. It typically looks like <span class="emphasis">*refs/remotes/foo/bar*</span> (indicating that it tracks a branch named <span class="emphasis">*bar*</span> in a remote named <span class="emphasis">*foo*</span>), and matches the right-hand-side of a configured fetch <a href="#def_refspec" class="link">refspec</a>. A remote-tracking branch should not contain direct modifications or have local commits made to it.
+<span class="term"><span id="def_remote_tracking_branch"></span>remote-tracking branch</span>  
+A <a href="#def_ref" class="link">ref</a> that is used to follow changes from another <a href="#def_repository" class="link">repository</a>. It typically looks like <span class="emphasis">_refs/remotes/foo/bar_</span> (indicating that it tracks a branch named <span class="emphasis">_bar_</span> in a remote named <span class="emphasis">_foo_</span>), and matches the right-hand-side of a configured fetch <a href="#def_refspec" class="link">refspec</a>. A remote-tracking branch should not contain direct modifications or have local commits made to it.
 
- <span class="term"><span id="def_repository"></span>repository</span>   
+<span class="term"><span id="def_repository"></span>repository</span>  
 A collection of <a href="#def_ref" class="link">refs</a> together with an <a href="#def_object_database" class="link">object database</a> containing all objects which are <a href="#def_reachable" class="link">reachable</a> from the refs, possibly accompanied by meta data from one or more <a href="#def_porcelain" class="link">porcelains</a>. A repository can share an object database with other repositories via <a href="#def_alternate_object_database" class="link">alternates mechanism</a>.
 
- <span class="term"><span id="def_resolve"></span>resolve</span>   
+<span class="term"><span id="def_resolve"></span>resolve</span>  
 The action of fixing up manually what a failed automatic <a href="#def_merge" class="link">merge</a> left behind.
 
- <span class="term"><span id="def_revision"></span>revision</span>   
+<span class="term"><span id="def_revision"></span>revision</span>  
 Synonym for <a href="#def_commit" class="link">commit</a> (the noun).
 
- <span class="term"><span id="def_rewind"></span>rewind</span>   
+<span class="term"><span id="def_rewind"></span>rewind</span>  
 To throw away part of the development, i.e. to assign the <a href="#def_head" class="link">head</a> to an earlier <a href="#def_revision" class="link">revision</a>.
 
- <span class="term"><span id="def_SCM"></span>SCM</span>   
+<span class="term"><span id="def_SCM"></span>SCM</span>  
 Source code management (tool).
 
- <span class="term"><span id="def_SHA1"></span>SHA-1</span>   
+<span class="term"><span id="def_SHA1"></span>SHA-1</span>  
 "Secure Hash Algorithm 1"; a cryptographic hash function. In the context of Git used as a synonym for <a href="#def_object_name" class="link">object name</a>.
 
- <span class="term"><span id="def_shallow_clone"></span>shallow clone</span>   
+<span class="term"><span id="def_shallow_clone"></span>shallow clone</span>  
 Mostly a synonym to <a href="#def_shallow_repository" class="link">shallow repository</a> but the phrase makes it more explicit that it was created by running `git clone --depth=...` command.
 
- <span class="term"><span id="def_shallow_repository"></span>shallow repository</span>   
+<span class="term"><span id="def_shallow_repository"></span>shallow repository</span>  
 A shallow <a href="#def_repository" class="link">repository</a> has an incomplete history some of whose <a href="#def_commit" class="link">commits</a> have <a href="#def_parent" class="link">parents</a> cauterized away (in other words, Git is told to pretend that these commits do not have the parents, even though they are recorded in the <a href="#def_commit_object" class="link">commit object</a>). This is sometimes useful when you are interested only in the recent history of a project even though the real history recorded in the upstream is much larger. A shallow repository is created by giving the `--depth` option to <a href="git-clone.html" class="ulink">git-clone(1)</a>, and its history can be later deepened with <a href="git-fetch.html" class="ulink">git-fetch(1)</a>.
 
- <span class="term"><span id="def_stash"></span>stash entry</span>   
+<span class="term"><span id="def_stash"></span>stash entry</span>  
 An <a href="#def_object" class="link">object</a> used to temporarily store the contents of a <a href="#def_dirty" class="link">dirty</a> working directory and the index for future reuse.
 
- <span class="term"><span id="def_submodule"></span>submodule</span>   
+<span class="term"><span id="def_submodule"></span>submodule</span>  
 A <a href="#def_repository" class="link">repository</a> that holds the history of a separate project inside another repository (the latter of which is called <a href="#def_superproject" class="link">superproject</a>).
 
- <span class="term"><span id="def_superproject"></span>superproject</span>   
+<span class="term"><span id="def_superproject"></span>superproject</span>  
 A <a href="#def_repository" class="link">repository</a> that references repositories of other projects in its working tree as <a href="#def_submodule" class="link">submodules</a>. The superproject knows about the names of (but does not hold copies of) commit objects of the contained submodules.
 
- <span class="term"><span id="def_symref"></span>symref</span>   
-Symbolic reference: instead of containing the <a href="#def_SHA1" class="link">SHA-1</a> id itself, it is of the format <span class="emphasis">*ref: refs/some/thing*</span> and when referenced, it recursively dereferences to this reference. <span class="emphasis">*<a href="#def_HEAD" class="link">HEAD</a>*</span> is a prime example of a symref. Symbolic references are manipulated with the <a href="git-symbolic-ref.html" class="ulink">git-symbolic-ref(1)</a> command.
+<span class="term"><span id="def_symref"></span>symref</span>  
+Symbolic reference: instead of containing the <a href="#def_SHA1" class="link">SHA-1</a> id itself, it is of the format <span class="emphasis">_ref: refs/some/thing_</span> and when referenced, it recursively dereferences to this reference. <span class="emphasis">_<a href="#def_HEAD" class="link">HEAD</a>_</span> is a prime example of a symref. Symbolic references are manipulated with the <a href="git-symbolic-ref.html" class="ulink">git-symbolic-ref(1)</a> command.
 
- <span class="term"><span id="def_tag"></span>tag</span>   
+<span class="term"><span id="def_tag"></span>tag</span>  
 A <a href="#def_ref" class="link">ref</a> under `refs/tags/` namespace that points to an object of an arbitrary type (typically a tag points to either a <a href="#def_tag_object" class="link">tag</a> or a <a href="#def_commit_object" class="link">commit object</a>). In contrast to a <a href="#def_head" class="link">head</a>, a tag is not updated by the `commit` command. A Git tag has nothing to do with a Lisp tag (which would be called an <a href="#def_object_type" class="link">object type</a> in Git’s context). A tag is most typically used to mark a particular point in the commit ancestry <a href="#def_chain" class="link">chain</a>.
 
- <span class="term"><span id="def_tag_object"></span>tag object</span>   
+<span class="term"><span id="def_tag_object"></span>tag object</span>  
 An <a href="#def_object" class="link">object</a> containing a <a href="#def_ref" class="link">ref</a> pointing to another object, which can contain a message just like a <a href="#def_commit_object" class="link">commit object</a>. It can also contain a (PGP) signature, in which case it is called a "signed tag object".
 
- <span class="term"><span id="def_topic_branch"></span>topic branch</span>   
+<span class="term"><span id="def_topic_branch"></span>topic branch</span>  
 A regular Git <a href="#def_branch" class="link">branch</a> that is used by a developer to identify a conceptual line of development. Since branches are very easy and inexpensive, it is often desirable to have several small branches that each contain very well defined concepts or small incremental yet related changes.
 
- <span class="term"><span id="def_tree"></span>tree</span>   
+<span class="term"><span id="def_tree"></span>tree</span>  
 Either a <a href="#def_working_tree" class="link">working tree</a>, or a <a href="#def_tree_object" class="link">tree object</a> together with the dependent <a href="#def_blob_object" class="link">blob</a> and tree objects (i.e. a stored representation of a working tree).
 
- <span class="term"><span id="def_tree_object"></span>tree object</span>   
+<span class="term"><span id="def_tree_object"></span>tree object</span>  
 An <a href="#def_object" class="link">object</a> containing a list of file names and modes along with refs to the associated blob and/or tree objects. A <a href="#def_tree" class="link">tree</a> is equivalent to a <a href="#def_directory" class="link">directory</a>.
 
- <span class="term"><span id="def_tree-ish"></span>tree-ish (also treeish)</span>   
+<span class="term"><span id="def_tree-ish"></span>tree-ish (also treeish)</span>  
 A <a href="#def_tree_object" class="link">tree object</a> or an <a href="#def_object" class="link">object</a> that can be recursively dereferenced to a tree object. Dereferencing a <a href="#def_commit_object" class="link">commit object</a> yields the tree object corresponding to the <a href="#def_revision" class="link">revision</a>'s top <a href="#def_directory" class="link">directory</a>. The following are all tree-ishes: a <a href="#def_commit-ish" class="link">commit-ish</a>, a tree object, a <a href="#def_tag_object" class="link">tag object</a> that points to a tree object, a tag object that points to a tag object that points to a tree object, etc.
 
- <span class="term"><span id="def_unmerged_index"></span>unmerged index</span>   
+<span class="term"><span id="def_unmerged_index"></span>unmerged index</span>  
 An <a href="#def_index" class="link">index</a> which contains unmerged <a href="#def_index_entry" class="link">index entries</a>.
 
- <span class="term"><span id="def_unreachable_object"></span>unreachable object</span>   
+<span class="term"><span id="def_unreachable_object"></span>unreachable object</span>  
 An <a href="#def_object" class="link">object</a> which is not <a href="#def_reachable" class="link">reachable</a> from a <a href="#def_branch" class="link">branch</a>, <a href="#def_tag" class="link">tag</a>, or any other reference.
 
- <span class="term"><span id="def_upstream_branch"></span>upstream branch</span>   
-The default <a href="#def_branch" class="link">branch</a> that is merged into the branch in question (or the branch in question is rebased onto). It is configured via branch.&lt;name&gt;.remote and branch.&lt;name&gt;.merge. If the upstream branch of <span class="emphasis">*A*</span> is <span class="emphasis">*origin/B*</span> sometimes we say "<span class="emphasis">*A*</span> is tracking <span class="emphasis">*origin/B*</span>".
+<span class="term"><span id="def_upstream_branch"></span>upstream branch</span>  
+The default <a href="#def_branch" class="link">branch</a> that is merged into the branch in question (or the branch in question is rebased onto). It is configured via branch.&lt;name&gt;.remote and branch.&lt;name&gt;.merge. If the upstream branch of <span class="emphasis">_A_</span> is <span class="emphasis">_origin/B_</span> sometimes we say "<span class="emphasis">_A_</span> is tracking <span class="emphasis">_origin/B_</span>".
 
- <span class="term"><span id="def_working_tree"></span>working tree</span>   
+<span class="term"><span id="def_working_tree"></span>working tree</span>  
 The tree of actual checked out files. The working tree normally contains the contents of the <a href="#def_HEAD" class="link">HEAD</a> commit’s tree, plus any local changes that you have made but not yet committed.
 
 **Table of Contents**
@@ -3291,8 +3234,7 @@ The tree of actual checked out files. The working tree normally contains the con
 
 This is a quick summary of the major commands; the previous chapters explain how these work in more detail.
 
-<span id="quick-creating-a-new-repository"></span>Creating a new repository
----------------------------------------------------------------------------
+## <span id="quick-creating-a-new-repository"></span>Creating a new repository
 
 From a tarball:
 
@@ -3308,8 +3250,7 @@ From a remote repository:
     $ git clone git://example.com/pub/project.git
     $ cd project
 
-<span id="managing-branches"></span>Managing branches
------------------------------------------------------
+## <span id="managing-branches"></span>Managing branches
 
     $ git branch                    # list all local branches in this repo
     $ git switch test               # switch working directory to branch "test"
@@ -3358,8 +3299,7 @@ Keep a list of repositories you work with regularly:
     $ git fetch example             # update branches from example
     $ git branch -r                 # list all remote branches
 
-<span id="exploring-history"></span>Exploring history
------------------------------------------------------
+## <span id="exploring-history"></span>Exploring history
 
     $ gitk                      # visualize and browse history
     $ git log                   # list all commits
@@ -3389,8 +3329,7 @@ Search for regressions:
     $ git bisect bad                # if this revision is bad.
                                     # repeat until done.
 
-<span id="making-changes"></span>Making changes
------------------------------------------------
+## <span id="making-changes"></span>Making changes
 
 Make sure Git knows who to blame:
 
@@ -3412,16 +3351,14 @@ Or, prepare and create the commit in one step:
     $ git commit d.txt # use latest content only of d.txt
     $ git commit -a    # use latest content of all tracked files
 
-<span id="merging"></span>Merging
----------------------------------
+## <span id="merging"></span>Merging
 
     $ git merge test   # merge branch "test" into the current branch
     $ git pull git://example.com/project.git master
                        # fetch and merge in remote branch
     $ git pull . test  # equivalent to git merge test
 
-<span id="sharing-your-changes"></span>Sharing your changes
------------------------------------------------------------
+## <span id="sharing-your-changes"></span>Sharing your changes
 
 Importing or exporting patches:
 
@@ -3450,8 +3387,7 @@ Shortcut version for a frequently used remote repository:
     $ git remote add example ssh://example.com/project.git
     $ git push example test
 
-<span id="repository-maintenance"></span>Repository maintenance
----------------------------------------------------------------
+## <span id="repository-maintenance"></span>Repository maintenance
 
 Check for corruption:
 
@@ -3465,24 +3401,23 @@ Recompress, remove unused cruft:
 
 <span class="section">[Todo list](#todo-list)</span>
 
-<span id="todo-list"></span>Todo list
--------------------------------------
+## <span id="todo-list"></span>Todo list
 
 This is a work in progress.
 
 The basic requirements:
 
--   It must be readable in order, from beginning to end, by someone intelligent with a basic grasp of the UNIX command line, but without any special knowledge of Git. If necessary, any other prerequisites should be specifically mentioned as they arise.
--   Whenever possible, section headings should clearly describe the task they explain how to do, in language that requires no more knowledge than necessary: for example, "importing patches into a project" rather than "the `git am` command"
+- It must be readable in order, from beginning to end, by someone intelligent with a basic grasp of the UNIX command line, but without any special knowledge of Git. If necessary, any other prerequisites should be specifically mentioned as they arise.
+- Whenever possible, section headings should clearly describe the task they explain how to do, in language that requires no more knowledge than necessary: for example, "importing patches into a project" rather than "the `git am` command"
 
 Think about how to create a clear chapter dependency graph that will allow people to get to important topics without necessarily reading everything in between.
 
 Scan `Documentation/` for other stuff left out; in particular:
 
--   howto’s
--   some of `technical/`?
--   hooks
--   list of commands in <a href="git.html" class="ulink">git(1)</a>
+- howto’s
+- some of `technical/`?
+- hooks
+- list of commands in <a href="git.html" class="ulink">git(1)</a>
 
 Scan email archives for other stuff left out
 

@@ -1,18 +1,14 @@
-git-reflog(1) Manual Page
-=========================
+# git-reflog(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-reflog - Manage reflog information
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git reflog <subcommand> <options>
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 The command takes various subcommands, and different options depending on the subcommand:
 
@@ -32,12 +28,11 @@ The "show" subcommand (which is also the default, in the absence of any subcomma
 
 The "expire" subcommand prunes older reflog entries. Entries older than `expire` time, or entries older than `expire-unreachable` time and not reachable from the current tip, are removed from the reflog. This is typically not used directly by end users — instead, see [git-gc(1)](git-gc.html).
 
-The "delete" subcommand deletes single entries from the reflog. Its argument must be an *exact* entry (e.g. "`git reflog delete master@{2}`"). This subcommand is also typically not used directly by end users.
+The "delete" subcommand deletes single entries from the reflog. Its argument must be an _exact_ entry (e.g. "`git reflog delete master@{2}`"). This subcommand is also typically not used directly by end users.
 
 The "exists" subcommand checks whether a ref has a reflog. It exits with zero status if the reflog exists, and non-zero status if it does not.
 
-OPTIONS
--------
+## OPTIONS
 
 ### Options for `show`
 
@@ -66,7 +61,7 @@ If a reflog entry’s predecessor is pruned, adjust its "old" SHA-1 to be equal 
 --stale-fix  
 Prune any reflog entries that point to "broken commits". A broken commit is a commit that is not reachable from any of the reference tips and that refers, directly or indirectly, to a missing commit, tree, or blob object.
 
-This computation involves traversing all the reachable objects, i.e. it has the same cost as *git prune*. It is primarily intended to fix corruption caused by garbage collecting using older versions of Git, which didn’t protect objects referred to by reflogs.
+This computation involves traversing all the reachable objects, i.e. it has the same cost as _git prune_. It is primarily intended to fix corruption caused by garbage collecting using older versions of Git, which didn’t protect objects referred to by reflogs.
 
 -n  
 --dry-run  
@@ -79,5 +74,4 @@ Print extra information on screen.
 
 `git reflog delete` accepts options `--updateref`, `--rewrite`, `-n`, `--dry-run`, and `--verbose`, with the same meanings as when they are used with `expire`.
 
-GIT
----
+## GIT

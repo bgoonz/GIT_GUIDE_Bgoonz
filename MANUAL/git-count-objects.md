@@ -1,23 +1,18 @@
-git-count-objects(1) Manual Page
-================================
+# git-count-objects(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-count-objects - Count unpacked number of objects and their disk consumption
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git count-objects [-v] [-H | --human-readable]
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 This counts the number of unpacked object files and disk space consumed by them, to help you decide when it is a good time to repack.
 
-OPTIONS
--------
+## OPTIONS
 
 -v  
 --verbose  
@@ -43,8 +38,7 @@ alternate: absolute path of alternate object databases; may appear multiple time
 --human-readable  
 Print sizes in human readable format
 
-GIT
----
+## GIT
 
 Part of the [git(1)](git.html) suite
 

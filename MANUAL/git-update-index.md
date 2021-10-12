@@ -1,13 +1,10 @@
-git-update-index(1) Manual Page
-===============================
+# git-update-index(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-update-index - Register file contents in the working tree to the index
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git update-index
                  [--add] [--remove | --force-remove] [--replace]
@@ -28,17 +25,15 @@ SYNOPSIS
                  [--verbose]
                  [--] [<file>…​]
 
-DESCRIPTION
------------
+## DESCRIPTION
 
-Modifies the index. Each file mentioned is updated into the index and any *unmerged* or *needs updating* state is cleared.
+Modifies the index. Each file mentioned is updated into the index and any _unmerged_ or _needs updating_ state is cleared.
 
 See also [git-add(1)](git-add.html) for a more user-friendly way to do some of the most common operations on the index.
 
-The way *git update-index* handles files it is told about can be modified using the various options:
+The way _git update-index_ handles files it is told about can be modified using the various options:
 
-OPTIONS
--------
+## OPTIONS
 
 --add  
 If a specified file isn’t in the index already then it’s added. Default behaviour is to ignore new files.
@@ -50,19 +45,19 @@ If a specified file is in the index but is missing then it’s removed. Default 
 Looks at the current index and checks to see if merges or updates are needed by checking stat() information.
 
 -q  
-Quiet. If --refresh finds that the index needs an update, the default behavior is to error out. This option makes *git update-index* continue anyway.
+Quiet. If --refresh finds that the index needs an update, the default behavior is to error out. This option makes _git update-index_ continue anyway.
 
 --ignore-submodules  
 Do not try to update submodules. This option is only respected when passed before --refresh.
 
 --unmerged  
-If --refresh finds unmerged changes in the index, the default behavior is to error out. This option makes *git update-index* continue anyway.
+If --refresh finds unmerged changes in the index, the default behavior is to error out. This option makes _git update-index_ continue anyway.
 
 --ignore-missing  
 Ignores missing files during a --refresh
 
- --cacheinfo &lt;mode&gt;,&lt;object&gt;,&lt;path&gt;  
---cacheinfo &lt;mode&gt; &lt;object&gt; &lt;path&gt;   
+--cacheinfo &lt;mode&gt;,&lt;object&gt;,&lt;path&gt;  
+--cacheinfo &lt;mode&gt; &lt;object&gt; &lt;path&gt;  
 Directly insert the specified info into the index. For backward compatibility, you can also give these three arguments as three separate parameters, but new users are encouraged to use a single-parameter form.
 
 --index-info  
@@ -90,10 +85,10 @@ When one of these flags is specified, the object name recorded for the paths are
 
 -g  
 --again  
-Runs *git update-index* itself on the paths whose index entries are different from those from the `HEAD` commit.
+Runs _git update-index_ itself on the paths whose index entries are different from those from the `HEAD` commit.
 
 --unresolve  
-Restores the *unmerged* or *needs updating* state of a file during a merge if it was cleared by accident.
+Restores the _unmerged_ or _needs updating_ state of a file during a merge if it was cleared by accident.
 
 --info-only  
 Do not create objects in the object database for all &lt;file&gt; arguments that follow this flag; just insert their object IDs into the index.
@@ -102,7 +97,7 @@ Do not create objects in the object database for all &lt;file&gt; arguments that
 Remove the file from the index even when the working directory still has such a file. (Implies --remove.)
 
 --replace  
-By default, when a file `path` exists in the index, *git update-index* refuses an attempt to add `path/file`. Similarly if a file `path/file` exists, a file `path` cannot be added. With --replace flag, existing entries that conflict with the entry being added are automatically removed with warning messages.
+By default, when a file `path` exists in the index, _git update-index_ refuses an attempt to add `path/file`. Similarly if a file `path/file` exists, a file `path` cannot be added. With --replace flag, existing entries that conflict with the entry being added are automatically removed with warning messages.
 
 --stdin  
 Instead of taking list of paths from the command line, read list of paths from the standard input. Paths are separated by LF (i.e. one path per line) by default.
@@ -120,7 +115,7 @@ Only meaningful with `--stdin` or `--index-info`; paths are separated with NUL c
 
 --split-index  
 --no-split-index  
-Enable or disable split index mode. If split-index mode is already enabled and `--split-index` is given again, all changes in $GIT\_DIR/index are pushed back to the shared index file.
+Enable or disable split index mode. If split-index mode is already enabled and `--split-index` is given again, all changes in $GIT_DIR/index are pushed back to the shared index file.
 
 These options take effect whatever the value of the `core.splitIndex` configuration variable (see [git-config(1)](git-config.html)). But a warning is emitted when the change goes against the configured value, as the configured value will take effect next time the index is read and this will remove the intended effect of the option.
 
@@ -144,17 +139,15 @@ Enable or disable files system monitor feature. These options take effect whatev
 Do not interpret any more arguments as options.
 
 &lt;file&gt;  
-Files to act on. Note that files beginning with *.* are discarded. This includes `./file` and `dir/./file`. If you don’t want this, then use cleaner names. The same applies to directories ending */* and paths with *//*
+Files to act on. Note that files beginning with _._ are discarded. This includes `./file` and `dir/./file`. If you don’t want this, then use cleaner names. The same applies to directories ending _/_ and paths with _//_
 
-USING --REFRESH
----------------
+## USING --REFRESH
 
 `--refresh` does not calculate a new sha1 file or bring the index up to date for mode/content changes. But what it **does** do is to "re-match" the stat information of a file with the index, so that you can refresh the index for a file that hasn’t been changed but where the stat entry is out of date.
 
-For example, you’d want to do this after doing a *git read-tree*, to link up the stat index details with the proper files.
+For example, you’d want to do this after doing a _git read-tree_, to link up the stat index details with the proper files.
 
-USING --CACHEINFO OR --INFO-ONLY
---------------------------------
+## USING --CACHEINFO OR --INFO-ONLY
 
 `--cacheinfo` is used to register a file that is not in the current working directory. This is useful for minimum-checkout merging.
 
@@ -166,8 +159,7 @@ To pretend you have a file at path with mode and sha1, say:
 
 Both `--cacheinfo` and `--info-only` behave similarly: the index is updated but the object database isn’t. `--cacheinfo` is useful when the object is in the database but the file isn’t available locally. `--info-only` is useful when the file is available, but you do not wish to update the object database.
 
-USING --INDEX-INFO
-------------------
+## USING --INDEX-INFO
 
 `--index-info` is a more powerful mechanism that lets you feed multiple entry definitions from the standard input, and designed specifically for scripts. It can take inputs of three formats:
 
@@ -177,7 +169,7 @@ USING --INDEX-INFO
 
 2.  mode SP sha1 SP stage TAB path
 
-    This format is to put higher order stages into the index file and matches *git ls-files --stage* output.
+    This format is to put higher order stages into the index file and matches _git ls-files --stage_ output.
 
 3.  mode SP sha1 TAB path
 
@@ -203,36 +195,34 @@ The first line of the input feeds 0 as the mode to remove the path; the SHA-1 do
     100644 8a1218a1024a212bb3db30becd860315f9f3ac52 1       frotz
     100755 8a1218a1024a212bb3db30becd860315f9f3ac52 2       frotz
 
-USING “ASSUME UNCHANGED” BIT
-----------------------------
+## USING “ASSUME UNCHANGED” BIT
 
 Many operations in Git depend on your filesystem to have an efficient `lstat(2)` implementation, so that `st_mtime` information for working tree files can be cheaply checked to see if the file contents have changed from the version recorded in the index file. Unfortunately, some filesystems have inefficient `lstat(2)`. If your filesystem is one of them, you can set "assume unchanged" bit to paths you have not changed to cause Git not to do this check. Note that setting this bit on a path does not mean Git will check the contents of the file to see if it has changed — it makes Git to omit any checking and assume it has **not** changed. When you make changes to working tree files, you have to explicitly tell Git about it by dropping "assume unchanged" bit, either before or after you modify them.
 
 In order to set "assume unchanged" bit, use `--assume-unchanged` option. To unset, use `--no-assume-unchanged`. To see which files have the "assume unchanged" bit set, use `git ls-files -v` (see [git-ls-files(1)](git-ls-files.html)).
 
-The command looks at `core.ignorestat` configuration variable. When this is true, paths updated with `git update-index paths...` and paths updated with other Git commands that update both index and working tree (e.g. *git apply --index*, *git checkout-index -u*, and *git read-tree -u*) are automatically marked as "assume unchanged". Note that "assume unchanged" bit is **not** set if `git update-index --refresh` finds the working tree file matches the index (use `git update-index --really-refresh` if you want to mark them as "assume unchanged").
+The command looks at `core.ignorestat` configuration variable. When this is true, paths updated with `git update-index paths...` and paths updated with other Git commands that update both index and working tree (e.g. _git apply --index_, _git checkout-index -u_, and _git read-tree -u_) are automatically marked as "assume unchanged". Note that "assume unchanged" bit is **not** set if `git update-index --refresh` finds the working tree file matches the index (use `git update-index --really-refresh` if you want to mark them as "assume unchanged").
 
-EXAMPLES
---------
+## EXAMPLES
 
 To update and refresh only the files already checked out:
 
     $ git checkout-index -n -f -a && git update-index --ignore-missing --refresh
 
- On an inefficient filesystem with `core.ignorestat` set   
-    $ git update-index --really-refresh              (1)
-    $ git update-index --no-assume-unchanged foo.c   (2)
-    $ git diff --name-only                           (3)
-    $ edit foo.c
-    $ git diff --name-only                           (4)
-    M foo.c
-    $ git update-index foo.c                         (5)
-    $ git diff --name-only                           (6)
-    $ edit foo.c
-    $ git diff --name-only                           (7)
-    $ git update-index --no-assume-unchanged foo.c   (8)
-    $ git diff --name-only                           (9)
-    M foo.c
+On an inefficient filesystem with `core.ignorestat` set  
+ $ git update-index --really-refresh (1)
+$ git update-index --no-assume-unchanged foo.c (2)
+$ git diff --name-only (3)
+$ edit foo.c
+$ git diff --name-only (4)
+M foo.c
+$ git update-index foo.c (5)
+$ git diff --name-only (6)
+$ edit foo.c
+$ git diff --name-only (7)
+$ git update-index --no-assume-unchanged foo.c (8)
+$ git diff --name-only (9)
+M foo.c
 
 1.  forces lstat(2) to set "assume unchanged" bits for paths that match index.
 
@@ -252,21 +242,19 @@ To update and refresh only the files already checked out:
 
 9.  now it checks with lstat(2) and finds it has been changed.
 
-SKIP-WORKTREE BIT
------------------
+## SKIP-WORKTREE BIT
 
 Skip-worktree bit can be defined in one (long) sentence: When reading an entry, if it is marked as skip-worktree, then Git pretends its working directory version is up to date and read the index version instead.
 
-To elaborate, "reading" means checking for file existence, reading file attributes or file content. The working directory version may be present or absent. If present, its content may match against the index version or not. Writing is not affected by this bit, content safety is still first priority. Note that Git *can* update working directory file, that is marked skip-worktree, if it is safe to do so (i.e. working directory version matches index version)
+To elaborate, "reading" means checking for file existence, reading file attributes or file content. The working directory version may be present or absent. If present, its content may match against the index version or not. Writing is not affected by this bit, content safety is still first priority. Note that Git _can_ update working directory file, that is marked skip-worktree, if it is safe to do so (i.e. working directory version matches index version)
 
 Although this bit looks similar to assume-unchanged bit, its goal is different from assume-unchanged bit’s. Skip-worktree also takes precedence over assume-unchanged bit when both are set.
 
-SPLIT INDEX
------------
+## SPLIT INDEX
 
 This mode is designed for repositories with very large indexes, and aims at reducing the time it takes to repeatedly write these indexes.
 
-In this mode, the index is split into two files, $GIT\_DIR/index and $GIT\_DIR/sharedindex.&lt;SHA-1&gt;. Changes are accumulated in $GIT\_DIR/index, the split index, while the shared index file contains all index entries and stays unchanged.
+In this mode, the index is split into two files, $GIT_DIR/index and $GIT_DIR/sharedindex.&lt;SHA-1&gt;. Changes are accumulated in $GIT_DIR/index, the split index, while the shared index file contains all index entries and stays unchanged.
 
 All changes in the split index are pushed back to the shared index file when the number of entries in the split index reaches a level specified by the splitIndex.maxPercentChange config variable (see [git-config(1)](git-config.html)).
 
@@ -274,8 +262,7 @@ Each time a new shared index file is created, the old shared index files are del
 
 To avoid deleting a shared index file that is still used, its modification time is updated to the current time every time a new split index based on the shared index file is either created or read from.
 
-UNTRACKED CACHE
----------------
+## UNTRACKED CACHE
 
 This cache is meant to speed up commands that involve determining untracked files such as `git status`.
 
@@ -297,8 +284,7 @@ There are also cases where existing indexes written by git versions before 2.17 
 
 As with the bug described above the solution is to one-off do a "git status" run with `core.untrackedCache=false` to flush out the leftover bad data.
 
-FILE SYSTEM MONITOR
--------------------
+## FILE SYSTEM MONITOR
 
 This feature is intended to speed up git operations for repos that have large working directories.
 
@@ -310,30 +296,26 @@ If you want to enable (or disable) this feature, it is easier to use the `core.f
 
 When the `core.fsmonitor` configuration variable is changed, the file system monitor is added to or removed from the index the next time a command reads the index. When `--[no-]fsmonitor` are used, the file system monitor is immediately added to or removed from the index.
 
-CONFIGURATION
--------------
+## CONFIGURATION
 
-The command honors `core.filemode` configuration variable. If your repository is on a filesystem whose executable bits are unreliable, this should be set to *false* (see [git-config(1)](git-config.html)). This causes the command to ignore differences in file modes recorded in the index and the file mode on the filesystem if they differ only on executable bit. On such an unfortunate filesystem, you may need to use *git update-index --chmod=*.
+The command honors `core.filemode` configuration variable. If your repository is on a filesystem whose executable bits are unreliable, this should be set to _false_ (see [git-config(1)](git-config.html)). This causes the command to ignore differences in file modes recorded in the index and the file mode on the filesystem if they differ only on executable bit. On such an unfortunate filesystem, you may need to use _git update-index --chmod=_.
 
-Quite similarly, if `core.symlinks` configuration variable is set to *false* (see [git-config(1)](git-config.html)), symbolic links are checked out as plain files, and this command does not modify a recorded file mode from symbolic link to regular file.
+Quite similarly, if `core.symlinks` configuration variable is set to _false_ (see [git-config(1)](git-config.html)), symbolic links are checked out as plain files, and this command does not modify a recorded file mode from symbolic link to regular file.
 
-The command looks at `core.ignorestat` configuration variable. See *Using "assume unchanged" bit* section above.
+The command looks at `core.ignorestat` configuration variable. See _Using "assume unchanged" bit_ section above.
 
 The command also looks at `core.trustctime` configuration variable. It can be useful when the inode change time is regularly modified by something outside Git (file system crawlers and backup systems use ctime for marking files processed) (see [git-config(1)](git-config.html)).
 
 The untracked cache extension can be enabled by the `core.untrackedCache` configuration variable (see [git-config(1)](git-config.html)).
 
-NOTES
------
+## NOTES
 
 Users often try to use the assume-unchanged and skip-worktree bits to tell Git to ignore changes to files that are tracked. This does not work as expected, since Git may still check working tree files against the index when performing certain operations. In general, Git does not provide a way to ignore changes to tracked files, so alternate solutions are recommended.
 
 For example, if the file you want to change is some sort of config file, the repository can include a sample config file that can then be copied into the ignored name and modified. The repository can even include a script to treat the sample file as a template, modifying and copying it automatically.
 
-SEE ALSO
---------
+## SEE ALSO
 
 [git-config(1)](git-config.html), [git-add(1)](git-add.html), [git-ls-files(1)](git-ls-files.html)
 
-GIT
----
+## GIT

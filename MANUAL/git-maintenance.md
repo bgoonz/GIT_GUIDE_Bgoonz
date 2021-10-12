@@ -1,18 +1,14 @@
-git-maintenance(1) Manual Page
-==============================
+# git-maintenance(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-maintenance - Run tasks to optimize Git repository data
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git maintenance run [<options>]
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 Run tasks to optimize Git repository data, speeding up other Git commands and reducing storage requirements for the repository.
 
@@ -20,23 +16,22 @@ Git commands that add repository data, such as `git add` or `git fetch`, are opt
 
 The `git maintenance` command provides flexibility for how to optimize the Git repository.
 
-SUBCOMMANDS
------------
+## SUBCOMMANDS
 
 register  
 Initialize Git config values so any scheduled maintenance will start running on this repository. This adds the repository to the `maintenance.repo` config variable in the current user’s global config and enables some recommended configuration values for `maintenance.<task>.schedule`. The tasks that are enabled are safe for running in the background without disrupting foreground processes.
 
 The `register` subcommand will also set the `maintenance.strategy` config value to `incremental`, if this value is not previously set. The `incremental` strategy uses the following schedule for each maintenance task:
 
--   `gc`: disabled.
+- `gc`: disabled.
 
--   `commit-graph`: hourly.
+- `commit-graph`: hourly.
 
--   `prefetch`: hourly.
+- `prefetch`: hourly.
 
--   `loose-objects`: daily.
+- `loose-objects`: daily.
 
--   `incremental-repack`: daily.
+- `incremental-repack`: daily.
 
 `git maintenance register` will also disable foreground maintenance by setting `maintenance.auto = false` in the current repository. This config setting will remain after a `git maintenance unregister` command.
 
@@ -52,8 +47,7 @@ Halt the background maintenance schedule. The current repository is not removed 
 unregister  
 Remove the current repository from background maintenance. This only removes the repository from the configured list. It does not stop the background maintenance processes from running.
 
-TASKS
------
+## TASKS
 
 commit-graph  
 The `commit-graph` job updates the `commit-graph` files incrementally, then verifies that the written data is correct. The incremental write is safe to run alongside concurrent Git processes since it will not expire `.graph` files that were in the previous `commit-graph-chain` file. They will be deleted by a later run based on the expiration delay.
@@ -75,8 +69,7 @@ The `incremental-repack` job repacks the object directory using the `multi-pack-
 pack-refs  
 The `pack-refs` task collects the loose reference files and collects them into a single file. This speeds up operations that need to iterate across many references. See [git-pack-refs(1)](git-pack-refs.html) for more information.
 
-OPTIONS
--------
+## OPTIONS
 
 --auto  
 When combined with the `run` subcommand, run maintenance tasks only if certain thresholds are met. For example, the `gc` task runs when the number of loose objects exceeds the number stored in the `gc.auto` config setting, or when the number of pack-files exceeds the `gc.autoPackLimit` config setting. Not compatible with the `--schedule` option.
@@ -88,10 +81,9 @@ When combined with the `run` subcommand, run maintenance tasks only if certain t
 Do not report progress or other information over `stderr`.
 
 --task=&lt;task&gt;  
-If this option is specified one or more times, then only run the specified tasks in the specified order. If no `--task=<task>` arguments are specified, then only the tasks with `maintenance.<task>.enabled` configured as `true` are considered. See the *TASKS* section for the list of accepted `<task>` values.
+If this option is specified one or more times, then only run the specified tasks in the specified order. If no `--task=<task>` arguments are specified, then only the tasks with `maintenance.<task>.enabled` configured as `true` are considered. See the _TASKS_ section for the list of accepted `<task>` values.
 
-TROUBLESHOOTING
----------------
+## TROUBLESHOOTING
 
 The `git maintenance` command is designed to simplify the repository maintenance patterns while minimizing user wait time during Git commands. A variety of configuration options are available to allow customizing this process. The default maintenance options focus on operations that complete quickly, even on large repositories.
 
@@ -105,8 +97,7 @@ Expert users may consider scheduling their own maintenance tasks using a differe
 
 The following sections describe the mechanisms put in place to run background maintenance by `git maintenance start` and how to customize them.
 
-BACKGROUND MAINTENANCE ON POSIX SYSTEMS
----------------------------------------
+## BACKGROUND MAINTENANCE ON POSIX SYSTEMS
 
 The standard mechanism for scheduling background tasks on POSIX systems is cron(8). This tool executes commands based on a given schedule. The current list of user-scheduled tasks can be found by running `crontab -l`. The schedule written by `git maintenance start` is similar to this:
 
@@ -129,8 +120,7 @@ These commands use `git for-each-repo --config=maintenance.repo` to run `git mai
 
 If the config values are insufficient to achieve your desired background maintenance schedule, then you can create your own schedule. If you run `crontab -e`, then an editor will load with your user-specific `cron` schedule. In that editor, you can add your own schedule lines. You could start by adapting the default schedule listed earlier, or you could read the crontab(5) documentation for advanced scheduling techniques. Please do use the full path and `--exec-path` techniques from the default schedule to ensure you are executing the correct binaries in your schedule.
 
-BACKGROUND MAINTENANCE ON MACOS SYSTEMS
----------------------------------------
+## BACKGROUND MAINTENANCE ON MACOS SYSTEMS
 
 While macOS technically supports `cron`, using `crontab -e` requires elevated privileges and the executed process does not have a full user context. Without a full user context, Git and its credential helpers cannot access stored credentials, so some maintenance tasks are not functional.
 
@@ -149,8 +139,7 @@ One task is registered for each `--schedule=<frequency>` option. To inspect how 
 
 To create more advanced customizations to your background tasks, see launchctl.plist(5) for more information.
 
-BACKGROUND MAINTENANCE ON WINDOWS SYSTEMS
------------------------------------------
+## BACKGROUND MAINTENANCE ON WINDOWS SYSTEMS
 
 Windows does not support `cron` and instead has its own system for scheduling background tasks. The `git maintenance start` command uses the `schtasks` command to submit tasks to this system. You can inspect all background tasks using the Task Scheduler application. The tasks added by Git have names of the form `Git Maintenance (<frequency>)`. The Task Scheduler GUI has ways to inspect these tasks, but you can also export the tasks to XML files and view the details there.
 
@@ -158,8 +147,7 @@ Note that since Git is a console application, these background tasks create a co
 
 If you want to customize the background tasks, please rename the tasks so future calls to `git maintenance (start|stop)` do not overwrite your custom tasks.
 
-GIT
----
+## GIT
 
 Part of the [git(1)](git.html) suite
 

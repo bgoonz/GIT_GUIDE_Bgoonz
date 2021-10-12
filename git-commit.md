@@ -1,10 +1,8 @@
-Git Commit
-==========
+# Git Commit
 
 `git commit` creates a commit, which is like a snapshot of your repository. These commits are snapshots of your entire repository at specific times. You should make new commits often, based around logical units of change. Over time, commits should tell a story of the history of your repository and how it came to be the way that it currently is. Commits include lots of metadata in addition to the contents and message, like the author, timestamp, and more.
 
-How Git Commit Works
---------------------
+## How Git Commit Works
 
 Commits are the building blocks of “save points” within Git’s version control.
 
@@ -22,15 +20,14 @@ Commits have two phases to help you craft commits properly. Commits should be lo
 
 You can also use a handy command, `git add -p`, to walk through the changes and separate them, even if they’re in the same file.
 
-How to Use Git Commit
----------------------
+## How to Use Git Commit
 
 ### Common usages and options for Git Commit
 
--   `git commit`: This starts the commit process, but since it doesn’t include a `-m` flag for the message, your default text editor will be opened for you to create the commit message. If you haven’t configured anything, there’s a good chance this will be VI or Vim. (To get out, press Esc, then `:wq`, and then Enter. :wink:)
--   `git commit -m "descriptive commit message"`: This starts the commit process, and allows you to include the commit message at the same time.
--   `git commit -am "descriptive commit message"`: In addition to including the commit message, this option allows you to skip the staging phase. The addition of `-a` will automatically stage any files that are already being tracked by Git (changes to files that you’ve committed before).
--   `git commit --amend`: Replaces the most recent commit with a new commit. (More on this later!)
+- `git commit`: This starts the commit process, but since it doesn’t include a `-m` flag for the message, your default text editor will be opened for you to create the commit message. If you haven’t configured anything, there’s a good chance this will be VI or Vim. (To get out, press Esc, then `:wq`, and then Enter. :wink:)
+- `git commit -m "descriptive commit message"`: This starts the commit process, and allows you to include the commit message at the same time.
+- `git commit -am "descriptive commit message"`: In addition to including the commit message, this option allows you to skip the staging phase. The addition of `-a` will automatically stage any files that are already being tracked by Git (changes to files that you’ve committed before).
+- `git commit --amend`: Replaces the most recent commit with a new commit. (More on this later!)
 
 To see all of the possible options you have with `git commit`, check out [Git’s documentation](https://git-scm.com/docs/git-commit).
 
@@ -38,12 +35,12 @@ To see all of the possible options you have with `git commit`, check out [Git’
 
 Sometimes, you may need to change history. You may need to undo a commit. If you find yourself in this situation, there are a few very important things to remember:
 
--   If you are “undoing” a commit that exists on the remote, you could create big problems for your collaborators
--   Undoing a commit on work that you only have locally is much safer
+- If you are “undoing” a commit that exists on the remote, you could create big problems for your collaborators
+- Undoing a commit on work that you only have locally is much safer
 
 ### What can go wrong while changing history?
 
-Changing history for collaborators can be problematic in a few ways. Imagine - You and another collaborator have the same repository, with the same history. But, they make a change that *deletes* the most recent commit. They continue new commits from the commit directly before that. Meanwhile, you keep working *with* the commit that the collaborator tried to delete. When they push, they’ll have to ‘force push’, which should show to them that they’re changing history. **What do you think will happen when you try to push?**
+Changing history for collaborators can be problematic in a few ways. Imagine - You and another collaborator have the same repository, with the same history. But, they make a change that _deletes_ the most recent commit. They continue new commits from the commit directly before that. Meanwhile, you keep working _with_ the commit that the collaborator tried to delete. When they push, they’ll have to ‘force push’, which should show to them that they’re changing history. **What do you think will happen when you try to push?**
 
 In dramatic cases, Git may decide that the histories are too different and the projects are no longer related. This is uncommon, but a big problem.
 
@@ -57,9 +54,9 @@ The most common result is that your `git push` would return the “deleted” co
 
 Sometimes, a commit includes sensitive information that actually needs to be deleted. `git reset` is a very powerful command that may cause you to lose work. By resetting, you move the `HEAD` pointer and the branch pointer to another point in time - maybe making it seem like the commits in between never happened! Before using `git reset`:
 
--   Make sure to talk with your team about any shared commits
--   Research the three types of reset to see which is right for you (–soft, –mixed, –hard)
--   Commit any work that you don’t want to be lost intentionally - work that is committed can be gotten back, but uncommitted work cannot
+- Make sure to talk with your team about any shared commits
+- Research the three types of reset to see which is right for you (–soft, –mixed, –hard)
+- Commit any work that you don’t want to be lost intentionally - work that is committed can be gotten back, but uncommitted work cannot
 
 #### `git reflog`
 
@@ -69,29 +66,27 @@ If you’re changing history and undoing commits, you should know about `git ref
 
 While `git commit --amend` does change history, it only changes the most recent commit on your current branch. This can be an extremely useful command for commits that:
 
--   Haven’t been pushed to the remote yet
--   Have a spelling error in the commit message
--   Don’t contain the changes that you’d like to contain
+- Haven’t been pushed to the remote yet
+- Have a spelling error in the commit message
+- Don’t contain the changes that you’d like to contain
 
-Examples of Git Commit
-----------------------
+## Examples of Git Commit
 
 Once you’ve staged the files that you want to include in your commit, you’re ready. Whether you commit in a tool like GitHub Desktop, or through your command line, the commit message is important. Commit messages should be short and descriptive of your change. If you are looking through your repository’s history, you’ll be guided by the commit messages, so they should tell a story. Commits in the command line can include the message with the following format:
 
--   `git commit -m "git commit message example"`
+- `git commit -m "git commit message example"`
 
 Commit messages should be present tense and directive, like the following examples:
 
--   `git commit -m "create file structure for Git guides"`
--   `git commit -m "translate Git cheat sheet into German"`
--   `git commit -m "update broken URL to Git resources"`
+- `git commit -m "create file structure for Git guides"`
+- `git commit -m "translate Git cheat sheet into German"`
+- `git commit -m "update broken URL to Git resources"`
 
 If you’d like to include more context in your commit messages, you can also include an extended commit message.
 
-Related commands
-----------------
+## Related commands
 
--   `git add [file]`: Snapshots the file in preparation for versioning, adding it to the staging area.
--   `git status`: Always a good idea, this command shows you what branch you’re on, what files are in the working or staging directory, and any other important information.
--   `git push`: Uploads all local branch commits to the remote.
--   `git log`: Browse and inspect the evolution of project files.
+- `git add [file]`: Snapshots the file in preparation for versioning, adding it to the staging area.
+- `git status`: Always a good idea, this command shows you what branch you’re on, what files are in the working or staging directory, and any other important information.
+- `git push`: Uploads all local branch commits to the remote.
+- `git log`: Browse and inspect the evolution of project files.

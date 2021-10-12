@@ -1,31 +1,26 @@
-git-archive(1) Manual Page
-==========================
+# git-archive(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-archive - Create an archive of files from a named tree
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git archive [--format=<fmt>] [--list] [--prefix=<prefix>/] [<extra>]
                   [-o <file> | --output=<file>] [--worktree-attributes]
                   [--remote=<repo> [--exec=<git-upload-archive>]] <tree-ish>
                   [<path>…​]
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 Creates an archive of the specified format containing the tree structure for the named tree, and writes it out to the standard output. If &lt;prefix&gt; is specified it is prepended to the filenames in the archive.
 
-*git archive* behaves differently when given a tree ID versus when given a commit ID or tag ID. In the first case the current time is used as the modification time of each file in the archive. In the latter case the commit time as recorded in the referenced commit object is used instead. Additionally the commit ID is stored in a global extended pax header if the tar format is used; it can be extracted using *git get-tar-commit-id*. In ZIP files it is stored as a file comment.
+_git archive_ behaves differently when given a tree ID versus when given a commit ID or tag ID. In the first case the current time is used as the modification time of each file in the archive. In the latter case the commit time as recorded in the referenced commit object is used instead. Additionally the commit ID is stored in a global extended pax header if the tar format is used; it can be extracted using _git get-tar-commit-id_. In ZIP files it is stored as a file comment.
 
-OPTIONS
--------
+## OPTIONS
 
 --format=&lt;fmt&gt;  
-Format of the resulting archive: *tar* or *zip*. If this option is not given, and the output file is specified, the format is inferred from the filename if possible (e.g. writing to "foo.zip" makes the output to be in the zip format). Otherwise the output format is `tar`.
+Format of the resulting archive: _tar_ or _zip_. If this option is not given, and the output file is specified, the format is inferred from the filename if possible (e.g. writing to "foo.zip" makes the output to be in the zip format). Otherwise the output format is `tar`.
 
 -l  
 --list  
@@ -55,7 +50,7 @@ This can be any options that the archiver backend understands. See next section.
 Instead of making a tar archive from the local repository, retrieve a tar archive from a remote repository. Note that the remote repository may place restrictions on which sha1 expressions may be allowed in `<tree-ish>`. See [git-upload-archive(1)](git-upload-archive.html) for details.
 
 --exec=&lt;git-upload-archive&gt;  
-Used with --remote to specify the path to the *git-upload-archive* on the remote side.
+Used with --remote to specify the path to the _git-upload-archive_ on the remote side.
 
 &lt;tree-ish&gt;  
 The tree or commit to produce an archive for.
@@ -63,8 +58,7 @@ The tree or commit to produce an archive for.
 &lt;path&gt;  
 Without an optional path parameter, all files and subdirectories of the current working directory are included in the archive. If one or more paths are specified, only these are included.
 
-BACKEND EXTRA OPTIONS
----------------------
+## BACKEND EXTRA OPTIONS
 
 ### zip
 
@@ -74,8 +68,7 @@ Store the files instead of deflating them.
 -9  
 Highest and slowest compression level. You can specify any number from 1 to 9 to adjust compression speed and ratio.
 
-CONFIGURATION
--------------
+## CONFIGURATION
 
 tar.umask  
 This variable can be used to restrict the permission bits of tar archive entries. The default is 0002, which turns off the world write bit. The special value "user" indicates that the archiving user’s umask will be used instead. See umask(2) for details. If `--remote` is used then only the configuration of the remote repository takes effect.
@@ -88,8 +81,7 @@ The "tar.gz" and "tgz" formats are defined automatically and default to `gzip -c
 tar.&lt;format&gt;.remote  
 If true, enable `<format>` for use by remote clients via [git-upload-archive(1)](git-upload-archive.html). Defaults to false for user-defined formats, but true for the "tar.gz" and "tgz" formats.
 
-ATTRIBUTES
-----------
+## ATTRIBUTES
 
 export-ignore  
 Files and directories with the attribute export-ignore won’t be added to archive files. See [gitattributes(5)](gitattributes.html) for details.
@@ -99,37 +91,34 @@ If the attribute export-subst is set for a file then Git will expand several pla
 
 Note that attributes are by default taken from the `.gitattributes` files in the tree that is being archived. If you want to tweak the way the output is generated after the fact (e.g. you committed without adding an appropriate export-ignore in its `.gitattributes`), adjust the checked out `.gitattributes` file as necessary and use `--worktree-attributes` option. Alternatively you can keep necessary attributes that should apply while archiving any tree in your `$GIT_DIR/info/attributes` file.
 
-EXAMPLES
---------
+## EXAMPLES
 
- `git archive --format=tar --prefix=junk/ HEAD | (cd /var/tmp/                   && tar xf -)`   
+`git archive --format=tar --prefix=junk/ HEAD | (cd /var/tmp/ && tar xf -)`  
 Create a tar archive that contains the contents of the latest commit on the current branch, and extract it in the `/var/tmp/junk` directory.
 
- `git archive --format=tar --prefix=git-1.4.0/ v1.4.0 | gzip                   >git-1.4.0.tar.gz`   
+`git archive --format=tar --prefix=git-1.4.0/ v1.4.0 | gzip >git-1.4.0.tar.gz`  
 Create a compressed tarball for v1.4.0 release.
 
- `git archive --format=tar.gz --prefix=git-1.4.0/ v1.4.0                   >git-1.4.0.tar.gz`   
+`git archive --format=tar.gz --prefix=git-1.4.0/ v1.4.0 >git-1.4.0.tar.gz`  
 Same as above, but using the builtin tar.gz handling.
 
- `git archive --prefix=git-1.4.0/ -o git-1.4.0.tar.gz                   v1.4.0`   
+`git archive --prefix=git-1.4.0/ -o git-1.4.0.tar.gz v1.4.0`  
 Same as above, but the format is inferred from the output file.
 
- `git archive --format=tar --prefix=git-1.4.0/ v1.4.0^{tree} |                   gzip >git-1.4.0.tar.gz`   
+`git archive --format=tar --prefix=git-1.4.0/ v1.4.0^{tree} | gzip >git-1.4.0.tar.gz`  
 Create a compressed tarball for v1.4.0 release, but without a global extended pax header.
 
- `git archive --format=zip --prefix=git-docs/                   HEAD:Documentation/ > git-1.4.0-docs.zip`   
-Put everything in the current head’s Documentation/ directory into *git-1.4.0-docs.zip*, with the prefix *git-docs/*.
+`git archive --format=zip --prefix=git-docs/ HEAD:Documentation/ > git-1.4.0-docs.zip`  
+Put everything in the current head’s Documentation/ directory into _git-1.4.0-docs.zip_, with the prefix _git-docs/_.
 
- `git archive -o latest.zip HEAD`   
+`git archive -o latest.zip HEAD`  
 Create a Zip archive that contains the contents of the latest commit on the current branch. Note that the output format is inferred by the extension of the output file.
 
- `git config tar.tar.xz.command "xz -c"`   
+`git config tar.tar.xz.command "xz -c"`  
 Configure a "tar.xz" format for making LZMA-compressed tarfiles. You can use it specifying `--format=tar.xz`, or by creating an output file like `-o foo.tar.xz`.
 
-SEE ALSO
---------
+## SEE ALSO
 
 [gitattributes(5)](gitattributes.html)
 
-GIT
----
+## GIT

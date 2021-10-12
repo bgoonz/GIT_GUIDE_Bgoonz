@@ -1,13 +1,10 @@
-git-tag(1) Manual Page
-======================
+# git-tag(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-tag - Create, list, delete or verify a tag object signed with GPG
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git tag [-a | -s | -u <keyid>] [-f] [-m <msg> | -F <file>] [-e]
             <tagname> [<commit> | <object>]
@@ -18,14 +15,13 @@ SYNOPSIS
             [--merged <commit>] [--no-merged <commit>] [<pattern>…​]
     git tag -v [--format=<format>] <tagname>…​
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 Add a tag reference in `refs/tags/`, unless `-d/-l/-v` is given to delete, list or verify tags.
 
 Unless `-f` is given, the named tag must not yet exist.
 
-If one of `-a`, `-s`, or `-u <keyid>` is passed, the command creates a *tag* object, and requires a tag message. Unless `-m <msg>` or `-F <file>` is given, an editor is started for the user to type in the tag message.
+If one of `-a`, `-s`, or `-u <keyid>` is passed, the command creates a _tag_ object, and requires a tag message. Unless `-m <msg>` or `-F <file>` is given, an editor is started for the user to type in the tag message.
 
 If `-m <msg>` or `-F <file>` is given and `-a`, `-s`, and `-u <keyid>` are absent, `-a` is implied.
 
@@ -37,8 +33,7 @@ Tag objects (created with `-a`, `-s`, or `-u`) are called "annotated" tags; they
 
 Annotated tags are meant for release while lightweight tags are meant for private or temporary object labels. For this reason, some git commands for naming objects (like `git describe`) will ignore lightweight tags by default.
 
-OPTIONS
--------
+## OPTIONS
 
 -a  
 --annotate  
@@ -92,7 +87,7 @@ Sorting and filtering tags are case insensitive.
 
 --column\[=&lt;options&gt;\]  
 --no-column  
-Display tag listing in columns. See configuration variable `column.tag` for option syntax. `--column` and `--no-column` without options are equivalent to *always* and *never* respectively.
+Display tag listing in columns. See configuration variable `column.tag` for option syntax. `--column` and `--no-column` without options are equivalent to _always_ and _never_ respectively.
 
 This option is only applicable when listing tags without annotation lines.
 
@@ -117,14 +112,14 @@ Use the given tag message (instead of prompting). If multiple `-m` options are g
 
 -F &lt;file&gt;  
 --file=&lt;file&gt;  
-Take the tag message from the given file. Use *-* to read the message from the standard input. Implies `-a` if none of `-a`, `-s`, or `-u <keyid>` is given.
+Take the tag message from the given file. Use _-_ to read the message from the standard input. Implies `-a` if none of `-a`, `-s`, or `-u <keyid>` is given.
 
 -e  
 --edit  
 The message taken from file with `-F` and command line with `-m` are usually used as the tag message unmodified. This option lets you further edit the message taken from these sources.
 
 --cleanup=&lt;mode&gt;  
-This option sets how the tag message is cleaned up. The *&lt;mode&gt;* can be one of *verbatim*, *whitespace* and *strip*. The *strip* mode is default. The *verbatim* mode does not change message at all, *whitespace* removes just leading/trailing whitespace lines and *strip* removes both whitespace and commentary.
+This option sets how the tag message is cleaned up. The _&lt;mode&gt;_ can be one of _verbatim_, _whitespace_ and _strip_. The _strip_ mode is default. The _verbatim_ mode does not change message at all, _whitespace_ removes just leading/trailing whitespace lines and _strip_ removes both whitespace and commentary.
 
 --create-reflog  
 Create a reflog for the tag. To globally enable reflogs for tags, see `core.logAllRefUpdates` in [git-config(1)](git-config.html). The negated form `--no-create-reflog` only overrides an earlier `--create-reflog`, but currently does not negate the setting of `core.logAllRefUpdates`.
@@ -139,18 +134,16 @@ The name of the tag to create, delete, or describe. The new tag name must pass a
 &lt;object&gt;  
 The object that the new tag will refer to, usually a commit. Defaults to HEAD.
 
-CONFIGURATION
--------------
+## CONFIGURATION
 
-By default, *git tag* in sign-with-default mode (-s) will use your committer identity (of the form `Your Name <your@email.address>`) to find a key. If you want to use a different default key, you can specify it in the repository configuration as follows:
+By default, _git tag_ in sign-with-default mode (-s) will use your committer identity (of the form `Your Name <your@email.address>`) to find a key. If you want to use a different default key, you can specify it in the repository configuration as follows:
 
     [user]
         signingKey = <gpg-keyid>
 
 `pager.tag` is only respected when listing tags, i.e., when `-l` is used or implied. The default is to use a pager. See [git-config(1)](git-config.html).
 
-DISCUSSION
-----------
+## DISCUSSION
 
 ### On Re-tagging
 
@@ -160,11 +153,11 @@ If you never pushed anything out, just re-tag it. Use "-f" to replace the old on
 
 But if you have pushed things out (or others could just read your repository directly), then others will have already seen the old tag. In that case you can do one of two things:
 
-1.  The sane thing. Just admit you screwed up, and use a different name. Others have already seen one tag-name, and if you keep the same name, you may be in the situation that two people both have "version X", but they actually have *different* "X"'s. So just call it "X.1" and be done with it.
+1.  The sane thing. Just admit you screwed up, and use a different name. Others have already seen one tag-name, and if you keep the same name, you may be in the situation that two people both have "version X", but they actually have _different_ "X"'s. So just call it "X.1" and be done with it.
 
-2.  The insane thing. You really want to call the new version "X" too, *even though* others have already seen the old one. So just use *git tag -f* again, as if you hadn’t already published the old one.
+2.  The insane thing. You really want to call the new version "X" too, _even though_ others have already seen the old one. So just use _git tag -f_ again, as if you hadn’t already published the old one.
 
-However, Git does **not** (and it should not) change tags behind users back. So if somebody already got the old tag, doing a *git pull* on your tree shouldn’t just make them overwrite the old one.
+However, Git does **not** (and it should not) change tags behind users back. So if somebody already got the old tag, doing a _git pull_ on your tree shouldn’t just make them overwrite the old one.
 
 If somebody got a release tag from you, you cannot just change the tag for them by updating your own one. This is a big security issue, in that people MUST be able to trust their tag-names. If you really want to do the insane thing, you need to just fess up to it, and tell people that you messed up. You can do that by making a very public announcement saying:
 
@@ -195,7 +188,7 @@ If you are following somebody else’s tree, you are most likely using remote-tr
 
 On the other hand, if you are fetching because you would want a one-shot merge from somebody else, you typically do not want to get tags from there. This happens more often for people near the toplevel but not limited to them. Mere mortals when pulling from each other do not necessarily want to automatically get private anchor point tags from the other person.
 
-Often, "please pull" messages on the mailing list just provide two pieces of information: a repo URL and a branch name; this is designed to be easily cut&pasted at the end of a *git fetch* command line:
+Often, "please pull" messages on the mailing list just provide two pieces of information: a repo URL and a branch name; this is designed to be easily cut&pasted at the end of a _git fetch_ command line:
 
     Linus, please pull from
 
@@ -219,14 +212,13 @@ It may well be that among networking people, they may want to exchange the tags 
 
 If you have imported some changes from another VCS and would like to add tags for major releases of your work, it is useful to be able to specify the date to embed inside of the tag object; such data in the tag object affects, for example, the ordering of tags in the gitweb interface.
 
-To set the date used in future tag objects, set the environment variable GIT\_COMMITTER\_DATE (see the later discussion of possible values; the most common form is "YYYY-MM-DD HH:MM").
+To set the date used in future tag objects, set the environment variable GIT_COMMITTER_DATE (see the later discussion of possible values; the most common form is "YYYY-MM-DD HH:MM").
 
 For example:
 
     $ GIT_COMMITTER_DATE="2006-10-02 10:31" git tag -s v1.0.1
 
-DATE FORMATS
-------------
+## DATE FORMATS
 
 The `GIT_AUTHOR_DATE` and `GIT_COMMITTER_DATE` environment variables support the following date formats:
 
@@ -241,17 +233,14 @@ Time and date specified by the ISO 8601 standard, for example `2005-04-07T22:13:
 
 <table><colgroup><col style="width: 50%" /><col style="width: 50%" /></colgroup><tbody><tr class="odd"><td><div class="title">Note</div></td><td>In addition, the date part is accepted in the following formats: <code>YYYY.MM.DD</code>, <code>MM/DD/YYYY</code> and <code>DD.MM.YYYY</code>.</td></tr></tbody></table>
 
-NOTES
------
+## NOTES
 
 When combining multiple `--contains` and `--no-contains` filters, only references that contain at least one of the `--contains` commits and contain none of the `--no-contains` commits are shown.
 
 When combining multiple `--merged` and `--no-merged` filters, only references that are reachable from at least one of the `--merged` commits and from none of the `--no-merged` commits are shown.
 
-SEE ALSO
---------
+## SEE ALSO
 
 [git-check-ref-format(1)](git-check-ref-format.html). [git-config(1)](git-config.html).
 
-GIT
----
+## GIT

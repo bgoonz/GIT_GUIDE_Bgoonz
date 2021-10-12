@@ -1,5 +1,4 @@
-git-remote-helpers
-==================
+# git-remote-helpers
 
 This document has been moved to [gitremote-helpers(7)](gitremote-helpers.html).
 

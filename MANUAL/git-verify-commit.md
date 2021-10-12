@@ -1,23 +1,18 @@
-git-verify-commit(1) Manual Page
-================================
+# git-verify-commit(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-verify-commit - Check the GPG signature of commits
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git verify-commit <commit>…​
 
-DESCRIPTION
------------
+## DESCRIPTION
 
-Validates the GPG signature created by *git commit -S*.
+Validates the GPG signature created by _git commit -S_.
 
-OPTIONS
--------
+## OPTIONS
 
 --raw  
 Print the raw gpg status output to standard error instead of the normal human-readable output.
@@ -29,5 +24,4 @@ Print the contents of the commit object before validating it.
 &lt;commit&gt;…​  
 SHA-1 identifiers of Git commit objects.
 
-GIT
----
+## GIT

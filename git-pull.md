@@ -1,5 +1,4 @@
-Git Pull
-========
+# Git Pull
 
 `git pull` updates your current local working branch and all of the remote tracking branches. It’s a good idea to run `git pull` regularly on the branches you are working on locally.
 
@@ -23,20 +22,18 @@ Another reason you may want to run `git fetch` is to update to all remote tracki
 
 If you do use `git fetch` instead of `git pull`, make sure you remember to `git merge`. Merging the remote tracking branch into your own branch ensures you will be working with any updates or changes.
 
-How to Use `git pull`
----------------------
+## How to Use `git pull`
 
 ### Common usages and options for `git pull`
 
--   `git pull`: Update your local working branch with commits from the remote, *and* update all remote tracking branches.
--   `git pull --rebase`: Update your local working branch with commits from the remote, but rewrite history so any local commits occur after all new commits coming from the remote, avoiding a merge commit.
--   `git pull --force`: This option allows you to force a fetch of a specific remote tracking branch when using the `<refspec>` option that would otherwise not be fetched due to conflicts. To force Git to overwrite your current branch to match the remote tracking branch, read below about using `git reset`.
--   `git pull --all`: Fetch *all* remotes - this is handy if you are working on a fork or in another use case with multiple remotes.
+- `git pull`: Update your local working branch with commits from the remote, _and_ update all remote tracking branches.
+- `git pull --rebase`: Update your local working branch with commits from the remote, but rewrite history so any local commits occur after all new commits coming from the remote, avoiding a merge commit.
+- `git pull --force`: This option allows you to force a fetch of a specific remote tracking branch when using the `<refspec>` option that would otherwise not be fetched due to conflicts. To force Git to overwrite your current branch to match the remote tracking branch, read below about using `git reset`.
+- `git pull --all`: Fetch _all_ remotes - this is handy if you are working on a fork or in another use case with multiple remotes.
 
 You can see all of the many options with `git pull` in [git-scm’s documentation](https://git-scm.com/docs/git-pull).
 
-Examples of `git pull`
-----------------------
+## Examples of `git pull`
 
 ### Working on a Branch
 
@@ -50,13 +47,13 @@ If this happens, use `git status` to identify what changes are causing the probl
 
 Keeping the `main` branch up to date is generally a good idea.
 
-For example, let’s say you have cloned a repository. After you clone, someone merges a branch into main. Then, you’d like to create a new branch to do some work. If you create your branch off of `main` *before* operating `git pull`, your branch will not have the most recent changes. You could accidentally introduce a conflict or duplicate changes. By running `git pull` before you create a branch, you can be sure that you will be working with the most recent information.
+For example, let’s say you have cloned a repository. After you clone, someone merges a branch into main. Then, you’d like to create a new branch to do some work. If you create your branch off of `main` _before_ operating `git pull`, your branch will not have the most recent changes. You could accidentally introduce a conflict or duplicate changes. By running `git pull` before you create a branch, you can be sure that you will be working with the most recent information.
 
 ### Undo A `git pull`
 
 To effectively “undo” a `git pull`, you cannot undo the `git fetch` - but you can undo the `git merge` that changed your local working branch.
 
-To do this, you will need to `git reset` to the commit you made *before* you merged. You can find this commit by searching the `git reflog`. The reflog is a log of every place that HEAD has pointed - every place that you have ever been checked out to. This reflog is only kept for 30 to 90 days, depending on the commit, and is only stored locally. *(The reflog is a great reason not to delete a repository if you think you’ve made a mistake!)*
+To do this, you will need to `git reset` to the commit you made _before_ you merged. You can find this commit by searching the `git reflog`. The reflog is a log of every place that HEAD has pointed - every place that you have ever been checked out to. This reflog is only kept for 30 to 90 days, depending on the commit, and is only stored locally. _(The reflog is a great reason not to delete a repository if you think you’ve made a mistake!)_
 
 Run `git reflog` and search for the commit that you would like to return to. Then, run `git reset --hard <SHA>` to reset HEAD and your current branch to the SHA of the commit from before the merge.
 
@@ -80,12 +77,11 @@ You can update your local working branch with commits from the remote, but rewri
 
 Using `git pull --rebase` does not affect the integrity of the changes or the commits, but it does affect how history looks in the commit parent/child relationship.
 
-Related Terms
--------------
+## Related Terms
 
--   `git clone [url]`: Clone (download) a repository that already exists on GitHub, including all of the files, branches, and commits.
--   `git status`: Always a good idea, this command shows you what branch you’re on, what files are in the working or staging directory, and any other important information.
--   `git branch`: This shows the existing branches in your local repository. You can also use `git branch [banch-name]` to create a branch from your current location, or `git branch --all` to see all branches, both the local ones on your machine, and the remote tracking branches stored from the last `git pull` or `git fetch` from the remote.
--   `git push`: Uploads all local branch commits to the remote.
--   `git log`: Browse and inspect the evolution of project files.
--   `git remote -v`: Show the associated remote repositories and their stored name, like `origin`.
+- `git clone [url]`: Clone (download) a repository that already exists on GitHub, including all of the files, branches, and commits.
+- `git status`: Always a good idea, this command shows you what branch you’re on, what files are in the working or staging directory, and any other important information.
+- `git branch`: This shows the existing branches in your local repository. You can also use `git branch [banch-name]` to create a branch from your current location, or `git branch --all` to see all branches, both the local ones on your machine, and the remote tracking branches stored from the last `git pull` or `git fetch` from the remote.
+- `git push`: Uploads all local branch commits to the remote.
+- `git log`: Browse and inspect the evolution of project files.
+- `git remote -v`: Show the associated remote repositories and their stored name, like `origin`.

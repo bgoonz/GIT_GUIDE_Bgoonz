@@ -1,20 +1,16 @@
-git-restore(1) Manual Page
-==========================
+# git-restore(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-restore - Restore working tree files
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git restore [<options>] [--source=<tree>] [--staged] [--worktree] [--] <pathspec>…​
     git restore [<options>] [--source=<tree>] [--staged] [--worktree] --pathspec-from-file=<file> [--pathspec-file-nul]
     git restore (-p|--patch) [<options>] [--source=<tree>] [--staged] [--worktree] [--] [<pathspec>…​]
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 Restore specified paths in the working tree with some contents from a restore source. If a path is tracked but does not exist in the restore source, it will be removed to match the source.
 
@@ -26,8 +22,7 @@ See "Reset, restore and revert" in [git(1)](git.html) for the differences betwee
 
 THIS COMMAND IS EXPERIMENTAL. THE BEHAVIOR MAY CHANGE.
 
-OPTIONS
--------
+## OPTIONS
 
 -s &lt;tree&gt;  
 --source=&lt;tree&gt;  
@@ -59,9 +54,9 @@ Progress status is reported on the standard error stream by default when it is a
 
 --ours  
 --theirs  
-When restoring files in the working tree from the index, use stage \#2 (*ours*) or \#3 (*theirs*) for unmerged paths.
+When restoring files in the working tree from the index, use stage \#2 (_ours_) or \#3 (_theirs_) for unmerged paths.
 
-Note that during `git rebase` and `git pull --rebase`, *ours* and *theirs* may appear swapped. See the explanation of the same options in [git-checkout(1)](git-checkout.html) for details.
+Note that during `git rebase` and `git pull --rebase`, _ours_ and _theirs_ may appear swapped. See the explanation of the same options in [git-checkout(1)](git-checkout.html) for details.
 
 -m  
 --merge  
@@ -74,7 +69,7 @@ The same as `--merge` option above, but changes the way the conflicting hunks ar
 When restoring files on the working tree from the index, do not abort the operation if there are unmerged entries and neither `--ours`, `--theirs`, `--merge` or `--conflict` is specified. Unmerged paths on the working tree are left alone.
 
 --ignore-skip-worktree-bits  
-In sparse checkout mode, by default is to only update entries matched by `<pathspec>` and sparse patterns in $GIT\_DIR/info/sparse-checkout. This option ignores the sparse patterns and unconditionally restores any files in `<pathspec>`.
+In sparse checkout mode, by default is to only update entries matched by `<pathspec>` and sparse patterns in $GIT_DIR/info/sparse-checkout. This option ignores the sparse patterns and unconditionally restores any files in `<pathspec>`.
 
 --recurse-submodules  
 --no-recurse-submodules  
@@ -96,10 +91,9 @@ Do not interpret any more arguments as options.
 &lt;pathspec&gt;…​  
 Limits the paths affected by the operation.
 
-For more details, see the *pathspec* entry in [gitglossary(7)](gitglossary.html).
+For more details, see the _pathspec_ entry in [gitglossary(7)](gitglossary.html).
 
-EXAMPLES
---------
+## EXAMPLES
 
 The following sequence switches to the `master` branch, reverts the `Makefile` to two revisions back, deletes hello.c by mistake, and gets it back from the index.
 
@@ -112,7 +106,7 @@ The following sequence switches to the `master` branch, reverts the `Makefile` t
 
 2.  restore hello.c from the index
 
-If you want to restore *all* C source files to match the version in the index, you can say
+If you want to restore _all_ C source files to match the version in the index, you can say
 
     $ git restore '*.c'
 
@@ -122,7 +116,7 @@ To restore all files in the current directory
 
     $ git restore .
 
-or to restore all working tree files with *top* pathspec magic (see [gitglossary(7)](gitglossary.html))
+or to restore all working tree files with _top_ pathspec magic (see [gitglossary(7)](gitglossary.html))
 
     $ git restore :/
 
@@ -138,10 +132,8 @@ or the short form which is more practical but less readable:
 
     $ git restore -s@ -SW hello.c
 
-SEE ALSO
---------
+## SEE ALSO
 
 [git-checkout(1)](git-checkout.html), [git-reset(1)](git-reset.html)
 
-GIT
----
+## GIT

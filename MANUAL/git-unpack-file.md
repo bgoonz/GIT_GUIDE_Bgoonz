@@ -1,26 +1,20 @@
-git-unpack-file(1) Manual Page
-==============================
+# git-unpack-file(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-unpack-file - Creates a temporary file with a blob's contents
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git unpack-file <blob>
 
-DESCRIPTION
------------
+## DESCRIPTION
 
-Creates a file holding the contents of the blob specified by sha1. It returns the name of the temporary file in the following format: .merge\_file\_XXXXX
+Creates a file holding the contents of the blob specified by sha1. It returns the name of the temporary file in the following format: .merge_file_XXXXX
 
-OPTIONS
--------
+## OPTIONS
 
 &lt;blob&gt;  
 Must be a blob id
 
-GIT
----
+## GIT

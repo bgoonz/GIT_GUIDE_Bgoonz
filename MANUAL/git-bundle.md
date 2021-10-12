@@ -1,13 +1,10 @@
-git-bundle(1) Manual Page
-=========================
+# git-bundle(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-bundle - Move objects and refs by archive
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git bundle create [-q | --quiet | --progress | --all-progress] [--all-progress-implied]
                         [--version=<version>] <file> <git-rev-list-args>
@@ -15,35 +12,33 @@ SYNOPSIS
     git bundle list-heads <file> [<refname>…​]
     git bundle unbundle <file> [<refname>…​]
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 Some workflows require that one or more branches of development on one machine be replicated on another machine, but the two machines cannot be directly connected, and therefore the interactive Git protocols (git, ssh, http) cannot be used.
 
-The *git bundle* command packages objects and references in an archive at the originating machine, which can then be imported into another repository using *git fetch*, *git pull*, or *git clone*, after moving the archive by some means (e.g., by sneakernet).
+The _git bundle_ command packages objects and references in an archive at the originating machine, which can then be imported into another repository using _git fetch_, _git pull_, or _git clone_, after moving the archive by some means (e.g., by sneakernet).
 
 As no direct connection between the repositories exists, the user must specify a basis for the bundle that is held by the destination repository: the bundle assumes that all objects in the basis are already in the destination repository.
 
-OPTIONS
--------
+## OPTIONS
 
- create \[options\] &lt;file&gt; &lt;git-rev-list-args&gt;   
-Used to create a bundle named *file*. This requires the *&lt;git-rev-list-args&gt;* arguments to define the bundle contents. *options* contains the options specific to the *git bundle create* subcommand.
+create \[options\] &lt;file&gt; &lt;git-rev-list-args&gt;  
+Used to create a bundle named _file_. This requires the _&lt;git-rev-list-args&gt;_ arguments to define the bundle contents. _options_ contains the options specific to the _git bundle create_ subcommand.
 
 verify &lt;file&gt;  
-Used to check that a bundle file is valid and will apply cleanly to the current repository. This includes checks on the bundle format itself as well as checking that the prerequisite commits exist and are fully linked in the current repository. *git bundle* prints a list of missing commits, if any, and exits with a non-zero status.
+Used to check that a bundle file is valid and will apply cleanly to the current repository. This includes checks on the bundle format itself as well as checking that the prerequisite commits exist and are fully linked in the current repository. _git bundle_ prints a list of missing commits, if any, and exits with a non-zero status.
 
 list-heads &lt;file&gt;  
 Lists the references defined in the bundle. If followed by a list of references, only references matching those given are printed out.
 
 unbundle &lt;file&gt;  
-Passes the objects in the bundle to *git index-pack* for storage in the repository, then prints the names of all defined references. If a list of references is given, only references matching those in the list are printed. This command is really plumbing, intended to be called only by *git fetch*.
+Passes the objects in the bundle to _git index-pack_ for storage in the repository, then prints the names of all defined references. If a list of references is given, only references matching those in the list are printed. This command is really plumbing, intended to be called only by _git fetch_.
 
 &lt;git-rev-list-args&gt;  
-A list of arguments, acceptable to *git rev-parse* and *git rev-list* (and containing a named ref, see SPECIFYING REFERENCES below), that specifies the specific objects and references to transport. For example, `master~10..master` causes the current master reference to be packaged along with all objects added since its 10th ancestor commit. There is no explicit limit to the number of references and objects that may be packaged.
+A list of arguments, acceptable to _git rev-parse_ and _git rev-list_ (and containing a named ref, see SPECIFYING REFERENCES below), that specifies the specific objects and references to transport. For example, `master~10..master` causes the current master reference to be packaged along with all objects added since its 10th ancestor commit. There is no explicit limit to the number of references and objects that may be packaged.
 
 \[&lt;refname&gt;…​\]  
-A list of references used to limit the references reported as available. This is principally of use to *git fetch*, which expects to receive only those references asked for and not necessarily everything in the pack (in this case, *git bundle* acts like *git fetch-pack*).
+A list of references used to limit the references reported as available. This is principally of use to _git fetch_, which expects to receive only those references asked for and not necessarily everything in the pack (in this case, _git bundle_ acts like _git fetch-pack_).
 
 --progress  
 Progress status is reported on the standard error stream by default when it is attached to a terminal, unless -q is specified. This flag forces progress status even if the standard error stream is not directed to a terminal.
@@ -61,17 +56,15 @@ Specify the bundle version. Version 2 is the older format and can only be used w
 --quiet  
 This flag makes the command not to report its progress on the standard error stream.
 
-SPECIFYING REFERENCES
----------------------
+## SPECIFYING REFERENCES
 
-*git bundle* will only package references that are shown by *git show-ref*: this includes heads, tags, and remote heads. References such as `master~1` cannot be packaged, but are perfectly suitable for defining the basis. More than one reference may be packaged, and more than one basis can be specified. The objects packaged are those not contained in the union of the given bases. Each basis can be specified explicitly (e.g. `^master~10`), or implicitly (e.g. `master~10..master`, `--since=10.days.ago master`).
+_git bundle_ will only package references that are shown by _git show-ref_: this includes heads, tags, and remote heads. References such as `master~1` cannot be packaged, but are perfectly suitable for defining the basis. More than one reference may be packaged, and more than one basis can be specified. The objects packaged are those not contained in the union of the given bases. Each basis can be specified explicitly (e.g. `^master~10`), or implicitly (e.g. `master~10..master`, `--since=10.days.ago master`).
 
 It is very important that the basis used be held by the destination. It is okay to err on the side of caution, causing the bundle file to contain objects already in the destination, as these are ignored when unpacking at the destination.
 
 `git clone` can use any bundle created without negative refspecs (e.g., `new`, but not `old..new`). If you want to match `git clone --mirror`, which would include your refs such as `refs/remotes/*`, use `--all`. If you want to provide the same set of refs that a clone directly from the source repository would get, use `--branches --tags` for the `<git-rev-list-args>`.
 
-EXAMPLES
---------
+## EXAMPLES
 
 Assume you want to transfer the history from a repository R1 on machine A to another repository R2 on machine B. For whatever reason, direct connection between A and B is not allowed, but we can move data from A to B via some mechanism (CD, email, etc.). We want to update R2 with development made on the branch master in R1.
 
@@ -85,7 +78,7 @@ Then you transfer file.bundle to the target machine B. Because this bundle does 
 
     machineB$ git clone -b master /home/me/tmp/file.bundle R2
 
-This will define a remote called "origin" in the resulting repository that lets you fetch and pull from the bundle. The $GIT\_DIR/config file in R2 will have an entry like this:
+This will define a remote called "origin" in the resulting repository that lets you fetch and pull from the bundle. The $GIT_DIR/config file in R2 will have an entry like this:
 
     [remote "origin"]
         url = /home/me/tmp/file.bundle
@@ -132,5 +125,4 @@ You can also see what references it offers:
 
     $ git ls-remote mybundle
 
-GIT
----
+## GIT

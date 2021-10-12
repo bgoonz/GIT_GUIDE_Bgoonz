@@ -1,43 +1,38 @@
-git-rev-list(1) Manual Page
-===========================
+# git-rev-list(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-rev-list - Lists commit objects in reverse chronological order
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git rev-list [<options>] <commit>…​ [[--] <path>…​]
 
-DESCRIPTION
------------
+## DESCRIPTION
 
-List commits that are reachable by following the `parent` links from the given commit(s), but exclude commits that are reachable from the one(s) given with a *^* in front of them. The output is given in reverse chronological order by default.
+List commits that are reachable by following the `parent` links from the given commit(s), but exclude commits that are reachable from the one(s) given with a _^_ in front of them. The output is given in reverse chronological order by default.
 
-You can think of this as a set operation. Commits reachable from any of the commits given on the command line form a set, and then commits reachable from any of the ones given with *^* in front are subtracted from that set. The remaining commits are what comes out in the command’s output. Various other options and paths parameters can be used to further limit the result.
+You can think of this as a set operation. Commits reachable from any of the commits given on the command line form a set, and then commits reachable from any of the ones given with _^_ in front are subtracted from that set. The remaining commits are what comes out in the command’s output. Various other options and paths parameters can be used to further limit the result.
 
 Thus, the following command:
 
     $ git rev-list foo bar ^baz
 
-means "list all the commits which are reachable from *foo* or *bar*, but not from *baz*".
+means "list all the commits which are reachable from _foo_ or _bar_, but not from _baz_".
 
-A special notation "*&lt;commit1&gt;*..*&lt;commit2&gt;*" can be used as a short-hand for "^*&lt;commit1&gt;* *&lt;commit2&gt;*". For example, either of the following may be used interchangeably:
+A special notation "_&lt;commit1&gt;_.._&lt;commit2&gt;_" can be used as a short-hand for "^_&lt;commit1&gt;_ _&lt;commit2&gt;_". For example, either of the following may be used interchangeably:
 
     $ git rev-list origin..HEAD
     $ git rev-list HEAD ^origin
 
-Another special notation is "*&lt;commit1&gt;*…​*&lt;commit2&gt;*" which is useful for merges. The resulting set of commits is the symmetric difference between the two operands. The following two commands are equivalent:
+Another special notation is "_&lt;commit1&gt;_…​*&lt;commit2&gt;*" which is useful for merges. The resulting set of commits is the symmetric difference between the two operands. The following two commands are equivalent:
 
     $ git rev-list A B --not $(git merge-base --all A B)
     $ git rev-list A...B
 
-*rev-list* is a very essential Git command, since it provides the ability to build and traverse commit ancestry graphs. For this reason, it has a lot of different options that enables it to be used by commands as different as *git bisect* and *git repack*.
+_rev-list_ is a very essential Git command, since it provides the ability to build and traverse commit ancestry graphs. For this reason, it has a lot of different options that enables it to be used by commands as different as _git bisect_ and _git repack_.
 
-OPTIONS
--------
+## OPTIONS
 
 ### Commit Limiting
 
@@ -53,7 +48,7 @@ Note that these are applied before commit ordering and formatting options, such 
 Limit the number of commits to output.
 
 --skip=&lt;number&gt;  
-Skip *number* commits before starting to show the commit output.
+Skip _number_ commits before starting to show the commit output.
 
 --since=&lt;date&gt;  
 --after=&lt;date&gt;  
@@ -125,27 +120,27 @@ Show only commits which have at least (or at most) that many parent commits. In 
 Follow only the first parent commit upon seeing a merge commit. This option can give a better overview when viewing the evolution of a particular topic branch, because merges into a topic branch tend to be only about adjusting to updated upstream from time to time, and this option allows you to ignore the individual commits brought in to your history by such a merge.
 
 --not  
-Reverses the meaning of the *^* prefix (or lack thereof) for all following revision specifiers, up to the next `--not`.
+Reverses the meaning of the _^_ prefix (or lack thereof) for all following revision specifiers, up to the next `--not`.
 
 --all  
-Pretend as if all the refs in `refs/`, along with `HEAD`, are listed on the command line as *&lt;commit&gt;*.
+Pretend as if all the refs in `refs/`, along with `HEAD`, are listed on the command line as _&lt;commit&gt;_.
 
 --branches\[=&lt;pattern&gt;\]  
-Pretend as if all the refs in `refs/heads` are listed on the command line as *&lt;commit&gt;*. If *&lt;pattern&gt;* is given, limit branches to ones matching given shell glob. If pattern lacks *?*, *\**, or *\[*, */\** at the end is implied.
+Pretend as if all the refs in `refs/heads` are listed on the command line as _&lt;commit&gt;_. If _&lt;pattern&gt;_ is given, limit branches to ones matching given shell glob. If pattern lacks _?_, \*\*_, or _\[_, _/\*\* at the end is implied.
 
 --tags\[=&lt;pattern&gt;\]  
-Pretend as if all the refs in `refs/tags` are listed on the command line as *&lt;commit&gt;*. If *&lt;pattern&gt;* is given, limit tags to ones matching given shell glob. If pattern lacks *?*, *\**, or *\[*, */\** at the end is implied.
+Pretend as if all the refs in `refs/tags` are listed on the command line as _&lt;commit&gt;_. If _&lt;pattern&gt;_ is given, limit tags to ones matching given shell glob. If pattern lacks _?_, \*\*_, or _\[_, _/\*\* at the end is implied.
 
 --remotes\[=&lt;pattern&gt;\]  
-Pretend as if all the refs in `refs/remotes` are listed on the command line as *&lt;commit&gt;*. If *&lt;pattern&gt;* is given, limit remote-tracking branches to ones matching given shell glob. If pattern lacks *?*, *\**, or *\[*, */\** at the end is implied.
+Pretend as if all the refs in `refs/remotes` are listed on the command line as _&lt;commit&gt;_. If _&lt;pattern&gt;_ is given, limit remote-tracking branches to ones matching given shell glob. If pattern lacks _?_, \*\*_, or _\[_, _/\*\* at the end is implied.
 
 --glob=&lt;glob-pattern&gt;  
-Pretend as if all the refs matching shell glob *&lt;glob-pattern&gt;* are listed on the command line as *&lt;commit&gt;*. Leading *refs/*, is automatically prepended if missing. If pattern lacks *?*, *\**, or *\[*, */\** at the end is implied.
+Pretend as if all the refs matching shell glob _&lt;glob-pattern&gt;_ are listed on the command line as _&lt;commit&gt;_. Leading _refs/_, is automatically prepended if missing. If pattern lacks _?_, \*\*_, or _\[_, _/\*\* at the end is implied.
 
 --exclude=&lt;glob-pattern&gt;  
-Do not include refs matching *&lt;glob-pattern&gt;* that the next `--all`, `--branches`, `--tags`, `--remotes`, or `--glob` would otherwise consider. Repetitions of this option accumulate exclusion patterns up to the next `--all`, `--branches`, `--tags`, `--remotes`, or `--glob` option (other options or arguments do not clear accumulated patterns).
+Do not include refs matching _&lt;glob-pattern&gt;_ that the next `--all`, `--branches`, `--tags`, `--remotes`, or `--glob` would otherwise consider. Repetitions of this option accumulate exclusion patterns up to the next `--all`, `--branches`, `--tags`, `--remotes`, or `--glob` option (other options or arguments do not clear accumulated patterns).
 
-The patterns given should not begin with `refs/heads`, `refs/tags`, or `refs/remotes` when applied to `--branches`, `--tags`, or `--remotes`, respectively, and they must begin with `refs/` when applied to `--glob` or `--all`. If a trailing */\** is intended, it must be given explicitly.
+The patterns given should not begin with `refs/heads`, `refs/tags`, or `refs/remotes` when applied to `--branches`, `--tags`, or `--remotes`, respectively, and they must begin with `refs/` when applied to `--glob` or `--all`. If a trailing \*/\*\* is intended, it must be given explicitly.
 
 --reflog  
 Pretend as if all objects mentioned by reflogs are listed on the command line as `<commit>`.
@@ -160,7 +155,7 @@ By default, all working trees will be examined by the following options when the
 Upon seeing an invalid object name in the input, pretend as if the bad input was not given.
 
 --stdin  
-In addition to the *&lt;commit&gt;* listed on the command line, read them from the standard input. If a `--` separator is seen, stop reading commits and start reading paths to limit the result.
+In addition to the _&lt;commit&gt;_ listed on the command line, read them from the standard input. If a `--` separator is seen, stop reading commits and start reading paths to limit the result.
 
 --quiet  
 Don’t print anything to standard output. This form is primarily meant to allow the caller to test the exit status to see if a range of objects is fully connected (or not). It is faster than redirecting stdout to `/dev/null` as the output does not have to be formatted.
@@ -187,7 +182,7 @@ A synonym for `--right-only --cherry-mark --no-merges`; useful to limit the outp
 
 -g  
 --walk-reflogs  
-Instead of walking the commit ancestry chain, walk reflog entries from the most recent one to older ones. When this option is used you cannot specify commits to exclude (that is, *^commit*, *commit1..commit2*, and *commit1...commit2* notations cannot be used).
+Instead of walking the commit ancestry chain, walk reflog entries from the most recent one to older ones. When this option is used you cannot specify commits to exclude (that is, _^commit_, _commit1..commit2_, and _commit1...commit2_ notations cannot be used).
 
 With `--pretty` format other than `oneline` and `reference` (for obvious reasons), this causes the output to have two extra lines of information taken from the reflog. The reflog designator in the output may be shown as `ref@{Nth}` (where `Nth` is the reverse-chronological index in the reflog) or as `ref@{timestamp}` (with the timestamp for that entry), depending on a few rules:
 
@@ -217,7 +212,7 @@ Show progress reports on stderr as objects are considered. The `<header>` text w
 
 ### History Simplification
 
-Sometimes you are only interested in parts of the history, for example the commits modifying a particular &lt;path&gt;. But there are two parts of *History Simplification*, one part is selecting the commits and the other is how to do it, as there are various strategies to simplify the history.
+Sometimes you are only interested in parts of the history, for example the commits modifying a particular &lt;path&gt;. But there are two parts of _History Simplification_, one part is selecting the commits and the other is how to do it, as there are various strategies to simplify the history.
 
 The following options select the commits to be shown:
 
@@ -250,7 +245,7 @@ All commits in the simplified history are shown.
 Additional option to `--full-history` to remove some needless merges from the resulting history, as there are no selected commits contributing to this merge.
 
 --ancestry-path  
-When given a range of commits to display (e.g. *commit1..commit2* or *commit2 ^commit1*), only display commits that exist directly on the ancestry chain between the *commit1* and *commit2*, i.e. commits that are both descendants of *commit1*, and ancestors of *commit2*.
+When given a range of commits to display (e.g. _commit1..commit2_ or _commit2 ^commit1_), only display commits that exist directly on the ancestry chain between the _commit1_ and _commit2_, i.e. commits that are both descendants of _commit1_, and ancestors of _commit2_.
 
 A more detailed explanation follows.
 
@@ -266,19 +261,19 @@ In the following, we will always refer to the same example history to illustrate
 
 The horizontal line of history A---Q is taken to be the first parent of each merge. The commits are:
 
--   `I` is the initial commit, in which `foo` exists with contents “asdf”, and a file `quux` exists with contents “quux”. Initial commits are compared to an empty tree, so `I` is !TREESAME.
+- `I` is the initial commit, in which `foo` exists with contents “asdf”, and a file `quux` exists with contents “quux”. Initial commits are compared to an empty tree, so `I` is !TREESAME.
 
--   In `A`, `foo` contains just “foo”.
+- In `A`, `foo` contains just “foo”.
 
--   `B` contains the same change as `A`. Its merge `M` is trivial and hence TREESAME to all parents.
+- `B` contains the same change as `A`. Its merge `M` is trivial and hence TREESAME to all parents.
 
--   `C` does not change `foo`, but its merge `N` changes it to “foobar”, so it is not TREESAME to any parent.
+- `C` does not change `foo`, but its merge `N` changes it to “foobar”, so it is not TREESAME to any parent.
 
--   `D` sets `foo` to “baz”. Its merge `O` combines the strings from `N` and `D` to “foobarbaz”; i.e., it is not TREESAME to any parent.
+- `D` sets `foo` to “baz”. Its merge `O` combines the strings from `N` and `D` to “foobarbaz”; i.e., it is not TREESAME to any parent.
 
--   `E` changes `quux` to “xyzzy”, and its merge `P` combines the strings to “quux xyzzy”. `P` is TREESAME to `O`, but not to `E`.
+- `E` changes `quux` to “xyzzy”, and its merge `P` combines the strings to “quux xyzzy”. `P` is TREESAME to `O`, but not to `E`.
 
--   `X` is an independent root commit that added a new file `side`, and `Y` modified it. `Y` is TREESAME to `X`. Its merge `Q` added `side` to `P`, and `Q` is TREESAME to `P`, but not to `Y`.
+- `X` is an independent root commit that added a new file `side`, and `Y` modified it. `Y` is TREESAME to `X`. Its merge `Q` added `side` to `P`, and `Q` is TREESAME to `P`, but not to `Y`.
 
 `rev-list` walks backwards through history, including or excluding commits based on whether `--full-history` and/or parent rewriting (via `--parents` or `--children`) are used. The following settings are available.
 
@@ -332,11 +327,11 @@ First, build a history graph in the same way that `--full-history` with parent r
 
 Then simplify each commit `C` to its replacement `C'` in the final history according to the following rules:
 
--   Set `C'` to `C`.
+- Set `C'` to `C`.
 
--   Replace each parent `P` of `C'` with its simplification `P'`. In the process, drop parents that are ancestors of other parents or that are root commits TREESAME to an empty tree, and remove duplicates, but take care to never drop all parents that we are TREESAME to.
+- Replace each parent `P` of `C'` with its simplification `P'`. In the process, drop parents that are ancestors of other parents or that are root commits TREESAME to an empty tree, and remove duplicates, but take care to never drop all parents that we are TREESAME to.
 
--   If after this parent rewriting, `C'` is a root or merge commit (has zero or &gt;1 parents), a boundary commit, or !TREESAME, it remains. Otherwise, it is replaced with its only parent.
+- If after this parent rewriting, `C'` is a root or merge commit (has zero or &gt;1 parents), a boundary commit, or !TREESAME, it remains. Otherwise, it is replaced with its only parent.
 
 The effect of this is best shown by way of comparing to `--full-history` with parent rewriting. The example turns into:
 
@@ -348,11 +343,11 @@ The effect of this is best shown by way of comparing to `--full-history` with pa
 
 Note the major differences in `N`, `P`, and `Q` over `--full-history`:
 
--   `N`'s parent list had `I` removed, because it is an ancestor of the other parent `M`. Still, `N` remained because it is !TREESAME.
+- `N`'s parent list had `I` removed, because it is an ancestor of the other parent `M`. Still, `N` remained because it is !TREESAME.
 
--   `P`'s parent list similarly had `I` removed. `P` was then removed completely, because it had one parent and is TREESAME.
+- `P`'s parent list similarly had `I` removed. `P` was then removed completely, because it had one parent and is TREESAME.
 
--   `Q`'s parent list had `Y` simplified to `X`. `X` was then removed, because it was a TREESAME root. `Q` was then removed completely, because it had one parent and is TREESAME.
+- `Q`'s parent list had `Y` simplified to `X`. `X` was then removed, because it was a TREESAME root. `Q` was then removed completely, because it had one parent and is TREESAME.
 
 There is another simplification mode available:
 
@@ -367,9 +362,9 @@ As an example use case, consider the following commit history:
              /                     \
             A-------K---------------L--M
 
-A regular *D..M* computes the set of commits that are ancestors of `M`, but excludes the ones that are ancestors of `D`. This is useful to see what happened to the history leading to `M` since `D`, in the sense that “what does `M` have that did not exist in `D`”. The result in this example would be all the commits, except `A` and `B` (and `D` itself, of course).
+A regular _D..M_ computes the set of commits that are ancestors of `M`, but excludes the ones that are ancestors of `D`. This is useful to see what happened to the history leading to `M` since `D`, in the sense that “what does `M` have that did not exist in `D`”. The result in this example would be all the commits, except `A` and `B` (and `D` itself, of course).
 
-When we want to find out what commits in `M` are contaminated with the bug introduced by `D` and need fixing, however, we might want to view only the subset of *D..M* that are actually descendants of `D`, i.e. excluding `C` and `K`. This is exactly what the `--ancestry-path` option does. Applied to the *D..M* range, it results in:
+When we want to find out what commits in `M` are contaminated with the bug introduced by `D` and need fixing, however, we might want to view only the subset of _D..M_ that are actually descendants of `D`, i.e. excluding `C` and `K`. This is exactly what the `--ancestry-path` option does. Applied to the _D..M_ range, it results in:
 
                     E-------F
                      \       \
@@ -449,7 +444,7 @@ Limit output to the one commit object which is roughly halfway between included 
 
             $ git rev-list --bisect foo ^bar ^baz
 
-outputs *midpoint*, the output of the two commands
+outputs _midpoint_, the output of the two commands
 
             $ git rev-list foo ^midpoint
             $ git rev-list midpoint ^bar ^baz
@@ -497,7 +492,7 @@ Output the commits chosen to be shown (see Commit Limiting section above) in rev
 These options are mostly targeted for packing of Git repositories.
 
 --objects  
-Print the object IDs of any object referenced by the listed commits. `--objects foo ^bar` thus means “send me all object IDs which I need to download if I have the commit object *bar* but not *foo*”.
+Print the object IDs of any object referenced by the listed commits. `--objects foo ^bar` thus means “send me all object IDs which I need to download if I have the commit object _bar_ but not _foo_”.
 
 --in-commit-order  
 Print tree and blob ids in order of the commits. The tree and blob ids are printed after they are first referenced by a commit.
@@ -521,23 +516,23 @@ Only useful with `--objects`; print the names of the object IDs that are found. 
 Only useful with `--objects`; does not print the names of the object IDs that are found. This inverts `--object-names`. This flag allows the output to be more easily parsed by commands such as [git-cat-file(1)](git-cat-file.html).
 
 --filter=&lt;filter-spec&gt;  
-Only useful with one of the `--objects*`; omits objects (usually blobs) from the list of printed objects. The *&lt;filter-spec&gt;* may be one of the following:
+Only useful with one of the `--objects*`; omits objects (usually blobs) from the list of printed objects. The _&lt;filter-spec&gt;_ may be one of the following:
 
-The form *--filter=blob:none* omits all blobs.
+The form _--filter=blob:none_ omits all blobs.
 
-The form *--filter=blob:limit=&lt;n&gt;\[kmg\]* omits blobs larger than n bytes or units. n may be zero. The suffixes k, m, and g can be used to name units in KiB, MiB, or GiB. For example, *blob:limit=1k* is the same as *blob:limit=1024*.
+The form _--filter=blob:limit=&lt;n&gt;\[kmg\]_ omits blobs larger than n bytes or units. n may be zero. The suffixes k, m, and g can be used to name units in KiB, MiB, or GiB. For example, _blob:limit=1k_ is the same as _blob:limit=1024_.
 
-The form *--filter=sparse:oid=&lt;blob-ish&gt;* uses a sparse-checkout specification contained in the blob (or blob-expression) *&lt;blob-ish&gt;* to omit blobs that would not be not required for a sparse checkout on the requested refs.
+The form _--filter=sparse:oid=&lt;blob-ish&gt;_ uses a sparse-checkout specification contained in the blob (or blob-expression) _&lt;blob-ish&gt;_ to omit blobs that would not be not required for a sparse checkout on the requested refs.
 
-The form *--filter=tree:&lt;depth&gt;* omits all blobs and trees whose depth from the root tree is &gt;= &lt;depth&gt; (minimum depth if an object is located at multiple depths in the commits traversed). &lt;depth&gt;=0 will not include any trees or blobs unless included explicitly in the command-line (or standard input when --stdin is used). &lt;depth&gt;=1 will include only the tree and blobs which are referenced directly by a commit reachable from &lt;commit&gt; or an explicitly-given object. &lt;depth&gt;=2 is like &lt;depth&gt;=1 while also including trees and blobs one more level removed from an explicitly-given commit or tree.
+The form _--filter=tree:&lt;depth&gt;_ omits all blobs and trees whose depth from the root tree is &gt;= &lt;depth&gt; (minimum depth if an object is located at multiple depths in the commits traversed). &lt;depth&gt;=0 will not include any trees or blobs unless included explicitly in the command-line (or standard input when --stdin is used). &lt;depth&gt;=1 will include only the tree and blobs which are referenced directly by a commit reachable from &lt;commit&gt; or an explicitly-given object. &lt;depth&gt;=2 is like &lt;depth&gt;=1 while also including trees and blobs one more level removed from an explicitly-given commit or tree.
 
-Note that the form *--filter=sparse:path=&lt;path&gt;* that wants to read from an arbitrary path on the filesystem has been dropped for security reasons.
+Note that the form _--filter=sparse:path=&lt;path&gt;_ that wants to read from an arbitrary path on the filesystem has been dropped for security reasons.
 
-Multiple *--filter=* flags can be specified to combine filters. Only objects which are accepted by every filter are included.
+Multiple _--filter=_ flags can be specified to combine filters. Only objects which are accepted by every filter are included.
 
-The form *--filter=combine:&lt;filter1&gt;+&lt;filter2&gt;+…​&lt;filterN&gt;* can also be used to combined several filters, but this is harder than just repeating the *--filter* flag and is usually not necessary. Filters are joined by *+* and individual filters are %-encoded (i.e. URL-encoded). Besides the *+* and *%* characters, the following characters are reserved and also must be encoded: `~!@#$^&*()[]{}\;",<>?``` '` `` as well as all characters with ASCII code &lt;= `0x20`, which includes space and newline.
+The form _--filter=combine:&lt;filter1&gt;+&lt;filter2&gt;+…​&lt;filterN&gt;_ can also be used to combined several filters, but this is harder than just repeating the _--filter_ flag and is usually not necessary. Filters are joined by _+_ and individual filters are %-encoded (i.e. URL-encoded). Besides the _+_ and _%_ characters, the following characters are reserved and also must be encoded: ` ~!@#$^&*()[]{}\;",<>?``` ' ` ``as well as all characters with ASCII code &lt;=`0x20`, which includes space and newline.
 
-Other arbitrary characters can also be encoded. For instance, *combine:tree:3+blob:none* and *combine:tree%3A3+blob%3Anone* are equivalent.
+Other arbitrary characters can also be encoded. For instance, _combine:tree:3+blob:none_ and _combine:tree%3A3+blob%3Anone_ are equivalent.
 
 --no-filter  
 Turn off any previous `--filter=` argument.
@@ -548,13 +543,13 @@ Only useful with `--filter=`; prints a list of the objects omitted by the filter
 --missing=&lt;missing-action&gt;  
 A debug option to help with future "partial clone" development. This option specifies how missing objects are handled.
 
-The form *--missing=error* requests that rev-list stop with an error if a missing object is encountered. This is the default action.
+The form _--missing=error_ requests that rev-list stop with an error if a missing object is encountered. This is the default action.
 
-The form *--missing=allow-any* will allow object traversal to continue if a missing object is encountered. Missing objects will silently be omitted from the results.
+The form _--missing=allow-any_ will allow object traversal to continue if a missing object is encountered. Missing objects will silently be omitted from the results.
 
-The form *--missing=allow-promisor* is like *allow-any*, but will only allow object traversal to continue for EXPECTED promisor missing objects. Unexpected missing objects will raise an error.
+The form _--missing=allow-promisor_ is like _allow-any_, but will only allow object traversal to continue for EXPECTED promisor missing objects. Unexpected missing objects will raise an error.
 
-The form *--missing=print* is like *allow-any*, but will also print a list of the missing objects. Object IDs are prefixed with a “?” character.
+The form _--missing=print_ is like _allow-any_, but will also print a list of the missing objects. Object IDs are prefixed with a “?” character.
 
 --exclude-promisor-objects  
 (For internal use only.) Prefilter object traversal at promisor boundary. This is used with partial clone. This is stronger than `--missing=allow-promisor` because it limits the traversal, rather than just silencing errors about missing objects.
@@ -571,9 +566,9 @@ Using these options, [git-rev-list(1)](git-rev-list.html) will act similar to th
 
 --pretty\[=&lt;format&gt;\]  
 --format=&lt;format&gt;  
-Pretty-print the contents of the commit logs in a given format, where *&lt;format&gt;* can be one of *oneline*, *short*, *medium*, *full*, *fuller*, *reference*, *email*, *raw*, *format:&lt;string&gt;* and *tformat:&lt;string&gt;*. When *&lt;format&gt;* is none of the above, and has *%placeholder* in it, it acts as if *--pretty=tformat:&lt;format&gt;* were given.
+Pretty-print the contents of the commit logs in a given format, where _&lt;format&gt;_ can be one of _oneline_, _short_, _medium_, _full_, _fuller_, _reference_, _email_, _raw_, _format:&lt;string&gt;_ and _tformat:&lt;string&gt;_. When _&lt;format&gt;_ is none of the above, and has _%placeholder_ in it, it acts as if _--pretty=tformat:&lt;format&gt;_ were given.
 
-See the "PRETTY FORMATS" section for some additional details for each format. When *=&lt;format&gt;* part is omitted, it defaults to *medium*.
+See the "PRETTY FORMATS" section for some additional details for each format. When _=&lt;format&gt;_ part is omitted, it defaults to _medium_.
 
 Note: you can specify the default pretty format in the repository configuration (see [git-config(1)](git-config.html)).
 
@@ -594,9 +589,9 @@ The commit objects record the encoding used for the log message in their encodin
 --expand-tabs=&lt;n&gt;  
 --expand-tabs  
 --no-expand-tabs  
-Perform a tab expansion (replace each tab with enough spaces to fill to the next display column that is multiple of *&lt;n&gt;*) in the log message before showing it in the output. `--expand-tabs` is a short-hand for `--expand-tabs=8`, and `--no-expand-tabs` is a short-hand for `--expand-tabs=0`, which disables tab expansion.
+Perform a tab expansion (replace each tab with enough spaces to fill to the next display column that is multiple of _&lt;n&gt;_) in the log message before showing it in the output. `--expand-tabs` is a short-hand for `--expand-tabs=8`, and `--no-expand-tabs` is a short-hand for `--expand-tabs=0`, which disables tab expansion.
 
-By default, tabs are expanded in pretty formats that indent the log message by 4 spaces (i.e. *medium*, which is the default, *full*, and *fuller*).
+By default, tabs are expanded in pretty formats that indent the log message by 4 spaces (i.e. _medium_, which is the default, _full_, and _fuller_).
 
 --show-signature  
 Check the validity of a signed commit object by passing the signature to `gpg --verify` and show the output.
@@ -613,11 +608,11 @@ Only takes effect for dates shown in human-readable format, such as when using `
 
 `--date=iso` (or `--date=iso8601`) shows timestamps in a ISO 8601-like format. The differences to the strict ISO 8601 format are:
 
--   a space instead of the `T` date/time delimiter
+- a space instead of the `T` date/time delimiter
 
--   a space between time and time zone
+- a space between time and time zone
 
--   no colon between hours and minutes of the time zone
+- no colon between hours and minutes of the time zone
 
 `--date=iso-strict` (or `--date=iso8601-strict`) shows timestamps in strict ISO 8601 format.
 
@@ -635,18 +630,18 @@ Only takes effect for dates shown in human-readable format, such as when using `
 
 `--date=default` is the default format, and is similar to `--date=rfc2822`, with a few exceptions:
 
--   there is no comma after the day-of-week
+- there is no comma after the day-of-week
 
--   the time zone is omitted when the local time zone is used
+- the time zone is omitted when the local time zone is used
 
 --header  
 Print the contents of the commit in raw-format; each record is separated with a NUL character.
 
 --parents  
-Print also the parents of the commit (in the form "commit parent…​"). Also enables parent rewriting, see *History Simplification* above.
+Print also the parents of the commit (in the form "commit parent…​"). Also enables parent rewriting, see _History Simplification_ above.
 
 --children  
-Print also the children of the commit (in the form "commit child…​"). Also enables parent rewriting, see *History Simplification* above.
+Print also the children of the commit (in the form "commit child…​"). Also enables parent rewriting, see _History Simplification_ above.
 
 --timestamp  
 Print the raw commit timestamp.
@@ -676,7 +671,7 @@ you would get an output like this:
 --graph  
 Draw a text-based graphical representation of the commit history on the left hand side of the output. This may cause extra lines to be printed in between commits, in order for the graph history to be drawn properly. Cannot be combined with `--no-walk`.
 
-This enables parent rewriting, see *History Simplification* above.
+This enables parent rewriting, see _History Simplification_ above.
 
 This implies the `--topo-order` option by default, but the `--date-order` option may also be specified.
 
@@ -686,407 +681,404 @@ When --graph is not used, all history branches are flattened which can make it h
 --count  
 Print a number stating how many commits would have been listed, and suppress all other output. When used together with `--left-right`, instead print the counts for left and right commits, separated by a tab. When used together with `--cherry-mark`, omit patch equivalent commits from these counts and print the count for equivalent commits separated by a tab.
 
-PRETTY FORMATS
---------------
+## PRETTY FORMATS
 
-If the commit is a merge, and if the pretty-format is not *oneline*, *email* or *raw*, an additional line is inserted before the *Author:* line. This line begins with "Merge: " and the hashes of ancestral commits are printed, separated by spaces. Note that the listed commits may not necessarily be the list of the **direct** parent commits if you have limited your view of history: for example, if you are only interested in changes related to a certain directory or file.
+If the commit is a merge, and if the pretty-format is not _oneline_, _email_ or _raw_, an additional line is inserted before the _Author:_ line. This line begins with "Merge: " and the hashes of ancestral commits are printed, separated by spaces. Note that the listed commits may not necessarily be the list of the **direct** parent commits if you have limited your view of history: for example, if you are only interested in changes related to a certain directory or file.
 
-There are several built-in formats, and you can define additional formats by setting a pretty.&lt;name&gt; config option to either another format name, or a *format:* string, as described below (see [git-config(1)](git-config.html)). Here are the details of the built-in formats:
+There are several built-in formats, and you can define additional formats by setting a pretty.&lt;name&gt; config option to either another format name, or a _format:_ string, as described below (see [git-config(1)](git-config.html)). Here are the details of the built-in formats:
 
--   *oneline*
+- _oneline_
 
-        <hash> <title line>
+      <hash> <title line>
 
-    This is designed to be as compact as possible.
+  This is designed to be as compact as possible.
 
--   *short*
+- _short_
 
-        commit <hash>
-        Author: <author>
+      commit <hash>
+      Author: <author>
 
-        <title line>
+      <title line>
 
--   *medium*
+- _medium_
 
-        commit <hash>
-        Author: <author>
-        Date:   <author date>
+      commit <hash>
+      Author: <author>
+      Date:   <author date>
 
-        <title line>
+      <title line>
 
-        <full commit message>
+      <full commit message>
 
--   *full*
+- _full_
 
-        commit <hash>
-        Author: <author>
-        Commit: <committer>
+      commit <hash>
+      Author: <author>
+      Commit: <committer>
 
-        <title line>
+      <title line>
 
-        <full commit message>
+      <full commit message>
 
--   *fuller*
+- _fuller_
 
-        commit <hash>
-        Author:     <author>
-        AuthorDate: <author date>
-        Commit:     <committer>
-        CommitDate: <committer date>
+      commit <hash>
+      Author:     <author>
+      AuthorDate: <author date>
+      Commit:     <committer>
+      CommitDate: <committer date>
 
-        <title line>
+      <title line>
 
-        <full commit message>
+      <full commit message>
 
--   *reference*
+- _reference_
 
-        <abbrev hash> (<title line>, <short author date>)
+      <abbrev hash> (<title line>, <short author date>)
 
-    This format is used to refer to another commit in a commit message and is the same as `--pretty='format:%C(auto)%h (%s, %ad)'`. By default, the date is formatted with `--date=short` unless another `--date` option is explicitly specified. As with any `format:` with format placeholders, its output is not affected by other options like `--decorate` and `--walk-reflogs`.
+  This format is used to refer to another commit in a commit message and is the same as `--pretty='format:%C(auto)%h (%s, %ad)'`. By default, the date is formatted with `--date=short` unless another `--date` option is explicitly specified. As with any `format:` with format placeholders, its output is not affected by other options like `--decorate` and `--walk-reflogs`.
 
--   *email*
+- _email_
 
-        From <hash> <date>
-        From: <author>
-        Date: <author date>
-        Subject: [PATCH] <title line>
+      From <hash> <date>
+      From: <author>
+      Date: <author date>
+      Subject: [PATCH] <title line>
 
-        <full commit message>
+      <full commit message>
 
--   *mboxrd*
+- _mboxrd_
 
-    Like *email*, but lines in the commit message starting with "From " (preceded by zero or more "&gt;") are quoted with "&gt;" so they aren’t confused as starting a new commit.
+  Like _email_, but lines in the commit message starting with "From " (preceded by zero or more "&gt;") are quoted with "&gt;" so they aren’t confused as starting a new commit.
 
--   *raw*
+- _raw_
 
-    The *raw* format shows the entire commit exactly as stored in the commit object. Notably, the hashes are displayed in full, regardless of whether --abbrev or --no-abbrev are used, and *parents* information show the true parent commits, without taking grafts or history simplification into account. Note that this format affects the way commits are displayed, but not the way the diff is shown e.g. with `git log --raw`. To get full object names in a raw diff format, use `--no-abbrev`.
+  The _raw_ format shows the entire commit exactly as stored in the commit object. Notably, the hashes are displayed in full, regardless of whether --abbrev or --no-abbrev are used, and _parents_ information show the true parent commits, without taking grafts or history simplification into account. Note that this format affects the way commits are displayed, but not the way the diff is shown e.g. with `git log --raw`. To get full object names in a raw diff format, use `--no-abbrev`.
 
--   *format:&lt;string&gt;*
+- _format:&lt;string&gt;_
 
-    The *format:&lt;string&gt;* format allows you to specify which information you want to show. It works a little bit like printf format, with the notable exception that you get a newline with *%n* instead of *\\n*.
+  The _format:&lt;string&gt;_ format allows you to specify which information you want to show. It works a little bit like printf format, with the notable exception that you get a newline with _%n_ instead of _\\n_.
 
-    E.g, *format:"The author of %h was %an, %ar%nThe title was &gt;&gt;%s&lt;&lt;%n"* would show something like this:
+  E.g, _format:"The author of %h was %an, %ar%nThe title was &gt;&gt;%s&lt;&lt;%n"_ would show something like this:
 
-        The author of fe6e0ee was Junio C Hamano, 23 hours ago
-        The title was >>t4119: test autocomputing -p<n> for traditional diff input.<<
+      The author of fe6e0ee was Junio C Hamano, 23 hours ago
+      The title was >>t4119: test autocomputing -p<n> for traditional diff input.<<
 
-    The placeholders are:
+  The placeholders are:
 
-    -   Placeholders that expand to a single literal character:
+  - Placeholders that expand to a single literal character:
 
-        *%n*  
-        newline
+    _%n_  
+    newline
 
-        *%%*  
-        a raw *%*
+    _%%_  
+    a raw _%_
 
-        *%x00*  
-        print a byte from a hex code
+    _%x00_  
+    print a byte from a hex code
 
-    -   Placeholders that affect formatting of later placeholders:
+  - Placeholders that affect formatting of later placeholders:
 
-        *%Cred*  
-        switch color to red
+    _%Cred_  
+    switch color to red
 
-        *%Cgreen*  
-        switch color to green
+    _%Cgreen_  
+    switch color to green
 
-        *%Cblue*  
-        switch color to blue
+    _%Cblue_  
+    switch color to blue
 
-        *%Creset*  
-        reset color
+    _%Creset_  
+    reset color
 
-        *%C(…​)*  
-        color specification, as described under Values in the "CONFIGURATION FILE" section of [git-config(1)](git-config.html). By default, colors are shown only when enabled for log output (by `color.diff`, `color.ui`, or `--color`, and respecting the `auto` settings of the former if we are going to a terminal). `%C(auto,...)` is accepted as a historical synonym for the default (e.g., `%C(auto,red)`). Specifying `%C(always,...)` will show the colors even when color is not otherwise enabled (though consider just using `--color=always` to enable color for the whole output, including this format and anything else git might color). `auto` alone (i.e. `%C(auto)`) will turn on auto coloring on the next placeholders until the color is switched again.
+    _%C(…​)_  
+    color specification, as described under Values in the "CONFIGURATION FILE" section of [git-config(1)](git-config.html). By default, colors are shown only when enabled for log output (by `color.diff`, `color.ui`, or `--color`, and respecting the `auto` settings of the former if we are going to a terminal). `%C(auto,...)` is accepted as a historical synonym for the default (e.g., `%C(auto,red)`). Specifying `%C(always,...)` will show the colors even when color is not otherwise enabled (though consider just using `--color=always` to enable color for the whole output, including this format and anything else git might color). `auto` alone (i.e. `%C(auto)`) will turn on auto coloring on the next placeholders until the color is switched again.
 
-        *%m*  
-        left (`<`), right (`>`) or boundary (`-`) mark
+    _%m_  
+    left (`<`), right (`>`) or boundary (`-`) mark
 
-         *%w(\[&lt;w&gt;\[,&lt;i1&gt;\[,&lt;i2&gt;\]\]\])*   
-        switch line wrapping, like the -w option of [git-shortlog(1)](git-shortlog.html).
+    _%w(\[&lt;w&gt;\[,&lt;i1&gt;\[,&lt;i2&gt;\]\]\])_  
+    switch line wrapping, like the -w option of [git-shortlog(1)](git-shortlog.html).
 
-         *%&lt;(&lt;N&gt;\[,trunc|ltrunc|mtrunc\])*   
-        make the next placeholder take at least N columns, padding spaces on the right if necessary. Optionally truncate at the beginning (ltrunc), the middle (mtrunc) or the end (trunc) if the output is longer than N columns. Note that truncating only works correctly with N &gt;= 2.
+    _%&lt;(&lt;N&gt;\[,trunc|ltrunc|mtrunc\])_  
+    make the next placeholder take at least N columns, padding spaces on the right if necessary. Optionally truncate at the beginning (ltrunc), the middle (mtrunc) or the end (trunc) if the output is longer than N columns. Note that truncating only works correctly with N &gt;= 2.
 
-        *%&lt;|(&lt;N&gt;)*  
-        make the next placeholder take at least until Nth columns, padding spaces on the right if necessary
+    _%&lt;|(&lt;N&gt;)_  
+    make the next placeholder take at least until Nth columns, padding spaces on the right if necessary
 
-         *%&gt;(&lt;N&gt;)*, *%&gt;|(&lt;N&gt;)*   
-        similar to *%&lt;(&lt;N&gt;)*, *%&lt;|(&lt;N&gt;)* respectively, but padding spaces on the left
+    _%&gt;(&lt;N&gt;)_, _%&gt;|(&lt;N&gt;)_  
+    similar to _%&lt;(&lt;N&gt;)_, _%&lt;|(&lt;N&gt;)_ respectively, but padding spaces on the left
 
-         *%&gt;&gt;(&lt;N&gt;)*, *%&gt;&gt;|(&lt;N&gt;)*   
-        similar to *%&gt;(&lt;N&gt;)*, *%&gt;|(&lt;N&gt;)* respectively, except that if the next placeholder takes more spaces than given and there are spaces on its left, use those spaces
+    _%&gt;&gt;(&lt;N&gt;)_, _%&gt;&gt;|(&lt;N&gt;)_  
+    similar to _%&gt;(&lt;N&gt;)_, _%&gt;|(&lt;N&gt;)_ respectively, except that if the next placeholder takes more spaces than given and there are spaces on its left, use those spaces
 
-         *%&gt;&lt;(&lt;N&gt;)*, *%&gt;&lt;|(&lt;N&gt;)*   
-        similar to *%&lt;(&lt;N&gt;)*, *%&lt;|(&lt;N&gt;)* respectively, but padding both sides (i.e. the text is centered)
+    _%&gt;&lt;(&lt;N&gt;)_, _%&gt;&lt;|(&lt;N&gt;)_  
+    similar to _%&lt;(&lt;N&gt;)_, _%&lt;|(&lt;N&gt;)_ respectively, but padding both sides (i.e. the text is centered)
 
-    -   Placeholders that expand to information extracted from the commit:
+  - Placeholders that expand to information extracted from the commit:
 
-        *%H*  
-        commit hash
+    _%H_  
+    commit hash
 
-        *%h*  
-        abbreviated commit hash
+    _%h_  
+    abbreviated commit hash
 
-        *%T*  
-        tree hash
+    _%T_  
+    tree hash
 
-        *%t*  
-        abbreviated tree hash
+    _%t_  
+    abbreviated tree hash
 
-        *%P*  
-        parent hashes
+    _%P_  
+    parent hashes
 
-        *%p*  
-        abbreviated parent hashes
+    _%p_  
+    abbreviated parent hashes
 
-        *%an*  
-        author name
+    _%an_  
+    author name
 
-        *%aN*  
-        author name (respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
+    _%aN_  
+    author name (respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
 
-        *%ae*  
-        author email
+    _%ae_  
+    author email
 
-        *%aE*  
-        author email (respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
+    _%aE_  
+    author email (respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
 
-        *%al*  
-        author email local-part (the part before the *@* sign)
+    _%al_  
+    author email local-part (the part before the _@_ sign)
 
-        *%aL*  
-        author local-part (see *%al*) respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
+    _%aL_  
+    author local-part (see _%al_) respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
 
-        *%ad*  
-        author date (format respects --date= option)
+    _%ad_  
+    author date (format respects --date= option)
 
-        *%aD*  
-        author date, RFC2822 style
+    _%aD_  
+    author date, RFC2822 style
 
-        *%ar*  
-        author date, relative
+    _%ar_  
+    author date, relative
 
-        *%at*  
-        author date, UNIX timestamp
+    _%at_  
+    author date, UNIX timestamp
 
-        *%ai*  
-        author date, ISO 8601-like format
+    _%ai_  
+    author date, ISO 8601-like format
 
-        *%aI*  
-        author date, strict ISO 8601 format
+    _%aI_  
+    author date, strict ISO 8601 format
 
-        *%as*  
-        author date, short format (`YYYY-MM-DD`)
+    _%as_  
+    author date, short format (`YYYY-MM-DD`)
 
-        *%cn*  
-        committer name
+    _%cn_  
+    committer name
 
-        *%cN*  
-        committer name (respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
+    _%cN_  
+    committer name (respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
 
-        *%ce*  
-        committer email
+    _%ce_  
+    committer email
 
-        *%cE*  
-        committer email (respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
+    _%cE_  
+    committer email (respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
 
-        *%cl*  
-        committer email local-part (the part before the *@* sign)
+    _%cl_  
+    committer email local-part (the part before the _@_ sign)
 
-        *%cL*  
-        committer local-part (see *%cl*) respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
+    _%cL_  
+    committer local-part (see _%cl_) respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
 
-        *%cd*  
-        committer date (format respects --date= option)
+    _%cd_  
+    committer date (format respects --date= option)
 
-        *%cD*  
-        committer date, RFC2822 style
+    _%cD_  
+    committer date, RFC2822 style
 
-        *%cr*  
-        committer date, relative
+    _%cr_  
+    committer date, relative
 
-        *%ct*  
-        committer date, UNIX timestamp
+    _%ct_  
+    committer date, UNIX timestamp
 
-        *%ci*  
-        committer date, ISO 8601-like format
+    _%ci_  
+    committer date, ISO 8601-like format
 
-        *%cI*  
-        committer date, strict ISO 8601 format
+    _%cI_  
+    committer date, strict ISO 8601 format
 
-        *%cs*  
-        committer date, short format (`YYYY-MM-DD`)
+    _%cs_  
+    committer date, short format (`YYYY-MM-DD`)
 
-        *%d*  
-        ref names, like the --decorate option of [git-log(1)](git-log.html)
+    _%d_  
+    ref names, like the --decorate option of [git-log(1)](git-log.html)
 
-        *%D*  
-        ref names without the " (", ")" wrapping.
+    _%D_  
+    ref names without the " (", ")" wrapping.
 
-        *%S*  
-        ref name given on the command line by which the commit was reached (like `git log --source`), only works with `git log`
+    _%S_  
+    ref name given on the command line by which the commit was reached (like `git log --source`), only works with `git log`
 
-        *%e*  
-        encoding
+    _%e_  
+    encoding
 
-        *%s*  
-        subject
+    _%s_  
+    subject
 
-        *%f*  
-        sanitized subject line, suitable for a filename
+    _%f_  
+    sanitized subject line, suitable for a filename
 
-        *%b*  
-        body
+    _%b_  
+    body
 
-        *%B*  
-        raw body (unwrapped subject and body)
+    _%B_  
+    raw body (unwrapped subject and body)
 
-        *%GG*  
-        raw verification message from GPG for a signed commit
+    _%GG_  
+    raw verification message from GPG for a signed commit
 
-        *%G?*  
-        show "G" for a good (valid) signature, "B" for a bad signature, "U" for a good signature with unknown validity, "X" for a good signature that has expired, "Y" for a good signature made by an expired key, "R" for a good signature made by a revoked key, "E" if the signature cannot be checked (e.g. missing key) and "N" for no signature
+    _%G?_  
+    show "G" for a good (valid) signature, "B" for a bad signature, "U" for a good signature with unknown validity, "X" for a good signature that has expired, "Y" for a good signature made by an expired key, "R" for a good signature made by a revoked key, "E" if the signature cannot be checked (e.g. missing key) and "N" for no signature
 
-        *%GS*  
-        show the name of the signer for a signed commit
+    _%GS_  
+    show the name of the signer for a signed commit
 
-        *%GK*  
-        show the key used to sign a signed commit
+    _%GK_  
+    show the key used to sign a signed commit
 
-        *%GF*  
-        show the fingerprint of the key used to sign a signed commit
+    _%GF_  
+    show the fingerprint of the key used to sign a signed commit
 
-        *%GP*  
-        show the fingerprint of the primary key whose subkey was used to sign a signed commit
+    _%GP_  
+    show the fingerprint of the primary key whose subkey was used to sign a signed commit
 
-        *%GT*  
-        show the trust level for the key used to sign a signed commit
+    _%GT_  
+    show the trust level for the key used to sign a signed commit
 
-        *%gD*  
-        reflog selector, e.g., `refs/stash@{1}` or `refs/stash@{2 minutes ago}`; the format follows the rules described for the `-g` option. The portion before the `@` is the refname as given on the command line (so `git log -g refs/heads/master` would yield `refs/heads/master@{0}`).
+    _%gD_  
+    reflog selector, e.g., `refs/stash@{1}` or `refs/stash@{2 minutes ago}`; the format follows the rules described for the `-g` option. The portion before the `@` is the refname as given on the command line (so `git log -g refs/heads/master` would yield `refs/heads/master@{0}`).
 
-        *%gd*  
-        shortened reflog selector; same as `%gD`, but the refname portion is shortened for human readability (so `refs/heads/master` becomes just `master`).
+    _%gd_  
+    shortened reflog selector; same as `%gD`, but the refname portion is shortened for human readability (so `refs/heads/master` becomes just `master`).
 
-        *%gn*  
-        reflog identity name
+    _%gn_  
+    reflog identity name
 
-        *%gN*  
-        reflog identity name (respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
+    _%gN_  
+    reflog identity name (respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
 
-        *%ge*  
-        reflog identity email
+    _%ge_  
+    reflog identity email
 
-        *%gE*  
-        reflog identity email (respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
+    _%gE_  
+    reflog identity email (respecting .mailmap, see [git-shortlog(1)](git-shortlog.html) or [git-blame(1)](git-blame.html))
 
-        *%gs*  
-        reflog subject
+    _%gs_  
+    reflog subject
 
-         *%(trailers\[:options\])*   
-        display the trailers of the body as interpreted by [git-interpret-trailers(1)](git-interpret-trailers.html). The `trailers` string may be followed by a colon and zero or more comma-separated options. If any option is provided multiple times the last occurance wins.
+    _%(trailers\[:options\])_  
+    display the trailers of the body as interpreted by [git-interpret-trailers(1)](git-interpret-trailers.html). The `trailers` string may be followed by a colon and zero or more comma-separated options. If any option is provided multiple times the last occurance wins.
 
-        The boolean options accept an optional value `[=<BOOL>]`. The values `true`, `false`, `on`, `off` etc. are all accepted. See the "boolean" sub-section in "EXAMPLES" in [git-config(1)](git-config.html). If a boolean option is given with no value, it’s enabled.
+    The boolean options accept an optional value `[=<BOOL>]`. The values `true`, `false`, `on`, `off` etc. are all accepted. See the "boolean" sub-section in "EXAMPLES" in [git-config(1)](git-config.html). If a boolean option is given with no value, it’s enabled.
 
-        -   *key=&lt;K&gt;*: only show trailers with specified key. Matching is done case-insensitively and trailing colon is optional. If option is given multiple times trailer lines matching any of the keys are shown. This option automatically enables the `only` option so that non-trailer lines in the trailer block are hidden. If that is not desired it can be disabled with `only=false`. E.g., `%(trailers:key=Reviewed-by)` shows trailer lines with key `Reviewed-by`.
+    - _key=&lt;K&gt;_: only show trailers with specified key. Matching is done case-insensitively and trailing colon is optional. If option is given multiple times trailer lines matching any of the keys are shown. This option automatically enables the `only` option so that non-trailer lines in the trailer block are hidden. If that is not desired it can be disabled with `only=false`. E.g., `%(trailers:key=Reviewed-by)` shows trailer lines with key `Reviewed-by`.
 
-        -   *only\[=&lt;BOOL&gt;\]*: select whether non-trailer lines from the trailer block should be included.
+    - _only\[=&lt;BOOL&gt;\]_: select whether non-trailer lines from the trailer block should be included.
 
-        -   *separator=&lt;SEP&gt;*: specify a separator inserted between trailer lines. When this option is not given each trailer line is terminated with a line feed character. The string SEP may contain the literal formatting codes described above. To use comma as separator one must use `%x2C` as it would otherwise be parsed as next option. E.g., `%(trailers:key=Ticket,separator=%x2C                                       )` shows all trailer lines whose key is "Ticket" separated by a comma and a space.
+    - _separator=&lt;SEP&gt;_: specify a separator inserted between trailer lines. When this option is not given each trailer line is terminated with a line feed character. The string SEP may contain the literal formatting codes described above. To use comma as separator one must use `%x2C` as it would otherwise be parsed as next option. E.g., `%(trailers:key=Ticket,separator=%x2C )` shows all trailer lines whose key is "Ticket" separated by a comma and a space.
 
-        -   *unfold\[=&lt;BOOL&gt;\]*: make it behave as if interpret-trailer’s `--unfold` option was given. E.g., `%(trailers:only,unfold=true)` unfolds and shows all trailer lines.
+    - _unfold\[=&lt;BOOL&gt;\]_: make it behave as if interpret-trailer’s `--unfold` option was given. E.g., `%(trailers:only,unfold=true)` unfolds and shows all trailer lines.
 
-        -   *keyonly\[=&lt;BOOL&gt;\]*: only show the key part of the trailer.
+    - _keyonly\[=&lt;BOOL&gt;\]_: only show the key part of the trailer.
 
-        -   *valueonly\[=&lt;BOOL&gt;\]*: only show the value part of the trailer.
+    - _valueonly\[=&lt;BOOL&gt;\]_: only show the value part of the trailer.
 
-        -   *key\_value\_separator=&lt;SEP&gt;*: specify a separator inserted between trailer lines. When this option is not given each trailer key-value pair is separated by ": ". Otherwise it shares the same semantics as *separator=&lt;SEP&gt;* above.
+    - _key_value_separator=&lt;SEP&gt;_: specify a separator inserted between trailer lines. When this option is not given each trailer key-value pair is separated by ": ". Otherwise it shares the same semantics as _separator=&lt;SEP&gt;_ above.
 
 <table><colgroup><col style="width: 50%" /><col style="width: 50%" /></colgroup><tbody><tr class="odd"><td><div class="title">Note</div></td><td>Some placeholders may depend on other options given to the revision traversal engine. For example, the <code>%g*</code> reflog options will insert an empty string unless we are traversing reflog entries (e.g., by <code>git log -g</code>). The <code>%d</code> and <code>%D</code> placeholders will use the "short" decoration format if <code>--decorate</code> was not already provided on the command line.</td></tr></tbody></table>
 
-If you add a `+` (plus sign) after *%* of a placeholder, a line-feed is inserted immediately before the expansion if and only if the placeholder expands to a non-empty string.
+If you add a `+` (plus sign) after _%_ of a placeholder, a line-feed is inserted immediately before the expansion if and only if the placeholder expands to a non-empty string.
 
-If you add a `-` (minus sign) after *%* of a placeholder, all consecutive line-feeds immediately preceding the expansion are deleted if and only if the placeholder expands to an empty string.
+If you add a `-` (minus sign) after _%_ of a placeholder, all consecutive line-feeds immediately preceding the expansion are deleted if and only if the placeholder expands to an empty string.
 
-If you add a \` \` (space) after *%* of a placeholder, a space is inserted immediately before the expansion if and only if the placeholder expands to a non-empty string.
+If you add a \` \` (space) after _%_ of a placeholder, a space is inserted immediately before the expansion if and only if the placeholder expands to a non-empty string.
 
--   *tformat:*
+- _tformat:_
 
-    The *tformat:* format works exactly like *format:*, except that it provides "terminator" semantics instead of "separator" semantics. In other words, each commit has the message terminator character (usually a newline) appended, rather than a separator placed between entries. This means that the final entry of a single-line format will be properly terminated with a new line, just as the "oneline" format does. For example:
+  The _tformat:_ format works exactly like _format:_, except that it provides "terminator" semantics instead of "separator" semantics. In other words, each commit has the message terminator character (usually a newline) appended, rather than a separator placed between entries. This means that the final entry of a single-line format will be properly terminated with a new line, just as the "oneline" format does. For example:
 
-        $ git log -2 --pretty=format:%h 4da45bef \
-          | perl -pe '$_ .= " -- NO NEWLINE\n" unless /\n/'
-        4da45be
-        7134973 -- NO NEWLINE
+      $ git log -2 --pretty=format:%h 4da45bef \
+        | perl -pe '$_ .= " -- NO NEWLINE\n" unless /\n/'
+      4da45be
+      7134973 -- NO NEWLINE
 
-        $ git log -2 --pretty=tformat:%h 4da45bef \
-          | perl -pe '$_ .= " -- NO NEWLINE\n" unless /\n/'
-        4da45be
-        7134973
+      $ git log -2 --pretty=tformat:%h 4da45bef \
+        | perl -pe '$_ .= " -- NO NEWLINE\n" unless /\n/'
+      4da45be
+      7134973
 
-    In addition, any unrecognized string that has a `%` in it is interpreted as if it has `tformat:` in front of it. For example, these two are equivalent:
+  In addition, any unrecognized string that has a `%` in it is interpreted as if it has `tformat:` in front of it. For example, these two are equivalent:
 
-        $ git log -2 --pretty=tformat:%h 4da45bef
-        $ git log -2 --pretty=%h 4da45bef
+      $ git log -2 --pretty=tformat:%h 4da45bef
+      $ git log -2 --pretty=%h 4da45bef
 
-EXAMPLES
---------
+## EXAMPLES
 
--   Print the list of commits reachable from the current branch.
+- Print the list of commits reachable from the current branch.
 
-        git rev-list HEAD
+      git rev-list HEAD
 
--   Print the list of commits on this branch, but not present in the upstream branch.
+- Print the list of commits on this branch, but not present in the upstream branch.
 
-        git rev-list @{upstream}..HEAD
+      git rev-list @{upstream}..HEAD
 
--   Format commits with their author and commit message (see also the porcelain [git-log(1)](git-log.html)).
+- Format commits with their author and commit message (see also the porcelain [git-log(1)](git-log.html)).
 
-        git rev-list --format=medium HEAD
+      git rev-list --format=medium HEAD
 
--   Format commits along with their diffs (see also the porcelain [git-log(1)](git-log.html), which can do this in a single process).
+- Format commits along with their diffs (see also the porcelain [git-log(1)](git-log.html), which can do this in a single process).
 
-        git rev-list HEAD |
-        git diff-tree --stdin --format=medium -p
+      git rev-list HEAD |
+      git diff-tree --stdin --format=medium -p
 
--   Print the list of commits on the current branch that touched any file in the `Documentation` directory.
+- Print the list of commits on the current branch that touched any file in the `Documentation` directory.
 
-        git rev-list HEAD -- Documentation/
+      git rev-list HEAD -- Documentation/
 
--   Print the list of commits authored by you in the past year, on any branch, tag, or other ref.
+- Print the list of commits authored by you in the past year, on any branch, tag, or other ref.
 
-        git rev-list --author=you@example.com --since=1.year.ago --all
+      git rev-list --author=you@example.com --since=1.year.ago --all
 
--   Print the list of objects reachable from the current branch (i.e., all commits and the blobs and trees they contain).
+- Print the list of objects reachable from the current branch (i.e., all commits and the blobs and trees they contain).
 
-        git rev-list --objects HEAD
+      git rev-list --objects HEAD
 
--   Compare the disk size of all reachable objects, versus those reachable from reflogs, versus the total packed size. This can tell you whether running `git repack -ad` might reduce the repository size (by dropping unreachable objects), and whether expiring reflogs might help.
+- Compare the disk size of all reachable objects, versus those reachable from reflogs, versus the total packed size. This can tell you whether running `git repack -ad` might reduce the repository size (by dropping unreachable objects), and whether expiring reflogs might help.
 
-        # reachable objects
-        git rev-list --disk-usage --objects --all
-        # plus reflogs
-        git rev-list --disk-usage --objects --all --reflog
-        # total disk size used
-        du -c .git/objects/pack/*.pack .git/objects/??/*
-        # alternative to du: add up "size" and "size-pack" fields
-        git count-objects -v
+      # reachable objects
+      git rev-list --disk-usage --objects --all
+      # plus reflogs
+      git rev-list --disk-usage --objects --all --reflog
+      # total disk size used
+      du -c .git/objects/pack/*.pack .git/objects/??/*
+      # alternative to du: add up "size" and "size-pack" fields
+      git count-objects -v
 
--   Report the disk size of each branch, not including objects used by the current branch. This can find outliers that are contributing to a bloated repository size (e.g., because somebody accidentally committed large build artifacts).
+- Report the disk size of each branch, not including objects used by the current branch. This can find outliers that are contributing to a bloated repository size (e.g., because somebody accidentally committed large build artifacts).
 
-        git for-each-ref --format='%(refname)' |
-        while read branch
-        do
-                size=$(git rev-list --disk-usage --objects HEAD..$branch)
-                echo "$size $branch"
-        done |
-        sort -n
+      git for-each-ref --format='%(refname)' |
+      while read branch
+      do
+              size=$(git rev-list --disk-usage --objects HEAD..$branch)
+              echo "$size $branch"
+      done |
+      sort -n
 
--   Compare the on-disk size of branches in one group of refs, excluding another. If you co-mingle objects from multiple remotes in a single repository, this can show which remotes are contributing to the repository size (taking the size of `origin` as a baseline).
+- Compare the on-disk size of branches in one group of refs, excluding another. If you co-mingle objects from multiple remotes in a single repository, this can show which remotes are contributing to the repository size (taking the size of `origin` as a baseline).
 
-        git rev-list --disk-usage --objects --remotes=$suspect --not --remotes=origin
+      git rev-list --disk-usage --objects --remotes=$suspect --not --remotes=origin
 
-GIT
----
+## GIT

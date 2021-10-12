@@ -1,13 +1,10 @@
-git-checkout-index(1) Manual Page
-=================================
+# git-checkout-index(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-checkout-index - Copy files from the index to the working tree
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git checkout-index [-u] [-q] [-a] [-f] [-n] [--prefix=<string>]
                        [--stage=<number>|all]
@@ -15,13 +12,11 @@ SYNOPSIS
                        [-z] [--stdin]
                        [--] [<file>…​]
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 Will copy all files listed from the index to the working directory (not overwriting existing files).
 
-OPTIONS
--------
+## OPTIONS
 
 -u  
 --index  
@@ -69,16 +64,15 @@ Intuitiveness is not the goal here. Repeatability is. The reason for the "no arg
 
     $ find . -name '*.h' -print0 | xargs -0 git checkout-index -f --
 
-which will force all existing `*.h` files to be replaced with their cached copies. If an empty command line implied "all", then this would force-refresh everything in the index, which was not the point. But since *git checkout-index* accepts --stdin it would be faster to use:
+which will force all existing `*.h` files to be replaced with their cached copies. If an empty command line implied "all", then this would force-refresh everything in the index, which was not the point. But since _git checkout-index_ accepts --stdin it would be faster to use:
 
     $ find . -name '*.h' -print0 | git checkout-index -f -z --stdin
 
 The `--` is just a good idea when you know the rest will be filenames; it will prevent problems with a filename of, for example, `-a`. Using `--` is probably a good policy in scripts.
 
-Using --temp or --stage=all
----------------------------
+## Using --temp or --stage=all
 
-When `--temp` is used (or implied by `--stage=all`) *git checkout-index* will create a temporary file for each index entry being checked out. The index will not be updated with stat information. These options can be useful if the caller needs all stages of all unmerged entries so that the unmerged files can be processed by an external merge tool.
+When `--temp` is used (or implied by `--stage=all`) _git checkout-index_ will create a temporary file for each index entry being checked out. The index will not be updated with stat information. These options can be useful if the caller needs all stages of all unmerged entries so that the unmerged files can be processed by an external merge tool.
 
 A listing will be written to stdout providing the association of temporary file names to tracked path names. The listing format has two variations:
 
@@ -94,14 +88,13 @@ In both formats RS (the record separator) is newline by default but will be the 
 
 If the object being copied out to a temporary file is a symbolic link the content of the link will be written to a normal file. It is up to the end-user or the Porcelain to make use of this information.
 
-EXAMPLES
---------
+## EXAMPLES
 
- To update and refresh only the files already checked out   
-    $ git checkout-index -n -f -a && git update-index --ignore-missing --refresh
+To update and refresh only the files already checked out  
+ $ git checkout-index -n -f -a && git update-index --ignore-missing --refresh
 
- Using *git checkout-index* to "export an entire tree"   
-The prefix ability basically makes it trivial to use *git checkout-index* as an "export as tree" function. Just read the desired tree into the index, and do:
+Using _git checkout-index_ to "export an entire tree"  
+The prefix ability basically makes it trivial to use _git checkout-index_ as an "export as tree" function. Just read the desired tree into the index, and do:
 
     $ git checkout-index --prefix=git-export-dir/ -a
 
@@ -110,12 +103,11 @@ The prefix ability basically makes it trivial to use *git checkout-index* as an 
 The final "/" is important. The exported name is literally just prefixed with the specified string. Contrast this with the following example.
 
 Export files with a prefix  
-    $ git checkout-index --prefix=.merged- Makefile
+ $ git checkout-index --prefix=.merged- Makefile
 
 This will check out the currently cached copy of `Makefile` into the file `.merged-Makefile`.
 
-GIT
----
+## GIT
 
 Part of the [git(1)](git.html) suite
 

@@ -1,26 +1,21 @@
-git-mailsplit(1) Manual Page
-============================
+# git-mailsplit(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-mailsplit - Simple UNIX mbox splitter program
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git mailsplit [-b] [-f<nn>] [-d<prec>] [--keep-cr] [--mboxrd]
                     -o<directory> [--] [(<mbox>|<Maildir>)…​]
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 Splits a mbox file or a Maildir into a list of files: "0001" "0002" .. in the specified directory so you can process them further from there.
 
 <table><colgroup><col style="width: 50%" /><col style="width: 50%" /></colgroup><tbody><tr class="odd"><td><div class="title">Important</div></td><td>Maildir splitting relies upon filenames being sorted to output patches in the correct order.</td></tr></tbody></table>
 
-OPTIONS
--------
+## OPTIONS
 
 &lt;mbox&gt;  
 Mbox file to split. If not given, the mbox is read from the standard input.
@@ -46,8 +41,7 @@ Do not remove `\r` from lines ending with `\r\n`.
 --mboxrd  
 Input is of the "mboxrd" format and "^&gt;+From " line escaping is reversed.
 
-GIT
----
+## GIT
 
 Part of the [git(1)](git.html) suite
 

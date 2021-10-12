@@ -1,24 +1,19 @@
-git-mktag(1) Manual Page
-========================
+# git-mktag(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-mktag - Creates a tag object with extra validation
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git mktag
 
-OPTIONS
--------
+## OPTIONS
 
 --strict  
 By default mktag turns on the equivalent of [git-fsck(1)](git-fsck.html) `--strict` mode. Use `--no-strict` to disable it.
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 Reads a tag contents on standard input and creates a tag object. The output is the new tag’s &lt;object&gt; identifier.
 
@@ -35,8 +30,7 @@ Extra headers in the object are also an error under mktag, but ignored by [git-f
 
     git -c fsck.extraHeaderEntry=ignore mktag <my-tag-with-headers
 
-Tag Format
-----------
+## Tag Format
 
 A tag signature file, to be fed to this command’s standard input, has a very simple fixed format: four lines of
 
@@ -45,10 +39,9 @@ A tag signature file, to be fed to this command’s standard input, has a very s
     tag <tagname>
     tagger <tagger>
 
-followed by some *optional* free-form message (some tags created by older Git may not have `tagger` line). The message, when it exists, is separated by a blank line from the header. The message part may contain a signature that Git itself doesn’t care about, but that can be verified with gpg.
+followed by some _optional_ free-form message (some tags created by older Git may not have `tagger` line). The message, when it exists, is separated by a blank line from the header. The message part may contain a signature that Git itself doesn’t care about, but that can be verified with gpg.
 
-GIT
----
+## GIT
 
 Part of the [git(1)](git.html) suite
 

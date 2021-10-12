@@ -1,32 +1,26 @@
-gitworkflows(7) Manual Page
-===========================
+# gitworkflows(7) Manual Page
 
-NAME
-----
+## NAME
 
 gitworkflows - An overview of recommended workflows with Git
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git *
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 This document attempts to write down and motivate some of the workflow elements used for `git.git` itself. Many ideas apply in general, though the full workflow is rarely required for smaller projects with fewer people involved.
 
-We formulate a set of *rules* for quick reference, while the prose tries to motivate each of them. Do not always take them literally; you should value good reasons for your actions higher than manpages such as this one.
+We formulate a set of _rules_ for quick reference, while the prose tries to motivate each of them. Do not always take them literally; you should value good reasons for your actions higher than manpages such as this one.
 
-SEPARATE CHANGES
-----------------
+## SEPARATE CHANGES
 
 As a general rule, you should try to split your changes into small logical steps, and commit each of them. They should be consistent, working independently of any later commits, pass the test suite, etc. This makes the review process much easier, and the history much more useful for later inspection and analysis, for example with [git-blame(1)](git-blame.html) and [git-bisect(1)](git-bisect.html).
 
 To achieve this, try to split your work into small steps from the very beginning. It is always easier to squash a few commits together than to split one big commit into several. Don’t be afraid of making too small or imperfect steps along the way. You can always go back later and edit the commits with `git rebase --interactive` before you publish them. You can use `git stash push --keep-index` to run the test suite independent of other uncommitted changes; see the EXAMPLES section of [git-stash(1)](git-stash.html).
 
-MANAGING BRANCHES
------------------
+## MANAGING BRANCHES
 
 There are two main tools that can be used to include changes from one branch on another: [git-merge(1)](git-merge.html) and [git-cherry-pick(1)](git-cherry-pick.html).
 
@@ -38,31 +32,31 @@ There is a tradeoff of course: merges require a more careful branch management. 
 
 ### Graduation
 
-As a given feature goes from experimental to stable, it also "graduates" between the corresponding branches of the software. `git.git` uses the following *integration branches*:
+As a given feature goes from experimental to stable, it also "graduates" between the corresponding branches of the software. `git.git` uses the following _integration branches_:
 
--   *maint* tracks the commits that should go into the next "maintenance release", i.e., update of the last released stable version;
+- _maint_ tracks the commits that should go into the next "maintenance release", i.e., update of the last released stable version;
 
--   *master* tracks the commits that should go into the next release;
+- _master_ tracks the commits that should go into the next release;
 
--   *next* is intended as a testing branch for topics being tested for stability for master.
+- _next_ is intended as a testing branch for topics being tested for stability for master.
 
 There is a fourth official branch that is used slightly differently:
 
--   *seen* (patches seen by the maintainer) is an integration branch for things that are not quite ready for inclusion yet (see "Integration Branches" below).
+- _seen_ (patches seen by the maintainer) is an integration branch for things that are not quite ready for inclusion yet (see "Integration Branches" below).
 
 Each of the four branches is usually a direct descendant of the one above it.
 
-Conceptually, the feature enters at an unstable branch (usually *next* or *seen*), and "graduates" to *master* for the next release once it is considered stable enough.
+Conceptually, the feature enters at an unstable branch (usually _next_ or _seen_), and "graduates" to _master_ for the next release once it is considered stable enough.
 
 ### Merging upwards
 
-The "downwards graduation" discussed above cannot be done by actually merging downwards, however, since that would merge *all* changes on the unstable branch into the stable one. Hence the following:
+The "downwards graduation" discussed above cannot be done by actually merging downwards, however, since that would merge _all_ changes on the unstable branch into the stable one. Hence the following:
 
 Rule: Merge upwards
 
 Always commit your fixes to the oldest supported branch that requires them. Then (periodically) merge the integration branches upwards into each other.
 
-This gives a very controlled flow of fixes. If you notice that you have applied a fix to e.g. *master* that is also required in *maint*, you will need to cherry-pick it (using [git-cherry-pick(1)](git-cherry-pick.html)) downwards. This will happen a few times and is nothing to worry about unless you do it very frequently.
+This gives a very controlled flow of fixes. If you notice that you have applied a fix to e.g. _master_ that is also required in _maint_, you will need to cherry-pick it (using [git-cherry-pick(1)](git-cherry-pick.html)) downwards. This will happen a few times and is nothing to worry about unless you do it very frequently.
 
 ### Topic branches
 
@@ -78,11 +72,11 @@ Make a side branch for every topic (feature, bugfix, …​). Fork it off at the
 
 Many things can then be done very naturally:
 
--   To get the feature/bugfix into an integration branch, simply merge it. If the topic has evolved further in the meantime, merge again. (Note that you do not necessarily have to merge it to the oldest integration branch first. For example, you can first merge a bugfix to *next*, give it some testing time, and merge to *maint* when you know it is stable.)
+- To get the feature/bugfix into an integration branch, simply merge it. If the topic has evolved further in the meantime, merge again. (Note that you do not necessarily have to merge it to the oldest integration branch first. For example, you can first merge a bugfix to _next_, give it some testing time, and merge to _maint_ when you know it is stable.)
 
--   If you find you need new features from the branch *other* to continue working on your topic, merge *other* to *topic*. (However, do not do this "just habitually", see below.)
+- If you find you need new features from the branch _other_ to continue working on your topic, merge _other_ to _topic_. (However, do not do this "just habitually", see below.)
 
--   If you find you forked off the wrong branch and want to move it "back in time", use [git-rebase(1)](git-rebase.html).
+- If you find you forked off the wrong branch and want to move it "back in time", use [git-rebase(1)](git-rebase.html).
 
 Note that the last point clashes with the other two: a topic that has been merged elsewhere should not be rebased. See the section on RECOVERING FROM UPSTREAM REBASE in [git-rebase(1)](git-rebase.html).
 
@@ -104,25 +98,25 @@ Rule: Throw-away integration branches
 
 To test the interaction of several topics, merge them into a throw-away branch. You must never base any work on such a branch!
 
-If you make it (very) clear that this branch is going to be deleted right after the testing, you can even publish this branch, for example to give the testers a chance to work with it, or other developers a chance to see if their in-progress work will be compatible. `git.git` has such an official throw-away integration branch called *seen*.
+If you make it (very) clear that this branch is going to be deleted right after the testing, you can even publish this branch, for example to give the testers a chance to work with it, or other developers a chance to see if their in-progress work will be compatible. `git.git` has such an official throw-away integration branch called _seen_.
 
 ### Branch management for a release
 
 Assuming you are using the merge approach discussed above, when you are releasing your project you will need to do some additional branch management work.
 
-A feature release is created from the *master* branch, since *master* tracks the commits that should go into the next feature release.
+A feature release is created from the _master_ branch, since _master_ tracks the commits that should go into the next feature release.
 
-The *master* branch is supposed to be a superset of *maint*. If this condition does not hold, then *maint* contains some commits that are not included on *master*. The fixes represented by those commits will therefore not be included in your feature release.
+The _master_ branch is supposed to be a superset of _maint_. If this condition does not hold, then _maint_ contains some commits that are not included on _master_. The fixes represented by those commits will therefore not be included in your feature release.
 
-To verify that *master* is indeed a superset of *maint*, use git log:
+To verify that _master_ is indeed a superset of _maint_, use git log:
 
-Recipe: Verify *master* is a superset of *maint*
+Recipe: Verify _master_ is a superset of _maint_
 
 `git log master..maint`
 
-This command should not list any commits. Otherwise, check out *master* and merge *maint* into it.
+This command should not list any commits. Otherwise, check out _master_ and merge _maint_ into it.
 
-Now you can proceed with the creation of the feature release. Apply a tag to the tip of *master* indicating the release version:
+Now you can proceed with the creation of the feature release. Apply a tag to the tip of _master_ indicating the release version:
 
 Recipe: Release tagging
 
@@ -130,7 +124,7 @@ Recipe: Release tagging
 
 You need to push the new tag to a public Git server (see "DISTRIBUTED WORKFLOWS" below). This makes the tag available to others tracking your project. The push could also trigger a post-update hook to perform release-related items such as building release tarballs and preformatted documentation pages.
 
-Similarly, for a maintenance release, *maint* is tracking the commits to be released. Therefore, in the steps above simply tag and push *maint* rather than *master*.
+Similarly, for a maintenance release, _maint_ is tracking the commits to be released. Therefore, in the steps above simply tag and push _maint_ rather than _master_.
 
 ### Maintenance branch management after a feature release
 
@@ -144,38 +138,37 @@ Recipe: Copy maint
 
 `git branch maint-X.Y.(Z-1) maint`
 
-The *maint* branch should now be fast-forwarded to the newly released code so that maintenance fixes can be tracked for the current release:
+The _maint_ branch should now be fast-forwarded to the newly released code so that maintenance fixes can be tracked for the current release:
 
 Recipe: Update maint to new release
 
--   `git checkout maint`
+- `git checkout maint`
 
--   `git merge --ff-only master`
+- `git merge --ff-only master`
 
-If the merge fails because it is not a fast-forward, then it is possible some fixes on *maint* were missed in the feature release. This will not happen if the content of the branches was verified as described in the previous section.
+If the merge fails because it is not a fast-forward, then it is possible some fixes on _maint_ were missed in the feature release. This will not happen if the content of the branches was verified as described in the previous section.
 
 ### Branch management for next and seen after a feature release
 
-After a feature release, the integration branch *next* may optionally be rewound and rebuilt from the tip of *master* using the surviving topics on *next*:
+After a feature release, the integration branch _next_ may optionally be rewound and rebuilt from the tip of _master_ using the surviving topics on _next_:
 
 Recipe: Rewind and rebuild next
 
--   `git switch -C next master`
+- `git switch -C next master`
 
--   `git merge ai/topic_in_next1`
+- `git merge ai/topic_in_next1`
 
--   `git merge ai/topic_in_next2`
+- `git merge ai/topic_in_next2`
 
--   …​
+- …​
 
-The advantage of doing this is that the history of *next* will be clean. For example, some topics merged into *next* may have initially looked promising, but were later found to be undesirable or premature. In such a case, the topic is reverted out of *next* but the fact remains in the history that it was once merged and reverted. By recreating *next*, you give another incarnation of such topics a clean slate to retry, and a feature release is a good point in history to do so.
+The advantage of doing this is that the history of _next_ will be clean. For example, some topics merged into _next_ may have initially looked promising, but were later found to be undesirable or premature. In such a case, the topic is reverted out of _next_ but the fact remains in the history that it was once merged and reverted. By recreating _next_, you give another incarnation of such topics a clean slate to retry, and a feature release is a good point in history to do so.
 
-If you do this, then you should make a public announcement indicating that *next* was rewound and rebuilt.
+If you do this, then you should make a public announcement indicating that _next_ was rewound and rebuilt.
 
-The same rewind and rebuild process may be followed for *seen*. A public announcement is not necessary since *seen* is a throw-away branch, as described above.
+The same rewind and rebuild process may be followed for _seen_. A public announcement is not necessary since _seen_ is a throw-away branch, as described above.
 
-DISTRIBUTED WORKFLOWS
----------------------
+## DISTRIBUTED WORKFLOWS
 
 After the last section, you should know how to manage topics. In general, you will not be the only person working on the project, so you will have to share your work.
 
@@ -189,13 +182,13 @@ The merge workflow works by copying branches between upstream and downstream. Up
 
 There are three main tools that can be used for this:
 
--   [git-push(1)](git-push.html) copies your branches to a remote repository, usually to one that can be read by all involved parties;
+- [git-push(1)](git-push.html) copies your branches to a remote repository, usually to one that can be read by all involved parties;
 
--   [git-fetch(1)](git-fetch.html) that copies remote branches to your repository; and
+- [git-fetch(1)](git-fetch.html) that copies remote branches to your repository; and
 
--   [git-pull(1)](git-pull.html) that does fetch and merge in one go.
+- [git-pull(1)](git-pull.html) that does fetch and merge in one go.
 
-Note the last point. Do *not* use *git pull* unless you actually want to merge the remote branch.
+Note the last point. Do _not_ use _git pull_ unless you actually want to merge the remote branch.
 
 Getting changes out is easy:
 
@@ -218,13 +211,13 @@ If you are a maintainer and would like to merge other people’s topic branches 
     Please pull from
         <url> <branch>
 
-In that case, *git pull* can do the fetch and merge in one go, as follows.
+In that case, _git pull_ can do the fetch and merge in one go, as follows.
 
 Recipe: Push/pull: Merging remote topics
 
 `git pull <url> <branch>`
 
-Occasionally, the maintainer may get merge conflicts when they try to pull changes from downstream. In this case, they can ask downstream to do the merge and resolve the conflicts themselves (perhaps they will know better how to resolve them). It is one of the rare cases where downstream *should* merge from upstream.
+Occasionally, the maintainer may get merge conflicts when they try to pull changes from downstream. In this case, they can ask downstream to do the merge and resolve the conflicts themselves (perhaps they will know better how to resolve them). It is one of the rare cases where downstream _should_ merge from upstream.
 
 ### Patch workflow
 
@@ -232,9 +225,9 @@ If you are a contributor that sends changes upstream in the form of emails, you 
 
 Recipe: format-patch/am: Publishing branches/topics
 
--   `git format-patch -M upstream..topic` to turn them into preformatted patch files
+- `git format-patch -M upstream..topic` to turn them into preformatted patch files
 
--   `git send-email --to=<recipient>                           <patches>`
+- `git send-email --to=<recipient> <patches>`
 
 See the [git-format-patch(1)](git-format-patch.html) and [git-send-email(1)](git-send-email.html) manpages for further usage notes.
 
@@ -246,7 +239,7 @@ Recipe: format-patch/am: Keeping topics up to date
 
 You can then fix the conflicts during the rebase. Presumably you have not published your topic other than by mail, so rebasing it is not a problem.
 
-If you receive such a patch series (as maintainer, or perhaps as a reader of the mailing list it was sent to), save the mails to files, create a new topic branch and use *git am* to import the commits:
+If you receive such a patch series (as maintainer, or perhaps as a reader of the mailing list it was sent to), save the mails to files, create a new topic branch and use _git am_ to import the commits:
 
 Recipe: format-patch/am: Importing patches
 
@@ -254,10 +247,8 @@ Recipe: format-patch/am: Importing patches
 
 One feature worth pointing out is the three-way merge, which can help if you get conflicts: `git am -3` will use index information contained in patches to figure out the merge base. See [git-am(1)](git-am.html) for other options.
 
-SEE ALSO
---------
+## SEE ALSO
 
 [gittutorial(7)](gittutorial.html), [git-push(1)](git-push.html), [git-pull(1)](git-pull.html), [git-merge(1)](git-merge.html), [git-rebase(1)](git-rebase.html), [git-format-patch(1)](git-format-patch.html), [git-send-email(1)](git-send-email.html), [git-am(1)](git-am.html)
 
-GIT
----
+## GIT

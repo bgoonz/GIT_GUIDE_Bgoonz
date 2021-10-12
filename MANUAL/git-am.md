@@ -1,13 +1,10 @@
-git-am(1) Manual Page
-=====================
+# git-am(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-am - Apply a series of patches from a mailbox
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git am [--signoff] [--keep] [--[no-]keep-cr] [--[no-]utf8]
              [--[no-]3way] [--interactive] [--committer-date-is-author-date]
@@ -18,15 +15,13 @@ SYNOPSIS
              [(<mbox> | <Maildir>)…​]
     git am (--continue | --skip | --abort | --quit | --show-current-patch[=(diff|raw)])
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 Splits mail messages in a mailbox into commit log message, authorship information and patches, and applies them to the current branch.
 
-OPTIONS
--------
+## OPTIONS
 
- (&lt;mbox&gt;|&lt;Maildir&gt;)…​   
+(&lt;mbox&gt;|&lt;Maildir&gt;)…​  
 The list of mailbox files to read patches from. If you do not supply this argument, the command reads from the standard input. If you supply directories, they will be treated as Maildirs.
 
 -s  
@@ -35,13 +30,13 @@ Add a `Signed-off-by` trailer to the commit message, using the committer identit
 
 -k  
 --keep  
-Pass `-k` flag to *git mailinfo* (see [git-mailinfo(1)](git-mailinfo.html)).
+Pass `-k` flag to _git mailinfo_ (see [git-mailinfo(1)](git-mailinfo.html)).
 
 --keep-non-patch  
-Pass `-b` flag to *git mailinfo* (see [git-mailinfo(1)](git-mailinfo.html)).
+Pass `-b` flag to _git mailinfo_ (see [git-mailinfo(1)](git-mailinfo.html)).
 
 --\[no-\]keep-cr  
-With `--keep-cr`, call *git mailsplit* (see [git-mailsplit(1)](git-mailsplit.html)) with the same option, to prevent it from stripping CR at the end of lines. `am.keepcr` configuration variable can be used to specify the default behaviour. `--no-keep-cr` is useful to override `am.keepcr`.
+With `--keep-cr`, call _git mailsplit_ (see [git-mailsplit(1)](git-mailsplit.html)) with the same option, to prevent it from stripping CR at the end of lines. `am.keepcr` configuration variable can be used to specify the default behaviour. `--no-keep-cr` is useful to override `am.keepcr`.
 
 -c  
 --scissors  
@@ -52,7 +47,7 @@ Ignore scissors lines (see [git-mailinfo(1)](git-mailinfo.html)).
 
 -m  
 --message-id  
-Pass the `-m` flag to *git mailinfo* (see [git-mailinfo(1)](git-mailinfo.html)), so that the Message-ID header is added to the commit message. The `am.messageid` configuration variable can be used to specify the default behaviour.
+Pass the `-m` flag to _git mailinfo_ (see [git-mailinfo(1)](git-mailinfo.html)), so that the Message-ID header is added to the commit message. The `am.messageid` configuration variable can be used to specify the default behaviour.
 
 --no-message-id  
 Do not add the Message-ID header to the commit message. `no-message-id` is useful to override `am.messageid`.
@@ -63,12 +58,12 @@ Be quiet. Only print error messages.
 
 -u  
 --utf8  
-Pass `-u` flag to *git mailinfo* (see [git-mailinfo(1)](git-mailinfo.html)). The proposed commit log message taken from the e-mail is re-coded into UTF-8 encoding (configuration variable `i18n.commitEncoding` can be used to specify project’s preferred encoding if it is not UTF-8).
+Pass `-u` flag to _git mailinfo_ (see [git-mailinfo(1)](git-mailinfo.html)). The proposed commit log message taken from the e-mail is re-coded into UTF-8 encoding (configuration variable `i18n.commitEncoding` can be used to specify project’s preferred encoding if it is not UTF-8).
 
 This was optional in prior versions of git, but now it is the default. You can use `--no-utf8` to override this.
 
 --no-utf8  
-Pass `-n` flag to *git mailinfo* (see [git-mailinfo(1)](git-mailinfo.html)).
+Pass `-n` flag to _git mailinfo_ (see [git-mailinfo(1)](git-mailinfo.html)).
 
 -3  
 --3way  
@@ -88,7 +83,7 @@ Allow the rerere mechanism to update the index with the result of auto-conflict 
 --exclude=&lt;path&gt;  
 --include=&lt;path&gt;  
 --reject  
-These flags are passed to the *git apply* (see [git-apply(1)](git-apply.html)) program that applies the patch.
+These flags are passed to the _git apply_ (see [git-apply(1)](git-apply.html)) program that applies the patch.
 
 --patch-format  
 By default the command will try to detect the patch format automatically. This option allows the user to bypass the automatic detection and specify the patch format that the patch(es) should be interpreted as. Valid formats are mbox, mboxrd, stgit, stgit-series and hg.
@@ -117,7 +112,7 @@ GPG-sign commits. The `keyid` argument is optional and defaults to the committer
 After a patch failure (e.g. attempting to apply conflicting patch), the user has applied it by hand and the index file stores the result of the application. Make a commit using the authorship and commit log extracted from the e-mail message and the current index file, and continue.
 
 --resolvemsg=&lt;msg&gt;  
-When a patch failure occurs, &lt;msg&gt; will be printed to the screen before exiting. This overrides the standard message informing you to use `--continue` or `--skip` to handle the failure. This is solely for internal use between *git rebase* and *git am*.
+When a patch failure occurs, &lt;msg&gt; will be printed to the screen before exiting. This overrides the standard message informing you to use `--continue` or `--skip` to handle the failure. This is solely for internal use between _git rebase_ and _git am_.
 
 --abort  
 Restore the original branch and abort the patching operation.
@@ -128,8 +123,7 @@ Abort the patching operation but keep HEAD and the index untouched.
 --show-current-patch\[=(diff|raw)\]  
 Show the message at which `git am` has stopped due to conflicts. If `raw` is specified, show the raw contents of the e-mail message; if `diff`, show the diff portion only. Defaults to `raw`.
 
-DISCUSSION
-----------
+## DISCUSSION
 
 The commit author name is taken from the "From: " line of the message, and commit author date is taken from the "Date: " line of the message. The "Subject: " line is used as the title of the commit, after stripping common prefix "\[PATCH &lt;anything&gt;\]". The "Subject: " line is supposed to concisely describe what the commit is about in one line of text.
 
@@ -139,11 +133,11 @@ The commit message is formed by the title taken from the "Subject: ", a blank li
 
 The patch is expected to be inline, directly following the message. Any line that is of the form:
 
--   three-dashes and end-of-line, or
+- three-dashes and end-of-line, or
 
--   a line that begins with "diff -", or
+- a line that begins with "diff -", or
 
--   a line that begins with "Index: "
+- a line that begins with "Index: "
 
 is taken as the beginning of a patch, and the commit log message is terminated before the first occurrence of such a line.
 
@@ -155,17 +149,14 @@ When initially invoking `git am`, you give it the names of the mailboxes to proc
 
 The command refuses to process new mailboxes until the current operation is finished, so if you decide to start over from scratch, run `git am --abort` before running the command with mailbox names.
 
-Before any patches are applied, ORIG\_HEAD is set to the tip of the current branch. This is useful if you have problems with multiple commits, like running *git am* on the wrong branch or an error in the commits that is more easily fixed by changing the mailbox (e.g. errors in the "From:" lines).
+Before any patches are applied, ORIG_HEAD is set to the tip of the current branch. This is useful if you have problems with multiple commits, like running _git am_ on the wrong branch or an error in the commits that is more easily fixed by changing the mailbox (e.g. errors in the "From:" lines).
 
-HOOKS
------
+## HOOKS
 
 This command can run `applypatch-msg`, `pre-applypatch`, and `post-applypatch` hooks. See [githooks(5)](githooks.html) for more information.
 
-SEE ALSO
---------
+## SEE ALSO
 
 [git-apply(1)](git-apply.html).
 
-GIT
----
+## GIT

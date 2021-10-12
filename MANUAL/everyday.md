@@ -1,5 +1,4 @@
-Everyday Git With 20 Commands Or So
-===================================
+# Everyday Git With 20 Commands Or So
 
 This document has been moved to [giteveryday(7)](giteveryday.html).
 

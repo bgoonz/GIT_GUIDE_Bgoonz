@@ -1,18 +1,14 @@
-git-rerere(1) Manual Page
-=========================
+# git-rerere(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-rerere - Reuse recorded resolution of conflicted merges
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git rerere [clear|forget <pathspec>|diff|remaining|status|gc]
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 In a workflow employing relatively long lived topic branches, the developer sometimes needs to resolve the same conflicts over and over again until the topic branches are done (either merged to the "release" branch, or sent out and accepted upstream).
 
@@ -20,31 +16,29 @@ This command assists the developer in this process by recording conflicted autom
 
 <table><colgroup><col style="width: 50%" /><col style="width: 50%" /></colgroup><tbody><tr class="odd"><td><div class="title">Note</div></td><td>You need to set the configuration variable <code>rerere.enabled</code> in order to enable this command.</td></tr></tbody></table>
 
-COMMANDS
---------
+## COMMANDS
 
-Normally, *git rerere* is run without arguments or user-intervention. However, it has several commands that allow it to interact with its working state.
+Normally, _git rerere_ is run without arguments or user-intervention. However, it has several commands that allow it to interact with its working state.
 
-*clear*  
-Reset the metadata used by rerere if a merge resolution is to be aborted. Calling *git am \[--skip|--abort\]* or *git rebase \[--skip|--abort\]* will automatically invoke this command.
+_clear_  
+Reset the metadata used by rerere if a merge resolution is to be aborted. Calling _git am \[--skip|--abort\]_ or _git rebase \[--skip|--abort\]_ will automatically invoke this command.
 
-*forget* &lt;pathspec&gt;  
+_forget_ &lt;pathspec&gt;  
 Reset the conflict resolutions which rerere has recorded for the current conflict in &lt;pathspec&gt;.
 
-*diff*  
-Display diffs for the current state of the resolution. It is useful for tracking what has changed while the user is resolving conflicts. Additional arguments are passed directly to the system *diff* command installed in PATH.
+_diff_  
+Display diffs for the current state of the resolution. It is useful for tracking what has changed while the user is resolving conflicts. Additional arguments are passed directly to the system _diff_ command installed in PATH.
 
-*status*  
+_status_  
 Print paths with conflicts whose merge resolution rerere will record.
 
-*remaining*  
+_remaining_  
 Print paths with conflicts that have not been autoresolved by rerere. This includes paths whose resolutions cannot be tracked by rerere, such as conflicting submodules.
 
-*gc*  
+_gc_  
 Prune records of conflicted merges that occurred a long time ago. By default, unresolved conflicts older than 15 days and resolved conflicts older than 60 days are pruned. These defaults are controlled via the `gc.rerereUnresolved` and `gc.rerereResolved` configuration variables respectively.
 
-DISCUSSION
-----------
+## DISCUSSION
 
 When your topic branch modifies an overlapping area that your master branch (or upstream) touched since your topic branch forked from it, you may want to test it with the latest master, even before your topic branch is ready to be pushed upstream:
 
@@ -90,17 +84,17 @@ As an alternative, to keep the topic branch clean of test merges, you could blow
                  /                     \
         o---o---o---*---o---o---o---o---+ master
 
-This would leave only one merge commit when your topic branch is finally ready and merged into the master branch. This merge would require you to resolve the conflict, introduced by the commits marked with `*`. However, this conflict is often the same conflict you resolved when you created the test merge you blew away. *git rerere* helps you resolve this final conflicted merge using the information from your earlier hand resolve.
+This would leave only one merge commit when your topic branch is finally ready and merged into the master branch. This merge would require you to resolve the conflict, introduced by the commits marked with `*`. However, this conflict is often the same conflict you resolved when you created the test merge you blew away. _git rerere_ helps you resolve this final conflicted merge using the information from your earlier hand resolve.
 
-Running the *git rerere* command immediately after a conflicted automerge records the conflicted working tree files, with the usual conflict markers `<<<<<<<`, `=======`, and `>>>>>>>` in them. Later, after you are done resolving the conflicts, running *git rerere* again will record the resolved state of these files. Suppose you did this when you created the test merge of master into the topic branch.
+Running the _git rerere_ command immediately after a conflicted automerge records the conflicted working tree files, with the usual conflict markers `<<<<<<<`, `=======`, and `>>>>>>>` in them. Later, after you are done resolving the conflicts, running _git rerere_ again will record the resolved state of these files. Suppose you did this when you created the test merge of master into the topic branch.
 
-Next time, after seeing the same conflicted automerge, running *git rerere* will perform a three-way merge between the earlier conflicted automerge, the earlier manual resolution, and the current conflicted automerge. If this three-way merge resolves cleanly, the result is written out to your working tree file, so you do not have to manually resolve it. Note that *git rerere* leaves the index file alone, so you still need to do the final sanity checks with `git diff` (or `git diff -c`) and *git add* when you are satisfied.
+Next time, after seeing the same conflicted automerge, running _git rerere_ will perform a three-way merge between the earlier conflicted automerge, the earlier manual resolution, and the current conflicted automerge. If this three-way merge resolves cleanly, the result is written out to your working tree file, so you do not have to manually resolve it. Note that _git rerere_ leaves the index file alone, so you still need to do the final sanity checks with `git diff` (or `git diff -c`) and _git add_ when you are satisfied.
 
-As a convenience measure, *git merge* automatically invokes *git rerere* upon exiting with a failed automerge and *git rerere* records the hand resolve when it is a new conflict, or reuses the earlier hand resolve when it is not. *git commit* also invokes *git rerere* when committing a merge result. What this means is that you do not have to do anything special yourself (besides enabling the rerere.enabled config variable).
+As a convenience measure, _git merge_ automatically invokes _git rerere_ upon exiting with a failed automerge and _git rerere_ records the hand resolve when it is a new conflict, or reuses the earlier hand resolve when it is not. _git commit_ also invokes _git rerere_ when committing a merge result. What this means is that you do not have to do anything special yourself (besides enabling the rerere.enabled config variable).
 
 In our example, when you do the test merge, the manual resolution is recorded, and it will be reused when you do the actual merge later with the updated master and topic branch, as long as the recorded resolution is still applicable.
 
-The information *git rerere* records is also used when running *git rebase*. After blowing away the test merge and continuing development on the topic branch:
+The information _git rerere_ records is also used when running _git rebase_. After blowing away the test merge and continuing development on the topic branch:
 
                   o---*---o-------o---o topic
                  /
@@ -112,9 +106,8 @@ The information *git rerere* records is also used when running *git rebase*. Aft
                                      /
         o---o---o---*---o---o---o---o   master
 
-you could run `git rebase master topic`, to bring yourself up to date before your topic is ready to be sent upstream. This would result in falling back to a three-way merge, and it would conflict the same way as the test merge you resolved earlier. *git rerere* will be run by *git rebase* to help you resolve this conflict.
+you could run `git rebase master topic`, to bring yourself up to date before your topic is ready to be sent upstream. This would result in falling back to a three-way merge, and it would conflict the same way as the test merge you resolved earlier. _git rerere_ will be run by _git rebase_ to help you resolve this conflict.
 
-\[NOTE\] *git rerere* relies on the conflict markers in the file to detect the conflict. If the file already contains lines that look the same as lines with conflict markers, *git rerere* may fail to record a conflict resolution. To work around this, the `conflict-marker-size` setting in [gitattributes(5)](gitattributes.html) can be used.
+\[NOTE\] _git rerere_ relies on the conflict markers in the file to detect the conflict. If the file already contains lines that look the same as lines with conflict markers, _git rerere_ may fail to record a conflict resolution. To work around this, the `conflict-marker-size` setting in [gitattributes(5)](gitattributes.html) can be used.
 
-GIT
----
+## GIT

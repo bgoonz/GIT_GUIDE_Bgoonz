@@ -1,20 +1,15 @@
-git-stage(1) Manual Page
-========================
+# git-stage(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-stage - Add file contents to the staging area
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git stage args…​
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 This is a synonym for [git-add(1)](git-add.html). Please refer to the documentation of that command.
 
-GIT
----
+## GIT

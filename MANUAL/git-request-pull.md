@@ -1,25 +1,20 @@
-git-request-pull(1) Manual Page
-===============================
+# git-request-pull(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-request-pull - Generates a summary of pending changes
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git request-pull [-p] <start> <url> [<end>]
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 Generate a request asking your upstream project to pull changes into their tree. The request, printed to the standard output, begins with the branch description, summarizes the changes and indicates from where they can be pulled.
 
 The upstream project is expected to have the commit named by `<start>` and the output asks it to integrate the changes you made since that commit, up to the commit named by `<end>`, by visiting the repository named by `<url>`.
 
-OPTIONS
--------
+## OPTIONS
 
 -p  
 Include patch text in the output.
@@ -35,8 +30,7 @@ Commit to end at (defaults to HEAD). This names the commit at the tip of the his
 
 When the repository named by `<url>` has the commit at a tip of a ref that is different from the ref you have locally, you can use the `<local>:<remote>` syntax, to have its local name, a colon `:`, and its remote name.
 
-EXAMPLES
---------
+## EXAMPLES
 
 Imagine that you built your work on your `master` branch on top of the `v1.0` release, and want it to be integrated to the project. First you push that change to your public repository for others to see:
 
@@ -56,5 +50,4 @@ then you can ask that to be pulled with
 
     git request-pull v1.0 https://git.ko.xz/project master:for-linus
 
-GIT
----
+## GIT

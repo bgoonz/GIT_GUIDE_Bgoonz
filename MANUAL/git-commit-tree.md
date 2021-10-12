@@ -1,20 +1,16 @@
-git-commit-tree(1) Manual Page
-==============================
+# git-commit-tree(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-commit-tree - Create a new commit object
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git commit-tree <tree> [(-p <parent>)…​]
     git commit-tree [(-p <parent>)…​] [-S[<keyid>]] [(-m <message>)…​]
                       [(-F <file>)…​] <tree>
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 This is usually not what an end user wants to run directly. See [git-commit(1)](git-commit.html) instead.
 
@@ -28,8 +24,7 @@ While a tree represents a particular directory state of a working directory, a c
 
 Normally a commit would identify a new "HEAD" state, and while Git doesn’t care where you save the note about that state, in practice we tend to just write the result to the file that is pointed at by `.git/HEAD`, so that we can always see what the last committed state was.
 
-OPTIONS
--------
+## OPTIONS
 
 &lt;tree&gt;  
 An existing tree object.
@@ -48,21 +43,19 @@ Read the commit log message from the given file. Use `-` to read from the standa
 --no-gpg-sign  
 GPG-sign commits. The `keyid` argument is optional and defaults to the committer identity; if specified, it must be stuck to the option without a space. `--no-gpg-sign` is useful to countermand a `--gpg-sign` option given earlier on the command line.
 
-Commit Information
-------------------
+## Commit Information
 
 A commit encapsulates:
 
--   all parent object ids
+- all parent object ids
 
--   author name, email and date
+- author name, email and date
 
--   committer name and email and the commit time.
+- committer name and email and the commit time.
 
-A commit comment is read from stdin. If a changelog entry is not provided via "&lt;" redirection, *git commit-tree* will just wait for one to be entered and terminated with ^D.
+A commit comment is read from stdin. If a changelog entry is not provided via "&lt;" redirection, _git commit-tree_ will just wait for one to be entered and terminated with ^D.
 
-DATE FORMATS
-------------
+## DATE FORMATS
 
 The `GIT_AUTHOR_DATE` and `GIT_COMMITTER_DATE` environment variables support the following date formats:
 
@@ -77,29 +70,28 @@ Time and date specified by the ISO 8601 standard, for example `2005-04-07T22:13:
 
 <table><colgroup><col style="width: 50%" /><col style="width: 50%" /></colgroup><tbody><tr class="odd"><td><div class="title">Note</div></td><td>In addition, the date part is accepted in the following formats: <code>YYYY.MM.DD</code>, <code>MM/DD/YYYY</code> and <code>DD.MM.YYYY</code>.</td></tr></tbody></table>
 
-Discussion
-----------
+## Discussion
 
 Git is to some extent character encoding agnostic.
 
--   The contents of the blob objects are uninterpreted sequences of bytes. There is no encoding translation at the core level.
+- The contents of the blob objects are uninterpreted sequences of bytes. There is no encoding translation at the core level.
 
--   Path names are encoded in UTF-8 normalization form C. This applies to tree objects, the index file, ref names, as well as path names in command line arguments, environment variables and config files (`.git/config` (see [git-config(1)](git-config.html)), [gitignore(5)](gitignore.html), [gitattributes(5)](gitattributes.html) and [gitmodules(5)](gitmodules.html)).
+- Path names are encoded in UTF-8 normalization form C. This applies to tree objects, the index file, ref names, as well as path names in command line arguments, environment variables and config files (`.git/config` (see [git-config(1)](git-config.html)), [gitignore(5)](gitignore.html), [gitattributes(5)](gitattributes.html) and [gitmodules(5)](gitmodules.html)).
 
-    Note that Git at the core level treats path names simply as sequences of non-NUL bytes, there are no path name encoding conversions (except on Mac and Windows). Therefore, using non-ASCII path names will mostly work even on platforms and file systems that use legacy extended ASCII encodings. However, repositories created on such systems will not work properly on UTF-8-based systems (e.g. Linux, Mac, Windows) and vice versa. Additionally, many Git-based tools simply assume path names to be UTF-8 and will fail to display other encodings correctly.
+  Note that Git at the core level treats path names simply as sequences of non-NUL bytes, there are no path name encoding conversions (except on Mac and Windows). Therefore, using non-ASCII path names will mostly work even on platforms and file systems that use legacy extended ASCII encodings. However, repositories created on such systems will not work properly on UTF-8-based systems (e.g. Linux, Mac, Windows) and vice versa. Additionally, many Git-based tools simply assume path names to be UTF-8 and will fail to display other encodings correctly.
 
--   Commit log messages are typically encoded in UTF-8, but other extended ASCII encodings are also supported. This includes ISO-8859-x, CP125x and many others, but *not* UTF-16/32, EBCDIC and CJK multi-byte encodings (GBK, Shift-JIS, Big5, EUC-x, CP9xx etc.).
+- Commit log messages are typically encoded in UTF-8, but other extended ASCII encodings are also supported. This includes ISO-8859-x, CP125x and many others, but _not_ UTF-16/32, EBCDIC and CJK multi-byte encodings (GBK, Shift-JIS, Big5, EUC-x, CP9xx etc.).
 
 Although we encourage that the commit log messages are encoded in UTF-8, both the core and Git Porcelain are designed not to force UTF-8 on projects. If all participants of a particular project find it more convenient to use legacy encodings, Git does not forbid it. However, there are a few things to keep in mind.
 
-1.  *git commit* and *git commit-tree* issues a warning if the commit log message given to it does not look like a valid UTF-8 string, unless you explicitly say your project uses a legacy encoding. The way to say this is to have `i18n.commitEncoding` in `.git/config` file, like this:
+1.  _git commit_ and _git commit-tree_ issues a warning if the commit log message given to it does not look like a valid UTF-8 string, unless you explicitly say your project uses a legacy encoding. The way to say this is to have `i18n.commitEncoding` in `.git/config` file, like this:
 
         [i18n]
                 commitEncoding = ISO-8859-1
 
     Commit objects created with the above setting record the value of `i18n.commitEncoding` in its `encoding` header. This is to help other people who look at them later. Lack of this header implies that the commit log message is encoded in UTF-8.
 
-2.  *git log*, *git show*, *git blame* and friends look at the `encoding` header of a commit object, and try to re-code the log message into UTF-8 unless otherwise specified. You can specify the desired output encoding with `i18n.logOutputEncoding` in `.git/config` file, like this:
+2.  _git log_, _git show_, _git blame_ and friends look at the `encoding` header of a commit object, and try to re-code the log message into UTF-8 unless otherwise specified. You can specify the desired output encoding with `i18n.logOutputEncoding` in `.git/config` file, like this:
 
         [i18n]
                 logOutputEncoding = ISO-8859-1
@@ -108,18 +100,15 @@ Although we encourage that the commit log messages are encoded in UTF-8, both th
 
 Note that we deliberately chose not to re-code the commit log message when a commit is made to force UTF-8 at the commit object level, because re-coding to UTF-8 is not necessarily a reversible operation.
 
-FILES
------
+## FILES
 
 /etc/mailname
 
-SEE ALSO
---------
+## SEE ALSO
 
 [git-write-tree(1)](git-write-tree.html) [git-commit(1)](git-commit.html)
 
-GIT
----
+## GIT
 
 Part of the [git(1)](git.html) suite
 

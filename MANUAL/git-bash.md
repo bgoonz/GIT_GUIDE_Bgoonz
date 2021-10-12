@@ -1,19 +1,15 @@
-git-bash(1) Manual Page
-=======================
+# git-bash(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-bash - A Windows-specific wrapper to open a Git Bash window
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git-bash [--cd-to-home] [--cd=<directory>] [--minimal-search-path]
         [--command=<path>] [--app-id=<id>] [<args>…​]
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 This command opens a window with an interactive Git Bash. It is specific to the Git for Windows project.
 
@@ -21,8 +17,7 @@ By default, this will open a MinTTY window, but it can be configured in Git for 
 
 Before starting the interactive Bash session, the environment is adjusted a bit. For example, the `PATH` is adjusted to find the `git` executable, and `git-bash` will ensure that `HOME` is set (because it is expected to be present by Git, and to point to the current user’s home directory). See the [ENVIRONMENT VARIABLES](#ENVIRONMENT-VARIABLES) section below for more information.
 
-OPTIONS
--------
+## OPTIONS
 
 --cd-to-home  
 --no-cd  
@@ -61,5 +56,4 @@ If `HOME` is unset, `git-bash` will first look whether `%HOMEDRIVE%%HOMEPATH%` p
 
 In the Git for Windows project, the source code of `git-bash` is called the "Git Wrapper", as it merely parses the command-line parameters, sets up a few environment variables, then spawns the actual command, and waits for the spawned command to exit. The Git Wrapper is not only used for `git-bash` but also for `git-cmd` and for certain placeholders internal to Git (the so-called "built-ins").
 
-GIT
----
+## GIT
