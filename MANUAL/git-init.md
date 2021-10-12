@@ -1,21 +1,17 @@
-git-init(1) Manual Page
-=======================
+# git-init(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-init - Create an empty Git repository or reinitialize an existing one
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git init [-q | --quiet] [--bare] [--template=<template_directory>]
               [--separate-git-dir <git dir>] [--object-format=<format>]
               [-b <branch-name> | --initial-branch=<branch-name>]
               [--shared[=<permissions>]] [directory]
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 This command creates an empty Git repository - basically a `.git` directory with subdirectories for `objects`, `refs/heads`, `refs/tags`, and template files. An initial branch without any commits will be created (see the `--initial-branch` option below for its name).
 
@@ -23,10 +19,9 @@ If the `$GIT_DIR` environment variable is set then it specifies a path to use in
 
 If the object storage directory is specified via the `$GIT_OBJECT_DIRECTORY` environment variable then the sha1 directories are created underneath - otherwise the default `$GIT_DIR/objects` directory is used.
 
-Running *git init* in an existing repository is safe. It will not overwrite things that are already there. The primary reason for rerunning *git init* is to pick up newly added templates (or to move the repository to another place if --separate-git-dir is given).
+Running _git init_ in an existing repository is safe. It will not overwrite things that are already there. The primary reason for rerunning _git init_ is to pick up newly added templates (or to move the repository to another place if --separate-git-dir is given).
 
-OPTIONS
--------
+## OPTIONS
 
 -q  
 --quiet  
@@ -36,11 +31,11 @@ Only print error and warning messages; all other output will be suppressed.
 Create a bare repository. If `GIT_DIR` environment is not set, it is set to the current working directory.
 
 --object-format=&lt;format&gt;  
-Specify the given object format (hash algorithm) for the repository. The valid values are *sha1* and (if enabled) *sha256*. *sha1* is the default.
+Specify the given object format (hash algorithm) for the repository. The valid values are _sha1_ and (if enabled) _sha256_. _sha1_ is the default.
 
 THIS OPTION IS EXPERIMENTAL! SHA-256 support is experimental and still in an early stage. A SHA-256 repository will in general not be able to share work with "regular" SHA-1 repositories. It should be assumed that, e.g., Git internal file formats in relation to SHA-256 repositories may change in backwards-incompatible ways. Only use `--object-format=sha256` for testing purposes.
 
---template=&lt;template\_directory&gt;  
+--template=&lt;template_directory&gt;  
 Specify the directory from which templates will be used. (See the "TEMPLATE DIRECTORY" section below.)
 
 --separate-git-dir=&lt;git dir&gt;  
@@ -55,38 +50,37 @@ Use the specified name for the initial branch in the newly created repository. I
 --shared\[=(false|true|umask|group|all|world|everybody|0xxx)\]  
 Specify that the Git repository is to be shared amongst several users. This allows users belonging to the same group to push into that repository. When specified, the config variable "core.sharedRepository" is set so that files and directories under `$GIT_DIR` are created with the requested permissions. When not specified, Git will use permissions reported by umask(2).
 
-The option can have the following values, defaulting to *group* if no value is given:
+The option can have the following values, defaulting to _group_ if no value is given:
 
-*umask* (or *false*)  
+_umask_ (or _false_)  
 Use permissions reported by umask(2). The default, when `--shared` is not specified.
 
-*group* (or *true*)  
-Make the repository group-writable, (and g+sx, since the git group may be not the primary group of all users). This is used to loosen the permissions of an otherwise safe umask(2) value. Note that the umask still applies to the other permission bits (e.g. if umask is *0022*, using *group* will not remove read privileges from other (non-group) users). See *0xxx* for how to exactly specify the repository permissions.
+_group_ (or _true_)  
+Make the repository group-writable, (and g+sx, since the git group may be not the primary group of all users). This is used to loosen the permissions of an otherwise safe umask(2) value. Note that the umask still applies to the other permission bits (e.g. if umask is _0022_, using _group_ will not remove read privileges from other (non-group) users). See _0xxx_ for how to exactly specify the repository permissions.
 
-*all* (or *world* or *everybody*)  
-Same as *group*, but make the repository readable by all users.
+_all_ (or _world_ or _everybody_)  
+Same as _group_, but make the repository readable by all users.
 
-*0xxx*  
-*0xxx* is an octal number and each file will have mode *0xxx*. *0xxx* will override users' umask(2) value (and not only loosen permissions as *group* and *all* does). *0640* will create a repository which is group-readable, but not group-writable or accessible to others. *0660* will create a repo that is readable and writable to the current user and group, but inaccessible to others.
+_0xxx_  
+_0xxx_ is an octal number and each file will have mode _0xxx_. _0xxx_ will override users' umask(2) value (and not only loosen permissions as _group_ and _all_ does). _0640_ will create a repository which is group-readable, but not group-writable or accessible to others. _0660_ will create a repo that is readable and writable to the current user and group, but inaccessible to others.
 
 By default, the configuration flag `receive.denyNonFastForwards` is enabled in shared repositories, so that you cannot force a non fast-forwarding push into it.
 
-If you provide a *directory*, the command is run inside it. If this directory does not exist, it will be created.
+If you provide a _directory_, the command is run inside it. If this directory does not exist, it will be created.
 
-TEMPLATE DIRECTORY
-------------------
+## TEMPLATE DIRECTORY
 
 Files and directories in the template directory whose name do not start with a dot will be copied to the `$GIT_DIR` after it is created.
 
 The template directory will be one of the following (in order):
 
--   the argument given with the `--template` option;
+- the argument given with the `--template` option;
 
--   the contents of the `$GIT_TEMPLATE_DIR` environment variable;
+- the contents of the `$GIT_TEMPLATE_DIR` environment variable;
 
--   the `init.templateDir` configuration variable; or
+- the `init.templateDir` configuration variable; or
 
--   the default template directory: `/usr/share/git-core/templates`.
+- the default template directory: `/usr/share/git-core/templates`.
 
 The default template directory includes some directory structure, suggested "exclude patterns" (see [gitignore(5)](gitignore.html)), and sample hook files.
 
@@ -94,14 +88,13 @@ The sample hooks are all disabled by default. To enable one of the sample hooks 
 
 See [githooks(5)](githooks.html) for more general info on hook execution.
 
-EXAMPLES
---------
+## EXAMPLES
 
 Start a new Git repository for an existing code base  
-    $ cd /path/to/my/codebase
-    $ git init      (1)
-    $ git add .     (2)
-    $ git commit    (3)
+ $ cd /path/to/my/codebase
+$ git init (1)
+$ git add . (2)
+$ git commit (3)
 
 1.  Create a /path/to/my/codebase/.git directory.
 
@@ -109,8 +102,7 @@ Start a new Git repository for an existing code base
 
 3.  Record the pristine state as the first commit in the history.
 
-GIT
----
+## GIT
 
 Part of the [git(1)](git.html) suite
 

@@ -1,11 +1,15 @@
 # Full Git Guide:
 
 ---
+
 ---
 
 # [WEBSITE](https://bgoonz.github.io/GIT_GUIDE_Bgoonz/)
+
 # [backup WEBSITE](https://bryan-guner-backup.github.io/git-guide/#getting-started-with-github)
+
 ---
+
 ---
 
 ---

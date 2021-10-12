@@ -1,13 +1,10 @@
-git-reset(1) Manual Page
-========================
+# git-reset(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-reset - Reset current HEAD to the specified state
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git reset [-q] [<tree-ish>] [--] <pathspec>…​
     git reset [-q] [--pathspec-from-file=<file> [--pathspec-file-nul]] [<tree-ish>]
@@ -15,25 +12,24 @@ SYNOPSIS
     git reset [--soft | --mixed [-N] | --hard | --merge | --keep] [-q] [<commit>]
     DEPRECATED: git reset [-q] [--stdin [-z]] [<tree-ish>]
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 In the first three forms, copy entries from `<tree-ish>` to the index. In the last form, set the current branch head (`HEAD`) to `<commit>`, optionally modifying index and working tree to match. The `<tree-ish>`/`<commit>` defaults to `HEAD` in all forms.
 
-*git reset* \[-q\] \[&lt;tree-ish&gt;\] \[--\] &lt;pathspec&gt;…​  
-*git reset* \[-q\] \[--pathspec-from-file=&lt;file&gt; \[--pathspec-file-nul\]\] \[&lt;tree-ish&gt;\]  
+_git reset_ \[-q\] \[&lt;tree-ish&gt;\] \[--\] &lt;pathspec&gt;…​  
+_git reset_ \[-q\] \[--pathspec-from-file=&lt;file&gt; \[--pathspec-file-nul\]\] \[&lt;tree-ish&gt;\]  
 These forms reset the index entries for all paths that match the `<pathspec>` to their state at `<tree-ish>`. (It does not affect the working tree or the current branch.)
 
 This means that `git reset <pathspec>` is the opposite of `git add <pathspec>`. This command is equivalent to `git restore [--source=<tree-ish>] --staged <pathspec>...`.
 
 After running `git reset <pathspec>` to update the index entry, you can use [git-restore(1)](git-restore.html) to check the contents out of the index to the working tree. Alternatively, using [git-restore(1)](git-restore.html) and specifying a commit with `--source`, you can copy the contents of a path out of a commit to the index and to the working tree in one go.
 
-*git reset* (--patch | -p) \[&lt;tree-ish&gt;\] \[--\] \[&lt;pathspec&gt;…​\]  
+_git reset_ (--patch | -p) \[&lt;tree-ish&gt;\] \[--\] \[&lt;pathspec&gt;…​\]  
 Interactively select hunks in the difference between the index and `<tree-ish>` (defaults to `HEAD`). The chosen hunks are applied in reverse to the index.
 
 This means that `git reset -p` is the opposite of `git add -p`, i.e. you can use it to selectively reset hunks. See the “Interactive Mode” section of [git-add(1)](git-add.html) to learn how to operate the `--patch` mode.
 
-*git reset* \[&lt;mode&gt;\] \[&lt;commit&gt;\]  
+_git reset_ \[&lt;mode&gt;\] \[&lt;commit&gt;\]  
 This form resets the current branch head to `<commit>` and possibly updates the index (resetting it to the tree of `<commit>`) and the working tree depending on `<mode>`. If `<mode>` is omitted, defaults to `--mixed`. The `<mode>` must be one of the following:
 
 --soft  
@@ -60,8 +56,7 @@ When the working tree is updated, using --recurse-submodules will also recursive
 
 See "Reset, restore and revert" in [git(1)](git.html) for the differences between the three commands.
 
-OPTIONS
--------
+## OPTIONS
 
 -q  
 --quiet  
@@ -80,7 +75,7 @@ Do not interpret any more arguments as options.
 &lt;pathspec&gt;…​  
 Limits the paths affected by the operation.
 
-For more details, see the *pathspec* entry in [gitglossary(7)](gitglossary.html).
+For more details, see the _pathspec_ entry in [gitglossary(7)](gitglossary.html).
 
 --stdin  
 DEPRECATED (use `--pathspec-from-file=-` instead): Instead of taking list of paths from the command line, read list of paths from the standard input. Paths are separated by LF (i.e. one path per line) by default.
@@ -88,15 +83,14 @@ DEPRECATED (use `--pathspec-from-file=-` instead): Instead of taking list of pat
 -z  
 DEPRECATED (use `--pathspec-file-nul` instead): Only meaningful with `--stdin`; paths are separated with NUL character instead of LF.
 
-EXAMPLES
---------
+## EXAMPLES
 
 Undo add  
-    $ edit                                     (1)
-    $ git add frotz.c filfre.c
-    $ mailx                                    (2)
-    $ git reset                                (3)
-    $ git pull git://info.example.com/ nitfol  (4)
+ $ edit (1)
+$ git add frotz.c filfre.c
+$ mailx (2)
+$ git reset (3)
+$ git pull git://info.example.com/ nitfol (4)
 
 1.  You are happily working on something, and find the changes in these files are in good order. You do not want to see them when you run `git diff`, because you plan to work on other files and changes with these files are distracting.
 
@@ -107,10 +101,10 @@ Undo add
 4.  Then you can pull and merge, leaving `frotz.c` and `filfre.c` changes still in the working tree.
 
 Undo a commit and redo  
-    $ git commit ...
-    $ git reset --soft HEAD^      (1)
-    $ edit                        (2)
-    $ git commit -a -c ORIG_HEAD  (3)
+ $ git commit ...
+$ git reset --soft HEAD^ (1)
+$ edit (2)
+$ git commit -a -c ORIG_HEAD (3)
 
 1.  This is most often done when you remembered what you just committed is incomplete, or you misspelled your commit message, or both. Leaves working tree as it was before "reset".
 
@@ -121,9 +115,9 @@ Undo a commit and redo
 See also the `--amend` option to [git-commit(1)](git-commit.html).
 
 Undo a commit, making it a topic branch  
-    $ git branch topic/wip          (1)
-    $ git reset --hard HEAD~3       (2)
-    $ git switch topic/wip          (3)
+ $ git branch topic/wip (1)
+$ git reset --hard HEAD~3 (2)
+$ git switch topic/wip (3)
 
 1.  You have made some commits, but realize they were premature to be in the `master` branch. You want to continue polishing them in a topic branch, so create `topic/wip` branch off of the current `HEAD`.
 
@@ -132,21 +126,21 @@ Undo a commit, making it a topic branch
 3.  Switch to `topic/wip` branch and keep working.
 
 Undo commits permanently  
-    $ git commit ...
-    $ git reset --hard HEAD~3   (1)
+ $ git commit ...
+$ git reset --hard HEAD~3 (1)
 
 1.  The last three commits (`HEAD`, `HEAD^`, and `HEAD~2`) were bad and you do not want to ever see them again. Do **not** do this if you have already given these commits to somebody else. (See the "RECOVERING FROM UPSTREAM REBASE" section in [git-rebase(1)](git-rebase.html) for the implications of doing so.)
 
 Undo a merge or pull  
-    $ git pull                         (1)
-    Auto-merging nitfol
-    CONFLICT (content): Merge conflict in nitfol
-    Automatic merge failed; fix conflicts and then commit the result.
-    $ git reset --hard                 (2)
-    $ git pull . topic/branch          (3)
-    Updating from 41223... to 13134...
-    Fast-forward
-    $ git reset --hard ORIG_HEAD       (4)
+ $ git pull (1)
+Auto-merging nitfol
+CONFLICT (content): Merge conflict in nitfol
+Automatic merge failed; fix conflicts and then commit the result.
+$ git reset --hard (2)
+$ git pull . topic/branch (3)
+Updating from 41223... to 13134...
+Fast-forward
+$ git reset --hard ORIG_HEAD (4)
 
 1.  Try to update from the upstream resulted in a lot of conflicts; you were not ready to spend a lot of time merging right now, so you decide to do that later.
 
@@ -157,12 +151,12 @@ Undo a merge or pull
 4.  But you decided that the topic branch is not ready for public consumption yet. "pull" or "merge" always leaves the original tip of the current branch in `ORIG_HEAD`, so resetting hard to it brings your index file and the working tree back to that state, and resets the tip of the branch to that commit.
 
 Undo a merge or pull inside a dirty working tree  
-    $ git pull                         (1)
-    Auto-merging nitfol
-    Merge made by recursive.
-     nitfol                |   20 +++++----
-     ...
-    $ git reset --merge ORIG_HEAD      (2)
+ $ git pull (1)
+Auto-merging nitfol
+Merge made by recursive.
+nitfol | 20 +++++----
+...
+$ git reset --merge ORIG_HEAD (2)
 
 1.  Even if you may have local modifications in your working tree, you can safely say `git pull` when you know that the change in the other branch does not overlap with them.
 
@@ -183,9 +177,9 @@ Suppose you are interrupted by an urgent fix request while you are in the middle
 
 1.  This commit will get blown away so a throw-away log message is OK.
 
-2.  This removes the *WIP* commit from the commit history, and sets your working tree to the state just before you made that snapshot.
+2.  This removes the _WIP_ commit from the commit history, and sets your working tree to the state just before you made that snapshot.
 
-3.  At this point the index file still has all the WIP changes you committed as *snapshot WIP*. This updates the index to show your WIP files as uncommitted.
+3.  At this point the index file still has all the WIP changes you committed as _snapshot WIP_. This updates the index to show your WIP files as uncommitted.
 
 See also [git-stash(1)](git-stash.html).
 
@@ -247,8 +241,7 @@ Suppose that you have created lots of logically separate changes and committed t
 
 8.  And finally create the final commit.
 
-DISCUSSION
-----------
+## DISCUSSION
 
 The tables below show what happens when running:
 
@@ -330,8 +323,7 @@ The following tables show what happens when there are unmerged entries:
 
 `X` means any state and `U` means an unmerged index.
 
-GIT
----
+## GIT
 
 Part of the [git(1)](git.html) suite
 

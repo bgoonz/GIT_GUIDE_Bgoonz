@@ -1,35 +1,30 @@
-git-revert(1) Manual Page
-=========================
+# git-revert(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-revert - Revert some existing commits
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git revert [--[no-]edit] [-n] [-m parent-number] [-s] [-S[<keyid>]] <commit>…​
     git revert (--continue | --skip | --abort | --quit)
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 Given one or more existing commits, revert the changes that the related patches introduce, and record some new commits that record them. This requires your working tree to be clean (no modifications from the HEAD commit).
 
-Note: *git revert* is used to record some new commits to reverse the effect of some earlier commits (often only a faulty one). If you want to throw away all uncommitted changes in your working directory, you should see [git-reset(1)](git-reset.html), particularly the `--hard` option. If you want to extract specific files as they were in another commit, you should see [git-restore(1)](git-restore.html), specifically the `--source` option. Take care with these alternatives as both will discard uncommitted changes in your working directory.
+Note: _git revert_ is used to record some new commits to reverse the effect of some earlier commits (often only a faulty one). If you want to throw away all uncommitted changes in your working directory, you should see [git-reset(1)](git-reset.html), particularly the `--hard` option. If you want to extract specific files as they were in another commit, you should see [git-restore(1)](git-restore.html), specifically the `--source` option. Take care with these alternatives as both will discard uncommitted changes in your working directory.
 
 See "Reset, restore and revert" in [git(1)](git.html) for the differences between the three commands.
 
-OPTIONS
--------
+## OPTIONS
 
 &lt;commit&gt;…​  
 Commits to revert. For a more complete list of ways to spell commit names, see [gitrevisions(7)](gitrevisions.html). Sets of commits can also be given but no traversal is done by default, see [git-rev-list(1)](git-rev-list.html) and its `--no-walk` option.
 
 -e  
 --edit  
-With this option, *git revert* will let you edit the commit message prior to committing the revert. This is the default if you run the command from a terminal.
+With this option, _git revert_ will let you edit the commit message prior to committing the revert. This is the default if you run the command from a terminal.
 
 -m parent-number  
 --mainline parent-number  
@@ -40,10 +35,10 @@ Reverting a merge commit declares that you will never want the tree changes brou
 See the [revert-a-faulty-merge How-To](howto/revert-a-faulty-merge.html) for more details.
 
 --no-edit  
-With this option, *git revert* will not start the commit message editor.
+With this option, _git revert_ will not start the commit message editor.
 
 --cleanup=&lt;mode&gt;  
-This option determines how the commit message will be cleaned up before being passed on to the commit machinery. See [git-commit(1)](git-commit.html) for more details. In particular, if the *&lt;mode&gt;* is given a value of `scissors`, scissors will be appended to `MERGE_MSG` before being passed on in the case of a conflict.
+This option determines how the commit message will be cleaned up before being passed on to the commit machinery. See [git-commit(1)](git-commit.html) for more details. In particular, if the _&lt;mode&gt;_ is given a value of `scissors`, scissors will be appended to `MERGE_MSG` before being passed on in the case of a conflict.
 
 -n  
 --no-commit  
@@ -71,8 +66,7 @@ Pass the merge strategy-specific option through to the merge strategy. See [git-
 --no-rerere-autoupdate  
 Allow the rerere mechanism to update the index with the result of auto-conflict resolution if possible.
 
-SEQUENCER SUBCOMMANDS
----------------------
+## SEQUENCER SUBCOMMANDS
 
 --continue  
 Continue the operation in progress using the information in `.git/sequencer`. Can be used to continue after resolving conflicts in a failed cherry-pick or revert.
@@ -86,8 +80,7 @@ Forget about the current operation in progress. Can be used to clear the sequenc
 --abort  
 Cancel the operation and return to the pre-sequence state.
 
-EXAMPLES
---------
+## EXAMPLES
 
 `git revert HEAD~3`  
 Revert the changes specified by the fourth last commit in HEAD and create a new commit with the reverted changes.
@@ -95,13 +88,11 @@ Revert the changes specified by the fourth last commit in HEAD and create a new 
 `git revert -n master~5..master~2`  
 Revert the changes done by commits from the fifth last commit in master (included) to the third last commit in master (included), but do not create any commit with the reverted changes. The revert only modifies the working tree and the index.
 
-SEE ALSO
---------
+## SEE ALSO
 
 [git-cherry-pick(1)](git-cherry-pick.html)
 
-GIT
----
+## GIT
 
 Part of the [git(1)](git.html) suite
 

@@ -1,20 +1,16 @@
-git-cherry-pick(1) Manual Page
-==============================
+# git-cherry-pick(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-cherry-pick - Apply the changes introduced by some existing commits
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git cherry-pick [--edit] [-n] [-m parent-number] [-s] [-x] [--ff]
                       [-S[<keyid>]] <commit>…​
     git cherry-pick (--continue | --skip | --abort | --quit)
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 Given one or more existing commits, apply the change each one introduces, recording a new commit for each. This requires your working tree to be clean (no modifications from the HEAD commit).
 
@@ -32,18 +28,17 @@ When it is not obvious how to apply a change, the following happens:
 
 See [git-merge(1)](git-merge.html) for some hints on resolving such conflicts.
 
-OPTIONS
--------
+## OPTIONS
 
 &lt;commit&gt;…​  
-Commits to cherry-pick. For a more complete list of ways to spell commits, see [gitrevisions(7)](gitrevisions.html). Sets of commits can be passed but no traversal is done by default, as if the `--no-walk` option was specified, see [git-rev-list(1)](git-rev-list.html). Note that specifying a range will feed all &lt;commit&gt;…​ arguments to a single revision walk (see a later example that uses *maint master..next*).
+Commits to cherry-pick. For a more complete list of ways to spell commits, see [gitrevisions(7)](gitrevisions.html). Sets of commits can be passed but no traversal is done by default, as if the `--no-walk` option was specified, see [git-rev-list(1)](git-rev-list.html). Note that specifying a range will feed all &lt;commit&gt;…​ arguments to a single revision walk (see a later example that uses _maint master..next_).
 
 -e  
 --edit  
-With this option, *git cherry-pick* will let you edit the commit message prior to committing.
+With this option, _git cherry-pick_ will let you edit the commit message prior to committing.
 
 --cleanup=&lt;mode&gt;  
-This option determines how the commit message will be cleaned up before being passed on to the commit machinery. See [git-commit(1)](git-commit.html) for more details. In particular, if the *&lt;mode&gt;* is given a value of `scissors`, scissors will be appended to `MERGE_MSG` before being passed on in the case of a conflict.
+This option determines how the commit message will be cleaned up before being passed on to the commit machinery. See [git-commit(1)](git-commit.html) for more details. In particular, if the _&lt;mode&gt;_ is given a value of `scissors`, scissors will be appended to `MERGE_MSG` before being passed on in the case of a conflict.
 
 -x  
 When recording the commit, append a line that says "(cherry picked from commit …​)" to the original commit message in order to indicate which commit this change was cherry-picked from. This is done only for cherry picks without conflicts. Do not use this option if you are cherry-picking from your private branch because the information is useless to the recipient. If on the other hand you are cherry-picking between two publicly visible branches (e.g. backporting a fix to a maintenance branch for an older release from a development branch), adding this information can be useful.
@@ -93,8 +88,7 @@ Pass the merge strategy-specific option through to the merge strategy. See [git-
 --no-rerere-autoupdate  
 Allow the rerere mechanism to update the index with the result of auto-conflict resolution if possible.
 
-SEQUENCER SUBCOMMANDS
----------------------
+## SEQUENCER SUBCOMMANDS
 
 --continue  
 Continue the operation in progress using the information in `.git/sequencer`. Can be used to continue after resolving conflicts in a failed cherry-pick or revert.
@@ -108,8 +102,7 @@ Forget about the current operation in progress. Can be used to clear the sequenc
 --abort  
 Cancel the operation and return to the pre-sequence state.
 
-EXAMPLES
---------
+## EXAMPLES
 
 `git cherry-pick master`  
 Apply the change introduced by the commit at the tip of the master branch and create a new commit with this change.
@@ -149,13 +142,11 @@ The following sequence attempts to backport a patch, bails out because the code 
 
 4.  try to apply the change introduced by `topic^` again, spending extra time to avoid mistakes based on incorrectly matching context lines.
 
-SEE ALSO
---------
+## SEE ALSO
 
 [git-revert(1)](git-revert.html)
 
-GIT
----
+## GIT
 
 Part of the [git(1)](git.html) suite
 

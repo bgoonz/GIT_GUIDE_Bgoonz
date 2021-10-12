@@ -1,38 +1,33 @@
-git-fast-export(1) Manual Page
-==============================
+# git-fast-export(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-fast-export - Git data exporter
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git fast-export [<options>] | git fast-import
 
-DESCRIPTION
------------
+## DESCRIPTION
 
-This program dumps the given revisions in a form suitable to be piped into *git fast-import*.
+This program dumps the given revisions in a form suitable to be piped into _git fast-import_.
 
-You can use it as a human-readable bundle replacement (see [git-bundle(1)](git-bundle.html)), or as a format that can be edited before being fed to *git fast-import* in order to do history rewrites (an ability relied on by tools like *git filter-repo*).
+You can use it as a human-readable bundle replacement (see [git-bundle(1)](git-bundle.html)), or as a format that can be edited before being fed to _git fast-import_ in order to do history rewrites (an ability relied on by tools like _git filter-repo_).
 
-OPTIONS
--------
+## OPTIONS
 
 --progress=&lt;n&gt;  
-Insert *progress* statements every &lt;n&gt; objects, to be shown by *git fast-import* during import.
+Insert _progress_ statements every &lt;n&gt; objects, to be shown by _git fast-import_ during import.
 
 --signed-tags=(verbatim|warn|warn-strip|strip|abort)  
 Specify how to handle signed tags. Since any transformation after the export can change the tag names (which can also happen when excluding revisions) the signatures will not match.
 
-When asking to *abort* (which is the default), this program will die when encountering a signed tag. With *strip*, the tags will silently be made unsigned, with *warn-strip* they will be made unsigned but a warning will be displayed, with *verbatim*, they will be silently exported and with *warn*, they will be exported, but you will see a warning.
+When asking to _abort_ (which is the default), this program will die when encountering a signed tag. With _strip_, the tags will silently be made unsigned, with _warn-strip_ they will be made unsigned but a warning will be displayed, with _verbatim_, they will be silently exported and with _warn_, they will be exported, but you will see a warning.
 
 --tag-of-filtered-object=(abort|drop|rewrite)  
 Specify how to handle tags whose tagged object is filtered out. Since revisions and files to export can be limited by path, tagged objects may be filtered completely.
 
-When asking to *abort* (which is the default), this program will die when encountering such a tag. With *drop* it will omit such tags from the output. With *rewrite*, if the tagged object is a commit, it will rewrite the tag to tag an ancestor commit (via parent rewriting; see [git-rev-list(1)](git-rev-list.html))
+When asking to _abort_ (which is the default), this program will die when encountering such a tag. With _drop_ it will omit such tags from the output. With _rewrite_, if the tagged object is a commit, it will rewrite the tag to tag an ancestor commit (via parent rewriting; see [git-rev-list(1)](git-rev-list.html))
 
 -M  
 -C  
@@ -55,7 +50,7 @@ Any commits (or tags) that have already been marked will not be exported again. 
 Some old repositories have tags without a tagger. The fast-import protocol was pretty strict about that, and did not allow that. So fake a tagger to be able to fast-import the output.
 
 --use-done-feature  
-Start the stream with a *feature done* stanza, and terminate it with a *done* command.
+Start the stream with a _feature done_ stanza, and terminate it with a _done_ command.
 
 --no-data  
 Skip output of blob objects and instead refer to blobs via their original SHA-1 hash. This is useful when rewriting the directory structure or history of a repository without touching the contents of individual files. Note that the resulting stream can only be used by a repository which already contains the necessary objects.
@@ -76,16 +71,15 @@ By default, running a command such as `git fast-export master~5..master` will no
 Add an extra directive to the output for commits and blobs, `original-oid <SHA1SUM>`. While such directives will likely be ignored by importers such as git-fast-import, it may be useful for intermediary filters (e.g. for rewriting commit messages which refer to older commits, or for stripping blobs by id).
 
 --reencode=(yes|no|abort)  
-Specify how to handle `encoding` header in commit objects. When asking to *abort* (which is the default), this program will die when encountering such a commit object. With *yes*, the commit message will be re-encoded into UTF-8. With *no*, the original encoding will be preserved.
+Specify how to handle `encoding` header in commit objects. When asking to _abort_ (which is the default), this program will die when encountering such a commit object. With _yes_, the commit message will be re-encoded into UTF-8. With _no_, the original encoding will be preserved.
 
 --refspec  
 Apply the specified refspec to each ref exported. Multiple of them can be specified.
 
 \[&lt;git-rev-list-args&gt;…​\]  
-A list of arguments, acceptable to *git rev-parse* and *git rev-list*, that specifies the specific objects and references to export. For example, `master~10..master` causes the current master reference to be exported along with all objects added since its 10th ancestor commit and (unless the --reference-excluded-parents option is specified) all files common to master~9 and master~10.
+A list of arguments, acceptable to _git rev-parse_ and _git rev-list_, that specifies the specific objects and references to export. For example, `master~10..master` causes the current master reference to be exported along with all objects added since its 10th ancestor commit and (unless the --reference-excluded-parents option is specified) all files common to master~9 and master~10.
 
-EXAMPLES
---------
+## EXAMPLES
 
     $ git fast-export --all | (cd /empty/repository && git fast-import)
 
@@ -95,12 +89,11 @@ This will export the whole repository and import it into the existing empty repo
             sed "s|refs/heads/master|refs/heads/other|" |
             git fast-import
 
-This makes a new branch called *other* from *master~5..master* (i.e. if *master* has linear history, it will take the last 5 commits).
+This makes a new branch called _other_ from _master~5..master_ (i.e. if _master_ has linear history, it will take the last 5 commits).
 
-Note that this assumes that none of the blobs and commit messages referenced by that revision range contains the string *refs/heads/master*.
+Note that this assumes that none of the blobs and commit messages referenced by that revision range contains the string _refs/heads/master_.
 
-ANONYMIZING
------------
+## ANONYMIZING
 
 If the `--anonymize` option is given, git will attempt to remove all identifying information from the repository while still retaining enough of the original tree and history patterns to reproduce some bugs. The goal is that a git bug which is found on a private repository will persist in the anonymized repository, and the latter can be shared with git developers to help solve the bug.
 
@@ -136,18 +129,15 @@ Note that paths and refnames are split into tokens at slash boundaries. The comm
 
 To make referencing the final pathname simpler, you can map each path component; so if you also anonymize `subdir` to `publicdir`, then the final pathname would be `publicdir/bar.c`.
 
-LIMITATIONS
------------
+## LIMITATIONS
 
-Since *git fast-import* cannot tag trees, you will not be able to export the linux.git repository completely, as it contains a tag referencing a tree instead of a commit.
+Since _git fast-import_ cannot tag trees, you will not be able to export the linux.git repository completely, as it contains a tag referencing a tree instead of a commit.
 
-SEE ALSO
---------
+## SEE ALSO
 
 [git-fast-import(1)](git-fast-import.html)
 
-GIT
----
+## GIT
 
 Part of the [git(1)](git.html) suite
 

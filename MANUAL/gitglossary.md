@@ -1,18 +1,14 @@
-gitglossary(7) Manual Page
-==========================
+# gitglossary(7) Manual Page
 
-NAME
-----
+## NAME
 
 gitglossary - A Git Glossary
 
-SYNOPSIS
---------
+## SYNOPSIS
 
 \*
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 <span id="def_alternate_object_database"></span>alternate object database  
 Via the alternates mechanism, a [repository](#def_repository) can inherit part of its [object database](#def_object_database) from another object database, which is called an "alternate".
@@ -67,7 +63,7 @@ An [unreachable object](#def_unreachable_object) which is not [reachable](#def_r
 <span id="def_detached_HEAD"></span>detached HEAD  
 Normally the [HEAD](#def_HEAD) stores the name of a [branch](#def_branch), and commands that operate on the history HEAD represents operate on the history leading to the tip of the branch the HEAD points at. However, Git also allows you to [check out](#def_checkout) an arbitrary [commit](#def_commit) that isn’t necessarily the tip of any particular branch. The HEAD in such a state is called "detached".
 
-Note that commands that operate on the history of the current branch (e.g. `git commit` to build a new history on top of it) still work while the HEAD is detached. They update the HEAD to point at the tip of the updated history without affecting any branch. Commands that update or inquire information *about* the current branch (e.g. `git branch --set-upstream-to` that sets what remote-tracking branch the current branch integrates with) obviously do not work, as there is no (real) current branch to ask about in this state.
+Note that commands that operate on the history of the current branch (e.g. `git commit` to build a new history on top of it) still work while the HEAD is detached. They update the HEAD to point at the tip of the updated history without affecting any branch. Commands that update or inquire information _about_ the current branch (e.g. `git branch --set-upstream-to` that sets what remote-tracking branch the current branch integrates with) obviously do not work, as there is no (real) current branch to ask about in this state.
 
 <span id="def_directory"></span>directory  
 The list you get with "ls" :-)
@@ -146,10 +142,10 @@ One of the identifiers "[commit](#def_commit_object)", "[tree](#def_tree_object)
 To [merge](#def_merge) more than two [branches](#def_branch).
 
 <span id="def_origin"></span>origin  
-The default upstream [repository](#def_repository). Most projects have at least one upstream project which they track. By default *origin* is used for that purpose. New upstream updates will be fetched into [remote-tracking branches](#def_remote_tracking_branch) named origin/name-of-upstream-branch, which you can see using `git branch -r`.
+The default upstream [repository](#def_repository). Most projects have at least one upstream project which they track. By default _origin_ is used for that purpose. New upstream updates will be fetched into [remote-tracking branches](#def_remote_tracking_branch) named origin/name-of-upstream-branch, which you can see using `git branch -r`.
 
 <span id="def_overlay"></span>overlay  
-Only update and add files to the working directory, but don’t delete them, similar to how *cp -R* would update the contents in the destination directory. This is the default mode in a [checkout](#def_checkout) when checking out files from the [index](#def_index) or a [tree-ish](#def_tree-ish). In contrast, no-overlay mode also deletes tracked files not present in the source, similar to *rsync --delete*.
+Only update and add files to the working directory, but don’t delete them, similar to how _cp -R_ would update the contents in the destination directory. This is the default mode in a [checkout](#def_checkout) when checking out files from the [index](#def_index) or a [tree-ish](#def_tree-ish). In contrast, no-overlay mode also deletes tracked files not present in the source, similar to _rsync --delete_.
 
 <span id="def_pack"></span>pack  
 A set of objects which have been compressed into one file (to save space or to transmit them efficiently).
@@ -162,13 +158,13 @@ Pattern used to limit paths in Git commands.
 
 Pathspecs are used on the command line of "git ls-files", "git ls-tree", "git add", "git grep", "git diff", "git checkout", and many other commands to limit the scope of operations to some subset of the tree or worktree. See the documentation of each command for whether paths are relative to the current directory or toplevel. The pathspec syntax is as follows:
 
--   any path matches itself
+- any path matches itself
 
--   the pathspec up to the last slash represents a directory prefix. The scope of that pathspec is limited to that subtree.
+- the pathspec up to the last slash represents a directory prefix. The scope of that pathspec is limited to that subtree.
 
--   the rest of the pathspec is a pattern for the remainder of the pathname. Paths relative to the directory prefix will be matched against that pattern using fnmatch(3); in particular, *\** and *?* *can* match directory separators.
+- the rest of the pathspec is a pattern for the remainder of the pathname. Paths relative to the directory prefix will be matched against that pattern using fnmatch(3); in particular, \*\*_ and _?\* _can_ match directory separators.
 
-For example, Documentation/\*.jpg will match all .jpg files in the Documentation subtree, including Documentation/chapter\_1/figure\_1.jpg.
+For example, Documentation/\*.jpg will match all .jpg files in the Documentation subtree, including Documentation/chapter_1/figure_1.jpg.
 
 A pathspec that begins with a colon `:` has special meaning. In the short form, the leading colon `:` is followed by zero or more "magic signature" letters (which optionally is terminated by another colon `:`), and the remainder is the pattern to match against the path. The "magic signature" consists of ASCII symbols that are neither alphanumeric, glob, regex special characters nor colon. The optional colon that terminates the "magic signature" can be omitted if the pattern begins with a character that does not belong to "magic signature" symbol set and is not a colon.
 
@@ -186,34 +182,34 @@ icase
 Case insensitive match.
 
 glob  
-Git treats the pattern as a shell glob suitable for consumption by fnmatch(3) with the FNM\_PATHNAME flag: wildcards in the pattern will not match a / in the pathname. For example, "Documentation/\*.html" matches "Documentation/git.html" but not "Documentation/ppc/ppc.html" or "tools/perf/Documentation/perf.html".
+Git treats the pattern as a shell glob suitable for consumption by fnmatch(3) with the FNM_PATHNAME flag: wildcards in the pattern will not match a / in the pathname. For example, "Documentation/\*.html" matches "Documentation/git.html" but not "Documentation/ppc/ppc.html" or "tools/perf/Documentation/perf.html".
 
 Two consecutive asterisks ("`**`") in patterns matched against full pathname may have special meaning:
 
--   A leading "`**`" followed by a slash means match in all directories. For example, "`**/foo`" matches file or directory "`foo`" anywhere, the same as pattern "`foo`". "`**/foo/bar`" matches file or directory "`bar`" anywhere that is directly under directory "`foo`".
+- A leading "`**`" followed by a slash means match in all directories. For example, "`**/foo`" matches file or directory "`foo`" anywhere, the same as pattern "`foo`". "`**/foo/bar`" matches file or directory "`bar`" anywhere that is directly under directory "`foo`".
 
--   A trailing "`/**`" matches everything inside. For example, "`abc/**`" matches all files inside directory "abc", relative to the location of the `.gitignore` file, with infinite depth.
+- A trailing "`/**`" matches everything inside. For example, "`abc/**`" matches all files inside directory "abc", relative to the location of the `.gitignore` file, with infinite depth.
 
--   A slash followed by two consecutive asterisks then a slash matches zero or more directories. For example, "`a/**/b`" matches "`a/b`", "`a/x/b`", "`a/x/y/b`" and so on.
+- A slash followed by two consecutive asterisks then a slash matches zero or more directories. For example, "`a/**/b`" matches "`a/b`", "`a/x/b`", "`a/x/y/b`" and so on.
 
--   Other consecutive asterisks are considered invalid.
+- Other consecutive asterisks are considered invalid.
 
-    Glob magic is incompatible with literal magic.
+  Glob magic is incompatible with literal magic.
 
 attr  
 After `attr:` comes a space separated list of "attribute requirements", all of which must be met in order for the path to be considered a match; this is in addition to the usual non-magic pathspec pattern matching. See [gitattributes(5)](gitattributes.html).
 
 Each of the attribute requirements for the path takes one of these forms:
 
--   "`ATTR`" requires that the attribute `ATTR` be set.
+- "`ATTR`" requires that the attribute `ATTR` be set.
 
--   "`-ATTR`" requires that the attribute `ATTR` be unset.
+- "`-ATTR`" requires that the attribute `ATTR` be unset.
 
--   "`ATTR=VALUE`" requires that the attribute `ATTR` be set to the string `VALUE`.
+- "`ATTR=VALUE`" requires that the attribute `ATTR` be set to the string `VALUE`.
 
--   "`!ATTR`" requires that the attribute `ATTR` be unspecified.
+- "`!ATTR`" requires that the attribute `ATTR` be unspecified.
 
-    Note that when matching against a tree object, attributes are still obtained from working tree, not from the given tree object.
+  Note that when matching against a tree object, attributes are still obtained from working tree, not from the given tree object.
 
 exclude  
 After a path matches any non-exclude pathspec, it will be run through all exclude pathspecs (magic signature: `!` or its synonym `^`). If it matches, the path is ignored. When there is no non-exclude pathspec, the exclusion is applied to the result set as if invoked without any pathspec.
@@ -256,7 +252,7 @@ The ref namespace is hierarchical. Different subhierarchies are used for differe
 There are a few special-purpose refs that do not begin with `refs/`. The most notable example is `HEAD`.
 
 <span id="def_reflog"></span>reflog  
-A reflog shows the local "history" of a ref. In other words, it can tell you what the 3rd last revision in *this* repository was, and what was the current state in *this* repository, yesterday 9:14pm. See [git-reflog(1)](git-reflog.html) for details.
+A reflog shows the local "history" of a ref. In other words, it can tell you what the 3rd last revision in _this_ repository was, and what was the current state in _this_ repository, yesterday 9:14pm. See [git-reflog(1)](git-reflog.html) for details.
 
 <span id="def_refspec"></span>refspec  
 A "refspec" is used by [fetch](#def_fetch) and [push](#def_push) to describe the mapping between remote [ref](#def_ref) and local ref.
@@ -265,7 +261,7 @@ A "refspec" is used by [fetch](#def_fetch) and [push](#def_push) to describe the
 A [repository](#def_repository) which is used to track the same project but resides somewhere else. To communicate with remotes, see [fetch](#def_fetch) or [push](#def_push).
 
 <span id="def_remote_tracking_branch"></span>remote-tracking branch  
-A [ref](#def_ref) that is used to follow changes from another [repository](#def_repository). It typically looks like *refs/remotes/foo/bar* (indicating that it tracks a branch named *bar* in a remote named *foo*), and matches the right-hand-side of a configured fetch [refspec](#def_refspec). A remote-tracking branch should not contain direct modifications or have local commits made to it.
+A [ref](#def_ref) that is used to follow changes from another [repository](#def_repository). It typically looks like _refs/remotes/foo/bar_ (indicating that it tracks a branch named _bar_ in a remote named _foo_), and matches the right-hand-side of a configured fetch [refspec](#def_refspec). A remote-tracking branch should not contain direct modifications or have local commits made to it.
 
 <span id="def_repository"></span>repository  
 A collection of [refs](#def_ref) together with an [object database](#def_object_database) containing all objects which are [reachable](#def_reachable) from the refs, possibly accompanied by meta data from one or more [porcelains](#def_porcelain). A repository can share an object database with other repositories via [alternates mechanism](#def_alternate_object_database).
@@ -301,7 +297,7 @@ A [repository](#def_repository) that holds the history of a separate project ins
 A [repository](#def_repository) that references repositories of other projects in its working tree as [submodules](#def_submodule). The superproject knows about the names of (but does not hold copies of) commit objects of the contained submodules.
 
 <span id="def_symref"></span>symref  
-Symbolic reference: instead of containing the [SHA-1](#def_SHA1) id itself, it is of the format *ref: refs/some/thing* and when referenced, it recursively dereferences to this reference. *[HEAD](#def_HEAD)* is a prime example of a symref. Symbolic references are manipulated with the [git-symbolic-ref(1)](git-symbolic-ref.html) command.
+Symbolic reference: instead of containing the [SHA-1](#def_SHA1) id itself, it is of the format _ref: refs/some/thing_ and when referenced, it recursively dereferences to this reference. _[HEAD](#def_HEAD)_ is a prime example of a symref. Symbolic references are manipulated with the [git-symbolic-ref(1)](git-symbolic-ref.html) command.
 
 <span id="def_tag"></span>tag  
 A [ref](#def_ref) under `refs/tags/` namespace that points to an object of an arbitrary type (typically a tag points to either a [tag](#def_tag_object) or a [commit object](#def_commit_object)). In contrast to a [head](#def_head), a tag is not updated by the `commit` command. A Git tag has nothing to do with a Lisp tag (which would be called an [object type](#def_object_type) in Git’s context). A tag is most typically used to mark a particular point in the commit ancestry [chain](#def_chain).
@@ -328,18 +324,16 @@ An [index](#def_index) which contains unmerged [index entries](#def_index_entry)
 An [object](#def_object) which is not [reachable](#def_reachable) from a [branch](#def_branch), [tag](#def_tag), or any other reference.
 
 <span id="def_upstream_branch"></span>upstream branch  
-The default [branch](#def_branch) that is merged into the branch in question (or the branch in question is rebased onto). It is configured via branch.&lt;name&gt;.remote and branch.&lt;name&gt;.merge. If the upstream branch of *A* is *origin/B* sometimes we say "*A* is tracking *origin/B*".
+The default [branch](#def_branch) that is merged into the branch in question (or the branch in question is rebased onto). It is configured via branch.&lt;name&gt;.remote and branch.&lt;name&gt;.merge. If the upstream branch of _A_ is _origin/B_ sometimes we say "_A_ is tracking _origin/B_".
 
 <span id="def_working_tree"></span>working tree  
 The tree of actual checked out files. The working tree normally contains the contents of the [HEAD](#def_HEAD) commit’s tree, plus any local changes that you have made but not yet committed.
 
-SEE ALSO
---------
+## SEE ALSO
 
 [gittutorial(7)](gittutorial.html), [gittutorial-2(7)](gittutorial-2.html), [gitcvs-migration(7)](gitcvs-migration.html), [giteveryday(7)](giteveryday.html), [The Git User’s Manual](user-manual.html)
 
-GIT
----
+## GIT
 
 Part of the [git(1)](git.html) suite
 

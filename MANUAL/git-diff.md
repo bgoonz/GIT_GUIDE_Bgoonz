@@ -1,13 +1,10 @@
-git-diff(1) Manual Page
-=======================
+# git-diff(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-diff - Show changes between commits, commit and working tree, etc
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git diff [<options>] [<commit>] [--] [<path>…​]
     git diff [<options>] --cached [--merge-base] [<commit>] [--] [<path>…​]
@@ -16,48 +13,46 @@ SYNOPSIS
     git diff [<options>] <blob> <blob>
     git diff [<options>] --no-index [--] <path> <path>
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 Show changes between the working tree and the index or a tree, changes between the index and a tree, changes between two trees, changes resulting from a merge, changes between two blob objects, or changes between two files on disk.
 
-*git diff* \[&lt;options&gt;\] \[--\] \[&lt;path&gt;…​\]  
-This form is to view the changes you made relative to the index (staging area for the next commit). In other words, the differences are what you *could* tell Git to further add to the index but you still haven’t. You can stage these changes by using [git-add(1)](git-add.html).
+_git diff_ \[&lt;options&gt;\] \[--\] \[&lt;path&gt;…​\]  
+This form is to view the changes you made relative to the index (staging area for the next commit). In other words, the differences are what you _could_ tell Git to further add to the index but you still haven’t. You can stage these changes by using [git-add(1)](git-add.html).
 
-*git diff* \[&lt;options&gt;\] --no-index \[--\] &lt;path&gt; &lt;path&gt;  
+_git diff_ \[&lt;options&gt;\] --no-index \[--\] &lt;path&gt; &lt;path&gt;  
 This form is to compare the given two paths on the filesystem. You can omit the `--no-index` option when running the command in a working tree controlled by Git and at least one of the paths points outside the working tree, or when running the command outside a working tree controlled by Git. This form implies `--exit-code`.
 
-*git diff* \[&lt;options&gt;\] --cached \[--merge-base\] \[&lt;commit&gt;\] \[--\] \[&lt;path&gt;…​\]  
+_git diff_ \[&lt;options&gt;\] --cached \[--merge-base\] \[&lt;commit&gt;\] \[--\] \[&lt;path&gt;…​\]  
 This form is to view the changes you staged for the next commit relative to the named &lt;commit&gt;. Typically you would want comparison with the latest commit, so if you do not give &lt;commit&gt;, it defaults to HEAD. If HEAD does not exist (e.g. unborn branches) and &lt;commit&gt; is not given, it shows all staged changes. --staged is a synonym of --cached.
 
 If --merge-base is given, instead of using &lt;commit&gt;, use the merge base of &lt;commit&gt; and HEAD. `git diff --merge-base A` is equivalent to `git diff $(git merge-base A HEAD)`.
 
-*git diff* \[&lt;options&gt;\] &lt;commit&gt; \[--\] \[&lt;path&gt;…​\]  
+_git diff_ \[&lt;options&gt;\] &lt;commit&gt; \[--\] \[&lt;path&gt;…​\]  
 This form is to view the changes you have in your working tree relative to the named &lt;commit&gt;. You can use HEAD to compare it with the latest commit, or a branch name to compare with the tip of a different branch.
 
-*git diff* \[&lt;options&gt;\] \[--merge-base\] &lt;commit&gt; &lt;commit&gt; \[--\] \[&lt;path&gt;…​\]  
+_git diff_ \[&lt;options&gt;\] \[--merge-base\] &lt;commit&gt; &lt;commit&gt; \[--\] \[&lt;path&gt;…​\]  
 This is to view the changes between two arbitrary &lt;commit&gt;.
 
 If --merge-base is given, use the merge base of the two commits for the "before" side. `git diff --merge-base A B` is equivalent to `git diff $(git merge-base A B) B`.
 
-*git diff* \[&lt;options&gt;\] &lt;commit&gt; &lt;commit&gt;…​ &lt;commit&gt; \[--\] \[&lt;path&gt;…​\]  
+_git diff_ \[&lt;options&gt;\] &lt;commit&gt; &lt;commit&gt;…​ &lt;commit&gt; \[--\] \[&lt;path&gt;…​\]  
 This form is to view the results of a merge commit. The first listed &lt;commit&gt; must be the merge itself; the remaining two or more commits should be its parents. A convenient way to produce the desired set of revisions is to use the `^@` suffix. For instance, if `master` names a merge commit, `git diff master master^@` gives the same combined diff as `git show master`.
 
-*git diff* \[&lt;options&gt;\] &lt;commit&gt;..&lt;commit&gt; \[--\] \[&lt;path&gt;…​\]  
+_git diff_ \[&lt;options&gt;\] &lt;commit&gt;..&lt;commit&gt; \[--\] \[&lt;path&gt;…​\]  
 This is synonymous to the earlier form (without the `..`) for viewing the changes between two arbitrary &lt;commit&gt;. If &lt;commit&gt; on one side is omitted, it will have the same effect as using HEAD instead.
 
-*git diff* \[&lt;options&gt;\] &lt;commit&gt;...&lt;commit&gt; \[--\] \[&lt;path&gt;…​\]  
+_git diff_ \[&lt;options&gt;\] &lt;commit&gt;...&lt;commit&gt; \[--\] \[&lt;path&gt;…​\]  
 This form is to view the changes on the branch containing and up to the second &lt;commit&gt;, starting at a common ancestor of both &lt;commit&gt;. `git diff A...B` is equivalent to `git diff $(git merge-base A B) B`. You can omit any one of &lt;commit&gt;, which has the same effect as using HEAD instead.
 
 Just in case you are doing something exotic, it should be noted that all of the &lt;commit&gt; in the above description, except in the `--merge-base` case and in the last two forms that use `..` notations, can be any &lt;tree&gt;.
 
-For a more complete list of ways to spell &lt;commit&gt;, see "SPECIFYING REVISIONS" section in [gitrevisions(7)](gitrevisions.html). However, "diff" is about comparing two *endpoints*, not ranges, and the range notations (`<commit>..<commit>` and `<commit>...<commit>`) do not mean a range as defined in the "SPECIFYING RANGES" section in [gitrevisions(7)](gitrevisions.html).
+For a more complete list of ways to spell &lt;commit&gt;, see "SPECIFYING REVISIONS" section in [gitrevisions(7)](gitrevisions.html). However, "diff" is about comparing two _endpoints_, not ranges, and the range notations (`<commit>..<commit>` and `<commit>...<commit>`) do not mean a range as defined in the "SPECIFYING RANGES" section in [gitrevisions(7)](gitrevisions.html).
 
-*git diff* \[&lt;options&gt;\] &lt;blob&gt; &lt;blob&gt;  
+_git diff_ \[&lt;options&gt;\] &lt;blob&gt; &lt;blob&gt;  
 This form is to view the differences between the raw contents of two blob objects.
 
-OPTIONS
--------
+## OPTIONS
 
 -p  
 -u  
@@ -78,7 +73,7 @@ Output to a specific file instead of stdout.
 --output-indicator-new=&lt;char&gt;  
 --output-indicator-old=&lt;char&gt;  
 --output-indicator-context=&lt;char&gt;  
-Specify the character used to indicate new, old or context lines in the generated patch. Normally they are *+*, *-* and ' ' respectively.
+Specify the character used to indicate new, old or context lines in the generated patch. Normally they are _+_, _-_ and ' ' respectively.
 
 --raw  
 Generate the diff in raw format.
@@ -184,16 +179,16 @@ Show only names of changed files.
 Show only names and status of changed files. See the description of the `--diff-filter` option on what the status letters mean.
 
 --submodule\[=&lt;format&gt;\]  
-Specify how differences in submodules are shown. When specifying `--submodule=short` the *short* format is used. This format just shows the names of the commits at the beginning and end of the range. When `--submodule` or `--submodule=log` is specified, the *log* format is used. This format lists the commits in the range like [git-submodule(1)](git-submodule.html) `summary` does. When `--submodule=diff` is specified, the *diff* format is used. This format shows an inline diff of the changes in the submodule contents between the commit range. Defaults to `diff.submodule` or the *short* format if the config option is unset.
+Specify how differences in submodules are shown. When specifying `--submodule=short` the _short_ format is used. This format just shows the names of the commits at the beginning and end of the range. When `--submodule` or `--submodule=log` is specified, the _log_ format is used. This format lists the commits in the range like [git-submodule(1)](git-submodule.html) `summary` does. When `--submodule=diff` is specified, the _diff_ format is used. This format shows an inline diff of the changes in the submodule contents between the commit range. Defaults to `diff.submodule` or the _short_ format if the config option is unset.
 
 --color\[=&lt;when&gt;\]  
-Show colored diff. `--color` (i.e. without *=&lt;when&gt;*) is the same as `--color=always`. *&lt;when&gt;* can be one of `always`, `never`, or `auto`. It can be changed by the `color.ui` and `color.diff` configuration settings.
+Show colored diff. `--color` (i.e. without _=&lt;when&gt;_) is the same as `--color=always`. _&lt;when&gt;_ can be one of `always`, `never`, or `auto`. It can be changed by the `color.ui` and `color.diff` configuration settings.
 
 --no-color  
 Turn off colored diff. This can be used to override configuration settings. It is the same as `--color=never`.
 
 --color-moved\[=&lt;mode&gt;\]  
-Moved lines of code are colored differently. It can be changed by the `diff.colorMoved` configuration setting. The &lt;mode&gt; defaults to *no* if the option is not given and to *zebra* if the option with no mode is given. The mode must be one of:
+Moved lines of code are colored differently. It can be changed by the `diff.colorMoved` configuration setting. The &lt;mode&gt; defaults to _no_ if the option is not given and to _zebra_ if the option with no mode is given. The mode must be one of:
 
 no  
 Moved lines are not highlighted.
@@ -202,16 +197,16 @@ default
 Is a synonym for `zebra`. This may change to a more sensible mode in the future.
 
 plain  
-Any line that is added in one location and was removed in another location will be colored with *color.diff.newMoved*. Similarly *color.diff.oldMoved* will be used for removed lines that are added somewhere else in the diff. This mode picks up any moved line, but it is not very useful in a review to determine if a block of code was moved without permutation.
+Any line that is added in one location and was removed in another location will be colored with _color.diff.newMoved_. Similarly _color.diff.oldMoved_ will be used for removed lines that are added somewhere else in the diff. This mode picks up any moved line, but it is not very useful in a review to determine if a block of code was moved without permutation.
 
 blocks  
-Blocks of moved text of at least 20 alphanumeric characters are detected greedily. The detected blocks are painted using either the *color.diff.{old,new}Moved* color. Adjacent blocks cannot be told apart.
+Blocks of moved text of at least 20 alphanumeric characters are detected greedily. The detected blocks are painted using either the _color.diff.{old,new}Moved_ color. Adjacent blocks cannot be told apart.
 
 zebra  
-Blocks of moved text are detected as in *blocks* mode. The blocks are painted using either the *color.diff.{old,new}Moved* color or *color.diff.{old,new}MovedAlternative*. The change between the two colors indicates that a new block was detected.
+Blocks of moved text are detected as in _blocks_ mode. The blocks are painted using either the _color.diff.{old,new}Moved_ color or _color.diff.{old,new}MovedAlternative_. The change between the two colors indicates that a new block was detected.
 
 dimmed-zebra  
-Similar to *zebra*, but additional dimming of uninteresting parts of moved code is performed. The bordering lines of two adjacent blocks are considered interesting, the rest is uninteresting. `dimmed_zebra` is a deprecated synonym.
+Similar to _zebra_, but additional dimming of uninteresting parts of moved code is performed. The bordering lines of two adjacent blocks are considered interesting, the rest is uninteresting. `dimmed_zebra` is a deprecated synonym.
 
 --no-color-moved  
 Turn off move detection. This can be used to override configuration settings. It is the same as `--color-moved=no`.
@@ -238,7 +233,7 @@ Initially ignore any whitespace in the move detection, then group the moved code
 Do not ignore whitespace when performing move detection. This can be used to override configuration settings. It is the same as `--color-moved-ws=no`.
 
 --word-diff\[=&lt;mode&gt;\]  
-Show a word diff, using the &lt;mode&gt; to delimit changed words. By default, words are delimited by whitespace; see `--word-diff-regex` below. The &lt;mode&gt; defaults to *plain*, and must be one of:
+Show a word diff, using the &lt;mode&gt; to delimit changed words. By default, words are delimited by whitespace; see `--word-diff-regex` below. The &lt;mode&gt; defaults to _plain_, and must be one of:
 
 color  
 Highlight changed words using only colors. Implies `--color`.
@@ -285,7 +280,7 @@ Instead of the first handful of characters, show the full pre- and post-image bl
 In addition to `--full-index`, output a binary diff that can be applied with `git-apply`. Implies `--patch`.
 
 --abbrev\[=&lt;n&gt;\]  
-Instead of showing the full 40-byte hexadecimal object name in diff-raw format output and diff-tree header lines, show the shortest prefix that is at least *&lt;n&gt;* hexdigits long that uniquely refers the object. In diff-patch output format, `--full-index` takes higher precedence, i.e. if `--full-index` is specified, full blob names will be shown regardless of `--abbrev`. Non default number of digits can be specified with `--abbrev=<n>`.
+Instead of showing the full 40-byte hexadecimal object name in diff-raw format output and diff-tree header lines, show the shortest prefix that is at least _&lt;n&gt;_ hexdigits long that uniquely refers the object. In diff-patch output format, `--full-index` takes higher precedence, i.e. if `--full-index` is specified, full blob names will be shown regardless of `--abbrev`. Non default number of digits can be specified with `--abbrev=<n>`.
 
 -B\[&lt;n&gt;\]\[/&lt;m&gt;\]  
 --break-rewrites\[=\[&lt;n&gt;\]\[/&lt;m&gt;\]\]  
@@ -342,7 +337,7 @@ While `git log -G"frotz\(nitfol"` will show this commit, `git log -S"frotz\(nitf
 
 Unless `--text` is supplied patches of binary files without a textconv filter will be ignored.
 
-See the *pickaxe* entry in [gitdiffcore(7)](gitdiffcore.html) for more information.
+See the _pickaxe_ entry in [gitdiffcore(7)](gitdiffcore.html) for more information.
 
 --find-object=&lt;object-id&gt;  
 Look for differences that change the number of occurrences of the specified object. Similar to `-S`, just the argument is different in that it doesn’t search for a specific string but for a specific object id.
@@ -362,17 +357,17 @@ The output order is determined by the order of glob patterns in &lt;orderfile&gt
 
 &lt;orderfile&gt; is parsed as follows:
 
--   Blank lines are ignored, so they can be used as separators for readability.
+- Blank lines are ignored, so they can be used as separators for readability.
 
--   Lines starting with a hash ("`#`") are ignored, so they can be used for comments. Add a backslash ("`\`") to the beginning of the pattern if it starts with a hash.
+- Lines starting with a hash ("`#`") are ignored, so they can be used for comments. Add a backslash ("`\`") to the beginning of the pattern if it starts with a hash.
 
--   Each other line contains a single pattern.
+- Each other line contains a single pattern.
 
-Patterns have the same syntax and semantics as patterns used for fnmatch(3) without the FNM\_PATHNAME flag, except a pathname also matches a pattern if removing any number of the final pathname components matches the pattern. For example, the pattern "`foo*bar`" matches "`fooasdfbar`" and "`foo/bar/baz/asdf`" but not "`foobarx`".
+Patterns have the same syntax and semantics as patterns used for fnmatch(3) without the FNM_PATHNAME flag, except a pathname also matches a pattern if removing any number of the final pathname components matches the pattern. For example, the pattern "`foo*bar`" matches "`fooasdfbar`" and "`foo/bar/baz/asdf`" but not "`foobarx`".
 
 --skip-to=&lt;file&gt;  
 --rotate-to=&lt;file&gt;  
-Discard the files before the named &lt;file&gt; from the output (i.e. *skip to*), or move them to the end of the output (i.e. *rotate to*). These were invented primarily for use of the `git difftool` command, and may not be very useful otherwise.
+Discard the files before the named &lt;file&gt; from the output (i.e. _skip to_), or move them to the end of the output (i.e. _rotate to_). These were invented primarily for use of the `git difftool` command, and may not be very useful otherwise.
 
 -R  
 Swap two inputs; that is, show differences from index or on-disk file to tree contents.
@@ -411,7 +406,7 @@ Show the context between diff hunks, up to the specified number of lines, thereb
 
 -W  
 --function-context  
-Show whole function as context lines for each change. The function names are determined in the same way as `git diff` works out patch hunk headers (see *Defining a custom hunk-header* in [gitattributes(5)](gitattributes.html)).
+Show whole function as context lines for each change. The function names are determined in the same way as `git diff` works out patch hunk headers (see _Defining a custom hunk-header_ in [gitattributes(5)](gitattributes.html)).
 
 --exit-code  
 Make the program exit with codes similar to diff(1). That is, it exits with 1 if there were differences and 0 means no differences.
@@ -430,7 +425,7 @@ Disallow external diff drivers.
 Allow (or disallow) external text conversion filters to be run when comparing binary files. See [gitattributes(5)](gitattributes.html) for details. Because textconv filters are typically a one-way conversion, the resulting diff is suitable for human consumption, but cannot be applied. For this reason, textconv filters are enabled by default only for [git-diff(1)](git-diff.html) and [git-log(1)](git-log.html), but not for [git-format-patch(1)](git-format-patch.html) or diff plumbing commands.
 
 --ignore-submodules\[=&lt;when&gt;\]  
-Ignore changes to submodules in the diff generation. &lt;when&gt; can be either "none", "untracked", "dirty" or "all", which is the default. Using "none" will consider the submodule modified when it either contains untracked or modified files or its HEAD differs from the commit recorded in the superproject and can be used to override any settings of the *ignore* option in [git-config(1)](git-config.html) or [gitmodules(5)](gitmodules.html). When "untracked" is used submodules are not considered dirty when they only contain untracked content (but they are still scanned for modified content). Using "dirty" ignores all changes to the work tree of submodules, only changes to the commits stored in the superproject are shown (this was the behavior until 1.7.0). Using "all" hides all changes to submodules.
+Ignore changes to submodules in the diff generation. &lt;when&gt; can be either "none", "untracked", "dirty" or "all", which is the default. Using "none" will consider the submodule modified when it either contains untracked or modified files or its HEAD differs from the commit recorded in the superproject and can be used to override any settings of the _ignore_ option in [git-config(1)](git-config.html) or [gitmodules(5)](gitmodules.html). When "untracked" is used submodules are not considered dirty when they only contain untracked content (but they are still scanned for modified content). Using "dirty" ignores all changes to the work tree of submodules, only changes to the commits stored in the superproject are shown (this was the behavior until 1.7.0). Using "all" hides all changes to submodules.
 
 --src-prefix=&lt;prefix&gt;  
 Show the given source prefix instead of "a/".
@@ -460,8 +455,7 @@ Omit diff output for unmerged entries and just show "Unmerged". Can be used only
 &lt;path&gt;…​  
 The &lt;paths&gt; parameters, when given, are used to limit the diff to the named paths (you can give directory names and get diff for all files under them).
 
-Raw output format
------------------
+## Raw output format
 
 The raw output format from "git-diff-index", "git-diff-tree", "git-diff-files" and "git diff --raw" are very similar.
 
@@ -524,21 +518,21 @@ That is, from the left to the right:
 
 Possible status letters are:
 
--   A: addition of a file
+- A: addition of a file
 
--   C: copy of a file into a new one
+- C: copy of a file into a new one
 
--   D: deletion of a file
+- D: deletion of a file
 
--   M: modification of the contents or mode of a file
+- M: modification of the contents or mode of a file
 
--   R: renaming of a file
+- R: renaming of a file
 
--   T: change in the type of the file
+- T: change in the type of the file
 
--   U: file is unmerged (you must complete the merge before it can be committed)
+- U: file is unmerged (you must complete the merge before it can be committed)
 
--   X: "unknown" change type (most probably a bug, please report it)
+- X: "unknown" change type (most probably a bug, please report it)
 
 Status letters C and R are always followed by a score (denoting the percentage of similarity between the source and target of the move or copy). Status letter M may be followed by a score (denoting the percentage of dissimilarity) for file rewrites.
 
@@ -550,8 +544,7 @@ Example:
 
 Without the `-z` option, pathnames with "unusual" characters are quoted as explained for the configuration variable `core.quotePath` (see [git-config(1)](git-config.html)). Using `-z` the filename is output verbatim and the line is terminated by a NUL byte.
 
-diff format for merges
-----------------------
+## diff format for merges
 
 "git-diff-tree", "git-diff-files" and "git-diff --raw" can take `-c` or `--cc` option to generate diff output also for merge commits. The output differs from the format described above in the following way:
 
@@ -579,10 +572,9 @@ Examples when `--combined-all-paths` added to either `-c` or `--cc`:
     ::100755 100755 100755 52b7a2d 6d1ac04 d2ac7d7 RM       foo.sh  bar.sh  bar.sh
     ::100644 100644 100644 e07d6c5 9042e82 ee91881 RR       fooey.c fuey.c  phooey.c
 
-Note that *combined diff* lists only files which were modified from all parents.
+Note that _combined diff_ lists only files which were modified from all parents.
 
-Generating patch text with -p
------------------------------
+## Generating patch text with -p
 
 Running [git-diff(1)](git-diff.html), [git-log(1)](git-log.html), [git-show(1)](git-show.html), [git-diff-index(1)](git-diff-index.html), [git-diff-tree(1)](git-diff-tree.html), or [git-diff-files(1)](git-diff-files.html) with the `-p` option produces patch text. You can customize the creation of patch text via the `GIT_EXTERNAL_DIFF` and the `GIT_DIFF_OPTS` environment variables (see [git(1)](git.html)).
 
@@ -592,7 +584,7 @@ What the -p option produces is slightly different from the traditional diff form
 
         diff --git a/file1 b/file2
 
-    The `a/` and `b/` filenames are the same unless rename/copy is involved. Especially, even for a creation or a deletion, `/dev/null` is *not* used in place of the `a/` or `b/` filenames.
+    The `a/` and `b/` filenames are the same unless rename/copy is involved. Especially, even for a creation or a deletion, `/dev/null` is _not_ used in place of the `a/` or `b/` filenames.
 
     When rename/copy is involved, `file1` and `file2` show the name of the source file of the rename/copy and the name of the file that rename/copy produces, respectively.
 
@@ -629,10 +621,9 @@ What the -p option produces is slightly different from the traditional diff form
         rename from b
         rename to a
 
-Combined diff format
---------------------
+## Combined diff format
 
-Any diff-generating command can take the `-c` or `--cc` option to produce a *combined diff* when showing a merge. This is the default format when showing merges with [git-diff(1)](git-diff.html) or [git-show(1)](git-show.html). Note also that you can give suitable `--diff-merges` option to any of these commands to force generation of diffs in specific format.
+Any diff-generating command can take the `-c` or `--cc` option to produce a _combined diff_ when showing a merge. This is the default format when showing merges with [git-diff(1)](git-diff.html) or [git-show(1)](git-show.html). Note also that you can give suitable `--diff-merges` option to any of these commands to force generation of diffs in specific format.
 
 A "combined diff" format looks like this:
 
@@ -686,7 +677,7 @@ A "combined diff" format looks like this:
         --- a/file
         +++ b/file
 
-    Similar to two-line header for traditional *unified* diff format, `/dev/null` is used to signal created or deleted files.
+    Similar to two-line header for traditional _unified_ diff format, `/dev/null` is used to signal created or deleted files.
 
     However, if the --combined-all-paths option is provided, instead of a two-line from-file/to-file you get a N+1 line from-file/to-file header, where N is the number of parents in the merge commit
 
@@ -697,13 +688,13 @@ A "combined diff" format looks like this:
 
     This extended format can be useful if rename or copy detection is active, to allow you to see the original name of the file in different parents.
 
-4.  Chunk header format is modified to prevent people from accidentally feeding it to `patch -p1`. Combined diff format was created for review of merge commit changes, and was not meant to be applied. The change is similar to the change in the extended *index* header:
+4.  Chunk header format is modified to prevent people from accidentally feeding it to `patch -p1`. Combined diff format was created for review of merge commit changes, and was not meant to be applied. The change is similar to the change in the extended _index_ header:
 
         @@@ <from-file-range> <from-file-range> <to-file-range> @@@
 
     There are (number of parents + 1) `@` characters in the chunk header for combined diff format.
 
-Unlike the traditional *unified* diff format, which shows two files A and B with a single column that has `-` (minus — appears in A but removed in B), `+` (plus — missing in A but added to B), or `" "` (space — unchanged) prefix, this format compares two or more files file1, file2,…​ with one file X, and shows how X differs from each of fileN. One column for each of fileN is prepended to the output line to note how X’s line is different from it.
+Unlike the traditional _unified_ diff format, which shows two files A and B with a single column that has `-` (minus — appears in A but removed in B), `+` (plus — missing in A but added to B), or `" "` (space — unchanged) prefix, this format compares two or more files file1, file2,…​ with one file X, and shows how X differs from each of fileN. One column for each of fileN is prepended to the output line to note how X’s line is different from it.
 
 A `-` character in the column N means that the line appears in fileN but it does not appear in the result. A `+` character in the column N means that the line appears in the result, and fileN does not have that line (in other words, the line was added, from the point of view of that parent).
 
@@ -711,8 +702,7 @@ In the above example output, the function signature was changed from both files 
 
 When shown by `git diff-tree -c`, it compares the parents of a merge commit with the merge result (i.e. file1..fileN are the parents). When shown by `git diff-files -c`, it compares the two unresolved merge parents with the working tree file (i.e. file1 is stage 2 aka "our version", file2 is stage 3 aka "their version").
 
-other diff formats
-------------------
+## other diff formats
 
 The `--summary` option describes newly added, deleted, renamed and copied files. The `--stat` option adds diffstat(1) graph to the output. These options can be combined with other options, such as `-p`, and are meant for human consumption.
 
@@ -766,13 +756,12 @@ That is:
 
 The extra `NUL` before the preimage path in renamed case is to allow scripts that read the output to tell if the current record being read is a single-path record or a rename/copy record without reading ahead. After reading added and deleted lines, reading up to `NUL` would yield the pathname, but if that is `NUL`, the record will show two paths.
 
-EXAMPLES
---------
+## EXAMPLES
 
 Various ways to check your working tree  
-    $ git diff            (1)
-    $ git diff --cached   (2)
-    $ git diff HEAD       (3)
+ $ git diff (1)
+$ git diff --cached (2)
+$ git diff HEAD (3)
 
 1.  Changes in the working tree not yet staged for the next commit.
 
@@ -781,9 +770,9 @@ Various ways to check your working tree
 3.  Changes in the working tree since your last commit; what you would be committing if you run `git commit -a`
 
 Comparing with arbitrary commits  
-    $ git diff test            (1)
-    $ git diff HEAD -- ./test  (2)
-    $ git diff HEAD^ HEAD      (3)
+ $ git diff test (1)
+$ git diff HEAD -- ./test (2)
+$ git diff HEAD^ HEAD (3)
 
 1.  Instead of using the tip of the current branch, compare with the tip of "test" branch.
 
@@ -792,9 +781,9 @@ Comparing with arbitrary commits
 3.  Compare the version before the last commit and the last commit.
 
 Comparing branches  
-    $ git diff topic master    (1)
-    $ git diff topic..master   (2)
-    $ git diff topic...master  (3)
+ $ git diff topic master (1)
+$ git diff topic..master (2)
+$ git diff topic...master (3)
 
 1.  Changes between the tips of the topic and the master branches.
 
@@ -803,9 +792,9 @@ Comparing branches
 3.  Changes that occurred on the master branch since when the topic branch was started off it.
 
 Limiting the diff output  
-    $ git diff --diff-filter=MRC            (1)
-    $ git diff --name-status                (2)
-    $ git diff arch/i386 include/asm-i386   (3)
+ $ git diff --diff-filter=MRC (1)
+$ git diff --name-status (2)
+$ git diff arch/i386 include/asm-i386 (3)
 
 1.  Show only modification, rename, and copy, but not addition or deletion.
 
@@ -814,20 +803,18 @@ Limiting the diff output
 3.  Limit diff output to named subtrees.
 
 Munging the diff output  
-    $ git diff --find-copies-harder -B -C  (1)
-    $ git diff -R                          (2)
+ $ git diff --find-copies-harder -B -C (1)
+$ git diff -R (2)
 
 1.  Spend extra cycles to find renames, copies and complete rewrites (very expensive).
 
 2.  Output diff in reverse.
 
-SEE ALSO
---------
+## SEE ALSO
 
 diff(1), [git-difftool(1)](git-difftool.html), [git-log(1)](git-log.html), [gitdiffcore(7)](gitdiffcore.html), [git-format-patch(1)](git-format-patch.html), [git-apply(1)](git-apply.html), [git-show(1)](git-show.html)
 
-GIT
----
+## GIT
 
 Part of the [git(1)](git.html) suite
 

@@ -1,26 +1,21 @@
-git-fmt-merge-msg(1) Manual Page
-================================
+# git-fmt-merge-msg(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-fmt-merge-msg - Produce a merge commit message
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git fmt-merge-msg [-m <message>] [--log[=<n>] | --no-log]
     git fmt-merge-msg [-m <message>] [--log[=<n>] | --no-log] -F <file>
 
-DESCRIPTION
------------
+## DESCRIPTION
 
-Takes the list of merged objects on stdin and produces a suitable commit message to be used for the merge commit, usually to be passed as the *&lt;merge-message&gt;* argument of *git merge*.
+Takes the list of merged objects on stdin and produces a suitable commit message to be used for the merge commit, usually to be passed as the _&lt;merge-message&gt;_ argument of _git merge_.
 
-This command is intended mostly for internal use by scripts automatically invoking *git merge*.
+This command is intended mostly for internal use by scripts automatically invoking _git merge_.
 
-OPTIONS
--------
+## OPTIONS
 
 --log\[=&lt;n&gt;\]  
 In addition to branch names, populate the log message with one-line descriptions from the actual commits that are being merged. At most &lt;n&gt; commits from each merge parent will be used (20 if &lt;n&gt; is omitted). This overrides the `merge.log` configuration variable.
@@ -39,8 +34,7 @@ Use &lt;message&gt; instead of the branch names for the first line of the log me
 --file &lt;file&gt;  
 Take the list of merged objects from &lt;file&gt; instead of stdin.
 
-CONFIGURATION
--------------
+## CONFIGURATION
 
 merge.branchdesc  
 In addition to branch names, populate the log message with the branch description text associated with them. Defaults to false.
@@ -56,21 +50,18 @@ An element with an empty value can be used to clear the list of globs accumulate
 merge.summary  
 Synonym to `merge.log`; this is deprecated and will be removed in the future.
 
-EXAMPLES
---------
+## EXAMPLES
 
     $ git fetch origin master
     $ git fmt-merge-msg --log <$GIT_DIR/FETCH_HEAD
 
 Print a log message describing a merge of the "master" branch from the "origin" remote.
 
-SEE ALSO
---------
+## SEE ALSO
 
 [git-merge(1)](git-merge.html)
 
-GIT
----
+## GIT
 
 Part of the [git(1)](git.html) suite
 

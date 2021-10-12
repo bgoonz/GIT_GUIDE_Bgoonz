@@ -1,24 +1,19 @@
-git-hash-object(1) Manual Page
-==============================
+# git-hash-object(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-hash-object - Compute object ID and optionally creates a blob from a file
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git hash-object [-t <type>] [-w] [--path=<file>|--no-filters] [--stdin [--literally]] [--] <file>…​
     git hash-object [-t <type>] [-w] --stdin-paths [--no-filters]
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 Computes the object ID value for an object with specified type with the contents of the named file (which can be outside of the work tree), and optionally writes the resulting object into the object database. Reports its object ID to its standard output. When &lt;type&gt; is not specified, it defaults to "blob".
 
-OPTIONS
--------
+## OPTIONS
 
 -t &lt;type&gt;  
 Specify the type (default: "blob").
@@ -41,8 +36,7 @@ Hash the contents as is, ignoring any input filter that would have been chosen b
 --literally  
 Allow `--stdin` to hash any garbage into a loose object which might not otherwise pass standard object parsing or git-fsck checks. Useful for stress-testing Git itself or reproducing characteristics of corrupt or bogus objects encountered in the wild.
 
-GIT
----
+## GIT
 
 Part of the [git(1)](git.html) suite
 

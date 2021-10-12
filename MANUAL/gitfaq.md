@@ -1,23 +1,18 @@
-gitfaq(7) Manual Page
-=====================
+# gitfaq(7) Manual Page
 
-NAME
-----
+## NAME
 
 gitfaq - Frequently asked questions about using Git
 
-SYNOPSIS
---------
+## SYNOPSIS
 
 gitfaq
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 The examples in this FAQ assume a standard POSIX shell, like `bash` or `dash`, and a user, A U Thor, who has the account `author` on the hosting provider `git.example.org`.
 
-Configuration
--------------
+## Configuration
 
 What should I put in `user.name`?  
 You should put your personal name, generally a form using a given name and family name. For example, the current maintainer of Git uses "Junio C Hamano". This will be the name portion that is stored in every commit you make.
@@ -42,8 +37,7 @@ If you want to configure an editor specifically for Git, you can either set the 
 
 Note that in all cases, the editor value will be passed to the shell, so any arguments containing spaces should be appropriately quoted. Additionally, if your editor normally detaches from the terminal when invoked, you should specify it with an argument that makes it not do that, or else Git will not see any changes. An example of a configuration addressing both of these issues on Windows would be the configuration `"C:\Program Files\Vim\gvim.exe" --nofork`, which quotes the filename with spaces and specifies the `--nofork` option to avoid backgrounding the process.
 
-Credentials
------------
+## Credentials
 
 How do I specify my credentials when pushing over HTTP?  
 The easiest way to do this is to use a credential helper via the `credential.helper` configuration. Most systems provide a standard choice to integrate with the system credential manager. For example, Git for Windows provides the `wincred` credential manager, macOS has the `osxkeychain` credential manager, and Unix systems with a standard desktop environment can use the `libsecret` credential manager. All of these store credentials in an encrypted store to keep your passwords or tokens secure.
@@ -90,8 +84,7 @@ Most hosting providers use a single SSH account for pushing; that is, all users 
 
 Then, you can adjust your push URL to use `git@example_author` or `git@example_committer` instead of `git@example.org` (e.g., `git remote set-url git@example_author:org1/project1.git`).
 
-Common Issues
--------------
+## Common Issues
 
 I’ve made a mistake in the last commit. How do I change it?  
 You can make the appropriate change to your working tree, run `git add <file>` or `git rm <file>`, as appropriate, to stage it, and then `git commit --amend`. Your change will be included in the commit, and you’ll be prompted to edit the commit message again; if you wish to use the original message verbatim, you can use the `--no-edit` option to `git commit` in addition, or just save and quit when your editor opens.
@@ -112,27 +105,25 @@ A `gitignore` file ensures that certain file(s) which are not tracked by Git rem
 How do I know if I want to do a fetch or a pull?  
 A fetch stores a copy of the latest changes from the remote repository, without modifying the working tree or current branch. You can then at your leisure inspect, merge, rebase on top of, or ignore the upstream changes. A pull consists of a fetch followed immediately by either a merge or rebase. See [git-pull(1)](git-pull.html).
 
-Merging and Rebasing
---------------------
+## Merging and Rebasing
 
 What kinds of problems can occur when merging long-lived branches with squash merges?  
 In general, there are a variety of problems that can occur when using squash merges to merge two branches multiple times. These can include seeing extra commits in `git log` output, with a GUI, or when using the `...` notation to express a range, as well as the possibility of needing to re-resolve conflicts again and again.
 
-When Git does a normal merge between two branches, it considers exactly three points: the two branches and a third commit, called the *merge base*, which is usually the common ancestor of the commits. The result of the merge is the sum of the changes between the merge base and each head. When you merge two branches with a regular merge commit, this results in a new commit which will end up as a merge base when they’re merged again, because there is now a new common ancestor. Git doesn’t have to consider changes that occurred before the merge base, so you don’t have to re-resolve any conflicts you resolved before.
+When Git does a normal merge between two branches, it considers exactly three points: the two branches and a third commit, called the _merge base_, which is usually the common ancestor of the commits. The result of the merge is the sum of the changes between the merge base and each head. When you merge two branches with a regular merge commit, this results in a new commit which will end up as a merge base when they’re merged again, because there is now a new common ancestor. Git doesn’t have to consider changes that occurred before the merge base, so you don’t have to re-resolve any conflicts you resolved before.
 
 When you perform a squash merge, a merge commit isn’t created; instead, the changes from one side are applied as a regular commit to the other side. This means that the merge base for these branches won’t have changed, and so when Git goes to perform its next merge, it considers all of the changes that it considered the last time plus the new changes. That means any conflicts may need to be re-resolved. Similarly, anything using the `...` notation in `git diff`, `git log`, or a GUI will result in showing all of the changes since the original merge base.
 
 As a consequence, if you want to merge two long-lived branches repeatedly, it’s best to always use a regular merge commit.
 
 If I make a change on two branches but revert it on one, why does the merge of those branches include the change?  
-By default, when Git does a merge, it uses a strategy called the recursive strategy, which does a fancy three-way merge. In such a case, when Git performs the merge, it considers exactly three points: the two heads and a third point, called the *merge base*, which is usually the common ancestor of those commits. Git does not consider the history or the individual commits that have happened on those branches at all.
+By default, when Git does a merge, it uses a strategy called the recursive strategy, which does a fancy three-way merge. In such a case, when Git performs the merge, it considers exactly three points: the two heads and a third point, called the _merge base_, which is usually the common ancestor of those commits. Git does not consider the history or the individual commits that have happened on those branches at all.
 
 As a result, if both sides have a change and one side has reverted that change, the result is to include the change. This is because the code has changed on one side and there is no net change on the other, and in this scenario, Git adopts the change.
 
 If this is a problem for you, you can do a rebase instead, rebasing the branch with the revert onto the other branch. A rebase in this scenario will revert the change, because a rebase applies each individual commit, including the revert. Note that rebases rewrite history, so you should avoid rebasing published branches unless you’re sure you’re comfortable with that. See the NOTES section in [git-rebase(1)](git-rebase.html) for more details.
 
-Hooks
------
+## Hooks
 
 How do I use hooks to prevent users from making certain changes?  
 The only safe place to make these changes is on the remote repository (i.e., the Git server), usually in the `pre-receive` hook or in a continuous integration (CI) system. These are the locations in which policy can be enforced effectively.
@@ -141,8 +132,7 @@ It’s common to try to use `pre-commit` hooks (or, for commit messages, `commit
 
 In addition, some advanced users find `pre-commit` hooks to be an impediment to workflows that use temporary commits to stage work in progress or that create fixup commits, so it’s better to push these kinds of checks to the server anyway.
 
-Cross-Platform Issues
----------------------
+## Cross-Platform Issues
 
 I’m on Windows and my text files are detected as binary.  
 Git works best when you store text files as UTF-8. Many programs on Windows support UTF-8, but some do not and only use the little-endian UTF-16 format, which Git detects as binary. If you can’t use UTF-8 with your programs, you can specify a working tree encoding that indicates which encoding your files should be checked out with, while still storing these files as UTF-8 in the repository. This allows tools like [git-diff(1)](git-diff.html) to work as expected, while still allowing your tools to work.
@@ -195,8 +185,7 @@ We also recommend setting a [gitattributes(5)](gitattributes.html) file to expli
 
 These settings help tools pick the right format for output such as patches and result in files being checked out in the appropriate line ending for the platform.
 
-GIT
----
+## GIT
 
 Part of the [git(1)](git.html) suite
 

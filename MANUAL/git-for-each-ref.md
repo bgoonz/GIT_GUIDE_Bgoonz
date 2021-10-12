@@ -1,13 +1,10 @@
-git-for-each-ref(1) Manual Page
-===============================
+# git-for-each-ref(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-for-each-ref - Output information on each ref
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git for-each-ref [--count=<count>] [--shell|--perl|--python|--tcl]
                        [(--sort=<key>)…​] [--format=<format>] [<pattern>…​]
@@ -15,13 +12,11 @@ SYNOPSIS
                        [--merged[=<object>]] [--no-merged[=<object>]]
                        [--contains[=<object>]] [--no-contains[=<object>]]
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 Iterate over all refs that match `<pattern>` and show them according to the given `<format>`, after sorting them according to the given set of `<key>`. If `<count>` is given, stop after showing that many refs. The interpolated values in `<format>` can optionally be quoted as string literals in the specified host language allowing their direct evaluation in that language.
 
-OPTIONS
--------
+## OPTIONS
 
 &lt;pattern&gt;…​  
 If one or more patterns are given, only refs are shown that match against at least one pattern, either using fnmatch(3) or literally, in the latter case matching completely or from the beginning up to a slash.
@@ -62,15 +57,14 @@ Only list refs which don’t contain the specified commit (HEAD if not specified
 --ignore-case  
 Sorting and filtering refs are case insensitive.
 
-FIELD NAMES
------------
+## FIELD NAMES
 
 Various values from structured fields in referenced objects can be used to interpolate into the resulting output, or as sort keys.
 
 For all objects, the following names can be used:
 
 refname  
-The name of the ref (the part after $GIT\_DIR/). For a non-ambiguous short name of the ref append `:short`. The option core.warnAmbiguousRefs is used to select the strict abbreviation mode. If `lstrip=<N>` (`rstrip=<N>`) is appended, strips `<N>` slash-separated path components from the front (back) of the refname (e.g. `%(refname:lstrip=2)` turns `refs/tags/foo` into `foo` and `%(refname:rstrip=2)` turns `refs/tags/foo` into `refs`). If `<N>` is a negative number, strip as many path components as necessary from the specified end to leave `-<N>` path components (e.g. `%(refname:lstrip=-2)` turns `refs/tags/foo` into `tags/foo` and `%(refname:rstrip=-1)` turns `refs/tags/foo` into `refs`). When the ref does not have enough components, the result becomes an empty string if stripping with positive &lt;N&gt;, or it becomes the full refname if stripping with negative &lt;N&gt;. Neither is an error.
+The name of the ref (the part after $GIT_DIR/). For a non-ambiguous short name of the ref append `:short`. The option core.warnAmbiguousRefs is used to select the strict abbreviation mode. If `lstrip=<N>` (`rstrip=<N>`) is appended, strips `<N>` slash-separated path components from the front (back) of the refname (e.g. `%(refname:lstrip=2)` turns `refs/tags/foo` into `foo` and `%(refname:rstrip=2)` turns `refs/tags/foo` into `refs`). If `<N>` is a negative number, strip as many path components as necessary from the specified end to leave `-<N>` path components (e.g. `%(refname:lstrip=-2)` turns `refs/tags/foo` into `tags/foo` and `%(refname:rstrip=-1)` turns `refs/tags/foo` into `refs`). When the ref does not have enough components, the result becomes an empty string if stripping with positive &lt;N&gt;, or it becomes the full refname if stripping with negative &lt;N&gt;. Neither is an error.
 
 `strip` can be used as a synonym to `lstrip`.
 
@@ -78,10 +72,10 @@ objecttype
 The type of the object (`blob`, `tree`, `commit`, `tag`).
 
 objectsize  
-The size of the object (the same as *git cat-file -s* reports). Append `:disk` to get the size, in bytes, that the object takes up on disk. See the note about on-disk sizes in the `CAVEATS` section below.
+The size of the object (the same as _git cat-file -s_ reports). Append `:disk` to get the size, in bytes, that the object takes up on disk. See the note about on-disk sizes in the `CAVEATS` section below.
 
 objectname  
-The object name (aka SHA-1). For a non-ambiguous abbreviation of the object name append `:short`. For an abbreviation of the object name with desired length append `:short=<length>`, where the minimum length is MINIMUM\_ABBREV. The length may be exceeded to ensure unique object names.
+The object name (aka SHA-1). For a non-ambiguous abbreviation of the object name append `:short`. For an abbreviation of the object name with desired length append `:short=<length>`, where the minimum length is MINIMUM_ABBREV. The length may be exceeded to ensure unique object names.
 
 deltabase  
 This expands to the object name of the delta base for the given object, if it is stored as a delta. Otherwise it expands to the null object name (all zeroes).
@@ -97,7 +91,7 @@ push
 The name of a local ref which represents the `@{push}` location for the displayed ref. Respects `:short`, `:lstrip`, `:rstrip`, `:track`, `:trackshort`, `:remotename`, and `:remoteref` options as `upstream` does. Produces an empty string if no `@{push}` ref is configured.
 
 HEAD  
-*\** if HEAD matches current ref (the checked out branch), ' ' otherwise.
+\*\*\* if HEAD matches current ref (the checked out branch), ' ' otherwise.
 
 color  
 Change output color. Followed by `:<colorname>`, where color names are described under Values in the "CONFIGURATION FILE" section of [git-config(1)](git-config.html). For example, `%(color:bold red)`.
@@ -106,7 +100,7 @@ align
 Left-, middle-, or right-align the content between %(align:…​) and %(end). The "align:" is followed by `width=<width>` and `position=<position>` in any order separated by a comma, where the `<position>` is either left, right or middle, default being left and `<width>` is the total length of the content with alignment. For brevity, the "width=" and/or "position=" prefixes may be omitted, and bare &lt;width&gt; and &lt;position&gt; used instead. For instance, `%(align:<width>,<position>)`. If the contents length is more than the width then no alignment is performed. If used with `--quote` everything in between %(align:…​) and %(end) is quoted, but if nested then only the topmost level performs quoting.
 
 if  
-Used as %(if)…​%(then)…​%(end) or %(if)…​%(then)…​%(else)…​%(end). If there is an atom with value or string literal after the %(if) then everything after the %(then) is printed, else if the %(else) atom is used, then everything after %(else) is printed. We ignore space when evaluating the string before %(then), this is useful when we use the %(HEAD) atom which prints either "\*" or " " and we want to apply the *if* condition only on the *HEAD* ref. Append ":equals=&lt;string&gt;" or ":notequals=&lt;string&gt;" to compare the value between the %(if:…​) and %(then) atoms with the given string.
+Used as %(if)…​%(then)…​%(end) or %(if)…​%(then)…​%(else)…​%(end). If there is an atom with value or string literal after the %(if) then everything after the %(then) is printed, else if the %(else) atom is used, then everything after %(else) is printed. We ignore space when evaluating the string before %(then), this is useful when we use the %(HEAD) atom which prints either "\*" or " " and we want to apply the _if_ condition only on the _HEAD_ ref. Append ":equals=&lt;string&gt;" or ":notequals=&lt;string&gt;" to compare the value between the %(if:…​) and %(then) atoms with the given string.
 
 symref  
 The ref which the given symbolic ref refers to. If not a symbolic ref, nothing is printed. Respects the `:short`, `:lstrip` and `:rstrip` options in the same way as `refname` above.
@@ -151,8 +145,7 @@ Some atoms like %(align) and %(if) always require a matching %(end). We call the
 
 When a scripting language specific quoting is in effect, everything between a top-level opening atom and its matching %(end) is evaluated according to the semantics of the opening atom and only its result from the top-level is quoted.
 
-EXAMPLES
---------
+## EXAMPLES
 
 An example directly producing formatted text. Show the most recent 3 tagged commits:
 
@@ -236,27 +229,23 @@ An example to show the usage of %(if)…​%(then)…​%(end). This prints the 
 
     git for-each-ref --format="%(refname)%(if)%(authorname)%(then) Authored by: %(authorname)%(end)"
 
-CAVEATS
--------
+## CAVEATS
 
 Note that the sizes of objects on disk are reported accurately, but care should be taken in drawing conclusions about which refs or objects are responsible for disk usage. The size of a packed non-delta object may be much larger than the size of objects which delta against it, but the choice of which object is the base and which is the delta is arbitrary and is subject to change during a repack.
 
 Note also that multiple copies of an object may be present in the object database; in this case, it is undefined which copy’s size or delta base will be reported.
 
-NOTES
------
+## NOTES
 
 When combining multiple `--contains` and `--no-contains` filters, only references that contain at least one of the `--contains` commits and contain none of the `--no-contains` commits are shown.
 
 When combining multiple `--merged` and `--no-merged` filters, only references that are reachable from at least one of the `--merged` commits and from none of the `--no-merged` commits are shown.
 
-SEE ALSO
---------
+## SEE ALSO
 
 [git-show-ref(1)](git-show-ref.html)
 
-GIT
----
+## GIT
 
 Part of the [git(1)](git.html) suite
 

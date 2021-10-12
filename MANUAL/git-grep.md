@@ -1,13 +1,10 @@
-git-grep(1) Manual Page
-=======================
+# git-grep(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-grep - Print lines matching a pattern
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git grep [-a | --text] [-I] [--textconv] [-i | --ignore-case] [-w | --word-regexp]
                [-v | --invert-match] [-h|-H] [--full-name]
@@ -30,13 +27,11 @@ SYNOPSIS
                [ [--[no-]exclude-standard] [--cached | --no-index | --untracked] | <tree>…​]
                [--] [<pathspec>…​]
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 Look for specified patterns in the tracked files in the work tree, blobs registered in the index file, or blobs in given tree objects. Patterns are lists of one or more search expressions separated by newline characters. An empty string as search expression matches all lines.
 
-CONFIGURATION
--------------
+## CONFIGURATION
 
 grep.lineNumber  
 If set to true, enable `-n` option by default.
@@ -45,10 +40,10 @@ grep.column
 If set to true, enable the `--column` option by default.
 
 grep.patternType  
-Set the default matching behavior. Using a value of *basic*, *extended*, *fixed*, or *perl* will enable the `--basic-regexp`, `--extended-regexp`, `--fixed-strings`, or `--perl-regexp` option accordingly, while the value *default* will return to the default matching behavior.
+Set the default matching behavior. Using a value of _basic_, _extended_, _fixed_, or _perl_ will enable the `--basic-regexp`, `--extended-regexp`, `--fixed-strings`, or `--perl-regexp` option accordingly, while the value _default_ will return to the default matching behavior.
 
 grep.extendedRegexp  
-If set to true, enable `--extended-regexp` option by default. This option is ignored when the `grep.patternType` option is set to a value other than *default*.
+If set to true, enable `--extended-regexp` option by default. This option is ignored when the `grep.patternType` option is set to a value other than _default_.
 
 grep.threads  
 Number of grep worker threads to use. If unset (or set to 0), Git will use as many threads as the number of logical cores available.
@@ -59,8 +54,7 @@ If set to true, enable `--full-name` option by default.
 grep.fallbackToNoIndex  
 If set to true, fall back to git grep --no-index if git grep is executed outside of a git repository. Defaults to false.
 
-OPTIONS
--------
+## OPTIONS
 
 --cached  
 Instead of searching tracked files in the working tree, search blobs registered in the index file.
@@ -150,11 +144,11 @@ Prefix the 1-indexed byte-offset of the first match from the start of the matchi
 --name-only  
 -L  
 --files-without-match  
-Instead of showing every matched line, show only the names of files that contain (or do not contain) matches. For better compatibility with *git diff*, `--name-only` is a synonym for `--files-with-matches`.
+Instead of showing every matched line, show only the names of files that contain (or do not contain) matches. For better compatibility with _git diff_, `--name-only` is a synonym for `--files-with-matches`.
 
 -O\[&lt;pager&gt;\]  
 --open-files-in-pager\[=&lt;pager&gt;\]  
-Open the matching files in the pager (not the output of *grep*). If the pager happens to be "less" or "vi", and the user specified only one pattern, the first file is positioned at the first match automatically. The `pager` argument is optional; if specified, it must be stuck to the option without a space. If `pager` is unspecified, the default pager will be used (see `core.pager` in [git-config(1)](git-config.html)).
+Open the matching files in the pager (not the output of _grep_). If the pager happens to be "less" or "vi", and the user specified only one pattern, the first file is positioned at the first match automatically. The `pager` argument is optional; if specified, it must be stuck to the option without a space. If `pager` is unspecified, the default pager will be used (see `core.pager` in [git-config(1)](git-config.html)).
 
 -z  
 --null  
@@ -182,7 +176,7 @@ Show the filename above the matches in that file instead of at the start of each
 
 -p  
 --show-function  
-Show the preceding line that contains the function name of the match, unless the matching line is a function name itself. The name is determined in the same way as `git diff` works out patch hunk headers (see *Defining a custom hunk-header* in [gitattributes(5)](gitattributes.html)).
+Show the preceding line that contains the function name of the match, unless the matching line is a function name itself. The name is determined in the same way as `git diff` works out patch hunk headers (see _Defining a custom hunk-header_ in [gitattributes(5)](gitattributes.html)).
 
 -&lt;num&gt;  
 -C &lt;num&gt;  
@@ -199,10 +193,10 @@ Show &lt;num&gt; leading lines, and place a line containing `--` between contigu
 
 -W  
 --function-context  
-Show the surrounding text from the previous line containing a function name up to the one before the next function name, effectively showing the whole function in which the match was found. The function names are determined in the same way as `git diff` works out patch hunk headers (see *Defining a custom hunk-header* in [gitattributes(5)](gitattributes.html)).
+Show the surrounding text from the previous line containing a function name up to the one before the next function name, effectively showing the whole function in which the match was found. The function names are determined in the same way as `git diff` works out patch hunk headers (see _Defining a custom hunk-header_ in [gitattributes(5)](gitattributes.html)).
 
 --threads &lt;num&gt;  
-Number of grep worker threads to use. See `grep.threads` in *CONFIGURATION* for more information.
+Number of grep worker threads to use. See `grep.threads` in _CONFIGURATION_ for more information.
 
 -f &lt;file&gt;  
 Read patterns from &lt;file&gt;, one per line.
@@ -216,7 +210,7 @@ In versions of Git before 2.23.0 patterns containing \\0 would be silently consi
 In future versions we may learn to support patterns containing \\0 for more search backends, until then we’ll die when the pattern type in question doesn’t support them.
 
 -e  
-The next parameter is the pattern. This option has to be used for patterns starting with `-` and should be used in scripts passing user input to grep. Multiple patterns are combined by *or*.
+The next parameter is the pattern. This option has to be used for patterns starting with `-` and should be used in scripts passing user input to grep. Multiple patterns are combined by _or_.
 
 --and  
 --or  
@@ -240,10 +234,9 @@ Signals the end of options; the rest of the parameters are &lt;pathspec&gt; limi
 &lt;pathspec&gt;…​  
 If given, limit the search to paths matching at least one pattern. Both leading paths match and glob(7) patterns are supported.
 
-For more details about the &lt;pathspec&gt; syntax, see the *pathspec* entry in [gitglossary(7)](gitglossary.html).
+For more details about the &lt;pathspec&gt; syntax, see the _pathspec_ entry in [gitglossary(7)](gitglossary.html).
 
-EXAMPLES
---------
+## EXAMPLES
 
 `git grep 'time_t' -- '*.[ch]'`  
 Looks for `time_t` in all tracked .c and .h files in the working directory and its subdirectories.
@@ -257,15 +250,13 @@ Looks for a line that has `NODE` or `Unexpected` in files that have lines that m
 `git grep solution -- :^Documentation`  
 Looks for `solution`, excluding files in `Documentation`.
 
-NOTES ON THREADS
-----------------
+## NOTES ON THREADS
 
 The `--threads` option (and the grep.threads configuration) will be ignored when `--open-files-in-pager` is used, forcing a single-threaded execution.
 
 When grepping the object store (with `--cached` or giving tree objects), running with multiple threads might perform slower than single threaded if `--textconv` is given and there’re too many text conversions. So if you experience low performance in this case, it might be desirable to use `--threads=1`.
 
-GIT
----
+## GIT
 
 Part of the [git(1)](git.html) suite
 

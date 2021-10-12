@@ -1,18 +1,14 @@
-git-cherry(1) Manual Page
-=========================
+# git-cherry(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-cherry - Find commits yet to be applied to upstream
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git cherry [-v] [<upstream> [<head> [<limit>]]]
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 Determine whether there are commits in `<head>..<upstream>` that are equivalent to those in the range `<limit>..<head>`.
 
@@ -20,8 +16,7 @@ The equivalence test is based on the diff, after removing whitespace and line nu
 
 Outputs the SHA1 of every commit in `<limit>..<head>`, prefixed with `-` for commits that have an equivalent in &lt;upstream&gt;, and `+` for commits that do not.
 
-OPTIONS
--------
+## OPTIONS
 
 -v  
 Show the commit subjects next to the SHA1s.
@@ -35,8 +30,7 @@ Working branch; defaults to HEAD.
 &lt;limit&gt;  
 Do not report commits up to (and including) limit.
 
-EXAMPLES
---------
+## EXAMPLES
 
 ### Patch workflows
 
@@ -103,13 +97,11 @@ By specifying `base` as the limit, you can avoid listing commits between `base` 
     + bbbb000... commit B
     - aaaa000... commit A
 
-SEE ALSO
---------
+## SEE ALSO
 
 [git-patch-id(1)](git-patch-id.html)
 
-GIT
----
+## GIT
 
 Part of the [git(1)](git.html) suite
 

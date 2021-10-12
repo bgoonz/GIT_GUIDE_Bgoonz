@@ -1,30 +1,25 @@
-git-read-tree(1) Manual Page
-============================
+# git-read-tree(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-read-tree - Reads tree information into the index
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git read-tree [[-m [--trivial] [--aggressive] | --reset | --prefix=<prefix>]
                     [-u [--exclude-per-directory=<gitignore>] | -i]]
                     [--index-output=<file>] [--no-sparse-checkout]
                     (--empty | <tree-ish1> [<tree-ish2> [<tree-ish3>]])
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 Reads the tree information given by &lt;tree-ish&gt; into the index, but does not actually **update** any of the files it "caches". (see: [git-checkout-index(1)](git-checkout-index.html))
 
 Optionally, it can merge a tree into the index, perform a fast-forward (i.e. 2-way) merge, or a 3-way merge, with the `-m` flag. When used with `-m`, the `-u` flag causes it to also update the files in the work tree with the result of the merge.
 
-Trivial merges are done by *git read-tree* itself. Only conflicting paths will be in unmerged state when *git read-tree* returns.
+Trivial merges are done by _git read-tree_ itself. Only conflicting paths will be in unmerged state when _git read-tree_ returns.
 
-OPTIONS
--------
+## OPTIONS
 
 -m  
 Perform a merge, not just a read. The command will refuse to run if your index file has unmerged entries, indicating that you have not finished previous merge you started.
@@ -46,22 +41,22 @@ Check if the command would error out, without updating the index or the files in
 Show the progress of checking files out.
 
 --trivial  
-Restrict three-way merge by *git read-tree* to happen only if there is no file-level merging required, instead of resolving merge for trivial cases and leaving conflicting files unresolved in the index.
+Restrict three-way merge by _git read-tree_ to happen only if there is no file-level merging required, instead of resolving merge for trivial cases and leaving conflicting files unresolved in the index.
 
 --aggressive  
-Usually a three-way merge by *git read-tree* resolves the merge for really trivial cases and leaves other cases unresolved in the index, so that porcelains can implement different merge policies. This flag makes the command resolve a few more cases internally:
+Usually a three-way merge by _git read-tree_ resolves the merge for really trivial cases and leaves other cases unresolved in the index, so that porcelains can implement different merge policies. This flag makes the command resolve a few more cases internally:
 
--   when one side removes a path and the other side leaves the path unmodified. The resolution is to remove that path.
+- when one side removes a path and the other side leaves the path unmodified. The resolution is to remove that path.
 
--   when both sides remove a path. The resolution is to remove that path.
+- when both sides remove a path. The resolution is to remove that path.
 
--   when both sides add a path identically. The resolution is to add that path.
+- when both sides add a path identically. The resolution is to add that path.
 
 --prefix=&lt;prefix&gt;  
 Keep the current index contents, and read the contents of the named tree-ish under the directory at `<prefix>`. The command will refuse to overwrite entries that already existed in the original index file.
 
 --exclude-per-directory=&lt;gitignore&gt;  
-When running the command with `-u` and `-m` options, the merge result may need to overwrite paths that are not tracked in the current branch. The command usually refuses to proceed with the merge to avoid losing such a path. However this safety valve sometimes gets in the way. For example, it often happens that the other branch added a file that used to be a generated file in your branch, and the safety valve triggers when you try to switch to that branch after you ran `make` but before running `make clean` to remove the generated file. This option tells the command to read per-directory exclude file (usually *.gitignore*) and allows such an untracked but explicitly ignored file to be overwritten.
+When running the command with `-u` and `-m` options, the merge result may need to overwrite paths that are not tracked in the current branch. The command usually refuses to proceed with the merge to avoid losing such a path. However this safety valve sometimes gets in the way. For example, it often happens that the other branch added a file that used to be a generated file in your branch, and the safety valve triggers when you try to switch to that branch after you ran `make` but before running `make clean` to remove the generated file. This option tells the command to read per-directory exclude file (usually _.gitignore_) and allows such an untracked but explicitly ignored file to be overwritten.
 
 --index-output=&lt;file&gt;  
 Instead of writing the results out to `$GIT_INDEX_FILE`, write the resulting index in the named file. While the command is operating, the original index file is locked with the same mechanism as usual. The file must allow to be rename(2)ed into from a temporary file that is created next to the usual index file; typically this means it needs to be on the same filesystem as the index file itself, and you need write permission to the directories the index file and index output file are located in.
@@ -82,24 +77,23 @@ Quiet, suppress feedback messages.
 &lt;tree-ish\#&gt;  
 The id of the tree object(s) to be read/merged.
 
-MERGING
--------
+## MERGING
 
-If `-m` is specified, *git read-tree* can perform 3 kinds of merge, a single tree merge if only 1 tree is given, a fast-forward merge with 2 trees, or a 3-way merge if 3 or more trees are provided.
+If `-m` is specified, _git read-tree_ can perform 3 kinds of merge, a single tree merge if only 1 tree is given, a fast-forward merge with 2 trees, or a 3-way merge if 3 or more trees are provided.
 
 ### Single Tree Merge
 
-If only 1 tree is specified, *git read-tree* operates as if the user did not specify `-m`, except that if the original index has an entry for a given pathname, and the contents of the path match with the tree being read, the stat info from the index is used. (In other words, the index’s stat()s take precedence over the merged tree’s).
+If only 1 tree is specified, _git read-tree_ operates as if the user did not specify `-m`, except that if the original index has an entry for a given pathname, and the contents of the path match with the tree being read, the stat info from the index is used. (In other words, the index’s stat()s take precedence over the merged tree’s).
 
-That means that if you do a `git read-tree -m <newtree>` followed by a `git checkout-index -f -u -a`, the *git checkout-index* only checks out the stuff that really changed.
+That means that if you do a `git read-tree -m <newtree>` followed by a `git checkout-index -f -u -a`, the _git checkout-index_ only checks out the stuff that really changed.
 
-This is used to avoid unnecessary false hits when *git diff-files* is run after *git read-tree*.
+This is used to avoid unnecessary false hits when _git diff-files_ is run after _git read-tree_.
 
 ### Two Tree Merge
 
 Typically, this is invoked as `git read-tree -m $H $M`, where $H is the head commit of the current repository, and $M is the head of a foreign tree, which is simply ahead of $H (i.e. we are in a fast-forward situation).
 
-When two trees are specified, the user is telling *git read-tree* the following:
+When two trees are specified, the user is telling _git read-tree_ the following:
 
 1.  The current index and work tree is derived from $H, but the user may have local changes in them since $H.
 
@@ -146,9 +140,9 @@ In this case, the `git read-tree -m $H $M` command makes sure that no local chan
          20 yes   yes   no      exists   exists   use M
          21 no    yes   no      exists   exists   fail
 
-In all "keep index" cases, the index entry stays as in the original index file. If the entry is not up to date, *git read-tree* keeps the copy in the work tree intact when operating under the -u flag.
+In all "keep index" cases, the index entry stays as in the original index file. If the entry is not up to date, _git read-tree_ keeps the copy in the work tree intact when operating under the -u flag.
 
-When this form of *git read-tree* returns successfully, you can see which of the "local changes" that you made were carried forward by running `git diff-index --cached $M`. Note that this does not necessarily match what `git diff-index --cached $H` would have produced before such a two tree merge. This is because of cases 18 and 19 --- if you already had the changes in $M (e.g. maybe you picked it up via e-mail in a patch form), `git diff-index --cached $H` would have told you about the change before this merge, but it would not show in `git diff-index --cached $M` output after the two-tree merge.
+When this form of _git read-tree_ returns successfully, you can see which of the "local changes" that you made were carried forward by running `git diff-index --cached $M`. Note that this does not necessarily match what `git diff-index --cached $H` would have produced before such a two tree merge. This is because of cases 18 and 19 --- if you already had the changes in $M (e.g. maybe you picked it up via e-mail in a patch form), `git diff-index --cached $H` would have told you about the change before this merge, but it would not show in `git diff-index --cached $M` output after the two-tree merge.
 
 Case 3 is slightly tricky and needs explanation. The result from this rule logically should be to remove the path if the user staged the removal of the path and then switching to a new branch. That however will prevent the initial checkout from happening, so the rule is modified to use M (new tree) only when the content of the index is empty. Otherwise the removal of the path is kept as long as $H and $M are the same.
 
@@ -156,7 +150,7 @@ Case 3 is slightly tricky and needs explanation. The result from this rule logic
 
 Each "index" entry has two bits worth of "stage" state. stage 0 is the normal one, and is the only one you’d see in any kind of normal use.
 
-However, when you do *git read-tree* with three trees, the "stage" starts out at 1.
+However, when you do _git read-tree_ with three trees, the "stage" starts out at 1.
 
 This means that you can do
 
@@ -164,33 +158,33 @@ This means that you can do
 
 and you will end up with an index with all of the &lt;tree1&gt; entries in "stage1", all of the &lt;tree2&gt; entries in "stage2" and all of the &lt;tree3&gt; entries in "stage3". When performing a merge of another branch into the current branch, we use the common ancestor tree as &lt;tree1&gt;, the current branch head as &lt;tree2&gt;, and the other branch head as &lt;tree3&gt;.
 
-Furthermore, *git read-tree* has special-case logic that says: if you see a file that matches in all respects in the following states, it "collapses" back to "stage0":
+Furthermore, _git read-tree_ has special-case logic that says: if you see a file that matches in all respects in the following states, it "collapses" back to "stage0":
 
--   stage 2 and 3 are the same; take one or the other (it makes no difference - the same work has been done on our branch in stage 2 and their branch in stage 3)
+- stage 2 and 3 are the same; take one or the other (it makes no difference - the same work has been done on our branch in stage 2 and their branch in stage 3)
 
--   stage 1 and stage 2 are the same and stage 3 is different; take stage 3 (our branch in stage 2 did not do anything since the ancestor in stage 1 while their branch in stage 3 worked on it)
+- stage 1 and stage 2 are the same and stage 3 is different; take stage 3 (our branch in stage 2 did not do anything since the ancestor in stage 1 while their branch in stage 3 worked on it)
 
--   stage 1 and stage 3 are the same and stage 2 is different take stage 2 (we did something while they did nothing)
+- stage 1 and stage 3 are the same and stage 2 is different take stage 2 (we did something while they did nothing)
 
-The *git write-tree* command refuses to write a nonsensical tree, and it will complain about unmerged entries if it sees a single entry that is not stage 0.
+The _git write-tree_ command refuses to write a nonsensical tree, and it will complain about unmerged entries if it sees a single entry that is not stage 0.
 
 OK, this all sounds like a collection of totally nonsensical rules, but it’s actually exactly what you want in order to do a fast merge. The different stages represent the "result tree" (stage 0, aka "merged"), the original tree (stage 1, aka "orig"), and the two trees you are trying to merge (stage 2 and 3 respectively).
 
 The order of stages 1, 2 and 3 (hence the order of three &lt;tree-ish&gt; command-line arguments) are significant when you start a 3-way merge with an index file that is already populated. Here is an outline of how the algorithm works:
 
--   if a file exists in identical format in all three trees, it will automatically collapse to "merged" state by *git read-tree*.
+- if a file exists in identical format in all three trees, it will automatically collapse to "merged" state by _git read-tree_.
 
--   a file that has *any* difference what-so-ever in the three trees will stay as separate entries in the index. It’s up to "porcelain policy" to determine how to remove the non-0 stages, and insert a merged version.
+- a file that has _any_ difference what-so-ever in the three trees will stay as separate entries in the index. It’s up to "porcelain policy" to determine how to remove the non-0 stages, and insert a merged version.
 
--   the index file saves and restores with all this information, so you can merge things incrementally, but as long as it has entries in stages 1/2/3 (i.e., "unmerged entries") you can’t write the result. So now the merge algorithm ends up being really simple:
+- the index file saves and restores with all this information, so you can merge things incrementally, but as long as it has entries in stages 1/2/3 (i.e., "unmerged entries") you can’t write the result. So now the merge algorithm ends up being really simple:
 
-    -   you walk the index in order, and ignore all entries of stage 0, since they’ve already been done.
+  - you walk the index in order, and ignore all entries of stage 0, since they’ve already been done.
 
-    -   if you find a "stage1", but no matching "stage2" or "stage3", you know it’s been removed from both trees (it only existed in the original tree), and you remove that entry.
+  - if you find a "stage1", but no matching "stage2" or "stage3", you know it’s been removed from both trees (it only existed in the original tree), and you remove that entry.
 
-    -   if you find a matching "stage2" and "stage3" tree, you remove one of them, and turn the other into a "stage0" entry. Remove any matching "stage1" entry if it exists too. .. all the normal trivial rules ..
+  - if you find a matching "stage2" and "stage3" tree, you remove one of them, and turn the other into a "stage0" entry. Remove any matching "stage1" entry if it exists too. .. all the normal trivial rules ..
 
-You would normally use *git merge-index* with supplied *git merge-one-file* to do this last step. The script updates the files in the working tree as it merges each path and at the end of a successful merge.
+You would normally use _git merge-index_ with supplied _git merge-one-file_ to do this last step. The script updates the files in the working tree as it merges each path and at the end of a successful merge.
 
 When you start a 3-way merge with an index file that is already populated, it is assumed that it represents the state of the files in your work tree, and you can even have files with changes unrecorded in the index file. It is further assumed that this state is "derived" from the stage 2 tree. The 3-way merge refuses to run if it finds an entry in the original index file that does not match stage 2.
 
@@ -199,7 +193,7 @@ This is done to prevent you from losing your work-in-progress changes, and mixin
     $ JC=`git rev-parse --verify "HEAD^0"`
     $ git checkout-index -f -u -a $JC
 
-You do random edits, without running *git update-index*. And then you notice that the tip of your "upstream" tree has advanced since you pulled from him:
+You do random edits, without running _git update-index_. And then you notice that the tip of your "upstream" tree has advanced since you pulled from him:
 
     $ git fetch git://.... linus
     $ LT=`git rev-parse FETCH_HEAD`
@@ -213,20 +207,19 @@ Your work tree is still based on your HEAD ($JC), but you have some edits since.
 
 what you would commit is a pure merge between $JC and $LT without your work-in-progress changes, and your work tree would be updated to the result of the merge.
 
-However, if you have local changes in the working tree that would be overwritten by this merge, *git read-tree* will refuse to run to prevent your changes from being lost.
+However, if you have local changes in the working tree that would be overwritten by this merge, _git read-tree_ will refuse to run to prevent your changes from being lost.
 
-In other words, there is no need to worry about what exists only in the working tree. When you have local changes in a part of the project that is not involved in the merge, your changes do not interfere with the merge, and are kept intact. When they **do** interfere, the merge does not even start (*git read-tree* complains loudly and fails without modifying anything). In such a case, you can simply continue doing what you were in the middle of doing, and when your working tree is ready (i.e. you have finished your work-in-progress), attempt the merge again.
+In other words, there is no need to worry about what exists only in the working tree. When you have local changes in a part of the project that is not involved in the merge, your changes do not interfere with the merge, and are kept intact. When they **do** interfere, the merge does not even start (_git read-tree_ complains loudly and fails without modifying anything). In such a case, you can simply continue doing what you were in the middle of doing, and when your working tree is ready (i.e. you have finished your work-in-progress), attempt the merge again.
 
-SPARSE CHECKOUT
----------------
+## SPARSE CHECKOUT
 
 "Sparse checkout" allows populating the working directory sparsely. It uses the skip-worktree bit (see [git-update-index(1)](git-update-index.html)) to tell Git whether a file in the working directory is worth looking at.
 
-*git read-tree* and other merge-based commands (*git merge*, *git checkout*…​) can help maintaining the skip-worktree bitmap and working directory update. `$GIT_DIR/info/sparse-checkout` is used to define the skip-worktree reference bitmap. When *git read-tree* needs to update the working directory, it resets the skip-worktree bit in the index based on this file, which uses the same syntax as .gitignore files. If an entry matches a pattern in this file, skip-worktree will not be set on that entry. Otherwise, skip-worktree will be set.
+_git read-tree_ and other merge-based commands (_git merge_, _git checkout_…​) can help maintaining the skip-worktree bitmap and working directory update. `$GIT_DIR/info/sparse-checkout` is used to define the skip-worktree reference bitmap. When _git read-tree_ needs to update the working directory, it resets the skip-worktree bit in the index based on this file, which uses the same syntax as .gitignore files. If an entry matches a pattern in this file, skip-worktree will not be set on that entry. Otherwise, skip-worktree will be set.
 
 Then it compares the new skip-worktree value with the previous one. If skip-worktree turns from set to unset, it will add the corresponding file back. If it turns from unset to set, that file will be removed.
 
-While `$GIT_DIR/info/sparse-checkout` is usually used to specify what files are in, you can also specify what files are *not* in, using negate patterns. For example, to remove the file `unwanted`:
+While `$GIT_DIR/info/sparse-checkout` is usually used to specify what files are in, you can also specify what files are _not_ in, using negate patterns. For example, to remove the file `unwanted`:
 
     /*
     !unwanted
@@ -235,15 +228,13 @@ Another tricky thing is fully repopulating the working directory when you no lon
 
     /*
 
-Then you can disable sparse checkout. Sparse checkout support in *git read-tree* and similar commands is disabled by default. You need to turn `core.sparseCheckout` on in order to have sparse checkout support.
+Then you can disable sparse checkout. Sparse checkout support in _git read-tree_ and similar commands is disabled by default. You need to turn `core.sparseCheckout` on in order to have sparse checkout support.
 
-SEE ALSO
---------
+## SEE ALSO
 
 [git-write-tree(1)](git-write-tree.html); [git-ls-files(1)](git-ls-files.html); [gitignore(5)](gitignore.html); [git-sparse-checkout(1)](git-sparse-checkout.html);
 
-GIT
----
+## GIT
 
 Part of the [git(1)](git.html) suite
 

@@ -1,18 +1,14 @@
-git-clean(1) Manual Page
-========================
+# git-clean(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-clean - Remove untracked files from the working tree
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git clean [-d] [-f] [-i] [-n] [-q] [-e <pattern>] [-x | -X] [--] <path>…​
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 Cleans the working tree by recursively removing files that are not under version control, starting from the current directory.
 
@@ -20,15 +16,14 @@ Normally, only files unknown to Git are removed, but if the `-x` option is speci
 
 If any optional `<path>...` arguments are given, only those paths are affected.
 
-OPTIONS
--------
+## OPTIONS
 
 -d  
 Normally, when no &lt;path&gt; is specified, git clean will not recurse into untracked directories to avoid removing too much. Specify -d to have it recurse into such directories as well. If any paths are specified, -d is irrelevant; all untracked files matching the specified paths (with exceptions for nested git directories mentioned under `--force`) will be removed.
 
 -f  
 --force  
-If the Git configuration variable clean.requireForce is not set to false, *git clean* will refuse to delete files or directories unless given -f or -i. Git will refuse to modify untracked nested git repositories (directories with a .git subdirectory) unless a second -f is given.
+If the Git configuration variable clean.requireForce is not set to false, _git clean_ will refuse to delete files or directories unless given -f or -i. Git will refuse to modify untracked nested git repositories (directories with a .git subdirectory) unless a second -f is given.
 
 -i  
 --interactive  
@@ -47,17 +42,16 @@ Be quiet, only report errors, but not the files that are successfully removed.
 Use the given exclude pattern in addition to the standard ignore rules (see [gitignore(5)](gitignore.html)).
 
 -x  
-Don’t use the standard ignore rules (see [gitignore(5)](gitignore.html)), but still use the ignore rules given with `-e` options from the command line. This allows removing all untracked files, including build products. This can be used (possibly in conjunction with *git restore* or *git reset*) to create a pristine working directory to test a clean build.
+Don’t use the standard ignore rules (see [gitignore(5)](gitignore.html)), but still use the ignore rules given with `-e` options from the command line. This allows removing all untracked files, including build products. This can be used (possibly in conjunction with _git restore_ or _git reset_) to create a pristine working directory to test a clean build.
 
 -X  
 Remove only files ignored by Git. This may be useful to rebuild everything from scratch, but keep manually created files.
 
-Interactive mode
-----------------
+## Interactive mode
 
 When the command enters the interactive mode, it shows the files and directories to be cleaned, and goes into its interactive command loop.
 
-The command loop shows the list of subcommands available, and gives a prompt "What now&gt; ". In general, when the prompt ends with a single *&gt;*, you can pick only one of the choices given and type return, like this:
+The command loop shows the list of subcommands available, and gives a prompt "What now&gt; ". In general, when the prompt ends with a single _&gt;_, you can pick only one of the choices given and type return, like this:
 
         *** Commands ***
             1: clean                2: filter by pattern    3: select by numbers
@@ -75,7 +69,7 @@ filter by pattern
 This shows the files and directories to be deleted and issues an "Input ignore patterns&gt;&gt;" prompt. You can input space-separated patterns to exclude files and directories from deletion. E.g. "\*.c \*.h" will excludes files end with ".c" and ".h" from deletion. When you are satisfied with the filtered result, press ENTER (empty) back to the main menu.
 
 select by numbers  
-This shows the files and directories to be deleted and issues an "Select items to delete&gt;&gt;" prompt. When the prompt ends with double *&gt;&gt;* like this, you can make more than one selection, concatenated with whitespace or comma. Also you can say ranges. E.g. "2-5 7,9" to choose 2,3,4,5,7,9 from the list. If the second number in a range is omitted, all remaining items are selected. E.g. "7-" to choose 7,8,9 from the list. You can say *\** to choose everything. Also when you are satisfied with the filtered result, press ENTER (empty) back to the main menu.
+This shows the files and directories to be deleted and issues an "Select items to delete&gt;&gt;" prompt. When the prompt ends with double _&gt;&gt;_ like this, you can make more than one selection, concatenated with whitespace or comma. Also you can say ranges. E.g. "2-5 7,9" to choose 2,3,4,5,7,9 from the list. If the second number in a range is omitted, all remaining items are selected. E.g. "7-" to choose 7,8,9 from the list. You can say \*\*\* to choose everything. Also when you are satisfied with the filtered result, press ENTER (empty) back to the main menu.
 
 ask each  
 This will start to clean, and you must confirm one by one in order to delete items. Please note that this action is not as efficient as the above two actions.
@@ -86,13 +80,11 @@ This lets you quit without do cleaning.
 help  
 Show brief usage of interactive git-clean.
 
-SEE ALSO
---------
+## SEE ALSO
 
 [gitignore(5)](gitignore.html)
 
-GIT
----
+## GIT
 
 Part of the [git(1)](git.html) suite
 

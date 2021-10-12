@@ -1,18 +1,14 @@
-git-mv(1) Manual Page
-=====================
+# git-mv(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-mv - Move or rename a file, a directory, or a symlink
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git mv <options>…​ <args>…​
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 Move or rename a file, directory or symlink.
 
@@ -23,8 +19,7 @@ In the first form, it renames &lt;source&gt;, which must exist and be either a f
 
 The index is updated after successful completion, but the change must still be committed.
 
-OPTIONS
--------
+## OPTIONS
 
 -f  
 --force  
@@ -41,18 +36,15 @@ Do nothing; only show what would happen
 --verbose  
 Report the names of files as they are moved.
 
-SUBMODULES
-----------
+## SUBMODULES
 
 Moving a submodule using a gitfile (which means they were cloned with a Git version 1.7.8 or newer) will update the gitfile and core.worktree setting to make the submodule work in the new location. It also will attempt to update the submodule.&lt;name&gt;.path setting in the [gitmodules(5)](gitmodules.html) file and stage that file (unless -n is used).
 
-BUGS
-----
+## BUGS
 
 Each time a superproject update moves a populated submodule (e.g. when switching between commits before and after the move) a stale submodule checkout will remain in the old location and an empty directory will appear in the new location. To populate the submodule again in the new location the user will have to run "git submodule update" afterwards. Removing the old directory is only safe when it uses a gitfile, as otherwise the history of the submodule will be deleted too. Both steps will be obsolete when recursive submodule update has been implemented.
 
-GIT
----
+## GIT
 
 Part of the [git(1)](git.html) suite
 

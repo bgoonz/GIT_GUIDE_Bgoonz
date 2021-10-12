@@ -1,13 +1,10 @@
-git-commit(1) Manual Page
-=========================
+# git-commit(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-commit - Record changes to the repository
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git commit [-a | --interactive | --patch] [-s] [-v] [-u<mode>] [--amend]
                [--dry-run] [(-c | -C | --fixup | --squash) <commit>]
@@ -17,29 +14,27 @@ SYNOPSIS
                [-i | -o] [--pathspec-from-file=<file> [--pathspec-file-nul]]
                [-S[<keyid>]] [--] [<pathspec>…​]
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 Create a new commit containing the current contents of the index and the given log message describing the changes. The new commit is a direct child of HEAD, usually the tip of the current branch, and the branch is updated to point to it (unless no branch is associated with the working tree, in which case HEAD is "detached" as described in [git-checkout(1)](git-checkout.html)).
 
 The content to be committed can be specified in several ways:
 
-1.  by using [git-add(1)](git-add.html) to incrementally "add" changes to the index before using the *commit* command (Note: even modified files must be "added");
+1.  by using [git-add(1)](git-add.html) to incrementally "add" changes to the index before using the _commit_ command (Note: even modified files must be "added");
 
-2.  by using [git-rm(1)](git-rm.html) to remove files from the working tree and the index, again before using the *commit* command;
+2.  by using [git-rm(1)](git-rm.html) to remove files from the working tree and the index, again before using the _commit_ command;
 
-3.  by listing files as arguments to the *commit* command (without --interactive or --patch switch), in which case the commit will ignore changes staged in the index, and instead record the current content of the listed files (which must already be known to Git);
+3.  by listing files as arguments to the _commit_ command (without --interactive or --patch switch), in which case the commit will ignore changes staged in the index, and instead record the current content of the listed files (which must already be known to Git);
 
-4.  by using the -a switch with the *commit* command to automatically "add" changes from all known files (i.e. all files that are already listed in the index) and to automatically "rm" files in the index that have been removed from the working tree, and then perform the actual commit;
+4.  by using the -a switch with the _commit_ command to automatically "add" changes from all known files (i.e. all files that are already listed in the index) and to automatically "rm" files in the index that have been removed from the working tree, and then perform the actual commit;
 
-5.  by using the --interactive or --patch switches with the *commit* command to decide one by one which files or hunks should be part of the commit in addition to contents in the index, before finalizing the operation. See the “Interactive Mode” section of [git-add(1)](git-add.html) to learn how to operate these modes.
+5.  by using the --interactive or --patch switches with the _commit_ command to decide one by one which files or hunks should be part of the commit in addition to contents in the index, before finalizing the operation. See the “Interactive Mode” section of [git-add(1)](git-add.html) to learn how to operate these modes.
 
 The `--dry-run` option can be used to obtain a summary of what is included by any of the above for the next commit by giving the same set of parameters (options and paths).
 
-If you make a commit and then find a mistake immediately after that, you can recover from it with *git reset*.
+If you make a commit and then find a mistake immediately after that, you can recover from it with _git reset_.
 
-OPTIONS
--------
+## OPTIONS
 
 -a  
 --all  
@@ -55,7 +50,7 @@ Take an existing commit object, and reuse the log message and the authorship inf
 
 -c &lt;commit&gt;  
 --reedit-message=&lt;commit&gt;  
-Like *-C*, but with `-c` the editor is invoked, so that the user can further edit the commit message.
+Like _-C_, but with `-c` the editor is invoked, so that the user can further edit the commit message.
 
 --fixup=&lt;commit&gt;  
 Construct a commit message for use with `rebase --autosquash`. The commit message will be the subject line from the specified commit with a prefix of "fixup! ". See [git-rebase(1)](git-rebase.html) for details.
@@ -84,7 +79,7 @@ When showing `short` or `porcelain` status output, print the filename verbatim a
 
 -F &lt;file&gt;  
 --file=&lt;file&gt;  
-Take the commit message from the given file. Use *-* to read the message from the standard input.
+Take the commit message from the given file. Use _-_ to read the message from the standard input.
 
 --author=&lt;author&gt;  
 Override the commit author. Specify an explicit author using the standard `A U Thor <author@example.com>` format. Otherwise &lt;author&gt; is assumed to be a pattern and is used to search for an existing commit by that author (i.e. rev-list --all -i --author=&lt;author&gt;); the commit author is then copied from the first such commit found.
@@ -120,7 +115,7 @@ Usually recording a commit that has the exact same tree as its sole parent commi
 Like --allow-empty this command is primarily for use by foreign SCM interface scripts. It allows you to create a commit with an empty commit message without using plumbing commands like [git-commit-tree(1)](git-commit-tree.html).
 
 --cleanup=&lt;mode&gt;  
-This option determines how the supplied commit message should be cleaned up before committing. The *&lt;mode&gt;* can be `strip`, `whitespace`, `verbatim`, `scissors` or `default`.
+This option determines how the supplied commit message should be cleaned up before committing. The _&lt;mode&gt;_ can be `strip`, `whitespace`, `verbatim`, `scissors` or `default`.
 
 strip  
 Strip leading and trailing empty lines, trailing whitespace, commentary and collapse consecutive empty lines.
@@ -170,7 +165,7 @@ Before making a commit out of staged contents so far, stage the contents of path
 
 -o  
 --only  
-Make a commit by taking the updated working tree contents of the paths specified on the command line, disregarding any contents that have been staged for other paths. This is the default mode of operation of *git commit* if any paths are given on the command line, in which case this option can be omitted. If this option is specified together with `--amend`, then no paths need to be specified, which can be used to amend the last commit without committing changes that have already been staged. If used together with `--allow-empty` paths are also not required, and an empty commit will be created.
+Make a commit by taking the updated working tree contents of the paths specified on the command line, disregarding any contents that have been staged for other paths. This is the default mode of operation of _git commit_ if any paths are given on the command line, in which case this option can be omitted. If this option is specified together with `--amend`, then no paths need to be specified, which can be used to amend the last commit without committing changes that have already been staged. If used together with `--allow-empty` paths are also not required, and an empty commit will be created.
 
 --pathspec-from-file=&lt;file&gt;  
 Pathspec is passed in `<file>` instead of commandline args. If `<file>` is exactly `-` then standard input is used. Pathspec elements are separated by LF or CR/LF. Pathspec elements can be quoted as explained for the configuration variable `core.quotePath` (see [git-config(1)](git-config.html)). See also `--pathspec-file-nul` and global `--literal-pathspecs`.
@@ -182,21 +177,21 @@ Only meaningful with `--pathspec-from-file`. Pathspec elements are separated wit
 --untracked-files\[=&lt;mode&gt;\]  
 Show untracked files.
 
-The mode parameter is optional (defaults to *all*), and is used to specify the handling of untracked files; when -u is not used, the default is *normal*, i.e. show untracked files and directories.
+The mode parameter is optional (defaults to _all_), and is used to specify the handling of untracked files; when -u is not used, the default is _normal_, i.e. show untracked files and directories.
 
 The possible options are:
 
--   *no* - Show no untracked files
+- _no_ - Show no untracked files
 
--   *normal* - Shows untracked files and directories
+- _normal_ - Shows untracked files and directories
 
--   *all* - Also shows individual files in untracked directories.
+- _all_ - Also shows individual files in untracked directories.
 
 The default can be changed using the status.showUntrackedFiles configuration variable documented in [git-config(1)](git-config.html).
 
 -v  
 --verbose  
-Show unified diff between the HEAD commit and what would be committed at the bottom of the commit message template to help the user describe the commit by reminding what changes the commit has. Note that this diff output doesn’t have its lines prefixed with *\#*. This diff will not be a part of the commit message. See the `commit.verbose` configuration variable in [git-config(1)](git-config.html).
+Show unified diff between the HEAD commit and what would be committed at the bottom of the commit message template to help the user describe the commit by reminding what changes the commit has. Note that this diff output doesn’t have its lines prefixed with _\#_. This diff will not be a part of the commit message. See the `commit.verbose` configuration variable in [git-config(1)](git-config.html).
 
 If specified twice, show in addition the unified diff between what would be committed and the worktree files, i.e. the unstaged changes to tracked files.
 
@@ -224,12 +219,11 @@ Do not interpret any more arguments as options.
 &lt;pathspec&gt;…​  
 When pathspec is given on the command line, commit the contents of the files that match the pathspec without recording the changes already added to the index. The contents of these files are also staged for the next commit on top of what have been staged before.
 
-For more details, see the *pathspec* entry in [gitglossary(7)](gitglossary.html).
+For more details, see the _pathspec_ entry in [gitglossary(7)](gitglossary.html).
 
-EXAMPLES
---------
+## EXAMPLES
 
-When recording your own work, the contents of modified files in your working tree are temporarily stored to a staging area called the "index" with *git add*. A file can be reverted back, only in the index but not in the working tree, to that of the last commit with `git restore --staged <file>`, which effectively reverts *git add* and prevents the changes to this file from participating in the next commit. After building the state to be committed incrementally with these commands, `git commit` (without any pathname parameter) is used to record what has been staged so far. This is the most basic form of the command. An example:
+When recording your own work, the contents of modified files in your working tree are temporarily stored to a staging area called the "index" with _git add_. A file can be reverted back, only in the index but not in the working tree, to that of the last commit with `git restore --staged <file>`, which effectively reverts _git add_ and prevents the changes to this file from participating in the next commit. After building the state to be committed incrementally with these commands, `git commit` (without any pathname parameter) is used to record what has been staged so far. This is the most basic form of the command. An example:
 
     $ edit hello.c
     $ git rm goodbye.c
@@ -257,7 +251,7 @@ This makes a commit that records the modification to `Makefile`. The changes sta
 
 this second commit would record the changes to `hello.c` and `hello.h` as expected.
 
-After a merge (initiated by *git merge* or *git pull*) stops because of conflicts, cleanly merged paths are already staged to be committed for you, and paths that conflicted are left in unmerged state. You would have to first check which paths are conflicting with *git status* and after fixing them manually in your working tree, you would stage the result as usual with *git add*:
+After a merge (initiated by _git merge_ or _git pull_) stops because of conflicts, cleanly merged paths are already staged to be committed for you, and paths that conflicted are left in unmerged state. You would have to first check which paths are conflicting with _git status_ and after fixing them manually in your working tree, you would stage the result as usual with _git add_:
 
     $ git status | grep unmerged
     unmerged: hello.c
@@ -270,8 +264,7 @@ After resolving conflicts and staging the result, `git ls-files -u` would stop m
 
 As with the case to record your own changes, you can use `-a` option to save typing. One difference is that during a merge resolution, you cannot use `git commit` with pathnames to alter the order the changes are committed, because the merge should be recorded as a single commit. In fact, the command refuses to run when given pathnames (but see `-i` option).
 
-COMMIT INFORMATION
-------------------
+## COMMIT INFORMATION
 
 Author and committer information is taken from the following environment variables, if set:
 
@@ -292,8 +285,7 @@ The `author.name` and `committer.name` and their corresponding email options ove
 
 The typical usage is to set just the `user.name` and `user.email` variables; the other options are provided for more complex use cases.
 
-DATE FORMATS
-------------
+## DATE FORMATS
 
 The `GIT_AUTHOR_DATE` and `GIT_COMMITTER_DATE` environment variables support the following date formats:
 
@@ -310,31 +302,30 @@ Time and date specified by the ISO 8601 standard, for example `2005-04-07T22:13:
 
 In addition to recognizing all date formats above, the `--date` option will also try to make sense of other, more human-centric date formats, such as relative dates like "yesterday" or "last Friday at noon".
 
-DISCUSSION
-----------
+## DISCUSSION
 
 Though not required, it’s a good idea to begin the commit message with a single short (less than 50 character) line summarizing the change, followed by a blank line and then a more thorough description. The text up to the first blank line in a commit message is treated as the commit title, and that title is used throughout Git. For example, [git-format-patch(1)](git-format-patch.html) turns a commit into email, and it uses the title on the Subject line and the rest of the commit in the body.
 
 Git is to some extent character encoding agnostic.
 
--   The contents of the blob objects are uninterpreted sequences of bytes. There is no encoding translation at the core level.
+- The contents of the blob objects are uninterpreted sequences of bytes. There is no encoding translation at the core level.
 
--   Path names are encoded in UTF-8 normalization form C. This applies to tree objects, the index file, ref names, as well as path names in command line arguments, environment variables and config files (`.git/config` (see [git-config(1)](git-config.html)), [gitignore(5)](gitignore.html), [gitattributes(5)](gitattributes.html) and [gitmodules(5)](gitmodules.html)).
+- Path names are encoded in UTF-8 normalization form C. This applies to tree objects, the index file, ref names, as well as path names in command line arguments, environment variables and config files (`.git/config` (see [git-config(1)](git-config.html)), [gitignore(5)](gitignore.html), [gitattributes(5)](gitattributes.html) and [gitmodules(5)](gitmodules.html)).
 
-    Note that Git at the core level treats path names simply as sequences of non-NUL bytes, there are no path name encoding conversions (except on Mac and Windows). Therefore, using non-ASCII path names will mostly work even on platforms and file systems that use legacy extended ASCII encodings. However, repositories created on such systems will not work properly on UTF-8-based systems (e.g. Linux, Mac, Windows) and vice versa. Additionally, many Git-based tools simply assume path names to be UTF-8 and will fail to display other encodings correctly.
+  Note that Git at the core level treats path names simply as sequences of non-NUL bytes, there are no path name encoding conversions (except on Mac and Windows). Therefore, using non-ASCII path names will mostly work even on platforms and file systems that use legacy extended ASCII encodings. However, repositories created on such systems will not work properly on UTF-8-based systems (e.g. Linux, Mac, Windows) and vice versa. Additionally, many Git-based tools simply assume path names to be UTF-8 and will fail to display other encodings correctly.
 
--   Commit log messages are typically encoded in UTF-8, but other extended ASCII encodings are also supported. This includes ISO-8859-x, CP125x and many others, but *not* UTF-16/32, EBCDIC and CJK multi-byte encodings (GBK, Shift-JIS, Big5, EUC-x, CP9xx etc.).
+- Commit log messages are typically encoded in UTF-8, but other extended ASCII encodings are also supported. This includes ISO-8859-x, CP125x and many others, but _not_ UTF-16/32, EBCDIC and CJK multi-byte encodings (GBK, Shift-JIS, Big5, EUC-x, CP9xx etc.).
 
 Although we encourage that the commit log messages are encoded in UTF-8, both the core and Git Porcelain are designed not to force UTF-8 on projects. If all participants of a particular project find it more convenient to use legacy encodings, Git does not forbid it. However, there are a few things to keep in mind.
 
-1.  *git commit* and *git commit-tree* issues a warning if the commit log message given to it does not look like a valid UTF-8 string, unless you explicitly say your project uses a legacy encoding. The way to say this is to have `i18n.commitEncoding` in `.git/config` file, like this:
+1.  _git commit_ and _git commit-tree_ issues a warning if the commit log message given to it does not look like a valid UTF-8 string, unless you explicitly say your project uses a legacy encoding. The way to say this is to have `i18n.commitEncoding` in `.git/config` file, like this:
 
         [i18n]
                 commitEncoding = ISO-8859-1
 
     Commit objects created with the above setting record the value of `i18n.commitEncoding` in its `encoding` header. This is to help other people who look at them later. Lack of this header implies that the commit log message is encoded in UTF-8.
 
-2.  *git log*, *git show*, *git blame* and friends look at the `encoding` header of a commit object, and try to re-code the log message into UTF-8 unless otherwise specified. You can specify the desired output encoding with `i18n.logOutputEncoding` in `.git/config` file, like this:
+2.  _git log_, _git show_, _git blame_ and friends look at the `encoding` header of a commit object, and try to re-code the log message into UTF-8 unless otherwise specified. You can specify the desired output encoding with `i18n.logOutputEncoding` in `.git/config` file, like this:
 
         [i18n]
                 logOutputEncoding = ISO-8859-1
@@ -343,29 +334,24 @@ Although we encourage that the commit log messages are encoded in UTF-8, both th
 
 Note that we deliberately chose not to re-code the commit log message when a commit is made to force UTF-8 at the commit object level, because re-coding to UTF-8 is not necessarily a reversible operation.
 
-ENVIRONMENT AND CONFIGURATION VARIABLES
----------------------------------------
+## ENVIRONMENT AND CONFIGURATION VARIABLES
 
 The editor used to edit the commit log message will be chosen from the `GIT_EDITOR` environment variable, the core.editor configuration variable, the `VISUAL` environment variable, or the `EDITOR` environment variable (in that order). See [git-var(1)](git-var.html) for details.
 
-HOOKS
------
+## HOOKS
 
 This command can run `commit-msg`, `prepare-commit-msg`, `pre-commit`, `post-commit` and `post-rewrite` hooks. See [githooks(5)](githooks.html) for more information.
 
-FILES
------
+## FILES
 
 `$GIT_DIR/COMMIT_EDITMSG`  
 This file contains the commit message of a commit in progress. If `git commit` exits due to an error before creating a commit, any commit message that has been provided by the user (e.g., in an editor session) will be available in this file, but will be overwritten by the next invocation of `git commit`.
 
-SEE ALSO
---------
+## SEE ALSO
 
 [git-add(1)](git-add.html), [git-rm(1)](git-rm.html), [git-mv(1)](git-mv.html), [git-merge(1)](git-merge.html), [git-commit-tree(1)](git-commit-tree.html)
 
-GIT
----
+## GIT
 
 Part of the [git(1)](git.html) suite
 

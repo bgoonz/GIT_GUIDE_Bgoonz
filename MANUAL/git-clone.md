@@ -1,13 +1,10 @@
-git-clone(1) Manual Page
-========================
+# git-clone(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-clone - Clone a repository into a new directory
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git clone [--template=<template_directory>]
               [-l] [-s] [--no-hardlinks] [-q] [-n] [--bare] [--mirror]
@@ -19,8 +16,7 @@ SYNOPSIS
               [--filter=<filter>] [--] <repository>
               [<directory>]
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 Clones a repository into a newly created directory, creates remote-tracking branches for each branch in the cloned repository (visible using `git branch --remotes`), and creates and checks out an initial branch that is forked from the cloned repository’s currently active branch.
 
@@ -28,8 +24,7 @@ After the clone, a plain `git fetch` without arguments will update all the remot
 
 This default configuration is achieved by creating references to the remote branch heads under `refs/remotes/origin` and by initializing `remote.origin.url` and `remote.origin.fetch` configuration variables.
 
-OPTIONS
--------
+## OPTIONS
 
 -l  
 --local  
@@ -79,7 +74,7 @@ Transmit the given string to the server when communicating using protocol versio
 No checkout of HEAD is performed after the clone is complete.
 
 --bare  
-Make a *bare* Git repository. That is, instead of creating `<directory>` and placing the administrative files in `<directory>/.git`, make the `<directory>` itself the `$GIT_DIR`. This obviously implies the `--no-checkout` because there is nowhere to check out the working tree. Also the branch heads at the remote are copied directly to corresponding local branch heads, without mapping them to `refs/remotes/origin/`. When this option is used, neither remote-tracking branches nor the related configuration variables are created.
+Make a _bare_ Git repository. That is, instead of creating `<directory>` and placing the administrative files in `<directory>/.git`, make the `<directory>` itself the `$GIT_DIR`. This obviously implies the `--no-checkout` because there is nowhere to check out the working tree. Also the branch heads at the remote are copied directly to corresponding local branch heads, without mapping them to `refs/remotes/origin/`. When this option is used, neither remote-tracking branches nor the related configuration variables are created.
 
 --sparse  
 Initialize the sparse-checkout file so the working directory starts with only the files in the root of the repository. The sparse-checkout file can be modified to grow the working directory as needed.
@@ -102,7 +97,7 @@ Instead of pointing the newly created HEAD to the branch pointed to by the clone
 --upload-pack &lt;upload-pack&gt;  
 When given, and the repository to clone from is accessed via ssh, this specifies a non-default path for the command run on the other end.
 
---template=&lt;template\_directory&gt;  
+--template=&lt;template_directory&gt;  
 Specify the directory from which templates will be used; (See the "TEMPLATE DIRECTORY" section of [git-init(1)](git-init.html).)
 
 -c &lt;key&gt;=&lt;value&gt;  
@@ -112,7 +107,7 @@ Set a configuration variable in the newly-created repository; this takes effect 
 Due to limitations of the current implementation, some configuration variables do not take effect until after the initial fetch and checkout. Configuration variables known to not take effect are: `remote.<name>.mirror` and `remote.<name>.tagOpt`. Use the corresponding `--mirror` and `--no-tags` options instead.
 
 --depth &lt;depth&gt;  
-Create a *shallow* clone with a history truncated to the specified number of commits. Implies `--single-branch` unless `--no-single-branch` is given to fetch the histories near the tips of all branches. If you want to clone submodules shallowly, also pass `--shallow-submodules`.
+Create a _shallow_ clone with a history truncated to the specified number of commits. Implies `--single-branch` unless `--no-single-branch` is given to fetch the histories near the tips of all branches. If you want to clone submodules shallowly, also pass `--shallow-submodules`.
 
 --shallow-since=&lt;date&gt;  
 Create a shallow clone with a history after the specified time.
@@ -152,8 +147,7 @@ The (possibly remote) repository to clone from. See the [GIT URLS](#URLS) sectio
 &lt;directory&gt;  
 The name of a new directory to clone into. The "humanish" part of the source repository is used if no directory is explicitly given (`repo` for `/path/to/repo.git` and `foo` for `host.xz:foo/.git`). Cloning into an existing directory is only allowed if the directory is empty.
 
-GIT URLS<span id="URLS"></span>
--------------------------------
+## GIT URLS<span id="URLS"></span>
 
 In general, URLs contain information about the transport protocol, the address of the remote server, and the path to the repository. Depending on the transport protocol, some of this information may be absent.
 
@@ -163,41 +157,41 @@ The native transport (i.e. git:// URL) does no authentication and should be used
 
 The following syntaxes may be used with them:
 
--   ssh://\[user@\]host.xz\[:port\]/path/to/repo.git/
+- ssh://\[user@\]host.xz\[:port\]/path/to/repo.git/
 
--   git://host.xz\[:port\]/path/to/repo.git/
+- git://host.xz\[:port\]/path/to/repo.git/
 
--   http\[s\]://host.xz\[:port\]/path/to/repo.git/
+- http\[s\]://host.xz\[:port\]/path/to/repo.git/
 
--   ftp\[s\]://host.xz\[:port\]/path/to/repo.git/
+- ftp\[s\]://host.xz\[:port\]/path/to/repo.git/
 
 An alternative scp-like syntax may also be used with the ssh protocol:
 
--   \[user@\]host.xz:path/to/repo.git/
+- \[user@\]host.xz:path/to/repo.git/
 
 This syntax is only recognized if there are no slashes before the first colon. This helps differentiate a local path that contains a colon. For example the local path `foo:bar` could be specified as an absolute path or `./foo:bar` to avoid being misinterpreted as an ssh url.
 
 The ssh and git protocols additionally support ~username expansion:
 
--   ssh://\[user@\]host.xz\[:port\]/~\[user\]/path/to/repo.git/
+- ssh://\[user@\]host.xz\[:port\]/~\[user\]/path/to/repo.git/
 
--   git://host.xz\[:port\]/~\[user\]/path/to/repo.git/
+- git://host.xz\[:port\]/~\[user\]/path/to/repo.git/
 
--   \[user@\]host.xz:/~\[user\]/path/to/repo.git/
+- \[user@\]host.xz:/~\[user\]/path/to/repo.git/
 
 For local repositories, also supported by Git natively, the following syntaxes may be used:
 
--   /path/to/repo.git/
+- /path/to/repo.git/
 
--   file:///path/to/repo.git/
+- file:///path/to/repo.git/
 
 These two syntaxes are mostly equivalent, except the former implies --local option.
 
-*git clone*, *git fetch* and *git pull*, but not *git push*, will also accept a suitable bundle file. See [git-bundle(1)](git-bundle.html).
+_git clone_, _git fetch_ and _git pull_, but not _git push_, will also accept a suitable bundle file. See [git-bundle(1)](git-bundle.html).
 
-When Git doesn’t know how to handle a certain transport protocol, it attempts to use the *remote-&lt;transport&gt;* remote helper, if one exists. To explicitly request a remote helper, the following syntax may be used:
+When Git doesn’t know how to handle a certain transport protocol, it attempts to use the _remote-&lt;transport&gt;_ remote helper, if one exists. To explicitly request a remote helper, the following syntax may be used:
 
--   &lt;transport&gt;::&lt;address&gt;
+- &lt;transport&gt;::&lt;address&gt;
 
 where &lt;address&gt; may be a path, a server and path, or an arbitrary URL-like string recognized by the specific remote helper being invoked. See [gitremote-helpers(7)](gitremote-helpers.html) for details.
 
@@ -226,34 +220,32 @@ For example, with this:
 
 a URL like "git://example.org/path/to/repo.git" will be rewritten to "ssh://example.org/path/to/repo.git" for pushes, but pulls will still use the original URL.
 
-EXAMPLES
---------
+## EXAMPLES
 
--   Clone from upstream:
+- Clone from upstream:
 
-        $ git clone git://git.kernel.org/pub/scm/.../linux.git my-linux
-        $ cd my-linux
-        $ make
+      $ git clone git://git.kernel.org/pub/scm/.../linux.git my-linux
+      $ cd my-linux
+      $ make
 
--   Make a local clone that borrows from the current directory, without checking things out:
+- Make a local clone that borrows from the current directory, without checking things out:
 
-        $ git clone -l -s -n . ../copy
-        $ cd ../copy
-        $ git show-branch
+      $ git clone -l -s -n . ../copy
+      $ cd ../copy
+      $ git show-branch
 
--   Clone from upstream while borrowing from an existing local directory:
+- Clone from upstream while borrowing from an existing local directory:
 
-        $ git clone --reference /git/linux.git \
-                git://git.kernel.org/pub/scm/.../linux.git \
-                my-linux
-        $ cd my-linux
+      $ git clone --reference /git/linux.git \
+              git://git.kernel.org/pub/scm/.../linux.git \
+              my-linux
+      $ cd my-linux
 
--   Create a bare repository to publish your changes to the public:
+- Create a bare repository to publish your changes to the public:
 
-        $ git clone --bare -l /home/proj/.git /pub/scm/proj.git
+      $ git clone --bare -l /home/proj/.git /pub/scm/proj.git
 
-GIT
----
+## GIT
 
 Part of the [git(1)](git.html) suite
 

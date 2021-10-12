@@ -1,58 +1,2063 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Markmap</title>
-<style>
-* {
-  margin: 0;
-  padding: 0;
-}
-#mindmap {
-  display: block;
-  width: 100vw;
-  height: 100vh;
-}
-</style>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.1.5/dist/style.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/markdown-to-html-style.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/mdn-article.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/medium-basic-export.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Markmap</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      #mindmap {
+        display: block;
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.1.5/dist/style.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/markdown-to-html-style.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/mdn-article.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/medium-basic-export.css"
+    />
 
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/github.css"
+    />
+    <script
+      async
+      defer
+      src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/git.js"
+    ></script>
 
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/github.css">
-<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/git.js"></script>
-
-
-<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/highlight.pack.js"></script>
-<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/highlightJsWorker.js"></script>
-<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/highlightjs-badge.js"></script>
-<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/highlightjs-badge.min.js"></script>
-<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/jquery-1.10.1.min.js"></script>
-<script async defer src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/jquery-3.3.1.min.js"></script></head>
-<body>
-<svg id="mindmap"></svg>
-<script src="https://cdn.jsdelivr.net/npm/d3@6.6.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.3"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.1.5/dist/index.umd.min.js"></script><script>(r => {
-                setTimeout(r);
-              })(() => {
-  const {
-    markmap,
-    mm
-  } = window;
-  const toolbar = new markmap.Toolbar();
-  toolbar.attach(mm);
-  const el = toolbar.render();
-  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
-  document.body.append(el);
-})</script><script>((getMarkmap, getOptions, data) => {
-        const {
-          Markmap
-        } = getMarkmap();
-        window.mm = Markmap.create('svg#mindmap', getOptions == null ? void 0 : getOptions(), data);
-      })(() => window.markmap,null,{"t":"root","d":0,"v":"","c":[{"t":"heading","d":1,"p":{"lines":[0,1]},"v":"Full Git Guide:"},{"t":"heading","d":1,"p":{"lines":[4,5]},"v":"Install Git","c":[{"t":"heading","d":2,"p":{"lines":[10,11]},"v":"Checking for Git","c":[{"t":"list_item","d":4,"p":{"lines":[14,15]},"v":"If you're on a Mac, look for a command prompt application called &quot;Terminal&quot;."},{"t":"list_item","d":4,"p":{"lines":[15,16]},"v":"If you're on a Windows machine, open the windows command prompt or &quot;Git Bash&quot;."}]},{"t":"heading","d":2,"p":{"lines":[19,20]},"v":"Install Git Using GitHub Desktop"},{"t":"heading","d":2,"p":{"lines":[23,24]},"v":"Install Git on Windows","c":[{"t":"list_item","d":4,"p":{"lines":[25,26],"index":1},"v":"1. Navigate to the latest <a href=\"https://gitforwindows.org/\">Git for Windows installer</a> and download the latest version."},{"t":"list_item","d":4,"p":{"lines":[26,27],"index":2},"v":"2. Once the installer has started, follow the instructions as provided in the <strong>Git Setup</strong> wizard screen until the installation is complete."},{"t":"list_item","d":4,"p":{"lines":[27,28],"index":3},"v":"3. Open the windows command prompt (or <strong>Git Bash</strong> if you selected not to use the standard Git Windows Command Prompt during the Git installation)."},{"t":"list_item","d":4,"p":{"lines":[28,29],"index":4},"v":"4. Type <code>git version</code> to verify Git was installed."}]},{"t":"heading","d":2,"p":{"lines":[32,33]},"v":"Install Git on Windows through Visual Studio Code"},{"t":"heading","d":2,"p":{"lines":[46,47]},"v":"Install Git on Mac","c":[{"t":"heading","d":3,"p":{"lines":[50,51]},"v":"Install Git From an Installer","c":[{"t":"list_item","d":5,"p":{"lines":[52,53],"index":1},"v":"1. Navigate to the latest <a href=\"https://sourceforge.net/projects/git-osx-installer/files/git-2.23.0-intel-universal-mavericks.dmg/download?use_mirror=autoselect\">macOS Git Installer</a> and download the latest version."},{"t":"list_item","d":5,"p":{"lines":[53,54],"index":2},"v":"2. Once the installer has started, follow the instructions as provided until the installation is complete."},{"t":"list_item","d":5,"p":{"lines":[54,55],"index":3},"v":"3. Open the command prompt &quot;terminal&quot; and type <code>git version</code> to verify Git was installed."}]},{"t":"heading","d":3,"p":{"lines":[58,59]},"v":"Install Git from Homebrew","c":[{"t":"list_item","d":5,"p":{"lines":[62,63],"index":1},"v":"1. Open up a terminal window and install Git using the following command: <code>brew install git</code>."},{"t":"list_item","d":5,"p":{"lines":[63,64],"index":2},"v":"2. Once the command output has been completed, you can verify the installation by typing: <code>git version</code>."}]}]},{"t":"heading","d":2,"p":{"lines":[66,67]},"v":"Install Git on Linux","c":[{"t":"heading","d":3,"p":{"lines":[72,73]},"v":"Debian/Ubuntu","c":[{"t":"list_item","d":5,"p":{"lines":[74,75],"index":1},"v":"1. Git packages are available using <code>apt</code>."},{"t":"list_item","d":5,"p":{"lines":[75,76],"index":2},"v":"2. It's a good idea to make sure you're running the latest version. To do so, Navigate to your command prompt shell and run the following command to make sure everything is up-to-date: <code>sudo apt-get update</code>."},{"t":"list_item","d":5,"p":{"lines":[76,77],"index":3},"v":"3. To install Git, run the following command: <code>sudo apt-get install git-all</code>."},{"t":"list_item","d":5,"p":{"lines":[77,78],"index":4},"v":"4. Once the command output has been completed, you can verify the installation by typing: <code>git version</code>."}]},{"t":"heading","d":3,"p":{"lines":[79,80]},"v":"Fedora","c":[{"t":"list_item","d":5,"p":{"lines":[81,82],"index":1},"v":"1. Git packages are available using <code>dnf</code>."},{"t":"list_item","d":5,"p":{"lines":[82,83],"index":2},"v":"2. To install Git, navigate to your command prompt shell and run the following command: <code>sudo dnf install git-all</code>."},{"t":"list_item","d":5,"p":{"lines":[83,84],"index":3},"v":"3. Once the command output has been completed, you can verify the installation by typing: <code>git version</code>."}]}]},{"t":"heading","d":2,"p":{"lines":[87,88]},"v":"Other Methods of Installing Git"},{"t":"heading","d":2,"p":{"lines":[102,103]},"v":"&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;"}]},{"t":"heading","d":1,"p":{"lines":[119,120]},"v":"Git Guide","c":[{"t":"bullet_list","d":2,"p":{"lines":[124,142]},"v":"","c":[{"t":"list_item","d":3,"p":{"lines":[124,125]},"v":"<a href=\"#what-is-git\">What is Git?</a>"},{"t":"list_item","d":3,"p":{"lines":[125,126]},"v":"<a href=\"#what-is-git-written-in\">What is Git Written in?</a>"},{"t":"list_item","d":3,"p":{"lines":[126,127]},"v":"<a href=\"#why-use-git\">Why Use Git?</a>","c":[{"t":"list_item","d":5,"p":{"lines":[127,128]},"v":"<a href=\"#speed\">Speed</a>"},{"t":"list_item","d":5,"p":{"lines":[128,129]},"v":"<a href=\"#merge-conflicts\">Merge conflicts</a>"},{"t":"list_item","d":5,"p":{"lines":[129,130]},"v":"<a href=\"#cheap-branches\">Cheap branches</a>"},{"t":"list_item","d":5,"p":{"lines":[130,131]},"v":"<a href=\"#ease-of-roll-back\">Ease of roll back</a>"}]},{"t":"list_item","d":3,"p":{"lines":[131,132]},"v":"<a href=\"#how-do-i-use-git\">How Do I Use Git?</a>","c":[{"t":"list_item","d":5,"p":{"lines":[132,133]},"v":"<a href=\"#learning-git-basics\">Learning Git Basics</a>"},{"t":"list_item","d":5,"p":{"lines":[133,134]},"v":"<a href=\"#getting-started-with-the-git-workflow\">Getting Started With the Git Workflow</a>","c":[{"t":"list_item","d":7,"p":{"lines":[134,135]},"v":"<a href=\"#create-a-branch\">Create a branch</a>"},{"t":"list_item","d":7,"p":{"lines":[135,136]},"v":"<a href=\"#make-changes-and-make-a-commit\">Make changes (and make a commit)</a>"},{"t":"list_item","d":7,"p":{"lines":[136,137]},"v":"<a href=\"#push-your-changes-to-the-remote\">Push your changes to the remote</a>"},{"t":"list_item","d":7,"p":{"lines":[137,138]},"v":"<a href=\"#open-a-pull-request\">Open a pull request</a>"},{"t":"list_item","d":7,"p":{"lines":[138,139]},"v":"<a href=\"#collaborate\">Collaborate</a>"},{"t":"list_item","d":7,"p":{"lines":[139,140]},"v":"<a href=\"#merge-into-main\">Merge into main</a>"}]},{"t":"list_item","d":5,"p":{"lines":[140,141]},"v":"<a href=\"#getting-started-with-github\">Getting Started With GitHub</a>"}]}]},{"t":"heading","d":2,"p":{"lines":[142,143]},"v":"What is Git?","c":[{"t":"list_item","d":4,"p":{"lines":[148,149]},"v":"Branches are lightweight and cheap, so it's OK to have many of them"},{"t":"list_item","d":4,"p":{"lines":[149,150]},"v":"Git stores changes in SHA hashes, which work by compressing text files. That makes Git a very good version control system (VCS) for software programming, but not so good for binary files like images or videos."},{"t":"list_item","d":4,"p":{"lines":[150,151]},"v":"Git repositories can be connected, so you can work on one locally on your own machine, and connect it to a shared repository. This way, you can <a href=\"/git-guides/git-push\">push</a> and <a href=\"/git-guides/git-pull\">pull</a> changes to a repository and easily collaborate with others."}]},{"t":"heading","d":2,"p":{"lines":[152,153]},"v":"What is Git Written in?"},{"t":"heading","d":2,"p":{"lines":[156,157]},"v":"Why Use Git?","c":[{"t":"heading","d":3,"p":{"lines":[162,163]},"v":"Speed"},{"t":"heading","d":3,"p":{"lines":[166,167]},"v":"Merge conflicts"},{"t":"heading","d":3,"p":{"lines":[170,171]},"v":"Cheap branches"},{"t":"heading","d":3,"p":{"lines":[178,179]},"v":"Ease of roll back"}]},{"t":"heading","d":2,"p":{"lines":[184,185]},"v":"How Do I Use Git?","c":[{"t":"heading","d":3,"p":{"lines":[186,187]},"v":"Learning Git Basics","c":[{"t":"list_item","d":5,"p":{"lines":[192,193]},"v":"<code>git clone [url]</code>: <a href=\"/git-guides/git-clone\">Clone</a> (download) a repository that already exists on GitHub, including all of the files, branches, and commits."},{"t":"list_item","d":5,"p":{"lines":[193,194]},"v":"<code>git status</code>: Always a good idea, this command shows you what branch you're on, what files are in the working or staging directory, and any other important information."},{"t":"list_item","d":5,"p":{"lines":[194,195]},"v":"<code>git branch</code>: This shows the existing branches in your local repository. You can also use <code>git branch [branch-name]</code> to create a branch from your current location, or <code>git branch --all</code> to see all branches, both the local ones on your machine, and the remote tracking branches stored from the last <code>git pull</code> or <code>git fetch</code> from the remote."},{"t":"list_item","d":5,"p":{"lines":[195,196]},"v":"<code>git checkout [branch-name]</code>: Switches to the specified branch and updates the working directory."},{"t":"list_item","d":5,"p":{"lines":[196,197]},"v":"<code>git add [file]</code>: Snapshots the file in preparation for versioning, adding it to the staging area."},{"t":"list_item","d":5,"p":{"lines":[197,198]},"v":"<code>git commit -m &quot;descriptive message&quot;</code>: Records file snapshots permanently in the version history."},{"t":"list_item","d":5,"p":{"lines":[198,199]},"v":"<code>git pull</code>: Updates your current local working branch with all new commits from the corresponding remote branch on GitHub. <code>git pull</code> is a combination of <code>git fetch</code> and <code>git merge</code>."},{"t":"list_item","d":5,"p":{"lines":[199,200]},"v":"<code>git push</code>: Uploads all local branch commits to the remote."},{"t":"list_item","d":5,"p":{"lines":[200,201]},"v":"<code>git log</code>: Browse and inspect the evolution of project files."},{"t":"list_item","d":5,"p":{"lines":[201,202]},"v":"<code>git remote -v</code>: Show the associated remote repositories and their stored name, like <code>origin</code>."}]},{"t":"heading","d":3,"p":{"lines":[205,206]},"v":"Getting Started With the Git Workflow","c":[{"t":"heading","d":4,"p":{"lines":[211,212]},"v":"Create a branch"},{"t":"heading","d":4,"p":{"lines":[215,216]},"v":"Make changes (and make a commit)"},{"t":"heading","d":4,"p":{"lines":[225,226]},"v":"Push your changes to the remote"},{"t":"heading","d":4,"p":{"lines":[233,234]},"v":"Open a pull request"},{"t":"heading","d":4,"p":{"lines":[241,242]},"v":"Collaborate"},{"t":"heading","d":4,"p":{"lines":[247,248]},"v":"Merge into <code>main</code>"}]},{"t":"heading","d":3,"p":{"lines":[253,254]},"v":"Getting Started With GitHub"}]},{"t":"heading","d":2,"p":{"lines":[265,266]},"v":"&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;"}]},{"t":"heading","d":1,"p":{"lines":[271,272]},"v":"Git Status","c":[{"t":"fence","d":2,"v":"<pre class=\"language-sh\"><code class=\"language-sh\">git status\n</code></pre>\n"},{"t":"heading","d":2,"p":{"lines":[279,280]},"v":"What Does <code>git status</code> Do?","c":[{"t":"list_item","d":4,"p":{"lines":[285,286]},"v":"Where <code>HEAD</code> is pointing, whether that is a branch or a commit (this is where you are &quot;checked out&quot; to)"},{"t":"list_item","d":4,"p":{"lines":[286,287]},"v":"If you have any changed files in your current directory that have not yet been committed"},{"t":"list_item","d":4,"p":{"lines":[287,288]},"v":"If changed files are staged or not"},{"t":"list_item","d":4,"p":{"lines":[288,289]},"v":"If your current local branch is linked to a remote branch, then <code>git status</code> will tell you if your local branch is behind or ahead by any commits"}]},{"t":"heading","d":2,"p":{"lines":[292,293]},"v":"How to Use <code>git status</code>","c":[{"t":"heading","d":3,"p":{"lines":[294,295]},"v":"Common usages and options for <code>git status</code>","c":[{"t":"list_item","d":5,"p":{"lines":[296,297]},"v":"<code>git status</code>: Most often used in its default form, this shows a good base of information"},{"t":"list_item","d":5,"p":{"lines":[297,298]},"v":"<code>git status -s</code>: Give output in short format"},{"t":"list_item","d":5,"p":{"lines":[298,299]},"v":"<code>git status -v</code>: Shows more &quot;verbose&quot; detail including the textual changes of any uncommitted files"}]}]},{"t":"heading","d":2,"p":{"lines":[302,303]},"v":"Related Terms","c":[{"t":"list_item","d":4,"p":{"lines":[304,305]},"v":"<code>git clone [url]</code>: Clone (download) a repository that already exists on GitHub, including all of the files, branches, and commits."},{"t":"list_item","d":4,"p":{"lines":[305,306]},"v":"<code>git remote -v</code>: Show the associated remote repositories and their stored name, like <code>origin</code>."},{"t":"list_item","d":4,"p":{"lines":[306,307]},"v":"<code>git remote add origin &lt;url&gt;</code>: Add a remote so you can collaborate with others on a newly initialized repository."},{"t":"list_item","d":4,"p":{"lines":[307,308]},"v":"<code>git push</code>: Uploads all local branch commits to the remote."},{"t":"list_item","d":4,"p":{"lines":[308,309]},"v":"<code>git push -u origin main</code>: When pushing a branch for the first time, this type of push will configure the relationship between the remote and your local repository so that you can use <code>git pull</code> and <code>git push</code> with no additional options in the future."}]},{"t":"heading","d":2,"p":{"lines":[321,322]},"v":"&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;"}]},{"t":"heading","d":1,"p":{"lines":[328,329]},"v":"Git Clone","c":[{"t":"heading","d":2,"p":{"lines":[334,335]},"v":"What Does <code>git clone</code> Do?","c":[{"t":"fence","d":3,"v":"<pre class=\"language-sh\"><code class=\"language-sh\">git clone https://github.com/github/training-kit.git\n</code></pre>\n"},{"t":"bullet_list","d":3,"p":{"lines":[345,350]},"v":"","c":[{"t":"list_item","d":4,"p":{"lines":[345,346]},"v":"later use <code>git push</code> to share your branch with the remote repository"},{"t":"list_item","d":4,"p":{"lines":[346,347]},"v":"open a pull request to compare the changes with your collaborators"},{"t":"list_item","d":4,"p":{"lines":[347,348]},"v":"test and deploy as needed from the branch"},{"t":"list_item","d":4,"p":{"lines":[348,349]},"v":"merge into the <code>main</code> branch."}]}]},{"t":"heading","d":2,"p":{"lines":[350,351]},"v":"How to Use <code>git clone</code>","c":[{"t":"heading","d":3,"p":{"lines":[352,353]},"v":"Common usages and options for <code>git clone</code>","c":[{"t":"list_item","d":5,"p":{"lines":[354,355]},"v":"<code>git clone [url]</code>: Clone (download) a repository that already exists on GitHub, including all of the files, branches, and commits."},{"t":"list_item","d":5,"p":{"lines":[355,356]},"v":"<code>git clone --mirror</code>: Clone a repository but without the ability to edit any of the files. This includes the refs or branches. You may want to use this if you are trying to create a secondary copy of a repository on a separate remote and you want to match all of the branches. This may occur during configuration using a new remote for your Git hosting, or when using Git during automated testing."},{"t":"list_item","d":5,"p":{"lines":[356,357]},"v":"<code>git clone --single-branch</code>: Clone only a single branch"},{"t":"list_item","d":5,"p":{"lines":[357,358]},"v":"<code>git clone --sparse</code>: Instead of populating the working directory with all of the files in the current commit recursively, only populate the files present in the root directory. This could help with performance when cloning large repositories with many directories and sub-directories."},{"t":"list_item","d":5,"p":{"lines":[358,359]},"v":"`git clone --recurse-submodules[=&lt;pathspec]: After the clone is created, initialize and clone submodules within based on the provided pathspec. This may be a good option if you are cloning a repository that you know to have submodules, and you will be working with those submodules as dependencies in your local development."}]}]},{"t":"heading","d":2,"p":{"lines":[362,363]},"v":"Examples of <code>git clone</code>","c":[{"t":"heading","d":3,"p":{"lines":[364,365]},"v":"<code>git clone [url]</code>"},{"t":"heading","d":3,"p":{"lines":[368,369]},"v":"<code>git clone</code> A Branch"},{"t":"heading","d":3,"p":{"lines":[383,384]},"v":"<code>git clone</code> With SSH"}]},{"t":"heading","d":2,"p":{"lines":[389,390]},"v":"Related Terms","c":[{"t":"list_item","d":4,"p":{"lines":[391,392]},"v":"<code>git branch</code>: This shows the existing branches in your local repository. You can also use <code>git branch [branch-name]</code> to create a branch from your current location, or <code>git branch --all</code> to see all branches, both the local ones on your machine and the remote tracking branches stored from the last <code>git pull</code> or <code>git fetch</code> from the remote."},{"t":"list_item","d":4,"p":{"lines":[392,393]},"v":"<code>git pull</code>: Updates your current local working branch with all new commits from the corresponding remote branch on GitHub. <code>git pull</code> is a combination of <code>git fetch</code> and <code>git merge</code>."},{"t":"list_item","d":4,"p":{"lines":[393,394]},"v":"<code>git push</code>: Uploads all local branch commits to the remote."},{"t":"list_item","d":4,"p":{"lines":[394,395]},"v":"<code>git remote -v</code>: Show the associated remote repositories and their stored name, like <code>origin</code>."}]},{"t":"heading","d":2,"p":{"lines":[413,414]},"v":"&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;"}]},{"t":"heading","d":1,"p":{"lines":[419,420]},"v":"Git Add","c":[{"t":"heading","d":2,"p":{"lines":[427,428]},"v":"When do you use <code>git add</code>?","c":[{"t":"fence","d":3,"v":"<pre class=\"language-sh\"><code class=\"language-sh\">git add README.md\n</code></pre>\n"},{"t":"heading","d":3,"p":{"lines":[435,436]},"v":"What Does Git Add Do?"}]},{"t":"heading","d":2,"p":{"lines":[443,444]},"v":"How to Use <code>git add</code>","c":[{"t":"heading","d":3,"p":{"lines":[445,446]},"v":"Common usages and options for <code>git add</code>","c":[{"t":"list_item","d":5,"p":{"lines":[447,448]},"v":"<code>git add &lt;path&gt;</code>: Stage a specific directory or file"},{"t":"list_item","d":5,"p":{"lines":[448,449]},"v":"<code>git add .</code>: Stage all files (that are not listed in the <code>.gitignore</code>) in the entire repository"},{"t":"list_item","d":5,"p":{"lines":[449,450]},"v":"<code>git add -p</code>: Interactively stage hunks of changes"}]}]},{"t":"heading","d":2,"p":{"lines":[453,454]},"v":"Examples of <code>git add</code>","c":[{"t":"ordered_list","d":3,"p":{"lines":[457,465],"start":1},"v":"","c":[{"t":"list_item","d":4,"p":{"lines":[457,458],"index":1},"v":"1. Create a branch: <code>git branch update-readme</code>"},{"t":"list_item","d":4,"p":{"lines":[458,459],"index":2},"v":"2. Checkout to that branch: <code>git checkout update-readme</code>"},{"t":"list_item","d":4,"p":{"lines":[459,460],"index":3},"v":"3. Change a file or files"},{"t":"list_item","d":4,"p":{"lines":[460,461],"index":4},"v":"4. Save the file or files"},{"t":"list_item","d":4,"p":{"lines":[461,462],"index":5},"v":"5. Add the files or segments of code that should be included in the next commit: <code>git add README.md</code>"},{"t":"list_item","d":4,"p":{"lines":[462,463],"index":6},"v":"6. Commit the changes: <code>git commit -m &quot;update the README to include links to contributing guide&quot;</code>"},{"t":"list_item","d":4,"p":{"lines":[463,464],"index":7},"v":"7. Push the changes to the remote branch: <code>git push -u origin update-readme</code>"}]},{"t":"ordered_list","d":3,"p":{"lines":[467,478],"start":1},"v":"","c":[{"t":"list_item","d":4,"p":{"lines":[467,468],"index":1},"v":"1. Create a branch: <code>git branch update-readme</code>"},{"t":"list_item","d":4,"p":{"lines":[468,469],"index":2},"v":"2. Checkout to that branch: <code>git checkout update-readme</code>"},{"t":"list_item","d":4,"p":{"lines":[469,470],"index":3},"v":"3. Change a file or files"},{"t":"list_item","d":4,"p":{"lines":[470,471],"index":4},"v":"4. Save the file or files"},{"t":"list_item","d":4,"p":{"lines":[471,472],"index":5},"v":"5. Add only one file, or one part of the changed file: <code>git add README.md</code>"},{"t":"list_item","d":4,"p":{"lines":[472,473],"index":6},"v":"6. Commit the first set of changes: <code>git commit -m &quot;update the README to include links to contributing guide&quot;</code>"},{"t":"list_item","d":4,"p":{"lines":[473,474],"index":7},"v":"7. Add another file, or another part of the changed file: <code>git add CONTRIBUTING.md</code>"},{"t":"list_item","d":4,"p":{"lines":[474,475],"index":8},"v":"8. Commit the second set of changes: <code>git commit -m &quot;create the contributing guide&quot;</code>"},{"t":"list_item","d":4,"p":{"lines":[475,476],"index":9},"v":"9. (Repeat as necessary)"},{"t":"list_item","d":4,"p":{"lines":[476,477],"index":10},"v":"10. Push the changes to the remote branch: <code>git push -u origin update-readme</code>"}]},{"t":"heading","d":3,"p":{"lines":[478,479]},"v":"<code>git add</code> All Files","c":[{"t":"heading","d":4,"p":{"lines":[482,483]},"v":"Poorly thought out history"},{"t":"heading","d":4,"p":{"lines":[486,487]},"v":"Accidentally staging and committing files"},{"t":"heading","d":4,"p":{"lines":[490,491]},"v":"Deciding to stage all files","c":[{"t":"bullet_list","d":5,"p":{"lines":[494,498]},"v":"","c":[{"t":"list_item","d":6,"p":{"lines":[494,495]},"v":"<code>git add -A</code>: stages all files, including new, modified, and deleted files, including files in the current directory <em>and</em> in higher directories that still belong to the same git repository"},{"t":"list_item","d":6,"p":{"lines":[495,496]},"v":"<code>git add .</code>: adds the entire directory recursively, including files whose names begin with a dot"},{"t":"list_item","d":6,"p":{"lines":[496,497]},"v":"<code>git add -u</code>: stages modified and deleted files only, NOT new files"}]},{"t":"table","d":5,"p":{"lines":[498,503]},"v":"","c":[{"t":"thead","d":6,"p":{"lines":[498,499]},"v":"","c":[{"t":"th","d":8,"p":{"lines":[498,499]},"v":""},{"t":"th","d":8,"p":{"lines":[498,499]},"v":"New files"},{"t":"th","d":8,"p":{"lines":[498,499]},"v":"Modified files"},{"t":"th","d":8,"p":{"lines":[498,499]},"v":"Deleted files"},{"t":"th","d":8,"p":{"lines":[498,499]},"v":"Files with names beginning with a dot"},{"t":"th","d":8,"p":{"lines":[498,499]},"v":"Current directory"},{"t":"th","d":8,"p":{"lines":[498,499]},"v":"Higher directories"}]},{"t":"tbody","d":6,"p":{"lines":[500,503]},"v":"","c":[{"t":"tr","d":7,"p":{},"v":"","c":[{"t":"td","d":8,"p":{},"v":"<code>git add -A</code>"},{"t":"td","d":8,"p":{},"v":"Yes"},{"t":"td","d":8,"p":{},"v":"Yes"},{"t":"td","d":8,"p":{},"v":"Yes"},{"t":"td","d":8,"p":{},"v":"Yes"},{"t":"td","d":8,"p":{},"v":"Yes"},{"t":"td","d":8,"p":{},"v":"Yes"}]},{"t":"tr","d":7,"p":{},"v":"","c":[{"t":"td","d":8,"p":{},"v":"<code>git add .</code>"},{"t":"td","d":8,"p":{},"v":"Yes"},{"t":"td","d":8,"p":{},"v":"Yes"},{"t":"td","d":8,"p":{},"v":"Yes"},{"t":"td","d":8,"p":{},"v":"Yes"},{"t":"td","d":8,"p":{},"v":"Yes"},{"t":"td","d":8,"p":{},"v":"No"}]},{"t":"tr","d":7,"p":{},"v":"","c":[{"t":"td","d":8,"p":{},"v":"<code>git add -u</code>"},{"t":"td","d":8,"p":{},"v":"No"},{"t":"td","d":8,"p":{},"v":"Yes"},{"t":"td","d":8,"p":{},"v":"Yes"},{"t":"td","d":8,"p":{},"v":"Yes"},{"t":"td","d":8,"p":{},"v":"Yes"},{"t":"td","d":8,"p":{},"v":"Yes"}]}]}]}]}]},{"t":"heading","d":3,"p":{"lines":[504,505]},"v":"<code>git add</code> A Folder or Specific File"},{"t":"heading","d":3,"p":{"lines":[511,512]},"v":"Undo Added Files","c":[{"t":"heading","d":4,"p":{"lines":[519,520]},"v":"Using <code>git reset</code> to undo <code>git add</code>"}]}]},{"t":"heading","d":2,"p":{"lines":[525,526]},"v":"Related Terms","c":[{"t":"list_item","d":4,"p":{"lines":[527,528]},"v":"<code>git status</code>: Always a good idea, this command shows you what branch you're on, what files are in the working or staging directory, and any other important information."},{"t":"list_item","d":4,"p":{"lines":[528,529]},"v":"<code>git checkout [branch-name]</code>: Switches to the specified branch and updates the working directory."},{"t":"list_item","d":4,"p":{"lines":[529,530]},"v":"<code>git commit -m &quot;descriptive message&quot;</code>: Records file snapshots permanently in version history."},{"t":"list_item","d":4,"p":{"lines":[530,531]},"v":"<code>git push</code>: Uploads all local branch commits to the remote."}]},{"t":"heading","d":2,"p":{"lines":[540,541]},"v":"&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;"}]},{"t":"heading","d":1,"p":{"lines":[546,547]},"v":"Git Commit","c":[{"t":"heading","d":2,"p":{"lines":[550,551]},"v":"How Git Commit Works","c":[{"t":"fence","d":3,"v":"<pre class=\"language-sh\"><code class=\"language-sh\">git commit -m &quot;update the README.md with link to contributing guide&quot;\n</code></pre>\n"},{"t":"heading","d":3,"p":{"lines":[558,559]},"v":"Commits shape history"},{"t":"heading","d":3,"p":{"lines":[564,565]},"v":"Committing in two phases"}]},{"t":"heading","d":2,"p":{"lines":[570,571]},"v":"How to Use Git Commit","c":[{"t":"heading","d":3,"p":{"lines":[572,573]},"v":"Common usages and options for Git Commit","c":[{"t":"list_item","d":5,"p":{"lines":[574,575]},"v":"<code>git commit</code>: This starts the commit process, but since it doesn't include a <code>-m</code> flag for the message, your default text editor will be opened for you to create the commit message. If you haven't configured anything, there's a good chance this will be VI or Vim. (To get out, press Esc, then <code>:wq</code>, and then Enter. :wink:)"},{"t":"list_item","d":5,"p":{"lines":[575,576]},"v":"<code>git commit -m &quot;descriptive commit message&quot;</code>: This starts the commit process, and allows you to include the commit message at the same time."},{"t":"list_item","d":5,"p":{"lines":[576,577]},"v":"<code>git commit -am &quot;descriptive commit message&quot;</code>: In addition to including the commit message, this option allows you to skip the staging phase. The addition of <code>-a</code> will automatically stage any files that are already being tracked by Git (changes to files that you've committed before)."},{"t":"list_item","d":5,"p":{"lines":[577,578]},"v":"<code>git commit --amend</code>: Replaces the most recent commit with a new commit. (More on this later!)"}]},{"t":"heading","d":3,"p":{"lines":[581,582]},"v":"How to Undo Commits in Git","c":[{"t":"list_item","d":5,"p":{"lines":[585,586]},"v":"If you are &quot;undoing&quot; a commit that exists on the remote, you could create big problems for your collaborators"},{"t":"list_item","d":5,"p":{"lines":[586,587]},"v":"Undoing a commit on work that you only have locally is much safer"}]},{"t":"heading","d":3,"p":{"lines":[588,589]},"v":"What can go wrong while changing history?","c":[{"t":"heading","d":4,"p":{"lines":[596,597]},"v":"<code>git revert</code>"},{"t":"heading","d":4,"p":{"lines":[600,601]},"v":"<code>git reset</code>","c":[{"t":"list_item","d":6,"p":{"lines":[604,605]},"v":"Make sure to talk with your team about any shared commits"},{"t":"list_item","d":6,"p":{"lines":[605,606]},"v":"Research the three types of reset to see which is right for you (--soft, --mixed, --hard)"},{"t":"list_item","d":6,"p":{"lines":[606,607]},"v":"Commit any work that you don't want to be lost intentionally - work that is committed can be gotten back, but uncommitted work cannot"}]},{"t":"heading","d":4,"p":{"lines":[608,609]},"v":"<code>git reflog</code>"}]},{"t":"heading","d":3,"p":{"lines":[612,613]},"v":"Updating Commits With Git Commit Amend","c":[{"t":"list_item","d":5,"p":{"lines":[616,617]},"v":"Haven't been pushed to the remote yet"},{"t":"list_item","d":5,"p":{"lines":[617,618]},"v":"Have a spelling error in the commit message"},{"t":"list_item","d":5,"p":{"lines":[618,619]},"v":"Don't contain the changes that you'd like to contain"}]}]},{"t":"heading","d":2,"p":{"lines":[620,621]},"v":"Examples of Git Commit","c":[{"t":"bullet_list","d":3,"p":{"lines":[624,626]},"v":"","c":[{"t":"list_item","d":4,"p":{"lines":[624,625]},"v":"<code>git commit -m &quot;git commit message example&quot;</code>"}]},{"t":"bullet_list","d":3,"p":{"lines":[628,632]},"v":"","c":[{"t":"list_item","d":4,"p":{"lines":[628,629]},"v":"<code>git commit -m &quot;create file structure for Git guides&quot;</code>"},{"t":"list_item","d":4,"p":{"lines":[629,630]},"v":"<code>git commit -m &quot;translate Git cheat sheet into German&quot;</code>"},{"t":"list_item","d":4,"p":{"lines":[630,631]},"v":"<code>git commit -m &quot;update broken URL to Git resources&quot;</code>"}]}]},{"t":"heading","d":2,"p":{"lines":[634,635]},"v":"Related commands","c":[{"t":"list_item","d":4,"p":{"lines":[636,637]},"v":"<code>git add [file]</code>: Snapshots the file in preparation for versioning, adding it to the staging area."},{"t":"list_item","d":4,"p":{"lines":[637,638]},"v":"<code>git status</code>: Always a good idea, this command shows you what branch you're on, what files are in the working or staging directory, and any other important information."},{"t":"list_item","d":4,"p":{"lines":[638,639]},"v":"<code>git push</code>: Uploads all local branch commits to the remote."},{"t":"list_item","d":4,"p":{"lines":[639,640]},"v":"<code>git log</code>: Browse and inspect the evolution of project files."}]},{"t":"heading","d":2,"p":{"lines":[656,657]},"v":"&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;"}]},{"t":"heading","d":1,"p":{"lines":[664,665]},"v":"Git Push","c":[{"t":"fence","d":2,"v":"<pre class=\"language-sh\"><code class=\"language-sh\">git push\n</code></pre>\n"},{"t":"heading","d":2,"p":{"lines":[672,673]},"v":"What Does <code>git push</code> Do?"},{"t":"heading","d":2,"p":{"lines":[678,679]},"v":"How to Use <code>git push</code>","c":[{"t":"heading","d":3,"p":{"lines":[684,685]},"v":"Common usages and options for <code>git push</code>","c":[{"t":"list_item","d":5,"p":{"lines":[686,687]},"v":"<code>git push -f</code>: Force a push that would otherwise be blocked, usually because it will delete or overwrite existing commits <em>(Use with caution!)</em>"},{"t":"list_item","d":5,"p":{"lines":[687,688]},"v":"<code>git push -u origin [branch]</code>: Useful when pushing a new branch, this creates an upstream tracking branch with a lasting relationship to your local branch"},{"t":"list_item","d":5,"p":{"lines":[688,689]},"v":"<code>git push --all</code>: Push all branches"},{"t":"list_item","d":5,"p":{"lines":[689,690]},"v":"<code>git push --tags</code>: Publish tags that aren't yet in the remote repository"}]}]},{"t":"heading","d":2,"p":{"lines":[693,694]},"v":"Why can't I push?","c":[{"t":"heading","d":3,"p":{"lines":[697,698]},"v":"Check your branch","c":[{"t":"heading","d":4,"p":{"lines":[701,702]},"v":"Work was not yet on any branch","c":[{"t":"list_item","d":6,"p":{"lines":[703,704],"index":1},"v":"1. Create and checkout to a new branch from your current commit: <code>git checkout -b [branchname]</code>"},{"t":"list_item","d":6,"p":{"lines":[704,705],"index":2},"v":"2. Then, push the new branch up to the remote: <code>git push -u origin [branchname]</code>"}]},{"t":"heading","d":4,"p":{"lines":[706,707]},"v":"Accidentally committed to the wrong branch","c":[{"t":"list_item","d":6,"p":{"lines":[708,709],"index":1},"v":"1. Checkout to the branch that you intended to commit to: <code>git checkout [branchname]</code>"},{"t":"list_item","d":6,"p":{"lines":[709,710],"index":2},"v":"2. Merge the commits from the branch that you <em>did</em> accidentally commit to: <code>git merge [main]</code>"},{"t":"list_item","d":6,"p":{"lines":[710,711],"index":3},"v":"3. Push your changes to the remote: <code>git push</code>"},{"t":"list_item","d":6,"p":{"lines":[711,712],"index":4},"v":"4. Fix the other branch by checking out to that branch, finding what commit it <em>should</em> be pointed to, and using <code>git reset --hard</code> to correct the branch pointer"}]}]}]},{"t":"heading","d":2,"p":{"lines":[713,714]},"v":"Related Terms","c":[{"t":"list_item","d":4,"p":{"lines":[715,716]},"v":"<code>git commit -m &quot;descriptive message&quot;</code>: Records file snapshots permanently in version history."},{"t":"list_item","d":4,"p":{"lines":[716,717]},"v":"<code>git clone [url]</code>: Clone (download) a repository that already exists on GitHub, including all of the files, branches, and commits."},{"t":"list_item","d":4,"p":{"lines":[717,718]},"v":"<code>git status</code>: Always a good idea, this command shows you what branch you're on, what files are in the working or staging directory, and any other important information."},{"t":"list_item","d":4,"p":{"lines":[718,719]},"v":"<code>git pull</code>: Updates your current local working branch with all new commits from the corresponding remote branch on GitHub. <code>git pull</code> is a combination of <code>git fetch</code> and <code>git merge</code>."}]},{"t":"heading","d":2,"p":{"lines":[734,735]},"v":"&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;"}]},{"t":"heading","d":1,"p":{"lines":[743,744]},"v":"Git Pull","c":[{"t":"heading","d":2,"p":{"lines":[749,750]},"v":"What Does <code>git pull</code> Do?","c":[{"t":"fence","d":3,"v":"<pre class=\"language-sh\"><code class=\"language-sh\">git pull\n</code></pre>\n"}]},{"t":"heading","d":2,"p":{"lines":[757,758]},"v":"<code>git pull</code> and <code>git fetch</code>"},{"t":"heading","d":2,"p":{"lines":[769,770]},"v":"How to Use <code>git pull</code>","c":[{"t":"heading","d":3,"p":{"lines":[771,772]},"v":"Common usages and options for <code>git pull</code>","c":[{"t":"list_item","d":5,"p":{"lines":[773,774]},"v":"<code>git pull</code>: Update your local working branch with commits from the remote, <em>and</em> update all remote tracking branches."},{"t":"list_item","d":5,"p":{"lines":[774,775]},"v":"<code>git pull --rebase</code>: Update your local working branch with commits from the remote, but rewrite history so any local commits occur after all new commits coming from the remote, avoiding a merge commit."},{"t":"list_item","d":5,"p":{"lines":[775,776]},"v":"<code>git pull --force</code>: This option allows you to force a fetch of a specific remote tracking branch when using the <code>&lt;refspec&gt;</code> option that would otherwise not be fetched due to conflicts. To force Git to overwrite your current branch to match the remote tracking branch, read below about using <code>git reset</code>."},{"t":"list_item","d":5,"p":{"lines":[776,777]},"v":"<code>git pull --all</code>: Fetch <em>all</em> remotes - this is handy if you are working on a fork or in another use case with multiple remotes."}]}]},{"t":"heading","d":2,"p":{"lines":[780,781]},"v":"Examples of <code>git pull</code>","c":[{"t":"heading","d":3,"p":{"lines":[782,783]},"v":"Working on a Branch"},{"t":"heading","d":3,"p":{"lines":[790,791]},"v":"Keep <code>main</code> up to date"},{"t":"heading","d":3,"p":{"lines":[796,797]},"v":"Undo A <code>git pull</code>"},{"t":"heading","d":3,"p":{"lines":[804,805]},"v":"Force <code>git pull</code> to Overwrite Local Files","c":[{"t":"paragraph","d":5,"p":{"lines":[816,817]},"v":"_Note: You can find the remotes with <code>git remote -v</code>, and see all available remote tracking branches with <code>git branch --all</code>."}]},{"t":"heading","d":3,"p":{"lines":[818,819]},"v":"<code>git pull</code> with Rebase"}]},{"t":"heading","d":2,"p":{"lines":[827,828]},"v":"Related Terms","c":[{"t":"list_item","d":4,"p":{"lines":[829,830]},"v":"<code>git clone [url]</code>: Clone (download) a repository that already exists on GitHub, including all of the files, branches, and commits."},{"t":"list_item","d":4,"p":{"lines":[830,831]},"v":"<code>git status</code>: Always a good idea, this command shows you what branch you're on, what files are in the working or staging directory, and any other important information."},{"t":"list_item","d":4,"p":{"lines":[831,832]},"v":"<code>git branch</code>: This shows the existing branches in your local repository. You can also use <code>git branch [banch-name]</code> to create a branch from your current location, or <code>git branch --all</code> to see all branches, both the local ones on your machine, and the remote tracking branches stored from the last <code>git pull</code> or <code>git fetch</code> from the remote."},{"t":"list_item","d":4,"p":{"lines":[832,833]},"v":"<code>git push</code>: Uploads all local branch commits to the remote."},{"t":"list_item","d":4,"p":{"lines":[833,834]},"v":"<code>git log</code>: Browse and inspect the evolution of project files."},{"t":"list_item","d":4,"p":{"lines":[834,835]},"v":"<code>git remote -v</code>: Show the associated remote repositories and their stored name, like <code>origin</code>."}]},{"t":"heading","d":2,"p":{"lines":[854,855]},"v":"&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;"}]},{"t":"heading","d":1,"p":{"lines":[862,863]},"v":"Git Remote","c":[{"t":"heading","d":2,"p":{"lines":[868,869]},"v":"What does Git remote do?","c":[{"t":"fence","d":3,"v":"<pre class=\"language-sh\"><code class=\"language-sh\">git remote -v\n</code></pre>\n"},{"t":"heading","d":3,"p":{"lines":[876,877]},"v":"Common <code>git remote</code> commands","c":[{"t":"list_item","d":5,"p":{"lines":[878,879]},"v":"<code>git remote -v</code>: List the current remotes associated with the local repository"},{"t":"list_item","d":5,"p":{"lines":[879,880]},"v":"<code>git remote add [name] [URL]</code>: Add a remote"},{"t":"list_item","d":5,"p":{"lines":[880,881]},"v":"<code>git remote remove [name]</code>: Remove a remote"}]},{"t":"heading","d":3,"p":{"lines":[882,883]},"v":"What is <code>origin</code>?"},{"t":"heading","d":3,"p":{"lines":[886,887]},"v":"What is <code>upstream</code>?"}]},{"t":"heading","d":2,"p":{"lines":[894,895]},"v":"Communicating with the remote","c":[{"t":"list_item","d":4,"p":{"lines":[898,899]},"v":"<code>git push</code>"},{"t":"list_item","d":4,"p":{"lines":[899,900]},"v":"<code>git clone</code>"},{"t":"list_item","d":4,"p":{"lines":[900,901]},"v":"<code>git pull</code>"},{"t":"list_item","d":4,"p":{"lines":[901,902]},"v":"<code>git fetch</code>"}]},{"t":"heading","d":2,"p":{"lines":[903,904]},"v":"Branches and the remote","c":[{"t":"heading","d":3,"p":{"lines":[907,908]},"v":"Remote tracking branches"},{"t":"heading","d":3,"p":{"lines":[915,916]},"v":"Local working branches","c":[{"t":"list_item","d":5,"p":{"lines":[920,921]},"v":"<code>git clone [url]</code>: Clone (download) a repository that already exists on GitHub, including all of the files, branches, and commits."},{"t":"list_item","d":5,"p":{"lines":[921,922]},"v":"<code>git status</code>: Always a good idea, this command shows you what branch you're on, what files are in the working or staging directory, and any other important information."},{"t":"list_item","d":5,"p":{"lines":[922,923]},"v":"<code>git push</code>: Uploads all local branch commits to the remote."},{"t":"list_item","d":5,"p":{"lines":[923,924]},"v":"<code>git pull</code>: Updates your current local working branch with all new commits from the corresponding remote branch on GitHub. <code>git pull</code> is a combination of <code>git fetch</code> and <code>git merge</code>."}]}]}]}],"p":{}})</script>
-</body>
+    <script
+      async
+      defer
+      src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/highlight.pack.js"
+    ></script>
+    <script
+      async
+      defer
+      src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/highlightJsWorker.js"
+    ></script>
+    <script
+      async
+      defer
+      src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/highlightjs-badge.js"
+    ></script>
+    <script
+      async
+      defer
+      src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/highlightjs-badge.min.js"
+    ></script>
+    <script
+      async
+      defer
+      src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/jquery-1.10.1.min.js"
+    ></script>
+    <script
+      async
+      defer
+      src="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/jquery-3.3.1.min.js"
+    ></script>
+  </head>
+  <body>
+    <svg id="mindmap"></svg>
+    <script src="https://cdn.jsdelivr.net/npm/d3@6.6.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.1.5/dist/index.umd.min.js"></script>
+    <script>
+      ((r) => {
+        setTimeout(r);
+      })(() => {
+        const { markmap, mm } = window;
+        const toolbar = new markmap.Toolbar();
+        toolbar.attach(mm);
+        const el = toolbar.render();
+        el.setAttribute("style", "position:absolute;bottom:20px;right:20px");
+        document.body.append(el);
+      });
+    </script>
+    <script>
+      ((getMarkmap, getOptions, data) => {
+        const { Markmap } = getMarkmap();
+        window.mm = Markmap.create(
+          "svg#mindmap",
+          getOptions == null ? void 0 : getOptions(),
+          data
+        );
+      })(() => window.markmap, null, {
+        t: "root",
+        d: 0,
+        v: "",
+        c: [
+          { t: "heading", d: 1, p: { lines: [0, 1] }, v: "Full Git Guide:" },
+          {
+            t: "heading",
+            d: 1,
+            p: { lines: [4, 5] },
+            v: "Install Git",
+            c: [
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [10, 11] },
+                v: "Checking for Git",
+                c: [
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [14, 15] },
+                    v: "If you're on a Mac, look for a command prompt application called &quot;Terminal&quot;.",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [15, 16] },
+                    v: "If you're on a Windows machine, open the windows command prompt or &quot;Git Bash&quot;.",
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [19, 20] },
+                v: "Install Git Using GitHub Desktop",
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [23, 24] },
+                v: "Install Git on Windows",
+                c: [
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [25, 26], index: 1 },
+                    v: '1. Navigate to the latest <a href="https://gitforwindows.org/">Git for Windows installer</a> and download the latest version.',
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [26, 27], index: 2 },
+                    v: "2. Once the installer has started, follow the instructions as provided in the <strong>Git Setup</strong> wizard screen until the installation is complete.",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [27, 28], index: 3 },
+                    v: "3. Open the windows command prompt (or <strong>Git Bash</strong> if you selected not to use the standard Git Windows Command Prompt during the Git installation).",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [28, 29], index: 4 },
+                    v: "4. Type <code>git version</code> to verify Git was installed.",
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [32, 33] },
+                v: "Install Git on Windows through Visual Studio Code",
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [46, 47] },
+                v: "Install Git on Mac",
+                c: [
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [50, 51] },
+                    v: "Install Git From an Installer",
+                    c: [
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [52, 53], index: 1 },
+                        v: '1. Navigate to the latest <a href="https://sourceforge.net/projects/git-osx-installer/files/git-2.23.0-intel-universal-mavericks.dmg/download?use_mirror=autoselect">macOS Git Installer</a> and download the latest version.',
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [53, 54], index: 2 },
+                        v: "2. Once the installer has started, follow the instructions as provided until the installation is complete.",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [54, 55], index: 3 },
+                        v: "3. Open the command prompt &quot;terminal&quot; and type <code>git version</code> to verify Git was installed.",
+                      },
+                    ],
+                  },
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [58, 59] },
+                    v: "Install Git from Homebrew",
+                    c: [
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [62, 63], index: 1 },
+                        v: "1. Open up a terminal window and install Git using the following command: <code>brew install git</code>.",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [63, 64], index: 2 },
+                        v: "2. Once the command output has been completed, you can verify the installation by typing: <code>git version</code>.",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [66, 67] },
+                v: "Install Git on Linux",
+                c: [
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [72, 73] },
+                    v: "Debian/Ubuntu",
+                    c: [
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [74, 75], index: 1 },
+                        v: "1. Git packages are available using <code>apt</code>.",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [75, 76], index: 2 },
+                        v: "2. It's a good idea to make sure you're running the latest version. To do so, Navigate to your command prompt shell and run the following command to make sure everything is up-to-date: <code>sudo apt-get update</code>.",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [76, 77], index: 3 },
+                        v: "3. To install Git, run the following command: <code>sudo apt-get install git-all</code>.",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [77, 78], index: 4 },
+                        v: "4. Once the command output has been completed, you can verify the installation by typing: <code>git version</code>.",
+                      },
+                    ],
+                  },
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [79, 80] },
+                    v: "Fedora",
+                    c: [
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [81, 82], index: 1 },
+                        v: "1. Git packages are available using <code>dnf</code>.",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [82, 83], index: 2 },
+                        v: "2. To install Git, navigate to your command prompt shell and run the following command: <code>sudo dnf install git-all</code>.",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [83, 84], index: 3 },
+                        v: "3. Once the command output has been completed, you can verify the installation by typing: <code>git version</code>.",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [87, 88] },
+                v: "Other Methods of Installing Git",
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [102, 103] },
+                v: "&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;",
+              },
+            ],
+          },
+          {
+            t: "heading",
+            d: 1,
+            p: { lines: [119, 120] },
+            v: "Git Guide",
+            c: [
+              {
+                t: "bullet_list",
+                d: 2,
+                p: { lines: [124, 142] },
+                v: "",
+                c: [
+                  {
+                    t: "list_item",
+                    d: 3,
+                    p: { lines: [124, 125] },
+                    v: '<a href="#what-is-git">What is Git?</a>',
+                  },
+                  {
+                    t: "list_item",
+                    d: 3,
+                    p: { lines: [125, 126] },
+                    v: '<a href="#what-is-git-written-in">What is Git Written in?</a>',
+                  },
+                  {
+                    t: "list_item",
+                    d: 3,
+                    p: { lines: [126, 127] },
+                    v: '<a href="#why-use-git">Why Use Git?</a>',
+                    c: [
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [127, 128] },
+                        v: '<a href="#speed">Speed</a>',
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [128, 129] },
+                        v: '<a href="#merge-conflicts">Merge conflicts</a>',
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [129, 130] },
+                        v: '<a href="#cheap-branches">Cheap branches</a>',
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [130, 131] },
+                        v: '<a href="#ease-of-roll-back">Ease of roll back</a>',
+                      },
+                    ],
+                  },
+                  {
+                    t: "list_item",
+                    d: 3,
+                    p: { lines: [131, 132] },
+                    v: '<a href="#how-do-i-use-git">How Do I Use Git?</a>',
+                    c: [
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [132, 133] },
+                        v: '<a href="#learning-git-basics">Learning Git Basics</a>',
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [133, 134] },
+                        v: '<a href="#getting-started-with-the-git-workflow">Getting Started With the Git Workflow</a>',
+                        c: [
+                          {
+                            t: "list_item",
+                            d: 7,
+                            p: { lines: [134, 135] },
+                            v: '<a href="#create-a-branch">Create a branch</a>',
+                          },
+                          {
+                            t: "list_item",
+                            d: 7,
+                            p: { lines: [135, 136] },
+                            v: '<a href="#make-changes-and-make-a-commit">Make changes (and make a commit)</a>',
+                          },
+                          {
+                            t: "list_item",
+                            d: 7,
+                            p: { lines: [136, 137] },
+                            v: '<a href="#push-your-changes-to-the-remote">Push your changes to the remote</a>',
+                          },
+                          {
+                            t: "list_item",
+                            d: 7,
+                            p: { lines: [137, 138] },
+                            v: '<a href="#open-a-pull-request">Open a pull request</a>',
+                          },
+                          {
+                            t: "list_item",
+                            d: 7,
+                            p: { lines: [138, 139] },
+                            v: '<a href="#collaborate">Collaborate</a>',
+                          },
+                          {
+                            t: "list_item",
+                            d: 7,
+                            p: { lines: [139, 140] },
+                            v: '<a href="#merge-into-main">Merge into main</a>',
+                          },
+                        ],
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [140, 141] },
+                        v: '<a href="#getting-started-with-github">Getting Started With GitHub</a>',
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [142, 143] },
+                v: "What is Git?",
+                c: [
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [148, 149] },
+                    v: "Branches are lightweight and cheap, so it's OK to have many of them",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [149, 150] },
+                    v: "Git stores changes in SHA hashes, which work by compressing text files. That makes Git a very good version control system (VCS) for software programming, but not so good for binary files like images or videos.",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [150, 151] },
+                    v: 'Git repositories can be connected, so you can work on one locally on your own machine, and connect it to a shared repository. This way, you can <a href="/git-guides/git-push">push</a> and <a href="/git-guides/git-pull">pull</a> changes to a repository and easily collaborate with others.',
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [152, 153] },
+                v: "What is Git Written in?",
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [156, 157] },
+                v: "Why Use Git?",
+                c: [
+                  { t: "heading", d: 3, p: { lines: [162, 163] }, v: "Speed" },
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [166, 167] },
+                    v: "Merge conflicts",
+                  },
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [170, 171] },
+                    v: "Cheap branches",
+                  },
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [178, 179] },
+                    v: "Ease of roll back",
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [184, 185] },
+                v: "How Do I Use Git?",
+                c: [
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [186, 187] },
+                    v: "Learning Git Basics",
+                    c: [
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [192, 193] },
+                        v: '<code>git clone [url]</code>: <a href="/git-guides/git-clone">Clone</a> (download) a repository that already exists on GitHub, including all of the files, branches, and commits.',
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [193, 194] },
+                        v: "<code>git status</code>: Always a good idea, this command shows you what branch you're on, what files are in the working or staging directory, and any other important information.",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [194, 195] },
+                        v: "<code>git branch</code>: This shows the existing branches in your local repository. You can also use <code>git branch [branch-name]</code> to create a branch from your current location, or <code>git branch --all</code> to see all branches, both the local ones on your machine, and the remote tracking branches stored from the last <code>git pull</code> or <code>git fetch</code> from the remote.",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [195, 196] },
+                        v: "<code>git checkout [branch-name]</code>: Switches to the specified branch and updates the working directory.",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [196, 197] },
+                        v: "<code>git add [file]</code>: Snapshots the file in preparation for versioning, adding it to the staging area.",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [197, 198] },
+                        v: "<code>git commit -m &quot;descriptive message&quot;</code>: Records file snapshots permanently in the version history.",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [198, 199] },
+                        v: "<code>git pull</code>: Updates your current local working branch with all new commits from the corresponding remote branch on GitHub. <code>git pull</code> is a combination of <code>git fetch</code> and <code>git merge</code>.",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [199, 200] },
+                        v: "<code>git push</code>: Uploads all local branch commits to the remote.",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [200, 201] },
+                        v: "<code>git log</code>: Browse and inspect the evolution of project files.",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [201, 202] },
+                        v: "<code>git remote -v</code>: Show the associated remote repositories and their stored name, like <code>origin</code>.",
+                      },
+                    ],
+                  },
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [205, 206] },
+                    v: "Getting Started With the Git Workflow",
+                    c: [
+                      {
+                        t: "heading",
+                        d: 4,
+                        p: { lines: [211, 212] },
+                        v: "Create a branch",
+                      },
+                      {
+                        t: "heading",
+                        d: 4,
+                        p: { lines: [215, 216] },
+                        v: "Make changes (and make a commit)",
+                      },
+                      {
+                        t: "heading",
+                        d: 4,
+                        p: { lines: [225, 226] },
+                        v: "Push your changes to the remote",
+                      },
+                      {
+                        t: "heading",
+                        d: 4,
+                        p: { lines: [233, 234] },
+                        v: "Open a pull request",
+                      },
+                      {
+                        t: "heading",
+                        d: 4,
+                        p: { lines: [241, 242] },
+                        v: "Collaborate",
+                      },
+                      {
+                        t: "heading",
+                        d: 4,
+                        p: { lines: [247, 248] },
+                        v: "Merge into <code>main</code>",
+                      },
+                    ],
+                  },
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [253, 254] },
+                    v: "Getting Started With GitHub",
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [265, 266] },
+                v: "&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;",
+              },
+            ],
+          },
+          {
+            t: "heading",
+            d: 1,
+            p: { lines: [271, 272] },
+            v: "Git Status",
+            c: [
+              {
+                t: "fence",
+                d: 2,
+                v: '<pre class="language-sh"><code class="language-sh">git status\n</code></pre>\n',
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [279, 280] },
+                v: "What Does <code>git status</code> Do?",
+                c: [
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [285, 286] },
+                    v: "Where <code>HEAD</code> is pointing, whether that is a branch or a commit (this is where you are &quot;checked out&quot; to)",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [286, 287] },
+                    v: "If you have any changed files in your current directory that have not yet been committed",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [287, 288] },
+                    v: "If changed files are staged or not",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [288, 289] },
+                    v: "If your current local branch is linked to a remote branch, then <code>git status</code> will tell you if your local branch is behind or ahead by any commits",
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [292, 293] },
+                v: "How to Use <code>git status</code>",
+                c: [
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [294, 295] },
+                    v: "Common usages and options for <code>git status</code>",
+                    c: [
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [296, 297] },
+                        v: "<code>git status</code>: Most often used in its default form, this shows a good base of information",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [297, 298] },
+                        v: "<code>git status -s</code>: Give output in short format",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [298, 299] },
+                        v: "<code>git status -v</code>: Shows more &quot;verbose&quot; detail including the textual changes of any uncommitted files",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [302, 303] },
+                v: "Related Terms",
+                c: [
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [304, 305] },
+                    v: "<code>git clone [url]</code>: Clone (download) a repository that already exists on GitHub, including all of the files, branches, and commits.",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [305, 306] },
+                    v: "<code>git remote -v</code>: Show the associated remote repositories and their stored name, like <code>origin</code>.",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [306, 307] },
+                    v: "<code>git remote add origin &lt;url&gt;</code>: Add a remote so you can collaborate with others on a newly initialized repository.",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [307, 308] },
+                    v: "<code>git push</code>: Uploads all local branch commits to the remote.",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [308, 309] },
+                    v: "<code>git push -u origin main</code>: When pushing a branch for the first time, this type of push will configure the relationship between the remote and your local repository so that you can use <code>git pull</code> and <code>git push</code> with no additional options in the future.",
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [321, 322] },
+                v: "&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;",
+              },
+            ],
+          },
+          {
+            t: "heading",
+            d: 1,
+            p: { lines: [328, 329] },
+            v: "Git Clone",
+            c: [
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [334, 335] },
+                v: "What Does <code>git clone</code> Do?",
+                c: [
+                  {
+                    t: "fence",
+                    d: 3,
+                    v: '<pre class="language-sh"><code class="language-sh">git clone https://github.com/github/training-kit.git\n</code></pre>\n',
+                  },
+                  {
+                    t: "bullet_list",
+                    d: 3,
+                    p: { lines: [345, 350] },
+                    v: "",
+                    c: [
+                      {
+                        t: "list_item",
+                        d: 4,
+                        p: { lines: [345, 346] },
+                        v: "later use <code>git push</code> to share your branch with the remote repository",
+                      },
+                      {
+                        t: "list_item",
+                        d: 4,
+                        p: { lines: [346, 347] },
+                        v: "open a pull request to compare the changes with your collaborators",
+                      },
+                      {
+                        t: "list_item",
+                        d: 4,
+                        p: { lines: [347, 348] },
+                        v: "test and deploy as needed from the branch",
+                      },
+                      {
+                        t: "list_item",
+                        d: 4,
+                        p: { lines: [348, 349] },
+                        v: "merge into the <code>main</code> branch.",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [350, 351] },
+                v: "How to Use <code>git clone</code>",
+                c: [
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [352, 353] },
+                    v: "Common usages and options for <code>git clone</code>",
+                    c: [
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [354, 355] },
+                        v: "<code>git clone [url]</code>: Clone (download) a repository that already exists on GitHub, including all of the files, branches, and commits.",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [355, 356] },
+                        v: "<code>git clone --mirror</code>: Clone a repository but without the ability to edit any of the files. This includes the refs or branches. You may want to use this if you are trying to create a secondary copy of a repository on a separate remote and you want to match all of the branches. This may occur during configuration using a new remote for your Git hosting, or when using Git during automated testing.",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [356, 357] },
+                        v: "<code>git clone --single-branch</code>: Clone only a single branch",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [357, 358] },
+                        v: "<code>git clone --sparse</code>: Instead of populating the working directory with all of the files in the current commit recursively, only populate the files present in the root directory. This could help with performance when cloning large repositories with many directories and sub-directories.",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [358, 359] },
+                        v: "`git clone --recurse-submodules[=&lt;pathspec]: After the clone is created, initialize and clone submodules within based on the provided pathspec. This may be a good option if you are cloning a repository that you know to have submodules, and you will be working with those submodules as dependencies in your local development.",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [362, 363] },
+                v: "Examples of <code>git clone</code>",
+                c: [
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [364, 365] },
+                    v: "<code>git clone [url]</code>",
+                  },
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [368, 369] },
+                    v: "<code>git clone</code> A Branch",
+                  },
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [383, 384] },
+                    v: "<code>git clone</code> With SSH",
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [389, 390] },
+                v: "Related Terms",
+                c: [
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [391, 392] },
+                    v: "<code>git branch</code>: This shows the existing branches in your local repository. You can also use <code>git branch [branch-name]</code> to create a branch from your current location, or <code>git branch --all</code> to see all branches, both the local ones on your machine and the remote tracking branches stored from the last <code>git pull</code> or <code>git fetch</code> from the remote.",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [392, 393] },
+                    v: "<code>git pull</code>: Updates your current local working branch with all new commits from the corresponding remote branch on GitHub. <code>git pull</code> is a combination of <code>git fetch</code> and <code>git merge</code>.",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [393, 394] },
+                    v: "<code>git push</code>: Uploads all local branch commits to the remote.",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [394, 395] },
+                    v: "<code>git remote -v</code>: Show the associated remote repositories and their stored name, like <code>origin</code>.",
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [413, 414] },
+                v: "&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;",
+              },
+            ],
+          },
+          {
+            t: "heading",
+            d: 1,
+            p: { lines: [419, 420] },
+            v: "Git Add",
+            c: [
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [427, 428] },
+                v: "When do you use <code>git add</code>?",
+                c: [
+                  {
+                    t: "fence",
+                    d: 3,
+                    v: '<pre class="language-sh"><code class="language-sh">git add README.md\n</code></pre>\n',
+                  },
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [435, 436] },
+                    v: "What Does Git Add Do?",
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [443, 444] },
+                v: "How to Use <code>git add</code>",
+                c: [
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [445, 446] },
+                    v: "Common usages and options for <code>git add</code>",
+                    c: [
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [447, 448] },
+                        v: "<code>git add &lt;path&gt;</code>: Stage a specific directory or file",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [448, 449] },
+                        v: "<code>git add .</code>: Stage all files (that are not listed in the <code>.gitignore</code>) in the entire repository",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [449, 450] },
+                        v: "<code>git add -p</code>: Interactively stage hunks of changes",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [453, 454] },
+                v: "Examples of <code>git add</code>",
+                c: [
+                  {
+                    t: "ordered_list",
+                    d: 3,
+                    p: { lines: [457, 465], start: 1 },
+                    v: "",
+                    c: [
+                      {
+                        t: "list_item",
+                        d: 4,
+                        p: { lines: [457, 458], index: 1 },
+                        v: "1. Create a branch: <code>git branch update-readme</code>",
+                      },
+                      {
+                        t: "list_item",
+                        d: 4,
+                        p: { lines: [458, 459], index: 2 },
+                        v: "2. Checkout to that branch: <code>git checkout update-readme</code>",
+                      },
+                      {
+                        t: "list_item",
+                        d: 4,
+                        p: { lines: [459, 460], index: 3 },
+                        v: "3. Change a file or files",
+                      },
+                      {
+                        t: "list_item",
+                        d: 4,
+                        p: { lines: [460, 461], index: 4 },
+                        v: "4. Save the file or files",
+                      },
+                      {
+                        t: "list_item",
+                        d: 4,
+                        p: { lines: [461, 462], index: 5 },
+                        v: "5. Add the files or segments of code that should be included in the next commit: <code>git add README.md</code>",
+                      },
+                      {
+                        t: "list_item",
+                        d: 4,
+                        p: { lines: [462, 463], index: 6 },
+                        v: "6. Commit the changes: <code>git commit -m &quot;update the README to include links to contributing guide&quot;</code>",
+                      },
+                      {
+                        t: "list_item",
+                        d: 4,
+                        p: { lines: [463, 464], index: 7 },
+                        v: "7. Push the changes to the remote branch: <code>git push -u origin update-readme</code>",
+                      },
+                    ],
+                  },
+                  {
+                    t: "ordered_list",
+                    d: 3,
+                    p: { lines: [467, 478], start: 1 },
+                    v: "",
+                    c: [
+                      {
+                        t: "list_item",
+                        d: 4,
+                        p: { lines: [467, 468], index: 1 },
+                        v: "1. Create a branch: <code>git branch update-readme</code>",
+                      },
+                      {
+                        t: "list_item",
+                        d: 4,
+                        p: { lines: [468, 469], index: 2 },
+                        v: "2. Checkout to that branch: <code>git checkout update-readme</code>",
+                      },
+                      {
+                        t: "list_item",
+                        d: 4,
+                        p: { lines: [469, 470], index: 3 },
+                        v: "3. Change a file or files",
+                      },
+                      {
+                        t: "list_item",
+                        d: 4,
+                        p: { lines: [470, 471], index: 4 },
+                        v: "4. Save the file or files",
+                      },
+                      {
+                        t: "list_item",
+                        d: 4,
+                        p: { lines: [471, 472], index: 5 },
+                        v: "5. Add only one file, or one part of the changed file: <code>git add README.md</code>",
+                      },
+                      {
+                        t: "list_item",
+                        d: 4,
+                        p: { lines: [472, 473], index: 6 },
+                        v: "6. Commit the first set of changes: <code>git commit -m &quot;update the README to include links to contributing guide&quot;</code>",
+                      },
+                      {
+                        t: "list_item",
+                        d: 4,
+                        p: { lines: [473, 474], index: 7 },
+                        v: "7. Add another file, or another part of the changed file: <code>git add CONTRIBUTING.md</code>",
+                      },
+                      {
+                        t: "list_item",
+                        d: 4,
+                        p: { lines: [474, 475], index: 8 },
+                        v: "8. Commit the second set of changes: <code>git commit -m &quot;create the contributing guide&quot;</code>",
+                      },
+                      {
+                        t: "list_item",
+                        d: 4,
+                        p: { lines: [475, 476], index: 9 },
+                        v: "9. (Repeat as necessary)",
+                      },
+                      {
+                        t: "list_item",
+                        d: 4,
+                        p: { lines: [476, 477], index: 10 },
+                        v: "10. Push the changes to the remote branch: <code>git push -u origin update-readme</code>",
+                      },
+                    ],
+                  },
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [478, 479] },
+                    v: "<code>git add</code> All Files",
+                    c: [
+                      {
+                        t: "heading",
+                        d: 4,
+                        p: { lines: [482, 483] },
+                        v: "Poorly thought out history",
+                      },
+                      {
+                        t: "heading",
+                        d: 4,
+                        p: { lines: [486, 487] },
+                        v: "Accidentally staging and committing files",
+                      },
+                      {
+                        t: "heading",
+                        d: 4,
+                        p: { lines: [490, 491] },
+                        v: "Deciding to stage all files",
+                        c: [
+                          {
+                            t: "bullet_list",
+                            d: 5,
+                            p: { lines: [494, 498] },
+                            v: "",
+                            c: [
+                              {
+                                t: "list_item",
+                                d: 6,
+                                p: { lines: [494, 495] },
+                                v: "<code>git add -A</code>: stages all files, including new, modified, and deleted files, including files in the current directory <em>and</em> in higher directories that still belong to the same git repository",
+                              },
+                              {
+                                t: "list_item",
+                                d: 6,
+                                p: { lines: [495, 496] },
+                                v: "<code>git add .</code>: adds the entire directory recursively, including files whose names begin with a dot",
+                              },
+                              {
+                                t: "list_item",
+                                d: 6,
+                                p: { lines: [496, 497] },
+                                v: "<code>git add -u</code>: stages modified and deleted files only, NOT new files",
+                              },
+                            ],
+                          },
+                          {
+                            t: "table",
+                            d: 5,
+                            p: { lines: [498, 503] },
+                            v: "",
+                            c: [
+                              {
+                                t: "thead",
+                                d: 6,
+                                p: { lines: [498, 499] },
+                                v: "",
+                                c: [
+                                  {
+                                    t: "th",
+                                    d: 8,
+                                    p: { lines: [498, 499] },
+                                    v: "",
+                                  },
+                                  {
+                                    t: "th",
+                                    d: 8,
+                                    p: { lines: [498, 499] },
+                                    v: "New files",
+                                  },
+                                  {
+                                    t: "th",
+                                    d: 8,
+                                    p: { lines: [498, 499] },
+                                    v: "Modified files",
+                                  },
+                                  {
+                                    t: "th",
+                                    d: 8,
+                                    p: { lines: [498, 499] },
+                                    v: "Deleted files",
+                                  },
+                                  {
+                                    t: "th",
+                                    d: 8,
+                                    p: { lines: [498, 499] },
+                                    v: "Files with names beginning with a dot",
+                                  },
+                                  {
+                                    t: "th",
+                                    d: 8,
+                                    p: { lines: [498, 499] },
+                                    v: "Current directory",
+                                  },
+                                  {
+                                    t: "th",
+                                    d: 8,
+                                    p: { lines: [498, 499] },
+                                    v: "Higher directories",
+                                  },
+                                ],
+                              },
+                              {
+                                t: "tbody",
+                                d: 6,
+                                p: { lines: [500, 503] },
+                                v: "",
+                                c: [
+                                  {
+                                    t: "tr",
+                                    d: 7,
+                                    p: {},
+                                    v: "",
+                                    c: [
+                                      {
+                                        t: "td",
+                                        d: 8,
+                                        p: {},
+                                        v: "<code>git add -A</code>",
+                                      },
+                                      { t: "td", d: 8, p: {}, v: "Yes" },
+                                      { t: "td", d: 8, p: {}, v: "Yes" },
+                                      { t: "td", d: 8, p: {}, v: "Yes" },
+                                      { t: "td", d: 8, p: {}, v: "Yes" },
+                                      { t: "td", d: 8, p: {}, v: "Yes" },
+                                      { t: "td", d: 8, p: {}, v: "Yes" },
+                                    ],
+                                  },
+                                  {
+                                    t: "tr",
+                                    d: 7,
+                                    p: {},
+                                    v: "",
+                                    c: [
+                                      {
+                                        t: "td",
+                                        d: 8,
+                                        p: {},
+                                        v: "<code>git add .</code>",
+                                      },
+                                      { t: "td", d: 8, p: {}, v: "Yes" },
+                                      { t: "td", d: 8, p: {}, v: "Yes" },
+                                      { t: "td", d: 8, p: {}, v: "Yes" },
+                                      { t: "td", d: 8, p: {}, v: "Yes" },
+                                      { t: "td", d: 8, p: {}, v: "Yes" },
+                                      { t: "td", d: 8, p: {}, v: "No" },
+                                    ],
+                                  },
+                                  {
+                                    t: "tr",
+                                    d: 7,
+                                    p: {},
+                                    v: "",
+                                    c: [
+                                      {
+                                        t: "td",
+                                        d: 8,
+                                        p: {},
+                                        v: "<code>git add -u</code>",
+                                      },
+                                      { t: "td", d: 8, p: {}, v: "No" },
+                                      { t: "td", d: 8, p: {}, v: "Yes" },
+                                      { t: "td", d: 8, p: {}, v: "Yes" },
+                                      { t: "td", d: 8, p: {}, v: "Yes" },
+                                      { t: "td", d: 8, p: {}, v: "Yes" },
+                                      { t: "td", d: 8, p: {}, v: "Yes" },
+                                    ],
+                                  },
+                                ],
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [504, 505] },
+                    v: "<code>git add</code> A Folder or Specific File",
+                  },
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [511, 512] },
+                    v: "Undo Added Files",
+                    c: [
+                      {
+                        t: "heading",
+                        d: 4,
+                        p: { lines: [519, 520] },
+                        v: "Using <code>git reset</code> to undo <code>git add</code>",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [525, 526] },
+                v: "Related Terms",
+                c: [
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [527, 528] },
+                    v: "<code>git status</code>: Always a good idea, this command shows you what branch you're on, what files are in the working or staging directory, and any other important information.",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [528, 529] },
+                    v: "<code>git checkout [branch-name]</code>: Switches to the specified branch and updates the working directory.",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [529, 530] },
+                    v: "<code>git commit -m &quot;descriptive message&quot;</code>: Records file snapshots permanently in version history.",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [530, 531] },
+                    v: "<code>git push</code>: Uploads all local branch commits to the remote.",
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [540, 541] },
+                v: "&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;",
+              },
+            ],
+          },
+          {
+            t: "heading",
+            d: 1,
+            p: { lines: [546, 547] },
+            v: "Git Commit",
+            c: [
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [550, 551] },
+                v: "How Git Commit Works",
+                c: [
+                  {
+                    t: "fence",
+                    d: 3,
+                    v: '<pre class="language-sh"><code class="language-sh">git commit -m &quot;update the README.md with link to contributing guide&quot;\n</code></pre>\n',
+                  },
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [558, 559] },
+                    v: "Commits shape history",
+                  },
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [564, 565] },
+                    v: "Committing in two phases",
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [570, 571] },
+                v: "How to Use Git Commit",
+                c: [
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [572, 573] },
+                    v: "Common usages and options for Git Commit",
+                    c: [
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [574, 575] },
+                        v: "<code>git commit</code>: This starts the commit process, but since it doesn't include a <code>-m</code> flag for the message, your default text editor will be opened for you to create the commit message. If you haven't configured anything, there's a good chance this will be VI or Vim. (To get out, press Esc, then <code>:wq</code>, and then Enter. :wink:)",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [575, 576] },
+                        v: "<code>git commit -m &quot;descriptive commit message&quot;</code>: This starts the commit process, and allows you to include the commit message at the same time.",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [576, 577] },
+                        v: "<code>git commit -am &quot;descriptive commit message&quot;</code>: In addition to including the commit message, this option allows you to skip the staging phase. The addition of <code>-a</code> will automatically stage any files that are already being tracked by Git (changes to files that you've committed before).",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [577, 578] },
+                        v: "<code>git commit --amend</code>: Replaces the most recent commit with a new commit. (More on this later!)",
+                      },
+                    ],
+                  },
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [581, 582] },
+                    v: "How to Undo Commits in Git",
+                    c: [
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [585, 586] },
+                        v: "If you are &quot;undoing&quot; a commit that exists on the remote, you could create big problems for your collaborators",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [586, 587] },
+                        v: "Undoing a commit on work that you only have locally is much safer",
+                      },
+                    ],
+                  },
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [588, 589] },
+                    v: "What can go wrong while changing history?",
+                    c: [
+                      {
+                        t: "heading",
+                        d: 4,
+                        p: { lines: [596, 597] },
+                        v: "<code>git revert</code>",
+                      },
+                      {
+                        t: "heading",
+                        d: 4,
+                        p: { lines: [600, 601] },
+                        v: "<code>git reset</code>",
+                        c: [
+                          {
+                            t: "list_item",
+                            d: 6,
+                            p: { lines: [604, 605] },
+                            v: "Make sure to talk with your team about any shared commits",
+                          },
+                          {
+                            t: "list_item",
+                            d: 6,
+                            p: { lines: [605, 606] },
+                            v: "Research the three types of reset to see which is right for you (--soft, --mixed, --hard)",
+                          },
+                          {
+                            t: "list_item",
+                            d: 6,
+                            p: { lines: [606, 607] },
+                            v: "Commit any work that you don't want to be lost intentionally - work that is committed can be gotten back, but uncommitted work cannot",
+                          },
+                        ],
+                      },
+                      {
+                        t: "heading",
+                        d: 4,
+                        p: { lines: [608, 609] },
+                        v: "<code>git reflog</code>",
+                      },
+                    ],
+                  },
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [612, 613] },
+                    v: "Updating Commits With Git Commit Amend",
+                    c: [
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [616, 617] },
+                        v: "Haven't been pushed to the remote yet",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [617, 618] },
+                        v: "Have a spelling error in the commit message",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [618, 619] },
+                        v: "Don't contain the changes that you'd like to contain",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [620, 621] },
+                v: "Examples of Git Commit",
+                c: [
+                  {
+                    t: "bullet_list",
+                    d: 3,
+                    p: { lines: [624, 626] },
+                    v: "",
+                    c: [
+                      {
+                        t: "list_item",
+                        d: 4,
+                        p: { lines: [624, 625] },
+                        v: "<code>git commit -m &quot;git commit message example&quot;</code>",
+                      },
+                    ],
+                  },
+                  {
+                    t: "bullet_list",
+                    d: 3,
+                    p: { lines: [628, 632] },
+                    v: "",
+                    c: [
+                      {
+                        t: "list_item",
+                        d: 4,
+                        p: { lines: [628, 629] },
+                        v: "<code>git commit -m &quot;create file structure for Git guides&quot;</code>",
+                      },
+                      {
+                        t: "list_item",
+                        d: 4,
+                        p: { lines: [629, 630] },
+                        v: "<code>git commit -m &quot;translate Git cheat sheet into German&quot;</code>",
+                      },
+                      {
+                        t: "list_item",
+                        d: 4,
+                        p: { lines: [630, 631] },
+                        v: "<code>git commit -m &quot;update broken URL to Git resources&quot;</code>",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [634, 635] },
+                v: "Related commands",
+                c: [
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [636, 637] },
+                    v: "<code>git add [file]</code>: Snapshots the file in preparation for versioning, adding it to the staging area.",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [637, 638] },
+                    v: "<code>git status</code>: Always a good idea, this command shows you what branch you're on, what files are in the working or staging directory, and any other important information.",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [638, 639] },
+                    v: "<code>git push</code>: Uploads all local branch commits to the remote.",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [639, 640] },
+                    v: "<code>git log</code>: Browse and inspect the evolution of project files.",
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [656, 657] },
+                v: "&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;",
+              },
+            ],
+          },
+          {
+            t: "heading",
+            d: 1,
+            p: { lines: [664, 665] },
+            v: "Git Push",
+            c: [
+              {
+                t: "fence",
+                d: 2,
+                v: '<pre class="language-sh"><code class="language-sh">git push\n</code></pre>\n',
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [672, 673] },
+                v: "What Does <code>git push</code> Do?",
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [678, 679] },
+                v: "How to Use <code>git push</code>",
+                c: [
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [684, 685] },
+                    v: "Common usages and options for <code>git push</code>",
+                    c: [
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [686, 687] },
+                        v: "<code>git push -f</code>: Force a push that would otherwise be blocked, usually because it will delete or overwrite existing commits <em>(Use with caution!)</em>",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [687, 688] },
+                        v: "<code>git push -u origin [branch]</code>: Useful when pushing a new branch, this creates an upstream tracking branch with a lasting relationship to your local branch",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [688, 689] },
+                        v: "<code>git push --all</code>: Push all branches",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [689, 690] },
+                        v: "<code>git push --tags</code>: Publish tags that aren't yet in the remote repository",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [693, 694] },
+                v: "Why can't I push?",
+                c: [
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [697, 698] },
+                    v: "Check your branch",
+                    c: [
+                      {
+                        t: "heading",
+                        d: 4,
+                        p: { lines: [701, 702] },
+                        v: "Work was not yet on any branch",
+                        c: [
+                          {
+                            t: "list_item",
+                            d: 6,
+                            p: { lines: [703, 704], index: 1 },
+                            v: "1. Create and checkout to a new branch from your current commit: <code>git checkout -b [branchname]</code>",
+                          },
+                          {
+                            t: "list_item",
+                            d: 6,
+                            p: { lines: [704, 705], index: 2 },
+                            v: "2. Then, push the new branch up to the remote: <code>git push -u origin [branchname]</code>",
+                          },
+                        ],
+                      },
+                      {
+                        t: "heading",
+                        d: 4,
+                        p: { lines: [706, 707] },
+                        v: "Accidentally committed to the wrong branch",
+                        c: [
+                          {
+                            t: "list_item",
+                            d: 6,
+                            p: { lines: [708, 709], index: 1 },
+                            v: "1. Checkout to the branch that you intended to commit to: <code>git checkout [branchname]</code>",
+                          },
+                          {
+                            t: "list_item",
+                            d: 6,
+                            p: { lines: [709, 710], index: 2 },
+                            v: "2. Merge the commits from the branch that you <em>did</em> accidentally commit to: <code>git merge [main]</code>",
+                          },
+                          {
+                            t: "list_item",
+                            d: 6,
+                            p: { lines: [710, 711], index: 3 },
+                            v: "3. Push your changes to the remote: <code>git push</code>",
+                          },
+                          {
+                            t: "list_item",
+                            d: 6,
+                            p: { lines: [711, 712], index: 4 },
+                            v: "4. Fix the other branch by checking out to that branch, finding what commit it <em>should</em> be pointed to, and using <code>git reset --hard</code> to correct the branch pointer",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [713, 714] },
+                v: "Related Terms",
+                c: [
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [715, 716] },
+                    v: "<code>git commit -m &quot;descriptive message&quot;</code>: Records file snapshots permanently in version history.",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [716, 717] },
+                    v: "<code>git clone [url]</code>: Clone (download) a repository that already exists on GitHub, including all of the files, branches, and commits.",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [717, 718] },
+                    v: "<code>git status</code>: Always a good idea, this command shows you what branch you're on, what files are in the working or staging directory, and any other important information.",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [718, 719] },
+                    v: "<code>git pull</code>: Updates your current local working branch with all new commits from the corresponding remote branch on GitHub. <code>git pull</code> is a combination of <code>git fetch</code> and <code>git merge</code>.",
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [734, 735] },
+                v: "&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;",
+              },
+            ],
+          },
+          {
+            t: "heading",
+            d: 1,
+            p: { lines: [743, 744] },
+            v: "Git Pull",
+            c: [
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [749, 750] },
+                v: "What Does <code>git pull</code> Do?",
+                c: [
+                  {
+                    t: "fence",
+                    d: 3,
+                    v: '<pre class="language-sh"><code class="language-sh">git pull\n</code></pre>\n',
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [757, 758] },
+                v: "<code>git pull</code> and <code>git fetch</code>",
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [769, 770] },
+                v: "How to Use <code>git pull</code>",
+                c: [
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [771, 772] },
+                    v: "Common usages and options for <code>git pull</code>",
+                    c: [
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [773, 774] },
+                        v: "<code>git pull</code>: Update your local working branch with commits from the remote, <em>and</em> update all remote tracking branches.",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [774, 775] },
+                        v: "<code>git pull --rebase</code>: Update your local working branch with commits from the remote, but rewrite history so any local commits occur after all new commits coming from the remote, avoiding a merge commit.",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [775, 776] },
+                        v: "<code>git pull --force</code>: This option allows you to force a fetch of a specific remote tracking branch when using the <code>&lt;refspec&gt;</code> option that would otherwise not be fetched due to conflicts. To force Git to overwrite your current branch to match the remote tracking branch, read below about using <code>git reset</code>.",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [776, 777] },
+                        v: "<code>git pull --all</code>: Fetch <em>all</em> remotes - this is handy if you are working on a fork or in another use case with multiple remotes.",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [780, 781] },
+                v: "Examples of <code>git pull</code>",
+                c: [
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [782, 783] },
+                    v: "Working on a Branch",
+                  },
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [790, 791] },
+                    v: "Keep <code>main</code> up to date",
+                  },
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [796, 797] },
+                    v: "Undo A <code>git pull</code>",
+                  },
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [804, 805] },
+                    v: "Force <code>git pull</code> to Overwrite Local Files",
+                    c: [
+                      {
+                        t: "paragraph",
+                        d: 5,
+                        p: { lines: [816, 817] },
+                        v: "_Note: You can find the remotes with <code>git remote -v</code>, and see all available remote tracking branches with <code>git branch --all</code>.",
+                      },
+                    ],
+                  },
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [818, 819] },
+                    v: "<code>git pull</code> with Rebase",
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [827, 828] },
+                v: "Related Terms",
+                c: [
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [829, 830] },
+                    v: "<code>git clone [url]</code>: Clone (download) a repository that already exists on GitHub, including all of the files, branches, and commits.",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [830, 831] },
+                    v: "<code>git status</code>: Always a good idea, this command shows you what branch you're on, what files are in the working or staging directory, and any other important information.",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [831, 832] },
+                    v: "<code>git branch</code>: This shows the existing branches in your local repository. You can also use <code>git branch [banch-name]</code> to create a branch from your current location, or <code>git branch --all</code> to see all branches, both the local ones on your machine, and the remote tracking branches stored from the last <code>git pull</code> or <code>git fetch</code> from the remote.",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [832, 833] },
+                    v: "<code>git push</code>: Uploads all local branch commits to the remote.",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [833, 834] },
+                    v: "<code>git log</code>: Browse and inspect the evolution of project files.",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [834, 835] },
+                    v: "<code>git remote -v</code>: Show the associated remote repositories and their stored name, like <code>origin</code>.",
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [854, 855] },
+                v: "&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;:&lt;:&gt;",
+              },
+            ],
+          },
+          {
+            t: "heading",
+            d: 1,
+            p: { lines: [862, 863] },
+            v: "Git Remote",
+            c: [
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [868, 869] },
+                v: "What does Git remote do?",
+                c: [
+                  {
+                    t: "fence",
+                    d: 3,
+                    v: '<pre class="language-sh"><code class="language-sh">git remote -v\n</code></pre>\n',
+                  },
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [876, 877] },
+                    v: "Common <code>git remote</code> commands",
+                    c: [
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [878, 879] },
+                        v: "<code>git remote -v</code>: List the current remotes associated with the local repository",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [879, 880] },
+                        v: "<code>git remote add [name] [URL]</code>: Add a remote",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [880, 881] },
+                        v: "<code>git remote remove [name]</code>: Remove a remote",
+                      },
+                    ],
+                  },
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [882, 883] },
+                    v: "What is <code>origin</code>?",
+                  },
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [886, 887] },
+                    v: "What is <code>upstream</code>?",
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [894, 895] },
+                v: "Communicating with the remote",
+                c: [
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [898, 899] },
+                    v: "<code>git push</code>",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [899, 900] },
+                    v: "<code>git clone</code>",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [900, 901] },
+                    v: "<code>git pull</code>",
+                  },
+                  {
+                    t: "list_item",
+                    d: 4,
+                    p: { lines: [901, 902] },
+                    v: "<code>git fetch</code>",
+                  },
+                ],
+              },
+              {
+                t: "heading",
+                d: 2,
+                p: { lines: [903, 904] },
+                v: "Branches and the remote",
+                c: [
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [907, 908] },
+                    v: "Remote tracking branches",
+                  },
+                  {
+                    t: "heading",
+                    d: 3,
+                    p: { lines: [915, 916] },
+                    v: "Local working branches",
+                    c: [
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [920, 921] },
+                        v: "<code>git clone [url]</code>: Clone (download) a repository that already exists on GitHub, including all of the files, branches, and commits.",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [921, 922] },
+                        v: "<code>git status</code>: Always a good idea, this command shows you what branch you're on, what files are in the working or staging directory, and any other important information.",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [922, 923] },
+                        v: "<code>git push</code>: Uploads all local branch commits to the remote.",
+                      },
+                      {
+                        t: "list_item",
+                        d: 5,
+                        p: { lines: [923, 924] },
+                        v: "<code>git pull</code>: Updates your current local working branch with all new commits from the corresponding remote branch on GitHub. <code>git pull</code> is a combination of <code>git fetch</code> and <code>git merge</code>.",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+        p: {},
+      });
+    </script>
+  </body>
 </html>

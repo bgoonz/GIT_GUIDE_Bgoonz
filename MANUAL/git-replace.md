@@ -1,13 +1,10 @@
-git-replace(1) Manual Page
-==========================
+# git-replace(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-replace - Create, list, delete refs to replace objects
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git replace [-f] <object> <replacement>
     git replace [-f] --edit <object>
@@ -16,37 +13,35 @@ SYNOPSIS
     git replace -d <object>…​
     git replace [--format=<format>] [-l [<pattern>]]
 
-DESCRIPTION
------------
+## DESCRIPTION
 
-Adds a *replace* reference in `refs/replace/` namespace.
+Adds a _replace_ reference in `refs/replace/` namespace.
 
-The name of the *replace* reference is the SHA-1 of the object that is replaced. The content of the *replace* reference is the SHA-1 of the replacement object.
+The name of the _replace_ reference is the SHA-1 of the object that is replaced. The content of the _replace_ reference is the SHA-1 of the replacement object.
 
 The replaced object and the replacement object must be of the same type. This restriction can be bypassed using `-f`.
 
-Unless `-f` is given, the *replace* reference must not yet exist.
+Unless `-f` is given, the _replace_ reference must not yet exist.
 
 There is no other restriction on the replaced and replacement objects. Merge commits can be replaced by non-merge commits and vice versa.
 
 Replacement references will be used by default by all Git commands except those doing reachability traversal (prune, pack transfer and fsck).
 
-It is possible to disable use of replacement references for any command using the `--no-replace-objects` option just after *git*.
+It is possible to disable use of replacement references for any command using the `--no-replace-objects` option just after _git_.
 
-For example if commit *foo* has been replaced by commit *bar*:
+For example if commit _foo_ has been replaced by commit _bar_:
 
     $ git --no-replace-objects cat-file commit foo
 
-shows information about commit *foo*, while:
+shows information about commit _foo_, while:
 
     $ git cat-file commit foo
 
-shows information about commit *bar*.
+shows information about commit _bar_.
 
 The `GIT_NO_REPLACE_OBJECTS` environment variable can be set to achieve the same effect as the `--no-replace-objects` option.
 
-OPTIONS
--------
+## OPTIONS
 
 -f  
 --force  
@@ -73,40 +68,35 @@ Creates graft commits for all entries in `$GIT_DIR/info/grafts` and deletes that
 List replace refs for objects that match the given pattern (or all if no pattern is given). Typing "git replace" without arguments, also lists all replace refs.
 
 --format=&lt;format&gt;  
-When listing, use the specified &lt;format&gt;, which can be one of *short*, *medium* and *long*. When omitted, the format defaults to *short*.
+When listing, use the specified &lt;format&gt;, which can be one of _short_, _medium_ and _long_. When omitted, the format defaults to _short_.
 
-FORMATS
--------
+## FORMATS
 
 The following format are available:
 
--   *short*: &lt;replaced sha1&gt;
+- _short_: &lt;replaced sha1&gt;
 
--   *medium*: &lt;replaced sha1&gt; → &lt;replacement sha1&gt;
+- _medium_: &lt;replaced sha1&gt; → &lt;replacement sha1&gt;
 
--   *long*: &lt;replaced sha1&gt; (&lt;replaced type&gt;) → &lt;replacement sha1&gt; (&lt;replacement type&gt;)
+- _long_: &lt;replaced sha1&gt; (&lt;replaced type&gt;) → &lt;replacement sha1&gt; (&lt;replacement type&gt;)
 
-CREATING REPLACEMENT OBJECTS
-----------------------------
+## CREATING REPLACEMENT OBJECTS
 
-[git-hash-object(1)](git-hash-object.html), [git-rebase(1)](git-rebase.html), and [git-filter-repo](https://github.com/newren/git-filter-repo), among other git commands, can be used to create replacement objects from existing objects. The `--edit` option can also be used with *git replace* to create a replacement object by editing an existing object.
+[git-hash-object(1)](git-hash-object.html), [git-rebase(1)](git-rebase.html), and [git-filter-repo](https://github.com/newren/git-filter-repo), among other git commands, can be used to create replacement objects from existing objects. The `--edit` option can also be used with _git replace_ to create a replacement object by editing an existing object.
 
 If you want to replace many blobs, trees or commits that are part of a string of commits, you may just want to create a replacement string of commits and then only replace the commit at the tip of the target string of commits with the commit at the tip of the replacement string of commits.
 
-BUGS
-----
+## BUGS
 
 Comparing blobs or trees that have been replaced with those that replace them will not work properly. And using `git reset --hard` to go back to a replaced commit will move the branch to the replacement commit instead of the replaced commit.
 
-There may be other problems when using *git rev-list* related to pending objects.
+There may be other problems when using _git rev-list_ related to pending objects.
 
-SEE ALSO
---------
+## SEE ALSO
 
 [git-hash-object(1)](git-hash-object.html) [git-rebase(1)](git-rebase.html) [git-tag(1)](git-tag.html) [git-branch(1)](git-branch.html) [git-commit(1)](git-commit.html) [git-var(1)](git-var.html) [git(1)](git.html) [git-filter-repo](https://github.com/newren/git-filter-repo)
 
-GIT
----
+## GIT
 
 Part of the [git(1)](git.html) suite
 

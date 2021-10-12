@@ -1,27 +1,22 @@
-git-pack-redundant(1) Manual Page
-=================================
+# git-pack-redundant(1) Manual Page
 
-NAME
-----
+## NAME
 
 git-pack-redundant - Find redundant pack files
 
-SYNOPSIS
---------
+## SYNOPSIS
 
     git pack-redundant [ --verbose ] [ --alt-odb ] < --all | .pack filename …​ >
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 This program computes which packs in your repository are redundant. The output is suitable for piping to `xargs rm` if you are in the root of the repository.
 
-*git pack-redundant* accepts a list of objects on standard input. Any objects given will be ignored when checking which packs are required. This makes the following command useful when wanting to remove packs which contain unreachable objects.
+_git pack-redundant_ accepts a list of objects on standard input. Any objects given will be ignored when checking which packs are required. This makes the following command useful when wanting to remove packs which contain unreachable objects.
 
 git fsck --full --unreachable | cut -d ' ' -f3 | \\ git pack-redundant --all | xargs rm
 
-OPTIONS
--------
+## OPTIONS
 
 --all  
 Processes all packs. Any filenames on the command line are ignored.
@@ -32,13 +27,11 @@ Don’t require objects present in packs from alternate object directories to be
 --verbose  
 Outputs some statistics to stderr. Has a small performance penalty.
 
-SEE ALSO
---------
+## SEE ALSO
 
 [git-pack-objects(1)](git-pack-objects.html) [git-repack(1)](git-repack.html) [git-prune-packed(1)](git-prune-packed.html)
 
-GIT
----
+## GIT
 
 Part of the [git(1)](git.html) suite
 
