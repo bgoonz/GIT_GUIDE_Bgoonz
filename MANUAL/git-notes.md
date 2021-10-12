@@ -116,7 +116,7 @@ Do not remove anything; just report the object names whose notes would be remove
 When merging notes, resolve notes conflicts using the given strategy. The following strategies are recognized: "manual" (default), "ours", "theirs", "union" and "cat_sort_uniq". This option overrides the "notes.mergeStrategy" configuration setting. See the "NOTES MERGE STRATEGIES" section below for more information on each notes merge strategy.
 
 --commit  
-Finalize an in-progress _git notes merge_. Use this option when you have resolved the conflicts that _git notes merge_ stored in .git/NOTES_MERGE_WORKTREE. This amends the partial merge commit created by _git notes merge_ (stored in .git/NOTES_MERGE_PARTIAL) by adding the notes in .git/NOTES_MERGE_WORKTREE. The notes ref stored in the .git/NOTES_MERGE_REF symref is updated to the resulting commit.
+Finalize an in-progress _git notes merge_. Use this option when you have resolved the conflicts that _git notes merge_ stored in .git/NOTES*MERGE_WORKTREE. This amends the partial merge commit created by \_git notes merge* (stored in .git/NOTES_MERGE_PARTIAL) by adding the notes in .git/NOTES_MERGE_WORKTREE. The notes ref stored in the .git/NOTES_MERGE_REF symref is updated to the resulting commit.
 
 --abort  
 Abort/reset an in-progress _git notes merge_, i.e. a notes merge with conflicts. This simply removes all files related to the notes merge.

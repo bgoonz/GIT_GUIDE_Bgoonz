@@ -31,7 +31,7 @@ This serves _git send-pack_ clients, allowing push. It is disabled by default fo
 
 ## URL TRANSLATION
 
-To determine the location of the repository on disk, _git http-backend_ concatenates the environment variables PATH_INFO, which is set automatically by the web server, and GIT_PROJECT_ROOT, which must be set manually in the web server configuration. If GIT_PROJECT_ROOT is not set, _git http-backend_ reads PATH_TRANSLATED, which is also set automatically by the web server.
+To determine the location of the repository on disk, _git http-backend_ concatenates the environment variables PATH*INFO, which is set automatically by the web server, and GIT_PROJECT_ROOT, which must be set manually in the web server configuration. If GIT_PROJECT_ROOT is not set, \_git http-backend* reads PATH_TRANSLATED, which is also set automatically by the web server.
 
 ## EXAMPLES
 
@@ -180,7 +180,7 @@ The `GIT_HTTP_EXPORT_ALL` environmental variable may be passed to _git-http-back
 
 The `GIT_HTTP_MAX_REQUEST_BUFFER` environment variable (or the `http.maxRequestBuffer` config variable) may be set to change the largest ref negotiation request that git will handle during a fetch; any fetch requiring a larger buffer will not succeed. This value should not normally need to be changed, but may be helpful if you are fetching from a repository with an extremely large number of refs. The value can be specified with a unit (e.g., `100M` for 100 megabytes). The default is 10 megabytes.
 
-The backend process sets GIT_COMMITTER_NAME to _$REMOTE_USER_ and GIT_COMMITTER_EMAIL to _${REMOTE\_USER}@http.${REMOTE_ADDR}_, ensuring that any reflogs created by _git-receive-pack_ contain some identifying information of the remote user who performed the push.
+The backend process sets GIT*COMMITTER_NAME to *$REMOTE_USER_ and GIT_COMMITTER_EMAIL to _${REMOTE_USER}@http.${REMOTE*ADDR}*, ensuring that any reflogs created by _git-receive-pack_ contain some identifying information of the remote user who performed the push.
 
 All `CGI` environment variables are available to each of the hooks invoked by the _git-receive-pack_.
 

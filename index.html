@@ -152,37 +152,38 @@
           0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
       }
       a {
-  background: #ddd;
-  color: #444;
-  font-family: sans-serif;
-  text-align: center;
-  text-decoration: none;
-  padding: 20px;
-  display: block;
-}
-
-#star {
-  text-align: center;
-  font-size: 100px;
-  line-height: 500px;
-  color: #ddd;
-}
-    </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-  $('a[href^="#"]').on('click', function (event) {
-
-      var target = $(this.getAttribute('href'));
-
-      if (target.length) {
-        event.preventDefault();
-        $('html, body').stop().animate({
-          scrollTop: target.offset().top
-        }, 1000);
+        background: #ddd;
+        color: #444;
+        font-family: sans-serif;
+        text-align: center;
+        text-decoration: none;
+        padding: 20px;
+        display: block;
       }
 
-    });
-</script>
+      #star {
+        text-align: center;
+        font-size: 100px;
+        line-height: 500px;
+        color: #ddd;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+      $('a[href^="#"]').on("click", function (event) {
+        var target = $(this.getAttribute("href"));
+
+        if (target.length) {
+          event.preventDefault();
+          $("html, body").stop().animate(
+            {
+              scrollTop: target.offset().top,
+            },
+            1000
+          );
+        }
+      });
+    </script>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/bgoonz/GIT-CDN-FILES/markdown-to-html-style.css"
@@ -2888,5 +2889,9 @@
       <script src="https://gist.github.com/bgoonz/982e75bd90a8e29555e604e3a56dbff9.js"></script>
     </div>
     <a href="#top" id="bottom">Click to scroll up</a>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60dcec1ece575946"></script>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_relatedposts_inline"></div>
   </body>
 </html>

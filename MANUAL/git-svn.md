@@ -336,8 +336,8 @@ Then fixup "master" with _git rebase_. Do NOT use _git merge_ or your history wi
 ## OPTIONS
 
 --shared\[=(false|true|umask|group|all|world|everybody)\]  
---template=&lt;template_directory&gt;  
-Only used with the _init_ command. These are passed directly to _git init_.
+--template=&lt;template*directory&gt;  
+Only used with the \_init* command. These are passed directly to _git init_.
 
 -r &lt;arg&gt;  
 --revision &lt;arg&gt;  
@@ -430,9 +430,9 @@ When committing to svn from Git (as part of _set-tree_ or _dcommit_ operations),
 
 ## ADVANCED OPTIONS
 
--i&lt;GIT_SVN_ID&gt;  
+-i&lt;GIT*SVN_ID&gt;  
 --id &lt;GIT_SVN_ID&gt;  
-This sets GIT_SVN_ID (instead of using the environment). This allows the user to override the default refname to fetch from when tracking a single URL. The _log_ and _dcommit_ commands no longer require this switch as an argument.
+This sets GIT_SVN_ID (instead of using the environment). This allows the user to override the default refname to fetch from when tracking a single URL. The \_log* and _dcommit_ commands no longer require this switch as an argument.
 
 -R&lt;remote name&gt;  
 --svn-remote &lt;remote name&gt;  
@@ -603,7 +603,7 @@ In SVN, it is possible (though discouraged) to commit changes to a tag (because 
 
 ## CONFIGURATION
 
-_git svn_ stores \[svn-remote\] configuration information in the repository $GIT_DIR/config file. It is similar the core Git \[remote\] sections except _fetch_ keys do not accept glob arguments; but they are instead handled by the _branches_ and _tags_ keys. Since some SVN repositories are oddly configured with multiple projects glob expansions such those listed below are allowed:
+_git svn_ stores \[svn-remote\] configuration information in the repository $GIT*DIR/config file. It is similar the core Git \[remote\] sections except \_fetch* keys do not accept glob arguments; but they are instead handled by the _branches_ and _tags_ keys. Since some SVN repositories are oddly configured with multiple projects glob expansions such those listed below are allowed:
 
     [svn-remote "project-a"]
             url = http://server.org/svn
@@ -651,10 +651,10 @@ Note that git-svn keeps track of the highest revision in which a branch or tag h
 
 ## FILES
 
-$GIT_DIR/svn/\*\*/.rev_map.\*  
-Mapping between Subversion revision numbers and Git commit names. In a repository where the noMetadata option is not set, this can be rebuilt from the git-svn-id: lines that are at the end of every commit (see the _svn.noMetadata_ section above for details).
+$GIT*DIR/svn/\*\*/.rev_map.\*  
+Mapping between Subversion revision numbers and Git commit names. In a repository where the noMetadata option is not set, this can be rebuilt from the git-svn-id: lines that are at the end of every commit (see the \_svn.noMetadata* section above for details).
 
-_git svn fetch_ and _git svn rebase_ automatically update the rev_map if it is missing or not up to date. _git svn reset_ automatically rewinds it.
+_git svn fetch_ and _git svn rebase_ automatically update the rev*map if it is missing or not up to date. \_git svn reset* automatically rewinds it.
 
 ## SEE ALSO
 

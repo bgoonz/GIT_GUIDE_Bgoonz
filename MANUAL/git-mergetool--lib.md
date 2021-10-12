@@ -18,8 +18,8 @@ Before sourcing _git-mergetool--lib_, your script must set `TOOL_MODE` to define
 
 ## FUNCTIONS
 
-get_merge_tool  
-returns a merge tool. the return code is 1 if we returned a guessed merge tool, else 0. _$GIT_MERGETOOL_GUI_ may be set to _true_ to search for the appropriate guitool.
+get*merge_tool  
+returns a merge tool. the return code is 1 if we returned a guessed merge tool, else 0. *$GIT*MERGETOOL_GUI* may be set to _true_ to search for the appropriate guitool.
 
 get_merge_tool_cmd  
 returns the custom command for a merge tool.
@@ -30,8 +30,8 @@ returns the custom path for a merge tool.
 initialize_merge_tool  
 bring merge tool specific functions into scope so they can be used or overridden.
 
-run_merge_tool  
-launches a merge tool given the tool name and a true/false flag to indicate whether a merge base is present. _$MERGED_, _$LOCAL_, _$REMOTE_, and _$BASE_ must be defined for use by the merge tool.
+run*merge_tool  
+launches a merge tool given the tool name and a true/false flag to indicate whether a merge base is present. *$MERGED_, _$LOCAL*, *$REMOTE_, and _$BASE\_ must be defined for use by the merge tool.
 
 ## GIT
 

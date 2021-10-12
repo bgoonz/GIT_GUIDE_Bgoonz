@@ -54,7 +54,7 @@ This is useful for cases where you want to pass transitory configuration options
 Note that this might add security for variables such as `http.extraHeader` where the sensitive information is part of the value, but not e.g. `url.<base>.insteadOf` where the sensitive information can be part of the key.
 
 --exec-path\[=&lt;path&gt;\]  
-Path to wherever your core Git programs are installed. This can also be controlled by setting the GIT_EXEC_PATH environment variable. If no path is given, _git_ will print the current setting and then exit.
+Path to wherever your core Git programs are installed. This can also be controlled by setting the GIT*EXEC_PATH environment variable. If no path is given, \_git* will print the current setting and then exit.
 
 --html-path  
 Print the path, without trailing slash, where Git’s HTML documentation is installed and exit.

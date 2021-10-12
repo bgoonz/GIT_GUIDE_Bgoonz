@@ -27,8 +27,8 @@ If `<branch>` is not found but there does exist a tracking branch in exactly one
 
 You could omit `<branch>`, in which case the command degenerates to "check out the current branch", which is a glorified no-op with rather expensive side-effects to show only the tracking information, if exists, for the current branch.
 
-_git checkout_ -b|-B &lt;new_branch&gt; \[&lt;start point&gt;\]  
-Specifying `-b` causes a new branch to be created as if [git-branch(1)](git-branch.html) were called and then checked out. In this case you can use the `--track` or `--no-track` options, which will be passed to _git branch_. As a convenience, `--track` without `-b` implies branch creation; see the description of `--track` below.
+_git checkout_ -b|-B &lt;new*branch&gt; \[&lt;start point&gt;\]  
+Specifying `-b` causes a new branch to be created as if [git-branch(1)](git-branch.html) were called and then checked out. In this case you can use the `--track` or `--no-track` options, which will be passed to \_git branch*. As a convenience, `--track` without `-b` implies branch creation; see the description of `--track` below.
 
 If `-B` is given, `<new_branch>` is created if it doesn’t exist; otherwise, it is reset. This is the transactional equivalent of
 
@@ -112,8 +112,8 @@ Create the new branch’s reflog; see [git-branch(1)](git-branch.html) for detai
 --detach  
 Rather than checking out a branch to work on it, check out a commit for inspection and discardable experiments. This is the default behavior of `git checkout <commit>` when `<commit>` is not a branch name. See the "DETACHED HEAD" section below for details.
 
---orphan &lt;new_branch&gt;  
-Create a new _orphan_ branch, named `<new_branch>`, started from `<start_point>` and switch to it. The first commit made on this new branch will have no parents and it will be the root of a new history totally disconnected from all the other branches and commits.
+--orphan &lt;new*branch&gt;  
+Create a new \_orphan* branch, named `<new_branch>`, started from `<start_point>` and switch to it. The first commit made on this new branch will have no parents and it will be the root of a new history totally disconnected from all the other branches and commits.
 
 The index and the working tree are adjusted as if you had previously run `git checkout <start_point>`. This allows you to start a new history that records a set of paths similar to `<start_point>` by easily running `git commit -a` to make the root commit.
 

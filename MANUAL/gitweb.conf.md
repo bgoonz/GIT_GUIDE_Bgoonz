@@ -94,8 +94,8 @@ It is purely performance optimization, originally intended for MacOS X, where re
 
 The default value of this variable is determined by the build-time configuration variable `GITWEB_PROJECT_MAXDEPTH`, which defaults to 2007.
 
-$export_ok  
-Show repository only if this file exists (in repository). Only effective if this variable evaluates to true. Can be set when building gitweb by setting `GITWEB_EXPORT_OK`. This path is relative to `GIT_DIR`. git-daemon\[1\] uses _git-daemon-export-ok_, unless started with `--export-all`. By default this variable is not set, which means that this feature is turned off.
+$export*ok  
+Show repository only if this file exists (in repository). Only effective if this variable evaluates to true. Can be set when building gitweb by setting `GITWEB_EXPORT_OK`. This path is relative to `GIT_DIR`. git-daemon\[1\] uses \_git-daemon-export-ok*, unless started with `--export-all`. By default this variable is not set, which means that this feature is turned off.
 
 $export_auth_hook  
 Function used to determine which repositories should be shown. This subroutine should take one parameter, the full path to a project, and if it returns true, that project will be included in the projects list and can be accessed through gitweb as long as it fulfills the other requirements described by $export_ok, $projects_list, and $projects_maxdepth. Example:
@@ -123,8 +123,8 @@ Core git executable to use. By default set to `$GIT_BINDIR/git`, which in turn i
 $mimetypes_file  
 File to use for (filename extension based) guessing of MIME types before trying `/etc/mime.types`. **NOTE** that this path, if relative, is taken as relative to the current Git repository, not to CGI script. If unset, only `/etc/mime.types` is used (if present on filesystem). If no mimetypes file is found, mimetype guessing based on extension of file is disabled. Unset by default.
 
-$highlight_bin  
-Path to the highlight executable to use (it must be the one from <a href="http://www.andre-simon.de" class="bare">http://www.andre-simon.de</a> due to assumptions about parameters and output). By default set to _highlight_; set it to full path to highlight executable if it is not installed on your web server’s PATH. Note that _highlight_ feature must be set for gitweb to actually use syntax highlighting.
+$highlight*bin  
+Path to the highlight executable to use (it must be the one from <a href="http://www.andre-simon.de" class="bare">http://www.andre-simon.de</a> due to assumptions about parameters and output). By default set to \_highlight*; set it to full path to highlight executable if it is not installed on your web server’s PATH. Note that _highlight_ feature must be set for gitweb to actually use syntax highlighting.
 
 **NOTE**: for a file to be highlighted, its syntax type must be detected and that syntax must be supported by "highlight". The default syntax detection is minimal, and there are many supported syntax types with no detection by default. There are three options for adding syntax detection. The first and second priority are `%highlight_basename` and `%highlight_ext`, which detect based on basename (the full filename, for example "Makefile") and extension (for example "sh"). The keys of these hashes are the basename and extension, respectively, and the value for a given key is the name of the syntax to be passed via `--syntax <syntax>` to "highlight". The last priority is the "highlight" configuration of `Shebang` regular expressions to detect the language based on the first line in the file, (for example, matching the line "\#!/bin/bash"). See the highlight documentation and the default config at /etc/highlight/filetypes.conf for more details.
 
@@ -191,17 +191,17 @@ Can be set using the `GITWEB_SITENAME` at build time. Unset by default.
 $site_html_head_string  
 HTML snippet to be included in the &lt;head&gt; section of each page. Can be set using `GITWEB_SITE_HTML_HEAD_STRING` at build time. No default value.
 
-$site_header  
-Name of a file with HTML to be included at the top of each page. Relative to the directory containing the _gitweb.cgi_ script. Can be set using `GITWEB_SITE_HEADER` at build time. No default value.
+$site*header  
+Name of a file with HTML to be included at the top of each page. Relative to the directory containing the \_gitweb.cgi* script. Can be set using `GITWEB_SITE_HEADER` at build time. No default value.
 
-$site_footer  
-Name of a file with HTML to be included at the bottom of each page. Relative to the directory containing the _gitweb.cgi_ script. Can be set using `GITWEB_SITE_FOOTER` at build time. No default value.
+$site*footer  
+Name of a file with HTML to be included at the bottom of each page. Relative to the directory containing the \_gitweb.cgi* script. Can be set using `GITWEB_SITE_FOOTER` at build time. No default value.
 
-$home_text  
-Name of a HTML file which, if it exists, is included on the gitweb projects overview page ("projects_list" view). Relative to the directory containing the gitweb.cgi script. Default value can be adjusted during build time using `GITWEB_HOMETEXT` variable. By default set to _indextext.html_.
+$home*text  
+Name of a HTML file which, if it exists, is included on the gitweb projects overview page ("projects_list" view). Relative to the directory containing the gitweb.cgi script. Default value can be adjusted during build time using `GITWEB_HOMETEXT` variable. By default set to \_indextext.html*.
 
-$projects_list_description_width  
-The width (in characters) of the "Description" column of the projects list. Longer descriptions will be truncated (trying to cut at word boundary); the full description is available in the _title_ attribute (usually shown on mouseover). The default is 25, which might be too small if you use long project descriptions.
+$projects*list_description_width  
+The width (in characters) of the "Description" column of the projects list. Longer descriptions will be truncated (trying to cut at word boundary); the full description is available in the \_title* attribute (usually shown on mouseover). The default is 25, which might be too small if you use long project descriptions.
 
 $default\_projects\_order  
 Default value of ordering of projects on projects list page, which means the ordering used if you don’t explicitly sort projects list (if there is no "o" CGI query parameter in the URL). Valid values are "none" (unsorted), "project" (projects are by project name, i.e. path to repository relative to `$projectroot`), "descr" (project description), "owner", and "age" (by date of most current commit).

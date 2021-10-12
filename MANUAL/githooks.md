@@ -14,7 +14,7 @@ Hooks are programs you can place in a hooks directory to trigger actions at cert
 
 By default the hooks directory is `$GIT_DIR/hooks`, but that can be changed via the `core.hooksPath` configuration variable (see [git-config(1)](git-config.html)).
 
-Before Git invokes a hook, it changes its working directory to either $GIT_DIR in a bare repository or the root of the working tree in a non-bare repository. An exception are hooks triggered during a push (_pre-receive_, _update_, _post-receive_, _post-update_, _push-to-checkout_) which are always executed in $GIT_DIR.
+Before Git invokes a hook, it changes its working directory to either $GIT*DIR in a bare repository or the root of the working tree in a non-bare repository. An exception are hooks triggered during a push (\_pre-receive*, _update_, _post-receive_, _post-update_, _push-to-checkout_) which are always executed in $GIT_DIR.
 
 Hooks can get their arguments via the environment, command-line arguments, and stdin. See the documentation for each hook below for details.
 

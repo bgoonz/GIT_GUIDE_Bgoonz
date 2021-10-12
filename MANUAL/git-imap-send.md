@@ -61,7 +61,7 @@ imap.preformattedHTML
 A boolean to enable/disable the use of html encoding when sending a patch. An html encoded patch will be bracketed with &lt;pre&gt; and have a content type of text/html. Ironically, enabling this option causes Thunderbird to send the patch as a plain/text, format=fixed email. Default is `false`.
 
 imap.authMethod  
-Specify authenticate method for authentication with IMAP server. If Git was built with the NO_CURL option, or if your curl version is older than 7.34.0, or if you’re running git-imap-send with the `--no-curl` option, the only supported method is _CRAM-MD5_. If this is not set then _git imap-send_ uses the basic IMAP plaintext LOGIN command.
+Specify authenticate method for authentication with IMAP server. If Git was built with the NO*CURL option, or if your curl version is older than 7.34.0, or if you’re running git-imap-send with the `--no-curl` option, the only supported method is \_CRAM-MD5*. If this is not set then _git imap-send_ uses the basic IMAP plaintext LOGIN command.
 
 ## EXAMPLES
 

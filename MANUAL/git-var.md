@@ -30,11 +30,11 @@ The author of a piece of code.
 GIT_COMMITTER_IDENT  
 The person who put a piece of code into Git.
 
-GIT_EDITOR  
-Text editor for use by Git commands. The value is meant to be interpreted by the shell when it is used. Examples: `~/bin/vi`, `$SOME_ENVIRONMENT_VARIABLE`, `"C:\Program Files\Vim\gvim.exe" --nofork`. The order of preference is the `$GIT_EDITOR` environment variable, then `core.editor` configuration, then `$VISUAL`, then `$EDITOR`, and then the default chosen at compile time, which is usually _vi_.
+GIT*EDITOR  
+Text editor for use by Git commands. The value is meant to be interpreted by the shell when it is used. Examples: `~/bin/vi`, `$SOME_ENVIRONMENT_VARIABLE`, `"C:\Program Files\Vim\gvim.exe" --nofork`. The order of preference is the `$GIT_EDITOR` environment variable, then `core.editor` configuration, then `$VISUAL`, then `$EDITOR`, and then the default chosen at compile time, which is usually \_vi*.
 
-GIT_PAGER  
-Text viewer for use by Git commands (e.g., _less_). The value is meant to be interpreted by the shell. The order of preference is the `$GIT_PAGER` environment variable, then `core.pager` configuration, then `$PAGER`, and then the default chosen at compile time (usually _less_).
+GIT*PAGER  
+Text viewer for use by Git commands (e.g., \_less*). The value is meant to be interpreted by the shell. The order of preference is the `$GIT_PAGER` environment variable, then `core.pager` configuration, then `$PAGER`, and then the default chosen at compile time (usually _less_).
 
 ## SEE ALSO
 

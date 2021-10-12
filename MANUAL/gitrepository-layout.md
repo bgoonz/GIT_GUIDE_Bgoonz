@@ -83,7 +83,7 @@ hooks
 Hooks are customization scripts used by various Git commands. A handful of sample hooks are installed when _git init_ is run, but all of them are disabled by default. To enable, the `.sample` suffix has to be removed from the filename by renaming. Read [githooks(5)](githooks.html) for more details about each hook. This directory is ignored if $GIT\_COMMON\_DIR is set and "$GIT_COMMON_DIR/hooks" will be used instead.
 
 common  
-When multiple working trees are used, most of files in $GIT_DIR are per-worktree with a few known exceptions. All files under _common_ however will be shared between all working trees.
+When multiple working trees are used, most of files in $GIT*DIR are per-worktree with a few known exceptions. All files under \_common* however will be shared between all working trees.
 
 index  
 The current index file for the repository. It is usually not found in a bare repository.

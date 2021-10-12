@@ -149,7 +149,7 @@ When initially invoking `git am`, you give it the names of the mailboxes to proc
 
 The command refuses to process new mailboxes until the current operation is finished, so if you decide to start over from scratch, run `git am --abort` before running the command with mailbox names.
 
-Before any patches are applied, ORIG_HEAD is set to the tip of the current branch. This is useful if you have problems with multiple commits, like running _git am_ on the wrong branch or an error in the commits that is more easily fixed by changing the mailbox (e.g. errors in the "From:" lines).
+Before any patches are applied, ORIG*HEAD is set to the tip of the current branch. This is useful if you have problems with multiple commits, like running \_git am* on the wrong branch or an error in the commits that is more easily fixed by changing the mailbox (e.g. errors in the "From:" lines).
 
 ## HOOKS
 

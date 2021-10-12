@@ -70,7 +70,7 @@ This file uses the following format:
   &lt;repository owner&gt;  
   displayed as repository owner, preferably full name, or email, or both
 
-You can generate the projects list index file using the project_index action (the _TXT_ link on projects list page) directly from gitweb; see also "Generating projects list using gitweb" section below.
+You can generate the projects list index file using the project*index action (the \_TXT* link on projects list page) directly from gitweb; see also "Generating projects list using gitweb" section below.
 
 Example contents:
 
@@ -81,7 +81,7 @@ By default this file controls only which projects are **visible** on projects li
 
 ### Generating projects list using gitweb
 
-We assume that GITWEB_CONFIG has its default Makefile value, namely _gitweb_config.perl_. Put the following in _gitweb_make_index.perl_ file:
+We assume that GITWEB*CONFIG has its default Makefile value, namely \_gitweb_config.perl*. Put the following in _gitweb_make_index.perl_ file:
 
     read_config_file("gitweb_config.perl");
     $projects_list = $projectroot;
@@ -216,8 +216,8 @@ blob
 tree  
 Shows the files and directories in a given repository path, at given revision. This is default command if no action is specified in the URL, and path is given.
 
-blob_plain  
-Returns the raw data for the file in given repository, at given path and revision. Links to this action are marked _raw_.
+blob*plain  
+Returns the raw data for the file in given repository, at given path and revision. Links to this action are marked \_raw*.
 
 blobdiff  
 Shows the difference between two revisions of the same file.
