@@ -1,10 +1,13 @@
-# git-add(1) Manual Page
+git-add(1) Manual Page
+======================
 
-## NAME
+NAME
+----
 
 git-add - Add file contents to the index
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git add [--verbose | -v] [--dry-run | -n] [--force | -f] [--interactive | -i] [--patch | -p]
               [--edit | -e] [--[no-]all | --[no-]ignore-removal | [--update | -u]]
@@ -12,7 +15,8 @@ git-add - Add file contents to the index
               [--chmod=(+|-)x] [--pathspec-from-file=<file> [--pathspec-file-nul]]
               [--] [<pathspec>…​]
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 This command updates the index using the current content found in the working tree, to prepare the content staged for the next commit. It typically adds the current content of existing paths as a whole, but with some options it can also be used to add content with only part of the changes made to the working tree files applied, or remove paths that do not exist in the working tree anymore.
 
@@ -22,16 +26,17 @@ This command can be performed multiple times before a commit. It only adds the c
 
 The `git status` command can be used to obtain a summary of which files have changes that are staged for the next commit.
 
-The `git add` command will not add ignored files by default. If any ignored files were explicitly specified on the command line, `git add` will fail with a list of ignored files. Ignored files reached by directory recursion or filename globbing performed by Git (quote your globs before the shell) will be silently ignored. The _git add_ command can be used to add ignored files with the `-f` (force) option.
+The `git add` command will not add ignored files by default. If any ignored files were explicitly specified on the command line, `git add` will fail with a list of ignored files. Ignored files reached by directory recursion or filename globbing performed by Git (quote your globs before the shell) will be silently ignored. The *git add* command can be used to add ignored files with the `-f` (force) option.
 
 Please see [git-commit(1)](git-commit.html) for alternative ways to add content to a commit.
 
-## OPTIONS
+OPTIONS
+-------
 
 &lt;pathspec&gt;…​  
 Files to add content from. Fileglobs (e.g. `*.c`) can be given to add all matching files. Also a leading directory name (e.g. `dir` to add `dir/file1` and `dir/file2`) can be given to update the index to match the current state of the directory as a whole (e.g. specifying `dir` will record not just a file `dir/file1` modified in the working tree, a file `dir/file2` added to the working tree, but also a file `dir/file3` removed from the working tree). Note that older versions of Git used to ignore removed files; use `--no-all` option if you want to add modified or new files but ignore removed ones.
 
-For more details about the &lt;pathspec&gt; syntax, see the _pathspec_ entry in [gitglossary(7)](gitglossary.html).
+For more details about the &lt;pathspec&gt; syntax, see the *pathspec* entry in [gitglossary(7)](gitglossary.html).
 
 -n  
 --dry-run  
@@ -111,25 +116,27 @@ Only meaningful with `--pathspec-from-file`. Pathspec elements are separated wit
 --  
 This option can be used to separate command-line options from the list of files, (useful when filenames might be mistaken for command-line options).
 
-## EXAMPLES
+EXAMPLES
+--------
 
-- Adds content from all `*.txt` files under `Documentation` directory and its subdirectories:
+-   Adds content from all `*.txt` files under `Documentation` directory and its subdirectories:
 
-      $ git add Documentation/\*.txt
+        $ git add Documentation/\*.txt
 
-  Note that the asterisk `*` is quoted from the shell in this example; this lets the command include the files from subdirectories of `Documentation/` directory.
+    Note that the asterisk `*` is quoted from the shell in this example; this lets the command include the files from subdirectories of `Documentation/` directory.
 
-- Considers adding content from all git-\*.sh scripts:
+-   Considers adding content from all git-\*.sh scripts:
 
-      $ git add git-*.sh
+        $ git add git-*.sh
 
-  Because this example lets the shell expand the asterisk (i.e. you are listing the files explicitly), it does not consider `subdir/git-foo.sh`.
+    Because this example lets the shell expand the asterisk (i.e. you are listing the files explicitly), it does not consider `subdir/git-foo.sh`.
 
-## INTERACTIVE MODE
+INTERACTIVE MODE
+----------------
 
-When the command enters the interactive mode, it shows the output of the _status_ subcommand, and then goes into its interactive command loop.
+When the command enters the interactive mode, it shows the output of the *status* subcommand, and then goes into its interactive command loop.
 
-The command loop shows the list of subcommands available, and gives a prompt "What now&gt; ". In general, when the prompt ends with a single _&gt;_, you can pick only one of the choices given and type return, like this:
+The command loop shows the list of subcommands available, and gives a prompt "What now&gt; ". In general, when the prompt ends with a single *&gt;*, you can pick only one of the choices given and type return, like this:
 
         *** Commands ***
           1: status       2: update       3: revert       4: add untracked
@@ -147,12 +154,12 @@ This shows the change between HEAD and index (i.e. what will be committed if you
          1:       binary      nothing foo.png
          2:     +403/-35        +1/-1 git-add--interactive.perl
 
-It shows that foo.png has differences from HEAD (but that is binary so line count cannot be shown) and there is no difference between indexed copy and the working tree version (if the working tree version were also different, _binary_ would have been shown in place of _nothing_). The other file, git-add--interactive.perl, has 403 lines added and 35 lines deleted if you commit what is in the index, but working tree file has further modifications (one addition and one deletion).
+It shows that foo.png has differences from HEAD (but that is binary so line count cannot be shown) and there is no difference between indexed copy and the working tree version (if the working tree version were also different, *binary* would have been shown in place of *nothing*). The other file, git-add--interactive.perl, has 403 lines added and 35 lines deleted if you commit what is in the index, but working tree file has further modifications (one addition and one deletion).
 
 update  
-This shows the status information and issues an "Update&gt;&gt;" prompt. When the prompt ends with double _&gt;&gt;_, you can make more than one selection, concatenated with whitespace or comma. Also you can say ranges. E.g. "2-5 7,9" to choose 2,3,4,5,7,9 from the list. If the second number in a range is omitted, all remaining patches are taken. E.g. "7-" to choose 7,8,9 from the list. You can say \*\*\* to choose everything.
+This shows the status information and issues an "Update&gt;&gt;" prompt. When the prompt ends with double *&gt;&gt;*, you can make more than one selection, concatenated with whitespace or comma. Also you can say ranges. E.g. "2-5 7,9" to choose 2,3,4,5,7,9 from the list. If the second number in a range is omitted, all remaining patches are taken. E.g. "7-" to choose 7,8,9 from the list. You can say *\** to choose everything.
 
-What you chose are then highlighted with \*\*\*, like this:
+What you chose are then highlighted with *\**, like this:
 
                staged     unstaged path
       1:       binary      nothing foo.png
@@ -165,13 +172,13 @@ To remove selection, prefix the input with `-` like this:
 After making the selection, answer with an empty line to stage the contents of working tree files for selected paths in the index.
 
 revert  
-This has a very similar UI to _update_, and the staged information for selected paths are reverted to that of the HEAD version. Reverting new paths makes them untracked.
+This has a very similar UI to *update*, and the staged information for selected paths are reverted to that of the HEAD version. Reverting new paths makes them untracked.
 
 add untracked  
-This has a very similar UI to _update_ and _revert_, and lets you add untracked paths to the index.
+This has a very similar UI to *update* and *revert*, and lets you add untracked paths to the index.
 
 patch  
-This lets you choose one path out of a _status_ like selection. After choosing the path, it presents the diff between the index and the working tree file and asks you if you want to stage the change of each hunk. You can select one of the following options and type return:
+This lets you choose one path out of a *status* like selection. After choosing the path, it presents the diff between the index and the working tree file and asks you if you want to stage the change of each hunk. You can select one of the following options and type return:
 
     y - stage this hunk
     n - do not stage this hunk
@@ -195,7 +202,8 @@ You can omit having to type return here, by setting the configuration variable `
 diff  
 This lets you review what will be committed (i.e. between HEAD and index).
 
-## EDITING PATCHES
+EDITING PATCHES
+---------------
 
 Invoking `git add -e` or selecting `e` from the interactive hunk selector will open a patch in your editor; after the editor exits, the result is applied to the index. You are free to make arbitrary changes to the patch, but note that some changes may have confusing results, or even result in a patch that cannot be applied. If you want to abort the operation entirely (i.e., stage nothing new in the index), simply delete all lines of the patch. The list below describes some common things you may see in a patch, and which editing operations make sense on them.
 
@@ -223,18 +231,16 @@ You may also add new content that does not exist in the patch; simply add new li
 
 There are also several operations which should be avoided entirely, as they will make the patch impossible to apply:
 
-- adding context (" ") or removal ("-") lines
+-   adding context (" ") or removal ("-") lines
 
-- deleting context or removal lines
+-   deleting context or removal lines
 
-- modifying the contents of context or removal lines
+-   modifying the contents of context or removal lines
 
-## SEE ALSO
+SEE ALSO
+--------
 
 [git-status(1)](git-status.html) [git-rm(1)](git-rm.html) [git-reset(1)](git-reset.html) [git-mv(1)](git-mv.html) [git-commit(1)](git-commit.html) [git-update-index(1)](git-update-index.html)
 
-## GIT
-
-Part of the [git(1)](git.html) suite
-
-Last updated 2021-03-27 09:47:30 UTC
+GIT
+---

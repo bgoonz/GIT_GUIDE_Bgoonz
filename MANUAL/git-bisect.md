@@ -1,14 +1,18 @@
-# git-bisect(1) Manual Page
+git-bisect(1) Manual Page
+=========================
 
-## NAME
+NAME
+----
 
 git-bisect - Use binary search to find the commit that introduced a bug
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git bisect <subcommand> <options>
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 The command takes various subcommands, and different options depending on the subcommand:
 
@@ -111,11 +115,11 @@ Then, use `git bisect <term-old>` and `git bisect <term-new>` instead of `git bi
 
 ### Bisect visualize/view
 
-To see the currently remaining suspects in _gitk_, issue the following command during the bisection process (the subcommand `view` can be used as an alternative to `visualize`):
+To see the currently remaining suspects in *gitk*, issue the following command during the bisection process (the subcommand `view` can be used as an alternative to `visualize`):
 
     $ git bisect visualize
 
-If the `DISPLAY` environment variable is not set, _git log_ is used instead. You can also give command-line options such as `-p` and `--stat`.
+If the `DISPLAY` environment variable is not set, *git log* is used instead. You can also give command-line options such as `-p` and `--stat`.
 
     $ git bisect visualize --stat
 
@@ -190,9 +194,10 @@ The special exit code 125 should be used when the current source code cannot be 
 
 You may often find that during a bisect session you want to have temporary modifications (e.g. s/\#define DEBUG 0/\#define DEBUG 1/ in a header file, or "revision that does not have this commit needs this patch applied to work around another problem this bisection is not interested in") applied to the revision being tested.
 
-To cope with such a situation, after the inner _git bisect_ finds the next revision to test, the script can apply the patch before compiling, run the real test, and afterwards decide if the revision (possibly with the needed patch) passed the test and then rewind the tree to the pristine state. Finally the script should exit with the status of the real test to let the `git bisect run` command loop determine the eventual outcome of the bisect session.
+To cope with such a situation, after the inner *git bisect* finds the next revision to test, the script can apply the patch before compiling, run the real test, and afterwards decide if the revision (possibly with the needed patch) passed the test and then rewind the tree to the pristine state. Finally the script should exit with the status of the real test to let the `git bisect run` command loop determine the eventual outcome of the bisect session.
 
-## OPTIONS
+OPTIONS
+-------
 
 --no-checkout  
 Do not checkout the new working tree at each iteration of the bisection process. Instead just update a special reference named `BISECT_HEAD` to make it point to the commit that should be tested.
@@ -208,105 +213,104 @@ In detecting regressions introduced through the merging of a branch, the merge c
 
 This option is particularly useful in avoiding false positives when a merged branch contained broken or non-buildable commits, but the merge itself was OK.
 
-## EXAMPLES
+EXAMPLES
+--------
 
-- Automatically bisect a broken build between v1.2 and HEAD:
+-   Automatically bisect a broken build between v1.2 and HEAD:
 
-      $ git bisect start HEAD v1.2 --      # HEAD is bad, v1.2 is good
-      $ git bisect run make                # "make" builds the app
-      $ git bisect reset                   # quit the bisect session
+        $ git bisect start HEAD v1.2 --      # HEAD is bad, v1.2 is good
+        $ git bisect run make                # "make" builds the app
+        $ git bisect reset                   # quit the bisect session
 
-- Automatically bisect a test failure between origin and HEAD:
+-   Automatically bisect a test failure between origin and HEAD:
 
-      $ git bisect start HEAD origin --    # HEAD is bad, origin is good
-      $ git bisect run make test           # "make test" builds and tests
-      $ git bisect reset                   # quit the bisect session
+        $ git bisect start HEAD origin --    # HEAD is bad, origin is good
+        $ git bisect run make test           # "make test" builds and tests
+        $ git bisect reset                   # quit the bisect session
 
-- Automatically bisect a broken test case:
+-   Automatically bisect a broken test case:
 
-      $ cat ~/test.sh
-      #!/bin/sh
-      make || exit 125                     # this skips broken builds
-      ~/check_test_case.sh                 # does the test case pass?
-      $ git bisect start HEAD HEAD~10 --   # culprit is among the last 10
-      $ git bisect run ~/test.sh
-      $ git bisect reset                   # quit the bisect session
+        $ cat ~/test.sh
+        #!/bin/sh
+        make || exit 125                     # this skips broken builds
+        ~/check_test_case.sh                 # does the test case pass?
+        $ git bisect start HEAD HEAD~10 --   # culprit is among the last 10
+        $ git bisect run ~/test.sh
+        $ git bisect reset                   # quit the bisect session
 
-  Here we use a `test.sh` custom script. In this script, if `make` fails, we skip the current commit. `check_test_case.sh` should `exit 0` if the test case passes, and `exit 1` otherwise.
+    Here we use a `test.sh` custom script. In this script, if `make` fails, we skip the current commit. `check_test_case.sh` should `exit 0` if the test case passes, and `exit 1` otherwise.
 
-  It is safer if both `test.sh` and `check_test_case.sh` are outside the repository to prevent interactions between the bisect, make and test processes and the scripts.
+    It is safer if both `test.sh` and `check_test_case.sh` are outside the repository to prevent interactions between the bisect, make and test processes and the scripts.
 
-- Automatically bisect with temporary modifications (hot-fix):
+-   Automatically bisect with temporary modifications (hot-fix):
 
-      $ cat ~/test.sh
-      #!/bin/sh
+        $ cat ~/test.sh
+        #!/bin/sh
 
-      # tweak the working tree by merging the hot-fix branch
-      # and then attempt a build
-      if      git merge --no-commit --no-ff hot-fix &&
-              make
-      then
-              # run project specific test and report its status
-              ~/check_test_case.sh
-              status=$?
-      else
-              # tell the caller this is untestable
-              status=125
-      fi
+        # tweak the working tree by merging the hot-fix branch
+        # and then attempt a build
+        if      git merge --no-commit --no-ff hot-fix &&
+                make
+        then
+                # run project specific test and report its status
+                ~/check_test_case.sh
+                status=$?
+        else
+                # tell the caller this is untestable
+                status=125
+        fi
 
-      # undo the tweak to allow clean flipping to the next commit
-      git reset --hard
+        # undo the tweak to allow clean flipping to the next commit
+        git reset --hard
 
-      # return control
-      exit $status
+        # return control
+        exit $status
 
-  This applies modifications from a hot-fix branch before each test run, e.g. in case your build or test environment changed so that older revisions may need a fix which newer ones have already. (Make sure the hot-fix branch is based off a commit which is contained in all revisions which you are bisecting, so that the merge does not pull in too much, or use `git cherry-pick` instead of `git merge`.)
+    This applies modifications from a hot-fix branch before each test run, e.g. in case your build or test environment changed so that older revisions may need a fix which newer ones have already. (Make sure the hot-fix branch is based off a commit which is contained in all revisions which you are bisecting, so that the merge does not pull in too much, or use `git cherry-pick` instead of `git merge`.)
 
-- Automatically bisect a broken test case:
+-   Automatically bisect a broken test case:
 
-      $ git bisect start HEAD HEAD~10 --   # culprit is among the last 10
-      $ git bisect run sh -c "make || exit 125; ~/check_test_case.sh"
-      $ git bisect reset                   # quit the bisect session
+        $ git bisect start HEAD HEAD~10 --   # culprit is among the last 10
+        $ git bisect run sh -c "make || exit 125; ~/check_test_case.sh"
+        $ git bisect reset                   # quit the bisect session
 
-  This shows that you can do without a run script if you write the test on a single line.
+    This shows that you can do without a run script if you write the test on a single line.
 
-- Locate a good region of the object graph in a damaged repository
+-   Locate a good region of the object graph in a damaged repository
 
-      $ git bisect start HEAD <known-good-commit> [ <boundary-commit> ... ] --no-checkout
-      $ git bisect run sh -c '
-              GOOD=$(git for-each-ref "--format=%(objectname)" refs/bisect/good-*) &&
-              git rev-list --objects BISECT_HEAD --not $GOOD >tmp.$$ &&
-              git pack-objects --stdout >/dev/null <tmp.$$
-              rc=$?
-              rm -f tmp.$$
-              test $rc = 0'
+        $ git bisect start HEAD <known-good-commit> [ <boundary-commit> ... ] --no-checkout
+        $ git bisect run sh -c '
+                GOOD=$(git for-each-ref "--format=%(objectname)" refs/bisect/good-*) &&
+                git rev-list --objects BISECT_HEAD --not $GOOD >tmp.$$ &&
+                git pack-objects --stdout >/dev/null <tmp.$$
+                rc=$?
+                rm -f tmp.$$
+                test $rc = 0'
 
-      $ git bisect reset                   # quit the bisect session
+        $ git bisect reset                   # quit the bisect session
 
-  In this case, when _git bisect run_ finishes, bisect/bad will refer to a commit that has at least one parent whose reachable graph is fully traversable in the sense required by _git pack objects_.
+    In this case, when *git bisect run* finishes, bisect/bad will refer to a commit that has at least one parent whose reachable graph is fully traversable in the sense required by *git pack objects*.
 
-- Look for a fix instead of a regression in the code
+-   Look for a fix instead of a regression in the code
 
-      $ git bisect start
-      $ git bisect new HEAD    # current commit is marked as new
-      $ git bisect old HEAD~10 # the tenth commit from now is marked as old
+        $ git bisect start
+        $ git bisect new HEAD    # current commit is marked as new
+        $ git bisect old HEAD~10 # the tenth commit from now is marked as old
 
-  or:
+    or:
 
-  $ git bisect start --term-old broken --term-new fixed
-  $ git bisect fixed
-  $ git bisect broken HEAD~10
+    $ git bisect start --term-old broken --term-new fixed
+    $ git bisect fixed
+    $ git bisect broken HEAD~10
 
 ### Getting help
 
 Use `git bisect` to get a short usage description, and `git bisect help` or `git bisect -h` to get a long usage description.
 
-## SEE ALSO
+SEE ALSO
+--------
 
 [Fighting regressions with git bisect](git-bisect-lk2009.html), [git-blame(1)](git-blame.html).
 
-## GIT
-
-Part of the [git(1)](git.html) suite
-
-Last updated 2021-03-27 09:47:30 UTC
+GIT
+---

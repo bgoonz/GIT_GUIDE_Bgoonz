@@ -1,20 +1,25 @@
-# git-annotate(1) Manual Page
+git-annotate(1) Manual Page
+===========================
 
-## NAME
+NAME
+----
 
 git-annotate - Annotate file lines with commit information
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git annotate [<options>] <file> [<revision>]
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 Annotates each line in the given file with information from the commit which introduced the line. Optionally annotates from a given revision.
 
 The only difference between this command and [git-blame(1)](git-blame.html) is that they use slightly different output formats, and this command exists only for backward compatibility to support existing scripts, and provide a more familiar command name for people coming from other SCM systems.
 
-## OPTIONS
+OPTIONS
+-------
 
 -b  
 Show blank SHA-1 for boundary commits. This can also be controlled via the `blame.blankBoundary` config option.
@@ -27,25 +32,25 @@ Include additional statistics at the end of blame output.
 
 -L &lt;start&gt;,&lt;end&gt;  
 -L :&lt;funcname&gt;  
-Annotate only the line range given by _&lt;start&gt;,&lt;end&gt;_, or by the function name regex _&lt;funcname&gt;_. May be specified multiple times. Overlapping ranges are allowed.
+Annotate only the line range given by *&lt;start&gt;,&lt;end&gt;*, or by the function name regex *&lt;funcname&gt;*. May be specified multiple times. Overlapping ranges are allowed.
 
-_&lt;start&gt;_ and _&lt;end&gt;_ are optional. `-L <start>` or `-L <start>,` spans from _&lt;start&gt;_ to end of file. `-L ,<end>` spans from start of file to _&lt;end&gt;_.
+*&lt;start&gt;* and *&lt;end&gt;* are optional. `-L <start>` or `-L <start>,` spans from *&lt;start&gt;* to end of file. `-L ,<end>` spans from start of file to *&lt;end&gt;*.
 
-_&lt;start&gt;_ and _&lt;end&gt;_ can take one of these forms:
+*&lt;start&gt;* and *&lt;end&gt;* can take one of these forms:
 
-- number
+-   number
 
-  If _&lt;start&gt;_ or _&lt;end&gt;_ is a number, it specifies an absolute line number (lines count from 1).
+    If *&lt;start&gt;* or *&lt;end&gt;* is a number, it specifies an absolute line number (lines count from 1).
 
-- `/regex/`
+-   `/regex/`
 
-  This form will use the first line matching the given POSIX regex. If _&lt;start&gt;_ is a regex, it will search from the end of the previous `-L` range, if any, otherwise from the start of file. If _&lt;start&gt;_ is `^/regex/`, it will search from the start of file. If _&lt;end&gt;_ is a regex, it will search starting at the line given by _&lt;start&gt;_.
+    This form will use the first line matching the given POSIX regex. If *&lt;start&gt;* is a regex, it will search from the end of the previous `-L` range, if any, otherwise from the start of file. If *&lt;start&gt;* is `^/regex/`, it will search from the start of file. If *&lt;end&gt;* is a regex, it will search starting at the line given by *&lt;start&gt;*.
 
-- +offset or -offset
+-   +offset or -offset
 
-  This is only valid for _&lt;end&gt;_ and will specify a number of lines before or after the line given by _&lt;start&gt;_.
+    This is only valid for *&lt;end&gt;* and will specify a number of lines before or after the line given by *&lt;start&gt;*.
 
-If `:<funcname>` is given in place of _&lt;start&gt;_ and _&lt;end&gt;_, it is a regular expression that denotes the range from the first funcname line that matches _&lt;funcname&gt;_, up to the next funcname line. `:<funcname>` searches from the end of the previous `-L` range, if any, otherwise from the start of file. `^:<funcname>` searches from the start of file. The function names are determined in the same way as `git diff` works out patch hunk headers (see _Defining a custom hunk-header_ in [gitattributes(5)](gitattributes.html)).
+If `:<funcname>` is given in place of *&lt;start&gt;* and *&lt;end&gt;*, it is a regular expression that denotes the range from the first funcname line that matches *&lt;funcname&gt;*, up to the next funcname line. `:<funcname>` searches from the end of the previous `-L` range, if any, otherwise from the start of file. `^:<funcname>` searches from the start of file. The function names are determined in the same way as `git diff` works out patch hunk headers (see *Defining a custom hunk-header* in [gitattributes(5)](gitattributes.html)).
 
 -l  
 Show long rev (Default: off).
@@ -85,7 +90,7 @@ Specifies the format used to output dates. If --date is not provided, the value 
 Progress status is reported on the standard error stream by default when it is attached to a terminal. This flag enables progress reporting even if not attached to a terminal. Can’t use `--progress` together with `--porcelain` or `--incremental`.
 
 -M\[&lt;num&gt;\]  
-Detect moved or copied lines within a file. When a commit moves or copies a block of lines (e.g. the original file has A and then B, and the commit changes it to B and then A), the traditional _blame_ algorithm notices only half of the movement and typically blames the lines that were moved up (i.e. B) to the parent and assigns blame to the lines that were moved down (i.e. A) to the child commit. With this option, both groups of lines are blamed on the parent by running extra passes of inspection.
+Detect moved or copied lines within a file. When a commit moves or copies a block of lines (e.g. the original file has A and then B, and the commit changes it to B and then A), the traditional *blame* algorithm notices only half of the movement and typically blames the lines that were moved up (i.e. B) to the parent and assigns blame to the lines that were moved down (i.e. A) to the child commit. With this option, both groups of lines are blamed on the parent by running extra passes of inspection.
 
 &lt;num&gt; is optional but it is the lower bound on the number of alphanumeric characters that Git must detect as moving/copying within a file for it to associate those lines with the parent commit. The default value is 20.
 
@@ -95,7 +100,7 @@ In addition to `-M`, detect lines moved or copied from other files that were mod
 &lt;num&gt; is optional but it is the lower bound on the number of alphanumeric characters that Git must detect as moving/copying between files for it to associate those lines with the parent commit. And the default value is 40. If there are more than one `-C` options given, the &lt;num&gt; argument of the last `-C` will take effect.
 
 --ignore-rev &lt;rev&gt;  
-Ignore changes made by the revision when assigning blame, as if the change never happened. Lines that were changed or added by an ignored commit will be blamed on the previous commit that changed that line or nearby lines. This option may be specified multiple times to ignore more than one revision. If the `blame.markIgnoredLines` config option is set, then lines that were changed by an ignored commit and attributed to another commit will be marked with a `?` in the blame output. If the `blame.markUnblamableLines` config option is set, then those lines touched by an ignored commit that we could not attribute to another revision are marked with a \*\*\*.
+Ignore changes made by the revision when assigning blame, as if the change never happened. Lines that were changed or added by an ignored commit will be blamed on the previous commit that changed that line or nearby lines. This option may be specified multiple times to ignore more than one revision. If the `blame.markIgnoredLines` config option is set, then lines that were changed by an ignored commit and attributed to another commit will be marked with a `?` in the blame output. If the `blame.markUnblamableLines` config option is set, then those lines touched by an ignored commit that we could not attribute to another revision are marked with a *\**.
 
 --ignore-revs-file &lt;file&gt;  
 Ignore revisions listed in `file`, which must be in the same format as an `fsck.skipList`. This option may be repeated, and these files will be processed after any files specified with the `blame.ignoreRevsFile` config option. An empty file name, `""`, will clear the list of revs from previously processed files.
@@ -103,12 +108,10 @@ Ignore revisions listed in `file`, which must be in the same format as an `fsck.
 -h  
 Show help message.
 
-## SEE ALSO
+SEE ALSO
+--------
 
 [git-blame(1)](git-blame.html)
 
-## GIT
-
-Part of the [git(1)](git.html) suite
-
-Last updated 2021-03-27 09:47:30 UTC
+GIT
+---

@@ -1,10 +1,13 @@
-# git-branch(1) Manual Page
+git-branch(1) Manual Page
+=========================
 
-## NAME
+NAME
+----
 
 git-branch - List, create, or delete branches
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     git branch [--color[=<when>] | --no-color] [--show-current]
             [-v [--abbrev=<n> | --no-abbrev]]
@@ -22,7 +25,8 @@ git-branch - List, create, or delete branches
     git branch (-d | -D) [-r] <branchname>…​
     git branch --edit-description [<branchname>]
 
-## DESCRIPTION
+DESCRIPTION
+-----------
 
 If `--list` is given, or if there are no non-option arguments, existing branches are listed; the current branch will be highlighted in green and marked with an asterisk. Any branches checked out in linked worktrees will be highlighted in cyan and marked with a plus sign. Option `-r` causes the remote-tracking branches to be listed, and option `-a` shows both local and remote branches.
 
@@ -36,7 +40,7 @@ The command’s second form creates a new branch head named &lt;branchname&gt; w
 
 Note that this will create the new branch, but it will not switch the working tree to it; use "git switch &lt;newbranch&gt;" to switch to the new branch.
 
-When a local branch is started off a remote-tracking branch, Git sets up the branch (specifically the `branch.<name>.remote` and `branch.<name>.merge` configuration entries) so that _git pull_ will appropriately merge from the remote-tracking branch. This behavior may be changed via the global `branch.autoSetupMerge` configuration flag. That setting can be overridden by using the `--track` and `--no-track` options, and changed later using `git branch --set-upstream-to`.
+When a local branch is started off a remote-tracking branch, Git sets up the branch (specifically the `branch.<name>.remote` and `branch.<name>.merge` configuration entries) so that *git pull* will appropriately merge from the remote-tracking branch. This behavior may be changed via the global `branch.autoSetupMerge` configuration flag. That setting can be overridden by using the `--track` and `--no-track` options, and changed later using `git branch --set-upstream-to`.
 
 With a `-m` or `-M` option, &lt;oldbranch&gt; will be renamed to &lt;newbranch&gt;. If &lt;oldbranch&gt; had a corresponding reflog, it is renamed to match &lt;newbranch&gt;, and a reflog entry is created to remember the branch renaming. If &lt;newbranch&gt; exists, -M must be used to force the rename to happen.
 
@@ -44,9 +48,10 @@ The `-c` and `-C` options have the exact same semantics as `-m` and `-M`, except
 
 With a `-d` or `-D` option, `<branchname>` will be deleted. You may specify more than one branch for deletion. If the branch currently has a reflog then the reflog will also be deleted.
 
-Use `-r` together with `-d` to delete remote-tracking branches. Note, that it only makes sense to delete remote-tracking branches if they no longer exist in the remote repository or if _git fetch_ was configured not to fetch them again. See also the _prune_ subcommand of [git-remote(1)](git-remote.html) for a way to clean up all obsolete remote-tracking branches.
+Use `-r` together with `-d` to delete remote-tracking branches. Note, that it only makes sense to delete remote-tracking branches if they no longer exist in the remote repository or if *git fetch* was configured not to fetch them again. See also the *prune* subcommand of [git-remote(1)](git-remote.html) for a way to clean up all obsolete remote-tracking branches.
 
-## OPTIONS
+OPTIONS
+-------
 
 -d  
 --delete  
@@ -60,7 +65,7 @@ Create the branch’s reflog. This activates recording of all changes made to th
 
 -f  
 --force  
-Reset &lt;branchname&gt; to &lt;startpoint&gt;, even if &lt;branchname&gt; exists already. Without `-f`, _git branch_ refuses to change an existing branch. In combination with `-d` (or `--delete`), allow deleting the branch irrespective of its merged status. In combination with `-m` (or `--move`), allow renaming the branch even if the new branch name already exists, the same applies for `-c` (or `--copy`).
+Reset &lt;branchname&gt; to &lt;startpoint&gt;, even if &lt;branchname&gt; exists already. Without `-f`, *git branch* refuses to change an existing branch. In combination with `-d` (or `--delete`), allow deleting the branch irrespective of its merged status. In combination with `-m` (or `--move`), allow renaming the branch even if the new branch name already exists, the same applies for `-c` (or `--copy`).
 
 -m  
 --move  
@@ -88,7 +93,7 @@ Sorting and filtering branches are case insensitive.
 
 --column\[=&lt;options&gt;\]  
 --no-column  
-Display branch listing in columns. See configuration variable `column.branch` for option syntax. `--column` and `--no-column` without options are equivalent to _always_ and _never_ respectively.
+Display branch listing in columns. See configuration variable `column.branch` for option syntax. `--column` and `--no-column` without options are equivalent to *always* and *never* respectively.
 
 This option is only applicable in non-verbose mode.
 
@@ -117,7 +122,7 @@ When in list mode, show sha1 and commit subject line for each head, along with r
 Be more quiet when creating or deleting a branch, suppressing non-error messages.
 
 --abbrev=&lt;n&gt;  
-In the verbose listing that show the commit object name, show the shortest prefix that is at least _&lt;n&gt;_ hexdigits long that uniquely refers the object. The default value is 7 and can be overridden by the `core.abbrev` config option.
+In the verbose listing that show the commit object name, show the shortest prefix that is at least *&lt;n&gt;* hexdigits long that uniquely refers the object. The default value is 7 and can be overridden by the `core.abbrev` config option.
 
 --no-abbrev  
 Display the full sha1s in the output listing rather than abbreviating them.
@@ -177,33 +182,35 @@ Only list branches of the given object.
 --format &lt;format&gt;  
 A string that interpolates `%(fieldname)` from a branch ref being shown and the object it points at. The format is the same as that of [git-for-each-ref(1)](git-for-each-ref.html).
 
-## CONFIGURATION
+CONFIGURATION
+-------------
 
 `pager.branch` is only respected when listing branches, i.e., when `--list` is used or implied. The default is to use a pager. See [git-config(1)](git-config.html).
 
-## EXAMPLES
+EXAMPLES
+--------
 
 Start development from a known tag  
- $ git clone git://git.kernel.org/pub/scm/.../linux-2.6 my2.6
-$ cd my2.6
-$ git branch my2.6.14 v2.6.14 (1)
-$ git switch my2.6.14
+    $ git clone git://git.kernel.org/pub/scm/.../linux-2.6 my2.6
+    $ cd my2.6
+    $ git branch my2.6.14 v2.6.14   (1)
+    $ git switch my2.6.14
 
 1.  This step and the next one could be combined into a single step with "checkout -b my2.6.14 v2.6.14".
 
 Delete an unneeded branch  
- $ git clone git://git.kernel.org/.../git.git my.git
-$ cd my.git
-$ git branch -d -r origin/todo origin/html origin/man (1)
-$ git branch -D test (2)
+    $ git clone git://git.kernel.org/.../git.git my.git
+    $ cd my.git
+    $ git branch -d -r origin/todo origin/html origin/man   (1)
+    $ git branch -D test                                    (2)
 
-1.  Delete the remote-tracking branches "todo", "html" and "man". The next _fetch_ or _pull_ will create them again unless you configure them not to. See [git-fetch(1)](git-fetch.html).
+1.  Delete the remote-tracking branches "todo", "html" and "man". The next *fetch* or *pull* will create them again unless you configure them not to. See [git-fetch(1)](git-fetch.html).
 
 2.  Delete the "test" branch even if the "master" branch (or whichever branch is currently checked out) does not have all commits from the test branch.
 
 Listing branches from a specific remote  
- $ git branch -r -l '<remote>/<pattern>' (1)
-$ git for-each-ref 'refs/remotes/<remote>/<pattern>' (2)
+    $ git branch -r -l '<remote>/<pattern>'                 (1)
+    $ git for-each-ref 'refs/remotes/<remote>/<pattern>'    (2)
 
 1.  Using `-a` would conflate &lt;remote&gt; with any local branches you happen to have been prefixed with the same &lt;remote&gt; pattern.
 
@@ -211,30 +218,29 @@ $ git for-each-ref 'refs/remotes/<remote>/<pattern>' (2)
 
 Patterns will normally need quoting.
 
-## NOTES
+NOTES
+-----
 
 If you are creating a branch that you want to switch to immediately, it is easier to use the "git switch" command with its `-c` option to do the same thing with a single command.
 
 The options `--contains`, `--no-contains`, `--merged` and `--no-merged` serve four related but different purposes:
 
-- `--contains <commit>` is used to find all branches which will need special attention if &lt;commit&gt; were to be rebased or amended, since those branches contain the specified &lt;commit&gt;.
+-   `--contains <commit>` is used to find all branches which will need special attention if &lt;commit&gt; were to be rebased or amended, since those branches contain the specified &lt;commit&gt;.
 
-- `--no-contains <commit>` is the inverse of that, i.e. branches that don’t contain the specified &lt;commit&gt;.
+-   `--no-contains <commit>` is the inverse of that, i.e. branches that don’t contain the specified &lt;commit&gt;.
 
-- `--merged` is used to find all branches which can be safely deleted, since those branches are fully contained by HEAD.
+-   `--merged` is used to find all branches which can be safely deleted, since those branches are fully contained by HEAD.
 
-- `--no-merged` is used to find branches which are candidates for merging into HEAD, since those branches are not fully contained by HEAD.
+-   `--no-merged` is used to find branches which are candidates for merging into HEAD, since those branches are not fully contained by HEAD.
 
 When combining multiple `--contains` and `--no-contains` filters, only references that contain at least one of the `--contains` commits and contain none of the `--no-contains` commits are shown.
 
 When combining multiple `--merged` and `--no-merged` filters, only references that are reachable from at least one of the `--merged` commits and from none of the `--no-merged` commits are shown.
 
-## SEE ALSO
+SEE ALSO
+--------
 
 [git-check-ref-format(1)](git-check-ref-format.html), [git-fetch(1)](git-fetch.html), [git-remote(1)](git-remote.html), [“Understanding history: What is a branch?”](user-manual.html#what-is-a-branch) in the Git User’s Manual.
 
-## GIT
-
-Part of the [git(1)](git.html) suite
-
-Last updated 2021-03-27 09:47:30 UTC
+GIT
+---
