@@ -1,6 +1,8 @@
-# My First Contribution to the Git Project
+My First Contribution to the Git Project
+========================================
 
-## <a href="#summary" class="anchor"></a>Summary
+<a href="#summary" class="anchor"></a>Summary
+---------------------------------------------
 
 This is a tutorial demonstrating the end-to-end workflow of creating a change to the Git tree, sending it for review, and making changes based on comments.
 
@@ -12,9 +14,9 @@ This tutorial assumes you’re already fairly familiar with using Git to manage 
 
 This tutorial aims to summarize the following documents, but the reader may find useful additional context:
 
-- `Documentation/SubmittingPatches`
+-   `Documentation/SubmittingPatches`
 
-- `Documentation/howto/new-command.txt`
+-   `Documentation/howto/new-command.txt`
 
 ### <a href="#getting-help" class="anchor"></a>Getting Help
 
@@ -32,7 +34,8 @@ This mailing list is targeted to new contributors and was created as a place to 
 
 This IRC channel is for conversations between Git contributors. If someone is currently online and knows the answer to your question, you can receive help in real time. Otherwise, you can read the [scrollback](https://colabti.org/irclogger/irclogger_logs/git-devel) to see whether someone answered you. IRC does not allow offline private messaging, so if you try to private message someone and then log out of IRC, they cannot respond to you. It’s better to ask your questions in the channel so that you can be answered if you disconnect and so that others can learn from the conversation.
 
-## <a href="#getting-started" class="anchor"></a>Getting Started
+<a href="#getting-started" class="anchor"></a>Getting Started
+-------------------------------------------------------------
 
 ### <a href="#cloning" class="anchor"></a>Clone the Git Repository
 
@@ -67,7 +70,8 @@ For the purposes of this document, we will base all our work on the `master` bra
 
 We’ll make a number of commits here in order to demonstrate how to send a topic with multiple patches up for review simultaneously.
 
-## <a href="#code-it-up" class="anchor"></a>Code It Up!
+<a href="#code-it-up" class="anchor"></a>Code It Up!
+----------------------------------------------------
 
 <table><colgroup><col style="width: 50%" /><col style="width: 50%" /></colgroup><tbody><tr class="odd"><td><div class="title">Note</div></td><td>A reference implementation can be found at <a href="https://github.com/nasamuffin/git/tree/psuh" class="bare">https://github.com/nasamuffin/git/tree/psuh</a>.</td></tr></tbody></table>
 
@@ -355,7 +359,7 @@ This call will modify your `argv` parameter. It will strip the options you speci
 
 It’s worth noting the special argument `--`. As you may be aware, many Unix commands use `--` to indicate "end of named parameters" - all parameters after the `--` are interpreted merely as positional arguments. (This can be handy if you want to pass as a parameter something which would usually be interpreted as a flag.) `parse_options()` will terminate parsing when it reaches `--` and give you the rest of the options afterwards, untouched.
 
-Now that you have a usage hint, you can teach Git how to show it in the general command list shown by `git help git` or `git help -a`, which is generated from `command-list.txt`. Find the line for _git-pull_ so you can add your _git-psuh_ line above it in alphabetical order. Now, we can add some attributes about the command which impacts where it shows up in the aforementioned help commands. The top of `command-list.txt` shares some information about what each attribute means; in those help pages, the commands are sorted according to these attributes. `git psuh` is user-facing, or porcelain - so we will mark it as "mainporcelain". For "mainporcelain" commands, the comments at the top of `command-list.txt` indicate we can also optionally add an attribute from another list; since `git psuh` shows some information about the user’s workspace but doesn’t modify anything, let’s mark it as "info". Make sure to keep your attributes in the same style as the rest of `command-list.txt` using spaces to align and delineate them:
+Now that you have a usage hint, you can teach Git how to show it in the general command list shown by `git help git` or `git help -a`, which is generated from `command-list.txt`. Find the line for *git-pull* so you can add your *git-psuh* line above it in alphabetical order. Now, we can add some attributes about the command which impacts where it shows up in the aforementioned help commands. The top of `command-list.txt` shares some information about what each attribute means; in those help pages, the commands are sorted according to these attributes. `git psuh` is user-facing, or porcelain - so we will mark it as "mainporcelain". For "mainporcelain" commands, the comments at the top of `command-list.txt` indicate we can also optionally add an attribute from another list; since `git psuh` shows some information about the user’s workspace but doesn’t modify anything, let’s mark it as "info". Make sure to keep your attributes in the same style as the rest of `command-list.txt` using spaces to align and delineate them:
 
     git-prune-packed                        plumbingmanipulators
     git-psuh                                mainporcelain           info
@@ -366,15 +370,16 @@ Build again. Now, when you run with `-h`, you should see your usage printed and 
 
 Go ahead and commit this one, too.
 
-## <a href="#testing" class="anchor"></a>Testing
+<a href="#testing" class="anchor"></a>Testing
+---------------------------------------------
 
 It’s important to test your code - even for a little toy command like this one. Moreover, your patch won’t be accepted into the Git tree without tests. Your tests should:
 
-- Illustrate the current behavior of the feature
+-   Illustrate the current behavior of the feature
 
-- Prove the current behavior matches the expected behavior
+-   Prove the current behavior matches the expected behavior
 
-- Ensure the externally-visible behavior isn’t broken in later changes
+-   Ensure the externally-visible behavior isn’t broken in later changes
 
 So let’s write some tests.
 
@@ -388,7 +393,7 @@ The tests in Git live in `t/` and are named with a 4-digit decimal number using 
 
 Since this a toy command, let’s go ahead and name the test with t9999. However, as many of the family/subcmd combinations are full, best practice seems to be to find a command close enough to the one you’ve added and share its naming space.
 
-Create a new file `t/t9999-psuh-tutorial.sh`. Begin with the header as so (see "Writing Tests" and "Source _test-lib.sh_" in `t/README`):
+Create a new file `t/t9999-psuh-tutorial.sh`. Begin with the header as so (see "Writing Tests" and "Source *test-lib.sh*" in `t/README`):
 
     #!/bin/sh
 
@@ -431,7 +436,8 @@ You can run the full test suite and ensure `git-psuh` didn’t break anything:
 
 Go ahead and commit this change, as well.
 
-## <a href="#ready-to-share" class="anchor"></a>Getting Ready to Share
+<a href="#ready-to-share" class="anchor"></a>Getting Ready to Share
+-------------------------------------------------------------------
 
 You may have noticed already that the Git project performs its code reviews via emailed patches, which are then applied by the maintainer when they are ready and approved by the community. The Git project does not accept patches from pull requests, and the patches emailed for review need to be formatted a specific way. At this point the tutorial diverges, in order to demonstrate two different methods of formatting your patchset and getting it reviewed.
 
@@ -441,7 +447,8 @@ The second method to be covered is `git send-email`, which can give slightly mor
 
 Regardless of which method you choose, your engagement with reviewers will be the same; the review process will be covered after the sections on GitGitGadget and `git send-email`.
 
-## <a href="#howto-ggg" class="anchor"></a>Sending Patches via GitGitGadget
+<a href="#howto-ggg" class="anchor"></a>Sending Patches via GitGitGadget
+------------------------------------------------------------------------
 
 One option for sending patches is to follow a typical pull request workflow and send your patches out via GitGitGadget. GitGitGadget is a tool created by Johannes Schindelin to make life as a Git contributor easier for those used to the GitHub PR workflow. It allows contributors to open pull requests against its mirror of the Git project, and does some magic to turn the PR into a set of emails and send them out for you. It also runs the Git continuous integration suite for you. It’s documented at <a href="http://gitgitgadget.github.io" class="bare">http://gitgitgadget.github.io</a>.
 
@@ -509,7 +516,8 @@ Once you have your branch again in the shape you want following all review comme
 
 Next, go look at your pull request against GitGitGadget; you should see the CI has been kicked off again. Now while the CI is running is a good time for you to modify your description at the top of the pull request thread; it will be used again as the cover letter. You should use this space to describe what has changed since your previous version, so that your reviewers have some idea of what they’re looking at. When the CI is done running, you can comment once more with `/submit` - GitGitGadget will automatically add a v2 mark to your changes.
 
-## <a href="#howto-git-send-email" class="anchor"></a>Sending Patches with `git send-email`
+<a href="#howto-git-send-email" class="anchor"></a>Sending Patches with `git send-email`
+----------------------------------------------------------------------------------------
 
 If you don’t want to use GitGitGadget, you can also use Git itself to mail your patches. Some benefits of using Git this way include finer grained control of subject line (for example, being able to use the tag \[RFC PATCH\] in the subject) and being able to send a “dry run” mail to yourself to ensure it all looks good before going out to the list.
 
@@ -657,7 +665,8 @@ In some cases, your very small change may consist of only one patch. When that h
     --
     2.21.0.392.gf8f6787159e-goog
 
-## <a href="#now-what" class="anchor"></a>My Patch Got Emailed - Now What?
+<a href="#now-what" class="anchor"></a>My Patch Got Emailed - Now What?
+-----------------------------------------------------------------------
 
 ### <a href="#reviewing" class="anchor"></a>Responding to Reviews
 
@@ -690,5 +699,3 @@ If the topic has already been merged to `next`, rather than modifying your patch
 The topic branches in the maintainer’s GitHub are mirrored in GitGitGadget, so if you’re sending your reviews out that way, you should be sure to open your PR against the appropriate GitGitGadget/Git branch.
 
 If you’re using `git send-email`, you can use it the same way as before, but you should generate your diffs from `<topic>..<mybranch>` and base your work on `<topic>` instead of `master`.
-
-Last updated 2021-03-27 09:47:30 UTC
