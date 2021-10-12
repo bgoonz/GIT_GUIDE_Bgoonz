@@ -29,9 +29,8 @@ Note: [`git-scm`](https://git-scm.com/download/win) is a popular and recommended
 ## Install Git on Windows through Visual Studio Code
 
 GitHub integration is provided through the [GitHub Pull Requests and Issues extension](https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github).
-To get started with the GitHub in VS Code, you'll need to create an account and install the GitHub Pull Requests and Issues extension. 
+To get started with the GitHub in VS Code, you'll need to create an account and install the GitHub Pull Requests and Issues extension.
 Once you've installed the [GitHub Pull Requests and Issues extension](https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github), you'll need to sign in. Follow the prompts to authenticate with GitHub and return to VS Code.
-
 
 ---
 
@@ -58,7 +57,6 @@ Note: [`git-scm`](https://git-scm.com/download/mac) is a popular and recommended
 
 1. Open up a terminal window and install Git using the following command: `brew install git`.
 2. Once the command output has been completed, you can verify the installation by typing: `git version`.
-
 
 ## Install Git on Linux
 

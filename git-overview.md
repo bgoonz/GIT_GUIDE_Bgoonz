@@ -59,7 +59,7 @@ Without sharing the code through branches, this would never be possible.
 
 ### Ease of roll back
 
-If you make a mistake, it's OK! Commits are immutable, meaning they can't be changed. (*Note: You _can_ change history, but it will create new replacement commits instead of editing the existing commits. More on that later!*) This means that if you do make a mistake, even on an important branch, like `main`, it's _OK_. **You can easily revert that change, or roll back the branch pointer to the commit where everything was fine.**
+If you make a mistake, it's OK! Commits are immutable, meaning they can't be changed. (_Note: You *can* change history, but it will create new replacement commits instead of editing the existing commits. More on that later!_) This means that if you do make a mistake, even on an important branch, like `main`, it's _OK_. **You can easily revert that change, or roll back the branch pointer to the commit where everything was fine.**
 
 The benefits of this can't be overstated. Not only does it create a safer environment for the project and code, but it fosters a development environment where developers can be braver, trusting that Git has their back.
 
@@ -86,7 +86,7 @@ If you're looking for more GitHub-specific technical guidance, check out [GitHub
 
 ### Getting Started With the Git Workflow
 
-Depending on your operating system, you may already have [Git installed](/git-guides/install-git). But, getting started means more than having the software! To get started, it's important to know the basics of how Git works. You may choose to do the actual work within a terminal, an app like GitHub Desktop, or through GitHub.com. (*Note: while you can interact with Git through GitHub.com, your experience may be limited. Many local tools can give you access to the most widely used Git functionalities, though only the terminal will give you access to them all.*)
+Depending on your operating system, you may already have [Git installed](/git-guides/install-git). But, getting started means more than having the software! To get started, it's important to know the basics of how Git works. You may choose to do the actual work within a terminal, an app like GitHub Desktop, or through GitHub.com. (_Note: while you can interact with Git through GitHub.com, your experience may be limited. Many local tools can give you access to the most widely used Git functionalities, though only the terminal will give you access to them all._)
 
 There are _many_ ways to use Git, which doesn't necessarily make it easier! But, the fundamental Git workflow has a few main steps. You can practice all of these in the [Introduction to GitHub Learning Lab course](https://lab.github.com/githubtraining/introduction-to-github).
 
@@ -96,7 +96,7 @@ The main branch is usually called `main`. We want to work on _another_ branch, s
 
 #### Make changes (and make a commit)
 
-Once you've created a branch, and moved the HEAD pointer to it by "checking out" to that branch, you're ready to get to work. Make the changes in your repository using your favorite text editor or IDE. 
+Once you've created a branch, and moved the HEAD pointer to it by "checking out" to that branch, you're ready to get to work. Make the changes in your repository using your favorite text editor or IDE.
 
 Next, save your changes. You're ready to start the commit!
 

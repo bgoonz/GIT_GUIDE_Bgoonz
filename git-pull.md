@@ -20,7 +20,7 @@ git pull
 
 However, you may want to use `git fetch` instead. One reason to do this may be that you expect conflicts. Conflicts can occur in this way if you have new local commits and new commits on the remote. Just like a merge conflict that would happen between two different branches, these two different lines of history could contain changes to the same parts of the same file. If you first operate `git fetch`, the merge won't be initiated, and you won't be prompted to solve the conflict. This gives you the flexibility to resolve the conflict later without the need for network connectivity.
 
-Another reason you may want to run `git fetch` is to update to all remote tracking branches before losing network connectivity. If you run `git fetch`, and then later try to run `git pull` without any network connectivity, the `git fetch` portion of the `git pull` operation will fail. 
+Another reason you may want to run `git fetch` is to update to all remote tracking branches before losing network connectivity. If you run `git fetch`, and then later try to run `git pull` without any network connectivity, the `git fetch` portion of the `git pull` operation will fail.
 
 If you do use `git fetch` instead of `git pull`, make sure you remember to `git merge`. Merging the remote tracking branch into your own branch ensures you will be working with any updates or changes.
 
@@ -28,10 +28,10 @@ If you do use `git fetch` instead of `git pull`, make sure you remember to `git 
 
 ### Common usages and options for `git pull`
 
-* `git pull`: Update your local working branch with commits from the remote, _and_ update all remote tracking branches.
-* `git pull --rebase`: Update your local working branch with commits from the remote, but rewrite history so any local commits occur after all new commits coming from the remote, avoiding a merge commit.
-* `git pull --force`: This option allows you to force a fetch of a specific remote tracking branch when using the `<refspec>` option that would otherwise not be fetched due to conflicts. To force Git to overwrite your current branch to match the remote tracking branch, read below about using `git reset`.
-* `git pull --all`: Fetch _all_ remotes - this is handy if you are working on a fork or in another use case with multiple remotes.
+- `git pull`: Update your local working branch with commits from the remote, _and_ update all remote tracking branches.
+- `git pull --rebase`: Update your local working branch with commits from the remote, but rewrite history so any local commits occur after all new commits coming from the remote, avoiding a merge commit.
+- `git pull --force`: This option allows you to force a fetch of a specific remote tracking branch when using the `<refspec>` option that would otherwise not be fetched due to conflicts. To force Git to overwrite your current branch to match the remote tracking branch, read below about using `git reset`.
+- `git pull --all`: Fetch _all_ remotes - this is handy if you are working on a fork or in another use case with multiple remotes.
 
 You can see all of the many options with `git pull` in [git-scm's documentation](https://git-scm.com/docs/git-pull).
 
@@ -55,7 +55,7 @@ For example, let's say you have cloned a repository. After you clone, someone me
 
 To effectively "undo" a `git pull`, you cannot undo the `git fetch` - but you can undo the `git merge` that changed your local working branch.
 
-To do this, you will need to `git reset` to the commit you made _before_ you merged. You can find this commit by searching the `git reflog`. The reflog is a log of every place that HEAD has pointed - every place that you have ever been checked out to. This reflog is only kept for 30 to 90 days, depending on the commit, and is only stored locally. *(The reflog is a great reason not to delete a repository if you think you've made a mistake!)*
+To do this, you will need to `git reset` to the commit you made _before_ you merged. You can find this commit by searching the `git reflog`. The reflog is a log of every place that HEAD has pointed - every place that you have ever been checked out to. This reflog is only kept for 30 to 90 days, depending on the commit, and is only stored locally. _(The reflog is a great reason not to delete a repository if you think you've made a mistake!)_
 
 Run `git reflog` and search for the commit that you would like to return to. Then, run `git reset --hard <SHA>` to reset HEAD and your current branch to the SHA of the commit from before the merge.
 
@@ -71,14 +71,14 @@ Then, use `git reset --hard` to move the HEAD pointer and the current branch poi
 `git reset --hard <remote>/<branch>`
 ex: `git reset --hard origin/main`
 
-> _Note: You can find the remotes with `git remote -v`, and see all available remote tracking branches with `git branch --all`.
+> \_Note: You can find the remotes with `git remote -v`, and see all available remote tracking branches with `git branch --all`.
 
 ### `git pull` with Rebase
 
 If there have been new commits on both your local branch and the remote branch, a merge commit will be created when you `git pull`. This recursive merge is the default merge style when there are two splits in history being brought together. But, you may want history on a branch to be only one line.
 
 You can update your local working branch with commits from the remote, but rewrite history so any local commits occur after all new commits coming from the remote, avoiding a merge commit.
-This is done  with `git pull --rebase`.
+This is done with `git pull --rebase`.
 
 Using `git pull --rebase` does not affect the integrity of the changes or the commits, but it does affect how history looks in the commit parent/child relationship.
 
@@ -90,4 +90,3 @@ Using `git pull --rebase` does not affect the integrity of the changes or the co
 - `git push`: Uploads all local branch commits to the remote.
 - `git log`: Browse and inspect the evolution of project files.
 - `git remote -v`: Show the associated remote repositories and their stored name, like `origin`.
-

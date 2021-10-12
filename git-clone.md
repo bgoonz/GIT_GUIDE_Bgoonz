@@ -15,7 +15,8 @@ When you clone a repository, you don't get one file, as you may in other central
 Cloning a repository is typically only done once, at the beginning of your interaction with a project. Once a repository already exists on a remote, like on GitHub, then you would clone that repository so you could interact with it locally. Once you have cloned a repository, you won't need to clone it again to do regular development.
 
 The ability to work with the entire repository means that all developers can work more freely. Without being limited by which files you can work on, you can work on a feature branch to make changes safely. Then, you can:
--  later use `git push` to share your branch with the remote repository
+
+- later use `git push` to share your branch with the remote repository
 - open a pull request to compare the changes with your collaborators
 - test and deploy as needed from the branch
 - merge into the `main` branch.
@@ -24,11 +25,11 @@ The ability to work with the entire repository means that all developers can wor
 
 ### Common usages and options for `git clone`
 
-* `git clone [url]`: Clone (download) a repository that already exists on GitHub, including all of the files, branches, and commits.
-* `git clone --mirror`: Clone a repository but without the ability to edit any of the files. This includes the refs or branches. You may want to use this if you are trying to create a secondary copy of a repository on a separate remote and you want to match all of the branches. This may occur during configuration using a new remote for your Git hosting, or when using Git during automated testing.
-* `git clone --single-branch`: Clone only a single branch
-* `git clone --sparse`: Instead of populating the working directory with all of the files in the current commit recursively, only populate the files present in the root directory. This could help with performance when cloning large repositories with many directories and sub-directories.
-*   `git clone --recurse-submodules[=<pathspec]: After the clone is created, initialize and clone submodules within based on the provided pathspec. This may be a good option if you are cloning a repository that you know to have submodules, and you will be working with those submodules as dependencies in your local development.
+- `git clone [url]`: Clone (download) a repository that already exists on GitHub, including all of the files, branches, and commits.
+- `git clone --mirror`: Clone a repository but without the ability to edit any of the files. This includes the refs or branches. You may want to use this if you are trying to create a secondary copy of a repository on a separate remote and you want to match all of the branches. This may occur during configuration using a new remote for your Git hosting, or when using Git during automated testing.
+- `git clone --single-branch`: Clone only a single branch
+- `git clone --sparse`: Instead of populating the working directory with all of the files in the current commit recursively, only populate the files present in the root directory. This could help with performance when cloning large repositories with many directories and sub-directories.
+- `git clone --recurse-submodules[=<pathspec]: After the clone is created, initialize and clone submodules within based on the provided pathspec. This may be a good option if you are cloning a repository that you know to have submodules, and you will be working with those submodules as dependencies in your local development.
 
 You can see all of the many options with `git clone` in [git-scm's documentation](https://git-scm.com/docs/git-clone).
 
@@ -51,7 +52,6 @@ To clone one specific branch, use:
 `git clone [url] --branch [branch] --single-branch`
 
 _Cloning only one branch does not add any benefits unless the repository is very large and contains binary files that slow down the performance of the repository. The recommended solution is to optimize the performance of the repository before relying on single branch cloning strategies._
-
 
 ### `git clone` With SSH
 
